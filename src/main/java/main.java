@@ -9,4 +9,21 @@
  */
 public class main {
     
+    public static void main(String[] args) {
+        System.out.println("hihihihi");
+        System.out.println("hahahaha");
+        System.out.println("hahahaha");
+        System.out.println("hahahaha");
+        System.out.println("hahahaha");
+        System.out.println("hahahaha");
+        System.out.println("hahahaha");
+        System.out.println("hahahaha");
+        System.out.println("hahahaha");
+        System.out.println("hahahaha");
+        System.out.println("hahahaha");
+        System.out.println("hahahaha");
+        System.out.println("hahahaha");
+        System.out.println("hahahaha");
+        System.out.println("hahahaha");
+    }
 }
