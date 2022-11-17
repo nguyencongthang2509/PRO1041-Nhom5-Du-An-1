@@ -4,10 +4,23 @@
  */
 package crud.viewmodel;
 
+import java.util.UUID;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
  *
  * @author thangncph26123
  */
-public class ViewModelTest {
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+public class ChucVuViewModel {
+    
+    private UUID id;
+    private String ma;
+    private String ten;
+    
     
 }
