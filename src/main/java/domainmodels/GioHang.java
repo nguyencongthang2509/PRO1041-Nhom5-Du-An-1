@@ -48,13 +48,13 @@ public class GioHang implements Serializable {
     @Column(name = "ngay_thanh_toan")
     private Long ngayThanhToan;
 
-    @Column(name = "ten_nguoi_nhan")
+    @Column(name = "ten_nguoi_nhan", length = 50)
     private String tenNguoiNhan;
 
-    @Column(name = "dia_chi")
+    @Column(name = "dia_chi", length = 255)
     private String diaChi;
 
-    @Column(name = "sdt")
+    @Column(name = "sdt", length = 20)
     private String sdt;
 
     @Column(name = "tinh_trang")
