@@ -28,7 +28,7 @@ public class HangRepository {
 
     public Hang getOne(String ma) {
         String hql = fromTable + "WHERE ma =: ma";
-        Query query = session.createSQLQuery(hql);
+        Query query = session.createQuery(hql);
         query.setParameter("ma", ma);
         Hang hang = (Hang) query.getSingleResult();
         return hang;
