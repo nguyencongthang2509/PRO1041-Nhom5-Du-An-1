@@ -77,7 +77,7 @@ public class NhanVienRepository {
         return nv;
     }
 
-    public NhanVien findbyID(UUID id){
+    public NhanVien findbyID(String id){
         NhanVien nv = null;
         try {
             Session session = HibernateUtil.getSession();

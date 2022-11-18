@@ -6,6 +6,7 @@ package crud.service.impl;
 
 import crud.repository.MauSacRepository;
 import crud.service.MauSacService;
+import domainmodels.ChiTietSP;
 import domainmodels.MauSac;
 import java.util.List;
 
@@ -27,6 +28,7 @@ public class MauSacServiceImpl implements MauSacService {
     public String insert(MauSac mausac) {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         boolean check = mausacRe.saveOrUpdate(mausac);
+        ChiTietSP chiTietSP = new ChiTietSP();
         if (check) {
             return "Thêm thành công";
         }

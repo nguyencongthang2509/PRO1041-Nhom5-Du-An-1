@@ -12,31 +12,32 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  *
  * @author thangncph26123
  */
-
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 @Table(name = "hoa_don_chi_tiet")
 @IdClass(HoaDonChiTietId.class)
 public class HoaDonChiTiet implements Serializable {
 
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_hoa_don", nullable = false)
-    private HoaDon IdHoaDon;
+    @JoinColumn(name = "hoaDonId", nullable = false)
+    private HoaDon hoaDonId;
 
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_chi_tiet_san_pham", nullable = false)
-    private ChiTietSP IdChiTietSP;
+    @JoinColumn(name = "chiTietSPId", nullable = false)
+    private ChiTietSP chiTietSPId;
 
     @Column(name = "so_luong")
     private Integer soLuong;
@@ -46,7 +47,7 @@ public class HoaDonChiTiet implements Serializable {
 
     @Column(name = "gia_ban")
     private BigDecimal giaBan;
-    
-        @Column(name = "trang_thai")
+
+    @Column(name = "trang_thai")
     private TrangThaiHDCT trangThaiHDCT;
 }

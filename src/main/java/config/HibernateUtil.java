@@ -1,7 +1,6 @@
 package config;
 
 import domainmodels.ChiTietSP;
-import domainmodels.ChucVu;
 import domainmodels.GioHang;
 import domainmodels.GioHangChiTiet;
 import domainmodels.Hang;
@@ -14,7 +13,6 @@ import domainmodels.LoaiKhuyenMai;
 import domainmodels.MauSac;
 import domainmodels.NhanVien;
 import domainmodels.SanPham;
-import domainmodels.TrangThaiHoaDon;
 import java.util.Properties;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -40,14 +38,12 @@ public class HibernateUtil {
         properties.put(Environment.SHOW_SQL, "true");
         properties.put(Environment.HBM2DDL_AUTO, "create");//gen DB tự động
 
-        conf.addAnnotatedClass(TrangThaiHoaDon.class);
         conf.addAnnotatedClass(SanPham.class);
         conf.addAnnotatedClass(LoaiKhuyenMai.class);
         conf.addAnnotatedClass(KhuyenMai.class);
         conf.addAnnotatedClass(MauSac.class);
         conf.addAnnotatedClass(KichThuoc.class);
         conf.addAnnotatedClass(Hang.class);
-        conf.addAnnotatedClass(ChucVu.class);
         conf.addAnnotatedClass(NhanVien.class);
         conf.addAnnotatedClass(KhachHang.class);
         conf.addAnnotatedClass(GioHang.class);

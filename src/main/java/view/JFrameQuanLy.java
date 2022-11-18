@@ -1,6 +1,5 @@
 package view;
 
-import antlr.Utils;
 import javax.swing.ImageIcon;
 
 /**
@@ -32,6 +31,7 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         btnDangXuat = new com.k33ptoo.components.KButton();
         jLabel1 = new javax.swing.JLabel();
         btnCardSon = new javax.swing.JPanel();
+        datePicker1 = new com.github.lgooddatepicker.components.DatePicker();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Quản lý bán giày thời trang Sneaker Store");
@@ -42,6 +42,7 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 153, 153));
 
         btnBanHang.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnBanHang.setIcon(new ImageIcon("src/main/images/cart.png"));
         btnBanHang.setText("Bán hàng");
         btnBanHang.setToolTipText("");
         btnBanHang.setFont(new java.awt.Font("Roboto Slab Black", 0, 24)); // NOI18N
@@ -149,6 +150,8 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         btnDangXuat.setkSelectedColor(new java.awt.Color(255, 153, 153));
         btnDangXuat.setkStartColor(new java.awt.Color(255, 153, 153));
 
+        jLabel1.setIcon(new ImageIcon("src/main/images/cart.png"));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -193,11 +196,17 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         btnCardSon.setLayout(btnCardSonLayout);
         btnCardSonLayout.setHorizontalGroup(
             btnCardSonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1292, Short.MAX_VALUE)
+            .addGroup(btnCardSonLayout.createSequentialGroup()
+                .addGap(152, 152, 152)
+                .addComponent(datePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(910, Short.MAX_VALUE))
         );
         btnCardSonLayout.setVerticalGroup(
             btnCardSonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 784, Short.MAX_VALUE)
+            .addGroup(btnCardSonLayout.createSequentialGroup()
+                .addGap(183, 183, 183)
+                .addComponent(datePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnlCardsLayout = new javax.swing.GroupLayout(pnlCards);
@@ -207,12 +216,16 @@ public class JFrameQuanLy extends javax.swing.JFrame {
             .addGroup(pnlCardsLayout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCardSon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnCardSon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         pnlCardsLayout.setVerticalGroup(
             pnlCardsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnCardSon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCardsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnCardSon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -272,6 +285,7 @@ public class JFrameQuanLy extends javax.swing.JFrame {
     private com.k33ptoo.components.KButton btnNhanVien;
     private com.k33ptoo.components.KButton btnSanPham;
     private com.k33ptoo.components.KButton btnThongKe;
+    private com.github.lgooddatepicker.components.DatePicker datePicker1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel pnlCards;

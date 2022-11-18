@@ -1,19 +1,19 @@
 package domainmodels;
 
+import domainmodels.base.PrimaryEntity;
+import infrastructure.constant.EntityProperties;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.Nationalized;
 
 /**
  *
@@ -22,14 +22,10 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 @Table(name = "gio_hang")
-public class GioHang implements Serializable {
-
-    @Id
-    @GeneratedValue
-    @Column(name = "id")
-    private UUID id;
+public class GioHang extends PrimaryEntity implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_khach_hang")
@@ -39,7 +35,7 @@ public class GioHang implements Serializable {
     @JoinColumn(name = "id_nhan_vien")
     private NhanVien nhanVien;
 
-    @Column(name = "ma")
+    @Column(name = "ma", length = EntityProperties.LENGTH_CODE)
     private String ma;
 
     @Column(name = "ngay_tao")
@@ -48,21 +44,18 @@ public class GioHang implements Serializable {
     @Column(name = "ngay_thanh_toan")
     private Long ngayThanhToan;
 
-    @Column(name = "ten_nguoi_nhan", length = 50)
+    @Column(name = "ten_nguoi_nhan", length = EntityProperties.LENGTH_NAME)
+    @Nationalized
     private String tenNguoiNhan;
 
-    @Column(name = "dia_chi", length = 255)
+    @Column(name = "dia_chi", length = EntityProperties.LENGTH_ADDRESS)
+    @Nationalized
     private String diaChi;
 
-    @Column(name = "sdt", length = 20)
+    @Column(name = "sdt", length = EntityProperties.LENGTH_PHONE)
     private String sdt;
 
     @Column(name = "tinh_trang")
     private Integer tinhTrang;
 
-    @Column(name = "create_date")
-    private Long createDate;
-
-    @Column(name = "last_modified_date")
-    private Long lastModifiedDate;
 }

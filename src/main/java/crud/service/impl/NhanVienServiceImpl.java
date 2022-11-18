@@ -1,14 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package crud.service.impl;
 
 import crud.repository.NhanVienRepository;
 import crud.service.NhanVienService;
 import domainmodels.NhanVien;
 import java.util.List;
-import java.util.UUID;
 
 /**
  *
@@ -105,7 +100,7 @@ public class NhanVienServiceImpl implements NhanVienService {
     }
 
     @Override
-    public String delete(UUID id) {
+    public String delete(String id) {
         NhanVien nv = repo.findbyID(id);
         if(nv == null){
             return "Nhân viên này không tồn tại";

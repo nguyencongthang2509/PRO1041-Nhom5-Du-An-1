@@ -11,8 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  *
@@ -21,20 +22,21 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 @Table(name = "gio_hang_chi_tiet")
 @IdClass(GioHangChiTietId.class)
 public class GioHangChiTiet implements Serializable {
 
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_gio_hang", nullable = false)
-    private GioHang IdGioHang;
+    @JoinColumn(name = "gioHangId", nullable = false)
+    private GioHang gioHangId;
 
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_chi_tiet_san_pham", nullable = false)
-    private ChiTietSP IdChiTietSP;
+    @JoinColumn(name = "chiTietSPId", nullable = false)
+    private ChiTietSP chiTietSPId;
 
     @Column(name = "so_luong")
     private Integer soLuong;

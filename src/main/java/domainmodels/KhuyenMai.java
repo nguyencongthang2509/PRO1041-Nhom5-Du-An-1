@@ -1,21 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package domainmodels;
 
-import java.util.UUID;
+import domainmodels.base.PrimaryEntity;
+import infrastructure.constant.EntityProperties;
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.Nationalized;
 
 /**
  *
@@ -24,19 +22,16 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 @Table(name = "khuyen_mai")
-public class KhuyenMai {
+public class KhuyenMai extends PrimaryEntity implements Serializable{
 
-    @Id
-    @GeneratedValue
-    @Column(name = "id")
-    private UUID id;
-
-    @Column(name = "ma")
+    @Column(name = "ma", length = EntityProperties.LENGTH_CODE)
     private String ma;
 
-    @Column(name = "ten")
+    @Column(name = "ten", length = EntityProperties.LENGTH_NAME)
+    @Nationalized
     private String ten;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -52,9 +47,4 @@ public class KhuyenMai {
     @Column(name = "gia_tri")
     private Integer giaTri;
 
-    @Column(name = "create_date")
-    private Long createDate;
-
-    @Column(name = "last_modified_date")
-    private Long lastModifiedDate;
 }

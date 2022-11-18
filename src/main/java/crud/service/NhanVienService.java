@@ -6,7 +6,6 @@ package crud.service;
 
 import domainmodels.NhanVien;
 import java.util.List;
-import java.util.UUID;
 
 /**
  *
@@ -20,5 +19,5 @@ public interface NhanVienService {
 
     String update(NhanVien nv);
 
-    String delete(UUID id);
+    String delete(String id);
 }

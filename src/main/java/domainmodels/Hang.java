@@ -1,15 +1,16 @@
 package domainmodels;
 
+import domainmodels.base.PrimaryEntity;
+import infrastructure.constant.EntityProperties;
 import java.io.Serializable;
-import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.Nationalized;
 
 /**
  *
@@ -18,24 +19,16 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 @Table(name = "hang")
-public class Hang implements Serializable {
+public class Hang extends PrimaryEntity implements Serializable {
 
-    @Id
-    @GeneratedValue
-    @Column(name = "id")
-    private UUID id;
-
-    @Column(name = "ma")
+    @Column(name = "ma", length = EntityProperties.LENGTH_CODE)
     private String ma;
 
-    @Column(name = "ten")
+    @Column(name = "ten", length = EntityProperties.LENGTH_NAME_SHORT)
+    @Nationalized
     private String ten;
 
-    @Column(name = "create_date")
-    private Long createDate;
-
-    @Column(name = "last_modified_date")
-    private Long lastModifiedDate;
 }

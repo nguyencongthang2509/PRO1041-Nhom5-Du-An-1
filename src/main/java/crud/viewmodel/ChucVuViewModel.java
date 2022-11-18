@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class ChucVuViewModel {
     
-    private UUID id;
+    private String id;
     private String ma;
     private String ten;
     
