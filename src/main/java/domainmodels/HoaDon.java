@@ -4,6 +4,7 @@ import domainmodels.base.PrimaryEntity;
 import infrastructure.constant.EntityProperties;
 import infrastructure.constant.TrangThaiHoaDon;
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -40,16 +41,16 @@ public class HoaDon extends PrimaryEntity implements Serializable {
     private String ma;
 
     @Column(name = "ngay_tao")
-    private Long ngayTao;
+    private Date ngayTao;
 
     @Column(name = "ngay_thanh_toan")
-    private Long ngayThanhToan;
+    private Date ngayThanhToan;
 
     @Column(name = "ngay_ship")
-    private Long ngayShip;
+    private Date ngayShip;
 
     @Column(name = "ngay_nhan")
-    private Long ngayNhan;
+    private Date ngayNhan;
 
     @Column(name = "ten_nguoi_nhan", length = EntityProperties.LENGTH_NAME)
     @Nationalized

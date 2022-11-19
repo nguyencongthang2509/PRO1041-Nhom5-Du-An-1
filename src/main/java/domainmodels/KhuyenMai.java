@@ -3,6 +3,7 @@ package domainmodels;
 import domainmodels.base.PrimaryEntity;
 import infrastructure.constant.EntityProperties;
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -39,10 +40,10 @@ public class KhuyenMai extends PrimaryEntity implements Serializable{
     private LoaiKhuyenMai loaiKhuyenMai;
 
     @Column(name = "ngay_bat_dau")
-    private Long ngayBatDau;
+    private Date ngayBatDau;
 
     @Column(name = "ngay_ket_thuc")
-    private Long ngayKetThuc;
+    private Date ngayKetThuc;
 
     @Column(name = "gia_tri")
     private Integer giaTri;
