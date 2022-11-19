@@ -2,14 +2,10 @@ package domainmodels;
 
 import domainmodels.base.PrimaryEntity;
 import infrastructure.constant.EntityProperties;
-import infrastructure.constant.VaiTro;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -37,9 +33,9 @@ public class NhanVien extends PrimaryEntity implements Serializable {
     private String ten;
 
     @Column(name = "gioi_tinh")
-    private String gioiTinh;
+    private int gioiTinh;
 
-    @Column(name = "ngay_sinh")
+    @Column(name = "ngay_sinh", columnDefinition = "date")
     private Date ngaySinh;
 
     @Column(name = "dia_chi", length = EntityProperties.LENGTH_ADDRESS)
@@ -56,6 +52,6 @@ public class NhanVien extends PrimaryEntity implements Serializable {
     private String matKhau;
 
     @Column(name = "vai_tro", nullable = false)
-    private VaiTro vaiTro;
+    private int vaiTro;
 
 }

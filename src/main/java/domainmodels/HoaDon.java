@@ -2,7 +2,6 @@ package domainmodels;
 
 import domainmodels.base.PrimaryEntity;
 import infrastructure.constant.EntityProperties;
-import infrastructure.constant.TrangThaiHoaDon;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
@@ -64,5 +63,5 @@ public class HoaDon extends PrimaryEntity implements Serializable {
     private String sdt;
     
     @Column(name = "trang_thai", nullable = false)
-    private TrangThaiHoaDon trangThai;
+    private int trangThai;
 }
