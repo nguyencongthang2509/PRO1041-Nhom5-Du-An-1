@@ -72,18 +72,18 @@ public abstract class CrudRepository<Key, Entity, Response> {
         return true;
     }
 
-    public boolean detele(Entity entity) {
-        try {
-            session = HibernateUtil.getSession();
-            trans = session.beginTransaction();
-            session.delete(entity);
-            trans.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-        return true;
-    }
+//    public boolean detele(Entity entity) {
+//        try {
+//            session = HibernateUtil.getSession();
+//            trans = session.beginTransaction();
+//            session.delete(entity);
+//            trans.commit();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return false;
+//        }
+//        return true;
+//    }
 
     public Entity findById(Key id) {
         Entity entity = null;
