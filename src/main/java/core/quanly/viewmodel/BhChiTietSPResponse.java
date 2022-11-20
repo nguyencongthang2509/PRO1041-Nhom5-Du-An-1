@@ -29,7 +29,7 @@ public class BhChiTietSPResponse {
     private String hang;
 
     private int soLuongTon;
-
+    
     private Integer khuyenMai;
 
     private BigDecimal donGia;
