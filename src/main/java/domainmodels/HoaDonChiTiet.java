@@ -1,12 +1,11 @@
 package domainmodels;
 
+import domainmodels.base.PrimaryEntity;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -25,17 +24,14 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name = "hoa_don_chi_tiet")
-@IdClass(HoaDonChiTietId.class)
-public class HoaDonChiTiet implements Serializable {
+public class HoaDonChiTiet extends PrimaryEntity implements Serializable {
 
-    @Id
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "hoaDonId", nullable = false)
+    @JoinColumn(name = "id_hoa_hon")
     private HoaDon hoaDonId;
 
-    @Id
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "chiTietSPId", nullable = false)
+    @JoinColumn(name = "id_ctsp")
     private ChiTietSP chiTietSPId;
 
     @Column(name = "so_luong")
@@ -46,5 +42,7 @@ public class HoaDonChiTiet implements Serializable {
 
     @Column(name = "gia_ban")
     private BigDecimal giaBan;
-
+    
+    @Column(name = "trang_thai")
+    private int trangThai;
 }
