@@ -1,6 +1,5 @@
 package domainmodels;
 
-import infrastructure.constant.TrangThaiHDCT;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.Column;
@@ -48,6 +47,4 @@ public class HoaDonChiTiet implements Serializable {
     @Column(name = "gia_ban")
     private BigDecimal giaBan;
 
-    @Column(name = "trang_thai")
-    private TrangThaiHDCT trangThaiHDCT;
 }

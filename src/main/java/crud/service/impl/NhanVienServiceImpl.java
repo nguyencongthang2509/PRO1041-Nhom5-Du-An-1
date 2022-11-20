@@ -37,9 +37,6 @@ public class NhanVienServiceImpl implements NhanVienService {
         if (nv.getEmail().isEmpty()) {
             return "Email không được trống";
         }
-        if (nv.getGioiTinh().isEmpty()) {
-            return "Giới tính không được trống";
-        }
         if (nv.getMatKhau().isEmpty()) {
             return "Mật khẩu không được trống";
         }
@@ -79,9 +76,6 @@ public class NhanVienServiceImpl implements NhanVienService {
         }
         if (nv.getEmail().isEmpty()) {
             return "Email không được trống";
-        }
-        if (nv.getGioiTinh().isEmpty()) {
-            return "Giới tính không được trống";
         }
         if (nv.getMatKhau().isEmpty()) {
             return "Mật khẩu không được trống";
