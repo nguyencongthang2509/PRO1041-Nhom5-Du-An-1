@@ -4,10 +4,18 @@
  */
 package core.quanly.service;
 
+import core.quanly.repository.BanHangRepository;
+import core.quanly.viewmodel.BhChiTietSPResponse;
+import java.util.List;
+
 /**
  *
  * @author thangncph26123
  */
 public class Test {
     
+        public static void main(String[] args) {
+        List<BhChiTietSPResponse> list = new BanHangRepository().getAllResponse();
+        System.out.println(list);
+    }
 }
