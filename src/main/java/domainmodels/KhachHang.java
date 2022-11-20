@@ -32,8 +32,11 @@ public class KhachHang extends PrimaryEntity implements Serializable {
     @Nationalized
     private String hoTen;
 
-    @Column(name = "ngay_sinh")
+    @Column(name = "ngay_sinh", columnDefinition = "date")
     private Date ngaySinh;
+
+    @Column(name = "gioi_tinh")
+    private int gioiTinh;
 
     @Column(name = "sdt", length = EntityProperties.LENGTH_PHONE)
     private String sdt;
