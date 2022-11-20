@@ -1,5 +1,6 @@
 package domainmodels;
 
+import domainmodels.base.PrimaryEntity;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.Column;
@@ -25,17 +26,14 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name = "gio_hang_chi_tiet")
-@IdClass(GioHangChiTietId.class)
-public class GioHangChiTiet implements Serializable {
+public class GioHangChiTiet extends PrimaryEntity implements Serializable {
 
-    @Id
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "gioHangId", nullable = false)
+    @JoinColumn(name = "id_gio_hang")
     private GioHang gioHangId;
 
-    @Id
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "chiTietSPId", nullable = false)
+    @JoinColumn(name = "id_ctsp")
     private ChiTietSP chiTietSPId;
 
     @Column(name = "so_luong")
@@ -46,4 +44,7 @@ public class GioHangChiTiet implements Serializable {
 
     @Column(name = "gia_ban")
     private BigDecimal giaBan;
+    
+    @Column(name = "trang_thai")
+    private int trangThai;
 }
