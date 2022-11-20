@@ -85,7 +85,7 @@ public abstract class CrudRepository<Key, Entity, Response> {
 //        return true;
 //    }
 
-    public Entity findById(Key id) {
+    public Entity findById(String id) {
         Entity entity = null;
         try {
             session = HibernateUtil.getSession();
