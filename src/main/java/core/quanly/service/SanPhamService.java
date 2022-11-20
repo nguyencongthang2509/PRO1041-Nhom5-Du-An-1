@@ -25,5 +25,5 @@ public interface SanPhamService {
 
     List<SanPham> getAll();
     
-    
+    List<SanPhamViewModel> findByMaOrTen(String input);
 }

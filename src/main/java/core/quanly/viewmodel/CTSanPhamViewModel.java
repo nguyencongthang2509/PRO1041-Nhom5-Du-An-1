@@ -23,7 +23,7 @@ import lombok.ToString;
 @NoArgsConstructor
 public class CTSanPhamViewModel {
 
-    private UUID idctsp;
+    private String idctsp;
     private String masp;
     private String tensp;
     private Integer soLuongTon;
@@ -33,12 +33,10 @@ public class CTSanPhamViewModel {
     private String kichThuoc;
     private String hang;
     private String khuyenMai;
-    private Long lastModifiedDate;
-    private Long createDate;
 
-    public Object[] toDateRow(int index) {
-        return new Object[]{index, masp, tensp,soLuongTon, giaBan , moTa
-            , lastModifiedDate, createDate};
+    public Object[] toDateRow() {
+        return new Object[]{idctsp, masp, tensp, soLuongTon, giaBan, moTa
+        };
     }
 
 }

@@ -4,7 +4,7 @@
  */
 package core.quanly.viewmodel;
 
-import infrastructure.constant.TrangThaiXoa;
+import domainmodels.base.StatusDeleted;
 import java.util.UUID;
 import java.util.Vector;
 import lombok.AllArgsConstructor;
@@ -19,20 +19,18 @@ import lombok.ToString;
  */
 @Getter
 @Setter
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class SanPhamViewModel {
+public class SanPhamViewModel{
 
-    private UUID id;
+    private String id;
     private String ma;
     private String ten;
-    private TrangThaiXoa trangThai;
-    private Long createDate;
-    private Long LastModifiedDate;
+//    private String loai;
+//    private String hang;
 
     public Object[] toDataRow() {
-        return new Object[]{id, ma, ten, trangThai, createDate, LastModifiedDate};
-    }
+        return new Object[]{ ma, ten};
+   }
 
 }

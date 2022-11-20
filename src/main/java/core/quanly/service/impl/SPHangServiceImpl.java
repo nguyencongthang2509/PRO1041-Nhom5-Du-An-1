@@ -4,26 +4,26 @@
  */
 package core.quanly.service.impl;
 
+import core.quanly.repository.SPHangRepository;
 import core.quanly.service.HangService;
-import core.quanly.viewmodel.HangViewModel;
+import core.quanly.viewmodel.SPHangViewModel;
 import domainmodels.Hang;
 import java.util.List;
-import repository.impl.HangRepository;
 
 /**
  *
  * @author HP
  */
-public class HangServiceImpl implements HangService{
+public class SPHangServiceImpl implements HangService{
     
-    private HangRepository hangRepository ;
+    private SPHangRepository hangRepository ;
     
-    public HangServiceImpl(){
-        hangRepository = new HangRepository();
+    public SPHangServiceImpl(){
+        hangRepository = new SPHangRepository();
     }
 
     @Override
-    public List<HangViewModel> getAllViewModel() {
+    public List<SPHangViewModel> getAllViewModel() {
         return hangRepository.getAllResponse();
     }
 

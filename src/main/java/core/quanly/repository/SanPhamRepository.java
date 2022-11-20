@@ -5,71 +5,43 @@
 package core.quanly.repository;
 
 import config.HibernateUtil;
+import core.quanly.viewmodel.SanPhamViewModel;
 import domainmodels.SanPham;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import javax.transaction.Transaction;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
+import repository.CrudRepository;
 
 /**
  *
  * @author HP
  */
-public class SanPhamRepository {
+public class SanPhamRepository extends CrudRepository<String, SanPham, SanPhamViewModel>{
 
-    private String fromTable = "FROM san_pham";
-    private Session session = HibernateUtil.getSession();
-
-    public List<SanPham> getAll() {
-        Query query = session.createQuery(fromTable, SanPham.class);
-        List<SanPham> lstSp = query.getResultList();
-        return lstSp;
+    public SanPhamRepository(){
+        className = SanPham.class.getName();
+        res = "new core.quanly.viewmodel.SanPhamViewModel(a.id, a.ma, a.ten)";
     }
-
-    public SanPham getOne(String ma) {
-        String sql = fromTable + "WHERE ma=: ma";
-        Query query = session.createQuery(sql);
-        query.setParameter("ma", ma);
-        SanPham sanPham = (SanPham) query.getSingleResult();
-        return sanPham;
-    }
-
-    public Boolean add(SanPham sanPham) {
-        Transaction trans = null;
-        try ( Session session = HibernateUtil.getSession()) {
-            trans = (Transaction) session.beginTransaction();
-            session.save(sanPham);
-            trans.commit();
-            return true;
+    
+    public List<SanPhamViewModel> findByMaOrTen(String inpput){
+        List<SanPhamViewModel> lst = new ArrayList<>();
+        try {
+            Session session = HibernateUtil.getSession();
+            String hql = "SELECT new core.quanly.viewmodel.SanPhamViewModel(a.id, a.ma, a.ten) FROM SanPham a "
+                    + "WHERE a.ma LIKE CONCAT('%',:input,'%') OR a.ten LIKE CONCAT('%',:input,'%')";
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return lst;
     }
-
-    public Boolean update(SanPham sanPham) {
-        Transaction trans = null;
-        try ( Session session = HibernateUtil.getSession()) {
-            trans = (Transaction) session.beginTransaction();
-            session.update(sanPham);
-            trans.commit();
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
+    
+    public static void main(String[] args) {
+        List<SanPhamViewModel> list = new SanPhamRepository().getAllResponse();
+        for (SanPhamViewModel sp : list) {
+            System.out.println(sp.toString());
         }
-        return null;
-    }
-
-    public Boolean delete(SanPham sanPham) {
-        Transaction trans = null;
-        try ( Session session = HibernateUtil.getSession()) {
-            trans = (Transaction) session.beginTransaction();
-            session.delete(sanPham);
-            trans.commit();
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 }

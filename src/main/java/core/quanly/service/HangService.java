@@ -4,7 +4,7 @@
  */
 package core.quanly.service;
 
-import core.quanly.viewmodel.HangViewModel;
+import core.quanly.viewmodel.SPHangViewModel;
 import core.quanly.viewmodel.SanPhamViewModel;
 import domainmodels.Hang;
 import domainmodels.SanPham;
@@ -16,7 +16,7 @@ import java.util.List;
  */
 public interface HangService {
 
-    List<HangViewModel> getAllViewModel();
+    List<SPHangViewModel> getAllViewModel();
 
     Hang getOne(String ma);
 

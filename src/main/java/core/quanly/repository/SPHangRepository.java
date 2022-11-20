@@ -2,29 +2,30 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package repository.impl;
+package core.quanly.repository;
 
-import core.quanly.viewmodel.HangViewModel;
+import config.HibernateUtil;
+import core.quanly.viewmodel.SPHangViewModel;
 import domainmodels.Hang;
-import infrastructure.listener.CreatePrimaryEntityListener;
-import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import repository.CrudRepository;
 
 /**
  *
  * @author HP
  */
-public class HangRepository extends CrudRepository<UUID, Hang, HangViewModel> {
-
-    public HangRepository() {
+public class SPHangRepository extends CrudRepository<UUID, Hang, SPHangViewModel>{
+     public SPHangRepository() {
         className = Hang.class.getName();
         res = "new viewmodel.HangViewModel(a.id, a.ma, a.ten)";
     }
     
     public static void main(String[] args) {
-        List<Hang> list = new HangRepository().getAll();
+        List<Hang> list = new SPHangRepository().getAll();
         for (Hang c : list) {
             System.out.println(c.toString());
         }

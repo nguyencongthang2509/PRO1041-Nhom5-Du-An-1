@@ -4,7 +4,7 @@
  */
 package core.quanly.viewmodel;
 
-import infrastructure.constant.TrangThaiXoa;
+import domainmodels.base.StatusDeleted;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,16 +21,14 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class HangViewModel {
+public class SPHangViewModel extends StatusDeleted{
     private UUID id;
     private String ma;
     private String ten;
-    private TrangThaiXoa deleteStatus;
-    private Long createDate;
-    private Long lastModidfiedDate;
+
     
     public Object[] toDateRow(int index){
-        return new Object[]{index, ma, ten, deleteStatus, createDate, lastModidfiedDate};
+        return new Object[]{index, ma, ten};
     }
     
 }

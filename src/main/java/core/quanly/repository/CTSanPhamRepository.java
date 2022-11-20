@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package repository.impl;
+package core.quanly.repository;
 
 import config.HibernateUtil;
 import core.quanly.viewmodel.CTSanPhamViewModel;
@@ -18,15 +18,14 @@ import repository.CrudRepository;
  *
  * @author HP
  */
-public class CTSanPhamRepository extends CrudRepository<UUID, ChiTietSP, CTSanPhamViewModel> {
-
-    public CTSanPhamRepository() {
+public class CTSanPhamRepository extends CrudRepository<String, ChiTietSP, CTSanPhamViewModel>{
+     public CTSanPhamRepository() {
         className = ChiTietSP.class.getName();
         res = "new viewmodel.CTSanPhamViewModel (a.id, a.sanPham.ma, a.sanPham.ten"
                 + ", a.soLuongTon, a.giaBan, a.moTa, a.trangThaiXoa, a.mauSac.ten, a.kichThuoc.ten,a.hang.ten, a.khuyenMai.ten)";
     }
 
-    public List<SanPhamViewModel> getAll(String name) {
+    public List<SanPhamViewModel> findByName(String name) {
         List<SanPhamViewModel> list = new ArrayList<>();
         try {
             session = HibernateUtil.getSession();

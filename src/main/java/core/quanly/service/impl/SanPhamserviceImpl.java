@@ -4,11 +4,11 @@
  */
 package core.quanly.service.impl;
 
+import core.quanly.repository.SanPhamRepository;
 import core.quanly.service.SanPhamService;
 import core.quanly.viewmodel.SanPhamViewModel;
 import domainmodels.SanPham;
 import java.util.List;
-import repository.impl.SanPhamRepository;
 
 /**
  *
@@ -82,6 +82,11 @@ public class SanPhamserviceImpl implements SanPhamService{
     @Override
     public List<SanPham> getAll() {
         return sanPhamRepository.getAll();
+    }
+
+    @Override
+    public List<SanPhamViewModel> findByMaOrTen(String input) {
+        return sanPhamRepository.findByMaOrTen(input);
     }
     }
 

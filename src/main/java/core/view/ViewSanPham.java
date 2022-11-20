@@ -4,12 +4,17 @@
  */
 package core.view;
 
+import core.quanly.repository.CTSanPhamRepository;
+import core.quanly.service.CTSanPhamService;
 import core.quanly.service.HangService;
 import core.quanly.service.SanPhamService;
-import core.quanly.service.impl.HangServiceImpl;
+import core.quanly.service.impl.CTSanPhamServiceImpl;
+import core.quanly.service.impl.SPHangServiceImpl;
 import core.quanly.service.impl.SanPhamserviceImpl;
+import core.quanly.viewmodel.CTSanPhamViewModel;
 import core.quanly.viewmodel.SanPhamViewModel;
 import domainmodels.Hang;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -22,13 +27,16 @@ import javax.swing.table.DefaultTableModel;
 public class ViewSanPham extends javax.swing.JPanel {
 
     private final SanPhamService sanPhamService = new SanPhamserviceImpl();
-    private final HangService hangService = new HangServiceImpl();
+    private final CTSanPhamService ctsanPhamService = new CTSanPhamServiceImpl();
+    private final HangService hangService = new SPHangServiceImpl();
     DefaultTableModel dtm;
     DefaultComboBoxModel dcbc1;
     DefaultComboBoxModel dcbc2;
     DefaultComboBoxModel dcbc3;
     DefaultComboBoxModel dcbc4;
 //    List<Hang> lstHang;
+    List<SanPhamViewModel> lstSpViewModel = new ArrayList<>();
+    List<CTSanPhamViewModel> lstctSpViewModel = new ArrayList<>();
 
     public ViewSanPham() {
         initComponents();
@@ -39,7 +47,7 @@ public class ViewSanPham extends javax.swing.JPanel {
         dcbc4 = (DefaultComboBoxModel) cbbLocHang.getModel();
 //        lstHang = hangService.getAll();
 //        ShowDataComboBoxHang(lstHang);
-        LoadToTableSp();
+        LoadToTableSp(lstSpViewModel);
     }
 
     @SuppressWarnings("unchecked")
@@ -631,6 +639,11 @@ public class ViewSanPham extends javax.swing.JPanel {
                 "Mã sản phẩm", "Tên sản phẩm", "Số lượng tồn", "Giá bán", "Mô tả", "Màu sắc", "Kích thước", "Hãng", "Khuyến mãi", "Trạng thái"
             }
         ));
+        tblCTSanPham.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblCTSanPhamMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tblCTSanPham);
 
         jButton1.setText("Hoạt động");
@@ -731,16 +744,30 @@ public class ViewSanPham extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void LoadToTableSp() {
+    private void LoadToTableSp(List<SanPhamViewModel> lstSpViewModel1) {
         List<SanPhamViewModel> list = sanPhamService.getAllViewModel();
         if (list == null) {
             JOptionPane.showMessageDialog(this, "Error");
-        }else if(list.isEmpty()){
+        } else if (list.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Danh sách rỗng");
-        }else{
+        } else {
             dtm.setRowCount(0);
             for (SanPhamViewModel s : list) {
                 dtm.addRow(s.toDataRow());
+            }
+        }
+    }
+    
+    private void LoadToTableCTSanPham(){
+        List<CTSanPhamViewModel> lstCTSanPhamViewModels = ctsanPhamService.getAllViewModel();
+        if (lstctSpViewModel == null) {
+            JOptionPane.showMessageDialog(this, "Error");
+        } else if (lstctSpViewModel.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Danh sách rỗng");
+        } else {
+            dtm.setRowCount(0);
+            for (CTSanPhamViewModel ct : lstCTSanPhamViewModels) {
+                dtm.addRow(ct.toDateRow());
             }
         }
     }
@@ -750,7 +777,7 @@ public class ViewSanPham extends javax.swing.JPanel {
     }
 
     private void txtTimKiemSpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimKiemSpActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtTimKiemSpActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
@@ -770,12 +797,33 @@ public class ViewSanPham extends javax.swing.JPanel {
     }//GEN-LAST:event_btnChiTietSanPhamActionPerformed
 
     private void txtTimKiemSpCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTimKiemSpCaretUpdate
-        // TODO add your handling code here:
+        try {
+            lstSpViewModel = sanPhamService.findByMaOrTen(txtTimKiemSp.getText());
+            LoadToTableSp(lstSpViewModel);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_txtTimKiemSpCaretUpdate
 
     private void tblSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSanPhamMouseClicked
-        
+        int index = tblSanPham.getSelectedRow();
+        SanPhamViewModel sanPhamViewModel = lstSpViewModel.get(index);
+        if (index >= 0) {
+            txtMaSanPham.setText(sanPhamViewModel.getMa());
+            txtTenSanPham.setText(sanPhamViewModel.getTen());
+        }
     }//GEN-LAST:event_tblSanPhamMouseClicked
+
+    private void tblCTSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCTSanPhamMouseClicked
+        int index = tblCTSanPham.getSelectedRow();
+        CTSanPhamViewModel ctSanPhamViewModel = lstctSpViewModel.get(index);
+        if (index >= 0) {
+            txtMaSpct.setText(ctSanPhamViewModel.getIdctsp());
+            txtTenSpct.setText(ctSanPhamViewModel.getTensp());
+//            txtSoLuongTon.setText(ctSanPhamViewModel.getSoLuongTon());
+//            txtGiaBan.setText(ctSanPhamViewModel.getGiaBan());
+        }
+    }//GEN-LAST:event_tblCTSanPhamMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
