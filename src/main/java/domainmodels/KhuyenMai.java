@@ -35,10 +35,9 @@ public class KhuyenMai extends PrimaryEntity implements Serializable{
     @Nationalized
     private String ten;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_loai_khuyen_mai")
-    private LoaiKhuyenMai loaiKhuyenMai;
-
+    @Column(name = "loai_khuyen_mai")
+    private String loaiKhuyenMai;
+    
     @Column(name = "ngay_bat_dau")
     private Date ngayBatDau;
 
@@ -46,6 +45,6 @@ public class KhuyenMai extends PrimaryEntity implements Serializable{
     private Date ngayKetThuc;
 
     @Column(name = "gia_tri")
-    private Integer giaTri;
+    private String giaTri;
 
 }

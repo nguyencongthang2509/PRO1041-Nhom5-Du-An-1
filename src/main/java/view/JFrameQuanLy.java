@@ -80,7 +80,7 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         setTitle("Quản lý bán giày thời trang Sneaker Store");
         setBackground(new java.awt.Color(153, 204, 255));
 
-        pnlCards.setBackground(new java.awt.Color(153, 204, 255));
+        pnlCards.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel1.setBackground(new java.awt.Color(255, 102, 102));
 
@@ -364,7 +364,7 @@ public class JFrameQuanLy extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        btnCardSon.setBackground(new java.awt.Color(153, 204, 255));
+        btnCardSon.setBackground(new java.awt.Color(255, 255, 255));
         btnCardSon.setPreferredSize(new java.awt.Dimension(1292, 784));
 
         javax.swing.GroupLayout btnCardSonLayout = new javax.swing.GroupLayout(btnCardSon);
@@ -588,8 +588,6 @@ public class JFrameQuanLy extends javax.swing.JFrame {
     private javax.swing.JLabel menuSanPham;
     private javax.swing.JLabel menuThongKe;
     private javax.swing.JPanel pnlBanHang;
-    private javax.swing.JPanel pnlBanHang2;
-    private javax.swing.JPanel pnlBanHang3;
     private javax.swing.JPanel pnlBanHang5;
     private javax.swing.JPanel pnlCards;
     private javax.swing.JPanel pnlDoiHang;
