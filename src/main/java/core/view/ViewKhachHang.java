@@ -39,9 +39,23 @@ public class ViewKhachHang extends javax.swing.JPanel {
     public void fillTable(List<KhachHangRespone> list) {
         mol = (DefaultTableModel) tbl_khachhang.getModel();
         mol.setRowCount(0);
-        for (KhachHangRespone x : list) {
-            mol.addRow(x.toDataRow());
+//        ma,hoTen,gioiTinh,sdt,diaChi,email,ngaySinh
+        for (int i = 0; i < list.size(); i++) {
+            String t;
+            if (listKhachHang.get(i).getGioiTinh() == 1) {
+                t = "Nam";
+            } else {
+                t = "Nữ";
+            }
+            Object[] data = new Object[]{
+                listKhachHang.get(i).getMa(), listKhachHang.get(i).getHoTen(), t,
+                listKhachHang.get(i).getSdt(), listKhachHang.get(i).getDiaChi(), listKhachHang.get(i).getEmail(),
+                listKhachHang.get(i).getNgaySinh()
+            };
+            mol.addRow(data);
+
         }
+
     }
 
     /**
@@ -53,6 +67,7 @@ public class ViewKhachHang extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -129,6 +144,7 @@ public class ViewKhachHang extends javax.swing.JPanel {
         txt_diachi.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         rdo_nam.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroup1.add(rdo_nam);
         rdo_nam.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         rdo_nam.setText("Nam");
         rdo_nam.addActionListener(new java.awt.event.ActionListener() {
@@ -138,6 +154,7 @@ public class ViewKhachHang extends javax.swing.JPanel {
         });
 
         rdo_nu.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroup1.add(rdo_nu);
         rdo_nu.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         rdo_nu.setText("Nữ");
 
@@ -162,6 +179,11 @@ public class ViewKhachHang extends javax.swing.JPanel {
         btn_xoa.setBackground(new java.awt.Color(255, 102, 102));
         btn_xoa.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btn_xoa.setText("CLEAR");
+        btn_xoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_xoaActionPerformed(evt);
+            }
+        });
 
         txt_ngaysinh.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -471,15 +493,32 @@ public class ViewKhachHang extends javax.swing.JPanel {
 
     private void txt_timkiemCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txt_timkiemCaretUpdate
         // TODO add your handling code here:
-        listKhachHang = khachhang.findLopHocByMaOrTen(txt_timkiem.getText());
+        listKhachHang = khachhang.findKhachHangByMaOrTen(txt_timkiem.getText());
         fillTable(listKhachHang);
     }//GEN-LAST:event_txt_timkiemCaretUpdate
+
+    private void btn_xoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoaActionPerformed
+        // TODO add your handling code here:
+        txt_diachi.setText(null);
+        txt_email.setText(null);
+        txt_hoten.setText(null);
+        txt_makh.setText(null);
+        txt_ngaysinh.setText(null);
+        txt_sdt.setText(null);
+        
+    }//GEN-LAST:event_btn_xoaActionPerformed
 
     public KhachHang getKhachHangByForm() {
         KhachHang kh = new KhachHang();
         kh.setMa(txt_makh.getText());
         kh.setHoTen(txt_hoten.getText());
-//        kh.setGioiTinh(rdo_nam.isSelected() ? "Nam" : "Nữ");
+        int tt;
+        if (rdo_nam.isSelected()) {
+            tt = 1;
+        } else {
+            tt = 0;
+        }
+        kh.setGioiTinh(tt);
         kh.setEmail(txt_email.getText());
         kh.setDiaChi(txt_diachi.getText());
         kh.setSdt(txt_sdt.getText());
@@ -489,7 +528,6 @@ public class ViewKhachHang extends javax.swing.JPanel {
             ex.printStackTrace();
         }
 
-//        kh.setNgaySinh(Date.valueOf(txt_ngaysinh.getText()));
         return kh;
     }
 
@@ -497,6 +535,7 @@ public class ViewKhachHang extends javax.swing.JPanel {
     private javax.swing.JButton btn_sua;
     private javax.swing.JButton btn_them;
     private javax.swing.JButton btn_xoa;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbo_gioitinh;
     private javax.swing.JComboBox<String> cbo_trangthai;
     private javax.swing.JLabel jLabel1;
