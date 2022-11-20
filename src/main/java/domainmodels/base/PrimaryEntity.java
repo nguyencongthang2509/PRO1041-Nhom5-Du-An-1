@@ -1,5 +1,6 @@
 package domainmodels.base;
 
+import infrastructure.constant.EntityProperties;
 import infrastructure.listener.CreatePrimaryEntityListener;
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
@@ -19,7 +20,7 @@ import lombok.Setter;
 public abstract class PrimaryEntity extends AuditEntity implements IsIdentified {
 
     @Id
-    @Column(name = "id", updatable = false)
+    @Column(name = "id", length = EntityProperties.LENGTH_ID, updatable = false)
     private String id;
 
 }
