@@ -5,12 +5,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  *
  * @author thangncph26123
  */
 @Getter
+@ToString
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
@@ -30,7 +32,9 @@ public class BhChiTietSPResponse {
 
     private int soLuongTon;
     
-    private Integer khuyenMai;
+    private String loaiKhuyenMai;
+    
+    private String khuyenMai;
 
     private BigDecimal donGia;
 
@@ -39,6 +43,6 @@ public class BhChiTietSPResponse {
     private String maVach;
 
     public Object[] toDataRow() {
-        return new Object[]{maSP, tenSP, mauSac, size, hang, soLuongTon, khuyenMai, donGia, moTa};
+        return new Object[]{maSP, tenSP, mauSac, size, hang, soLuongTon, khuyenMai == null ? "No" : khuyenMai , donGia, moTa};
     }
 }

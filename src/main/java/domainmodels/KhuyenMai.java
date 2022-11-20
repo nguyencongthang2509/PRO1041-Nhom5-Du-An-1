@@ -36,7 +36,7 @@ public class KhuyenMai extends PrimaryEntity implements Serializable{
     private String ten;
 
     @Column(name = "loai_khuyen_mai")
-    private int loaiKhuyenMai;
+    private String loaiKhuyenMai;
     
     @Column(name = "ngay_bat_dau")
     private Date ngayBatDau;
@@ -45,6 +45,6 @@ public class KhuyenMai extends PrimaryEntity implements Serializable{
     private Date ngayKetThuc;
 
     @Column(name = "gia_tri")
-    private Integer giaTri;
+    private String giaTri;
 
 }
