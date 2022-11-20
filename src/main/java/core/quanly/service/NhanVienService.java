@@ -22,4 +22,8 @@ public interface NhanVienService {
     String update(NhanVien nhanVien);
 
     List<NhanVien> getAll();
+    
+    List<NhanVienResponse> GetAllByMa(String ma);
+    
+    
 }

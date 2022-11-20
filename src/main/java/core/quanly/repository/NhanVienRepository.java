@@ -24,4 +24,5 @@ public class NhanVienRepository extends CrudRepository<String, NhanVien, NhanVie
         List<NhanVienResponse> lst = new NhanVienRepository().getAllResponse();
         System.out.println(lst);
     }
+    
 }

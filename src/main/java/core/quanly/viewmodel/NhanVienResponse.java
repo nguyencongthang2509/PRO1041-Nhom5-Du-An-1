@@ -1,7 +1,7 @@
 
 package core.quanly.viewmodel;
 
-import infrastructure.constant.VaiTro;
+//import infrastructure.constant.VaiTro;
 import java.util.Date;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
@@ -20,16 +20,17 @@ public class NhanVienResponse {
     private String id;
     private String ma;
     private String ten;
-    private String gioitinh;
+    private int gioitinh;
     private Date ngaysinh;
     private String diachi;
     private String sdt;
     private String email;
-    private VaiTro vaitro;
+    private int vaitro;
+    
     
 
     public Object[] toDataRow(int index){
-    return new Object[]{index,ma,ten,gioitinh,ngaysinh,diachi,sdt,email,vaitro};
+    return new Object[]{index,ma,ten,gioitinh==0?"Male":"Female",ngaysinh,diachi,sdt,email,vaitro==0?"Quan Ly":"Nhan Vien"};
     }
     
 }
