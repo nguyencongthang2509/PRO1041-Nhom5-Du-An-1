@@ -29,8 +29,8 @@ public class HoaDonserviceImpl implements HoaDonservice {
     }
 
     @Override
-    public List<HdHoaDonResponse> getListbyMa(String input) {
-        return repo.getListbyMa(input);
+    public List<HdHoaDonResponse> getListbyTextField(String input) {
+        return repo.getListbyTextField(input);
     }
 
     @Override

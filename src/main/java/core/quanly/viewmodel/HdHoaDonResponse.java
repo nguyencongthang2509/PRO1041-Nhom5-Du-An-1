@@ -40,6 +40,6 @@ public class HdHoaDonResponse {
     }
 
     public Object[] toDaTaRow() {
-        return new Object[]{ma, getHinhThucTT(), ngayTao, ngayThanhToan, maNV, tenNV, maKH, tenKH, diaChi, sdt, getTT()};
+        return new Object[]{ma, getHinhThucTT(), ngayTao, ngayThanhToan, maNV, tenNV, maKH, tenKH, sdt, diaChi, getTT()};
     }
 }

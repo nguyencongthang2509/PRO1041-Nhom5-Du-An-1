@@ -44,7 +44,7 @@ public class ViewHoaDon extends javax.swing.JPanel {
 
     public void loadTableHDbyMa() {
         modelHoaDon.setRowCount(0);
-        listHoaDon = hoadonservice.getListbyMa(txtSearch.getText());
+        listHoaDon = hoadonservice.getListbyTextField(txtSearch.getText());
         for (HdHoaDonResponse h : listHoaDon) {
             modelHoaDon.addRow(h.toDaTaRow());
         }

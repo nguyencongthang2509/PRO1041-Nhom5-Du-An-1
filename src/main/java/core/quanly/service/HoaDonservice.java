@@ -16,7 +16,7 @@ public interface HoaDonservice {
 
     List<HdHoaDonResponse> getList();
 
-    List<HdHoaDonResponse> getListbyMa(String input);
+    List<HdHoaDonResponse> getListbyTextField(String input);
 
     List<HdHoaDonResponse> getListbyTrangThai(int trangthai);
 

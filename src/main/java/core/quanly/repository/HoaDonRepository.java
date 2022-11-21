@@ -28,14 +28,16 @@ public class HoaDonRepository extends CrudRepository<String, HoaDon, HdHoaDonRes
                 + "a.khachHang.ma, a.khachHang.hoTen, a.sdt, a.diaChi, a.trangThai)";
     }
 
-    public List<HdHoaDonResponse> getListbyMa(String input) {
+    public List<HdHoaDonResponse> getListbyTextField(String input) {
         List<HdHoaDonResponse> list = new ArrayList<>();
         try {
             session = HibernateUtil.getSession();
             String hql = "select new core.quanly.viewmodel.HdHoaDonResponse"
                     + "(a.id, a.ma, a.hinhThucThanhToan, a.ngayTao, a.ngayThanhToan, a.nhanVien.ma, a.nhanVien.ten,"
                     + "a.khachHang.ma, a.khachHang.hoTen, a.sdt, a.diaChi, a.trangThai) from HoaDon a where a.ma "
-                    + "like CONCAT('%',:input, '%')";
+                    + "like CONCAT('%',:input, '%') or a.khachHang.hoTen like CONCAT('%',:input, '%') or "
+                    + "a.sdt like CONCAT('%',:input, '%') or a.diaChi like CONCAT('%',:input, '%') "
+                    + "or a.khachHang.email like CONCAT('%',:input, '%')";
             Query query = session.createQuery(hql);
             query.setParameter("input", input);
             list = query.getResultList();
