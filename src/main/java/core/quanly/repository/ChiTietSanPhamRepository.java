@@ -25,7 +25,7 @@ import org.hibernate.query.Query;
 public class ChiTietSanPhamRepository extends repository.CrudRepository<String, ChiTietSP, KMChiTietSanPhamResponse >{
     public ChiTietSanPhamRepository(){
     className = ChiTietSP.class.getName();
-    res = "new core.quanly.viewmodel.ChiTietSanPhamResponse( a.sanPham.ma, a.sanPham.ten)";
+    res = "NEW core.quanly.viewmodel.KMChiTietSanPhamResponse( a.sanPham.ma, a.sanPham.ten)";
     }
     
     

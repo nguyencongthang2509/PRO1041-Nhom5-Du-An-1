@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -27,10 +28,13 @@ public class KhuyenMaiResponse {
     private String id;
     private String ma;
     private String ten;
-    private Integer giaTri;
-//    private List<SanPham> sanpham = new ArrayList<>();
+    private String loaiKhuyenMai;
+    private String giaTri;
     private Date ngayBatDau;
     private Date ngayKetThuc;
     
+    public Object[] ToDaTa(){
+    return new Object[]{id, ma, ten, loaiKhuyenMai , giaTri,ngayBatDau,ngayKetThuc};
+    }
     
 }

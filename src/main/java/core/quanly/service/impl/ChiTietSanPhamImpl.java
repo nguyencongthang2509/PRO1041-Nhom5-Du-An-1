@@ -23,13 +23,13 @@ public class ChiTietSanPhamImpl implements core.quanly.service.ChiTietSanPhamSer
     public List<KMChiTietSanPhamResponse> GetAllResponse() {
     return chiTietSanPhamRepository.getAllResponse();
     }
-//    public static void main(String[] args) {
-//        ChiTietSanPhamService chiTietSanPhamService = new ChiTietSanPhamImpl();
-//        List<ChiTietSanPhamResponse> list = new ArrayList<>();
-//        list = chiTietSanPhamService.GetAllResponse();
-//        for (KMChiTietSanPhamResponse chiTietSanPhamResponse : list) {
-//            System.out.println(chiTietSanPhamResponse);
-//        }
-//    }
+    public static void main(String[] args) {
+        ChiTietSanPhamService chiTietSanPhamService = new ChiTietSanPhamImpl();
+        List<KMChiTietSanPhamResponse> list = new ArrayList<>();
+        list = chiTietSanPhamService.GetAllResponse();
+        for (KMChiTietSanPhamResponse chiTietSanPhamResponse : list) {
+            System.out.println(chiTietSanPhamResponse);
+        }
+    }
     
 }

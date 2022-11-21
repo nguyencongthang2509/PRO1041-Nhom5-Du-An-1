@@ -5,6 +5,7 @@
 package core.quanly.service;
 
 import core.quanly.viewmodel.KhuyenMaiResponse;
+import domainmodels.KhuyenMai;
 import java.util.List;
 
 /**
@@ -12,5 +13,13 @@ import java.util.List;
  * @author thiennvtph26140
  */
 public interface KhuyenMaiService {
-    List<KhuyenMaiResponse>  GetKhuyenMai();
+    List<KhuyenMaiResponse> GetAllResponse();
+    
+    String insert(KhuyenMai khuyenMai);
+    
+    String update(KhuyenMai khuyenMai);
+    
+    List<KhuyenMaiResponse>findLopHocByMaOrTen(String input);
+    
+    
 }
