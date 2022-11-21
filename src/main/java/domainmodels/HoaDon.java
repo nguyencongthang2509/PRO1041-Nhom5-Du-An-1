@@ -2,8 +2,8 @@ package domainmodels;
 
 import domainmodels.base.PrimaryEntity;
 import infrastructure.constant.EntityProperties;
-import infrastructure.constant.TrangThaiHoaDon;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -40,6 +40,12 @@ public class HoaDon extends PrimaryEntity implements Serializable {
     @Column(name = "ma", length = EntityProperties.LENGTH_CODE)
     private String ma;
 
+    @Column(name = "hinh_thuc_giao_hang")
+    private int hinhThucGiaoHang;
+    
+    @Column(name = "hinh_thuc_thanh_toan")
+    private int hinhThucThanhToan;
+
     @Column(name = "ngay_tao")
     private Date ngayTao;
 
@@ -51,6 +57,12 @@ public class HoaDon extends PrimaryEntity implements Serializable {
 
     @Column(name = "ngay_nhan")
     private Date ngayNhan;
+    
+    @Column(name = "thanh_tien")
+    private BigDecimal thanhTien;
+    
+    @Column(name = "tien_ship")
+    private BigDecimal tienShip;
 
     @Column(name = "ten_nguoi_nhan", length = EntityProperties.LENGTH_NAME)
     @Nationalized
@@ -62,7 +74,7 @@ public class HoaDon extends PrimaryEntity implements Serializable {
 
     @Column(name = "sdt", length = EntityProperties.LENGTH_NAME)
     private String sdt;
-    
+
     @Column(name = "trang_thai", nullable = false)
-    private TrangThaiHoaDon trangThai;
+    private int trangThai;
 }

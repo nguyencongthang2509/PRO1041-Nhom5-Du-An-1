@@ -1,6 +1,5 @@
 package domainmodels.base;
 
-import infrastructure.constant.TrangThaiXoa;
 import infrastructure.listener.CreateStatusDeletedListener;
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
@@ -19,5 +18,5 @@ import lombok.Setter;
 public abstract class StatusDeleted {
     
     @Column(name = "status_deleted")
-    private TrangThaiXoa trangThaiXoa;
+    private int trangThaiXoa;
 }

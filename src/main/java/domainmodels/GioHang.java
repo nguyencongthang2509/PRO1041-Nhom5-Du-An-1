@@ -3,6 +3,7 @@ package domainmodels;
 import domainmodels.base.PrimaryEntity;
 import infrastructure.constant.EntityProperties;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -39,11 +40,29 @@ public class GioHang extends PrimaryEntity implements Serializable {
     @Column(name = "ma", length = EntityProperties.LENGTH_CODE)
     private String ma;
 
+    @Column(name = "hinh_thuc_giao_hang")
+    private int hinhThucGiaoHang;
+
+    @Column(name = "hinh_thuc_thanh_toan")
+    private int hinhThucThanhToan;
+
     @Column(name = "ngay_tao")
     private Date ngayTao;
 
     @Column(name = "ngay_thanh_toan")
     private Date ngayThanhToan;
+
+    @Column(name = "ngay_ship")
+    private Date ngayShip;
+
+    @Column(name = "ngay_nhan")
+    private Date ngayNhan;
+
+    @Column(name = "thanh_tien")
+    private BigDecimal thanhTien;
+
+    @Column(name = "tien_ship")
+    private BigDecimal tienShip;
 
     @Column(name = "ten_nguoi_nhan", length = EntityProperties.LENGTH_NAME)
     @Nationalized
@@ -53,10 +72,10 @@ public class GioHang extends PrimaryEntity implements Serializable {
     @Nationalized
     private String diaChi;
 
-    @Column(name = "sdt", length = EntityProperties.LENGTH_PHONE)
+    @Column(name = "sdt", length = EntityProperties.LENGTH_NAME)
     private String sdt;
 
-    @Column(name = "tinh_trang")
-    private Integer tinhTrang;
+    @Column(name = "trang_thai", nullable = false)
+    private int trangThai;
 
 }
