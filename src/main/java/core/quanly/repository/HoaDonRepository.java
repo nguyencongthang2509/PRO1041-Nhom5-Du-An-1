@@ -21,11 +21,20 @@ import repository.CrudRepository;
  */
 public class HoaDonRepository extends CrudRepository<String, HoaDon, HdHoaDonResponse> {
 
-    public HoaDonRepository() {
-        className = HoaDon.class.getName();
-        res = "new core.quanly.viewmodel.HdHoaDonResponse"
-                + "(a.id, a.ma, a.hinhThucThanhToan, a.ngayTao, a.ngayThanhToan, a.nhanVien.ma, a.nhanVien.ten, "
-                + "a.khachHang.ma, a.khachHang.hoTen, a.sdt, a.diaChi, a.trangThai)";
+    public List<HdHoaDonResponse> getListHoaDon() {
+        List<HdHoaDonResponse> list = new ArrayList<>();
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "select new core.quanly.viewmodel.HdHoaDonResponse"
+                    + "(a.id, a.ma, a.hinhThucThanhToan, a.ngayTao, a.ngayThanhToan, b.ma, b.ten,"
+                    + "c.ma, c.hoTen, c.sdt, c.diaChi, a.trangThai) from HoaDon a left join "
+                    + "a.nhanVien b left join a.khachHang c";
+            Query query = session.createQuery(hql);
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 
     public List<HdHoaDonResponse> getListbyTextField(String input) {

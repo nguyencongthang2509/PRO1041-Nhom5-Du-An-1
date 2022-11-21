@@ -20,7 +20,7 @@ public class HoaDonserviceImpl implements HoaDonservice {
 
     @Override
     public List<HdHoaDonResponse> getList() {
-        return repo.getAllResponse();
+        return repo.getListHoaDon();
     }
 
     @Override
