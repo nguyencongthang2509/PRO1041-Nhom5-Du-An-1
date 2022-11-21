@@ -18,16 +18,15 @@ import repository.CrudRepository;
  *
  * @author HP
  */
-public class SPHangRepository extends CrudRepository<UUID, Hang, SPHangViewModel>{
+public class SPHangRepository extends CrudRepository<String, Hang, SPHangViewModel>{
+    
      public SPHangRepository() {
         className = Hang.class.getName();
-        res = "new viewmodel.HangViewModel(a.id, a.ma, a.ten)";
+        res = "new core.quanly.viewmodel.SPHangViewModel(a.id, a.ma, a.ten)";
     }
     
     public static void main(String[] args) {
         List<Hang> list = new SPHangRepository().getAll();
-        for (Hang c : list) {
-            System.out.println(c.toString());
-        }
+        System.out.println(list);
     }
 }

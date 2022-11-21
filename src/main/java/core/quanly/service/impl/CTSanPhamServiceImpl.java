@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class CTSanPhamServiceImpl implements CTSanPhamService{
 
-    private CTSanPhamRepository CTSanPhamRepository;
+    private CTSanPhamRepository CTSanPhamRepository = new CTSanPhamRepository();
     
     @Override
     public List<CTSanPhamViewModel> getAllViewModel() {
@@ -73,6 +73,16 @@ public class CTSanPhamServiceImpl implements CTSanPhamService{
     @Override
     public List<ChiTietSP> getAll() {
         return CTSanPhamRepository.getAll();
+    }
+
+    @Override
+    public List<CTSanPhamViewModel> findByMaOrTen(String input) {
+        return CTSanPhamRepository.findByMaOrTen(input);
+    }
+
+    @Override
+    public List<CTSanPhamViewModel> getCbbListHang(String hang) {
+        return CTSanPhamRepository.getcbbList(hang);
     }
     
 }

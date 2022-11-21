@@ -83,11 +83,6 @@ public class SanPhamserviceImpl implements SanPhamService{
     public List<SanPham> getAll() {
         return sanPhamRepository.getAll();
     }
-
-    @Override
-    public List<SanPhamViewModel> findByMaOrTen(String input) {
-        return sanPhamRepository.findByMaOrTen(input);
-    }
     }
 
     

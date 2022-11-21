@@ -23,19 +23,7 @@ public class SanPhamRepository extends CrudRepository<String, SanPham, SanPhamVi
 
     public SanPhamRepository(){
         className = SanPham.class.getName();
-        res = "new core.quanly.viewmodel.SanPhamViewModel(a.id, a.ma, a.ten)";
-    }
-    
-    public List<SanPhamViewModel> findByMaOrTen(String inpput){
-        List<SanPhamViewModel> lst = new ArrayList<>();
-        try {
-            Session session = HibernateUtil.getSession();
-            String hql = "SELECT new core.quanly.viewmodel.SanPhamViewModel(a.id, a.ma, a.ten) FROM SanPham a "
-                    + "WHERE a.ma LIKE CONCAT('%',:input,'%') OR a.ten LIKE CONCAT('%',:input,'%')";
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return lst;
+        res = "new core.quanly.viewmodel.SanPhamViewModel(a.id, a.ma, a.ten, a.hang.ten, a.loai.ten)";
     }
     
     public static void main(String[] args) {

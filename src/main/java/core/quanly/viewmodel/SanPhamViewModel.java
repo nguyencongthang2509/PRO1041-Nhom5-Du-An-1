@@ -26,11 +26,11 @@ public class SanPhamViewModel{
     private String id;
     private String ma;
     private String ten;
-//    private String loai;
-//    private String hang;
+    private String loai;
+    private String hang;
 
     public Object[] toDataRow() {
-        return new Object[]{ ma, ten};
+        return new Object[]{id, ma, ten, hang, loai};
    }
 
 }

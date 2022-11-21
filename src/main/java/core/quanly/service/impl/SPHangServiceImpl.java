@@ -14,11 +14,11 @@ import java.util.List;
  *
  * @author HP
  */
-public class SPHangServiceImpl implements HangService{
-    
-    private SPHangRepository hangRepository ;
-    
-    public SPHangServiceImpl(){
+public class SPHangServiceImpl implements HangService {
+
+    private SPHangRepository hangRepository = new SPHangRepository();
+
+    public SPHangServiceImpl() {
         hangRepository = new SPHangRepository();
     }
 
@@ -46,5 +46,5 @@ public class SPHangServiceImpl implements HangService{
     public List<Hang> getAll() {
         return hangRepository.getAll();
     }
-    
+
 }

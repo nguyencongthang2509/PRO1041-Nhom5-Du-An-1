@@ -4,6 +4,7 @@
  */
 package core.quanly.service;
 
+import core.quanly.repository.CTSanPhamRepository;
 import core.quanly.viewmodel.CTSanPhamViewModel;
 import domainmodels.ChiTietSP;
 import java.util.List;
@@ -22,4 +23,9 @@ public interface CTSanPhamService {
     String update(ChiTietSP ctsanPham);
 
     List<ChiTietSP> getAll();
+    
+    List<CTSanPhamViewModel> findByMaOrTen(String input);
+    
+    List<CTSanPhamViewModel> getCbbListHang(String hang);
+    
 }
