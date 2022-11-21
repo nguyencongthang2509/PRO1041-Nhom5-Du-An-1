@@ -15,6 +15,7 @@ import core.quanly.viewmodel.CTSanPhamViewModel;
 import core.quanly.viewmodel.SanPhamViewModel;
 import domainmodels.ChiTietSP;
 import domainmodels.Hang;
+import domainmodels.SanPham;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -754,28 +755,26 @@ public class ViewSanPham extends javax.swing.JPanel {
     }//GEN-LAST:event_txtTimKiemSpActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-//        try {
-//            int index = tblSanPhamm.getSelectedRow();
-//            if (txtMaSanPham.getText().trim().length() > 10) {
-//                JOptionPane.showMessageDialog(this, "Mã sản phẩm tối đa 10 kí tự");
-//                return;
-//            }
-//            if (txtMaSanPham.getText().equals(lstctSpViewModel.get(index).getMasp())) {
-//                JOptionPane.showMessageDialog(this, "Mã này đã tồn tại");
-//                return;
-//            }
-//            CTSanPhamViewModel ctSanPham = new CTSanPhamViewModel();
-//            ctSanPham.setMasp(txtMaSanPham.getText().trim());
-//            ctSanPham.setTensp(txtTenSanPham.getText().trim());
-////            int indexHang = cbbHang.getSelectedIndex();
-////            ctSanPham.setHang(lstHang.get(indexHang));
-//            String message = ctsanPhamService.add(ctsanPham);
-//            lstctSpViewModel = ctsanPhamService.getAllViewModel();
-//            LoadToTableSp(lstctSpViewModel);
-//            JOptionPane.showMessageDialog(this, message);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        try {
+            int index = tblSanPhamm.getSelectedRow();
+            if (txtMaSanPham.getText().trim().length() > 10) {
+                JOptionPane.showMessageDialog(this, "Mã sản phẩm tối đa 10 kí tự");
+                return;
+            }
+            if (txtMaSanPham.getText().equals(lstctSpViewModel.get(index).getMasp())) {
+                JOptionPane.showMessageDialog(this, "Mã này đã tồn tại");
+                return;
+            }
+            
+//            int indexHang = cbbHang.getSelectedIndex();
+//            ctSanPham.setHang(lstHang.get(indexHang));
+            String message = ctsanPhamService.add(ctSanPham);
+            lstctSpViewModel = ctsanPhamService.getAllViewModel();
+            LoadToTableSp(lstctSpViewModel);
+            JOptionPane.showMessageDialog(this, message);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
@@ -819,6 +818,12 @@ public class ViewSanPham extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_tblCTSanPhamMouseClicked
 
+    public ChiTietSP getChiTietSPByForm(){
+        ChiTietSP ctSanPham = new ChiTietSP();
+            SanPham sp = new SanPham();
+            ctSanPham.setMaChiTietSP(txtMaSanPham.getText().trim());
+            ctSanPham.setSanPham(sp);
+    }
     private void cbbLocHangItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbLocHangItemStateChanged
         String sp = cbbLocHang.getSelectedItem().toString();
         dtm.setRowCount(0);
