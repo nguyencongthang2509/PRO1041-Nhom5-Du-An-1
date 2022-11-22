@@ -42,11 +42,12 @@ public class HoaDonRepository extends CrudRepository<String, HoaDon, HdHoaDonRes
         try {
             session = HibernateUtil.getSession();
             String hql = "select new core.quanly.viewmodel.HdHoaDonResponse"
-                    + "(a.id, a.ma, a.hinhThucThanhToan, a.ngayTao, a.ngayThanhToan, a.nhanVien.ma, a.nhanVien.ten,"
-                    + "a.khachHang.ma, a.khachHang.hoTen, a.sdt, a.diaChi, a.trangThai) from HoaDon a where a.ma "
-                    + "like CONCAT('%',:input, '%') or a.khachHang.hoTen like CONCAT('%',:input, '%') or "
-                    + "a.sdt like CONCAT('%',:input, '%') or a.diaChi like CONCAT('%',:input, '%') "
-                    + "or a.khachHang.email like CONCAT('%',:input, '%')";
+                    + "(a.id, a.ma, a.hinhThucThanhToan, a.ngayTao, a.ngayThanhToan, b.ma, b.ten,"
+                    + "c.ma, c.hoTen, c.sdt, c.diaChi, a.trangThai) from HoaDon a "
+                    + "left join a.nhanVien b left join a.khachHang c where a.ma "
+                    + "like CONCAT('%',:input, '%') or c.hoTen like CONCAT('%',:input, '%') or "
+                    + "c.sdt like CONCAT('%',:input, '%') or c.diaChi like CONCAT('%',:input, '%') "
+                    + "or c.email like CONCAT('%',:input, '%')";
             Query query = session.createQuery(hql);
             query.setParameter("input", input);
             list = query.getResultList();
@@ -61,8 +62,9 @@ public class HoaDonRepository extends CrudRepository<String, HoaDon, HdHoaDonRes
         try {
             session = HibernateUtil.getSession();
             String hql = "select new core.quanly.viewmodel.HdHoaDonResponse"
-                    + "(a.id, a.ma, a.hinhThucThanhToan, a.ngayTao, a.ngayThanhToan, a.nhanVien.ma, a.nhanVien.ten,"
-                    + "a.khachHang.ma, a.khachHang.hoTen, a.sdt, a.diaChi, a.trangThai) from HoaDon a where a.trangThai = :trangthai";
+                    + "(a.id, a.ma, a.hinhThucThanhToan, a.ngayTao, a.ngayThanhToan, b.ma, b.ten,"
+                    + "c.ma, c.hoTen, c.sdt, c.diaChi, a.trangThai) from HoaDon a left join "
+                    + "a.nhanVien b left join a.khachHang c where a.trangThai = :trangthai";
             Query query = session.createQuery(hql);
             query.setParameter("trangthai", trangthai);
             list = query.getResultList();
@@ -75,11 +77,10 @@ public class HoaDonRepository extends CrudRepository<String, HoaDon, HdHoaDonRes
     public List<HdHoaDonResponse> getListbyHinhThucThanhToan(int hinhThuc) {
         List<HdHoaDonResponse> list = new ArrayList<>();
         try {
-            session = HibernateUtil.getSession();
             String hql = "select new core.quanly.viewmodel.HdHoaDonResponse"
-                    + "(a.id, a.ma, a.hinhThucThanhToan, a.ngayTao, a.ngayThanhToan, a.nhanVien.ma, a.nhanVien.ten,"
-                    + "a.khachHang.ma, a.khachHang.hoTen, a.sdt, a.diaChi, a.trangThai) from HoaDon a "
-                    + "where a.hinhThucThanhToan = :hinhThuc";
+                    + "(a.id, a.ma, a.hinhThucThanhToan, a.ngayTao, a.ngayThanhToan, b.ma, b.ten,"
+                    + "c.ma, c.hoTen, c.sdt, c.diaChi, a.trangThai) from HoaDon a left join "
+                    + "a.nhanVien b left join a.khachHang c where a.hinhThucThanhToan = :hinhThuc";
             Query query = session.createQuery(hql);
             query.setParameter("hinhThuc", hinhThuc);
             list = query.getResultList();
@@ -94,8 +95,9 @@ public class HoaDonRepository extends CrudRepository<String, HoaDon, HdHoaDonRes
         try {
             session = HibernateUtil.getSession();
             String hql = "select new core.quanly.viewmodel.HdHoaDonResponse"
-                    + "(a.id, a.ma, a.hinhThucThanhToan, a.ngayTao, a.ngayThanhToan, a.nhanVien.ma, a.nhanVien.ten,"
-                    + "a.khachHang.ma, a.khachHang.hoTen, a.sdt, a.diaChi, a.trangThai) from HoaDon a "
+                    + "(a.id, a.ma, a.hinhThucThanhToan, a.ngayTao, a.ngayThanhToan, b.ma, b.ten,"
+                    + "c.ma, c.hoTen, c.sdt, c.diaChi, a.trangThai) from HoaDon a left join "
+                    + "a.nhanVien b left join a.khachHang c "
                     + "where MONTH(a.ngayTao) = :thang and YEAR(a.ngayTao) = :nam";
             Query query = session.createQuery(hql);
             query.setParameter("thang", thang);
