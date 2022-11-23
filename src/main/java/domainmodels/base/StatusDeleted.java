@@ -18,5 +18,5 @@ import lombok.Setter;
 public abstract class StatusDeleted {
     
     @Column(name = "status_deleted")
-    private int trangThaiXoa;
+    private Integer trangThaiXoa;
 }
