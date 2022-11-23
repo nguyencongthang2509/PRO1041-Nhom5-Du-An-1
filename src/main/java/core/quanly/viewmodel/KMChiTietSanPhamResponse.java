@@ -11,6 +11,7 @@ import domainmodels.MauSac;
 import domainmodels.SanPham;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,13 +26,24 @@ import lombok.ToString;
  */
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
+@ToString
 public class KMChiTietSanPhamResponse {
-    private String ma;
-    private String ten;
-
+    private String id;
+    private String makm;
+    private String tenkm;
+    private String loaiKhuyenMai;
+    private String giaTri;
+    private String masanpham;
+    private String sanpham;
+    private Date ngayBatDau;
+    private Date ngayKetThuc;
     
-    public Object[] ToDaTa(){
-    return new Object[]{ma, ten};
+    public Object[] ToDaTa1(){
+    return new Object[]{makm, tenkm, loaiKhuyenMai, giaTri, sanpham, ngayBatDau, ngayKetThuc};
+    }
+    public Object[] ToDaTa2(){
+        return new Object[]{masanpham, sanpham};
     }
 }

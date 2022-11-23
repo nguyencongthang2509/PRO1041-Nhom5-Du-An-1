@@ -8,6 +8,7 @@ import core.quanly.repository.ChiTietSanPhamRepository;
 import core.quanly.service.ChiTietSanPhamService;
 import core.quanly.viewmodel.KMChiTietSanPhamResponse;
 import crud.service.SanPhamService;
+import domainmodels.ChiTietSP;
 import domainmodels.SanPham;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,13 +24,70 @@ public class ChiTietSanPhamImpl implements core.quanly.service.ChiTietSanPhamSer
     public List<KMChiTietSanPhamResponse> GetAllResponse() {
     return chiTietSanPhamRepository.getAllResponse();
     }
+    
     public static void main(String[] args) {
         ChiTietSanPhamService chiTietSanPhamService = new ChiTietSanPhamImpl();
         List<KMChiTietSanPhamResponse> list = new ArrayList<>();
         list = chiTietSanPhamService.GetAllResponse();
         for (KMChiTietSanPhamResponse chiTietSanPhamResponse : list) {
-            System.out.println(chiTietSanPhamResponse);
+            System.out.println("day la chi tiet sp"+ chiTietSanPhamResponse);
         }
+    }
+
+    @Override
+    public List<KMChiTietSanPhamResponse> findLopHocByMaOrTen(String input) {
+    return chiTietSanPhamRepository.FindMaOrTenByInput(input);
+    }
+
+    @Override
+    public String insert(ChiTietSP chiTietSP) {
+    if (chiTietSP.getKhuyenMai().getMa().isEmpty()) {
+            return "ma khong duoc de trong";
+        }
+        if (chiTietSP.getKhuyenMai().getTen().isEmpty()) {
+            return "ten khong duoc de trong";
+        }
+        if (chiTietSP.getKhuyenMai().getGiaTri().isEmpty()) {
+            return "gia tri khong duoc de trong";
+        }
+//        if (khuyenMaiResponse.getNgayBatDau().isEmpty()) {
+//            return "ten khong duoc de trong";
+//        }
+//        if (khuyenMaiResponse.getNgayKetThuc().isEmpty()) {
+//            return "ten khong duoc de trong";
+//        }
+        
+        chiTietSP = chiTietSanPhamRepository.saveOrUpdate(chiTietSP);
+        if (chiTietSP != null) {
+            return "them thanh cong";
+        }
+        return "them that bai";
+    }
+
+    @Override
+    public String update(ChiTietSP chiTietSP) {
+        ChiTietSP findchitietsanpham = chiTietSanPhamRepository.findById(chiTietSP.getId());
+    if (findchitietsanpham == null) {
+            return "khuyen mai nay khong ton tai";
+        }
+//    findchitietsanpham.setKhuyenMai.(chiTietSP.getKhuyenMai().getMa());
+//    findchitietsanpham.setTen(chiTietSP.getKhuyenMai().getTen());
+//    findchitietsanpham.setLoaiKhuyenMai(chiTietSP.getKhuyenMai().getLoaiKhuyenMai());
+//    findchitietsanpham.setGiaTri(chiTietSP.getKhuyenMai().getGiaTri());
+//    findchitietsanpham.set(chiTietSP.getKhuyenMai().getGiaTri());
+//    findchitietsanpham.setNgayBatDau(chiTietSP.getKhuyenMai().getNgayBatDau());
+//    findchitietsanpham.setNgayKetThuc(chiTietSP.getKhuyenMai().getNgayKetThuc());
+    chiTietSP =  chiTietSanPhamRepository.saveOrUpdate(findchitietsanpham);
+    if(chiTietSP != null){
+        return "sua thanh cong";
+    }else{
+        return "sua that bai";
+    }
+    }
+
+    @Override
+    public List<KMChiTietSanPhamResponse> GetSanPham() {
+    return chiTietSanPhamRepository.GetSanPham();
     }
     
 }
