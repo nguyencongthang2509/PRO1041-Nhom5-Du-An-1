@@ -33,6 +33,10 @@ public class HoaDonChiTiet extends PrimaryEntity implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_ctsp")
     private ChiTietSP chiTietSPId;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_khuyen_mai")
+    private KhuyenMai khuyenMaiId;
 
     @Column(name = "so_luong")
     private Integer soLuong;

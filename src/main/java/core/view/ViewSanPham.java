@@ -768,10 +768,10 @@ public class ViewSanPham extends javax.swing.JPanel {
             
 //            int indexHang = cbbHang.getSelectedIndex();
 //            ctSanPham.setHang(lstHang.get(indexHang));
-            String message = ctsanPhamService.add(ctSanPham);
+//            String message = ctsanPhamService.add(ctSanPham);
             lstctSpViewModel = ctsanPhamService.getAllViewModel();
             LoadToTableSp(lstctSpViewModel);
-            JOptionPane.showMessageDialog(this, message);
+//            JOptionPane.showMessageDialog(this, message);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -818,12 +818,12 @@ public class ViewSanPham extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_tblCTSanPhamMouseClicked
 
-    public ChiTietSP getChiTietSPByForm(){
-        ChiTietSP ctSanPham = new ChiTietSP();
-            SanPham sp = new SanPham();
-            ctSanPham.setMaChiTietSP(txtMaSanPham.getText().trim());
-            ctSanPham.setSanPham(sp);
-    }
+//    public ChiTietSP getChiTietSPByForm(){
+//        ChiTietSP ctSanPham = new ChiTietSP();
+//            SanPham sp = new SanPham();
+//            ctSanPham.setMaChiTietSP(txtMaSanPham.getText().trim());
+//            ctSanPham.setSanPham(sp);
+//    }
     private void cbbLocHangItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbLocHangItemStateChanged
         String sp = cbbLocHang.getSelectedItem().toString();
         dtm.setRowCount(0);
