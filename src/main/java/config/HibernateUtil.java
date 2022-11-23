@@ -1,8 +1,6 @@
 package config;
 
 import domainmodels.ChiTietSP;
-import domainmodels.GioHang;
-import domainmodels.GioHangChiTiet;
 import domainmodels.Hang;
 import domainmodels.HoaDon;
 import domainmodels.HoaDonChiTiet;
@@ -44,11 +42,9 @@ public class HibernateUtil {
         conf.addAnnotatedClass(Hang.class);
         conf.addAnnotatedClass(NhanVien.class);
         conf.addAnnotatedClass(KhachHang.class);
-        conf.addAnnotatedClass(GioHang.class);
         conf.addAnnotatedClass(HoaDon.class);
         conf.addAnnotatedClass(ChiTietSP.class);
         conf.addAnnotatedClass(HoaDonChiTiet.class);
-        conf.addAnnotatedClass(GioHangChiTiet.class);
 
         conf.setProperties(properties);
 
