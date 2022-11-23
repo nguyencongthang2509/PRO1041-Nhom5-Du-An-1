@@ -40,9 +40,6 @@ public class HoaDon extends PrimaryEntity implements Serializable {
     @Column(name = "ma", length = EntityProperties.LENGTH_CODE)
     private String ma;
 
-    @Column(name = "hinh_thuc_giao_hang")
-    private int hinhThucGiaoHang;
-    
     @Column(name = "hinh_thuc_thanh_toan")
     private int hinhThucThanhToan;
 
@@ -52,18 +49,9 @@ public class HoaDon extends PrimaryEntity implements Serializable {
     @Column(name = "ngay_thanh_toan")
     private Date ngayThanhToan;
 
-    @Column(name = "ngay_ship")
-    private Date ngayShip;
-
-    @Column(name = "ngay_nhan")
-    private Date ngayNhan;
-    
     @Column(name = "thanh_tien")
     private BigDecimal thanhTien;
     
-    @Column(name = "tien_ship")
-    private BigDecimal tienShip;
-
     @Column(name = "ten_nguoi_nhan", length = EntityProperties.LENGTH_NAME)
     @Nationalized
     private String tenNguoiNhan;
