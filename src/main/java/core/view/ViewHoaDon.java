@@ -124,6 +124,8 @@ public class ViewHoaDon extends javax.swing.JPanel {
         tblHoadonchitiet = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(153, 204, 255));
+        setMaximumSize(new java.awt.Dimension(1292, 784));
+        setMinimumSize(new java.awt.Dimension(1292, 784));
         setPreferredSize(new java.awt.Dimension(1252, 770));
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
@@ -229,7 +231,7 @@ public class ViewHoaDon extends javax.swing.JPanel {
                                 .addComponent(cboTrangthaithanhtoan, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnSearchbyTrangthaiThanhToan)
-                                .addGap(0, 104, Short.MAX_VALUE)))
+                                .addGap(0, 108, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtSearch)
@@ -239,7 +241,7 @@ public class ViewHoaDon extends javax.swing.JPanel {
                                 .addComponent(cboHinhthucthanhtoan, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnSearchbyHinhthucThanhtoan)
-                                .addGap(0, 134, Short.MAX_VALUE)))
+                                .addGap(0, 137, Short.MAX_VALUE)))
                         .addGap(25, 25, 25)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)

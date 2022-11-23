@@ -34,8 +34,8 @@ public class HoaDon extends PrimaryEntity implements Serializable {
     private KhachHang khachHang;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_nhan_vien")
-    private NhanVien nhanVien;
+    @JoinColumn(name = "id_user")
+    private User user;
 
     @Column(name = "ma", length = EntityProperties.LENGTH_CODE)
     private String ma;

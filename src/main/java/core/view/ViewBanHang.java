@@ -35,19 +35,19 @@ public class ViewBanHang extends javax.swing.JPanel {
 
     public ViewBanHang() {
         initComponents();
-        modelSanPham = (DefaultTableModel) tblSanPham.getModel();
-        modelGioHang = (DefaultTableModel) tblGioHang.getModel();
-        modelHoaDon = (DefaultTableModel) tblHoaDonCho.getModel();
-        modelKhachHang = (DefaultTableModel) tblKhachHangView.getModel();
-        banHangService = new BanHangServiceImpl();
-        listSanPham = new ArrayList<>();
-        listKhachHang = new ArrayList<>();
-        listHoaDon = new ArrayList<>();
-        mapGioHang = new HashMap<>();
-        listSanPham = banHangService.getAllChiTietSP();
-        listHoaDon = banHangService.getAllResponseHD();
-        loadDataToHoaDon(listHoaDon);
-        loadDataToTableSP(listSanPham);
+//        modelSanPham = (DefaultTableModel) tblSanPham.getModel();
+//        modelGioHang = (DefaultTableModel) tblGioHang.getModel();
+//        modelHoaDon = (DefaultTableModel) tblHoaDonCho.getModel();
+//        modelKhachHang = (DefaultTableModel) tblKhachHangView.getModel();
+//        banHangService = new BanHangServiceImpl();
+//        listSanPham = new ArrayList<>();
+//        listKhachHang = new ArrayList<>();
+//        listHoaDon = new ArrayList<>();
+//        mapGioHang = new HashMap<>();
+//        listSanPham = banHangService.getAllChiTietSP();
+//        listHoaDon = banHangService.getAllResponseHD();
+//        loadDataToHoaDon(listHoaDon);
+//        loadDataToTableSP(listSanPham);
     }
 
     private void loadDataToTableSP(List<BhChiTietSPResponse> list) {
@@ -375,6 +375,8 @@ public class ViewBanHang extends javax.swing.JPanel {
         );
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setMaximumSize(new java.awt.Dimension(1292, 784));
+        setMinimumSize(new java.awt.Dimension(1292, 784));
         setPreferredSize(new java.awt.Dimension(1292, 784));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));

@@ -22,8 +22,8 @@ import org.hibernate.annotations.Nationalized;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "nhan_vien")
-public class NhanVien extends PrimaryEntity implements Serializable {
+@Table(name = "user")
+public class User extends PrimaryEntity implements Serializable {
 
     @Column(name = "ma", length = EntityProperties.LENGTH_CODE)
     private String ma;
