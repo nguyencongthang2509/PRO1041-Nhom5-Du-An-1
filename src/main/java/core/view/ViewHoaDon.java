@@ -11,6 +11,7 @@ import core.quanly.viewmodel.HdHoaDonResponse;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -42,10 +43,9 @@ public class ViewHoaDon extends javax.swing.JPanel {
         }
     }
 
-    public void loadTableHDbyMa() {
+    public void loadTableHDbyMa(List<HdHoaDonResponse> list) {
         modelHoaDon.setRowCount(0);
-        listHoaDon = hoadonservice.getListbyTextField(txtSearch.getText());
-        for (HdHoaDonResponse h : listHoaDon) {
+        for (HdHoaDonResponse h : list) {
             modelHoaDon.addRow(h.toDaTaRow());
         }
     }
@@ -142,6 +142,16 @@ public class ViewHoaDon extends javax.swing.JPanel {
         jLabel2.setText("Trạng thái thanh toán:");
 
         cboTrangthaithanhtoan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Đã hủy", "Chờ thanh toán", "Đã thanh toán" }));
+        cboTrangthaithanhtoan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cboTrangthaithanhtoanMouseClicked(evt);
+            }
+        });
+        cboTrangthaithanhtoan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboTrangthaithanhtoanActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setText("Hình thức thanh toán:");
@@ -361,7 +371,8 @@ public class ViewHoaDon extends javax.swing.JPanel {
 
     private void txtSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtSearchCaretUpdate
         try {
-            loadTableHDbyMa();
+            listHoaDon = hoadonservice.getListbyTextField(txtSearch.getText());
+            loadTableHDbyMa(listHoaDon);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -380,8 +391,16 @@ public class ViewHoaDon extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSearchbyHinhthucThanhtoanActionPerformed
 
     private void btnSearchbyThangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchbyThangActionPerformed
-       loadTableHDbyThang();
+        loadTableHDbyThang();
     }//GEN-LAST:event_btnSearchbyThangActionPerformed
+
+    private void cboTrangthaithanhtoanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboTrangthaithanhtoanMouseClicked
+
+    }//GEN-LAST:event_cboTrangthaithanhtoanMouseClicked
+
+    private void cboTrangthaithanhtoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboTrangthaithanhtoanActionPerformed
+
+    }//GEN-LAST:event_cboTrangthaithanhtoanActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
