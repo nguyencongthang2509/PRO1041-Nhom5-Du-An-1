@@ -188,7 +188,7 @@ public class ViewQuenMatKhau extends javax.swing.JFrame {
                             .addComponent(jLabel9)
                             .addComponent(jLabel10)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(175, 175, 175)
+                        .addGap(166, 166, 166)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
