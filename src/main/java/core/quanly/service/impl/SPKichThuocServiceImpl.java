@@ -4,47 +4,42 @@
  */
 package core.quanly.service.impl;
 
-import core.quanly.repository.SPHangRepository;
-import core.quanly.service.HangService;
-import core.quanly.viewmodel.SPHangResponse;
-import domainmodels.Hang;
+import core.quanly.repository.SPKichThuocRepository;
+import core.quanly.service.SPKichThuocService;
+import core.quanly.viewmodel.SPKichThuocResponse;
+import domainmodels.KichThuoc;
 import java.util.List;
 
 /**
  *
  * @author HP
  */
-public class SPHangServiceImpl implements HangService {
+public class SPKichThuocServiceImpl implements SPKichThuocService{
+    
+    private SPKichThuocRepository spKichThuocRepo = new SPKichThuocRepository();
 
-    private SPHangRepository hangRepository = new SPHangRepository();
-
-    public SPHangServiceImpl() {
-        hangRepository = new SPHangRepository();
+    @Override
+    public List<SPKichThuocResponse> getAllViewModel() {
+        return spKichThuocRepo.getAllResponse();
     }
 
     @Override
-    public List<SPHangResponse> getAllViewModel() {
-        return hangRepository.getAllResponse();
+    public KichThuoc getOne(String ma) {
+        return spKichThuocRepo.findById(ma);
     }
 
     @Override
-    public Hang getOne(String ma) {
-        return hangRepository.findByMa(ma);
-    }
-
-    @Override
-    public String add(Hang hang) {
+    public String add(KichThuoc kichThuoc) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public String update(Hang hang) {
+    public String update(KichThuoc kichThuoc) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public List<Hang> getAll() {
-        return hangRepository.getAll();
+    public List<KichThuoc> getAll() {
+        return spKichThuocRepo.getAll();
     }
-
 }

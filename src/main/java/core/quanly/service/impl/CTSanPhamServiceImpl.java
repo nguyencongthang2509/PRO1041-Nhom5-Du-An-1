@@ -6,7 +6,7 @@ package core.quanly.service.impl;
 
 import core.quanly.repository.CTSanPhamRepository;
 import core.quanly.service.CTSanPhamService;
-import core.quanly.viewmodel.CTSanPhamViewModel;
+import core.quanly.viewmodel.CTSanPhamResponse;
 import domainmodels.ChiTietSP;
 import java.util.List;
 
@@ -19,7 +19,7 @@ public class CTSanPhamServiceImpl implements CTSanPhamService{
     private CTSanPhamRepository CTSanPhamRepository = new CTSanPhamRepository();
     
     @Override
-    public List<CTSanPhamViewModel> getAllViewModel() {
+    public List<CTSanPhamResponse> getAllViewModel() {
         return CTSanPhamRepository.getAllResponse();
     }
 
@@ -75,14 +75,24 @@ public class CTSanPhamServiceImpl implements CTSanPhamService{
         return CTSanPhamRepository.getAll();
     }
 
+//    @Override
+//    public List<CTSanPhamResponse> findByMaOrTen(String input) {
+//        return CTSanPhamRepository.findByMaOrTen(input);
+//    }
+
     @Override
-    public List<CTSanPhamViewModel> findByMaOrTen(String input) {
-        return CTSanPhamRepository.findByMaOrTen(input);
+    public List<CTSanPhamResponse> getCbbListHang(String hang) {
+        return CTSanPhamRepository.getListHang(hang);
     }
 
     @Override
-    public List<CTSanPhamViewModel> getCbbListHang(String hang) {
-        return CTSanPhamRepository.getcbbList(hang);
+    public List<CTSanPhamResponse> findByMaOrTen(String input) {
+        return CTSanPhamRepository.findctSanPham(input);
+    }
+
+    @Override
+    public List<CTSanPhamResponse> getFormCTSP(String masp) {
+        return CTSanPhamRepository.getListCTSP(masp);
     }
     
 }

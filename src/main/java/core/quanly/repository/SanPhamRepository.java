@@ -5,7 +5,8 @@
 package core.quanly.repository;
 
 import config.HibernateUtil;
-import core.quanly.viewmodel.SanPhamViewModel;
+import core.quanly.viewmodel.CTSanPhamResponse;
+import core.quanly.viewmodel.SanPhamResponse;
 import domainmodels.SanPham;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,17 +20,30 @@ import repository.CrudRepository;
  *
  * @author HP
  */
-public class SanPhamRepository extends CrudRepository<String, SanPham, SanPhamViewModel>{
+public class SanPhamRepository extends CrudRepository<String, SanPham, SanPhamResponse> {
 
-    public SanPhamRepository(){
+    public SanPhamRepository() {
         className = SanPham.class.getName();
-        res = "new core.quanly.viewmodel.SanPhamViewModel(a.id, a.ma, a.ten, a.hang.ten, a.loai.ten)";
+        res = "new core.quanly.viewmodel.SanPhamResponse(a.id, a.ma, a.ten)";
     }
-    
-    public static void main(String[] args) {
-        List<SanPhamViewModel> list = new SanPhamRepository().getAllResponse();
-        for (SanPhamViewModel sp : list) {
-            System.out.println(sp.toString());
+
+    public List<SanPhamResponse> findSanPhamByMaOrTen(String input) {
+        List<SanPhamResponse> lst = new ArrayList<>();
+        try {
+            Session session = HibernateUtil.getSession();
+            String hql = "SELECT new core.quanly.viewmodel.SanPhamResponse(a.id, a.ma, a.ten) "
+                    + "FROM SanPham a WHERE a.ma LIKE CONCAT('%',:input,'%') OR a.ten LIKE CONCAT('%',:input,'%')";
+            Query query = session.createQuery(hql);
+            query.setParameter("input", input);
+            lst = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        return lst;
+    }
+
+    public static void main(String[] args) {
+        List<SanPhamResponse> list = new SanPhamRepository().findSanPhamByMaOrTen("SP01");
+        System.out.println(list);
     }
 }

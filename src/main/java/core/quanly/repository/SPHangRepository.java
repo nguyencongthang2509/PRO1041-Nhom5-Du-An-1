@@ -5,7 +5,7 @@
 package core.quanly.repository;
 
 import config.HibernateUtil;
-import core.quanly.viewmodel.SPHangViewModel;
+import core.quanly.viewmodel.SPHangResponse;
 import domainmodels.Hang;
 import java.util.List;
 import java.util.UUID;
@@ -18,11 +18,11 @@ import repository.CrudRepository;
  *
  * @author HP
  */
-public class SPHangRepository extends CrudRepository<String, Hang, SPHangViewModel>{
+public class SPHangRepository extends CrudRepository<String, Hang, SPHangResponse>{
     
      public SPHangRepository() {
         className = Hang.class.getName();
-        res = "new core.quanly.viewmodel.SPHangViewModel(a.id, a.ma, a.ten)";
+        res = "new core.quanly.viewmodel.SPHangResponse(a.id, a.maHang, a.tenHang)";
     }
     
     public static void main(String[] args) {

@@ -5,7 +5,7 @@
 package core.quanly.service;
 
 import core.quanly.repository.CTSanPhamRepository;
-import core.quanly.viewmodel.CTSanPhamViewModel;
+import core.quanly.viewmodel.CTSanPhamResponse;
 import domainmodels.ChiTietSP;
 import java.util.List;
 
@@ -14,7 +14,7 @@ import java.util.List;
  * @author HP
  */
 public interface CTSanPhamService {
-    List<CTSanPhamViewModel> getAllViewModel();
+    List<CTSanPhamResponse> getAllViewModel();
 
     ChiTietSP getOne(String ma);
 
@@ -24,8 +24,9 @@ public interface CTSanPhamService {
 
     List<ChiTietSP> getAll();
     
-    List<CTSanPhamViewModel> findByMaOrTen(String input);
+    List<CTSanPhamResponse> findByMaOrTen(String input);
     
-    List<CTSanPhamViewModel> getCbbListHang(String hang);
+    List<CTSanPhamResponse> getCbbListHang(String hang);
     
+    List<CTSanPhamResponse> getFormCTSP(String masp);
 }

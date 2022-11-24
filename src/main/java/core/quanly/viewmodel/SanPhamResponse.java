@@ -19,18 +19,17 @@ import lombok.ToString;
  */
 @Getter
 @Setter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class SanPhamViewModel{
+public class SanPhamResponse{
 
     private String id;
     private String ma;
     private String ten;
-    private String loai;
-    private String hang;
-
-    public Object[] toDataRow() {
-        return new Object[]{id, ma, ten, hang, loai};
+    
+    public Object[] toDataRow(int index) {
+        return new Object[]{index, ma, ten};
    }
 
 }

@@ -4,7 +4,7 @@
  */
 package core.quanly.service;
 
-import core.quanly.viewmodel.SanPhamViewModel;
+import core.quanly.viewmodel.SanPhamResponse;
 import domainmodels.SanPham;
 import java.util.List;
 import javax.print.DocFlavor;
@@ -15,7 +15,7 @@ import javax.print.DocFlavor;
  */
 public interface SanPhamService {
 
-    List<SanPhamViewModel> getAllViewModel();
+    List<SanPhamResponse> getAllViewModel();
 
     SanPham getOne(String ma);
 
@@ -25,4 +25,5 @@ public interface SanPhamService {
 
     List<SanPham> getAll();
 
+    List<SanPhamResponse> findSanPhamByMaOrTen(String input);
 }

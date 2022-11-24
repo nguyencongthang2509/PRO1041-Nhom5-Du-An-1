@@ -3,26 +3,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package core.quanly.viewmodel;
-import java.util.UUID;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 /**
  *
  * @author HP
  */
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class SPHangResponse{
+public class SPMauSacResponse {
     
     private String id;
-    private String maHang;
-    private String tenHang;
+    private String maMauSac;
+    private String tenMauSac;
     
     public Object[] toDataRow(){
-        return new Object[]{maHang, tenHang};
+        return new Object[]{maMauSac, tenMauSac};
     }
-    
 }

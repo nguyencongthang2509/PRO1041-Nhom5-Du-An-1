@@ -6,7 +6,7 @@ package core.quanly.service.impl;
 
 import core.quanly.repository.SanPhamRepository;
 import core.quanly.service.SanPhamService;
-import core.quanly.viewmodel.SanPhamViewModel;
+import core.quanly.viewmodel.SanPhamResponse;
 import domainmodels.SanPham;
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class SanPhamserviceImpl implements SanPhamService{
         sanPhamRepository = new SanPhamRepository();
     }
     @Override
-    public List<SanPhamViewModel> getAllViewModel() {
+    public List<SanPhamResponse> getAllViewModel() {
         return sanPhamRepository.getAllResponse();
     }
 
@@ -82,6 +82,12 @@ public class SanPhamserviceImpl implements SanPhamService{
     @Override
     public List<SanPham> getAll() {
         return sanPhamRepository.getAll();
+    }
+
+    @Override
+    public List<SanPhamResponse> findSanPhamByMaOrTen(String input) {
+        return sanPhamRepository.findSanPhamByMaOrTen(input);
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     }
 

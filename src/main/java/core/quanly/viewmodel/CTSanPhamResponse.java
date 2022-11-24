@@ -4,6 +4,10 @@
  */
 package core.quanly.viewmodel;
 
+import domainmodels.Hang;
+import domainmodels.KhuyenMai;
+import domainmodels.KichThuoc;
+import domainmodels.MauSac;
 import java.math.BigDecimal;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
@@ -20,9 +24,9 @@ import lombok.ToString;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CTSanPhamViewModel {
+public class CTSanPhamResponse {
 
-    private String idctsp;
+    private String id;
     private String masp;
     private String tensp;
     private String mauSac;
@@ -30,13 +34,13 @@ public class CTSanPhamViewModel {
     private String hang;
     private String khuyenMai;
     private String mactsp;
+    private String moTa;
     private Integer soLuongTon;
     private BigDecimal giaBan;
-    private String moTa;
     private String maVach;
 
     public Object[] toDateRow() {
-        return new Object[]{idctsp, masp, tensp,hang, soLuongTon, giaBan, moTa,mauSac, kichThuoc, khuyenMai== null ? "NO" : khuyenMai
+        return new Object[]{tensp, mactsp, mauSac, kichThuoc, hang, khuyenMai == null ? "NO" : khuyenMai, moTa, soLuongTon, giaBan, maVach
         };
     }
 

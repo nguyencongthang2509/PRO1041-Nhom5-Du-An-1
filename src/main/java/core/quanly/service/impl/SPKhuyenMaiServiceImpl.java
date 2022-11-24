@@ -4,47 +4,44 @@
  */
 package core.quanly.service.impl;
 
-import core.quanly.repository.SPHangRepository;
-import core.quanly.service.HangService;
-import core.quanly.viewmodel.SPHangResponse;
-import domainmodels.Hang;
+import core.quanly.repository.SPKhuyenMaiRepository;
+import core.quanly.service.SPKhuyenMaiService;
+import core.quanly.viewmodel.SPKhuyenMaiResponse;
+import domainmodels.KhuyenMai;
 import java.util.List;
 
 /**
  *
  * @author HP
  */
-public class SPHangServiceImpl implements HangService {
+public class SPKhuyenMaiServiceImpl implements SPKhuyenMaiService{
+    
+    private SPKhuyenMaiRepository spKhuyenMaiRepo = new SPKhuyenMaiRepository();
 
-    private SPHangRepository hangRepository = new SPHangRepository();
-
-    public SPHangServiceImpl() {
-        hangRepository = new SPHangRepository();
+    @Override
+    public List<SPKhuyenMaiResponse> getAllViewModel() {
+        return spKhuyenMaiRepo.getAllResponse();
     }
 
     @Override
-    public List<SPHangResponse> getAllViewModel() {
-        return hangRepository.getAllResponse();
+    public KhuyenMai getOne(String ma) {
+        return spKhuyenMaiRepo.findById(ma);
     }
 
     @Override
-    public Hang getOne(String ma) {
-        return hangRepository.findByMa(ma);
-    }
-
-    @Override
-    public String add(Hang hang) {
+    public String add(KhuyenMai khuyenMai) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public String update(Hang hang) {
+    public String update(KhuyenMai khuyenMai) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public List<Hang> getAll() {
-        return hangRepository.getAll();
+    public List<KhuyenMai> getAll() {
+        return spKhuyenMaiRepo.getAll();
     }
-
+    
+    
 }
