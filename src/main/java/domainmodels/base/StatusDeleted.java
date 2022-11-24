@@ -16,7 +16,7 @@ import lombok.Setter;
 @MappedSuperclass
 @EntityListeners(CreateStatusDeletedListener.class)
 public abstract class StatusDeleted {
-    
+
     @Column(name = "status_deleted")
     private Integer trangThaiXoa;
 }

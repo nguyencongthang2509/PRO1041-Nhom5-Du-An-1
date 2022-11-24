@@ -72,6 +72,8 @@ public class ViewNhanVien extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setMaximumSize(new java.awt.Dimension(1292, 784));
+        setMinimumSize(new java.awt.Dimension(1292, 784));
         setPreferredSize(new java.awt.Dimension(1292, 784));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N

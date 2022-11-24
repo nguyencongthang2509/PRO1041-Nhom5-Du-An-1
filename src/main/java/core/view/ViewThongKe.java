@@ -27,16 +27,18 @@ public class ViewThongKe extends javax.swing.JPanel {
     private void initComponents() {
 
         setBackground(new java.awt.Color(153, 204, 255));
+        setMaximumSize(new java.awt.Dimension(1292, 784));
+        setMinimumSize(new java.awt.Dimension(1292, 784));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1252, Short.MAX_VALUE)
+            .addGap(0, 1292, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 747, Short.MAX_VALUE)
+            .addGap(0, 784, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

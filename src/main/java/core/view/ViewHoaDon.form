@@ -5,6 +5,12 @@
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="ff" green="ff" red="ff" type="rgb"/>
     </Property>
+    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[1292, 784]"/>
+    </Property>
+    <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[1292, 784]"/>
+    </Property>
     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[1292, 784]"/>
     </Property>
@@ -85,7 +91,13 @@
                                   <Component id="jLabel2" min="-2" pref="134" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="cboTrangthaithanhtoan" min="-2" pref="110" max="-2" attributes="0"/>
+<<<<<<< HEAD
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+=======
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="btnSearchbyTrangthaiThanhToan" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="108" max="32767" attributes="0"/>
+>>>>>>> develop
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -95,7 +107,13 @@
                                   <Component id="jLabel4" min="-2" pref="134" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="cboHinhthucthanhtoan" min="-2" pref="110" max="-2" attributes="0"/>
+<<<<<<< HEAD
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+=======
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="btnSearchbyHinhthucThanhtoan" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="137" max="32767" attributes="0"/>
+>>>>>>> develop
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
@@ -141,10 +159,10 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
+            <Property name="text" type="java.lang.String" value="T&#xec;m ki&#x1ebf;m h&#xf3;a &#x111;&#x1a1;n:"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="T&#xec;m ki&#x1ebf;m h&#xf3;a &#x111;&#x1a1;n:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtSearch">
@@ -154,10 +172,10 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Tr&#x1ea1;ng th&#xe1;i thanh to&#xe1;n:"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Tr&#x1ea1;ng th&#xe1;i thanh to&#xe1;n:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="cboTrangthaithanhtoan">
@@ -181,10 +199,10 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
+            <Property name="text" type="java.lang.String" value="H&#xec;nh th&#x1ee9;c thanh to&#xe1;n:"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="H&#xec;nh th&#x1ee9;c thanh to&#xe1;n:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="cboHinhthucthanhtoan">
@@ -206,10 +224,10 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
+            <Property name="text" type="java.lang.String" value="N&#x103;m:"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="N&#x103;m:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="cboThang">
@@ -241,10 +259,10 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Th&#xe1;ng:"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Th&#xe1;ng:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="cboNam">
@@ -318,6 +336,41 @@
             </Component>
           </SubComponents>
         </Container>
+<<<<<<< HEAD
+=======
+        <Component class="javax.swing.JLabel" name="jLabel3">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="  H&#xf3;a &#x111;&#x1a1;n"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="16" style="1"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnSearchbyTrangthaiThanhToan">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="T&#xec;m"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSearchbyTrangthaiThanhToanActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnSearchbyHinhthucThanhtoan">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="T&#xec;m"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSearchbyHinhthucThanhtoanActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnSearchbyThang">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="T&#xec;m"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSearchbyThangActionPerformed"/>
+          </Events>
+        </Component>
+>>>>>>> develop
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="jPanel2">
@@ -355,6 +408,17 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
+<<<<<<< HEAD
+=======
+        <Component class="javax.swing.JLabel" name="jLabel7">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="  H&#xf3;a &#x111;&#x1a1;n chi ti&#x1ebf;t"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="16" style="1"/>
+            </Property>
+          </Properties>
+        </Component>
+>>>>>>> develop
         <Container class="javax.swing.JScrollPane" name="jScrollPane2">
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>

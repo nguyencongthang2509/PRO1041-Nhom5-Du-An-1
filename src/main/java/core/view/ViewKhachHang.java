@@ -102,6 +102,8 @@ public class ViewKhachHang extends javax.swing.JPanel {
         jTabbedPane1 = new javax.swing.JTabbedPane();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setMaximumSize(new java.awt.Dimension(1292, 784));
+        setMinimumSize(new java.awt.Dimension(1292, 784));
         setPreferredSize(new java.awt.Dimension(1252, 747));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -382,7 +384,7 @@ public class ViewKhachHang extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 10, Short.MAX_VALUE)
+                        .addGap(0, 46, Short.MAX_VALUE)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );

@@ -24,7 +24,7 @@ import org.hibernate.annotations.Nationalized;
 @Table(name = "mau_sac")
 public class MauSac extends PrimaryEntity implements Serializable {
 
-    @Column(name = "ma", length = EntityProperties.LENGTH_CODE)
+    @Column(name = "ma", length = EntityProperties.LENGTH_CODE, nullable = false)
     private String ma;
 
     @Column(name = "ten", length = EntityProperties.LENGTH_NAME)
