@@ -34,19 +34,19 @@ public class HoaDon extends PrimaryEntity implements Serializable {
     private KhachHang khachHang;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_nhan_vien")
+    @JoinColumn(name = "id_nhan_vien", nullable = false)
     private NhanVien nhanVien;
 
-    @Column(name = "ma", length = EntityProperties.LENGTH_CODE)
+    @Column(name = "ma", length = EntityProperties.LENGTH_CODE, nullable = false)
     private String ma;
 
-    @Column(name = "hinh_thuc_giao_hang")
-    private int hinhThucGiaoHang;
-    
-    @Column(name = "hinh_thuc_thanh_toan")
-    private int hinhThucThanhToan;
+    @Column(name = "hinh_thuc_giao_hang", nullable = false)
+    private Integer hinhThucGiaoHang;
 
-    @Column(name = "ngay_tao")
+    @Column(name = "hinh_thuc_thanh_toan", nullable = false)
+    private Integer hinhThucThanhToan;
+
+    @Column(name = "ngay_tao", nullable = false)
     private Date ngayTao;
 
     @Column(name = "ngay_thanh_toan")
@@ -57,12 +57,21 @@ public class HoaDon extends PrimaryEntity implements Serializable {
 
     @Column(name = "ngay_nhan")
     private Date ngayNhan;
-    
-    @Column(name = "thanh_tien")
-    private BigDecimal thanhTien;
-    
-    @Column(name = "tien_ship")
+
+    @Column(name = "tien_khach_tra", columnDefinition = "decimal(20,0)")
+    private BigDecimal tienKhachTra;
+
+    @Column(name = "tien_khach_chuyen_khoan", columnDefinition = "decimal(20,0)")
+    private BigDecimal tienKhachChuyenKhoan;
+
+    @Column(name = "tien_ship", columnDefinition = "decimal(20,0)")
     private BigDecimal tienShip;
+
+    @Column(name = "tien_thua", columnDefinition = "decimal(20,0)")
+    private BigDecimal tienThua;
+
+    @Column(name = "thanh_tien", columnDefinition = "decimal(20,0)")
+    private BigDecimal thanhTien;
 
     @Column(name = "ten_nguoi_nhan", length = EntityProperties.LENGTH_NAME)
     @Nationalized
@@ -72,9 +81,19 @@ public class HoaDon extends PrimaryEntity implements Serializable {
     @Nationalized
     private String diaChi;
 
-    @Column(name = "sdt", length = EntityProperties.LENGTH_NAME)
-    private String sdt;
+    @Column(name = "sdt_nguoi_nhan", length = EntityProperties.LENGTH_PHONE)
+    private String sdtNguoiNhan;
+
+    @Column(name = "ten_nguoi_ship", length = EntityProperties.LENGTH_NAME)
+    @Nationalized
+    private String tenNguoiShip;
+
+    @Column(name = "sdt_nguoi_ship", length = EntityProperties.LENGTH_PHONE)
+    private String sdtNguoiShip;
+
+    @Column(name = "phan_tram_giam_gia")
+    private Double phamTramGiamGia;
 
     @Column(name = "trang_thai", nullable = false)
-    private int trangThai;
+    private Integer trangThai;
 }

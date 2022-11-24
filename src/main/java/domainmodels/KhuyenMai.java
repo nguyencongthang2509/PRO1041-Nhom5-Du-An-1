@@ -6,9 +6,6 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,7 +25,7 @@ import org.hibernate.annotations.Nationalized;
 @Table(name = "khuyen_mai")
 public class KhuyenMai extends PrimaryEntity implements Serializable{
 
-    @Column(name = "ma", length = EntityProperties.LENGTH_CODE)
+    @Column(name = "ma", length = EntityProperties.LENGTH_CODE, nullable = false)
     private String ma;
 
     @Column(name = "ten", length = EntityProperties.LENGTH_NAME)
@@ -36,7 +33,7 @@ public class KhuyenMai extends PrimaryEntity implements Serializable{
     private String ten;
 
     @Column(name = "loai_khuyen_mai")
-    private String loaiKhuyenMai;
+    private Integer loaiKhuyenMai;
     
     @Column(name = "ngay_bat_dau")
     private Date ngayBatDau;
@@ -45,6 +42,6 @@ public class KhuyenMai extends PrimaryEntity implements Serializable{
     private Date ngayKetThuc;
 
     @Column(name = "gia_tri")
-    private String giaTri;
+    private Double giaTri;
 
 }

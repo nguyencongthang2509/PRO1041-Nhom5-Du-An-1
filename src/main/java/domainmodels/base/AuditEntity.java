@@ -15,12 +15,12 @@ import lombok.Setter;
 @Setter
 @MappedSuperclass
 @EntityListeners(AuditEntityListener.class)
-public abstract class AuditEntity extends StatusDeleted{
+public abstract class AuditEntity extends StatusDeleted {
 
-    @Column(name = "created_date", updatable = false)
+    @Column(name = "created_date", columnDefinition = "bigint", updatable = false)
     private Long createdDate;
 
-    @Column(name = "last_modified_date")
+    @Column(name = "last_modified_date", columnDefinition = "bigint")
     private Long lastModifiedDate;
 
 }

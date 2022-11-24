@@ -34,15 +34,24 @@ public class HoaDonChiTiet extends PrimaryEntity implements Serializable {
     @JoinColumn(name = "id_ctsp")
     private ChiTietSP chiTietSPId;
 
+    @Column(name = "ma_khuyen_mai")
+    private String maKhuyenMai;
+
+    @Column(name = "loai_khuyen_mai")
+    private Integer loaiKhuyenMai;
+
+    @Column(name = "gia_tri_khuyen_mai")
+    private BigDecimal giaTriKhuyenMai;
+
     @Column(name = "so_luong")
     private Integer soLuong;
 
-    @Column(name = "don_gia")
+    @Column(name = "don_gia", columnDefinition = "decimal(20,0)")
     private BigDecimal donGia;
 
-    @Column(name = "gia_ban")
+    @Column(name = "gia_ban", columnDefinition = "decimal(20,0)")
     private BigDecimal giaBan;
-    
+
     @Column(name = "trang_thai")
-    private int trangThai;
+    private Integer trangThai;
 }
