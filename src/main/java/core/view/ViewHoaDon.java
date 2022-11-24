@@ -109,15 +109,10 @@ public class ViewHoaDon extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         tblHoadonchitiet = new javax.swing.JTable();
 
-<<<<<<< HEAD
-        setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(1292, 784));
-=======
         setBackground(new java.awt.Color(153, 204, 255));
         setMaximumSize(new java.awt.Dimension(1292, 784));
         setMinimumSize(new java.awt.Dimension(1292, 784));
         setPreferredSize(new java.awt.Dimension(1252, 770));
->>>>>>> develop
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Hóa đơn", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
@@ -221,13 +216,11 @@ public class ViewHoaDon extends javax.swing.JPanel {
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cboTrangthaithanhtoan, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-<<<<<<< HEAD
-                                .addGap(0, 0, Short.MAX_VALUE)))
-=======
+
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnSearchbyTrangthaiThanhToan)
                                 .addGap(0, 108, Short.MAX_VALUE)))
->>>>>>> develop
+
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtSearch)
@@ -235,15 +228,12 @@ public class ViewHoaDon extends javax.swing.JPanel {
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(cboHinhthucthanhtoan, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-<<<<<<< HEAD
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(74, 74, 74)
-=======
+
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnSearchbyHinhthucThanhtoan)
                                 .addGap(0, 137, Short.MAX_VALUE)))
                         .addGap(25, 25, 25)
->>>>>>> develop
+
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(cboThang, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
