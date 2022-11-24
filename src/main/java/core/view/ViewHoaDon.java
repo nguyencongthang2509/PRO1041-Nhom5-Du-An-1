@@ -229,6 +229,7 @@ public class ViewHoaDon extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(cboHinhthucthanhtoan, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
 
+
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnSearchbyHinhthucThanhtoan)
                                 .addGap(0, 137, Short.MAX_VALUE)))
