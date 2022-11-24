@@ -27,7 +27,7 @@ import org.hibernate.annotations.Nationalized;
 @Table(name = "khach_hang")
 public class KhachHang extends PrimaryEntity implements Serializable {
     
-    @Column(name = "ma", length = EntityProperties.LENGTH_CODE)
+    @Column(name = "ma", length = EntityProperties.LENGTH_CODE, nullable = false)
     private String ma;
 
     @Column(name = "ho_ten", length = EntityProperties.LENGTH_NAME)
@@ -38,7 +38,7 @@ public class KhachHang extends PrimaryEntity implements Serializable {
     private Date ngaySinh;
 
     @Column(name = "gioi_tinh")
-    private int gioiTinh;
+    private Integer gioiTinh;
 
     @Column(name = "sdt", length = EntityProperties.LENGTH_PHONE)
     private String sdt;

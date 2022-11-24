@@ -48,7 +48,7 @@ public class ChiTietSP extends PrimaryEntity implements Serializable {
     @JoinColumn(name = "id_khuyen_mai")
     private KhuyenMai khuyenMai;
 
-    @Column(name = "ma_ctsp", length = EntityProperties.LENGTH_CODE)
+    @Column(name = "ma_ctsp", length = EntityProperties.LENGTH_CODE, nullable = false)
     private String maChiTietSP;
 
     @Column(name = "mo_ta", length = EntityProperties.LENGTH_DESCRIPTION)
@@ -58,7 +58,7 @@ public class ChiTietSP extends PrimaryEntity implements Serializable {
     @Column(name = "so_luong_ton")
     private Integer soLuongTon;
 
-    @Column(name = "gia_ban")
+    @Column(name = "gia_ban", columnDefinition = "decimal(20,0)")
     private BigDecimal giaBan;
 
     @Column(name = "ma_vach", length = EntityProperties.LENGTH_CODE)

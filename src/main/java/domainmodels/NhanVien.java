@@ -22,10 +22,10 @@ import org.hibernate.annotations.Nationalized;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "user")
-public class User extends PrimaryEntity implements Serializable {
+@Table(name = "nhan_vien")
+public class NhanVien extends PrimaryEntity implements Serializable {
 
-    @Column(name = "ma", length = EntityProperties.LENGTH_CODE)
+    @Column(name = "ma", length = EntityProperties.LENGTH_CODE, nullable = false)
     private String ma;
 
     @Column(name = "ho_ten", length = EntityProperties.LENGTH_NAME)
@@ -33,7 +33,7 @@ public class User extends PrimaryEntity implements Serializable {
     private String ten;
 
     @Column(name = "gioi_tinh")
-    private int gioiTinh;
+    private Integer gioiTinh;
 
     @Column(name = "ngay_sinh", columnDefinition = "date")
     private Date ngaySinh;
@@ -52,6 +52,6 @@ public class User extends PrimaryEntity implements Serializable {
     private String matKhau;
 
     @Column(name = "vai_tro", nullable = false)
-    private int vaiTro;
+    private Integer vaiTro;
 
 }
