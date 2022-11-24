@@ -43,7 +43,7 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
         modelsanpham = (DefaultTableModel) tblsanpham.getModel();
         modelkhuyenmai = (DefaultTableModel) tblkhuyenmai.getModel();
 //        FillToSanPham();
-        listchitietsanpham = chiTietSanPhamService.GetAllResponse();
+//        listchitietsanpham = chiTietSanPhamService.GetAllResponse();
 //        FillToKhuyenMai(listchitietsanpham);
     }
 
@@ -86,8 +86,11 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
         btnsua = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(1252, 747));
+        setMaximumSize(new java.awt.Dimension(1292, 784));
+        setMinimumSize(new java.awt.Dimension(1292, 784));
+        setPreferredSize(new java.awt.Dimension(1292, 784));
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Dánh sách khuyến mại"));
 
         tblkhuyenmai.setModel(new javax.swing.table.DefaultTableModel(
@@ -121,22 +124,25 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txttim, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1216, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txttim, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(txttim, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45))
+                .addGap(17, 17, 17)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Chương trình khuyến mại"));
         jPanel2.setPreferredSize(new java.awt.Dimension(1292, 784));
 
@@ -187,7 +193,7 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtmakm, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txttenkm, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -257,9 +263,9 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
                     .addComponent(jLabel7)
                     .addComponent(jLabel5)
                     .addComponent(txtketthuc)
-                    .addComponent(txtbatdau)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE))
-                .addGap(218, 218, 218))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
+                    .addComponent(txtbatdau))
+                .addGap(252, 252, 252))
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel4Layout.createSequentialGroup()
                     .addGap(22, 22, 22)
@@ -312,19 +318,16 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(15, 15, 15)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
                         .addComponent(btnthem, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnsua, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(105, 105, 105))))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnsua, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 22, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -332,10 +335,10 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnthem)
-                            .addComponent(btnsua))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnsua)
+                            .addComponent(btnthem))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -346,19 +349,20 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1321, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1236, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(5, 5, 5)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(105, 105, 105))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -436,7 +440,7 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
     }//GEN-LAST:event_btnsuaActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-       GetSelectedAll();
+//       GetSelectedAll();
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void tblsanphamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblsanphamMouseClicked
@@ -483,55 +487,54 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
         modelsanpham.setRowCount(0);
         listsanpham = chiTietSanPhamService.GetSanPham();
         for (KMChiTietSanPhamResponse xx : listsanpham) {
-            Object[] row = new Object[]{false, xx.getMasanpham(), xx.getSanpham()};
-            modelsanpham.addRow(row);
+//            Object[] row = new Object[]{false, xx.getMasanpham(), xx.getSanpham()};
+            modelsanpham.addRow(xx.ToDaTa2());
         }
     }
 
     private void FillToKhuyenMai(List<KMChiTietSanPhamResponse> list) {
         modelkhuyenmai.setRowCount(0);
         for (KMChiTietSanPhamResponse x : list) {
-            Object[] row = new Object[]{x.getMakm(), x.getTenkm(), x.getLoaiKhuyenMai(), x.getGiaTri(),x.getSanpham(), x.getNgayBatDau(), x.getNgayKetThuc()};
-            modelkhuyenmai.addRow(row);
+            modelkhuyenmai.addRow(x.ToDaTa1());
         }
     }
 
-    private KhuyenMai GetFromData() throws ParseException {
-        String ngaybatdau = txtbatdau.getText().trim();
-        String ngayketthuc = txtketthuc.getText().trim();
-        Date date = new SimpleDateFormat("dd-MM-yyyy").parse(ngaybatdau);
-        Date date1 = new SimpleDateFormat("dd-MM-yyyy").parse(ngayketthuc);
-        KhuyenMai khuyenMai = new KhuyenMai();
-        khuyenMai.setMa(txtmakm.getText().trim());
-        khuyenMai.setTen(txttenkm.getText().trim());
-        khuyenMai.setGiaTri(txtgiamgia.getText().trim());
-        khuyenMai.setNgayBatDau(date);
-        khuyenMai.setNgayKetThuc(date1);
-        return khuyenMai;
-    }
-    private List<KMChiTietSanPhamResponse> GetSelectedAll(){
-        listsanpham = chiTietSanPhamService.GetSanPham();
-        for (int i = 0; i < listsanpham.size(); i++) {
-            String ma = tblsanpham.getValueAt(i, 1).toString();
-            String ten = tblsanpham.getValueAt(i, 2).toString();
-            tblsanpham.setValueAt(true, i, 0);
-            KMSanphamResponse sanphamResponse = new KMSanphamResponse(ma, ten);
-            List<KMSanphamResponse> listselectall = new ArrayList<>();
-            listselectall.add(sanphamResponse);
-        }
-        return listsanpham;
-    } 
-    
-    private List<KMChiTietSanPhamResponse> GetSelected(){
-        listsanpham = chiTietSanPhamService.GetSanPham();
-        for (int i = 0; i < listsanpham.size(); i++) {
-            boolean check = Boolean.valueOf(tblsanpham.getValueAt(i, 0).toString());
-            String ma = tblsanpham.getValueAt(i, 1).toString();
-            String ten = tblsanpham.getValueAt(i, 1).toString();
+//    private KhuyenMai GetFromData() throws ParseException {
+//        String ngaybatdau = txtbatdau.getText().trim();
+//        String ngayketthuc = txtketthuc.getText().trim();
+//        Date date = new SimpleDateFormat("dd-MM-yyyy").parse(ngaybatdau);
+//        Date date1 = new SimpleDateFormat("dd-MM-yyyy").parse(ngayketthuc);
+//        KhuyenMai khuyenMai = new KhuyenMai();
+//        khuyenMai.setMa(txtmakm.getText().trim());
+//        khuyenMai.setTen(txttenkm.getText().trim());
+//        khuyenMai.setGiaTri(txtgiamgia.getText().trim());
+//        khuyenMai.setNgayBatDau(date);
+//        khuyenMai.setNgayKetThuc(date1);
+//        return khuyenMai;
+//    }
+//    private List<KMChiTietSanPhamResponse> GetSelectedAll(){
+//        listsanpham = chiTietSanPhamService.GetSanPham();
+//        for (int i = 0; i < listsanpham.size(); i++) {
+//            String ma = tblsanpham.getValueAt(i, 1).toString();
+//            String ten = tblsanpham.getValueAt(i, 2).toString();
+//            tblsanpham.setValueAt(true, i, 0);
+//            KMSanphamResponse sanphamResponse = new KMSanphamResponse(ma, ten);
+//            List<KMSanphamResponse> listselectall = new ArrayList<>();
+//            listselectall.add(sanphamResponse);
+//        }
+//        return listsanpham;
+//    } 
+//    
+//    private List<KMChiTietSanPhamResponse> GetSelected(){
+//        listsanpham = chiTietSanPhamService.GetSanPham();
+//        for (int i = 0; i < listsanpham.size(); i++) {
+//            boolean check = Boolean.valueOf(tblsanpham.getValueAt(i, 0).toString());
+//            String ma = tblsanpham.getValueAt(i, 1).toString();
+//            String ten = tblsanpham.getValueAt(i, 1).toString();
 //            KMChiTietSanPhamResponse chiTietSanPhamResponse = new KMChiTietSanPhamResponse("", "", "", "", "", ma, ten, "","");
 //            listsanpham.add(sanpham);
-        }
-        return listsanpham;
-    }
-    
+//        }
+//        return listsanpham;
+//    }
+//    
 }

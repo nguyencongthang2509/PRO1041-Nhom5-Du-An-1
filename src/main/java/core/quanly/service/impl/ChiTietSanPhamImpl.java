@@ -10,6 +10,7 @@ import core.quanly.viewmodel.KMChiTietSanPhamResponse;
 import crud.service.SanPhamService;
 import domainmodels.ChiTietSP;
 import domainmodels.SanPham;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class ChiTietSanPhamImpl implements core.quanly.service.ChiTietSanPhamSer
         List<KMChiTietSanPhamResponse> list = new ArrayList<>();
         list = chiTietSanPhamService.GetAllResponse();
         for (KMChiTietSanPhamResponse chiTietSanPhamResponse : list) {
-            System.out.println("day la chi tiet sp"+ chiTietSanPhamResponse);
+            System.out.println(chiTietSanPhamResponse);
         }
     }
 
@@ -47,7 +48,7 @@ public class ChiTietSanPhamImpl implements core.quanly.service.ChiTietSanPhamSer
         if (chiTietSP.getKhuyenMai().getTen().isEmpty()) {
             return "ten khong duoc de trong";
         }
-        if (chiTietSP.getKhuyenMai().getGiaTri().isEmpty()) {
+        if (chiTietSP.getKhuyenMai().getGiaTri().equals("")) {
             return "gia tri khong duoc de trong";
         }
 //        if (khuyenMaiResponse.getNgayBatDau().isEmpty()) {

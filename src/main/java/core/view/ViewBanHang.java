@@ -51,10 +51,10 @@ public class ViewBanHang extends javax.swing.JPanel {
     }
 
     private void loadDataToTableSP(List<BhChiTietSPResponse> list) {
-        modelSanPham.setRowCount(0);
-        for (BhChiTietSPResponse xx : list) {
-            modelSanPham.addRow(xx.toDataRow());
-        }
+//        modelSanPham.setRowCount(0);
+//        for (BhChiTietSPResponse xx : list) {
+//            modelSanPham.addRow(xx.toDataRow());
+//        }
     }
 
     private void loadDataToTableHDCT(Map<String, BhHoaDonChiTietResponse> map) {
@@ -1164,7 +1164,6 @@ public class ViewBanHang extends javax.swing.JPanel {
             HoaDon hoaDon = new HoaDon();
             hoaDon.setMa("HD" + banHangService.genMaHoaDonTuDong());
             hoaDon.setNgayTao(new Date());
-            hoaDon.setHinhThucGiaoHang(0);
             if (cboHTThanhToan.getSelectedIndex() == 0) {
                 hoaDon.setHinhThucThanhToan(0);
             } else {
