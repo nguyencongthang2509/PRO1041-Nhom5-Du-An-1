@@ -7,10 +7,12 @@ package core.quanly.repository;
 import config.HibernateUtil;
 import core.quanly.service.HoaDonservice;
 import core.quanly.service.impl.HoaDonserviceImpl;
-import core.quanly.viewmodel.HdHoaDonChiTietResponse;
-import core.quanly.viewmodel.HdHoaDonResponse;
+import core.quanly.viewmodel.HdHoaDonChiTietResponse1;
+import core.quanly.viewmodel.HdHoaDonResponse1;
+import core.quanly.viewmodel.HdHoaDonResponse2;
 import domainmodels.HoaDon;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.query.Query;
 import repository.CrudRepository;
@@ -19,24 +21,55 @@ import repository.CrudRepository;
  *
  * @author thangncph26123
  */
-public class HoaDonRepository extends CrudRepository<String, HoaDon, HdHoaDonResponse> {
+public class HoaDonRepository extends CrudRepository<String, HoaDon, HdHoaDonResponse1> {
 
-    public HoaDonRepository() {
-        className = HoaDon.class.getName();
-        res = "new core.quanly.viewmodel.HdHoaDonResponse"
-                + "(a.id, a.ma, a.hinhThucThanhToan, a.ngayTao, a.ngayThanhToan, a.nhanVien.ma, a.nhanVien.ten, "
-                + "a.khachHang.ma, a.khachHang.hoTen, a.sdt, a.diaChi, a.trangThai)";
-    }
-
-    public List<HdHoaDonResponse> getListbyMa(String input) {
-        List<HdHoaDonResponse> list = new ArrayList<>();
+    public List<HdHoaDonResponse1> getListHoaDon(int htgh) {
+        List<HdHoaDonResponse1> list = new ArrayList<>();
         try {
             session = HibernateUtil.getSession();
-            String hql = "select new core.quanly.viewmodel.HdHoaDonResponse"
-                    + "(a.id, a.ma, a.hinhThucThanhToan, a.ngayTao, a.ngayThanhToan, a.nhanVien.ma, a.nhanVien.ten,"
-                    + "a.khachHang.ma, a.khachHang.hoTen, a.sdt, a.diaChi, a.trangThai) from HoaDon a where a.ma "
-                    + "like CONCAT('%',:input, '%')";
+            String hql = "select new core.quanly.viewmodel.HdHoaDonResponse1"
+                    + "(a.id, a.ma, a.ngayTao, a.ngayThanhToan, a.hinhThucThanhToan, a.thanhTien, a.tienKhachTra, a.tienThua, b.ma, b.ten,"
+                    + "c.ma, c.hoTen, c.sdt, c.diaChi, a.trangThai) from HoaDon a left join "
+                    + "a.nhanVien b left join a.khachHang c where a.hinhThucGiaoHang = :htgh";
             Query query = session.createQuery(hql);
+            query.setParameter("htgh", htgh);
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public List<HdHoaDonResponse2> getListHoaDon2(int htgh) {
+        List<HdHoaDonResponse2> list = new ArrayList<>();
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "select new core.quanly.viewmodel.HdHoaDonResponse2"
+                    + "(a.id, a.ma, a.ngayTao, a.ngayThanhToan, a.hinhThucThanhToan, a.thanhTien, a.tienKhachTra, a.tienThua, b.ma, b.ten,"
+                    + "c.ma, c.hoTen, c.sdt, c.diaChi, a.sdtNguoiShip, a.tenNguoiShip, a.tienShip, a.ngayShip, a.ngayNhan, a.trangThai) from HoaDon a left join "
+                    + "a.nhanVien b left join a.khachHang c where a.hinhThucGiaoHang = :htgh";
+            Query query = session.createQuery(hql);
+            query.setParameter("htgh", htgh);
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public List<HdHoaDonResponse1> getListbyText(int htgh, String input) {
+        List<HdHoaDonResponse1> list = new ArrayList<>();
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "select new core.quanly.viewmodel.HdHoaDonResponse1"
+                    + "(a.id, a.ma, a.ngayTao, a.ngayThanhToan, a.hinhThucThanhToan, a.thanhTien, "
+                    + "a.tienKhachTra, a.tienThua, b.ma, b.ten,"
+                    + "c.ma, c.hoTen, c.sdt, c.diaChi, a.trangThai) from HoaDon a left join a.nhanVien b left join a.khachHang c where "
+                    + "a.hinhThucGiaoHang = :htgh and (a.ma "
+                    + "like CONCAT('%',:input, '%') or c.hoTen like CONCAT('%',:input, '%') or c.email like CONCAT('%',:input, '%') "
+                    + "or c.ma like CONCAT('%',:input, '%'))";
+            Query query = session.createQuery(hql);
+            query.setParameter("htgh", htgh);
             query.setParameter("input", input);
             list = query.getResultList();
         } catch (Exception e) {
@@ -45,15 +78,36 @@ public class HoaDonRepository extends CrudRepository<String, HoaDon, HdHoaDonRes
         return list;
     }
 
-    public List<HdHoaDonResponse> getListbyTrangThai(int trangthai) {
-        List<HdHoaDonResponse> list = new ArrayList<>();
+    public List<HdHoaDonResponse2> getListHoaDon2byText(String input, int htgh) {
+        List<HdHoaDonResponse2> list = new ArrayList<>();
         try {
             session = HibernateUtil.getSession();
-            String hql = "select new core.quanly.viewmodel.HdHoaDonResponse"
-                    + "(a.id, a.ma, a.hinhThucThanhToan, a.ngayTao, a.ngayThanhToan, a.nhanVien.ma, a.nhanVien.ten,"
-                    + "a.khachHang.ma, a.khachHang.hoTen, a.sdt, a.diaChi, a.trangThai) from HoaDon a where a.trangThai = :trangthai";
+            String hql = "select new core.quanly.viewmodel.HdHoaDonResponse2"
+                    + "(a.id, a.ma, a.ngayTao, a.ngayThanhToan, a.hinhThucThanhToan, a.thanhTien, a.tienKhachTra, a.tienThua, b.ma, b.ten,"
+                    + "c.ma, c.hoTen, c.sdt, c.diaChi, a.sdtNguoiShip, a.tenNguoiShip, a.tienShip, a.ngayShip, a.ngayNhan, a.trangThai) from HoaDon a left join "
+                    + "a.nhanVien b left join a.khachHang c where (a.ma like CONCAT('%',:input, '%') or c.hoTen like CONCAT('%',:input, '%') or c.email like CONCAT('%',:input, '%')"
+                    + "or c.ma like CONCAT('%',:input, '%')) and a.hinhThucGiaoHang = :htgh";
+            Query query = session.createQuery(hql);
+            query.setParameter("input", input);
+            query.setParameter("htgh", htgh);
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public List<HdHoaDonResponse2> getList2byTrangThai(int trangthai, int htgh) {
+        List<HdHoaDonResponse2> list = new ArrayList<>();
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "select new core.quanly.viewmodel.HdHoaDonResponse2"
+                    + "(a.id, a.ma, a.ngayTao, a.ngayThanhToan, a.hinhThucThanhToan, a.thanhTien, a.tienKhachTra, a.tienThua, b.ma, b.ten,"
+                    + "c.ma, c.hoTen, c.sdt, c.diaChi, a.sdtNguoiShip, a.tenNguoiShip, a.tienShip, a.ngayShip, a.ngayNhan, a.trangThai) from HoaDon a left join "
+                    + "a.nhanVien b left join a.khachHang c where a.trangThai = :trangthai and a.hinhThucGiaoHang = :htgh";
             Query query = session.createQuery(hql);
             query.setParameter("trangthai", trangthai);
+            query.setParameter("htgh", htgh);
             list = query.getResultList();
         } catch (Exception e) {
             e.printStackTrace();
@@ -61,16 +115,39 @@ public class HoaDonRepository extends CrudRepository<String, HoaDon, HdHoaDonRes
         return list;
     }
 
-    public List<HdHoaDonResponse> getListbyHinhThucThanhToan(int hinhThuc) {
-        List<HdHoaDonResponse> list = new ArrayList<>();
+    public List<HdHoaDonResponse1> getListbyTrangThai(int trangthai, int htgh) {
+        List<HdHoaDonResponse1> list = new ArrayList<>();
         try {
             session = HibernateUtil.getSession();
-            String hql = "select new core.quanly.viewmodel.HdHoaDonResponse"
-                    + "(a.id, a.ma, a.hinhThucThanhToan, a.ngayTao, a.ngayThanhToan, a.nhanVien.ma, a.nhanVien.ten,"
-                    + "a.khachHang.ma, a.khachHang.hoTen, a.sdt, a.diaChi, a.trangThai) from HoaDon a "
-                    + "where a.hinhThucThanhToan = :hinhThuc";
+            String hql = "select new core.quanly.viewmodel.HdHoaDonResponse1"
+                    + "(a.id, a.ma, a.ngayTao, a.ngayThanhToan, a.hinhThucThanhToan, a.thanhTien, "
+                    + "a.tienKhachTra, a.tienThua, b.ma, b.ten,"
+                    + "c.ma, c.hoTen, c.sdt, c.diaChi, a.trangThai) from HoaDon a "
+                    + "left join a.nhanVien b left join a.khachHang c"
+                    + " where a.trangThai = :trangthai and a.hinhThucGiaoHang = :htgh";
+            Query query = session.createQuery(hql);
+            query.setParameter("trangthai", trangthai);
+            query.setParameter("htgh", htgh);
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public List<HdHoaDonResponse1> getListbyHinhThucThanhToan(int hinhThuc, int htgh) {
+        List<HdHoaDonResponse1> list = new ArrayList<>();
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "select new core.quanly.viewmodel.HdHoaDonResponse1"
+                    + "(a.id, a.ma, a.ngayTao, a.ngayThanhToan, a.hinhThucThanhToan, a.thanhTien, "
+                    + "a.tienKhachTra, a.tienThua, b.ma, b.ten,"
+                    + "c.ma, c.hoTen, c.sdt, c.diaChi, a.trangThai) from HoaDon a "
+                    + "left join a.nhanVien b left join a.khachHang c"
+                    + " where a.hinhThucThanhToan = :hinhThuc and a.hinhThucGiaoHang = :htgh";
             Query query = session.createQuery(hql);
             query.setParameter("hinhThuc", hinhThuc);
+            query.setParameter("htgh", htgh);
             list = query.getResultList();
         } catch (Exception e) {
             e.printStackTrace();
@@ -78,17 +155,17 @@ public class HoaDonRepository extends CrudRepository<String, HoaDon, HdHoaDonRes
         return list;
     }
 
-    public List<HdHoaDonResponse> getListbyThang(int thang, int nam) {
-        List<HdHoaDonResponse> list = new ArrayList<>();
+    public List<HdHoaDonResponse2> getList2byHinhThucThanhToan(int hinhThuc, int htgh) {
+        List<HdHoaDonResponse2> list = new ArrayList<>();
         try {
             session = HibernateUtil.getSession();
-            String hql = "select new core.quanly.viewmodel.HdHoaDonResponse"
-                    + "(a.id, a.ma, a.hinhThucThanhToan, a.ngayTao, a.ngayThanhToan, a.nhanVien.ma, a.nhanVien.ten,"
-                    + "a.khachHang.ma, a.khachHang.hoTen, a.sdt, a.diaChi, a.trangThai) from HoaDon a "
-                    + "where MONTH(a.ngayTao) = :thang and YEAR(a.ngayTao) = :nam";
+            String hql = "select new core.quanly.viewmodel.HdHoaDonResponse2"
+                    + "(a.id, a.ma, a.ngayTao, a.ngayThanhToan, a.hinhThucThanhToan, a.thanhTien, a.tienKhachTra, a.tienThua, b.ma, b.ten,"
+                    + "c.ma, c.hoTen, c.sdt, c.diaChi, a.sdtNguoiShip, a.tenNguoiShip, a.tienShip, a.ngayShip, a.ngayNhan, a.trangThai) from HoaDon a left join "
+                    + "a.nhanVien b left join a.khachHang c where a.hinhThucThanhToan = :hinhThuc and a.hinhThucGiaoHang = :htgh";
             Query query = session.createQuery(hql);
-            query.setParameter("thang", thang);
-            query.setParameter("nam", nam);
+            query.setParameter("hinhThuc", hinhThuc);
+            query.setParameter("htgh", htgh);
             list = query.getResultList();
         } catch (Exception e) {
             e.printStackTrace();
@@ -96,13 +173,54 @@ public class HoaDonRepository extends CrudRepository<String, HoaDon, HdHoaDonRes
         return list;
     }
 
-    public List<HdHoaDonChiTietResponse> getListHDCT(String mahd) {
-        List<HdHoaDonChiTietResponse> list = new ArrayList<>();
+    public List<HdHoaDonResponse1> getListbyTime(Date time1, Date time2, int htgh) {
+        List<HdHoaDonResponse1> list = new ArrayList<>();
         try {
             session = HibernateUtil.getSession();
-            String hql = "select new core.quanly.viewmodel.HdHoaDonChiTietResponse"
-                    + "(a.id, a.chiTietSPId.sanPham.ma, a.chiTietSPId.sanPham.ten, a.soLuong,"
-                    + " a.chiTietSPId.giaBan, a.giaBan) from HoaDonChiTiet a where a.hoaDonId.ma = :mahd";
+            String hql = "select new core.quanly.viewmodel.HdHoaDonResponse1"
+                    + "(a.id, a.ma, a.ngayTao, a.ngayThanhToan, a.hinhThucThanhToan, a.thanhTien, "
+                    + "a.tienKhachTra, a.tienThua, b.ma, b.ten,"
+                    + "c.ma, c.hoTen, c.sdt, c.diaChi, a.trangThai) from HoaDon a "
+                    + "left join a.nhanVien b left join a.khachHang c"
+                    + " where (a.ngayTao between :time1 and :time2) and a.hinhThucGiaoHang = :htgh";
+            Query query = session.createQuery(hql);
+            query.setParameter("time1", time1);
+            query.setParameter("time2", time2);
+            query.setParameter("htgh", htgh);
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public List<HdHoaDonResponse2> getList2byTime(Date time1, Date time2, int htgh) {
+        List<HdHoaDonResponse2> list = new ArrayList<>();
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "select new core.quanly.viewmodel.HdHoaDonResponse2"
+                    + "(a.id, a.ma, a.ngayTao, a.ngayThanhToan, a.hinhThucThanhToan, a.thanhTien, a.tienKhachTra, a.tienThua, b.ma, b.ten,"
+                    + "c.ma, c.hoTen, c.sdt, c.diaChi, a.sdtNguoiShip, a.tenNguoiShip, a.tienShip, a.ngayShip, a.ngayNhan, a.trangThai) from HoaDon a left join "
+                    + "a.nhanVien b left join a.khachHang c where (a.ngayTao between :time1 and :time2) and a.hinhThucGiaoHang = :htgh";
+            Query query = session.createQuery(hql);
+            query.setParameter("time1", time1);
+            query.setParameter("time2", time2);
+            query.setParameter("htgh", htgh);
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public List<HdHoaDonChiTietResponse1> getListHDCT(String mahd) {
+        List<HdHoaDonChiTietResponse1> list = new ArrayList<>();
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "select new core.quanly.viewmodel.HdHoaDonChiTietResponse1"
+                    + "(a.id, a.chiTietSPId.sanPham.ma, a.chiTietSPId.sanPham.ten, a.chiTietSPId.hang.ten, a.chiTietSPId.mauSac.ten, "
+                    + "a.chiTietSPId.kichThuoc.ten, a.soLuong, a.donGia, a.giaBan, a.maKhuyenMai, a.giaTriKhuyenMai)"
+                    + " from HoaDonChiTiet a where a.hoaDonId.ma = :mahd";
             Query query = session.createQuery(hql);
             query.setParameter("mahd", mahd);
             list = query.getResultList();
@@ -112,9 +230,25 @@ public class HoaDonRepository extends CrudRepository<String, HoaDon, HdHoaDonRes
         return list;
     }
 
-//    public static void main(String[] args) {
-//        List<HdHoaDonResponse> list = new HoaDonRepository().getListbyTrangThai(2);
-//            System.out.println(list);
-//        
-//    }
+    public List<HdHoaDonChiTietResponse1> getListHDCT2(String mahd) {
+        List<HdHoaDonChiTietResponse1> list = new ArrayList<>();
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "select new core.quanly.viewmodel.HdHoaDonChiTietResponse1"
+                    + "(a.id, a.chiTietSPId.sanPham.ma, a.chiTietSPId.sanPham.ten, a.chiTietSPId.hang.ten, a.chiTietSPId.mauSac.ten, "
+                    + "a.chiTietSPId.kichThuoc.ten, a.soLuong, a.donGia, a.giaBan, a.maKhuyenMai, a.giaTriKhuyenMai)"
+                    + " from HoaDonChiTiet a where a.hoaDonId.ma = :mahd";
+            Query query = session.createQuery(hql);
+            query.setParameter("mahd", mahd);
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public static void main(String[] args) {
+        List<HdHoaDonResponse2> list = new HoaDonRepository().getListHoaDon2(1);
+        System.out.println(list);
+    }
 }

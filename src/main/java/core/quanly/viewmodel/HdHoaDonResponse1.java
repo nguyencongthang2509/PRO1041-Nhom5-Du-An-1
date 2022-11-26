@@ -4,6 +4,7 @@
  */
 package core.quanly.viewmodel;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,23 +17,35 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class HdHoaDonResponse {
+public class HdHoaDonResponse1 {
 
     private String id;
     private String ma;
-    private int hinhThucThanhToan;
     private Date ngayTao;
     private Date ngayThanhToan;
+    private Integer hinhThucThanhToan;
+    private BigDecimal thanhTien;
+    private BigDecimal tienKhachTra;
+    private BigDecimal tienThua;
     private String maNV;
     private String tenNV;
     private String maKH;
     private String tenKH;
     private String diaChi;
     private String sdt;
-    private int trangThai;
+    private Integer trangThai;
 
     public String getTT() {
-        return trangThai == 0 ? "Đã hủy" : (trangThai == 1 ? "Chờ thanh toán" : "Đã thanh toán");
+        if(trangThai == 0){
+            return "Chờ thanh toán";
+        }else if(trangThai == 1){
+            return "Đã hủy";
+        }else if(trangThai == 2){
+            return "Đã thanh toán";
+        }else if(trangThai == 3){
+            return "Đang giao";
+        }
+        return "Đã giao";
     }
 
     public String getHinhThucTT() {
@@ -40,6 +53,6 @@ public class HdHoaDonResponse {
     }
 
     public Object[] toDaTaRow() {
-        return new Object[]{ma, getHinhThucTT(), ngayTao, ngayThanhToan, maNV, tenNV, maKH, tenKH, diaChi, sdt, getTT()};
+        return new Object[]{ma, ngayTao, ngayThanhToan, getHinhThucTT(), thanhTien, tienKhachTra, tienThua, maNV, tenNV, maKH, tenKH, diaChi, sdt, getTT()};
     }
 }
