@@ -6,7 +6,7 @@ package core.quanly.service.impl;
 
 import core.quanly.repository.SanPhamRepository;
 import core.quanly.service.SanPhamService;
-import core.quanly.viewmodel.SanPhamViewModel;
+import core.quanly.viewmodel.SanPhamResponse;
 import domainmodels.SanPham;
 import java.util.List;
 
@@ -14,14 +14,16 @@ import java.util.List;
  *
  * @author HP
  */
-public class SanPhamserviceImpl implements SanPhamService{
+public class SanPhamserviceImpl implements SanPhamService {
+
     private SanPhamRepository sanPhamRepository;
 
     public SanPhamserviceImpl() {
         sanPhamRepository = new SanPhamRepository();
     }
+
     @Override
-    public List<SanPhamViewModel> getAllViewModel() {
+    public List<SanPhamResponse> getAllViewModel() {
         return sanPhamRepository.getAllResponse();
     }
 
@@ -52,7 +54,7 @@ public class SanPhamserviceImpl implements SanPhamService{
 
     @Override
     public String update(SanPham sanPham) {
-         SanPham sanPhamFindById = sanPhamRepository.findById(sanPham.getId());
+        SanPham sanPhamFindById = sanPhamRepository.findById(sanPham.getId());
         if (sanPhamFindById == null) {
             return "Không tìm thấy sản phẩm";
         }
@@ -62,6 +64,7 @@ public class SanPhamserviceImpl implements SanPhamService{
         if (sanPham.getTen().isEmpty()) {
             return "Tên không được để trống";
         }
+      
         if (!sanPham.getMa().equals(sanPhamFindById.getMa())) {
             SanPham sanPhamFindByMa = sanPhamRepository.findByMa(sanPham.getMa());
             if (sanPhamFindByMa != null) {
@@ -70,9 +73,10 @@ public class SanPhamserviceImpl implements SanPhamService{
                 sanPhamFindById.setMa(sanPham.getMa());
             }
         }
+        sanPhamFindById.setMa(sanPham.getMa());
         sanPhamFindById.setTen(sanPham.getTen());
         sanPham = sanPhamRepository.saveOrUpdate(sanPhamFindById);
-        if (sanPham != null) {
+        if (sanPham == null) {
             return "Sửa thành công";
         } else {
             return "Sửa thất bại";
@@ -83,6 +87,9 @@ public class SanPhamserviceImpl implements SanPhamService{
     public List<SanPham> getAll() {
         return sanPhamRepository.getAll();
     }
-    }
 
-    
+    @Override
+    public List<SanPhamResponse> findMaOrTen(String input) {
+        return sanPhamRepository.findByMaOrTen(input);
+    }
+}

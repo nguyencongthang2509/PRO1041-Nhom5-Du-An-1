@@ -4,33 +4,25 @@
  */
 package core.quanly.viewmodel;
 
-import domainmodels.base.StatusDeleted;
-import java.util.UUID;
-import java.util.Vector;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 /**
  *
  * @author HP
  */
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SanPhamViewModel{
-
+public class SPKhuyenMaiResponse {
+    
     private String id;
     private String ma;
     private String ten;
-    private String loai;
-    private String hang;
 
-    public Object[] toDataRow() {
-        return new Object[]{id, ma, ten, hang, loai};
-   }
-
+    
+    public Object[] toDateRow(){
+        return new Object[]{ma, ten};
+    }
 }

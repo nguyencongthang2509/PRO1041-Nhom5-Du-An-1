@@ -1,3 +1,4 @@
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -20,23 +21,25 @@ import lombok.ToString;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CTSanPhamViewModel {
+public class CTSanPhamResponse {
 
-    private String idctsp;
+    private String ma;
     private String masp;
     private String tensp;
     private String mauSac;
     private String kichThuoc;
     private String hang;
-    private String khuyenMai;
+    private Double khuyenMai;
     private String mactsp;
+    private String moTa;
     private Integer soLuongTon;
     private BigDecimal giaBan;
-    private String moTa;
     private String maVach;
+    private Integer trangThai;
 
     public Object[] toDateRow() {
-        return new Object[]{idctsp, masp, tensp,hang, soLuongTon, giaBan, moTa,mauSac, kichThuoc, khuyenMai== null ? "NO" : khuyenMai
+        return new Object[]{mactsp, masp, mauSac, kichThuoc, hang, khuyenMai == null ? "NO" : khuyenMai,
+            moTa, soLuongTon, giaBan, maVach, trangThai == 0 ? "Đang hoạt động" : "Dừng hoạt động"
         };
     }
 
