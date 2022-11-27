@@ -4,8 +4,10 @@
  */
 package core.quanly.service;
 
-import core.quanly.viewmodel.HdHoaDonChiTietResponse;
-import core.quanly.viewmodel.HdHoaDonResponse;
+import core.quanly.viewmodel.HdHoaDonChiTietResponse1;
+import core.quanly.viewmodel.HdHoaDonResponse1;
+import core.quanly.viewmodel.HdHoaDonResponse2;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -14,15 +16,24 @@ import java.util.List;
  */
 public interface HoaDonservice {
 
-    List<HdHoaDonResponse> getList();
+    List<HdHoaDonResponse1> getList(int htgh);
 
-    List<HdHoaDonResponse> getListbyMa(String input);
+    List<HdHoaDonResponse2> getList2(int htgh);
 
-    List<HdHoaDonResponse> getListbyTrangThai(int trangthai);
+    List<HdHoaDonResponse1> getListbyText(int htgh, String input);
 
-    List<HdHoaDonResponse> getListbyHinhThucThanhToan(int hinhThuc);
+    List<HdHoaDonResponse2> getListHD2byText(String input, int htgh);
+
+    List<HdHoaDonResponse1> getListbyTrangThai(int trangthai, int htgh);
+
+    List<HdHoaDonResponse2> getList2byTrangThai(int trangthai, int htgh);
+
+    List<HdHoaDonResponse1> getListbyHinhThucThanhToan(int hinhThuc, int htgh);
+
+    List<HdHoaDonResponse2> getList2byHinhThucThanhToan(int hinhThuc, int htgh);
     
-        List<HdHoaDonResponse> getListbyThang(int thang, int nam);
-
-    List<HdHoaDonChiTietResponse> getListHDCT(String idhd);
+    List<HdHoaDonResponse1> getListbyTime(Date time1,Date time2, int htgh);
+    List<HdHoaDonResponse2> getList2byTime(Date time1,Date time2, int htgh);
+    
+    List<HdHoaDonChiTietResponse1> getListHDCT(String idhd);
 }

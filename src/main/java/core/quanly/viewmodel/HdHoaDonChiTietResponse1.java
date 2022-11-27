@@ -16,16 +16,21 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class HdHoaDonChiTietResponse {
+public class HdHoaDonChiTietResponse1 {
 
     private String id;
     private String maSP;
     private String tenSP;
+    private String hang;
+    private String mau;
+    private String size;
     private Integer soLuong;
     private BigDecimal donGia;
     private BigDecimal giaBan;
-
+    private String maKhuyenMai;
+    private BigDecimal giaTriKM;
+    
     public Object[] toDataRow(){
-        return new Object[]{id, maSP, tenSP, soLuong, donGia, giaBan, new BigDecimal(soLuong).multiply(giaBan)};
+        return new Object[]{maSP, tenSP,hang, mau, size, soLuong, donGia, giaBan, (maKhuyenMai == null ? "Không có" : maKhuyenMai), (giaTriKM == null ? "Không có" : giaTriKM), new BigDecimal(soLuong).multiply(giaBan)};
     }
 }
