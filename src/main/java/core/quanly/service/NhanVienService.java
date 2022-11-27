@@ -17,13 +17,20 @@ public interface NhanVienService {
 
     List<NhanVienResponse> getAllResponse();
 
+    List<NhanVienResponse> getAllResponseNghi();
+
+    List<NhanVienResponse> getAllResponseLam();
+
     String insert(NhanVien nhanVien);
 
     String update(NhanVien nhanVien);
 
+    String updateMatKhau(String matKhau, String email);
+
     List<NhanVien> getAll();
-    
+
     List<NhanVienResponse> GetAllByMa(String ma);
-    
-    
+
+    String getNhanVienByEmail(String input);
+
 }
