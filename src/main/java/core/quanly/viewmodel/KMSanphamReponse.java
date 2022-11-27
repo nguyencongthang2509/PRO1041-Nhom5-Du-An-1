@@ -4,16 +4,7 @@
  */
 package core.quanly.viewmodel;
 
-import domainmodels.Hang;
-import domainmodels.KhuyenMai;
-import domainmodels.KichThuoc;
-import domainmodels.MauSac;
-import domainmodels.SanPham;
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -25,13 +16,15 @@ import lombok.ToString;
  */
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-public class KMChiTietSanPhamResponse {
+@Getter
+@Setter
+@ToString
+public class KMSanphamReponse {
+    private String id;
     private String ma;
     private String ten;
-
+    private String tenhang;
+    private String mausac;
+    private String kichthuoc;
     
-    public Object[] ToDaTa(){
-    return new Object[]{ma, ten};
-    }
 }

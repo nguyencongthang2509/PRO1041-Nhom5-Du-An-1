@@ -4,10 +4,12 @@
  */
 package core.quanly.service.impl;
 
-import core.quanly.repository.ChiTietSanPhamRepository;
+import core.quanly.repository.KMSanPhamRepository;
 import core.quanly.repository.KhuyenMaiRepository;
 import core.quanly.service.KhuyenMaiService;
+import core.quanly.viewmodel.KMSanphamDangKmReponse;
 import core.quanly.viewmodel.KhuyenMaiResponse;
+import domainmodels.ChiTietSP;
 import domainmodels.KhuyenMai;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,77 +18,80 @@ import java.util.List;
  *
  * @author thiennvtph26140
  */
-public class KhuyenMaiImpl implements core.quanly.service.KhuyenMaiService{
+public class KhuyenMaiImpl implements core.quanly.service.KhuyenMaiService {
+
     private KhuyenMaiRepository khuyenMaiRepository;
-    
-    public KhuyenMaiImpl(){
+
+    public KhuyenMaiImpl() {
         khuyenMaiRepository = new KhuyenMaiRepository();
     }
 
-    @Override
-    public String insert(KhuyenMai khuyenMai) {
-     if (khuyenMai.getMa().isEmpty()) {
-            return "ma khong duoc de trong";
-        }
-        if (khuyenMai.getTen().isEmpty()) {
-            return "ten khong duoc de trong";
-        }
-        if (khuyenMai.getGiaTri().isEmpty()) {
-            return "ten khong duoc de trong";
-        }
-//        if (khuyenMaiResponse.getNgayBatDau().isEmpty()) {
-//            return "ten khong duoc de trong";
-//        }
-//        if (khuyenMaiResponse.getNgayKetThuc().isEmpty()) {
-//            return "ten khong duoc de trong";
-//        }
-        
-        khuyenMai = khuyenMaiRepository.saveOrUpdate(khuyenMai);
-        if (khuyenMai != null) {
-            return "them thanh cong";
-        }
-        return "them that bai";
-    }
+
 
     @Override
     public List<KhuyenMaiResponse> GetAllResponse() {
-    return khuyenMaiRepository.getAllResponse();
+        return khuyenMaiRepository.getAllResponse();
     }
-     public static void main(String[] args) {
+
+    public static void main(String[] args) {
         KhuyenMaiService khuyenMaiService = new KhuyenMaiImpl();
+        
         List<KhuyenMaiResponse> list = new ArrayList<>();
+//        List<KMSanphamDangKmReponse> list1 = new ArrayList<>();
+//        list1 = khuyenMaiService.GetAllSanPhamDangApDung("5cc8be99-a7bd-4079-9f3c-40a04469ae99");
         list = khuyenMaiService.GetAllResponse();
-         for (KhuyenMaiResponse khuyenMaiResponse : list) {
-             System.out.println(khuyenMaiResponse);
-         }
+        System.out.println(list);
+//        for (KMSanphamDangKmReponse kMSanphamDangKmReponse : list1) {
+//            System.out.println(kMSanphamDangKmReponse);
+//        }
+//        for (KhuyenMaiResponse khuyenMaiResponse : list) {
+//            System.out.println(khuyenMaiResponse);
+//        }
     }
 
     @Override
     public List<KhuyenMaiResponse> findLopHocByMaOrTen(String input) {
-    return khuyenMaiRepository.FindMaOrTenByInput(input);
+        return khuyenMaiRepository.FindMaOrTenByInput(input);
     }
 
     @Override
-    public String update(KhuyenMai khuyenMai) {
-    KhuyenMai findloaikhuyenmai = khuyenMaiRepository.findById(khuyenMai.getId());
-    if (findloaikhuyenmai == null) {
-            return "khuyen mai nay khong ton tai";
+    public boolean saveOrUpdateKM(KhuyenMai khuyenMai) {
+        if(khuyenMai.getMa().isEmpty()){
+//            return "ma khuyen mai khong duoc trong";
+            return false;
         }
-    findloaikhuyenmai.setMa(khuyenMai.getMa());
-    findloaikhuyenmai.setTen(khuyenMai.getTen());
-    findloaikhuyenmai.setLoaiKhuyenMai(khuyenMai.getLoaiKhuyenMai());
-    findloaikhuyenmai.setGiaTri(khuyenMai.getGiaTri());
-    findloaikhuyenmai.setNgayBatDau(khuyenMai.getNgayBatDau());
-    findloaikhuyenmai.setNgayKetThuc(khuyenMai.getNgayKetThuc());
-    khuyenMai =  khuyenMaiRepository.saveOrUpdate(findloaikhuyenmai);
-    if(khuyenMai != null){
-        return "sua thanh cong";
-    }else{
-        return "sua that bai";
+        if(khuyenMai.getTen().isEmpty()){
+//            return "ma khuyen mai khong duoc trong";
+            return false;
+        }
+        if(khuyenMai.getGiaTri().equals("")){
+            return false;
+        }
+        if(khuyenMai.getNgayBatDau().equals("")){
+            return false;
+        }
+        if(khuyenMai.getNgayKetThuc().equals("")){
+            return false;
+        }
+        KhuyenMai khuyenMai1 = khuyenMaiRepository.saveOrUpdateKM(khuyenMai);
+        if (khuyenMai1 != null) {           
+            return true;
+        }
+        return false;
     }
-    }
-    
-    
-}
-    
 
+    @Override
+    public boolean updateKhuyenMaiChoSP(String idKhuyenMai, String idChiTietSP) {
+        return khuyenMaiRepository.updateKhuyenMaiChoSP(idKhuyenMai, idChiTietSP);
+    }
+
+    @Override
+    public List<KMSanphamDangKmReponse> GetAllSanPhamDangApDung(String idkhuyenmai) {
+        return khuyenMaiRepository.GetAllSanPhamDangApDung(idkhuyenmai);
+    }
+
+    @Override
+    public List<KhuyenMaiResponse> getAllResponseKhuyenMai() {
+    return khuyenMaiRepository.getAllResponseKhuyenMai();
+    }
+}

@@ -4,7 +4,9 @@
  */
 package core.quanly.service;
 
+import core.quanly.viewmodel.KMSanphamDangKmReponse;
 import core.quanly.viewmodel.KhuyenMaiResponse;
+import domainmodels.ChiTietSP;
 import domainmodels.KhuyenMai;
 import java.util.List;
 
@@ -14,12 +16,14 @@ import java.util.List;
  */
 public interface KhuyenMaiService {
     List<KhuyenMaiResponse> GetAllResponse();
-    
-    String insert(KhuyenMai khuyenMai);
-    
-    String update(KhuyenMai khuyenMai);
-    
+      
     List<KhuyenMaiResponse>findLopHocByMaOrTen(String input);
     
+    boolean saveOrUpdateKM(KhuyenMai khuyenMai);
     
+    boolean updateKhuyenMaiChoSP(String idKhuyenMai, String idChiTietSP);
+    
+    List<KMSanphamDangKmReponse> GetAllSanPhamDangApDung(String idkhuyenmai);
+    
+    List<KhuyenMaiResponse> getAllResponseKhuyenMai();
 }

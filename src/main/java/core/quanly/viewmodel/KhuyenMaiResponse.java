@@ -25,16 +25,17 @@ import lombok.ToString;
 @Setter
 @ToString
 public class KhuyenMaiResponse {
-    private String id;
-    private String ma;
-    private String ten;
-    private String loaiKhuyenMai;
-    private String giaTri;
+    private String idkm;
+    private String makm;
+    private String tenkm;
+    private Integer loaiKhuyenMai;
+    private Double giaTri;
     private Date ngayBatDau;
     private Date ngayKetThuc;
     
-    public Object[] ToDaTa(){
-    return new Object[]{id, ma, ten, loaiKhuyenMai , giaTri,ngayBatDau,ngayKetThuc};
-    }
     
+    public Object[] ToDaTa1(){
+    return new Object[]{ makm, tenkm, loaiKhuyenMai== 1 ?"Giảm theo số tiền":"Giảm theo %" , loaiKhuyenMai == 1 ? giaTri+" VND" : giaTri+" %",ngayBatDau,ngayKetThuc};
+    }
+
 }
