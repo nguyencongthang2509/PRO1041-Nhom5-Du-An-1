@@ -1,8 +1,17 @@
 package view;
 
+import config.HibernateUtil;
+import core.quanly.service.impl.NhanVienServiceImpl;
+import domainmodels.NhanVien;
 import java.awt.Image;
+import java.util.Calendar;
 import java.util.UUID;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import util.EmailSender;
+import util.MaHoaChuoi;
 
 /**
  *
@@ -12,6 +21,10 @@ public class ViewQuenMatKhau extends javax.swing.JFrame {
 
     private boolean showMatKhauMoi;
     private boolean showMatKhauMoiP2;
+    protected Transaction trans;
+    private Long firstSend = 0L;
+    String mxm = "";
+    NhanVienServiceImpl nvImpl = new NhanVienServiceImpl();
 
     public ViewQuenMatKhau() {
         initComponents();
@@ -47,14 +60,14 @@ public class ViewQuenMatKhau extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtEmailForword = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         lblLogo = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtMaXacMinh = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -79,8 +92,8 @@ public class ViewQuenMatKhau extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         jLabel2.setText("Vui lòng nhập email:");
 
-        jTextField1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jTextField1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        txtEmailForword.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        txtEmailForword.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
         jLabel3.setIcon(new ImageIcon("src/main/images/message.png"));
 
@@ -90,6 +103,11 @@ public class ViewQuenMatKhau extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Đổi mật khẩu");
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -121,8 +139,13 @@ public class ViewQuenMatKhau extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         jLabel6.setText("Mã xác minh:");
 
-        jTextField2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jTextField2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        txtMaXacMinh.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        txtMaXacMinh.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        txtMaXacMinh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMaXacMinhActionPerformed(evt);
+            }
+        });
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -146,6 +169,11 @@ public class ViewQuenMatKhau extends javax.swing.JFrame {
         jLabel10.setText("Nhập lại mật khẩu mới:");
 
         jLabel4.setIcon(new ImageIcon("src/main/images/paper-plane.png"));
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(102, 204, 255));
@@ -195,7 +223,7 @@ public class ViewQuenMatKhau extends javax.swing.JFrame {
                                 .addGap(14, 14, 14)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtEmailForword, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -210,7 +238,7 @@ public class ViewQuenMatKhau extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txtMaXacMinh, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jLabel6))
                                 .addGap(140, 140, 140)
                                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -244,7 +272,7 @@ public class ViewQuenMatKhau extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                    .addComponent(txtEmailForword, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -252,7 +280,7 @@ public class ViewQuenMatKhau extends javax.swing.JFrame {
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMaXacMinh, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -260,18 +288,18 @@ public class ViewQuenMatKhau extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtMatKhauMoi, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
+                    .addComponent(txtMatKhauMoi, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtMatKhauMoiP2, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
+                    .addComponent(txtMatKhauMoiP2, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
         );
 
@@ -322,6 +350,68 @@ public class ViewQuenMatKhau extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jLabel12MouseClicked
 
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        if (txtEmailForword.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Khong để trống");
+            return;
+        }
+        String nv = nvImpl.getNhanVienByEmail(txtEmailForword.getText());
+        if (nv == "") {
+            JOptionPane.showMessageDialog(this, "Khong tim thay Email");
+        } else {
+            //Send to Email
+            if (firstSend == 0L) {
+                mxm = String.valueOf((int) (Math.random() * 100000000));
+                EmailSender.emailSender(txtEmailForword.getText(), "Mã Xác Minh !!!", "Mã xác minh: " + mxm);
+                JOptionPane.showMessageDialog(this, "Mã xác minh đã được gửi đến Email");
+                firstSend = Calendar.getInstance().getTimeInMillis();
+            } else {
+                if (firstSend + 60000L > Calendar.getInstance().getTimeInMillis()) {
+                    JOptionPane.showMessageDialog(this, "Khoảng thời gian giữa 2 lần gửi mail là 60s");
+                } else {
+                    mxm = String.valueOf((int) (Math.random() * 100000000));
+                    EmailSender.emailSender(txtEmailForword.getText(), "Mã Xác Minh !!!", "Mã xác minh: " + mxm);
+                    firstSend = Calendar.getInstance().getTimeInMillis();
+                    JOptionPane.showMessageDialog(this, "Mã xác minh đã được gửi đến Email");
+                }
+            }
+        }
+    }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void txtMaXacMinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaXacMinhActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMaXacMinhActionPerformed
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        if (txtEmailForword.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Không được để trống email");
+            return;
+        }
+        if (txtMaXacMinh.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Không được để trống mã xác minh");
+            return;
+        }
+        String chkNewPass = txtMaXacMinh.getText().trim();
+        System.out.println(mxm);
+        if (!chkNewPass.equals(mxm)) {
+            JOptionPane.showMessageDialog(this, "Mã xác minh không đúng");
+            return;
+        }
+        if (txtMatKhauMoi.getText().trim().isEmpty() || txtMatKhauMoiP2.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Không được để trống mật khẩu mới");
+            return;
+        }
+        String newPass1 = txtMatKhauMoi.getText();
+        String newPass2 = txtMatKhauMoiP2.getText();
+        if (!newPass2.equals(newPass1)) {
+            JOptionPane.showMessageDialog(this, "Hai Password phải giống nhau");
+            return;
+        }
+        String hashPassword = MaHoaChuoi.maHoaMd5(newPass2);
+        String message = nvImpl.updateMatKhau(hashPassword, txtEmailForword.getText().trim());
+        JOptionPane.showMessageDialog(this, message);
+    }//GEN-LAST:event_jLabel5MouseClicked
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -371,9 +461,9 @@ public class ViewQuenMatKhau extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel lblLogo;
+    private javax.swing.JTextField txtEmailForword;
+    private javax.swing.JTextField txtMaXacMinh;
     private javax.swing.JPasswordField txtMatKhauMoi;
     private javax.swing.JPasswordField txtMatKhauMoiP2;
     // End of variables declaration//GEN-END:variables

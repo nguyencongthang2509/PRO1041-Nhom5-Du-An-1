@@ -12,9 +12,9 @@ import domainmodels.NhanVien;
 import java.util.ArrayList;
 //import infrastructure.constant.VaiTro;
 import java.util.List;
+import java.util.UUID;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
-
 
 /**
  *
@@ -39,10 +39,11 @@ public class NhanVienServiceImpl implements NhanVienService {
         if (nhanVien.getMa().isEmpty()) {
             return "Ma khong de trong";
         }
-        NhanVien FindNhanVien = nhanVienRepos.findByMa(nhanVien.getMa());
-        if (FindNhanVien != null) {
+        NhanVien FindNhanVienByMa = nhanVienRepos.findByMa(nhanVien.getMa());
+        if (FindNhanVienByMa != null) {
             return "Trung ma nhan vien";
         }
+
         if (nhanVien.getTen().isEmpty()) {
             return "Tên không được để trống";
         }
@@ -69,6 +70,7 @@ public class NhanVienServiceImpl implements NhanVienService {
     @Override
     public String update(NhanVien nhanVien) {
         NhanVien nhanVienFindById = nhanVienRepos.findById(nhanVien.getId());
+        System.out.println(nhanVien.getTrangThaiXoa() + "ahshduihasuhdiuashidasd");
         if (nhanVienFindById == null) {
             return "Nhân viên không tồn tại";
         }
@@ -83,6 +85,7 @@ public class NhanVienServiceImpl implements NhanVienService {
                 nhanVienFindById.setMa(nhanVien.getMa());
             }
         }
+//        
         if (nhanVien.getTen().isEmpty()) {
             return "Tên không được để trống";
         }
@@ -105,6 +108,8 @@ public class NhanVienServiceImpl implements NhanVienService {
         nhanVienFindById.setSdt(nhanVien.getSdt());
         nhanVienFindById.setEmail(nhanVien.getEmail());
         nhanVienFindById.setVaiTro(nhanVien.getVaiTro());
+        nhanVienFindById.setTrangThaiXoa(nhanVien.getTrangThaiXoa());
+
         if (nhanVienRepos.saveOrUpdate(nhanVienFindById) == null) {
             return "Lỗi. Sửa thất bại";
         } else {
@@ -121,8 +126,7 @@ public class NhanVienServiceImpl implements NhanVienService {
 //        NhanVienRepository rs  =new NhanVienRepository();
 //        NhanVienService cc =  new NhanVienServiceImpl();
 //        NhanVien nv = new NhanVien();
-        
-        
+
 //        nv.setMa("qq");
 //        nv.setTen("ww");
 //        nv.setSdt("ewrwe");
@@ -132,24 +136,21 @@ public class NhanVienServiceImpl implements NhanVienService {
 //        nv.setNgaySinh(new java.util.Date());
 //        nv.setVaiTro(VaiTro.QUAN_LY);
 //        System.out.println(cc.insert(nv));
-
 //    }
-
-
     @Override
     public List<NhanVienResponse> GetAllByMa(String ma) {
-         
-        return   getListbyMaorTen(ma);
-         
+
+        return getListbyMaorTen(ma);
+
     }
 
-    public List<NhanVienResponse> getListbyMaorTen(String input){
+    public List<NhanVienResponse> getListbyMaorTen(String input) {
         List<NhanVienResponse> list = new ArrayList<>();
         try {
             Session session = HibernateUtil.getSession();
             String hql = "select new core.quanly.viewmodel.NhanVienResponse(a.id,a.ma,a.ten,a.gioiTinh,"
-            + "a.ngaySinh,a.diaChi,a.sdt,a.email,a.vaiTro) from NhanVien a where a.ma like CONCAT('%',:input, '%')";
-            javax.persistence.Query query = session.createQuery(hql);
+                    + "a.ngaySinh,a.diaChi,a.sdt,a.email,a.vaiTro) from NhanVien a where a.ma like CONCAT('%',:input, '%')";
+            Query query = session.createQuery(hql);
             query.setParameter("input", input);
             list = query.getResultList();
         } catch (Exception e) {
@@ -157,6 +158,56 @@ public class NhanVienServiceImpl implements NhanVienService {
         }
         return list;
     }
-    
+
+//    public List<NhanVienResponse> getListbyEmail(String input){
+//        List<NhanVienResponse> list = new ArrayList<>();
+//        try {
+//            Session session = HibernateUtil.getSession();
+//            String hql = "select new core.quanly.viewmodel.NhanVienResponse(a.id,a.ma,a.ten,a.gioiTinh,"
+//            + "a.ngaySinh,a.diaChi,a.sdt,a.email,a.vaiTro) from NhanVien a where a.email like CONCAT('%',:input, '%')";
+//            Query query = session.createQuery(hql);
+//            query.setParameter("email", input);
+//            list = query.getResultList();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return list;
+//    }
+    public String getNhanVienByEmail(String input) {
+        String id = "";
+        try {
+            Session session = HibernateUtil.getSession();
+            String hql = "select a.id from NhanVien a where a.email = :input";
+            Query query = session.createQuery(hql);
+            query.setParameter("input", input);
+            id = (String) query.getSingleResult();
+        } catch (Exception e) {
+        }
+        return id;
+    }
+
+    public static void main(String[] args) {
+        String nv = new NhanVienServiceImpl().getNhanVienByEmail("dfgfdg");
+        System.out.println(nv);
+    }
+
+    @Override
+    public String updateMatKhau(String matKhau, String email) {
+        boolean check = nhanVienRepos.updateMatKhau(matKhau, email);
+        if (check) {
+            return "Đổi mật khẩu thành công";
+        }
+        return "Đổi mật khẩu thất bại";
+    }
+
+    @Override
+    public List<NhanVienResponse> getAllResponseNghi() {
+        return nhanVienRepos.getAllResponseNhanVienNghi();
+    }
+
+    @Override
+    public List<NhanVienResponse> getAllResponseLam() {
+        return nhanVienRepos.getAllResponseNhanVienLam();
+    }
 
 }
