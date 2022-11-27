@@ -446,14 +446,14 @@ public class ViewNhanVien extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        cboFindGioiTinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Male", "Female" }));
+        cboFindGioiTinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Nam", "Nữ" }));
         cboFindGioiTinh.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cboFindGioiTinhItemStateChanged(evt);
             }
         });
 
-        cboVaiTro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Quan Ly", "Nhan Vien" }));
+        cboVaiTro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Quản Lý", "Nhân Viên" }));
         cboVaiTro.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cboVaiTroItemStateChanged(evt);
@@ -565,7 +565,9 @@ public class ViewNhanVien extends javax.swing.JPanel {
             txtDiaChiNhanVien6.setText(nvr.getDiachi());
             txtSdtNhanVien6.setText(nvr.getSdt());
             txtTenNhanVien6.setText(nvr.getTen());
-            txtNgaySinh6.setText(nvr.getNgaysinh().toString());
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String strDate = formatter.format(nvr.getNgaysinh());
+            txtNgaySinh6.setText(strDate);
             if (nvr.getGioitinh() == 0) {
                 rdoNam6.setSelected(true);
             } else if (nvr.getGioitinh() == 1) {
