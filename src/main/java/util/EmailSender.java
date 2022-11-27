@@ -16,9 +16,14 @@ import javax.mail.internet.MimeMessage;
  *
  * @author quynhncph26201
  */
-public class EmailSender {
+public class EmailSender extends Thread {
 
-    public static void emailSender(String toEmailInput, String title, String body) {
+    private static String toEmailInput;
+    private static String title;
+    private static String body;
+
+    @Override
+    public void run() {
         try {
             final String fromEmail = "thangncph26123@fpt.edu.vn";
             // Mat khai email cua ban
@@ -50,5 +55,17 @@ public class EmailSender {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+//    public static void main(String args[]) {
+//        MyThread t1 = new MyThread();
+//        t1.start();
+//    }
+    public static void emailSender(String toEmail, String tit, String bod) {
+        toEmailInput = toEmail;
+        title = tit;
+        body = bod;
+        EmailSender emailSender = new EmailSender();
+        emailSender.start();
     }
 }
