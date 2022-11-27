@@ -28,7 +28,7 @@ public class HdHoaDonChiTietResponse1 {
     private BigDecimal donGia;
     private BigDecimal giaBan;
     private String maKhuyenMai;
-    private BigDecimal giaTriKM;
+    private Double giaTriKM;
     
     public Object[] toDataRow(){
         return new Object[]{maSP, tenSP,hang, mau, size, soLuong, donGia, giaBan, (maKhuyenMai == null ? "Không có" : maKhuyenMai), (giaTriKM == null ? "Không có" : giaTriKM), new BigDecimal(soLuong).multiply(giaBan)};
