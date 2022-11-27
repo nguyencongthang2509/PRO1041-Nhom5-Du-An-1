@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SPHangViewModel{
+public class SPHangResponse{
     
     private String id;
     private String ma;
@@ -23,7 +23,7 @@ public class SPHangViewModel{
 
     
     public Object[] toDateRow(){
-        return new Object[]{id, ma, ten};
+        return new Object[]{ma, ten};
     }
     
 }

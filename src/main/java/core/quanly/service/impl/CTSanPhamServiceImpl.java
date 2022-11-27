@@ -6,7 +6,7 @@ package core.quanly.service.impl;
 
 import core.quanly.repository.CTSanPhamRepository;
 import core.quanly.service.CTSanPhamService;
-import core.quanly.viewmodel.CTSanPhamViewModel;
+import core.quanly.viewmodel.CTSanPhamResponse;
 import domainmodels.ChiTietSP;
 import java.util.List;
 
@@ -19,8 +19,8 @@ public class CTSanPhamServiceImpl implements CTSanPhamService{
     private CTSanPhamRepository CTSanPhamRepository = new CTSanPhamRepository();
     
     @Override
-    public List<CTSanPhamViewModel> getAllViewModel() {
-        return CTSanPhamRepository.getAllResponse();
+    public List<CTSanPhamResponse> getAllViewModel() {
+        return CTSanPhamRepository.getAllResponseCTSP();
     }
 
     @Override
@@ -33,11 +33,18 @@ public class CTSanPhamServiceImpl implements CTSanPhamService{
         if (ctsanPham.getMaChiTietSP().trim().isEmpty()) {
             return "Mã không được trống";
         }
+        if (ctsanPham.getMaVach().trim().isEmpty()) {
+            return "Mã vạch không được trống";
+        }
+        if (ctsanPham.getMoTa().trim().isEmpty()) {
+            return "Mô tả không được trống";
+        }
+        
         ChiTietSP sanPhamFind = CTSanPhamRepository.findByMa(ctsanPham.getMaChiTietSP());
         if (sanPhamFind != null) {
             return "Mã không được trùng";
         }
-        ctsanPham = CTSanPhamRepository.saveOrUpdate(ctsanPham);
+        ctsanPham   = CTSanPhamRepository.saveOrUpdate(ctsanPham);
         if (ctsanPham != null) {
             return "Thêm thành công";
         } else {
@@ -76,13 +83,23 @@ public class CTSanPhamServiceImpl implements CTSanPhamService{
     }
 
     @Override
-    public List<CTSanPhamViewModel> findByMaOrTen(String input) {
+    public List<CTSanPhamResponse> findByMaOrTen(String input) {
         return CTSanPhamRepository.findByMaOrTen(input);
     }
 
     @Override
-    public List<CTSanPhamViewModel> getCbbListHang(String hang) {
-        return CTSanPhamRepository.getcbbList(hang);
+    public List<CTSanPhamResponse> getFormCTSP(String ma) {
+        return CTSanPhamRepository.getFormCTSP(ma);
+    }
+
+    @Override
+    public List<CTSanPhamResponse> getCbbListHang(String hang) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<CTSanPhamResponse> findTrangThai(Integer ma) {
+        return CTSanPhamRepository.findTrangThai(ma);
     }
     
 }
