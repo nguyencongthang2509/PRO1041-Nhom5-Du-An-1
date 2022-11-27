@@ -41,7 +41,7 @@ public class HoaDonChiTiet extends PrimaryEntity implements Serializable {
     private Integer loaiKhuyenMai;
 
     @Column(name = "gia_tri_khuyen_mai")
-    private BigDecimal giaTriKhuyenMai;
+    private Double giaTriKhuyenMai;
 
     @Column(name = "so_luong")
     private Integer soLuong;

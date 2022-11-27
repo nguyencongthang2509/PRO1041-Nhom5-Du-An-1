@@ -12,7 +12,6 @@ import domainmodels.KhachHang;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 import repository.CrudRepository;
@@ -34,7 +33,7 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
             session = HibernateUtil.getSession();
             String hql = "SELECT " + "new core.quanly.viewmodel.BhChiTietSPResponse"
                     + "(a.id, a.sanPham.ma, a.sanPham.ten, "
-                    + "a.mauSac.ten, a.kichThuoc.ten, a.hang.ten, a.soLuongTon, "
+                    + "a.mauSac.ten, a.kichThuoc.ten, a.hang.ten, a.soLuongTon, b.ma,"
                     + "b.loaiKhuyenMai, b.giaTri, a.giaBan, a.moTa, a.maVach)"
                     + " FROM " + className + " a LEFT JOIN a.khuyenMai b";
             Query query = session.createQuery(hql);
@@ -46,16 +45,17 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
         return list;
     }
 
-    public List<BhHoaDonResponse> getAllResponseHD() {
+    public List<BhHoaDonResponse> getAllResponseHD(String idNhanVien) {
         List<BhHoaDonResponse> list = new ArrayList<>();
         try {
             session = HibernateUtil.getSession();
             String hql = "SELECT " + "new core.quanly.viewmodel.BhHoaDonResponse"
-                    + "(a.id, a.ma, a.ngayTao, b.ten, c.ma, c.hoTen)"
+                    + "(a.id, a.ma, a.ngayTao, a.hinhThucGiaoHang ,b.ten, c.ma, c.hoTen)"
                     + " FROM HoaDon a LEFT JOIN a.nhanVien b LEFT JOIN a.khachHang c "
-                    + "WHERE a.trangThai = 0 "
-                    + "ORDER BY a.createdDate DESC";
+                    + "WHERE a.trangThai = 0 AND b.id = :idNhanVien "
+                    + "ORDER BY a.lastModifiedDate DESC";
             Query query = session.createQuery(hql);
+            query.setParameter("idNhanVien", idNhanVien);
             list = query.getResultList();
         } catch (Exception e) {
             e.printStackTrace();
@@ -64,6 +64,96 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
         return list;
     }
 
+    public List<BhHoaDonChiTietResponse> getAllHDCTByIdHoaDon(String idHoaDon) {
+        List<BhHoaDonChiTietResponse> list = new ArrayList<>();
+        try {
+            session = HibernateUtil.getSession();
+            String hql = """
+                         SELECT new core.quanly.viewmodel.BhHoaDonChiTietResponse
+                         (b.id, a.id, d.id, b.sanPham.ma,
+                         b.sanPham.ten, b.hang.ten, b.mauSac.ten,
+                         b.kichThuoc.ten, b.giaBan, a.soLuong, b.soLuongTon,
+                         c.ma, c.loaiKhuyenMai, c.giaTri,
+                         a.giaBan, a.trangThai) FROM HoaDonChiTiet a LEFT JOIN a.chiTietSPId b 
+                         LEFT JOIN a.chiTietSPId.khuyenMai c LEFT JOIN a.hoaDonId d
+                         WHERE a.hoaDonId.id = :idHoaDon
+                         """;
+            Query query = session.createQuery(hql);
+            query.setParameter("idHoaDon", idHoaDon);
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return list;
+    }
+
+//    public boolean updateKhachHangInHoaDon(String idHoaDon, String idKhachHang) {
+//        boolean check = false;
+//        session = HibernateUtil.getSession();
+//        trans = session.beginTransaction();
+//        try {
+//            Query query = session.createNativeQuery("UPDATE hoa_don SET id_khach_hang = :idKhachHang WHERE id = :idHoaDon");
+//            query.setParameter("idKhachHang", idKhachHang);
+//            query.setParameter("idHoaDon", idHoaDon);
+//            query.executeUpdate();
+//            check = true;
+//            trans.commit();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            trans.rollback();
+//        }
+//        return check;
+//    }
+    public HoaDon findByIdHoaDon(String id) {
+        HoaDon entity = null;
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "SELECT a FROM HoaDon a WHERE id = :id";
+            Query query = session.createQuery(hql);
+            query.setParameter("id", id);
+            entity = (HoaDon) query.getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return entity;
+    }
+
+    public String findChiTietSPByMaVach(String maVach) {
+        String id = null;
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "SELECT a.id FROM ChiTietSP a WHERE a.maVach = :maVach";
+            Query query = session.createQuery(hql);
+            query.setParameter("maVach", maVach);
+            id = (String) query.getSingleResult();
+        } catch (Exception e) {
+        }
+        return id;
+    }
+
+    public KhachHang findKhachHangById(String id) {
+        KhachHang khachHang = null;
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "SELECT a FROM KhachHang a WHERE a.id = :id";
+            Query query = session.createQuery(hql);
+            query.setParameter("id", id);
+            khachHang = (KhachHang) query.getSingleResult();
+        } catch (Exception e) {
+        }
+        return khachHang;
+    }
+
+    public static void main(String[] args) {
+        String id = new BanHangRepository().findChiTietSPByMaVach("123");
+        System.out.println(id);
+    }
+
+//    public static void main(String[] args) {
+//        List<BhHoaDonChiTietResponse> list = new BanHangRepository().getAllHDCTByIdHoaDon("3b278840-82a0-4af1-92b4-a23ed60d0e00");
+//        System.out.println(list);
+//    }
     public boolean updateSoLuong(Map<String, BhHoaDonChiTietResponse> list) {
         boolean check = false;
         String sql = "UPDATE ChiTietSP SET soLuongTon = soLuongTon - :soLuongMua WHERE id = :id";
@@ -86,7 +176,7 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
         return check;
     }
 
-    public HoaDon saveOrUpdate(HoaDon entity) {
+    public HoaDon saveOrUpdateHD(HoaDon entity) {
         try {
             session = HibernateUtil.getSession();
             trans = session.beginTransaction();
@@ -98,6 +188,35 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
             return null;
         }
         return entity;
+    }
+
+    public HoaDonChiTiet saveOrUpdateHDCT(HoaDonChiTiet entity) {
+        try {
+            session = HibernateUtil.getSession();
+            trans = session.beginTransaction();
+            session.saveOrUpdate(entity);
+            trans.commit();
+            session.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return entity;
+    }
+
+    public boolean deleteHDCT(HoaDonChiTiet hoaDonChiTiet) {
+        boolean check = false;
+        session = HibernateUtil.getSession();
+        trans = session.beginTransaction();
+        try {
+            session.delete(hoaDonChiTiet);
+            check = true;
+            trans.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            trans.rollback();
+        }
+        return check;
     }
 
     public KhachHang findByMaKhachHang(String ma) {
@@ -114,10 +233,6 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
             e.printStackTrace();
         }
         return khachHang;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(new BanHangRepository().findByMaKhachHang("KH0001"));
     }
 
     public List<BhKhachHangResponse> getAllResponseKhachHang() {

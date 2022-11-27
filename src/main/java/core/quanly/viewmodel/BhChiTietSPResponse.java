@@ -31,10 +31,12 @@ public class BhChiTietSPResponse {
     private String hang;
 
     private int soLuongTon;
+    
+    private String maKhuyeMai;
 
-    private String loaiKhuyenMai;
+    private Integer loaiKhuyenMai;
 
-    private String khuyenMai;
+    private Double khuyenMai;
 
     private BigDecimal donGia;
 
@@ -43,6 +45,6 @@ public class BhChiTietSPResponse {
     private String maVach;
 
     public Object[] toDataRow() {
-        return new Object[]{maSP, tenSP, mauSac, size, hang, soLuongTon, khuyenMai == null ? "No" : (loaiKhuyenMai.equals("0") ? khuyenMai + "%" : khuyenMai + "VNĐ"), donGia, moTa};
+        return new Object[]{maSP, tenSP, mauSac, size, hang, soLuongTon, khuyenMai == null ? "0" : (loaiKhuyenMai == 0 ? khuyenMai + " %" : khuyenMai + " Vnđ"), donGia + " Vnđ", moTa == null ? "Không có" : moTa};
     }
 }

@@ -8,6 +8,7 @@ import core.view.ViewKhuyenMai;
 import core.view.ViewNhanVien;
 import core.view.ViewSanPham;
 import core.view.ViewThongKe;
+import domainmodels.NhanVien;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Image;
@@ -24,13 +25,15 @@ import javax.swing.JOptionPane;
  */
 public class JFrameQuanLy extends javax.swing.JFrame {
 
-    public JFrameQuanLy() {
+    private NhanVien nhanVien = new NhanVien();
+    
+    public JFrameQuanLy(NhanVien nv) {
         initComponents();
         setLocationRelativeTo(null);
-
+        nhanVien = nv;
         pnlBanHang.setBackground(Color.WHITE);
         menuBanHang.setForeground(new Color(153, 204, 255));
-        ViewBanHang viewBanHang = new ViewBanHang();
+        ViewBanHang viewBanHang = new ViewBanHang(nhanVien);
         btnCardSon.removeAll();
         btnCardSon.add(viewBanHang);
         btnCardSon.setLayout(new FlowLayout());
@@ -60,6 +63,9 @@ public class JFrameQuanLy extends javax.swing.JFrame {
             }
         };
         countDownThread.start();
+        txtMaNV.setText(nhanVien.getMa());
+        txtTenNV.setText(nhanVien.getTen());
+        txtChucVu.setText(nhanVien.getVaiTro() == 0 ? "Quản lý" : "Nhân viên");
     }
 
     @SuppressWarnings("unchecked")
@@ -84,11 +90,11 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         menuKhachHang = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtMaNV = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtTenNV = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtChucVu = new javax.swing.JTextField();
         lblNgayGio = new javax.swing.JLabel();
         lblNgayGio1 = new javax.swing.JLabel();
         pnlDangXuat = new javax.swing.JPanel();
@@ -324,27 +330,27 @@ public class JFrameQuanLy extends javax.swing.JFrame {
 
         jLabel1.setText("Mã NV:");
 
-        jTextField1.setEditable(false);
-        jTextField1.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(255, 0, 0));
-        jTextField1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtMaNV.setEditable(false);
+        txtMaNV.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
+        txtMaNV.setForeground(new java.awt.Color(255, 0, 0));
+        txtMaNV.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        txtMaNV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtMaNVActionPerformed(evt);
             }
         });
 
         jLabel2.setText("Họ tên:");
 
-        jTextField2.setEditable(false);
-        jTextField2.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
-        jTextField2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        txtTenNV.setEditable(false);
+        txtTenNV.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
+        txtTenNV.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
         jLabel3.setText("Chức vụ:");
 
-        jTextField3.setEditable(false);
-        jTextField3.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
-        jTextField3.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        txtChucVu.setEditable(false);
+        txtChucVu.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
+        txtChucVu.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
         lblNgayGio.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
         lblNgayGio.setText("2022-11-23 6:07 PM");
@@ -362,9 +368,9 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTextField1)
-            .addComponent(jTextField2)
-            .addComponent(jTextField3)
+            .addComponent(txtMaNV)
+            .addComponent(txtTenNV)
+            .addComponent(txtChucVu)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
@@ -386,15 +392,15 @@ public class JFrameQuanLy extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtTenNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtChucVu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblNgayGio)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -607,7 +613,7 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         pnlThongKe.setBackground(null);
         pnlThoat.setBackground(null);
         pnlDangXuat.setBackground(null);
-        ViewBanHang viewBanHang = new ViewBanHang();
+        ViewBanHang viewBanHang = new ViewBanHang(nhanVien);
         btnCardSon.removeAll();
         btnCardSon.add(viewBanHang);
         btnCardSon.setLayout(new FlowLayout());
@@ -789,9 +795,9 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         btnCardSon.setVisible(true);
     }//GEN-LAST:event_menuKhuyenMaiMouseClicked
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtMaNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaNVActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtMaNVActionPerformed
 
     private void lblNgayGio1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNgayGio1MouseClicked
         new ViewDoiMatKhau().setVisible(true);
@@ -883,37 +889,37 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         btnCardSon.setVisible(true);
     }//GEN-LAST:event_menuDoiHangMouseClicked
 
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFrameQuanLy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFrameQuanLy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFrameQuanLy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFrameQuanLy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new JFrameQuanLy().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(JFrameQuanLy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(JFrameQuanLy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(JFrameQuanLy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(JFrameQuanLy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new JFrameQuanLy().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel btnCardSon;
@@ -922,9 +928,6 @@ public class JFrameQuanLy extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel lblNgayGio;
     private javax.swing.JLabel lblNgayGio1;
     private javax.swing.JLabel menuBanHang;
@@ -948,5 +951,8 @@ public class JFrameQuanLy extends javax.swing.JFrame {
     private javax.swing.JPanel pnlSanPham;
     private javax.swing.JPanel pnlThoat;
     private javax.swing.JPanel pnlThongKe;
+    private javax.swing.JTextField txtChucVu;
+    private javax.swing.JTextField txtMaNV;
+    private javax.swing.JTextField txtTenNV;
     // End of variables declaration//GEN-END:variables
 }

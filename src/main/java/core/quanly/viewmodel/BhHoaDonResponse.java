@@ -20,6 +20,8 @@ public class BhHoaDonResponse {
     private String maHD;
 
     private Date ngayTao;
+    
+    private Integer hinhThucGiaoHang;
 
     private String tenNhanVien;
 
@@ -28,6 +30,6 @@ public class BhHoaDonResponse {
     private String tenKhachHang;
 
     public Object[] toDataRow() {
-        return new Object[]{maHD, ngayTao, tenNhanVien, tenKhachHang};
+        return new Object[]{maHD, ngayTao, tenNhanVien, tenKhachHang, hinhThucGiaoHang == 0 ? "Tại quầy" : "Đặt hàng"};
     }
 }

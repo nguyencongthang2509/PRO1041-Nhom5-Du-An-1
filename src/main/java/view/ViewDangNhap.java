@@ -1,5 +1,8 @@
 package view;
 
+import core.quanly.service.DangNhapService;
+import core.quanly.service.impl.DangNhapServiceImpl;
+import domainmodels.NhanVien;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -11,9 +14,11 @@ import javax.swing.JOptionPane;
 public class ViewDangNhap extends javax.swing.JFrame {
 
     private boolean showPassword;
+    private DangNhapService dangNhapService;
 
     public ViewDangNhap() {
         initComponents();
+        dangNhapService = new DangNhapServiceImpl();
         setLocationRelativeTo(null);
         lblLogo.setIcon(new ImageIcon("src/main/images/sneaker.jpg"));
 
@@ -71,6 +76,7 @@ public class ViewDangNhap extends javax.swing.JFrame {
         jLabel2.setText("Đăng nhập");
 
         txtEmail.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        txtEmail.setText("congthang25092003@gmail.com");
         txtEmail.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
         lblForgotPassword.setBackground(new java.awt.Color(102, 102, 255));
@@ -116,7 +122,7 @@ public class ViewDangNhap extends javax.swing.JFrame {
         );
 
         txtPassword.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        txtPassword.setText("Hello 'ss");
+        txtPassword.setText("123456");
         txtPassword.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
@@ -243,6 +249,14 @@ public class ViewDangNhap extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Mời nhập password");
                 return;
             }
+            NhanVien nhanVien = dangNhapService.findNhanVienByEmailAndMatKhau(txtEmail.getText(), txtPassword.getText());
+            if(nhanVien == null){
+                JOptionPane.showMessageDialog(this, "Email hoặc mật khẩu không chính xác");
+                return;
+            }
+            JOptionPane.showMessageDialog(this, "Đăng nhập thành công");
+            new JFrameQuanLy(nhanVien).setVisible(true);
+            this.dispose();
         } catch (Exception e) {
             e.printStackTrace();
         }

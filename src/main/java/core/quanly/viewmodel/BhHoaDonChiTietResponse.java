@@ -15,24 +15,38 @@ import lombok.NoArgsConstructor;
 public class BhHoaDonChiTietResponse {
 
     private String idChiTietSP;
+    
+    private String idHDCT;
+    
+    private String idHoaDon;
 
     private String maSP;
 
     private String tenSP;
+    
+    private String hang;
+    
+    private String mauSac;
+    
+    private String size;
 
     private BigDecimal donGia;
 
     private int soLuong;
 
     private int soLuongTon;
+    
+    private String maKhuyenMai;
+    
+    private Integer loaiKhuyenMai;
 
-    private BigDecimal giamGia;
+    private Double giamGia;
 
     private BigDecimal giaBan;
 
     private int trangThai;
 
     public Object[] toDataRow() {
-        return new Object[]{maSP, tenSP, donGia, soLuong, giamGia, giaBan, new BigDecimal(soLuong).multiply(giaBan), trangThai == 0 ? "Được bán" : "Đã đổi trả"};
+        return new Object[]{maSP, tenSP, hang, mauSac, size, donGia, soLuong, maKhuyenMai == null ? 0 : (loaiKhuyenMai == 0 ? giamGia + " %" : giamGia + " Vnđ"), giaBan, new BigDecimal(soLuong).multiply(giaBan)};
     }
 }
