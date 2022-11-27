@@ -28,7 +28,7 @@ public class ViewNhanVien extends javax.swing.JPanel {
 
     DefaultTableModel model;
     DefaultTableModel modelDaNghi;
-    
+
     List<NhanVienResponse> listNhanVien;
     NhanVienService nhanVienService;
     NhanVienRepository nvnnv;
@@ -42,7 +42,7 @@ public class ViewNhanVien extends javax.swing.JPanel {
         nhanVienService = new NhanVienServiceImpl();
         loadTable();
         loadTableDaNghi();
-        
+
     }
 
     @SuppressWarnings("unchecked")
@@ -565,8 +565,8 @@ public class ViewNhanVien extends javax.swing.JPanel {
             txtDiaChiNhanVien6.setText(nvr.getDiachi());
             txtSdtNhanVien6.setText(nvr.getSdt());
             txtTenNhanVien6.setText(nvr.getTen());
-            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        String strDate = formatter.format(nvr.getNgaysinh());
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            String strDate = formatter.format(nvr.getNgaysinh());
             txtNgaySinh6.setText(strDate);
             if (nvr.getGioitinh() == 0) {
                 rdoNam6.setSelected(true);
@@ -578,7 +578,7 @@ public class ViewNhanVien extends javax.swing.JPanel {
             } else if (nvr.getVaitro() == 1) {
                 rdoNhanVien6.setSelected(true);
             }
-            if (nvr.getTrangthaixoa()== 0) {
+            if (nvr.getTrangthaixoa() == 0) {
                 jRadioButton1.setSelected(true);
             } else if (nvr.getTrangthaixoa() == 1) {
                 jRadioButton2.setSelected(true);
@@ -608,7 +608,7 @@ public class ViewNhanVien extends javax.swing.JPanel {
             md.update(password.getBytes());
             byte[] digest = md.digest();
             String myHash = DatatypeConverter
-            .printHexBinary(digest).toUpperCase();
+                    .printHexBinary(digest).toUpperCase();
             System.out.println(myHash);
             nv.setMatKhau(myHash);
 
@@ -639,19 +639,19 @@ public class ViewNhanVien extends javax.swing.JPanel {
     }//GEN-LAST:event_txtMaNhanVienActionPerformed
 
     private void tblNhanVien1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNhanVien1MouseClicked
-        
+
     }//GEN-LAST:event_tblNhanVien1MouseClicked
 
     private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
-       
+
     }//GEN-LAST:event_jTabbedPane1MouseClicked
 
     private void jScrollPane2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane2MouseClicked
-        
+
     }//GEN-LAST:event_jScrollPane2MouseClicked
 
     private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
-        
+
     }//GEN-LAST:event_jPanel5MouseClicked
 
 
