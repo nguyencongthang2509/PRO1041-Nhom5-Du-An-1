@@ -26,4 +26,18 @@ public class MaHoaChuoi {
         }
         return result;
     }
+
+    public static boolean verify(String inputPassword, String hashPassWord) {
+        String myChecksum = "";
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(inputPassword.getBytes());
+            byte[] digest = md.digest();
+            myChecksum = DatatypeConverter
+                    .printHexBinary(digest).toUpperCase();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return hashPassWord.equals(myChecksum);
+    }
 }

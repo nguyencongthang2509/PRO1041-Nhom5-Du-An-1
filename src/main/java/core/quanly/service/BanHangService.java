@@ -52,5 +52,7 @@ public interface BanHangService {
     KhachHang findKhachHangById(String id);
     
     BhChiTietSPResponse findCTSPByMaVach(List<BhChiTietSPResponse> list, String maVach);
+    
+    HoaDon findByIdHoaDon(String id);
        
 }

@@ -177,4 +177,9 @@ public class BanHangServiceImpl implements BanHangService {
         return banHangRepository.findKhachHangById(id);
     }
 
+    @Override
+    public HoaDon findByIdHoaDon(String id) {
+        return banHangRepository.findByIdHoaDon(id);
+    }
+
 }

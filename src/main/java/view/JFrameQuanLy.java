@@ -26,7 +26,7 @@ import javax.swing.JOptionPane;
 public class JFrameQuanLy extends javax.swing.JFrame {
 
     private NhanVien nhanVien = new NhanVien();
-    
+
     public JFrameQuanLy(NhanVien nv) {
         initComponents();
         setLocationRelativeTo(null);
@@ -647,6 +647,7 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         btnCardSon.add(viewHoaDon);
         btnCardSon.setLayout(new FlowLayout());
         this.pack();
+        ViewBanHang.webcam.close();
         btnCardSon.setVisible(true);
     }//GEN-LAST:event_menuHoaDonMouseClicked
 
@@ -676,6 +677,7 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         btnCardSon.add(viewSanPham);
         btnCardSon.setLayout(new FlowLayout());
         this.pack();
+        ViewBanHang.webcam.close();
         btnCardSon.setVisible(true);
     }//GEN-LAST:event_menuSanPhamMouseClicked
 
@@ -705,6 +707,7 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         btnCardSon.add(viewThongKe);
         btnCardSon.setLayout(new FlowLayout());
         this.pack();
+        ViewBanHang.webcam.close();
         btnCardSon.setVisible(true);
     }//GEN-LAST:event_menuThongKeMouseClicked
 
@@ -734,6 +737,7 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         btnCardSon.add(viewNhanVien);
         btnCardSon.setLayout(new FlowLayout());
         this.pack();
+        ViewBanHang.webcam.close();
         btnCardSon.setVisible(true);
     }//GEN-LAST:event_menuNhanVienMouseClicked
 
@@ -763,6 +767,7 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         btnCardSon.add(viewKhachHang);
         btnCardSon.setLayout(new FlowLayout());
         this.pack();
+        ViewBanHang.webcam.close();
         btnCardSon.setVisible(true);
     }//GEN-LAST:event_menuKhachHangMouseClicked
 
@@ -792,6 +797,7 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         btnCardSon.add(viewKhuyenMai);
         btnCardSon.setLayout(new FlowLayout());
         this.pack();
+        ViewBanHang.webcam.close();
         btnCardSon.setVisible(true);
     }//GEN-LAST:event_menuKhuyenMaiMouseClicked
 
@@ -800,7 +806,8 @@ public class JFrameQuanLy extends javax.swing.JFrame {
     }//GEN-LAST:event_txtMaNVActionPerformed
 
     private void lblNgayGio1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNgayGio1MouseClicked
-        new ViewDoiMatKhau().setVisible(true);
+        new ViewDoiMatKhau(nhanVien, this).setVisible(true);
+        ViewBanHang.webcam.close();
     }//GEN-LAST:event_lblNgayGio1MouseClicked
 
     private void menuDangXuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuDangXuatMouseClicked
@@ -829,6 +836,7 @@ public class JFrameQuanLy extends javax.swing.JFrame {
             return;
         }
         new ViewDangNhap().setVisible(true);
+        ViewBanHang.webcam.close();
         this.dispose();
     }//GEN-LAST:event_menuDangXuatMouseClicked
 
@@ -857,6 +865,7 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         if (confirm != JOptionPane.YES_OPTION) {
             return;
         }
+        ViewBanHang.webcam.close();
         System.exit(0);
     }//GEN-LAST:event_menuThoatMouseClicked
 
@@ -886,6 +895,7 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         btnCardSon.add(viewDoiTra);
         btnCardSon.setLayout(new FlowLayout());
         this.pack();
+        ViewBanHang.webcam.close();
         btnCardSon.setVisible(true);
     }//GEN-LAST:event_menuDoiHangMouseClicked
 

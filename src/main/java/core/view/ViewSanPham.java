@@ -1171,7 +1171,7 @@ public class ViewSanPham extends javax.swing.JPanel {
             String messsage = ctsanPhamService.add(getChiTietSp());
             lstctSpViewModel = ctsanPhamService.getAllViewModel();
             LoadToTableCTSanPham(lstctSpViewModel);
-            JOptionPane.showMessageDialog(this, "Thêm mới sản phẩm chi tiết thành công");
+            JOptionPane.showMessageDialog(this, messsage);
         } catch (Exception e) {
             e.printStackTrace();
         }

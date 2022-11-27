@@ -6,6 +6,7 @@ import domainmodels.NhanVien;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import util.MaHoaChuoi;
 
 /**
  *
@@ -122,7 +123,7 @@ public class ViewDangNhap extends javax.swing.JFrame {
         );
 
         txtPassword.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        txtPassword.setText("123456");
+        txtPassword.setText("12345");
         txtPassword.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
@@ -249,7 +250,8 @@ public class ViewDangNhap extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Mời nhập password");
                 return;
             }
-            NhanVien nhanVien = dangNhapService.findNhanVienByEmailAndMatKhau(txtEmail.getText(), txtPassword.getText());
+            String hashPassWord = MaHoaChuoi.maHoaMd5(txtPassword.getText().trim());
+            NhanVien nhanVien = dangNhapService.findNhanVienByEmailAndMatKhau(txtEmail.getText(), hashPassWord);
             if(nhanVien == null){
                 JOptionPane.showMessageDialog(this, "Email hoặc mật khẩu không chính xác");
                 return;

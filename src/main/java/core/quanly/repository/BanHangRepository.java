@@ -12,6 +12,7 @@ import domainmodels.KhachHang;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import javax.swing.JOptionPane;
 import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 import repository.CrudRepository;
@@ -50,9 +51,11 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
         try {
             session = HibernateUtil.getSession();
             String hql = "SELECT " + "new core.quanly.viewmodel.BhHoaDonResponse"
-                    + "(a.id, a.ma, a.ngayTao, a.hinhThucGiaoHang ,b.ten, c.ma, c.hoTen)"
+                    + "(a.id, a.ma, a.ngayTao, a.hinhThucGiaoHang, a.hinhThucThanhToan ,b.ten, c.ma, c.hoTen, a.trangThai,"
+                    + "a.tenNguoiNhan, a.sdtNguoiNhan, a.diaChi, a.tenNguoiShip, a.sdtNguoiShip,"
+                    + "a.tienShip, a.tienKhachTra, a.tienKhachChuyenKhoan, a.tienThua)"
                     + " FROM HoaDon a LEFT JOIN a.nhanVien b LEFT JOIN a.khachHang c "
-                    + "WHERE a.trangThai = 0 AND b.id = :idNhanVien "
+                    + "WHERE a.trangThai <> 1 AND a.trangThai <> 2 AND a.trangThai <> 4 AND b.id = :idNhanVien "
                     + "ORDER BY a.lastModifiedDate DESC";
             Query query = session.createQuery(hql);
             query.setParameter("idNhanVien", idNhanVien);
@@ -88,6 +91,11 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
         return list;
     }
 
+    public static void main(String[] args) {
+        List<BhHoaDonChiTietResponse> list = new BanHangRepository().getAllHDCTByIdHoaDon("78879bcd-ef5a-4e2d-bd39-d5778a1f1674");
+        System.out.println(list);
+    }
+    
 //    public boolean updateKhachHangInHoaDon(String idHoaDon, String idKhachHang) {
 //        boolean check = false;
 //        session = HibernateUtil.getSession();
@@ -143,11 +151,6 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
         } catch (Exception e) {
         }
         return khachHang;
-    }
-
-    public static void main(String[] args) {
-        String id = new BanHangRepository().findChiTietSPByMaVach("123");
-        System.out.println(id);
     }
 
 //    public static void main(String[] args) {
