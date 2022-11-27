@@ -3,11 +3,13 @@ package core.quanly.viewmodel;
 
 //import infrastructure.constant.VaiTro;
 import domainmodels.base.StatusDeleted;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 
 
 /**
@@ -28,7 +30,12 @@ public class NhanVienResponse{
     private String email;
     private int vaitro;
     private Integer trangthaixoa;
-        
+       public String getnngaysinh(){
+           SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            String strDate = formatter.format(ngaysinh);
+        return strDate;
+             
+       }
         
         
     
@@ -39,7 +46,7 @@ public class NhanVienResponse{
     
 
     public Object[] toDataRow(int index){
-    return new Object[]{index,ma,ten,gioitinh==0?"Nam":"Nữ",ngaysinh,diachi,sdt,email,vaitro==0?
+    return new Object[]{index,ma,ten,gioitinh==0?"Nam":"Nữ",getnngaysinh(),diachi,sdt,email,vaitro==0?
             "Quản Lý":"Nhân Viên",trangthaixoa==0?"Đang Làm":"Đã Nghỉ"};
     }
     
