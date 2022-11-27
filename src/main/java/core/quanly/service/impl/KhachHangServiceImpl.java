@@ -1,3 +1,4 @@
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -6,8 +7,10 @@ package core.quanly.service.impl;
 
 import core.quanly.repository.KhachHangRespository;
 import core.quanly.service.KhachHangService;
+import core.quanly.viewmodel.KhachHangLichSuRespone;
 import core.quanly.viewmodel.KhachHangRespone;
 import domainmodels.KhachHang;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -43,15 +46,21 @@ public class KhachHangServiceImpl implements KhachHangService {
         if (khachHang.getEmail().trim().isEmpty()) {
             return "Email không được trống";
         }
-
+        if (!khachHang.getEmail().matches("\\w+@{1}\\w+.+\\w")) {
+            return "Sai định dạng email";
+        }
+        if (khachHang.getNgaySinh() == null) {
+            return "Ngày sinh không để trống";
+        }
+        if (khachHang.getNgaySinh().compareTo(new Date()) > 0) {
+            return "Ngày sinh không hợp lệ";
+        }       
         if (khachHang.getSdt().trim().isEmpty()) {
             return "Số điện thoại không được trống";
         }
-        
-         if (khachHang.getSdt().matches("^0{1}\\d{10}$")) {
+        if (!khachHang.getSdt().matches("(84|0[3|5|7|8|9])+([0-9]{8})\\b")) {
             return "Số điện thoại phải là số và gồm 10 ký tự";
         }
-        
 
         khachHang = khachHangRe.saveOrUpdate(khachHang);
         if (khachHang != null) {
@@ -76,12 +85,20 @@ public class KhachHangServiceImpl implements KhachHangService {
         if (khachHang.getDiaChi().trim().isEmpty()) {
             return "Địa chỉ không được trống";
         }
+        if (khachHang.getNgaySinh().compareTo(new Date()) > 0) {
+            return "Ngày sinh không hợp lệ";
+        }
         if (khachHang.getEmail().trim().isEmpty()) {
             return "Email không được trống";
         }
-
+        if (!khachHang.getEmail().matches("\\w+@{1}\\w+.+\\w")) {
+            return "Sai định dạng email";
+        }
         if (khachHang.getSdt().trim().isEmpty()) {
             return "Số điện thoại không được trống";
+        }
+        if (!khachHang.getSdt().matches("(84|0[3|5|7|8|9])+([0-9]{8})\\b")) {
+            return "Số điện thoại phải là số và gồm 10 ký tự hoặc kiểm tra định dạng số điện thoại";
         }
         if (!khachHang.getMa().equals(khachHangFindById.getMa())) {
             KhachHang khachHangFindByMa = khachHangRe.findByMa(khachHang.getMa());
@@ -95,9 +112,10 @@ public class KhachHangServiceImpl implements KhachHangService {
         khachHangFindById.setHoTen(khachHang.getHoTen());
         khachHangFindById.setSdt(khachHang.getSdt());
         khachHangFindById.setNgaySinh(khachHang.getNgaySinh());
+        khachHangFindById.setEmail(khachHang.getEmail());
         khachHangFindById.setDiaChi(khachHang.getDiaChi());
         khachHangFindById.setGioiTinh(khachHang.getGioiTinh());
-        
+
         khachHang = khachHangRe.saveOrUpdate(khachHangFindById);
         if (khachHang != null) {
             return "Sửa thành công";
@@ -115,6 +133,20 @@ public class KhachHangServiceImpl implements KhachHangService {
     public List<KhachHangRespone> findKhachHangByMaOrTen(String input) {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         return khachHangRe.findKhachHangByMaOrTen(input);
+    }
+
+   
+
+    @Override
+    public List<KhachHangLichSuRespone> getKhachHangByLichSu(String id) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return khachHangRe.getKhachHangByLichSu(id);
+    }
+
+    @Override
+    public List<KhachHangRespone> getLoadCbbGioiTinh(int gioiTinh) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     return khachHangRe.getLoadCbbGioiTinh(gioiTinh);
     }
 
 }

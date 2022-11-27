@@ -1,9 +1,11 @@
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
 package core.quanly.service;
 
+import core.quanly.viewmodel.KhachHangLichSuRespone;
 import core.quanly.viewmodel.KhachHangRespone;
 import domainmodels.KhachHang;
 import java.util.List;
@@ -21,5 +23,9 @@ public interface KhachHangService {
     String update(KhachHang khachHang);
 
 //    List<KhachHang> getAll();
-     List<KhachHangRespone> findKhachHangByMaOrTen(String input);
+    List<KhachHangRespone> findKhachHangByMaOrTen(String input);
+
+    List<KhachHangRespone> getLoadCbbGioiTinh(int gioiTinh);
+
+    List<KhachHangLichSuRespone> getKhachHangByLichSu(String id);
 }
