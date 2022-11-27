@@ -4,32 +4,33 @@
  */
 package core.quanly.viewmodel;
 
-/**
- *
- * @author NgocAnh
- */
 import java.math.BigDecimal;
 import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ *
+ * @author NgocAnh
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class KhachHangRespone {
+public class KhachHangLichSuRespone {
 
     private String id;
-    private String ma;
     private String hoTen;
-    private Integer gioiTinh;
     private String sdt;
-    private String diaChi;
-    private String email;
-    private Date ngaySinh;
-    
-    public Object[] toDataRow(){      
-        return new  Object[]{ma,hoTen,gioiTinh,sdt,diaChi,email,ngaySinh};         
+    private Integer gioiTinh;
+    private String ma;
+    private Date ngayThanhToan;
+    private BigDecimal thanhTien;
+    private Integer trangThai;
+
+    public Object[] toDaTaRow() {
+        int stt = 1;
+        return new Object[]{stt++, hoTen, sdt, gioiTinh, ma, ngayThanhToan, thanhTien, trangThai};
     }
 
 }
