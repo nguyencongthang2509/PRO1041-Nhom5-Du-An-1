@@ -56,7 +56,7 @@ public class SPHangServiceImpl implements SPHangService {
     public String update(Hang hang) {
     Hang HangFindById = hangRepository.findById(hang.getId());
         if (HangFindById == null) {
-            return "Không tìm thấy sản phẩm";
+            return "Không tìm thấy hãng";
         }
         if (hang.getMa().isEmpty()) {
             return "Mã không được để trống";

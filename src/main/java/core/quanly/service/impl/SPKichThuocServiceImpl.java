@@ -56,7 +56,7 @@ public class SPKichThuocServiceImpl implements SPKichThuocService{
     public String update(KichThuoc kichThuoc) {
         KichThuoc KmFindById = kichThuocRepository.findById(kichThuoc.getId());
         if (KmFindById == null) {
-            return "Không tìm thấy sản phẩm";
+            return "Không tìm thấy kích thước";
         }
         if (kichThuoc.getMa().isEmpty()) {
             return "Mã không được để trống";

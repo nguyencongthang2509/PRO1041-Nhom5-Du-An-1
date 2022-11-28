@@ -29,7 +29,7 @@ public class CTSanPhamResponse {
     private String mauSac;
     private String kichThuoc;
     private String hang;
-    private Double khuyenMai;
+    private String chatLieu;
     private String mactsp;
     private String moTa;
     private Integer soLuongTon;
@@ -38,7 +38,7 @@ public class CTSanPhamResponse {
     private Integer trangThai;
 
     public Object[] toDateRow() {
-        return new Object[]{mactsp, masp, mauSac, kichThuoc, hang, khuyenMai == null ? "NO" : khuyenMai,
+        return new Object[]{mactsp, masp, mauSac, kichThuoc, hang, chatLieu,
             moTa, soLuongTon, giaBan, maVach, trangThai == 0 ? "Đang hoạt động" : "Dừng hoạt động"
         };
     }

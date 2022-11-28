@@ -32,7 +32,7 @@ public class CTSanPhamRepository extends CrudRepository<String, ChiTietSP, CTSan
         try {
             session = HibernateUtil.getSession();
             String hql = "SELECT new core.quanly.viewmodel.CTSanPhamResponse(a.id, a.sanPham.ma, a.sanPham.ten,"
-                    + "a.mauSac.ten, a.kichThuoc.ten, a.hang.ten, b.giaTri ,a.maChiTietSP, a.moTa, a.soLuongTon, a.giaBan, a.maVach, a.trangThaiXoa) FROM ChiTietSP a LEFT JOIN a.khuyenMai b";
+                    + "a.mauSac.ten, a.kichThuoc.ten, a.hang.ten, a.chatLieu.ten ,a.maChiTietSP, a.moTa, a.soLuongTon, a.giaBan, a.maVach, a.trangThaiXoa) FROM ChiTietSP a";
             org.hibernate.query.Query query = session.createQuery(hql);
             list = query.getResultList();
         } catch (Exception e) {
@@ -43,7 +43,7 @@ public class CTSanPhamRepository extends CrudRepository<String, ChiTietSP, CTSan
     }
 
     public static void main(String[] args) {
-        List<CTSanPhamResponse> list = new CTSanPhamRepository().findTrangThai(1);
+        List<CTSanPhamResponse> list = new CTSanPhamRepository().getAllResponseCTSP();
         System.out.println(list);
     }
 
@@ -52,7 +52,7 @@ public class CTSanPhamRepository extends CrudRepository<String, ChiTietSP, CTSan
         try {
             Session session = HibernateUtil.getSession();
             String hql = "SELECT new core.quanly.viewmodel.CTSanPhamResponse(a.id, a.sanPham.ma, a.sanPham.ten,"
-                    + "a.mauSac.ten, a.kichThuoc.ten, a.hang.ten, b.giaTri ,a.maChiTietSP, a.moTa, a.soLuongTon, a.giaBan, a.maVach, a.trangThaiXoa) FROM ChiTietSP a LEFT JOIN a.khuyenMai b"
+                    + "a.mauSac.ten, a.kichThuoc.ten, a.hang.ten, a.chatLieu.ten ,a.maChiTietSP, a.moTa, a.soLuongTon, a.giaBan, a.maVach, a.trangThaiXoa) FROM ChiTietSP a"
                     + " WHERE a.sanPham.ma LIKE CONCAT('%',:input,'%') OR a.maChiTietSP LIKE CONCAT('%',:input,'%')";
             Query query = session.createQuery(hql);
             query.setParameter("input", input);
@@ -68,7 +68,7 @@ public class CTSanPhamRepository extends CrudRepository<String, ChiTietSP, CTSan
         try {
             Session session = HibernateUtil.getSession();
             String hql = "SELECT new core.quanly.viewmodel.CTSanPhamResponse(a.id, a.sanPham.ma, a.sanPham.ten,"
-                    + "a.mauSac.ten, a.kichThuoc.ten, a.hang.ten, b.giaTri ,a.maChiTietSP, a.moTa, a.soLuongTon, a.giaBan, a.maVach, a.trangThaiXoa) FROM ChiTietSP a LEFT JOIN a.khuyenMai b"
+                    + "a.mauSac.ten, a.kichThuoc.ten, a.hang.ten, a.chatLieu.ten, a.maChiTietSP, a.moTa, a.soLuongTon, a.giaBan, a.maVach, a.trangThaiXoa) FROM ChiTietSP a"
                     + " WHERE a.trangThaiXoa = :input";
             Query query = session.createQuery(hql);
             query.setParameter("input", input);
@@ -85,8 +85,8 @@ public class CTSanPhamRepository extends CrudRepository<String, ChiTietSP, CTSan
         try {
             Session session = HibernateUtil.getSession();
             String hql = "SELECT new core.quanly.viewmodel.CTSanPhamResponse(a.id, a.sanPham.ma, a.sanPham.ten,"
-                + "a.mauSac.ten, a.kichThuoc.ten, a.hang.ma, b.giaTri ,a.maChiTietSP, a.moTa, a.soLuongTon, a.giaBan, a.maVach, a.trangThaiXoa) "
-                    + "FROM ChiTietSP a left join a.khuyenMai b WHERE a.sanPham.ma LIKE CONCAT('%',:ma,'%')";
+                + "a.mauSac.ten, a.kichThuoc.ten, a.hang.ma, a.chatLieu.ten ,a.maChiTietSP, a.moTa, a.soLuongTon, a.giaBan, a.maVach, a.trangThaiXoa) "
+                    + "FROM ChiTietSP a WHERE a.sanPham.ma LIKE CONCAT('%',:ma,'%')";
             Query query = session.createQuery(hql);
             query.setParameter("ma", ma);
             lst = query.getResultList();
