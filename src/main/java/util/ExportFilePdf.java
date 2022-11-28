@@ -31,6 +31,7 @@ public class ExportFilePdf {
 
             cs.beginText();
             cs.setFont(PDType1Font.TIMES_ROMAN, 20);
+            cs.setFont(PDType1Font.TIMES_ROMAN, 0);
             cs.newLineAtOffset(140, 750);
             cs.showText(InvoiceTitle);
             cs.endText();
@@ -45,7 +46,7 @@ public class ExportFilePdf {
             cs.setFont(PDType1Font.TIMES_ROMAN, 14);
             cs.setLeading(20f);
             cs.newLineAtOffset(60, 610);
-            cs.showText("Ten khach hang: ");
+            cs.showText("Customer Name: ");
             cs.newLine();
             cs.showText("Phone: ");
             cs.endText();
