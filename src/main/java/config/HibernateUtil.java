@@ -1,6 +1,8 @@
 package config;
 
+import domainmodels.ChatLieu;
 import domainmodels.ChiTietSP;
+import domainmodels.ChiTietSPKhuyenMai;
 import domainmodels.Hang;
 import domainmodels.HoaDon;
 import domainmodels.HoaDonChiTiet;
@@ -33,17 +35,19 @@ public class HibernateUtil {
         properties.put(Environment.USER, "sa");
         properties.put(Environment.PASS, "123456");
         properties.put(Environment.SHOW_SQL, "true");
-//        properties.put(Environment.HBM2DDL_AUTO, "create");//gen DB tự động
+        properties.put(Environment.HBM2DDL_AUTO, "create");//gen DB tự động
 
         conf.addAnnotatedClass(SanPham.class);
         conf.addAnnotatedClass(KhuyenMai.class);
         conf.addAnnotatedClass(MauSac.class);
+        conf.addAnnotatedClass(ChatLieu.class);
         conf.addAnnotatedClass(KichThuoc.class);
         conf.addAnnotatedClass(Hang.class);
         conf.addAnnotatedClass(NhanVien.class);
         conf.addAnnotatedClass(KhachHang.class);
         conf.addAnnotatedClass(HoaDon.class);
         conf.addAnnotatedClass(ChiTietSP.class);
+        conf.addAnnotatedClass(ChiTietSPKhuyenMai.class);
         conf.addAnnotatedClass(HoaDonChiTiet.class);
 
         conf.setProperties(properties);

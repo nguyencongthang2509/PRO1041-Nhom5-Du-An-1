@@ -43,11 +43,11 @@ public class ChiTietSP extends PrimaryEntity implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_hang")
     private Hang hang;
-
+    
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_khuyen_mai")
-    private KhuyenMai khuyenMai;
-
+    @JoinColumn(name = "id_chat_lieu")
+    private ChatLieu chatLieu;
+    
     @Column(name = "ma_ctsp", length = EntityProperties.LENGTH_CODE, nullable = false)
     private String maChiTietSP;
 

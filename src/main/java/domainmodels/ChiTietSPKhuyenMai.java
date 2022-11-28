@@ -23,29 +23,23 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "hoa_don_chi_tiet")
-public class HoaDonChiTiet extends PrimaryEntity implements Serializable {
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_hoa_hon", nullable = false)
-    private HoaDon hoaDonId;
+@Table(name = "ctsp_khuyen_mai")
+public class ChiTietSPKhuyenMai extends PrimaryEntity implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_ctsp", nullable = false)
     private ChiTietSP chiTietSPId;
 
-    @Column(name = "giam_gia_khuyen_mai", columnDefinition = "decimal(20,0)")
-    private BigDecimal giamGiaKhuyenMai;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_khuyen_mai", nullable = false)
+    private KhuyenMai khuyenMaiId;
 
-    @Column(name = "so_luong")
-    private Integer soLuong;
-
-    @Column(name = "don_gia", columnDefinition = "decimal(20,0)")
+    @Column(name = "don_gia")
     private BigDecimal donGia;
 
-    @Column(name = "gia_ban", columnDefinition = "decimal(20,0)")
-    private BigDecimal giaBan;
+    @Column(name = "don_gia_con_lai")
+    private BigDecimal donGiaConLai;
 
     @Column(name = "trang_thai")
-    private Integer trangThai; // 0 : Chờ thanh toán, 1: Đã hủy, 2: Đã thanh toán, 3: Đang giao, 4: Đã giao
+    private Integer trangThai;
 }

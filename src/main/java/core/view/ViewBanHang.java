@@ -1521,7 +1521,7 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tbpDonHang)
+            .addComponent(tbpDonHang, javax.swing.GroupLayout.DEFAULT_SIZE, 728, Short.MAX_VALUE)
         );
 
         jPanel14.setBackground(new java.awt.Color(255, 255, 255));
