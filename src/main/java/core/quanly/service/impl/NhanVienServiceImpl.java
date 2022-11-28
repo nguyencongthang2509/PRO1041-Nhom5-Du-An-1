@@ -16,6 +16,7 @@ import java.util.UUID;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
+
 /**
  *
  * @author quynhncph26201
@@ -79,8 +80,10 @@ public class NhanVienServiceImpl implements NhanVienService {
         }
         if (!nhanVien.getMa().equals(nhanVienFindById.getMa())) {
             NhanVien nhanVienFindByMa = nhanVienRepos.findByMa(nhanVien.getMa());
+            System.out.println(nhanVien.getMa());
             if (nhanVienFindByMa != null) {
                 return "Trùng mã nhân viên";
+                
             } else {
                 nhanVienFindById.setMa(nhanVien.getMa());
             }

@@ -389,7 +389,7 @@ public class ViewNhanVien extends javax.swing.JPanel {
 
             },
             new String [] {
-                "STT", "Ma", "Ten", "Gioi Tinh", "Ngay Sinh", "Diachi", "SDT", "Email", "Vai Tro"
+                "STT", "Ma", "Ten", "Gioi Tinh", "Ngay Sinh", "Diachi", "SDT", "Email", "Vai Tro", "Trạng Thái"
             }
         ));
         tblNhanVien1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -592,6 +592,7 @@ public class ViewNhanVien extends javax.swing.JPanel {
             NewForm();
         } catch (Exception e) {
             e.printStackTrace();
+            
         }
     }//GEN-LAST:event_btnNewActionPerformed
 
@@ -716,14 +717,13 @@ public class ViewNhanVien extends javax.swing.JPanel {
         nv.setMa(txtMaNhanVien6.getText().trim());
         nv.setTen(txtTenNhanVien6.getText().trim());
         nv.setGioiTinh(rdoNam6.isSelected() ? 0 : 1);
-        SimpleDateFormat dateF = new SimpleDateFormat("dd-mm-yyyy");
-        String ll = txtNgaySinh6.getText().trim();
         try {
-            Date date = dateF.parse(ll);
-            nv.setNgaySinh(date);
+           SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            nv.setNgaySinh(formatter.parse(txtNgaySinh6.getText())); 
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
 
         nv.setDiaChi(txtDiaChiNhanVien6.getText().trim());
         nv.setSdt(txtSdtNhanVien6.getText().trim());
