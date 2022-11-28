@@ -61,7 +61,7 @@ public class KhachHangRespository extends CrudRepository<String, KhachHang, Khac
         try {
             Session session = HibernateUtil.getSession();
             String hql = "SELECT new core.quanly.viewmodel.KhachHangLichSuRespone(b.id,b.hoTen,b.sdt,b.gioiTinh,a.ma,a.ngayThanhToan,a.thanhTien,a.trangThai) "
-                    + "FROM HoaDon a LEFT JOIN a.khachHang b WHERE b.id =:id";
+                    + "FROM HoaDon a LEFT JOIN a.khachHang b WHERE b.ma =:id";
             Query query = session.createQuery(hql);
             query.setParameter("id", id);
             list = query.getResultList();
@@ -72,7 +72,7 @@ public class KhachHangRespository extends CrudRepository<String, KhachHang, Khac
     }
 
     public static void main(String[] args) {
-       List<KhachHangRespone> list = new KhachHangRespository().getLoadCbbGioiTinh(1);
+       List<KhachHangLichSuRespone> list = new KhachHangRespository().getKhachHangByLichSu("KH003");
         System.out.println(list);      
     }
 }
