@@ -104,7 +104,7 @@ public abstract class CrudRepository<Key, Entity, Response> {
         Entity entity = null;
         try {
             session = HibernateUtil.getSession();
-            String hql = "SELECT a FROM " + className + " a WHERE a.ma = :ma";
+            String hql = "SELECT a FROM " + className + " a WHERE a.maChiTietSP = :ma";
             Query query = session.createQuery(hql);
             query.setParameter("ma", ma);
             if (query.getSingleResult() != null) {
