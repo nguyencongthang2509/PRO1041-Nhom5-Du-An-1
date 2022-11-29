@@ -556,8 +556,10 @@ public class ViewKhachHang extends javax.swing.JPanel {
         listLS = khachhang.getKhachHangByLichSu(id);
         mol = (DefaultTableModel) tbl_lichsugiaodich.getModel();
         mol.setRowCount(0);
+        int stt = 1;
         for (KhachHangLichSuRespone x : listLS) {
-            mol.addRow(x.toDaTaRow());
+            mol.addRow(x.toDaTaRow(stt));
+            stt++;
         }
         System.out.println(listLS);
     }//GEN-LAST:event_tbl_khachhangMouseClicked

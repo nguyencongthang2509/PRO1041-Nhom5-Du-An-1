@@ -9,6 +9,7 @@ import core.quanly.service.CTSanPhamService;
 import core.quanly.viewmodel.CTSanPhamResponse;
 import domainmodels.ChiTietSP;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -70,6 +71,7 @@ public class CTSanPhamServiceImpl implements CTSanPhamService{
             }
         }
         ctsanPham = CTSanPhamRepository.saveOrUpdate(sanPhamFindById);
+        JOptionPane.showMessageDialog(null, sanPhamFindById.getTrangThaiXoa());
         if (ctsanPham != null) {
             return "Sửa thành công";
         } else {

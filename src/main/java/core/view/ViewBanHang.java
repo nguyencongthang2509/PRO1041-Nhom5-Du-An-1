@@ -1906,6 +1906,8 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
 
     private void btnTaoHoaDonDatHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoHoaDonDatHangActionPerformed
         try {
+            clearForm();
+            clearFormDatHang();
             HoaDon hoaDon = new HoaDon();
             hoaDon.setMa("HD" + banHangService.genMaHoaDonTuDong());
             hoaDon.setNgayTao(new Date());
@@ -1938,6 +1940,8 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
 
     private void lblTaoHoaDonTaiQuayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTaoHoaDonTaiQuayMouseClicked
         try {
+            clearForm();
+            clearFormDatHang();
             HoaDon hoaDon = new HoaDon();
             hoaDon.setMa("HD" + banHangService.genMaHoaDonTuDong());
             hoaDon.setNgayTao(new Date());
@@ -2482,6 +2486,7 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
                 txtThanhToanDatHang.setText(df.format(tienCanTra) + " Vnđ");
                 if (cboHTThanhToanDatHang.getSelectedIndex() == 1) {
                     txtTienKhachCKDatHang.setText(txtThanhToanDatHang.getText());
+                    txtTienThuaDatHang.setText("0 Vnđ");
                     return;
                 }
                 if (txtTienKhachDuaDatHang.getText().trim().isEmpty()) {
