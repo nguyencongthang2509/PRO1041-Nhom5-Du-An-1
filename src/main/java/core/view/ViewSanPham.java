@@ -1105,6 +1105,7 @@ public class ViewSanPham extends javax.swing.JPanel {
     }
 
     private void ShowDataComboBoxHang(List<Hang> lstHang) {
+        dcbcHang.removeAllElements();
         for (Hang hang : lstHang) {
             dcbcHang.addElement(hang.getTen());
         }
@@ -1117,6 +1118,7 @@ public class ViewSanPham extends javax.swing.JPanel {
             lstSpViewModel = sanPhamService.getAllViewModel();
             LoadToTableSp(lstSpViewModel);
             JOptionPane.showMessageDialog(this, "Thêm mới sản phẩm thành công");
+            loadAll();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1159,24 +1161,28 @@ public class ViewSanPham extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_tblCTSanPhamMouseClicked
     private void ShowDataComboBoxMauSac(List<MauSac> lstMauSac) {
+        dcbcMauSac.removeAllElements();
         for (MauSac mauSac : lstMauSac) {
             dcbcMauSac.addElement(mauSac.getTen());
         }
     }
 
     private void ShowDataComboBoxKichThuoc(List<KichThuoc> lstKichThuoc) {
+        dcbcKichThuoc.removeAllElements();
         for (KichThuoc kichThuoc : lstKichThuoc) {
             dcbcKichThuoc.addElement(kichThuoc.getTen());
         }
     }
     
     private void ShowDataComboBoxChatLieu(List<ChatLieu> lstChatLieu){
+        dcbcChatLieu.removeAllElements();
         for (ChatLieu chatLieu : lstChatLieu) {
             dcbcChatLieu.addElement(chatLieu.getTen());
         }
     }
 
     private void ShowDataComboBoxSanPham(List<SanPham> lstSanPham) {
+        dcbcSanPham.removeAllElements();
         for (SanPham sanPham : lstSanPham) {
             dcbcSanPham.addElement(sanPham.getMa());
         }
@@ -1236,6 +1242,7 @@ public class ViewSanPham extends javax.swing.JPanel {
         String messsage = sanPhamService.update(sp);
         lstSpViewModel = sanPhamService.getAllViewModel();
         LoadToTableSp(lstSpViewModel);
+        loadAll();
         JOptionPane.showMessageDialog(this, "Sửa sản phẩm thành công");
 
     }//GEN-LAST:event_btnSuaActionPerformed
@@ -1468,6 +1475,7 @@ public class ViewSanPham extends javax.swing.JPanel {
                 LoadToTableChatLieu();
                 JOptionPane.showMessageDialog(this, "Sửa thành công");
             }
+            loadAll();
         } catch (Exception e) {
             e.printStackTrace();
         }
