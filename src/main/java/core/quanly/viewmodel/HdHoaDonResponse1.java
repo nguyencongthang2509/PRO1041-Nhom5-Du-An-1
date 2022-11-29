@@ -25,6 +25,7 @@ public class HdHoaDonResponse1 {
     private Date ngayThanhToan;
     private Integer hinhThucThanhToan;
     private BigDecimal thanhTien;
+    private BigDecimal tienKhachCK;
     private BigDecimal tienKhachTra;
     private BigDecimal tienThua;
     private String maNV;
@@ -51,6 +52,6 @@ public class HdHoaDonResponse1 {
     }
 
     public Object[] toDaTaRow() {
-        return new Object[]{ma, ngayTao, ngayThanhToan, getHinhThucTT(), thanhTien, tienKhachTra, tienThua, maNV, tenNV, diaChi, sdt, getTT()};
+        return new Object[]{ma, ngayTao, ngayThanhToan, getHinhThucTT(), thanhTien, tienKhachCK == null ? "0" : tienKhachCK, tienKhachTra == null ? "0" : tienKhachTra, tienThua, maNV, tenNV, diaChi, sdt, getTT()};
     }
 }
