@@ -123,7 +123,7 @@ public class ViewDangNhap extends javax.swing.JFrame {
         );
 
         txtPassword.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        txtPassword.setText("12345");
+        txtPassword.setText("123456");
         txtPassword.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N

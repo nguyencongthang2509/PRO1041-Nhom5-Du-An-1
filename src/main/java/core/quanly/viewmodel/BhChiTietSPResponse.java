@@ -19,6 +19,8 @@ import lombok.ToString;
 public class BhChiTietSPResponse {
 
     private String id;
+    
+    private String maCTSP;
 
     private String maSP;
 
@@ -32,19 +34,13 @@ public class BhChiTietSPResponse {
 
     private int soLuongTon;
     
-    private String maKhuyeMai;
-
-    private Integer loaiKhuyenMai;
-
-    private Double khuyenMai;
-
     private BigDecimal donGia;
 
     private String moTa;
 
     private String maVach;
-
+    
     public Object[] toDataRow() {
-        return new Object[]{maSP, tenSP, mauSac, size, hang, soLuongTon, khuyenMai == null ? "0" : (loaiKhuyenMai == 0 ? khuyenMai + " %" : khuyenMai + " Vnđ"), donGia + " Vnđ", moTa == null ? "Không có" : moTa};
+        return new Object[]{tenSP, mauSac, size, hang, soLuongTon, donGia + " Vnđ"};
     }
 }

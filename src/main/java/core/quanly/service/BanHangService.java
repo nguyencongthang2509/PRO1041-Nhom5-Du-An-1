@@ -4,6 +4,7 @@ import core.quanly.viewmodel.BhChiTietSPResponse;
 import core.quanly.viewmodel.BhHoaDonChiTietResponse;
 import core.quanly.viewmodel.BhHoaDonResponse;
 import core.quanly.viewmodel.BhKhachHangResponse;
+import domainmodels.ChiTietSPKhuyenMai;
 import domainmodels.HoaDon;
 import domainmodels.HoaDonChiTiet;
 import domainmodels.KhachHang;
@@ -16,6 +17,8 @@ import java.util.UUID;
  * @author thangncph26123
  */
 public interface BanHangService {
+    
+    ChiTietSPKhuyenMai getCTSPKhuyenMai(String idChiTietSP);
 
     List<BhChiTietSPResponse> getAllChiTietSP();
 
@@ -38,6 +41,8 @@ public interface BanHangService {
     boolean saveOrUpdateHDCT(HoaDonChiTiet entity);
 
     boolean deleteHDCT(HoaDonChiTiet hoaDonChiTiet);
+    
+    HoaDonChiTiet findByIdHoaDonChiTiet(String id);
 
     HoaDonChiTiet convertHoaDonChiTiet(BhHoaDonChiTietResponse bhHoaDonChiTietResponse);
 

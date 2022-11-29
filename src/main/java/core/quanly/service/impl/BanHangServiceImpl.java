@@ -7,6 +7,7 @@ import core.quanly.viewmodel.BhHoaDonChiTietResponse;
 import core.quanly.viewmodel.BhHoaDonResponse;
 import core.quanly.viewmodel.BhKhachHangResponse;
 import domainmodels.ChiTietSP;
+import domainmodels.ChiTietSPKhuyenMai;
 import domainmodels.HoaDon;
 import domainmodels.HoaDonChiTiet;
 import domainmodels.KhachHang;
@@ -108,10 +109,8 @@ public class BanHangServiceImpl implements BanHangService {
         hoaDonChiTiet.setHoaDonId(hoaDon);
         hoaDonChiTiet.setSoLuong(bhHoaDonChiTietResponse.getSoLuong());
         hoaDonChiTiet.setTrangThai(0);
+        hoaDonChiTiet.setGiamGiaKhuyenMai(bhHoaDonChiTietResponse.getGiamGia());
         hoaDonChiTiet.setDonGia(bhHoaDonChiTietResponse.getDonGia());
-        hoaDonChiTiet.setMaKhuyenMai(bhHoaDonChiTietResponse.getMaKhuyenMai());
-        hoaDonChiTiet.setLoaiKhuyenMai(bhHoaDonChiTietResponse.getLoaiKhuyenMai());
-        hoaDonChiTiet.setGiaTriKhuyenMai(bhHoaDonChiTietResponse.getGiamGia());
         hoaDonChiTiet.setGiaBan(bhHoaDonChiTietResponse.getGiaBan());
         return hoaDonChiTiet;
     }
@@ -128,13 +127,12 @@ public class BanHangServiceImpl implements BanHangService {
             BhHoaDonChiTietResponse bhHoaDonChiTietResponse = new BhHoaDonChiTietResponse();
             bhHoaDonChiTietResponse.setIdChiTietSP(xx.getIdChiTietSP());
             bhHoaDonChiTietResponse.setDonGia(xx.getDonGia());
+            bhHoaDonChiTietResponse.setMaCTSP(xx.getMaCTSP());
             bhHoaDonChiTietResponse.setGiaBan(xx.getGiaBan());
             bhHoaDonChiTietResponse.setGiamGia(xx.getGiamGia());
             bhHoaDonChiTietResponse.setHang(xx.getHang());
             bhHoaDonChiTietResponse.setIdHDCT(xx.getIdHDCT());
             bhHoaDonChiTietResponse.setIdHoaDon(xx.getIdHoaDon());
-            bhHoaDonChiTietResponse.setLoaiKhuyenMai(xx.getLoaiKhuyenMai());
-            bhHoaDonChiTietResponse.setMaKhuyenMai(xx.getMaKhuyenMai());
             bhHoaDonChiTietResponse.setMaSP(xx.getMaSP());
             bhHoaDonChiTietResponse.setMauSac(xx.getMauSac());
             bhHoaDonChiTietResponse.setSize(xx.getSize());
@@ -180,6 +178,16 @@ public class BanHangServiceImpl implements BanHangService {
     @Override
     public HoaDon findByIdHoaDon(String id) {
         return banHangRepository.findByIdHoaDon(id);
+    }
+
+    @Override
+    public ChiTietSPKhuyenMai getCTSPKhuyenMai(String idChiTietSP) {
+        return banHangRepository.getCTSPKhuyenMai(idChiTietSP);
+    }
+
+    @Override
+    public HoaDonChiTiet findByIdHoaDonChiTiet(String id) {
+        return banHangRepository.findByIdHoaDonChiTiet(id);
     }
 
 }
