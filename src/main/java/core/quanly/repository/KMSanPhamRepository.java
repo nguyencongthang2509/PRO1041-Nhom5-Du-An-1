@@ -5,6 +5,7 @@
 package core.quanly.repository;
 
 import config.HibernateUtil;
+import core.quanly.viewmodel.KMChiTietSPResponse;
 import core.quanly.viewmodel.KMSanphamReponse;
 import domainmodels.ChiTietSP;
 import java.util.ArrayList;
@@ -16,24 +17,24 @@ import org.hibernate.query.Query;
  *
  * @author thiennvtph26140
  */
-public class KMSanPhamRepository extends repository.CrudRepository<String, ChiTietSP, KMSanphamReponse >{
+public class KMSanPhamRepository extends repository.CrudRepository<String, ChiTietSP, KMChiTietSPResponse >{
     public KMSanPhamRepository(){
     className = ChiTietSP.class.getName();
-    res = "new core.quanly.viewmodel.KMSanphamReponse(a.id, a.sanPham.ma, a.sanPham.ten, a.hang.ten, a.mauSac.ten, a.kichThuoc.ten)";
+    res = "new core.quanly.viewmodel.KMChiTietSPResponse(a.id, a.maChiTietSP, a.sanPham.ten, a.hang.ten, a.mauSac.ten, a.kichThuoc.ten, a.chatLieu.ten)";
     }
     
         public List<KMSanphamReponse> getAllResponseNoKhuyenMai() {
-        List<KMSanphamReponse> list = new ArrayList<>();
-        try {
-            session = HibernateUtil.getSession();
-            String hql = "SELECT new core.quanly.viewmodel.KMSanphamReponse(a.id, a.sanPham.ma, a.sanPham.ten, a.hang.ten, a.mauSac.ten, a.kichThuoc.ten) FROM " + className + " a LEFT JOIN a.khuyenMai b where b.id is null";
-            Query query = session.createQuery(hql);
-            list = query.getResultList();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-        return list;
+//        List<KMSanphamReponse> list = new ArrayList<>();
+//        try {
+//            session = HibernateUtil.getSession();
+//            String hql = "SELECT new core.quanly.viewmodel.KMSanphamReponse(a.id, a.sanPham.ma, a.sanPham.ten, a.hang.ten, a.mauSac.ten, a.kichThuoc.ten) FROM " + className + " a LEFT JOIN a.khuyenMai b where b.id is null";
+//            Query query = session.createQuery(hql);
+//            list = query.getResultList();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return null;
+//        }
+        return null;
     }
     
 }

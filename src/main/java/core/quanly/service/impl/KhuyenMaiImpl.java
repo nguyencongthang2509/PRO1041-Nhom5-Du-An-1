@@ -7,9 +7,11 @@ package core.quanly.service.impl;
 import core.quanly.repository.KMSanPhamRepository;
 import core.quanly.repository.KhuyenMaiRepository;
 import core.quanly.service.KhuyenMaiService;
+import core.quanly.viewmodel.KMChiTietSPResponse;
 import core.quanly.viewmodel.KMSanphamDangKmReponse;
 import core.quanly.viewmodel.KhuyenMaiResponse;
 import domainmodels.ChiTietSP;
+import domainmodels.ChiTietSPKhuyenMai;
 import domainmodels.KhuyenMai;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +28,6 @@ public class KhuyenMaiImpl implements core.quanly.service.KhuyenMaiService {
         khuyenMaiRepository = new KhuyenMaiRepository();
     }
 
-
-
     @Override
     public List<KhuyenMaiResponse> GetAllResponse() {
         return khuyenMaiRepository.getAllResponse();
@@ -35,46 +35,33 @@ public class KhuyenMaiImpl implements core.quanly.service.KhuyenMaiService {
 
     public static void main(String[] args) {
         KhuyenMaiService khuyenMaiService = new KhuyenMaiImpl();
-        
-        List<KhuyenMaiResponse> list = new ArrayList<>();
-//        List<KMSanphamDangKmReponse> list1 = new ArrayList<>();
-//        list1 = khuyenMaiService.GetAllSanPhamDangApDung("5cc8be99-a7bd-4079-9f3c-40a04469ae99");
-        list = khuyenMaiService.GetAllResponse();
+        List<KMSanphamDangKmReponse> list = new ArrayList<>();
+        list = khuyenMaiService.GetAllSanPhamDangApDung("fb13ec87-ae97-40f4-9358-50700b730585");
         System.out.println(list);
-//        for (KMSanphamDangKmReponse kMSanphamDangKmReponse : list1) {
-//            System.out.println(kMSanphamDangKmReponse);
-//        }
-//        for (KhuyenMaiResponse khuyenMaiResponse : list) {
-//            System.out.println(khuyenMaiResponse);
-//        }
-    }
 
-    @Override
-    public List<KhuyenMaiResponse> findLopHocByMaOrTen(String input) {
-        return khuyenMaiRepository.FindMaOrTenByInput(input);
     }
 
     @Override
     public boolean saveOrUpdateKM(KhuyenMai khuyenMai) {
-        if(khuyenMai.getMa().isEmpty()){
+        if (khuyenMai.getMa().isEmpty()) {
 //            return "ma khuyen mai khong duoc trong";
             return false;
         }
-        if(khuyenMai.getTen().isEmpty()){
+        if (khuyenMai.getTen().isEmpty()) {
 //            return "ma khuyen mai khong duoc trong";
             return false;
         }
-        if(khuyenMai.getGiaTri().equals("")){
+        if (khuyenMai.getGiaTri().equals("")) {
             return false;
         }
-        if(khuyenMai.getNgayBatDau().equals("")){
+        if (khuyenMai.getNgayBatDau().equals("")) {
             return false;
         }
-        if(khuyenMai.getNgayKetThuc().equals("")){
+        if (khuyenMai.getNgayKetThuc().equals("")) {
             return false;
         }
         KhuyenMai khuyenMai1 = khuyenMaiRepository.saveOrUpdateKM(khuyenMai);
-        if (khuyenMai1 != null) {           
+        if (khuyenMai1 != null) {
             return true;
         }
         return false;
@@ -92,6 +79,57 @@ public class KhuyenMaiImpl implements core.quanly.service.KhuyenMaiService {
 
     @Override
     public List<KhuyenMaiResponse> getAllResponseKhuyenMai() {
-    return khuyenMaiRepository.getAllResponseKhuyenMai();
+        return khuyenMaiRepository.getAllResponseKhuyenMai();
+    }
+
+    @Override
+    public List<KMChiTietSPResponse> getAllChiTietSP() {
+        List<KMChiTietSPResponse> list = khuyenMaiRepository.getAllChiTietSP();
+        return list;
+    }
+
+    @Override
+    public ChiTietSP findChiTietSpById(String id) {
+        return khuyenMaiRepository.findChiTietSpById(id);
+    }
+
+    @Override
+    public ChiTietSPKhuyenMai getChiTietSPKM(String idChiTietSP) {
+        return khuyenMaiRepository.getChiTietSPKM(idChiTietSP);
+    }
+
+    @Override
+    public ChiTietSPKhuyenMai saveOrUpdate(ChiTietSPKhuyenMai entity) {
+        return khuyenMaiRepository.saveOrUpdate(entity);
+    }
+
+    @Override
+    public List<KhuyenMaiResponse> GetKhuyenMaiDangDienRa() {
+        return khuyenMaiRepository.GetKhuyenMaiDangDienRa();
+    }
+
+    @Override
+    public List<KhuyenMaiResponse> GetKhuyenMaiSapDienRa() {
+        return khuyenMaiRepository.GetKhuyenMaiSapDienRa();
+    }
+
+    @Override
+    public List<KhuyenMaiResponse> GetKhuyenMaiDaDienRa() {
+        return khuyenMaiRepository.GetKhuyenMaiDaDienRa();
+    }
+
+    @Override
+    public List<KhuyenMaiResponse> FindMaOrTenByInputSapDienRa(String input) {
+        return khuyenMaiRepository.FindMaOrTenByInputSapDienRa(input);
+    }
+
+    @Override
+    public List<KhuyenMaiResponse> FindMaOrTenByInputDangDienRa(String input) {
+        return khuyenMaiRepository.FindMaOrTenByInputDangDienRa(input);
+    }
+
+    @Override
+    public List<KhuyenMaiResponse> FindMaOrTenByInputDaDienRa(String input) {
+        return khuyenMaiRepository.FindMaOrTenByInputDaDienRa(input);
     }
 }

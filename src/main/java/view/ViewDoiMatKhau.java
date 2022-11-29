@@ -1,8 +1,12 @@
 package view;
 
+import core.quanly.service.DoiMatKhauService;
+import core.quanly.service.impl.DoiMatKhauServiceImpl;
 import domainmodels.NhanVien;
 import java.util.UUID;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import util.MaHoaChuoi;
 
 public class ViewDoiMatKhau extends javax.swing.JFrame {
 
@@ -11,6 +15,7 @@ public class ViewDoiMatKhau extends javax.swing.JFrame {
     private boolean showMkMoiP2;
     private NhanVien nhanVien;
     private JFrameQuanLy jFrameQuanLy;
+    DoiMatKhauService doiMatKhauService = new DoiMatKhauServiceImpl();
 
     public ViewDoiMatKhau(NhanVien nv, JFrameQuanLy jFrame) {
         initComponents();
@@ -347,7 +352,49 @@ public class ViewDoiMatKhau extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel13MouseClicked
 
     private void lblDoiMatKhauMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDoiMatKhauMouseClicked
-
+        
+        
+        if(txtEmail.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Không được để trống email");
+            return;
+        }
+        if(txtMatKhauCu.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Không được để trống mật khẩu hien tai");
+            return;
+        }
+        if(txtMatKhauMoi.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Không được để trống mật khẩu mới");
+            return;
+        }
+        if(txtMatKhauMoiP2.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Không được để trống mật khẩu mới");
+            return;
+        }
+        if(txtMaXacMinh.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Không được để trống mã xác minh");
+            return;
+        }
+        String email = txtEmail.getText().trim();
+        String matkhau = txtMatKhauCu.getText().trim();
+        String hashMatKhau = MaHoaChuoi.maHoaMd5(matkhau);
+        String id = doiMatKhauService.GetIdNhanVien(email, hashMatKhau);
+        if(id == null){
+            JOptionPane.showMessageDialog(this, "Email hoặc mật khẩu của bạn không đúng");
+            return;
+        }
+        String matkhaumoi1 = txtMatKhauMoi.getText();
+        String matkhaumoi2 = txtMatKhauMoiP2.getText();
+        if(!matkhaumoi1.equals(matkhaumoi2)){
+            JOptionPane.showMessageDialog(this, "Hai mật khẩu phải giống nhau");
+            return;
+        }
+        if(!txtMaXacMinh.getText().equals(lblCaptcha.getText())){
+           JOptionPane.showMessageDialog(this, "Mã xác minh không khớp nhau");
+            return; 
+        }
+        String hashMatKhauMoi = MaHoaChuoi.maHoaMd5(matkhaumoi1);
+        String mess = doiMatKhauService.DoiMatKhau(hashMatKhauMoi, id);
+        JOptionPane.showMessageDialog(this, mess);
         jFrameQuanLy.dispose();
         this.dispose();
         new ViewDangNhap().setVisible(true);
