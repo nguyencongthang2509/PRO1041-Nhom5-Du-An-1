@@ -30,6 +30,7 @@ public class HdHoaDonResponse1 {
     private BigDecimal tienThua;
     private String maNV;
     private String tenNV;
+    private String tenKH;
     private String diaChi;
     private String sdt;
     private Integer trangThai;
@@ -52,6 +53,6 @@ public class HdHoaDonResponse1 {
     }
 
     public Object[] toDaTaRow() {
-        return new Object[]{ma, ngayTao, ngayThanhToan, getHinhThucTT(), thanhTien, tienKhachCK == null ? "0" : tienKhachCK, tienKhachTra == null ? "0" : tienKhachTra, tienThua, maNV, tenNV, diaChi, sdt, getTT()};
+        return new Object[]{ma, ngayTao, ngayThanhToan, getHinhThucTT(), thanhTien, tienKhachCK == null ? "0" : tienKhachCK, tienKhachTra == null ? "0" : tienKhachTra, tienThua, maNV, tenNV, tenKH, diaChi, sdt, getTT()};
     }
 }
