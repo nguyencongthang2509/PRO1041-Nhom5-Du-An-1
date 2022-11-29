@@ -26,8 +26,9 @@ public class KMSanphamDangKmReponse {
     private String tenhang;
     private String mausac;
     private String kichthuoc;
+    private String chatlieu;
     
     public Object[] ToDaTa(){
-    return new Object[]{ma, ten, tenhang, mausac, kichthuoc};
+    return new Object[]{ma, ten, tenhang, mausac, kichthuoc, chatlieu};
     }
 }

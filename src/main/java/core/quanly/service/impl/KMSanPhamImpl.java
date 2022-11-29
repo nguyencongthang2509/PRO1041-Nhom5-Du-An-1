@@ -10,6 +10,7 @@ import core.quanly.viewmodel.KhuyenMaiResponse;
 import java.util.ArrayList;
 import java.util.List;
 import core.quanly.service.KMSanPhamService;
+import core.quanly.viewmodel.KMChiTietSPResponse;
 
 /**
  *
@@ -21,15 +22,15 @@ public class KMSanPhamImpl implements core.quanly.service.KMSanPhamService {
 
     public static void main(String[] args) {
         KMSanPhamService chiTietSanPhamService = new KMSanPhamImpl();
-        List<KMSanphamReponse> list = new ArrayList<>();
+        List<KMChiTietSPResponse> list = new ArrayList<>();
         list = chiTietSanPhamService.GetAllResponse();
-        for (KMSanphamReponse kMSanphamReponse : list) {
-            System.out.println(kMSanphamReponse);
+        for (KMChiTietSPResponse kMChiTietSPResponse : list) {
+            System.out.println(kMChiTietSPResponse);
         }
     }
 
     @Override
-    public List<KMSanphamReponse> GetAllResponse() {
+    public List<KMChiTietSPResponse> GetAllResponse() {
         return sanPhamRepository.getAllResponse();
     }
 
