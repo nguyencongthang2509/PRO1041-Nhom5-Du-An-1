@@ -47,8 +47,8 @@ public class HoaDonRepository extends CrudRepository<String, HoaDon, HdHoaDonRes
             session = HibernateUtil.getSession();
             String hql = "select new core.quanly.viewmodel.HdHoaDonResponse2"
                     + "(a.id, a.ma, a.ngayTao, a.ngayThanhToan, a.hinhThucThanhToan, a.thanhTien, a.tienKhachChuyenKhoan ,a.tienKhachTra, a.tienThua, b.ma, b.ten,"
-                    + "c.sdt, c.diaChi, a.sdtNguoiShip, a.tenNguoiShip, a.tienShip, a.ngayShip, a.ngayNhan, a.trangThai) from HoaDon a left join "
-                    + "a.nhanVien b left join a.khachHang c where a.hinhThucGiaoHang = :htgh order by a.createdDate desc";
+                    + "a.tenNguoiNhan, a.sdtNguoiNhan, a.diaChi, a.sdtNguoiShip, a.tenNguoiShip, a.tienShip, a.ngayShip, a.ngayNhan, a.trangThai) from HoaDon a left join "
+                    + "a.nhanVien b where a.hinhThucGiaoHang = :htgh order by a.createdDate desc";
             Query query = session.createQuery(hql);
             query.setParameter("htgh", htgh);
             list = query.getResultList();
