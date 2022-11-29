@@ -56,7 +56,7 @@ public class SPMauSacServiceImpl implements SPMauSacService{
     public String update(MauSac mauSac) {
         MauSac KmFindById = mausacRepository.findById(mauSac.getId());
         if (KmFindById == null) {
-            return "Không tìm thấy sản phẩm";
+            return "Không tìm thấy màu sắc";
         }
         if (mauSac.getMa().isEmpty()) {
             return "Mã không được để trống";
