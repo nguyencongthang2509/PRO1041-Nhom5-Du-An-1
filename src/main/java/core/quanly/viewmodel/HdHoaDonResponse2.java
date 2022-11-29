@@ -58,7 +58,7 @@ public class HdHoaDonResponse2 {
     }
 
     public Object[] toDaTaRow() {
-        return new Object[]{ma, ngayTao, ngayThanhToan, getHinhThucTT(), thanhTien, tienKhachCK == null ? "0" : tienKhachCK, tienKhachTra == null ? "0" : tienKhachTra, tienThua, maNV,
-            tenNV, tenNguoiNhan,diaChi, sdt, sdtship, tennguoiship, tienship, ngayship, ngaynhan, getTT()};
+        return new Object[]{ma, ngayTao, ngayThanhToan == null ? "No" : ngayThanhToan, getHinhThucTT(), thanhTien == null ? "0" : thanhTien, tienKhachCK == null ? "0" : tienKhachCK, tienKhachTra == null ? "0" : tienKhachTra, tienThua == null ? "0" : tienThua, maNV,
+            tenNV, tenNguoiNhan == null ? "No" : tenNguoiNhan, diaChi == null ? "No" : diaChi, sdt == null ? "No" : sdt, sdtship == null ? "No" : sdtship, tennguoiship == null ? "No" : tennguoiship, tienship == null ? "0" : tienship, ngayship == null ? "No" : ngayship, ngaynhan == null ? "No" : ngaynhan, getTT()};
     }
 }
