@@ -1145,7 +1145,7 @@ public class ViewSanPham extends javax.swing.JPanel {
 
     private void tblCTSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCTSanPhamMouseClicked
         int index = tblCTSanPham.getSelectedRow();
-        CTSanPhamResponse ctSanPhamViewModel = ctsanPhamService.getAllViewModel().get(index);
+        CTSanPhamResponse ctSanPhamViewModel = lstctSpViewModel.get(index);
         if (index >= 0) {
             cbbSanPham.setSelectedItem(ctSanPhamViewModel.getMasp());
             txtmaCTSP.setText(ctSanPhamViewModel.getMactsp());
