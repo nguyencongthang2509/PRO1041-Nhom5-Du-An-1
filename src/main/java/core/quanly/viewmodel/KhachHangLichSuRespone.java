@@ -5,6 +5,7 @@
 package core.quanly.viewmodel;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,8 +30,9 @@ public class KhachHangLichSuRespone {
     private Integer trangThai;
 
     public Object[] toDaTaRow() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         int stt = 1;
-        return new Object[]{stt++, hoTen, sdt, gioiTinh, ma, ngayThanhToan, thanhTien, trangThai};
+        return new Object[]{stt++, hoTen, sdt, gioiTinh == 0 ? "Nam" : "Nữ", ma, dateFormat.format(ngayThanhToan), thanhTien, trangThai};
     }
 
 }
