@@ -38,6 +38,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import util.ExportFilePdf;
+import util.ExportFilePdfByITextDatHang;
+import util.ExportFilePdfByITextTaiQuay;
 
 /**
  *
@@ -2092,9 +2094,13 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
                 JOptionPane.showMessageDialog(this, "Thanh toán thành công");
                 int confirm = JOptionPane.showConfirmDialog(this, "Bạn có muốn in hóa đơn không?");
                 if (confirm == JOptionPane.YES_OPTION) {
-                    ExportFilePdf exportFilePdf = new ExportFilePdf();
-                    exportFilePdf.WriteInvoice(hoaDon, new ArrayList<>(mapGioHang.values()));
-                    JOptionPane.showMessageDialog(this, "In hóa đơn thành công");
+                    try {
+                        ExportFilePdfByITextTaiQuay export = new ExportFilePdfByITextTaiQuay();
+                        export.exportBill(hoaDon, new ArrayList<>(mapGioHang.values()));
+                        JOptionPane.showMessageDialog(this, "In hóa đơn thành công");
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(this, "In hóa đơn thất bại");
+                    }
                     clearForm();
                 } else {
                     clearForm();
@@ -2196,8 +2202,21 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
                 loadDataToTableSP(listSanPham);
                 listHoaDon = banHangService.getAllResponseHD(nhanVien.getId());
                 loadDataToHoaDon(listHoaDon);
-                clearFormDatHang();
+
                 JOptionPane.showMessageDialog(this, "Thanh toán thành công");
+                int confirm = JOptionPane.showConfirmDialog(this, "Bạn có muốn in hóa đơn không?");
+                if (confirm == JOptionPane.YES_OPTION) {
+                    try {
+                        ExportFilePdfByITextDatHang export = new ExportFilePdfByITextDatHang();
+                        export.exportBill(hoaDon, new ArrayList<>(mapGioHang.values()));
+                        JOptionPane.showMessageDialog(this, "In hóa đơn thành công");
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(this, "In hóa đơn thất bại");
+                    }
+                    clearFormDatHang();
+                } else {
+                    clearFormDatHang();
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
