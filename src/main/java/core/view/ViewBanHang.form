@@ -2162,6 +2162,8 @@
                             <StringItem index="2" value="K&#x1ebf;t h&#x1ee3;p"/>
                           </StringArray>
                         </Property>
+                        <Property name="selectedIndex" type="int" value="1"/>
+                        <Property name="toolTipText" type="java.lang.String" value=""/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cboHTThanhToanDatHangActionPerformed"/>
@@ -2221,6 +2223,7 @@
                             </MatteColorBorder>
                           </Border>
                         </Property>
+                        <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                       <Events>
                         <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="txtTienKhachDuaDatHangCaretUpdate"/>
@@ -2254,7 +2257,6 @@
                             </MatteColorBorder>
                           </Border>
                         </Property>
-                        <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="txtTienThuaDatHang">

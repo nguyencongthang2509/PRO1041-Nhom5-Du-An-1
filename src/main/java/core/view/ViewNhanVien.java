@@ -617,6 +617,7 @@ public class ViewNhanVien extends javax.swing.JPanel {
 
             loadTable();
             JOptionPane.showMessageDialog(this, message);
+            loadTableDaNghi();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -630,6 +631,7 @@ public class ViewNhanVien extends javax.swing.JPanel {
             String message = nhanVienService.update(nv);
             JOptionPane.showMessageDialog(this, message);
             loadTable();
+            loadTableDaNghi();
         } catch (Exception e) {
             e.printStackTrace();
         }

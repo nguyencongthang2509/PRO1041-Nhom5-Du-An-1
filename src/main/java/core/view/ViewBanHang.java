@@ -1352,6 +1352,8 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
         cboHTThanhToanDatHang.setBackground(new java.awt.Color(153, 204, 255));
         cboHTThanhToanDatHang.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
         cboHTThanhToanDatHang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tiền mặt", "Chuyển khoản", "Kết hợp" }));
+        cboHTThanhToanDatHang.setSelectedIndex(1);
+        cboHTThanhToanDatHang.setToolTipText("");
         cboHTThanhToanDatHang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboHTThanhToanDatHangActionPerformed(evt);
@@ -1373,6 +1375,7 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
 
         txtTienKhachDuaDatHang.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         txtTienKhachDuaDatHang.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(153, 204, 255)));
+        txtTienKhachDuaDatHang.setEnabled(false);
         txtTienKhachDuaDatHang.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 txtTienKhachDuaDatHangCaretUpdate(evt);
@@ -1390,7 +1393,6 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
 
         txtTienKhachCKDatHang.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         txtTienKhachCKDatHang.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(153, 204, 255)));
-        txtTienKhachCKDatHang.setEnabled(false);
 
         txtTienThuaDatHang.setEditable(false);
         txtTienThuaDatHang.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N

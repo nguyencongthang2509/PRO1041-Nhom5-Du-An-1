@@ -58,7 +58,7 @@ public class ExportFilePdfByITextDatHang {
                     .setBorder(Border.NO_BORDER)
                     .setMarginRight(10f));
 
-            float colWidth[] = {100, 230, 200, 200};
+            float colWidth[] = {80, 230, 200, 200};
             Table customerInforTable = new Table(colWidth);
             customerInforTable.setFont(font);
             customerInforTable.addCell(new Cell(0, 4)
@@ -80,7 +80,7 @@ public class ExportFilePdfByITextDatHang {
             personShipInforTable.addCell(new Cell(0, 4)
                     .add("Thông tin người ship").setBold().setBorder(Border.NO_BORDER));
             
-            personShipInforTable.addCell(new Cell().add("Người ship:").setBorder(Border.NO_BORDER));
+            personShipInforTable.addCell(new Cell().add("Họ tên:").setBorder(Border.NO_BORDER));
             personShipInforTable.addCell(new Cell().add(hoaDon.getTenNguoiShip()).setBorder(Border.NO_BORDER));
             personShipInforTable.addCell(new Cell().add("Ngày ship:").setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
             String dateShip = sdf.format(hoaDon.getNgayShip());
