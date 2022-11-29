@@ -1184,7 +1184,7 @@ public class ViewSanPham extends javax.swing.JPanel {
     private void ShowDataComboBoxSanPham(List<SanPham> lstSanPham) {
         dcbcSanPham.removeAllElements();
         for (SanPham sanPham : lstSanPham) {
-            dcbcSanPham.addElement(sanPham.getMa());
+            dcbcSanPham.addElement(sanPham.getTen());
         }
     }
 
