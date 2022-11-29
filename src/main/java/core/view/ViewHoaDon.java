@@ -115,6 +115,9 @@ public class ViewHoaDon extends javax.swing.JPanel {
         modelHoaDonChiTiet = (DefaultTableModel) tblHoadonchitiet.getModel();
         modelHoaDonChiTiet.setRowCount(0);
         listHDCT = hoadonservice.getListHDCT(mahd);
+        if (listHDCT == null) {
+            return;
+        }
         for (HdHoaDonChiTietResponse1 hd : listHDCT) {
             modelHoaDonChiTiet.addRow(hd.toDataRow());
         }
@@ -129,6 +132,9 @@ public class ViewHoaDon extends javax.swing.JPanel {
         modelHoaDonChiTiet2 = (DefaultTableModel) tblHoaDonChiTiet2.getModel();
         modelHoaDonChiTiet2.setRowCount(0);
         listHDCT = hoadonservice.getListHDCT(mahd);
+        if (listHDCT == null) {
+            return;
+        }
         for (HdHoaDonChiTietResponse1 hd : listHDCT) {
             modelHoaDonChiTiet2.addRow(hd.toDataRow());
         }
@@ -208,8 +214,8 @@ public class ViewHoaDon extends javax.swing.JPanel {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Hóa đơn", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
         jPanel1.setToolTipText("");
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Tìm kiếm hóa đơn:");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         txtSearch.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
@@ -217,8 +223,8 @@ public class ViewHoaDon extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Trạng thái hóa đơn:");
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
         cboTrangthaithanhtoan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Chờ thanh toán", "Đã hủy", "Đã thanh toán", " " }));
         cboTrangthaithanhtoan.addActionListener(new java.awt.event.ActionListener() {
@@ -227,8 +233,8 @@ public class ViewHoaDon extends javax.swing.JPanel {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setText("Hình thức thanh toán:");
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
         cboHinhthucthanhtoan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Tiền mặt", "Chuyển khoản" }));
         cboHinhthucthanhtoan.addActionListener(new java.awt.event.ActionListener() {
@@ -242,11 +248,11 @@ public class ViewHoaDon extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã hóa đơn", "Ngày tạo", "Ngày thanh toán", "Hình thức thanh toán", "Tổng tiền", "Tiền khách trả", "Tiền thừa", "Mã NV", "Tên NV", "Mã KH", "Tên KH", "SĐT", "Đia chỉ", "Trạng thái"
+                "Mã hóa đơn", "Ngày tạo", "Ngày thanh toán", "Hình thức thanh toán", "Tổng tiền", "Tiền khách trả", "Tiền thừa", "Mã NV", "Tên NV", "SĐT người nhận", "Đia chỉ", "Trạng thái"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -331,11 +337,11 @@ public class ViewHoaDon extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã sản phẩm", "Tên sản phẩm", "Hãng", "Màu", "Size", "Số lượng", "Đơn giá", "Giá bán", "Mã KM", "Giá trị KM", "Tổng tiền"
+                "Mã sản phẩm", "Tên sản phẩm", "Hãng", "Màu", "Size", "Số lượng", "Đơn giá", "Giá bán", "Giảm giá KM", "Tổng tiền"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -406,21 +412,21 @@ public class ViewHoaDon extends javax.swing.JPanel {
             }
         });
 
-        cboTrangThai2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Chờ thanh toán", "Hủy", "Đã thanh toán", "Đang giao", "Đã giao" }));
+        cboTrangThai2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Đang giao", "Đã giao" }));
         cboTrangThai2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboTrangThai2ActionPerformed(evt);
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("Trạng thái hóa đơn:");
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setText("Hình thức thanh toán:");
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel8.setText("Tìm kiếm hóa đơn:");
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         cboHinhThucTT2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Tiền mặt", "Chuyển khoản" }));
         cboHinhThucTT2.addActionListener(new java.awt.event.ActionListener() {
@@ -434,11 +440,11 @@ public class ViewHoaDon extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã hóa đơn", "Ngày tạo", "Ngày thanh toán", "Hình thức thanh toán", "Thành tiền", "Tiền khách trả", "Tiền thừa", "Mã NV", "Tên NV", "Mã KH", "Tên KH", "Địa chỉ", "SĐT KH", "SĐT người ship", "Tên người ship", "Tiền ship", "Ngày ship", "Ngày nhận", "Trạng thái"
+                "Mã hóa đơn", "Ngày tạo", "Ngày thanh toán", "Hình thức thanh toán", "Thành tiền", "Tiền khách trả", "Tiền thừa", "Mã NV", "Tên NV", "SĐT KH", "Địa chỉ", "SĐT người ship", "Tên người ship", "Tiền ship", "Ngày ship", "Ngày nhận", "Trạng thái"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -521,11 +527,11 @@ public class ViewHoaDon extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã sản phẩm", "Tên sản phẩm", "Hãng", "Màu", "Size", "Số lượng", "Đơn giá", "Giá bán", "Mã KM", "Giá trị KM", "Tổng tiền"
+                "Mã sản phẩm", "Tên sản phẩm", "Hãng", "Màu", "Size", "Số lượng", "Đơn giá", "Giá bán", "Giảm giá KM", "Tổng tiền"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -592,7 +598,7 @@ public class ViewHoaDon extends javax.swing.JPanel {
     }//GEN-LAST:event_cboTrangthaithanhtoanActionPerformed
 
     private void tblHoadonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoadonMouseClicked
-        loadTableHoaDonChiTiet();
+       loadTableHoaDonChiTiet();
     }//GEN-LAST:event_tblHoadonMouseClicked
 
     private void cboHinhthucthanhtoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboHinhthucthanhtoanActionPerformed
@@ -624,7 +630,7 @@ public class ViewHoaDon extends javax.swing.JPanel {
     }//GEN-LAST:event_tpb1MouseClicked
 
     private void tblHD2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHD2MouseClicked
-        loadTableHoaDonChiTiet2();
+       loadTableHoaDonChiTiet2();
     }//GEN-LAST:event_tblHD2MouseClicked
 
     private void txtSearch2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearch2ActionPerformed
@@ -648,7 +654,7 @@ public class ViewHoaDon extends javax.swing.JPanel {
         if (cboTrangThai2.getSelectedIndex() > 0) {
             int trangthai = cboTrangThai2.getSelectedIndex();
             modelHoaDon2.setRowCount(0);
-            listHoaDon2 = hoadonservice.getList2byTrangThai(trangthai - 1, 1);
+            listHoaDon2 = hoadonservice.getList2byTrangThai(trangthai + 2, 1);
             for (HdHoaDonResponse2 h : listHoaDon2) {
                 modelHoaDon2.addRow(h.toDaTaRow());
             }
