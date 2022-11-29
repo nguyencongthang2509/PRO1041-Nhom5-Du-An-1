@@ -25,9 +25,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ViewHoaDon extends javax.swing.JPanel {
 
-    /**
-     * Creates new form ViewHoaDon
-     */
     private HoaDonservice hoadonservice = new HoaDonserviceImpl();
     private DefaultTableModel modelHoaDon;
     private DefaultTableModel modelHoaDon2;

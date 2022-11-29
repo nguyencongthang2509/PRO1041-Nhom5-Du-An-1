@@ -59,6 +59,6 @@ public class HdHoaDonResponse2 {
 
     public Object[] toDaTaRow() {
         return new Object[]{ma, ngayTao, ngayThanhToan, getHinhThucTT(), thanhTien, tienKhachCK == null ? "0" : tienKhachCK, tienKhachTra == null ? "0" : tienKhachTra, tienThua, maNV,
-            tenNV, tenNguoiNhan, sdt, sdtship, tennguoiship, tienship, ngayship, ngaynhan, getTT()};
+            tenNV, tenNguoiNhan,diaChi, sdt, sdtship, tennguoiship, tienship, ngayship, ngaynhan, getTT()};
     }
 }
