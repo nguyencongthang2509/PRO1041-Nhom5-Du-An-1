@@ -31,7 +31,7 @@ public class KhachHangLichSuRespone {
 
     public Object[] toDaTaRow(int stt) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        return new Object[]{stt, hoTen, sdt, gioiTinh == 0 ? "Nam" : "Nữ", ma, dateFormat.format(ngayThanhToan), thanhTien, trangThai};
+        return new Object[]{stt, hoTen, sdt, gioiTinh == 0 ? "Nam" : "Nữ", ma, dateFormat.format(ngayThanhToan), thanhTien,trangThai == 0 ? "Chờ thanh toán" : (trangThai == 1 ? "Đã hủy" : (trangThai == 2 ? "Đã thanh toán" : (trangThai == 3 ? "Đang giao" : "Đã giao")))};
     }
 
 }

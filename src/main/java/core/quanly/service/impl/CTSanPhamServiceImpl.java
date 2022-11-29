@@ -82,7 +82,6 @@ public class CTSanPhamServiceImpl implements CTSanPhamService {
         sanPhamFindById.setMoTa(ctsanPham.getMoTa());
         sanPhamFindById.setTrangThaiXoa(ctsanPham.getTrangThaiXoa());
         ctsanPham = CTSanPhamRepository.saveOrUpdate(sanPhamFindById);
-        JOptionPane.showMessageDialog(null, sanPhamFindById.getTrangThaiXoa());
         if (ctsanPham != null) {
             return "Sửa thành công";
         } else {

@@ -1287,7 +1287,6 @@ public class ViewSanPham extends javax.swing.JPanel {
         if (hoi != JOptionPane.YES_OPTION) {
             return;
         }
-        JOptionPane.showMessageDialog(this, spct.getTrangThaiXoa());
         spct.setId(lstctSpViewModel.get(chon).getMa());
         String messsage = ctsanPhamService.update(spct);
         lstctSpViewModel = ctsanPhamService.getAllViewModel();
