@@ -1063,10 +1063,14 @@ public class ViewSanPham extends javax.swing.JPanel {
     private void loadAll(){
         lstSanPham = sanPhamService.getAll();
         ShowDataComboBoxSanPham(lstSanPham);
-        LoadToTableMauSac();
-        LoadToTableKichThuoc();
-        LoadToTableChatLieu();
-        LoadToTableHang();
+        lstHang = hangService.getAll();
+        ShowDataComboBoxHang(lstHang);
+        lstChatLieu = chatLieuService.getAll();
+        ShowDataComboBoxChatLieu(lstChatLieu);
+        lstMauSac = mauSacService.getAll();
+        ShowDataComboBoxMauSac(lstMauSac);
+        lstKichThuoc = kichThuocService.getAll();
+        ShowDataComboBoxKichThuoc(lstKichThuoc);
     }
     
     private void LoadToTableSp(List<SanPhamResponse> lstSpViewModel1) {
