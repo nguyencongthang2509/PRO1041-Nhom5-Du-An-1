@@ -30,6 +30,7 @@ public class HdHoaDonResponse2 {
     private BigDecimal tienThua;
     private String maNV;
     private String tenNV;
+    private String tenNguoiNhan;
     private String diaChi;
     private String sdt;
     private String sdtship;
@@ -53,11 +54,11 @@ public class HdHoaDonResponse2 {
     }
 
     public String getHinhThucTT() {
-        return hinhThucThanhToan == 0 ? "Tiền mặt" : "Chuyển khoản";
+        return hinhThucThanhToan == 0 ? "Tiền mặt" : (hinhThucThanhToan == 1 ? "Chuyển khoản" : "Kết hợp");
     }
 
     public Object[] toDaTaRow() {
-        return new Object[]{ma, ngayTao, ngayThanhToan, getHinhThucTT(), thanhTien, tienKhachCK == null ? "0" : tienKhachCK,tienKhachTra == null ? "0" : tienKhachTra, tienThua, maNV,
-            tenNV, diaChi, sdt, sdtship, tennguoiship, tienship, ngayship, ngaynhan, getTT()};
+        return new Object[]{ma, ngayTao, ngayThanhToan, getHinhThucTT(), thanhTien, tienKhachCK == null ? "0" : tienKhachCK, tienKhachTra == null ? "0" : tienKhachTra, tienThua, maNV,
+            tenNV, tenNguoiNhan, sdt, sdtship, tennguoiship, tienship, ngayship, ngaynhan, getTT()};
     }
 }

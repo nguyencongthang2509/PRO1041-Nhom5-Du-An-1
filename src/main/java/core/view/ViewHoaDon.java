@@ -440,11 +440,11 @@ public class ViewHoaDon extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã hóa đơn", "Ngày tạo", "Ngày thanh toán", "Hình thức thanh toán", "Thành tiền", "Tiền khách CK", "Tiền khách trả", "Tiền thừa", "Mã NV", "Tên NV", "SĐT KH", "Địa chỉ", "SĐT người ship", "Tên người ship", "Tiền ship", "Ngày ship", "Ngày nhận", "Trạng thái"
+                "Mã hóa đơn", "Ngày tạo", "Ngày thanh toán", "Hình thức thanh toán", "Thành tiền", "Tiền khách CK", "Tiền khách trả", "Tiền thừa", "Mã NV", "Tên NV", "Người nhận", "SĐT NN", "Địa chỉ", "SĐT người ship", "Tên người ship", "Tiền ship", "Ngày ship", "Ngày nhận", "Trạng thái"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

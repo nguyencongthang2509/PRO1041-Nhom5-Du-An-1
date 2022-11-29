@@ -48,7 +48,7 @@ public class HdHoaDonResponse1 {
     }
 
     public String getHinhThucTT() {
-        return hinhThucThanhToan == 0 ? "Tiền mặt" : "Chuyển khoản";
+        return hinhThucThanhToan == 0 ? "Tiền mặt" : (hinhThucThanhToan == 1 ? "Chuyển khoản" : "Kết hợp");
     }
 
     public Object[] toDaTaRow() {
