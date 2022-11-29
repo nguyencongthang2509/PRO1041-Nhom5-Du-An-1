@@ -54,6 +54,7 @@ public class KhuyenMaiRepository extends repository.CrudRepository<String, ChiTi
                          (a.id, a.maChiTietSP, a.sanPham.ten, a.hang.ten, a.mauSac.ten
                          , a.kichThuoc.ten, a.chatLieu.ten) FROM ChiTietSP a
                          where (SELECT b.id FROM ChiTietSPKhuyenMai b where b.trangThai = 0 AND b.chiTietSPId.id = a.id) IS NULL
+                         AND a.trangThaiXoa = 0
                          """;
             org.hibernate.query.Query query = session.createQuery(hql);
             list = query.getResultList();
