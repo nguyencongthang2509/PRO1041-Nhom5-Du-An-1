@@ -621,7 +621,13 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
             }
 
             FillToSanPham();
-            listkhuyenmai = khuyenMaiService.getAllResponseKhuyenMai();
+            if (cobtrangthaikhuyenmai.getSelectedIndex() == 0) {
+                listkhuyenmai = khuyenMaiService.GetKhuyenMaiDangDienRa();
+            } else if (cobtrangthaikhuyenmai.getSelectedIndex() == 1) {
+                listkhuyenmai = khuyenMaiService.GetKhuyenMaiSapDienRa();
+            } else {
+                listkhuyenmai = khuyenMaiService.GetKhuyenMaiDaDienRa();
+            }
             FillToKhuyenMai(listkhuyenmai);
             JOptionPane.showMessageDialog(this, "Tạo chương trình khuyến mại thành công");
         } catch (Exception e) {
@@ -633,14 +639,14 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
         String input = txttim.getText();
         if (cobtrangthaikhuyenmai.getSelectedIndex() == 0) {
             listkhuyenmai = khuyenMaiService.FindMaOrTenByInputDangDienRa(input);
-            FillToKhuyenMai(listkhuyenmai);            
+            FillToKhuyenMai(listkhuyenmai);
         } else if (cobtrangthaikhuyenmai.getSelectedIndex() == 1) {
             listkhuyenmai = khuyenMaiService.FindMaOrTenByInputSapDienRa(input);
-            FillToKhuyenMai(listkhuyenmai);            
+            FillToKhuyenMai(listkhuyenmai);
         } else {
             listkhuyenmai = khuyenMaiService.FindMaOrTenByInputDaDienRa(input);
-            FillToKhuyenMai(listkhuyenmai);            
-        }       
+            FillToKhuyenMai(listkhuyenmai);
+        }
     }//GEN-LAST:event_txttimCaretUpdate
 
     private void btnsuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsuaActionPerformed
@@ -678,7 +684,14 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
                 khuyenMaiService.saveOrUpdate(chiTietSPKhuyenMai);
             }
             FillToSanPham();
-            listkhuyenmai = khuyenMaiService.getAllResponseKhuyenMai();
+            if (cobtrangthaikhuyenmai.getSelectedIndex() == 0) {
+                listkhuyenmai = khuyenMaiService.GetKhuyenMaiDangDienRa();
+            } else if (cobtrangthaikhuyenmai.getSelectedIndex() == 1) {
+                listkhuyenmai = khuyenMaiService.GetKhuyenMaiSapDienRa();
+            } else {
+                listkhuyenmai = khuyenMaiService.GetKhuyenMaiDaDienRa();
+            }
+            FillToKhuyenMai(listkhuyenmai);
             FillToKhuyenMai(listkhuyenmai);
             JOptionPane.showMessageDialog(this, "Sửa chương trình khuyến mại thành công");
         } catch (Exception e) {
@@ -723,18 +736,18 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
 
     private void cobtrangthaikhuyenmaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cobtrangthaikhuyenmaiActionPerformed
         if (cobtrangthaikhuyenmai.getSelectedIndex() == 0) {
-            
+
             btnsua.setEnabled(true);
             btnthem.setEnabled(true);
             listkhuyenmai = khuyenMaiService.GetKhuyenMaiDangDienRa();
             FillToKhuyenMai(listkhuyenmai);
-            
+
         } else if (cobtrangthaikhuyenmai.getSelectedIndex() == 1) {
             btnsua.setEnabled(true);
             btnthem.setEnabled(true);
             listkhuyenmai = khuyenMaiService.GetKhuyenMaiSapDienRa();
             FillToKhuyenMai(listkhuyenmai);
-           
+
         } else {
             btnsua.setEnabled(false);
             btnthem.setEnabled(false);
