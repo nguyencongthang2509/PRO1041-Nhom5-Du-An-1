@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author thangncph26123
+ * @author longnh26222
  */
 public class ViewHoaDon extends javax.swing.JPanel {
 
@@ -248,11 +248,11 @@ public class ViewHoaDon extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã hóa đơn", "Ngày tạo", "Ngày thanh toán", "Hình thức thanh toán", "Tổng tiền", "Tiền khách trả", "Tiền thừa", "Mã NV", "Tên NV", "SĐT người nhận", "Đia chỉ", "Trạng thái"
+                "Mã hóa đơn", "Ngày tạo", "Ngày thanh toán", "Hình thức thanh toán", "Tổng tiền", "Tiền khách CK", "Tiền khách trả", "Tiền thừa", "Mã NV", "Tên NV", "SĐT người nhận", "Đia chỉ", "Trạng thái"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -440,11 +440,11 @@ public class ViewHoaDon extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã hóa đơn", "Ngày tạo", "Ngày thanh toán", "Hình thức thanh toán", "Thành tiền", "Tiền khách trả", "Tiền thừa", "Mã NV", "Tên NV", "SĐT KH", "Địa chỉ", "SĐT người ship", "Tên người ship", "Tiền ship", "Ngày ship", "Ngày nhận", "Trạng thái"
+                "Mã hóa đơn", "Ngày tạo", "Ngày thanh toán", "Hình thức thanh toán", "Thành tiền", "Tiền khách CK", "Tiền khách trả", "Tiền thừa", "Mã NV", "Tên NV", "SĐT KH", "Địa chỉ", "SĐT người ship", "Tên người ship", "Tiền ship", "Ngày ship", "Ngày nhận", "Trạng thái"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
