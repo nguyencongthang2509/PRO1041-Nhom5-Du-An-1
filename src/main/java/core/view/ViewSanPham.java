@@ -1060,6 +1060,15 @@ public class ViewSanPham extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void loadAll(){
+        lstSanPham = sanPhamService.getAll();
+        ShowDataComboBoxSanPham(lstSanPham);
+        LoadToTableMauSac();
+        LoadToTableKichThuoc();
+        LoadToTableChatLieu();
+        LoadToTableHang();
+    }
+    
     private void LoadToTableSp(List<SanPhamResponse> lstSpViewModel1) {
         dtm.setRowCount(0);
         int index = 1;
@@ -1275,6 +1284,8 @@ public class ViewSanPham extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(this, "Sửa sản phẩm thành công");
     }//GEN-LAST:event_btnUpdateActionPerformed
 
+    
+    
     private void LoadToTableHang() {
         dtmThuocTinh.setRowCount(0);
         lstHangRepon = hangService.getAllViewModel();
@@ -1349,6 +1360,7 @@ public class ViewSanPham extends javax.swing.JPanel {
                     e.printStackTrace();
                 }
             }
+            loadAll();
         } catch (Exception e) {
             e.printStackTrace();
         }
