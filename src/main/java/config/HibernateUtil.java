@@ -1,5 +1,17 @@
 package config;
 
+import domainmodels.ChatLieu;
+import domainmodels.ChiTietSP;
+import domainmodels.ChiTietSPKhuyenMai;
+import domainmodels.Hang;
+import domainmodels.HoaDon;
+import domainmodels.HoaDonChiTiet;
+import domainmodels.KhachHang;
+import domainmodels.KhuyenMai;
+import domainmodels.KichThuoc;
+import domainmodels.MauSac;
+import domainmodels.NhanVien;
+import domainmodels.SanPham;
 import java.util.Properties;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -19,25 +31,24 @@ public class HibernateUtil {
         Properties properties = new Properties();
         properties.put(Environment.DIALECT, "org.hibernate.dialect.SQLServerDialect");
         properties.put(Environment.DRIVER, "com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        properties.put(Environment.URL, "jdbc:sqlserver://localhost:1433;databaseName=FINALASS_FPOLYSHOP_FA22_SOF205_SOF2041");
+        properties.put(Environment.URL, "jdbc:sqlserver://localhost:1433;databaseName=du_an_1");
         properties.put(Environment.USER, "sa");
         properties.put(Environment.PASS, "123456");
-        properties.put(Environment.SHOW_SQL, "false");
-//        properties.put(Environment.HBM2DDL_AUTO, "create");//gen DB tự động
-//
-//        conf.addAnnotatedClass(SanPham.class);
-//        conf.addAnnotatedClass(MauSac.class);
-//        conf.addAnnotatedClass(NSX.class);
-//        conf.addAnnotatedClass(DongSP.class);
-//        conf.addAnnotatedClass(ChucVu.class);
-//        conf.addAnnotatedClass(CuaHang.class);
-//        conf.addAnnotatedClass(NhanVien.class);
-//        conf.addAnnotatedClass(KhachHang.class);
-//        conf.addAnnotatedClass(GioHang.class);
-//        conf.addAnnotatedClass(HoaDon.class);
-//        conf.addAnnotatedClass(ChiTietSP.class);
-//        conf.addAnnotatedClass(HoaDonChiTiet.class);
-//        conf.addAnnotatedClass(GioHangChiTiet.class);
+        properties.put(Environment.SHOW_SQL, "true");
+//        properties.put(Environment.HBM2DDL_AUTO, "create");
+
+        conf.addAnnotatedClass(SanPham.class);
+        conf.addAnnotatedClass(KhuyenMai.class);
+        conf.addAnnotatedClass(MauSac.class);
+        conf.addAnnotatedClass(ChatLieu.class);
+        conf.addAnnotatedClass(KichThuoc.class);
+        conf.addAnnotatedClass(Hang.class);
+        conf.addAnnotatedClass(NhanVien.class);
+        conf.addAnnotatedClass(KhachHang.class);
+        conf.addAnnotatedClass(HoaDon.class);
+        conf.addAnnotatedClass(ChiTietSP.class);
+        conf.addAnnotatedClass(ChiTietSPKhuyenMai.class);
+        conf.addAnnotatedClass(HoaDonChiTiet.class);
 
         conf.setProperties(properties);
 
@@ -48,10 +59,16 @@ public class HibernateUtil {
     }
 
     public static Session getSession() {
-        if(SESSION == null || !SESSION.isConnected()){
+        if (SESSION == null || !SESSION.isConnected()) {
             SESSION = FACTORY.openSession();
         }
         return SESSION;
+    }
+
+    public static void main(String[] args) {
+        if (SESSION != null) {
+            System.out.println("Thành công");
+        }
     }
 
 }
