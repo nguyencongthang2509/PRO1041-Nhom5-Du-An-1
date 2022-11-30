@@ -9,15 +9,16 @@ import core.quanly.service.CTSanPhamService;
 import core.quanly.viewmodel.CTSanPhamResponse;
 import domainmodels.ChiTietSP;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author HP
  */
-public class CTSanPhamServiceImpl implements CTSanPhamService{
+public class CTSanPhamServiceImpl implements CTSanPhamService {
 
     private CTSanPhamRepository CTSanPhamRepository = new CTSanPhamRepository();
-    
+
     @Override
     public List<CTSanPhamResponse> getAllViewModel() {
         return CTSanPhamRepository.getAllResponseCTSP();
@@ -39,12 +40,12 @@ public class CTSanPhamServiceImpl implements CTSanPhamService{
         if (ctsanPham.getMoTa().trim().isEmpty()) {
             return "Mô tả không được trống";
         }
-        
+
         ChiTietSP sanPhamFind = CTSanPhamRepository.findByMa(ctsanPham.getMaChiTietSP());
         if (sanPhamFind != null) {
             return "Mã không được trùng";
         }
-        ctsanPham   = CTSanPhamRepository.saveOrUpdate(ctsanPham);
+        ctsanPham = CTSanPhamRepository.saveOrUpdate(ctsanPham);
         if (ctsanPham != null) {
             return "Thêm thành công";
         } else {
@@ -54,7 +55,7 @@ public class CTSanPhamServiceImpl implements CTSanPhamService{
 
     @Override
     public String update(ChiTietSP ctsanPham) {
-         ChiTietSP sanPhamFindById = CTSanPhamRepository.findById(ctsanPham.getId());
+        ChiTietSP sanPhamFindById = CTSanPhamRepository.findById(ctsanPham.getId());
         if (sanPhamFindById == null) {
             return "Không tìm thấy sản phẩm";
         }
@@ -69,6 +70,17 @@ public class CTSanPhamServiceImpl implements CTSanPhamService{
                 sanPhamFindById.setMaChiTietSP(ctsanPham.getMaChiTietSP());
             }
         }
+        sanPhamFindById.setHang(ctsanPham.getHang());
+        sanPhamFindById.setMauSac(ctsanPham.getMauSac());
+        sanPhamFindById.setKichThuoc(ctsanPham.getKichThuoc());
+        sanPhamFindById.setChatLieu(ctsanPham.getChatLieu());
+        sanPhamFindById.setMaVach(ctsanPham.getMaVach());
+        sanPhamFindById.setSoLuongTon(ctsanPham.getSoLuongTon());
+        sanPhamFindById.setGiaBan(ctsanPham.getGiaBan());
+        sanPhamFindById.setSanPham(ctsanPham.getSanPham());
+        sanPhamFindById.setMaChiTietSP(ctsanPham.getMaChiTietSP());
+        sanPhamFindById.setMoTa(ctsanPham.getMoTa());
+        sanPhamFindById.setTrangThaiXoa(ctsanPham.getTrangThaiXoa());
         ctsanPham = CTSanPhamRepository.saveOrUpdate(sanPhamFindById);
         if (ctsanPham != null) {
             return "Sửa thành công";
@@ -101,5 +113,5 @@ public class CTSanPhamServiceImpl implements CTSanPhamService{
     public List<CTSanPhamResponse> findTrangThai(Integer ma) {
         return CTSanPhamRepository.findTrangThai(ma);
     }
-    
+
 }

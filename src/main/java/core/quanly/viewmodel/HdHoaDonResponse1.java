@@ -25,10 +25,12 @@ public class HdHoaDonResponse1 {
     private Date ngayThanhToan;
     private Integer hinhThucThanhToan;
     private BigDecimal thanhTien;
+    private BigDecimal tienKhachCK;
     private BigDecimal tienKhachTra;
     private BigDecimal tienThua;
     private String maNV;
     private String tenNV;
+    private String tenKH;
     private String diaChi;
     private String sdt;
     private Integer trangThai;
@@ -47,10 +49,10 @@ public class HdHoaDonResponse1 {
     }
 
     public String getHinhThucTT() {
-        return hinhThucThanhToan == 0 ? "Tiền mặt" : "Chuyển khoản";
+        return hinhThucThanhToan == 0 ? "Tiền mặt" : (hinhThucThanhToan == 1 ? "Chuyển khoản" : "Kết hợp");
     }
 
     public Object[] toDaTaRow() {
-        return new Object[]{ma, ngayTao, ngayThanhToan, getHinhThucTT(), thanhTien, tienKhachTra, tienThua, maNV, tenNV, diaChi, sdt, getTT()};
+        return new Object[]{ma, ngayTao, ngayThanhToan == null ? "No" : ngayThanhToan, getHinhThucTT(), thanhTien == null ? "No" : thanhTien, tienKhachCK == null ? "0" : tienKhachCK, tienKhachTra == null ? "0" : tienKhachTra, tienThua == null ? "0" : tienThua, maNV, tenNV, tenKH == null ? "Khách bán lẻ" : tenKH, diaChi == null ? "No" : diaChi, sdt == null ? "No" : sdt, getTT()};
     }
 }

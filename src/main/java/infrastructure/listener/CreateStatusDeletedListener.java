@@ -11,6 +11,8 @@ public class CreateStatusDeletedListener {
 
     @PrePersist
     private void onCreate(StatusDeleted statusDeleted) {
-        statusDeleted.setTrangThaiXoa(0);
+        if (statusDeleted.getTrangThaiXoa() == null) {
+            statusDeleted.setTrangThaiXoa(0);
+        }
     }
 }

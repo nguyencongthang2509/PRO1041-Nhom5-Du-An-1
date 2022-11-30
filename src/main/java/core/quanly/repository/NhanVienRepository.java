@@ -52,7 +52,7 @@ public class NhanVienRepository extends CrudRepository<String, NhanVien, NhanVie
         try {
             session = HibernateUtil.getSession();
             String hql = "SELECT new core.quanly.viewmodel.NhanVienResponse(a.id,a.ma,a.ten,a.gioiTinh,"
-                    + "a.ngaySinh,a.diaChi,a.sdt,a.email,a.vaiTro,a.trangThaiXoa) FROM  NhanVien a where trangThaiXoa=1";
+                    + "a.ngaySinh,a.diaChi,a.sdt,a.email,a.vaiTro,a.trangThaiXoa) FROM  NhanVien a where a.trangThaiXoa=1";
             Query query = session.createQuery(hql);
             list = query.getResultList();
         } catch (Exception e) {

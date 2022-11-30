@@ -21,13 +21,10 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author thangncph26123
+ * @author longnh26222
  */
 public class ViewHoaDon extends javax.swing.JPanel {
 
-    /**
-     * Creates new form ViewHoaDon
-     */
     private HoaDonservice hoadonservice = new HoaDonserviceImpl();
     private DefaultTableModel modelHoaDon;
     private DefaultTableModel modelHoaDon2;
@@ -248,18 +245,18 @@ public class ViewHoaDon extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã hóa đơn", "Ngày tạo", "Ngày thanh toán", "Hình thức thanh toán", "Tổng tiền", "Tiền khách trả", "Tiền thừa", "Mã NV", "Tên NV", "SĐT người nhận", "Đia chỉ", "Trạng thái"
+                "Mã hóa đơn", "Ngày tạo", "Ngày thanh toán", "Hình thức thanh toán", "Tổng tiền", "Tiền khách CK", "Tiền khách trả", "Tiền thừa", "Mã NV", "Tên NV", "Tên KH", "SĐT KH", "Đia chỉ", "Trạng thái"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        tblHoadon.setShowGrid(true);
+        tblHoadon.setShowGrid(false);
         tblHoadon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblHoadonMouseClicked(evt);
@@ -348,7 +345,7 @@ public class ViewHoaDon extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tblHoadonchitiet.setShowGrid(true);
+        tblHoadonchitiet.setShowGrid(false);
         tblHoadonchitiet.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblHoadonchitietMouseClicked(evt);
@@ -369,7 +366,7 @@ public class ViewHoaDon extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -379,7 +376,7 @@ public class ViewHoaDon extends javax.swing.JPanel {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 1273, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 1271, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -440,11 +437,11 @@ public class ViewHoaDon extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã hóa đơn", "Ngày tạo", "Ngày thanh toán", "Hình thức thanh toán", "Thành tiền", "Tiền khách trả", "Tiền thừa", "Mã NV", "Tên NV", "SĐT KH", "Địa chỉ", "SĐT người ship", "Tên người ship", "Tiền ship", "Ngày ship", "Ngày nhận", "Trạng thái"
+                "Mã hóa đơn", "Ngày tạo", "Ngày thanh toán", "Hình thức thanh toán", "Thành tiền", "Tiền khách CK", "Tiền khách trả", "Tiền thừa", "Mã NV", "Tên NV", "Người nhận", "SĐT NN", "Địa chỉ", "SĐT người ship", "Tên người ship", "Tiền ship", "Ngày ship", "Ngày nhận", "Trạng thái"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -514,7 +511,7 @@ public class ViewHoaDon extends javax.swing.JPanel {
                     .addComponent(txtTime3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLoadByTime2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

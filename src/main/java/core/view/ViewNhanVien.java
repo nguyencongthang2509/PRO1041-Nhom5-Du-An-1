@@ -30,6 +30,7 @@ public class ViewNhanVien extends javax.swing.JPanel {
     DefaultTableModel modelDaNghi;
 
     List<NhanVienResponse> listNhanVien;
+    List<NhanVienResponse> listNhanVien1;
     NhanVienService nhanVienService;
     NhanVienRepository nvnnv;
     int index = 0;
@@ -39,10 +40,10 @@ public class ViewNhanVien extends javax.swing.JPanel {
         model = (DefaultTableModel) tblNhanVien.getModel();
         modelDaNghi = (DefaultTableModel) tblNhanVien1.getModel();
         listNhanVien = new ArrayList<>();
+        listNhanVien1 = new ArrayList<>();
         nhanVienService = new NhanVienServiceImpl();
         loadTable();
         loadTableDaNghi();
-
     }
 
     @SuppressWarnings("unchecked")
@@ -592,7 +593,7 @@ public class ViewNhanVien extends javax.swing.JPanel {
             NewForm();
         } catch (Exception e) {
             e.printStackTrace();
-            
+
         }
     }//GEN-LAST:event_btnNewActionPerformed
 
@@ -617,6 +618,7 @@ public class ViewNhanVien extends javax.swing.JPanel {
 
             loadTable();
             JOptionPane.showMessageDialog(this, message);
+            loadTableDaNghi();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -625,11 +627,14 @@ public class ViewNhanVien extends javax.swing.JPanel {
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         try {
             NhanVien nv = getformData();
-            System.out.println(nv.getTrangThaiXoa());
-            nv.setId(listNhanVien.get(tblNhanVien.getSelectedRow()).getId());
+            int index = tblNhanVien.getSelectedRow();
+            if (index >= 0) {
+                nv.setId(listNhanVien.get(index).getId());
+            }
             String message = nhanVienService.update(nv);
             JOptionPane.showMessageDialog(this, message);
             loadTable();
+            loadTableDaNghi();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -718,12 +723,11 @@ public class ViewNhanVien extends javax.swing.JPanel {
         nv.setTen(txtTenNhanVien6.getText().trim());
         nv.setGioiTinh(rdoNam6.isSelected() ? 0 : 1);
         try {
-           SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-            nv.setNgaySinh(formatter.parse(txtNgaySinh6.getText())); 
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            nv.setNgaySinh(formatter.parse(txtNgaySinh6.getText()));
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
 
         nv.setDiaChi(txtDiaChiNhanVien6.getText().trim());
         nv.setSdt(txtSdtNhanVien6.getText().trim());
@@ -772,8 +776,8 @@ public class ViewNhanVien extends javax.swing.JPanel {
     private void loadTableDaNghi() {
         modelDaNghi.setRowCount(0);
         int index = 1;
-        listNhanVien = nhanVienService.getAllResponseNghi();
-        for (NhanVienResponse xx : listNhanVien) {
+        listNhanVien1 = nhanVienService.getAllResponseNghi();
+        for (NhanVienResponse xx : listNhanVien1) {
             modelDaNghi.addRow(xx.toDataRow(index));
             index++;
         }

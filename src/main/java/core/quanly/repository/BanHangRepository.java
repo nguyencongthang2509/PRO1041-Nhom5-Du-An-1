@@ -36,7 +36,7 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
             String hql = "SELECT " + "new core.quanly.viewmodel.BhChiTietSPResponse"
                     + "(a.id, a.maChiTietSP,a.sanPham.ma, a.sanPham.ten, "
                     + "a.mauSac.ten, a.kichThuoc.ten, a.hang.ten, a.soLuongTon, a.giaBan, a.moTa, a.maVach)"
-                    + " FROM ChiTietSP a";
+                    + " FROM ChiTietSP a WHERE a.trangThaiXoa = 0";
             Query query = session.createQuery(hql);
             list = query.getResultList();
         } catch (Exception e) {

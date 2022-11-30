@@ -4,16 +4,12 @@
  */
 package core.quanly.service;
 
-import core.quanly.viewmodel.KMChiTietSPResponse;
-import core.quanly.viewmodel.KMSanphamReponse;
-import java.util.List;
-
 /**
  *
  * @author thiennvtph26140
  */
-public interface KMSanPhamService {
-    List<KMChiTietSPResponse> GetAllResponse();
+public interface DoiMatKhauService {
+    String GetIdNhanVien(String email, String matkhau);
     
-    List<KMSanphamReponse> GetAllNoKhuyenMai();
+    String DoiMatKhau(String matkhau, String id);
 }
