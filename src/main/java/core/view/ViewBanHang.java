@@ -2650,7 +2650,7 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
                 DecimalFormat df = new DecimalFormat("#,###");
                 txtTongTienDatHang.setText(df.format(tong) + " Vnđ");
                 txtGiamGiaDatHang.setText(df.format(giamGia) + " Vnđ");
-                BigDecimal tienCanTra = tong.subtract(giamGia).subtract(tienShip);
+                BigDecimal tienCanTra = tong.subtract(giamGia).add(tienShip);
                 txtThanhToanDatHang.setText(df.format(tienCanTra) + " Vnđ");
                 if (cboHTThanhToanDatHang.getSelectedIndex() == 1) {
                     txtTienKhachCKDatHang.setText(txtThanhToanDatHang.getText());
