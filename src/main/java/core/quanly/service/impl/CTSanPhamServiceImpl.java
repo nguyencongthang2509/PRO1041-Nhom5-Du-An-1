@@ -114,4 +114,9 @@ public class CTSanPhamServiceImpl implements CTSanPhamService {
         return CTSanPhamRepository.findTrangThai(ma);
     }
 
+    @Override
+    public int genMaCTSPTuDong() {
+        return CTSanPhamRepository.genMaCTSP();
+    }
+
 }

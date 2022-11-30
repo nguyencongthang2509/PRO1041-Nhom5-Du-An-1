@@ -32,4 +32,5 @@ public interface CTSanPhamService {
     
     List<CTSanPhamResponse> findTrangThai(Integer ma);
     
+    int genMaCTSPTuDong();
 }

@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.UUID;
 import javax.persistence.Query;
 import org.hibernate.Session;
+import org.hibernate.query.NativeQuery;
 import repository.CrudRepository;
 
 /**
@@ -78,7 +79,6 @@ public class CTSanPhamRepository extends CrudRepository<String, ChiTietSP, CTSan
         }
         return lst;
     }
-
     
     public List<CTSanPhamResponse> getFormCTSP(String ma){
         List<CTSanPhamResponse> lst = new ArrayList<>();
@@ -94,5 +94,28 @@ public class CTSanPhamRepository extends CrudRepository<String, ChiTietSP, CTSan
             e.printStackTrace();
         }
         return lst;
+    }
+    
+    public int genMaCTSP() {
+        String maStr = "";
+        session = HibernateUtil.getSession();
+        try {
+            String nativeQuery = "SELECT MAX(CONVERT(INT, SUBSTRING(a.ma_ctsp,5,10))) from chi_tiet_san_pham a";
+            NativeQuery query = session.createNativeQuery(nativeQuery);
+            if (query.getSingleResult() != null) {
+                maStr = query.getSingleResult().toString();
+            } else {
+                maStr = null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (maStr == null) {
+            maStr = "0";
+            int ma = Integer.parseInt(maStr);
+            return ++ma;
+        }
+        int ma = Integer.parseInt(maStr);
+        return ++ma;
     }
 }

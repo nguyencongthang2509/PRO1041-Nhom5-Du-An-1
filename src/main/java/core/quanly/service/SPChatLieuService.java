@@ -24,4 +24,5 @@ public interface SPChatLieuService {
 
     List<ChatLieu> getAll();
 
+    int genChatLieuTuDong();
 }

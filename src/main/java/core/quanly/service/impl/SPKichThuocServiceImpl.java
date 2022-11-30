@@ -85,5 +85,10 @@ public class SPKichThuocServiceImpl implements SPKichThuocService{
     public List<KichThuoc> getAll() {
         return kichThuocRepository.getAll();
     }
+
+    @Override
+    public int genMaKichThuocTuDong() {
+        return kichThuocRepository.genMaKichThuoc();
+    }
     
 }

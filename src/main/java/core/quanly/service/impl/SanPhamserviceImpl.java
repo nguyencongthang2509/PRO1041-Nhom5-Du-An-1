@@ -92,4 +92,9 @@ public class SanPhamserviceImpl implements SanPhamService {
     public List<SanPhamResponse> findMaOrTen(String input) {
         return sanPhamRepository.findByMaOrTen(input);
     }
+
+    @Override
+    public int genMaSanPhamTuDong() {
+        return sanPhamRepository.genMaSanPham();
+    }
 }

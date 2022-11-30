@@ -85,5 +85,10 @@ public class SPMauSacServiceImpl implements SPMauSacService{
     public List<MauSac> getAll() {
         return mausacRepository.getAll();
     }
+
+    @Override
+    public int genMaMauSacTuDong() {
+        return mausacRepository.genMaMauSac();
+    }
     
 }

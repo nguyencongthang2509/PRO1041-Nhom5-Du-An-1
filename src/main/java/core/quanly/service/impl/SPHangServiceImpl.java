@@ -86,4 +86,9 @@ public class SPHangServiceImpl implements SPHangService {
         return hangRepository.getAll();
     }
 
+    @Override
+    public int genMaHangTuDong() {
+        return hangRepository.genMaHang();
+    }
+
 }

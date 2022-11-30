@@ -38,9 +38,6 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-//import com.itextpdf.text.*;
-//import com.itextpdf.text.pdf.PdfPTable;
-//import com.itextpdf.text.pdf.PdfWriter;
 import core.quanly.viewmodel.SPHangResponse;
 import core.quanly.viewmodel.SPKhuyenMaiResponse;
 import core.quanly.viewmodel.SPKichThuocResponse;
@@ -62,7 +59,6 @@ import java.math.BigDecimal;
  */
 public class ViewSanPham extends javax.swing.JPanel {
 
-//    private static final String FILE_NAME = "/tmp/itext.pdf";
     private final SanPhamService sanPhamService;
     private final CTSanPhamService ctsanPhamService;
     private final SPChatLieuService chatLieuService;
@@ -305,6 +301,8 @@ public class ViewSanPham extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         jLabel1.setText("Mã sản phẩm:");
 
+        txtMaSanPham.setEnabled(false);
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
@@ -445,7 +443,7 @@ public class ViewSanPham extends javax.swing.JPanel {
         jPanel7.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
 
         jLabel10.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
-        jLabel10.setText("Mã sản phẩm:");
+        jLabel10.setText("Tên sản phẩm:");
 
         jLabel11.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         jLabel11.setText("Mã CTSP:");
@@ -467,6 +465,8 @@ public class ViewSanPham extends javax.swing.JPanel {
 
         jLabel17.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         jLabel17.setText("Hãng:");
+
+        txtmaCTSP.setEnabled(false);
 
         txaMoTa.setColumns(20);
         txaMoTa.setRows(5);
@@ -656,11 +656,9 @@ public class ViewSanPham extends javax.swing.JPanel {
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel14)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel5)
-                                    .addComponent(txtMaVach, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(14, 14, 14))))
+                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel5)
+                                .addComponent(txtMaVach, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -801,6 +799,8 @@ public class ViewSanPham extends javax.swing.JPanel {
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         jLabel7.setText("Tên thuộc tính:");
+
+        txtMaThuocTinh.setEnabled(false);
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -1113,8 +1113,9 @@ public class ViewSanPham extends javax.swing.JPanel {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         try {
-            SanPham sp = new SanPham();
-            String messsage = sanPhamService.add(getSanPhamByForm());
+            SanPham sp = getSanPhamByForm();
+            sp.setMa("Sp" + sanPhamService.genMaSanPhamTuDong());
+            String messsage = sanPhamService.add(sp);
             lstSpViewModel = sanPhamService.getAllViewModel();
             LoadToTableSp(lstSpViewModel);
             JOptionPane.showMessageDialog(this, "Thêm mới sản phẩm thành công");
@@ -1157,6 +1158,7 @@ public class ViewSanPham extends javax.swing.JPanel {
             cbbKichThuocct.setSelectedItem(ctSanPhamViewModel.getKichThuoc());
             cbbHangct.setSelectedItem(ctSanPhamViewModel.getHang());
             cbbChatLieu.setSelectedItem(ctSanPhamViewModel.getChatLieu());
+            cbbSanPham.setSelectedItem(ctSanPhamViewModel.getTensp());
 
         }
     }//GEN-LAST:event_tblCTSanPhamMouseClicked
@@ -1266,7 +1268,9 @@ public class ViewSanPham extends javax.swing.JPanel {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         try {
-            String messsage = ctsanPhamService.add(getChiTietSp());
+            ChiTietSP chiTietSp = getChiTietSp();
+            chiTietSp.setMaChiTietSP("CTSP" + ctsanPhamService.genMaCTSPTuDong());
+            String messsage = ctsanPhamService.add(chiTietSp);
             lstctSpViewModel = ctsanPhamService.getAllViewModel();
             LoadToTableCTSanPham(lstctSpViewModel);
             JOptionPane.showMessageDialog(this, messsage);
@@ -1331,8 +1335,9 @@ public class ViewSanPham extends javax.swing.JPanel {
         try {
             if (radioHang.isSelected()) {
                 try {
-                    Hang hang = new Hang();
-                    String messsage = hangService.add(getHangByForm());
+                    Hang hang =  getHangByForm();
+                    hang.setMa("H" + hangService.genMaHangTuDong());
+                    String messsage = hangService.add(hang);
                     lstHangRepon = hangService.getAllViewModel();
                     LoadToTableHang();
                     JOptionPane.showMessageDialog(this, "Thêm mới hãng thành công");
@@ -1341,8 +1346,9 @@ public class ViewSanPham extends javax.swing.JPanel {
                 }
             } else if (radioKichThuoc.isSelected()) {
                 try {
-                    KichThuoc kichThuoc = new KichThuoc();
-                    String messsage = kichThuocService.add(getKichThuocByForm());
+                    KichThuoc kichThuoc = getKichThuocByForm();
+                    kichThuoc.setMa("KT" + kichThuocService.genMaKichThuocTuDong());
+                    String messsage = kichThuocService.add(kichThuoc);
                     lstKichThuocRepon = kichThuocService.getAllViewModel();
                     LoadToTableKichThuoc();
                     JOptionPane.showMessageDialog(this, "Thêm mới kích thước thành công");
@@ -1351,8 +1357,9 @@ public class ViewSanPham extends javax.swing.JPanel {
                 }
             } else if(radioMausac.isSelected()){
                 try {
-                    MauSac mauSac = new MauSac();
-                    String messsage = mauSacService.add(getMauSacByForm());
+                    MauSac mauSac = getMauSacByForm();
+                    mauSac.setMa("MS" + mauSacService.genMaMauSacTuDong());
+                    String messsage = mauSacService.add(mauSac);
                     lstMauSacRespon = mauSacService.getAllViewModel();
                     LoadToTableMauSac();
                     JOptionPane.showMessageDialog(this, "Thêm mới màu sắc thành công");
@@ -1361,8 +1368,9 @@ public class ViewSanPham extends javax.swing.JPanel {
                 }
             }else{
                 try {
-                    ChatLieu chatLieu = new ChatLieu();
-                    String messsage = chatLieuService.add(getChatLieuByForm());
+                    ChatLieu chatLieu = getChatLieuByForm();
+                    chatLieu.setMa("CL" + chatLieuService.genChatLieuTuDong());
+                    String messsage = chatLieuService.add(chatLieu);
                     lstChatLieuRespon = chatLieuService.getAllViewModel();
                     LoadToTableChatLieu();
                     JOptionPane.showMessageDialog(this, "Thêm mới chất liệu thành công");
@@ -1511,17 +1519,17 @@ public class ViewSanPham extends javax.swing.JPanel {
     }//GEN-LAST:event_btXuatFileExcelActionPerformed
 
     public SanPham getSanPhamByForm() {
-        String masp = txtMaSanPham.getText().trim();
         String tensp = txtTenSanPham.getText().trim();
+        String maSp = txtMaSanPham.getText().trim();
         SanPham sanPham = new SanPham();
-        sanPham.setMa(masp);
+        sanPham.setMa(maSp);
         sanPham.setTen(tensp);
         return sanPham;
     }
 
     public Hang getHangByForm() {
-        String maHang = txtMaThuocTinh.getText().trim();
         String tenHang = txtTenThuocTinh.getText().trim();
+        String maHang = txtMaThuocTinh.getText().trim();
         Hang hang = new Hang();
         hang.setMa(maHang);
         hang.setTen(tenHang);
@@ -1529,8 +1537,8 @@ public class ViewSanPham extends javax.swing.JPanel {
     }
 
     public MauSac getMauSacByForm() {
-        String maMauSac = txtMaThuocTinh.getText().trim();
         String tenMausac = txtTenThuocTinh.getText().trim();
+        String maMauSac = txtMaThuocTinh.getText().trim();
         MauSac mausac = new MauSac();
         mausac.setMa(maMauSac);
         mausac.setTen(tenMausac);
@@ -1538,8 +1546,8 @@ public class ViewSanPham extends javax.swing.JPanel {
     }
 
     public KichThuoc getKichThuocByForm() {
-        String maKichThuoc = txtMaThuocTinh.getText().trim();
         String tenKichThuoc = txtTenThuocTinh.getText().trim();
+        String maKichThuoc= txtMaThuocTinh.getText().trim();
         KichThuoc kichThuoc = new KichThuoc();
         kichThuoc.setMa(maKichThuoc);
         kichThuoc.setTen(tenKichThuoc);
@@ -1547,8 +1555,8 @@ public class ViewSanPham extends javax.swing.JPanel {
     }
     
     public ChatLieu getChatLieuByForm() {
-        String maChatLieu = txtMaThuocTinh.getText().trim();
         String tenChatLieu = txtTenThuocTinh.getText().trim();
+        String maChatLieu = txtMaThuocTinh.getText().trim();
         ChatLieu chatLieu = new ChatLieu();
         chatLieu.setMa(maChatLieu);
         chatLieu.setTen(tenChatLieu);

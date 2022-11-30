@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.UUID;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 import repository.CrudRepository;
 
@@ -23,6 +24,29 @@ public class SPHangRepository extends CrudRepository<String, Hang, SPHangRespons
     public SPHangRepository() {
         className = Hang.class.getName();
         res = "new core.quanly.viewmodel.SPHangResponse(a.id, a.ma, a.ten)";
+    }
+    
+    public int genMaHang() {
+        String maStr = "";
+        session = HibernateUtil.getSession();
+        try {
+            String nativeQuery = "SELECT MAX(CONVERT(INT, SUBSTRING(ma,2,10))) from hang";
+            NativeQuery query = session.createNativeQuery(nativeQuery);
+            if (query.getSingleResult() != null) {
+                maStr = query.getSingleResult().toString();
+            } else {
+                maStr = null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (maStr == null) {
+            maStr = "0";
+            int ma = Integer.parseInt(maStr);
+            return ++ma;
+        }
+        int ma = Integer.parseInt(maStr);
+        return ++ma;
     }
     
     public static void main(String[] args) {
