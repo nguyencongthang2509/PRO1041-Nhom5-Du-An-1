@@ -6,9 +6,11 @@ package core.quanly.repository;
 
 import config.HibernateUtil;
 import core.quanly.viewmodel.ThongKeHangHoaResponse;
+import domainmodels.HoaDon;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 import repository.CrudRepository;
 
@@ -34,10 +36,15 @@ public class ThongKeHangHoaRepository {
         }
         return list;
     }
+
     public static void main(String[] args) {
-        List<ThongKeHangHoaResponse> lst = new ThongKeHangHoaRepository().getListHDCT();
-        System.out.println(lst);
+//        int vv = new ThongKeHangHoaRepository().getSL();
+//        System.out.println(vv);
     }
+
+
+
+  
     
 
 }

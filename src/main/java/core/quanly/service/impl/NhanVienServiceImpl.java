@@ -152,7 +152,9 @@ public class NhanVienServiceImpl implements NhanVienService {
         try {
             Session session = HibernateUtil.getSession();
             String hql = "select new core.quanly.viewmodel.NhanVienResponse(a.id,a.ma,a.ten,a.gioiTinh,"
-                    + "a.ngaySinh,a.diaChi,a.sdt,a.email,a.vaiTro) from NhanVien a where a.ma like CONCAT('%',:input, '%')";
+                    + "a.ngaySinh,a.diaChi,a.sdt,a.email,a.vaiTro,a.trangThaiXoa) from NhanVien a where a.ten like CONCAT('%',:input,'%') or "
+                    + "a.ma like CONCAT('%',:input,'%') or a.email like CONCAT('%',:input,'%') or a.diaChi like CONCAT('%',:input,'%') or"
+                    + " a.sdt like CONCAT('%',:input,'%') or a.ngaySinh like CONCAT('%',:input,'%')";
             Query query = session.createQuery(hql);
             query.setParameter("input", input);
             list = query.getResultList();
@@ -190,8 +192,7 @@ public class NhanVienServiceImpl implements NhanVienService {
     }
 
     public static void main(String[] args) {
-        String nv = new NhanVienServiceImpl().getNhanVienByEmail("dfgfdg");
-        System.out.println(nv);
+             
     }
 
     @Override
@@ -211,6 +212,20 @@ public class NhanVienServiceImpl implements NhanVienService {
     @Override
     public List<NhanVienResponse> getAllResponseLam() {
         return nhanVienRepos.getAllResponseNhanVienLam();
+    }
+    public List<NhanVienResponse> getAllR() {
+        List<NhanVienResponse> list = new ArrayList<>();
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "SELECT new core.quanly.viewmodel.NhanVienResponse(a.id,a.ma,a.ten,a.gioiTinh,"
+                + "a.ngaySinh,a.diaChi,a.sdt,a.email,a.vaiTro,a.trangThaiXoa) FROM NhanVien a order by a.createdDate desc";
+            Query query = session.createQuery(hql);
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return list;
     }
 
 }
