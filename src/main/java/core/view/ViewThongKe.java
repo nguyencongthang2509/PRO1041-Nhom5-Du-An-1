@@ -4,7 +4,13 @@
  */
 package core.view;
 
+import core.quanly.service.ThongKeHangHoaService;
+import core.quanly.service.impl.ThongKeHangHoaServiceImpl;
+import core.quanly.viewmodel.ThongKeHangHoaResponse;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.ImageIcon;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,8 +21,14 @@ public class ViewThongKe extends javax.swing.JPanel {
     /**
      * Creates new form ViewThongKe
      */
+    DefaultTableModel modelHangHoa ; 
+    List<ThongKeHangHoaResponse> listHangHoa = new ArrayList<>();
+    ThongKeHangHoaService hangHoaService = new ThongKeHangHoaServiceImpl();
     public ViewThongKe() {
         initComponents();
+        modelHangHoa = new DefaultTableModel();
+        modelHangHoa=(DefaultTableModel) tblHangHoa.getModel();
+        loadList();
     }
 
     /**
@@ -43,7 +55,7 @@ public class ViewThongKe extends javax.swing.JPanel {
         jPanel9 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblHangHoa = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -181,19 +193,19 @@ public class ViewThongKe extends javax.swing.JPanel {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblHangHoa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "STT", "Mã Sản Phẩm", "Tên Sản Phẩm", "Hãng", "Màu Sắc", "Size", "Số Lượng", "Đơn Giá"
             }
         ));
-        jTable1.setPreferredSize(new java.awt.Dimension(1224, 64));
-        jScrollPane1.setViewportView(jTable1);
+        tblHangHoa.setPreferredSize(new java.awt.Dimension(1224, 64));
+        jScrollPane1.setViewportView(tblHangHoa);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -218,7 +230,7 @@ public class ViewThongKe extends javax.swing.JPanel {
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
+                .addContainerGap(27, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -234,7 +246,7 @@ public class ViewThongKe extends javax.swing.JPanel {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 1257, Short.MAX_VALUE)
+                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 1259, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -316,6 +328,16 @@ public class ViewThongKe extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblHangHoa;
     // End of variables declaration//GEN-END:variables
+
+    private void loadList() {
+        modelHangHoa.setRowCount(0);
+        int index = 1;
+        listHangHoa = hangHoaService.getAllResponse();
+        for (ThongKeHangHoaResponse xx : listHangHoa) {
+            modelHangHoa.addRow(xx.toDataRow(index));
+            index++;
+        }
+    }
 }
