@@ -2000,9 +2000,17 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
         try {
             int row = tblGioHang.getSelectedRow();
             Integer soLuongCurrent = null;
-            if (row >= 0) {
+            try {
                 soLuongCurrent = Integer.parseInt(tblGioHang.getValueAt(row, 3).toString());
+                if(soLuongCurrent < 0){
+                    JOptionPane.showMessageDialog(this, "Số lượng không được âm");
+                    return;
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Số lượng phải là số");
+                return;
             }
+
             BhHoaDonChiTietResponse bhHoaDonChiTietResponse = new ArrayList<>(mapGioHang.values()).get(row);
             if (soLuongCurrent > bhHoaDonChiTietResponse.getSoLuongTon()) {
                 tblGioHang.setValueAt(soLuongCu, row, 3);
@@ -2030,7 +2038,6 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
             tinhTongTien();
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Số lượng phải là số");
         }
     }//GEN-LAST:event_tblGioHangKeyReleased
 
