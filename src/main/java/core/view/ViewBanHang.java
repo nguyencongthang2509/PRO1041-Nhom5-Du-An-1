@@ -981,7 +981,7 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Hóa đơn chờ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 16))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Hóa đơn", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 16))); // NOI18N
 
         tblHoaDonCho.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1061,9 +1061,11 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
 
         txtMaKHTaiQuay.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         txtMaKHTaiQuay.setForeground(new java.awt.Color(255, 0, 0));
+        txtMaKHTaiQuay.setText("Khách lẻ");
         txtMaKHTaiQuay.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(153, 204, 255)));
 
         txtTenKHTaiQuay.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        txtTenKHTaiQuay.setText("Khách lẻ");
         txtTenKHTaiQuay.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(153, 204, 255)));
 
         btnChonTaiQuay.setBackground(new java.awt.Color(153, 204, 255));
@@ -2654,6 +2656,12 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
                 txtThanhToanDatHang.setText(df.format(tienCanTra) + " Vnđ");
                 if (cboHTThanhToanDatHang.getSelectedIndex() == 1) {
                     txtTienKhachCKDatHang.setText(txtThanhToanDatHang.getText());
+                    txtTienThuaDatHang.setText("0 Vnđ");
+                    return;
+                }
+                if (cboHTThanhToanDatHang.getSelectedIndex() == 2) {
+                    BigDecimal tienCKDatHang = tienCanTra.subtract(new BigDecimal(txtTienKhachDuaDatHang.getText().trim().toString()));
+                    txtTienKhachCKDatHang.setText(tienCKDatHang + "");
                     txtTienThuaDatHang.setText("0 Vnđ");
                     return;
                 }

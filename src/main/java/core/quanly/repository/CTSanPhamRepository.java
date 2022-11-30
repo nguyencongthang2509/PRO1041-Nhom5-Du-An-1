@@ -32,7 +32,7 @@ public class CTSanPhamRepository extends CrudRepository<String, ChiTietSP, CTSan
         try {
             session = HibernateUtil.getSession();
             String hql = "SELECT new core.quanly.viewmodel.CTSanPhamResponse(a.id, a.sanPham.ma, a.sanPham.ten,"
-                    + "a.mauSac.ten, a.kichThuoc.ten, a.hang.ten, a.chatLieu.ten ,a.maChiTietSP, a.moTa, a.soLuongTon, a.giaBan, a.maVach, a.trangThaiXoa) FROM ChiTietSP a Where a.trangThaiXoa = 0";
+                    + "a.mauSac.ten, a.kichThuoc.ten, a.hang.ten, a.chatLieu.ten ,a.maChiTietSP, a.moTa, a.soLuongTon, a.giaBan, a.maVach, a.trangThaiXoa) FROM ChiTietSP a Where a.trangThaiXoa = 0 order by a.createdDate desc";
             org.hibernate.query.Query query = session.createQuery(hql);
             list = query.getResultList();
         } catch (Exception e) {
