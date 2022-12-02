@@ -9,10 +9,10 @@ import javax.persistence.PrePersist;
  */
 public class CreateStatusDeletedListener {
 
-    @PrePersist
-    private void onCreate(StatusDeleted statusDeleted) {
-        if (statusDeleted.getTrangThaiXoa() == null) {
-            statusDeleted.setTrangThaiXoa(0);
-        }
-    }
+//    @PrePersist
+//    private void onCreate(StatusDeleted statusDeleted) {
+//        if (statusDeleted.getTrangThaiXoa() == null) {
+//            statusDeleted.setTrangThaiXoa(0);
+//        }
+//    }
 }

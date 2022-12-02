@@ -82,8 +82,8 @@ public class ExportFilePdfByITextDatHang {
             
             personShipInforTable.addCell(new Cell().add("Họ tên:").setBorder(Border.NO_BORDER));
             personShipInforTable.addCell(new Cell().add(hoaDon.getTenNguoiShip()).setBorder(Border.NO_BORDER));
-            personShipInforTable.addCell(new Cell().add("Ngày ship:").setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
-            String dateShip = sdf.format(hoaDon.getNgayShip());
+            personShipInforTable.addCell(new Cell().add("Ngày thanh toán:").setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
+            String dateShip = sdf.format(hoaDon.getNgayThanhToan());
             personShipInforTable.addCell(new Cell().add(dateShip).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
             personShipInforTable.addCell(new Cell().add("SĐT:").setBorder(Border.NO_BORDER));
             personShipInforTable.addCell(new Cell().add(hoaDon.getSdtNguoiShip()).setBorder(Border.NO_BORDER));

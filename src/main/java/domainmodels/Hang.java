@@ -30,5 +30,8 @@ public class Hang extends PrimaryEntity implements Serializable {
     @Column(name = "ten", length = EntityProperties.LENGTH_NAME_SHORT)
     @Nationalized
     private String ten;
+    
+    @Column(name = "status_deleted", columnDefinition = "int default 0")
+    private Integer trangThaiXoa = 0;
 
 }

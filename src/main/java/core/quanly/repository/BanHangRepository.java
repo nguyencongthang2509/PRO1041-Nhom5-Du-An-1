@@ -36,8 +36,10 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
             String hql = "SELECT " + "new core.quanly.viewmodel.BhChiTietSPResponse"
                     + "(a.id, a.maChiTietSP,a.sanPham.ma, a.sanPham.ten, "
                     + "a.mauSac.ten, a.kichThuoc.ten, a.hang.ten, a.soLuongTon, a.giaBan, a.moTa, a.maVach)"
-                    + " FROM ChiTietSP a WHERE a.trangThaiXoa = 0";
+                    + " FROM ChiTietSP a WHERE a.trangThaiXoa = 0 order by a.createdDate DESC";
             Query query = session.createQuery(hql);
+//            query.setFirstResult(1);
+//            query.setMaxResults(8);
             list = query.getResultList();
         } catch (Exception e) {
             e.printStackTrace();
@@ -65,7 +67,7 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
         System.out.println(list);
     }
 
-    public List<BhHoaDonResponse> getAllResponseHD(String idNhanVien) {
+    public List<BhHoaDonResponse> getAllResponseHD(String idNhanVien, Integer hinhThucGiaoHang, Integer trangThai) {
         List<BhHoaDonResponse> list = new ArrayList<>();
         try {
             session = HibernateUtil.getSession();
@@ -74,10 +76,12 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
                     + "a.tenNguoiNhan, a.sdtNguoiNhan, a.diaChi, a.tenNguoiShip, a.sdtNguoiShip,"
                     + "a.tienShip, a.tienKhachTra, a.tienKhachChuyenKhoan, a.tienThua)"
                     + " FROM HoaDon a LEFT JOIN a.nhanVien b LEFT JOIN a.khachHang c "
-                    + "WHERE a.trangThai <> 1 AND a.trangThai <> 2 AND a.trangThai <> 4 AND b.id = :idNhanVien "
-                    + "ORDER BY a.lastModifiedDate DESC";
+                    + "WHERE a.trangThai <> 1 AND b.id = :idNhanVien AND a.hinhThucGiaoHang LIKE CONCAT('%', CONVERT(VARCHAR, :hinhThucGiaoHang),'%') AND a.trangThai LIKE CONCAT('%',CONVERT(VARCHAR, :trangThai),'%')"
+                    + " ORDER BY a.lastModifiedDate DESC";
             Query query = session.createQuery(hql);
             query.setParameter("idNhanVien", idNhanVien);
+            query.setParameter("hinhThucGiaoHang", hinhThucGiaoHang);
+            query.setParameter("trangThai", trangThai);
             list = query.getResultList();
         } catch (Exception e) {
             e.printStackTrace();
@@ -140,7 +144,7 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
         }
         return entity;
     }
-    
+
     public HoaDonChiTiet findByIdHoaDonChiTiet(String id) {
         HoaDonChiTiet entity = null;
         try {

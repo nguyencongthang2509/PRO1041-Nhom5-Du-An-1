@@ -54,4 +54,6 @@ public class NhanVien extends PrimaryEntity implements Serializable {
     @Column(name = "vai_tro", nullable = false)
     private Integer vaiTro;
 
+    @Column(name = "status_deleted", columnDefinition = "int default 0")
+    private Integer trangThaiXoa = 0;
 }

@@ -52,6 +52,9 @@ public class HoaDon extends PrimaryEntity implements Serializable {
     @Column(name = "ngay_thanh_toan")
     private Date ngayThanhToan;
 
+    @Column(name = "ngay_mong_muon")
+    private Date ngayMongMuon;
+
     @Column(name = "ngay_ship")
     private Date ngayShip;
 
@@ -93,6 +96,12 @@ public class HoaDon extends PrimaryEntity implements Serializable {
 
     @Column(name = "phan_tram_giam_gia")
     private Double phamTramGiamGia;
+
+    @Column(name = "ly_do")
+    private String lyDo;
+    
+    @Column(name = "trang_thai_thanh_toan")
+    private Integer trangThaiThanhToan;
 
     @Column(name = "trang_thai", nullable = false)
     private Integer trangThai;

@@ -288,13 +288,13 @@ public class InsertData {
             chiTietSPKhuyenMai.setDonGiaConLai(chiTietSP.getGiaBan().subtract(chiTietSP.getGiaBan().multiply(new BigDecimal(khuyenMai.getGiaTri()).divide(new BigDecimal(100)))));
             session.saveOrUpdate(chiTietSPKhuyenMai);
 
-            ChiTietSPKhuyenMai chiTietSPKhuyenMai2 = new ChiTietSPKhuyenMai();
-            chiTietSPKhuyenMai2.setChiTietSPId(chiTietSP1);
-            chiTietSPKhuyenMai2.setKhuyenMaiId(khuyenMai);
-            chiTietSPKhuyenMai2.setDonGia(chiTietSP1.getGiaBan());
-            chiTietSPKhuyenMai2.setTrangThai(1);
-            chiTietSPKhuyenMai2.setDonGiaConLai(chiTietSP1.getGiaBan().subtract(chiTietSP1.getGiaBan().multiply(new BigDecimal(khuyenMai.getGiaTri()).divide(new BigDecimal(100)))));
-            session.saveOrUpdate(chiTietSPKhuyenMai2);
+//            ChiTietSPKhuyenMai chiTietSPKhuyenMai2 = new ChiTietSPKhuyenMai();
+//            chiTietSPKhuyenMai2.setChiTietSPId(chiTietSP1);
+//            chiTietSPKhuyenMai2.setKhuyenMaiId(khuyenMai);
+//            chiTietSPKhuyenMai2.setDonGia(chiTietSP1.getGiaBan());
+//            chiTietSPKhuyenMai2.setTrangThai(1);
+//            chiTietSPKhuyenMai2.setDonGiaConLai(chiTietSP1.getGiaBan().subtract(chiTietSP1.getGiaBan().multiply(new BigDecimal(khuyenMai.getGiaTri()).divide(new BigDecimal(100)))));
+//            session.saveOrUpdate(chiTietSPKhuyenMai2);
 
             transaction.commit();
         } catch (Exception e) {

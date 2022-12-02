@@ -63,5 +63,8 @@ public class ChiTietSP extends PrimaryEntity implements Serializable {
 
     @Column(name = "ma_vach", length = EntityProperties.LENGTH_CODE)
     private String maVach;
+    
+    @Column(name = "status_deleted", columnDefinition = "int default 0")
+    private Integer trangThaiXoa = 0;
 
 }

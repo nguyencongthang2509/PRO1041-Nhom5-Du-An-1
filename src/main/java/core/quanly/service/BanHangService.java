@@ -30,7 +30,7 @@ public interface BanHangService {
 
     KhachHang findByMaKhachHang(String ma);
 
-    List<BhHoaDonResponse> getAllResponseHD(String idNhanVien);
+    List<BhHoaDonResponse> getAllResponseHD(String idNhanVien, Integer hinhThucGiaoHang, Integer trangThai);
 
     boolean insertHDCT(String idHoaDon, Map<String, BhHoaDonChiTietResponse> list);
 
