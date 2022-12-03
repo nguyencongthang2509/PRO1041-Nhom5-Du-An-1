@@ -23,6 +23,19 @@ import repository.CrudRepository;
  */
 public class HoaDonRepository extends CrudRepository<String, HoaDon, HdHoaDonResponse1> {
 
+    public long getCountHoaDon() {
+        long count = 0;
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "select count(*) from HoaDon where hinhThucGiaoHang = 0";
+            Query query = session.createQuery(hql);
+            count = (long) query.getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
     public List<HdHoaDonResponse1> getListHoaDon(int htgh) {
         List<HdHoaDonResponse1> list = new ArrayList<>();
         try {
@@ -63,12 +76,11 @@ public class HoaDonRepository extends CrudRepository<String, HoaDon, HdHoaDonRes
         try {
             session = HibernateUtil.getSession();
             String hql = "select new core.quanly.viewmodel.HdHoaDonResponse1"
-                    + "(a.id, a.ma, a.ngayTao, a.ngayThanhToan, a.hinhThucThanhToan, a.thanhTien, "
-                    + "a.tienKhachTra, a.tienThua, b.ma, b.ten,"
-                    + "c.sdt, c.diaChi, a.trangThai) from HoaDon a left join a.nhanVien b left join a.khachHang c where "
-                    + "a.hinhThucGiaoHang = :htgh and (a.ma "
+                    + "(a.id, a.ma, a.ngayTao, a.ngayThanhToan, a.hinhThucThanhToan, a.thanhTien, a.tienKhachChuyenKhoan,a.tienKhachTra, a.tienThua, b.ma, b.ten,"
+                    + "c.hoTen, c.sdt, c.diaChi, a.trangThai) from HoaDon a left join "
+                    + "a.nhanVien b left join a.khachHang c where a.hinhThucGiaoHang = :htgh and (a.ma "
                     + "like CONCAT('%',:input, '%') or c.hoTen like CONCAT('%',:input, '%') or c.email like CONCAT('%',:input, '%') "
-                    + "or c.ma like CONCAT('%',:input, '%'))";
+                    + "or c.ma like CONCAT('%',:input, '%')) order by a.createdDate desc";
             Query query = session.createQuery(hql);
             query.setParameter("htgh", htgh);
             query.setParameter("input", input);
@@ -84,10 +96,10 @@ public class HoaDonRepository extends CrudRepository<String, HoaDon, HdHoaDonRes
         try {
             session = HibernateUtil.getSession();
             String hql = "select new core.quanly.viewmodel.HdHoaDonResponse2"
-                    + "(a.id, a.ma, a.ngayTao, a.ngayThanhToan, a.hinhThucThanhToan, a.thanhTien, a.tienKhachTra, a.tienThua, b.ma, b.ten,"
-                    + "c.sdt, c.diaChi, a.sdtNguoiShip, a.tenNguoiShip, a.tienShip, a.ngayShip, a.ngayNhan, a.trangThai) from HoaDon a left join "
+                    + "(a.id, a.ma, a.ngayTao, a.ngayThanhToan, a.hinhThucThanhToan, a.thanhTien, a.tienKhachChuyenKhoan ,a.tienKhachTra, a.tienThua, b.ma, b.ten,"
+                    + "a.tenNguoiNhan, a.sdtNguoiNhan, a.diaChi, a.sdtNguoiShip, a.tenNguoiShip, a.tienShip, a.ngayShip, a.ngayNhan, a.trangThai) from HoaDon a left join "
                     + "a.nhanVien b left join a.khachHang c where (a.ma like CONCAT('%',:input, '%') or c.hoTen like CONCAT('%',:input, '%') or c.email like CONCAT('%',:input, '%')"
-                    + "or c.ma like CONCAT('%',:input, '%')) and a.hinhThucGiaoHang = :htgh";
+                    + "or c.ma like CONCAT('%',:input, '%')) and a.hinhThucGiaoHang = :htgh order by a.createdDate desc";
             Query query = session.createQuery(hql);
             query.setParameter("input", input);
             query.setParameter("htgh", htgh);
@@ -103,9 +115,9 @@ public class HoaDonRepository extends CrudRepository<String, HoaDon, HdHoaDonRes
         try {
             session = HibernateUtil.getSession();
             String hql = "select new core.quanly.viewmodel.HdHoaDonResponse2"
-                    + "(a.id, a.ma, a.ngayTao, a.ngayThanhToan, a.hinhThucThanhToan, a.thanhTien, a.tienKhachTra, a.tienThua, b.ma, b.ten,"
-                    + "c.sdt, c.diaChi, a.sdtNguoiShip, a.tenNguoiShip, a.tienShip, a.ngayShip, a.ngayNhan, a.trangThai) from HoaDon a left join "
-                    + "a.nhanVien b left join a.khachHang c where a.trangThai = :trangthai and a.hinhThucGiaoHang = :htgh";
+                    + "(a.id, a.ma, a.ngayTao, a.ngayThanhToan, a.hinhThucThanhToan, a.thanhTien, a.tienKhachChuyenKhoan ,a.tienKhachTra, a.tienThua, b.ma, b.ten,"
+                    + "a.tenNguoiNhan, a.sdtNguoiNhan, a.diaChi, a.sdtNguoiShip, a.tenNguoiShip, a.tienShip, a.ngayShip, a.ngayNhan, a.trangThai) from HoaDon a left join "
+                    + "a.nhanVien b where a.trangThai = :trangthai and a.hinhThucGiaoHang = :htgh order by a.createdDate desc";
             Query query = session.createQuery(hql);
             query.setParameter("trangthai", trangthai);
             query.setParameter("htgh", htgh);
@@ -121,11 +133,10 @@ public class HoaDonRepository extends CrudRepository<String, HoaDon, HdHoaDonRes
         try {
             session = HibernateUtil.getSession();
             String hql = "select new core.quanly.viewmodel.HdHoaDonResponse1"
-                    + "(a.id, a.ma, a.ngayTao, a.ngayThanhToan, a.hinhThucThanhToan, a.thanhTien, "
-                    + "a.tienKhachTra, a.tienThua, b.ma, b.ten,"
-                    + "c.sdt, c.diaChi, a.trangThai) from HoaDon a "
-                    + "left join a.nhanVien b left join a.khachHang c"
-                    + " where a.trangThai = :trangthai and a.hinhThucGiaoHang = :htgh";
+                    + "(a.id, a.ma, a.ngayTao, a.ngayThanhToan, a.hinhThucThanhToan, a.thanhTien, a.tienKhachChuyenKhoan ,a.tienKhachTra, a.tienThua, b.ma, b.ten,"
+                    + "c.hoTen, c.sdt, c.diaChi, a.trangThai) from HoaDon a left join "
+                    + "a.nhanVien b left join a.khachHang c"
+                    + " where a.trangThai = :trangthai and a.hinhThucGiaoHang = :htgh order by a.createdDate desc";
             Query query = session.createQuery(hql);
             query.setParameter("trangthai", trangthai);
             query.setParameter("htgh", htgh);
@@ -141,11 +152,10 @@ public class HoaDonRepository extends CrudRepository<String, HoaDon, HdHoaDonRes
         try {
             session = HibernateUtil.getSession();
             String hql = "select new core.quanly.viewmodel.HdHoaDonResponse1"
-                    + "(a.id, a.ma, a.ngayTao, a.ngayThanhToan, a.hinhThucThanhToan, a.thanhTien, "
-                    + "a.tienKhachTra, a.tienThua, b.ma, b.ten,"
-                    + "c.sdt, c.diaChi, a.trangThai) from HoaDon a "
-                    + "left join a.nhanVien b left join a.khachHang c"
-                    + " where a.hinhThucThanhToan = :hinhThuc and a.hinhThucGiaoHang = :htgh";
+                    + "(a.id, a.ma, a.ngayTao, a.ngayThanhToan, a.hinhThucThanhToan, a.thanhTien, a.tienKhachChuyenKhoan ,a.tienKhachTra, a.tienThua, b.ma, b.ten,"
+                    + "c.hoTen, c.sdt, c.diaChi, a.trangThai) from HoaDon a left join "
+                    + "a.nhanVien b left join a.khachHang c"
+                    + " where a.hinhThucThanhToan = :hinhThuc and a.hinhThucGiaoHang = :htgh order by a.createdDate desc";
             Query query = session.createQuery(hql);
             query.setParameter("hinhThuc", hinhThuc);
             query.setParameter("htgh", htgh);
@@ -161,9 +171,9 @@ public class HoaDonRepository extends CrudRepository<String, HoaDon, HdHoaDonRes
         try {
             session = HibernateUtil.getSession();
             String hql = "select new core.quanly.viewmodel.HdHoaDonResponse2"
-                    + "(a.id, a.ma, a.ngayTao, a.ngayThanhToan, a.hinhThucThanhToan, a.thanhTien, a.tienKhachTra, a.tienThua, b.ma, b.ten,"
-                    + "c.sdt, c.diaChi, a.sdtNguoiShip, a.tenNguoiShip, a.tienShip, a.ngayShip, a.ngayNhan, a.trangThai) from HoaDon a left join "
-                    + "a.nhanVien b left join a.khachHang c where a.hinhThucThanhToan = :hinhThuc and a.hinhThucGiaoHang = :htgh";
+                    + "(a.id, a.ma, a.ngayTao, a.ngayThanhToan, a.hinhThucThanhToan, a.thanhTien, a.tienKhachChuyenKhoan ,a.tienKhachTra, a.tienThua, b.ma, b.ten,"
+                    + "a.tenNguoiNhan, a.sdtNguoiNhan, a.diaChi, a.sdtNguoiShip, a.tenNguoiShip, a.tienShip, a.ngayShip, a.ngayNhan, a.trangThai) from HoaDon a left join "
+                    + "a.nhanVien b where a.hinhThucThanhToan = :hinhThuc and a.hinhThucGiaoHang = :htgh order by a.createdDate desc";
             Query query = session.createQuery(hql);
             query.setParameter("hinhThuc", hinhThuc);
             query.setParameter("htgh", htgh);
@@ -179,11 +189,10 @@ public class HoaDonRepository extends CrudRepository<String, HoaDon, HdHoaDonRes
         try {
             session = HibernateUtil.getSession();
             String hql = "select new core.quanly.viewmodel.HdHoaDonResponse1"
-                    + "(a.id, a.ma, a.ngayTao, a.ngayThanhToan, a.hinhThucThanhToan, a.thanhTien, "
-                    + "a.tienKhachTra, a.tienThua, b.ma, b.ten,"
-                    + "c.sdt, c.diaChi, a.trangThai) from HoaDon a "
-                    + "left join a.nhanVien b left join a.khachHang c"
-                    + " where (a.ngayTao between :time1 and :time2) and a.hinhThucGiaoHang = :htgh";
+                    + "(a.id, a.ma, a.ngayTao, a.ngayThanhToan, a.hinhThucThanhToan, a.thanhTien, a.tienKhachChuyenKhoan ,a.tienKhachTra, a.tienThua, b.ma, b.ten,"
+                    + "c.hoTen, c.sdt, c.diaChi, a.trangThai) from HoaDon a left join "
+                    + "a.nhanVien b left join a.khachHang c"
+                    + " where (a.ngayTao between :time1 and :time2) and a.hinhThucGiaoHang = :htgh order by a.createdDate desc";
             Query query = session.createQuery(hql);
             query.setParameter("time1", time1);
             query.setParameter("time2", time2);
@@ -200,9 +209,9 @@ public class HoaDonRepository extends CrudRepository<String, HoaDon, HdHoaDonRes
         try {
             session = HibernateUtil.getSession();
             String hql = "select new core.quanly.viewmodel.HdHoaDonResponse2"
-                    + "(a.id, a.ma, a.ngayTao, a.ngayThanhToan, a.hinhThucThanhToan, a.thanhTien, a.tienKhachTra, a.tienThua, b.ma, b.ten,"
-                    + "c.sdt, c.diaChi, a.sdtNguoiShip, a.tenNguoiShip, a.tienShip, a.ngayShip, a.ngayNhan, a.trangThai) from HoaDon a left join "
-                    + "a.nhanVien b left join a.khachHang c where (a.ngayTao between :time1 and :time2) and a.hinhThucGiaoHang = :htgh";
+                    + "(a.id, a.ma, a.ngayTao, a.ngayThanhToan, a.hinhThucThanhToan, a.thanhTien, a.tienKhachChuyenKhoan ,a.tienKhachTra, a.tienThua, b.ma, b.ten,"
+                    + "a.tenNguoiNhan, a.sdtNguoiNhan, a.diaChi, a.sdtNguoiShip, a.tenNguoiShip, a.tienShip, a.ngayShip, a.ngayNhan, a.trangThai) from HoaDon a left join "
+                    + "a.nhanVien b where (a.ngayTao between :time1 and :time2) and a.hinhThucGiaoHang = :htgh order by a.createdDate desc";
             Query query = session.createQuery(hql);
             query.setParameter("time1", time1);
             query.setParameter("time2", time2);
@@ -248,8 +257,217 @@ public class HoaDonRepository extends CrudRepository<String, HoaDon, HdHoaDonRes
         return list;
     }
 
+    public List<HdHoaDonResponse1> getListbyAllComboBox(int trangthai, int httt, Date time1, Date time2, int htgh) {
+        List<HdHoaDonResponse1> list = new ArrayList<>();
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "select new core.quanly.viewmodel.HdHoaDonResponse1"
+                    + "(a.id, a.ma, a.ngayTao, a.ngayThanhToan, a.hinhThucThanhToan, a.thanhTien, a.tienKhachChuyenKhoan ,a.tienKhachTra, a.tienThua, b.ma, b.ten,"
+                    + "c.hoTen, c.sdt, c.diaChi, a.trangThai) from HoaDon a left join "
+                    + "a.nhanVien b left join a.khachHang c"
+                    + " where a.trangThai = :trangthai and a.hinhThucThanhToan = :httt"
+                    + " and (a.ngayTao between :time1 and :time2)  and a.hinhThucGiaoHang = :htgh order by a.createdDate desc";
+            Query query = session.createQuery(hql);
+            query.setParameter("trangthai", trangthai);
+            query.setParameter("htgh", htgh);
+            query.setParameter("httt", httt);
+            query.setParameter("time1", time1);
+            query.setParameter("time2", time2);
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public List<HdHoaDonResponse1> getListbyTrangThaiandTime(int trangthai, Date time1, Date time2, int htgh) {
+        List<HdHoaDonResponse1> list = new ArrayList<>();
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "select new core.quanly.viewmodel.HdHoaDonResponse1"
+                    + "(a.id, a.ma, a.ngayTao, a.ngayThanhToan, a.hinhThucThanhToan, a.thanhTien, a.tienKhachChuyenKhoan ,a.tienKhachTra, a.tienThua, b.ma, b.ten,"
+                    + "c.hoTen, c.sdt, c.diaChi, a.trangThai) from HoaDon a left join "
+                    + "a.nhanVien b left join a.khachHang c"
+                    + " where a.trangThai = :trangthai"
+                    + " and (a.ngayTao between :time1 and :time2)  and a.hinhThucGiaoHang = :htgh order by a.createdDate desc";
+            Query query = session.createQuery(hql);
+            query.setParameter("trangthai", trangthai);
+            query.setParameter("htgh", htgh);
+            query.setParameter("time1", time1);
+            query.setParameter("time2", time2);
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public List<HdHoaDonResponse1> getListbyHinhthucandTime(int httt, Date time1, Date time2, int htgh) {
+        List<HdHoaDonResponse1> list = new ArrayList<>();
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "select new core.quanly.viewmodel.HdHoaDonResponse1"
+                    + "(a.id, a.ma, a.ngayTao, a.ngayThanhToan, a.hinhThucThanhToan, a.thanhTien, a.tienKhachChuyenKhoan ,a.tienKhachTra, a.tienThua, b.ma, b.ten,"
+                    + "c.hoTen, c.sdt, c.diaChi, a.trangThai) from HoaDon a left join "
+                    + "a.nhanVien b left join a.khachHang c"
+                    + " where a.hinhThucThanhToan = :httt"
+                    + " and (a.ngayTao between :time1 and :time2)  and a.hinhThucGiaoHang = :htgh order by a.createdDate desc";
+            Query query = session.createQuery(hql);
+            query.setParameter("htgh", htgh);
+            query.setParameter("httt", httt);
+            query.setParameter("time1", time1);
+            query.setParameter("time2", time2);
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public List<HdHoaDonResponse1> getListbyAllTT(int trangthai, int httt, int htgh) {
+        List<HdHoaDonResponse1> list = new ArrayList<>();
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "select new core.quanly.viewmodel.HdHoaDonResponse1"
+                    + "(a.id, a.ma, a.ngayTao, a.ngayThanhToan, a.hinhThucThanhToan, a.thanhTien, a.tienKhachChuyenKhoan ,a.tienKhachTra, a.tienThua, b.ma, b.ten,"
+                    + "c.hoTen, c.sdt, c.diaChi, a.trangThai) from HoaDon a left join "
+                    + "a.nhanVien b left join a.khachHang c"
+                    + " where a.trangThai = :trangthai and a.hinhThucThanhToan = :httt"
+                    + " and a.hinhThucGiaoHang = :htgh order by a.createdDate desc";
+            Query query = session.createQuery(hql);
+            query.setParameter("trangthai", trangthai);
+            query.setParameter("htgh", htgh);
+            query.setParameter("httt", httt);
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    //list2
+    public List<HdHoaDonResponse2> getList2byAllComboBox(int trangthai, int httt, Date time1, Date time2, int htgh) {
+        List<HdHoaDonResponse2> list = new ArrayList<>();
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "select new core.quanly.viewmodel.HdHoaDonResponse2"
+                    + "(a.id, a.ma, a.ngayTao, a.ngayThanhToan, a.hinhThucThanhToan, a.thanhTien, a.tienKhachChuyenKhoan ,a.tienKhachTra, a.tienThua, b.ma, b.ten,"
+                    + "a.tenNguoiNhan, a.sdtNguoiNhan, a.diaChi, a.sdtNguoiShip, a.tenNguoiShip, a.tienShip, a.ngayShip, a.ngayNhan, a.trangThai) from HoaDon a left join "
+                    + "a.nhanVien b"
+                    + " where a.trangThai = :trangthai and a.hinhThucThanhToan = :httt"
+                    + " and (a.ngayTao between :time1 and :time2)  and a.hinhThucGiaoHang = :htgh order by a.createdDate desc";
+            Query query = session.createQuery(hql);
+            query.setParameter("trangthai", trangthai);
+            query.setParameter("htgh", htgh);
+            query.setParameter("httt", httt);
+            query.setParameter("time1", time1);
+            query.setParameter("time2", time2);
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public List<HdHoaDonResponse2> getList2byTrangThaiandTime(int trangthai, Date time1, Date time2, int htgh) {
+        List<HdHoaDonResponse2> list = new ArrayList<>();
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "select new core.quanly.viewmodel.HdHoaDonResponse2"
+                    + "(a.id, a.ma, a.ngayTao, a.ngayThanhToan, a.hinhThucThanhToan, a.thanhTien, a.tienKhachChuyenKhoan ,a.tienKhachTra, a.tienThua, b.ma, b.ten,"
+                    + "a.tenNguoiNhan, a.sdtNguoiNhan, a.diaChi, a.sdtNguoiShip, a.tenNguoiShip, a.tienShip, a.ngayShip, a.ngayNhan, a.trangThai) from HoaDon a left join "
+                    + "a.nhanVien b"
+                    + " where a.trangThai = :trangthai"
+                    + " and (a.ngayTao between :time1 and :time2)  and a.hinhThucGiaoHang = :htgh order by a.createdDate desc";
+            Query query = session.createQuery(hql);
+            query.setParameter("trangthai", trangthai);
+            query.setParameter("htgh", htgh);
+            query.setParameter("time1", time1);
+            query.setParameter("time2", time2);
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public List<HdHoaDonResponse2> getList2byHinhthucandTime(int httt, Date time1, Date time2, int htgh) {
+        List<HdHoaDonResponse2> list = new ArrayList<>();
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "select new core.quanly.viewmodel.HdHoaDonResponse2"
+                    + "(a.id, a.ma, a.ngayTao, a.ngayThanhToan, a.hinhThucThanhToan, a.thanhTien, a.tienKhachChuyenKhoan ,a.tienKhachTra, a.tienThua, b.ma, b.ten,"
+                    + "a.tenNguoiNhan, a.sdtNguoiNhan, a.diaChi, a.sdtNguoiShip, a.tenNguoiShip, a.tienShip, a.ngayShip, a.ngayNhan, a.trangThai) from HoaDon a left join "
+                    + "a.nhanVien b"
+                    + " where a.hinhThucThanhToan = :httt"
+                    + " and (a.ngayTao between :time1 and :time2)  and a.hinhThucGiaoHang = :htgh order by a.createdDate desc";
+            Query query = session.createQuery(hql);
+            query.setParameter("htgh", htgh);
+            query.setParameter("httt", httt);
+            query.setParameter("time1", time1);
+            query.setParameter("time2", time2);
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public List<HdHoaDonResponse2> getList2byAllTT(int trangthai, int httt, int htgh) {
+        List<HdHoaDonResponse2> list = new ArrayList<>();
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "select new core.quanly.viewmodel.HdHoaDonResponse2"
+                    + "(a.id, a.ma, a.ngayTao, a.ngayThanhToan, a.hinhThucThanhToan, a.thanhTien, a.tienKhachChuyenKhoan ,a.tienKhachTra, a.tienThua, b.ma, b.ten,"
+                    + "a.tenNguoiNhan, a.sdtNguoiNhan, a.diaChi, a.sdtNguoiShip, a.tenNguoiShip, a.tienShip, a.ngayShip, a.ngayNhan, a.trangThai) from HoaDon a left join "
+                    + "a.nhanVien b"
+                    + " where a.trangThai = :trangthai and a.hinhThucThanhToan = :httt"
+                    + " and a.hinhThucGiaoHang = :htgh order by a.createdDate desc";
+            Query query = session.createQuery(hql);
+            query.setParameter("trangthai", trangthai);
+            query.setParameter("htgh", htgh);
+            query.setParameter("httt", httt);
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public boolean updateTTHoaDon(String id) {
+        boolean check = false;
+        try {
+            session = HibernateUtil.getSession();
+            trans = session.beginTransaction();
+            String hql = "update HoaDon set trang_thai = 1 where id = :id";
+            Query query = session.createQuery(hql);
+            query.setParameter("id", id);
+            query.executeUpdate();
+            trans.commit();
+            check = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return check;
+    }
+
+    public String findIdByMa(String ma) {
+        String id = "";
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "SELECT a.id FROM HoaDon a WHERE a.ma = :ma";
+            Query query = session.createQuery(hql);
+            query.setParameter("ma", ma);
+            if (query.getSingleResult() != null) {
+                id = (String) query.getSingleResult();
+            }
+        } catch (Exception e) {
+        }
+        return id;
+    }
+
     public static void main(String[] args) {
-        List<HdHoaDonChiTietResponse1> list = new HoaDonRepository().getListHDCT("HD02");
-        System.out.println(list);
+        String id = new HoaDonRepository().findIdByMa("HD7");
+        System.out.println(id);
     }
 }
