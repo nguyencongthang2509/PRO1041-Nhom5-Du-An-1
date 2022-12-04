@@ -74,4 +74,59 @@ public class HoaDonserviceImpl implements HoaDonservice {
     public List<HdHoaDonResponse2> getList2byTime(Date time1, Date time2, int htgh) {
         return repo.getList2byTime(time1, time2, htgh);
     }
+
+    @Override
+    public List<HdHoaDonResponse1> getListbyAllComboBox(int trangthai, int httt, Date time1, Date time2, int htgh) {
+        return repo.getListbyAllComboBox(trangthai, httt, time1, time2, htgh);
+    }
+
+    @Override
+    public List<HdHoaDonResponse1> getListbyAllTT(int trangthai, int httt, int htgh) {
+        return repo.getListbyAllTT(trangthai, httt, htgh);
+    }
+
+    @Override
+    public List<HdHoaDonResponse1> getListbyTrangThaiandTime(int trangthai, Date time1, Date time2, int htgh) {
+        return repo.getListbyTrangThaiandTime(trangthai, time1, time2, htgh);
+    }
+
+    @Override
+    public List<HdHoaDonResponse1> getListbyHinhthucandTime(int httt, Date time1, Date time2, int htgh) {
+        return repo.getListbyHinhthucandTime(httt, time1, time2, htgh);
+    }
+
+    @Override
+    public List<HdHoaDonResponse2> getList2byAllComboBox(int trangthai, int httt, Date time1, Date time2, int htgh) {
+        return repo.getList2byAllComboBox(trangthai, httt, time1, time2, htgh);
+    }
+
+    @Override
+    public List<HdHoaDonResponse2> getList2byAllTT(int trangthai, int httt, int htgh) {
+        return repo.getList2byAllTT(trangthai, httt, htgh);
+    }
+
+    @Override
+    public List<HdHoaDonResponse2> getList2byTrangThaiandTime(int trangthai, Date time1, Date time2, int htgh) {
+        return repo.getList2byTrangThaiandTime(trangthai, time1, time2, htgh);
+    }
+
+    @Override
+    public List<HdHoaDonResponse2> getList2byHinhthucandTime(int httt, Date time1, Date time2, int htgh) {
+        return repo.getList2byHinhthucandTime(httt, time1, time2, htgh);
+    }
+
+    @Override
+    public long getCountHoaDon() {
+        return repo.getCountHoaDon();
+    }
+
+    @Override
+    public boolean updateTTHoaDon(String id) {
+        return repo.updateTTHoaDon(id);
+    }
+
+    @Override
+    public String findIdbyMa(String ma) {
+        return repo.findIdByMa(ma);
+    }
 }

@@ -31,18 +31,76 @@ public class HdHoaDonResponse1 {
     private String maNV;
     private String tenNV;
     private String tenKH;
-    private String diaChi;
     private String sdt;
+    private String diaChi;
     private Integer trangThai;
 
+    public String getNgayThanhToanStr() {
+        if (ngayThanhToan == null) {
+            return "..........";
+        }
+        return String.valueOf(ngayThanhToan);
+    }
+
+    public String getThanhTienStr() {
+        if (thanhTien == null) {
+            return "0VNĐ";
+        }
+        return String.valueOf(thanhTien) + "VNĐ";
+    }
+
+    public String getTienKhachCKStr() {
+        if (tienKhachCK == null) {
+            return "0VNĐ";
+        }
+        return String.valueOf(tienKhachCK) + "VNĐ";
+    }
+
+    public String getTienKhachTraStr() {
+        if (tienKhachTra == null) {
+            return "0VNĐ";
+        }
+        return String.valueOf(tienKhachTra) + "VNĐ";
+    }
+
+    public String getTienThuaStr() {
+        if (tienThua == null) {
+            return "0VNĐ";
+        }
+        return String.valueOf(tienThua) + "VNĐ";
+    }
+
+    public String getTenKHStr() {
+        if (tenKH == null) {
+            return "Khách bán lẻ";
+        }
+        return String.valueOf(tenKH);
+    }
+
+    public String getSDTStr() {
+        if (sdt == null) {
+            return "..........";
+        }
+        return String.valueOf(sdt);
+    }
+
+    public String getDiaChiStr() {
+        if (diaChi == null) {
+            return "..........";
+        }
+        return String.valueOf(diaChi);
+    }
+
     public String getTT() {
-        if(trangThai == 0){
+        if (trangThai == 0) {
             return "Chờ thanh toán";
-        }else if(trangThai == 1){
+        } else if (trangThai == 1) {
             return "Đã hủy";
-        }else if(trangThai == 2){
+        } else if (trangThai == 2) {
             return "Đã thanh toán";
-        }else if(trangThai == 3){
+        } else if (trangThai == 3) {
+            return "Chờ giao hàng";
+        } else if (trangThai == 4) {
             return "Đang giao";
         }
         return "Đã giao";
@@ -53,6 +111,6 @@ public class HdHoaDonResponse1 {
     }
 
     public Object[] toDaTaRow() {
-        return new Object[]{ma, ngayTao, ngayThanhToan == null ? "No" : ngayThanhToan, getHinhThucTT(), thanhTien == null ? "No" : thanhTien, tienKhachCK == null ? "0" : tienKhachCK, tienKhachTra == null ? "0" : tienKhachTra, tienThua == null ? "0" : tienThua, maNV, tenNV, tenKH == null ? "Khách bán lẻ" : tenKH, diaChi == null ? "No" : diaChi, sdt == null ? "No" : sdt, getTT()};
+        return new Object[]{ma, ngayTao, ngayThanhToan == null ? "No" : ngayThanhToan, getThanhTienStr(), maNV, tenKH == null ? "Khách bán lẻ" : tenKH, getTT()};
     }
 }

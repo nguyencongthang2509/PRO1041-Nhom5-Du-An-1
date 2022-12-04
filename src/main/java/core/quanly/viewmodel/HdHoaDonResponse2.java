@@ -31,14 +31,105 @@ public class HdHoaDonResponse2 {
     private String maNV;
     private String tenNV;
     private String tenNguoiNhan;
-    private String diaChi;
     private String sdt;
+    private String diaChi;
     private String sdtship;
     private String tennguoiship;
     private BigDecimal tienship;
     private Date ngayship;
     private Date ngaynhan;
     private Integer trangThai;
+
+    public String getNgayThanhToanStr() {
+        if (ngayThanhToan == null) {
+            return "..........";
+        }
+        return String.valueOf(ngayThanhToan);
+    }
+
+    public String getThanhTienStr() {
+        if (thanhTien == null) {
+            return "0VNĐ";
+        }
+        return String.valueOf(thanhTien) + "VNĐ";
+    }
+
+    public String getTienKhachCKStr() {
+        if (tienKhachCK == null) {
+            return "0VNĐ";
+        }
+        return String.valueOf(tienKhachCK) + "VNĐ";
+    }
+
+    public String getTienKhachTraStr() {
+        if (tienKhachTra == null) {
+            return "0VNĐ";
+        }
+        return String.valueOf(tienKhachTra) + "VNĐ";
+    }
+
+    public String getTienThuaStr() {
+        if (tienThua == null) {
+            return "0VNĐ";
+        }
+        return String.valueOf(tienThua) + "VNĐ";
+    }
+
+    public String getTenKHStr() {
+        if (tenNguoiNhan == null) {
+            return "..........";
+        }
+        return String.valueOf(tenNguoiNhan);
+    }
+
+    public String getSDTStr() {
+        if (sdt == null) {
+            return "..........";
+        }
+        return sdt;
+    }
+
+    public String getDiaChiStr() {
+        if (diaChi == null) {
+            return "..........";
+        }
+        return diaChi;
+    }
+
+    public String getTenNguoiShipStr() {
+        if (tennguoiship == null) {
+            return "..........";
+        }
+        return tennguoiship;
+    }
+
+    public String getSDTShipStr() {
+        if (sdtship == null) {
+            return "..........";
+        }
+        return sdtship;
+    }
+
+    public String getNgayShipStr() {
+        if (ngayship == null) {
+            return "..........";
+        }
+        return String.valueOf(ngayship);
+    }
+
+    public String getNgayNhanStr() {
+        if (ngaynhan == null) {
+            return "..........";
+        }
+        return String.valueOf(ngaynhan);
+    }
+
+    public String getTienshipStr() {
+        if (tienship == null) {
+            return "0VNĐ";
+        }
+        return String.valueOf(tienship) + "VNĐ";
+    }
 
     public String getTT() {
         if (trangThai == 0) {
@@ -48,6 +139,8 @@ public class HdHoaDonResponse2 {
         } else if (trangThai == 2) {
             return "Đã thanh toán";
         } else if (trangThai == 3) {
+            return "Chờ giao hàng";
+        } else if (trangThai == 4) {
             return "Đang giao";
         }
         return "Đã giao";
@@ -58,7 +151,7 @@ public class HdHoaDonResponse2 {
     }
 
     public Object[] toDaTaRow() {
-        return new Object[]{ma, ngayTao, ngayThanhToan == null ? "No" : ngayThanhToan, getHinhThucTT(), thanhTien == null ? "0" : thanhTien, tienKhachCK == null ? "0" : tienKhachCK, tienKhachTra == null ? "0" : tienKhachTra, tienThua == null ? "0" : tienThua, maNV,
-            tenNV, tenNguoiNhan == null ? "No" : tenNguoiNhan, diaChi == null ? "No" : diaChi, sdt == null ? "No" : sdt, sdtship == null ? "No" : sdtship, tennguoiship == null ? "No" : tennguoiship, tienship == null ? "0" : tienship, ngayship == null ? "No" : ngayship, ngaynhan == null ? "No" : ngaynhan, getTT()};
+        return new Object[]{ma, ngayTao, ngayThanhToan == null ? "No" : ngayThanhToan, getThanhTienStr(), maNV,
+            tenNguoiNhan == null ? "No" : tenNguoiNhan, diaChi == null ? "No" : diaChi, tennguoiship == null ? "No" : tennguoiship, ngayship == null ? "No" : ngayship, ngaynhan == null ? "No" : ngaynhan, getTT()};
     }
 }
