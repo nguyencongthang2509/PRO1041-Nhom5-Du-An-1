@@ -20,4 +20,5 @@ public class ThongKeHangHoaServiceImpl implements ThongKeHangHoaService{
         return tkhh.getListHDCT();
     }
     
+    
 }

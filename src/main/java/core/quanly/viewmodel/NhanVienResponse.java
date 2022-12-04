@@ -36,14 +36,6 @@ public class NhanVienResponse{
         return strDate;
              
        }
-        
-        
-    
-    
-
-   
-    
-    
 
     public Object[] toDataRow(int index){
     return new Object[]{index,ma,ten,gioitinh==0?"Nam":"Nữ",getnngaysinh(),diachi,sdt,email,vaitro==0?

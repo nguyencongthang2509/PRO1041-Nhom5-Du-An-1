@@ -55,10 +55,13 @@ public class NhanVienServiceImpl implements NhanVienService {
             return "Số điện thoại không được để trống";
         }
         if (nhanVien.getEmail().isEmpty()) {
-            return "Số điện thoại không được để trống";
+            return "Email không được để trống";
         }
-        if (nhanVien.getSdt().matches("^0{1}\\d{10}$")) {
+        if (!nhanVien.getSdt().matches("^0{1}\\d{10}$")) {
             return "Số điện thoại phải là số và gồm 10 ký tự";
+        }
+        if (!nhanVien.getEmail().matches("\\w+@{1}\\w+.+\\w")) {
+            return "Sai định dạng email";
         }
         if (nhanVienRepos.saveOrUpdate(nhanVien) == null) {
             return "Create failded";
@@ -71,6 +74,7 @@ public class NhanVienServiceImpl implements NhanVienService {
     @Override
     public String update(NhanVien nhanVien) {
         NhanVien nhanVienFindById = nhanVienRepos.findById(nhanVien.getId());
+        
         System.out.println(nhanVien.getTrangThaiXoa() + "ahshduihasuhdiuashidasd");
         if (nhanVienFindById == null) {
             return "Nhân viên không tồn tại";
@@ -88,6 +92,7 @@ public class NhanVienServiceImpl implements NhanVienService {
                 nhanVienFindById.setMa(nhanVien.getMa());
             }
         }
+        
 //        
         if (nhanVien.getTen().isEmpty()) {
             return "Tên không được để trống";
@@ -99,10 +104,13 @@ public class NhanVienServiceImpl implements NhanVienService {
             return "Số điện thoại không được để trống";
         }
         if (nhanVien.getEmail().isEmpty()) {
-            return "Số điện thoại không được để trống";
+            return "Email không được để trống";
         }
-        if (nhanVien.getSdt().matches("^0{1}\\d{10}$")) {
+        if (!nhanVien.getSdt().matches("^0{1}\\d{10}$")) {
             return "Số điện thoại phải là số và gồm 10 ký tự";
+        }
+        if (!nhanVien.getEmail().matches("\\w+@{1}\\w+.+\\w")) {
+            return "Sai định dạng email";
         }
         nhanVienFindById.setTen(nhanVien.getTen());
         nhanVienFindById.setGioiTinh(nhanVien.getGioiTinh());

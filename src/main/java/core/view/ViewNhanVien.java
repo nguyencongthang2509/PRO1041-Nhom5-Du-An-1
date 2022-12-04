@@ -19,6 +19,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import javax.xml.bind.DatatypeConverter;
 import util.EmailSender;
+import util.ExportFileExcelNhanVien;
+import util.ImportExcelFileNhanVien;
 
 /**
  *
@@ -83,6 +85,7 @@ public class ViewNhanVien extends javax.swing.JPanel {
         rdoNam6 = new javax.swing.JRadioButton();
         jLabel66 = new javax.swing.JLabel();
         btnExport = new javax.swing.JButton();
+        btnMauImport = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -254,6 +257,15 @@ public class ViewNhanVien extends javax.swing.JPanel {
             }
         });
 
+        btnMauImport.setBackground(new java.awt.Color(153, 204, 255));
+        btnMauImport.setFont(new java.awt.Font("Dialog", 0, 15)); // NOI18N
+        btnMauImport.setText("Mẫu Import");
+        btnMauImport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMauImportbtnSuaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
         jPanel16Layout.setHorizontalGroup(
@@ -282,12 +294,16 @@ public class ViewNhanVien extends javax.swing.JPanel {
                         .addComponent(txtEmail6)
                         .addComponent(txtNgaySinh6))
                     .addGroup(jPanel16Layout.createSequentialGroup()
-                        .addComponent(btnSua7, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(104, 104, 104)
+                        .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnSua7, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnThem6, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(44, 44, 44)
                         .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnNew6)
-                            .addComponent(btnExport, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(btnThem6, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel16Layout.createSequentialGroup()
+                                .addComponent(btnExport, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(31, 31, 31)
+                                .addComponent(btnMauImport, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -320,8 +336,8 @@ public class ViewNhanVien extends javax.swing.JPanel {
                         .addGap(52, 52, 52)
                         .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnSua7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnExport, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnExport, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnMauImport, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel16Layout.createSequentialGroup()
                         .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel63)
@@ -338,8 +354,8 @@ public class ViewNhanVien extends javax.swing.JPanel {
                                 .addGap(25, 25, 25)
                                 .addComponent(jLabel64)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(24, Short.MAX_VALUE))))
+                        .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         jPanel16Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnNew6, btnSua7, btnThem6});
@@ -365,6 +381,7 @@ public class ViewNhanVien extends javax.swing.JPanel {
                 "STT", "Ma", "Ten", "Gioi Tinh", "Ngay Sinh", "Diachi", "SDT", "Email", "Vai Tro", "Trang Thái"
             }
         ));
+        tblNhanVien.setRowHeight(25);
         tblNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblNhanVienMouseClicked(evt);
@@ -411,6 +428,7 @@ public class ViewNhanVien extends javax.swing.JPanel {
                 "STT", "Ma", "Ten", "Gioi Tinh", "Ngay Sinh", "Diachi", "SDT", "Email", "Vai Tro", "Trạng Thái"
             }
         ));
+        tblNhanVien1.setRowHeight(25);
         tblNhanVien1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblNhanVien1MouseClicked(evt);
@@ -679,12 +697,35 @@ public class ViewNhanVien extends javax.swing.JPanel {
     }//GEN-LAST:event_jPanel5MouseClicked
 
     private void btnExportbtnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportbtnSuaActionPerformed
-        // TODO add your handling code here:
+        try {
+            ExportFileExcelNhanVien export = new ExportFileExcelNhanVien();
+            boolean check = export.ExportExcel(listNhanVien);
+            if(check){
+                JOptionPane.showMessageDialog(this, "Export File Excel thành công");
+            }else{
+                JOptionPane.showMessageDialog(this, "Export File Excel thất bại");
+            }
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_btnExportbtnSuaActionPerformed
+
+    private void btnMauImportbtnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMauImportbtnSuaActionPerformed
+       try {
+            ImportExcelFileNhanVien importFile = new ImportExcelFileNhanVien();
+            boolean check = importFile.ImportExcel();
+            if(check){
+                JOptionPane.showMessageDialog(this, "Import File Excel thành công");
+            }else{
+                JOptionPane.showMessageDialog(this, "Import File Excel thất bại");
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnMauImportbtnSuaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExport;
+    private javax.swing.JButton btnMauImport;
     private javax.swing.JButton btnNew6;
     private javax.swing.JButton btnSua7;
     private javax.swing.JButton btnThem6;
