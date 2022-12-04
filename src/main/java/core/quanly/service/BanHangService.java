@@ -4,6 +4,7 @@ import core.quanly.viewmodel.BhChiTietSPResponse;
 import core.quanly.viewmodel.BhHoaDonChiTietResponse;
 import core.quanly.viewmodel.BhHoaDonResponse;
 import core.quanly.viewmodel.BhKhachHangResponse;
+import core.quanly.viewmodel.BhNhanVienResponse;
 import domainmodels.ChiTietSPKhuyenMai;
 import domainmodels.HoaDon;
 import domainmodels.HoaDonChiTiet;
@@ -23,6 +24,8 @@ public interface BanHangService {
     List<BhChiTietSPResponse> getAllChiTietSP();
 
     List<BhKhachHangResponse> getAllKhachHangResponse();
+    
+    List<BhNhanVienResponse> getAllNhanVienResponse();
 
     int genMaHoaDonTuDong();
 

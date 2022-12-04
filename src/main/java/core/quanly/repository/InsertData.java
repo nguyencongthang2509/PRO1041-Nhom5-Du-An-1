@@ -141,6 +141,34 @@ public class InsertData {
             }
             nhanVien.setGioiTinh(0);
             session.saveOrUpdate(nhanVien);
+            
+            NhanVien nhanVien1 = new NhanVien();
+            nhanVien1.setMa("NV002");
+            nhanVien1.setTen("Nguyễn Văn An");
+            nhanVien1.setVaiTro(1);
+            nhanVien1.setDiaChi("Thái Bình");
+            nhanVien1.setEmail("annv@gmail.com");
+            nhanVien1.setSdt("0234354566");
+            nhanVien1.setMatKhau("E10ADC3949BA59ABBE56E057F20F883E");
+            try {
+                nhanVien1.setNgaySinh(new SimpleDateFormat("dd-MM-yyyy").parse("25-09-2000"));
+            } catch (Exception e) {
+            }
+            nhanVien1.setGioiTinh(0);
+            session.saveOrUpdate(nhanVien1);
+            
+            KhachHang khachHangBanLe = new KhachHang();
+            khachHangBanLe.setMa("KH000");
+            khachHangBanLe.setHoTen("Khách bán lẻ");
+            khachHangBanLe.setEmail("khachbanle");
+            khachHangBanLe.setGioiTinh(0);
+            try {
+                khachHangBanLe.setNgaySinh(new SimpleDateFormat("dd-MM-yyyy").parse("1-1-2000"));
+            } catch (Exception e) {
+            }
+            khachHangBanLe.setSdt("0123456789");
+            khachHangBanLe.setDiaChi("Hà Nội");
+            session.saveOrUpdate(khachHangBanLe);
 
             KhachHang khachHang = new KhachHang();
             khachHang.setMa("KH001");

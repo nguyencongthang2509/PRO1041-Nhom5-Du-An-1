@@ -34,19 +34,19 @@ public class HoaDon extends PrimaryEntity implements Serializable {
     private KhachHang khachHang;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_nhan_vien", nullable = false)
+    @JoinColumn(name = "id_nhan_vien")
     private NhanVien nhanVien;
 
-    @Column(name = "ma", length = EntityProperties.LENGTH_CODE, nullable = false)
+    @Column(name = "ma", length = EntityProperties.LENGTH_CODE)
     private String ma;
 
-    @Column(name = "hinh_thuc_giao_hang", nullable = false)
+    @Column(name = "hinh_thuc_giao_hang")
     private Integer hinhThucGiaoHang;
 
-    @Column(name = "hinh_thuc_thanh_toan", nullable = false)
+    @Column(name = "hinh_thuc_thanh_toan")
     private Integer hinhThucThanhToan;
 
-    @Column(name = "ngay_tao", nullable = false)
+    @Column(name = "ngay_tao")
     private Date ngayTao;
 
     @Column(name = "ngay_thanh_toan")
@@ -103,6 +103,6 @@ public class HoaDon extends PrimaryEntity implements Serializable {
     @Column(name = "trang_thai_thanh_toan")
     private Integer trangThaiThanhToan;
 
-    @Column(name = "trang_thai", nullable = false)
+    @Column(name = "trang_thai")
     private Integer trangThai;
 }

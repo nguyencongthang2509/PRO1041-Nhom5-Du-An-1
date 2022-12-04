@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package domainmodels;
 
 import domainmodels.base.PrimaryEntity;
@@ -23,32 +27,23 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "hoa_don_chi_tiet")
-public class HoaDonChiTiet extends PrimaryEntity implements Serializable {
+@Table(name = "hoa_don_doi_hang_chi_tiet")
+public class HoaDonDoiHangChiTiet extends PrimaryEntity implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_hoa_don", nullable = false)
-    private HoaDon hoaDonId;
-
+    @JoinColumn(name = "id_hoa_don_doi_hang")
+    private HoaDonDoiHang hoaDonDoiTra;
+    
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_ctsp", nullable = false)
-    private ChiTietSP chiTietSPId;
-
-    @Column(name = "giam_gia_khuyen_mai", columnDefinition = "decimal(20,0)")
-    private BigDecimal giamGiaKhuyenMai;
-
+    @JoinColumn(name = "id_ctsp")
+    private ChiTietSP chiTietSP;
+    
+    @Column(name = "gia_ban")
+    private BigDecimal giaBan;
+    
     @Column(name = "so_luong")
     private Integer soLuong;
     
-    @Column(name = "so_luong_doi_tra")
-    private Integer soLuongDoiTra;
-
-    @Column(name = "don_gia", columnDefinition = "decimal(20,0)")
-    private BigDecimal donGia;
-
-    @Column(name = "gia_ban", columnDefinition = "decimal(20,0)")
-    private BigDecimal giaBan;
-
     @Column(name = "trang_thai")
     private Integer trangThai;
 }

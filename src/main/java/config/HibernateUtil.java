@@ -6,6 +6,8 @@ import domainmodels.ChiTietSPKhuyenMai;
 import domainmodels.Hang;
 import domainmodels.HoaDon;
 import domainmodels.HoaDonChiTiet;
+import domainmodels.HoaDonDoiHang;
+import domainmodels.HoaDonDoiHangChiTiet;
 import domainmodels.KhachHang;
 import domainmodels.KhuyenMai;
 import domainmodels.KichThuoc;
@@ -35,7 +37,7 @@ public class HibernateUtil {
         properties.put(Environment.USER, "sa");
         properties.put(Environment.PASS, "123456");
         properties.put(Environment.SHOW_SQL, "true");
-//        properties.put(Environment.HBM2DDL_AUTO, "create");//gen DB tự động
+        properties.put(Environment.HBM2DDL_AUTO, "create");//gen DB tự động
 
         conf.addAnnotatedClass(SanPham.class);
         conf.addAnnotatedClass(KhuyenMai.class);
@@ -49,7 +51,9 @@ public class HibernateUtil {
         conf.addAnnotatedClass(ChiTietSP.class);
         conf.addAnnotatedClass(ChiTietSPKhuyenMai.class);
         conf.addAnnotatedClass(HoaDonChiTiet.class);
-
+        conf.addAnnotatedClass(HoaDonDoiHang.class);
+        conf.addAnnotatedClass(HoaDonDoiHangChiTiet.class);
+        
         conf.setProperties(properties);
 
         ServiceRegistry registry = new StandardServiceRegistryBuilder()

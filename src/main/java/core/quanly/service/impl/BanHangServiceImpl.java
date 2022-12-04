@@ -6,6 +6,7 @@ import core.quanly.viewmodel.BhChiTietSPResponse;
 import core.quanly.viewmodel.BhHoaDonChiTietResponse;
 import core.quanly.viewmodel.BhHoaDonResponse;
 import core.quanly.viewmodel.BhKhachHangResponse;
+import core.quanly.viewmodel.BhNhanVienResponse;
 import domainmodels.ChiTietSP;
 import domainmodels.ChiTietSPKhuyenMai;
 import domainmodels.HoaDon;
@@ -188,6 +189,11 @@ public class BanHangServiceImpl implements BanHangService {
     @Override
     public HoaDonChiTiet findByIdHoaDonChiTiet(String id) {
         return banHangRepository.findByIdHoaDonChiTiet(id);
+    }
+
+    @Override
+    public List<BhNhanVienResponse> getAllNhanVienResponse() {
+        return banHangRepository.getAllNhanVienResponse();
     }
 
 }
