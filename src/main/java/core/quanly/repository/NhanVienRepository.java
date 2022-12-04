@@ -10,6 +10,7 @@ import domainmodels.NhanVien;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 import repository.CrudRepository;
 
@@ -75,5 +76,28 @@ public class NhanVienRepository extends CrudRepository<String, NhanVien, NhanVie
         }
         return list;
     }
+    public int genMaNhanVien() {
+        String maStr = "";
+        session = HibernateUtil.getSession();
+        try {
+            String nativeQuery = "SELECT MAX(CONVERT(INT, SUBSTRING(ma,3,10))) from nhan_vien";
+            NativeQuery query = session.createNativeQuery(nativeQuery);
+            if (query.getSingleResult() != null) {
+                maStr = query.getSingleResult().toString();
+            } else {
+                maStr = null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (maStr == null) {
+            maStr = "0";
+            int ma = Integer.parseInt(maStr);
+            return ++ma;
+        }
+        int ma = Integer.parseInt(maStr);
+        return ++ma;
+    }
+
 
 }

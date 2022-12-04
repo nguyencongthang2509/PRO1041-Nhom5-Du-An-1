@@ -23,12 +23,12 @@ public class NhanVienResponse{
     private String id;
     private String ma;
     private String ten;
-    private int gioitinh;
+    private Integer gioitinh;
     private Date ngaysinh;
     private String diachi;
     private String sdt;
     private String email;
-    private int vaitro;
+    private Integer vaitro;
     private Integer trangthaixoa;
        public String getnngaysinh(){
            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -36,14 +36,6 @@ public class NhanVienResponse{
         return strDate;
              
        }
-        
-        
-    
-    
-
-   
-    
-    
 
     public Object[] toDataRow(int index){
     return new Object[]{index,ma,ten,gioitinh==0?"Nam":"Nữ",getnngaysinh(),diachi,sdt,email,vaitro==0?
