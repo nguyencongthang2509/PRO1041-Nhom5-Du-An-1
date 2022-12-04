@@ -24,4 +24,5 @@ public interface SPKichThuocService {
 
     List<KichThuoc> getAll();
 
+    int genMaKichThuocTuDong();
 }

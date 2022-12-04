@@ -26,4 +26,6 @@ public interface SanPhamService {
     List<SanPham> getAll();
 
     List<SanPhamResponse> findMaOrTen(String input);
+    
+    int genMaSanPhamTuDong();
 }

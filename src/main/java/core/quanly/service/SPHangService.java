@@ -25,5 +25,7 @@ public interface SPHangService {
     String update(Hang hang);
 
     List<Hang> getAll();
+    
+    int genMaHangTuDong();
 
 }

@@ -24,4 +24,5 @@ public interface SPMauSacService {
 
     List<MauSac> getAll();
 
+    int genMaMauSacTuDong();
 }
