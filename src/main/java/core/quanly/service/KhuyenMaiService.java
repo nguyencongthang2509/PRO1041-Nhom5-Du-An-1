@@ -34,7 +34,7 @@ public interface KhuyenMaiService {
     
     List<KhuyenMaiResponse> FindMaOrTenByInputDaDienRa(String input);
 
-    boolean saveOrUpdateKM(KhuyenMai khuyenMai);
+    String saveOrUpdateKM(KhuyenMai khuyenMai);
 
     boolean updateKhuyenMaiChoSP(String idKhuyenMai, String idChiTietSP);
 
@@ -47,4 +47,16 @@ public interface KhuyenMaiService {
     List<KhuyenMaiResponse> GetKhuyenMaiSapDienRa(); 
     
     List<KhuyenMaiResponse> GetKhuyenMaiDaDienRa(); 
+    
+    int GenMaKhuyenMai();
+    
+    List<KMChiTietSPResponse> FindSanPhamByTen(Object input);
+    
+    List<String> SelectTenSanPham();
+    
+    boolean updateKhuyenMaiDangDienRa(String idKhuyenMai);
+    
+    List<KhuyenMaiResponse> GetKhuyenMaiKhongDienRa();
+    
+    boolean updateKhuyenMaiKhongDienRa(String idKhuyenMai);
 }

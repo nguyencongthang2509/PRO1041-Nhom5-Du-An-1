@@ -8,6 +8,7 @@ import config.HibernateUtil;
 import core.quanly.viewmodel.KMChiTietSPResponse;
 import core.quanly.viewmodel.KMSanphamDangKmReponse;
 import core.quanly.viewmodel.KhuyenMaiResponse;
+import core.quanly.viewmodel.SanPhamResponse;
 import domainmodels.ChiTietSP;
 import domainmodels.ChiTietSPKhuyenMai;
 import domainmodels.KhuyenMai;
@@ -18,6 +19,7 @@ import javax.persistence.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.annotations.common.reflection.XClass;
+import org.hibernate.query.NativeQuery;
 
 /**
  *
@@ -114,7 +116,7 @@ public class KhuyenMaiRepository extends repository.CrudRepository<String, ChiTi
         try {
             Session session = HibernateUtil.getSession();
             String hql = "SELECT NEW core.quanly.viewmodel.KhuyenMaiResponse(a.id, a.ma,a.ten, a.loaiKhuyenMai,"
-                    + " a.giaTri, a.ngayBatDau, a.ngayKetThuc ) FROM KhuyenMai a WHERE (a.ma LIKE CONCAT('%',:input,'%') OR a.ten LIKE CONCAT('%',:input,'%')) and  a.ngayBatDau < :currentTime and :currentTime <a.ngayKetThuc";
+                    + " a.giaTri, a.ngayBatDau, a.ngayKetThuc, a.moTa) FROM KhuyenMai a WHERE (a.ma LIKE CONCAT('%',:input,'%') or a.ten LIKE CONCAT('%',:input,'%')) and  a.ngayBatDau < :currentTime and :currentTime <a.ngayKetThuc order by a.createdDate DESC";
             javax.persistence.Query query = session.createQuery(hql);
             query.setParameter("input", input);
             query.setParameter("currentTime", new Date());
@@ -125,17 +127,12 @@ public class KhuyenMaiRepository extends repository.CrudRepository<String, ChiTi
         return list;
     }
 
-    public static void main(String[] args) {
-        List<KhuyenMaiResponse> list = new KhuyenMaiRepository().FindMaOrTenByInputDangDienRa("");
-        System.out.println(list.size());
-    }
-
     public List<KhuyenMaiResponse> FindMaOrTenByInputDaDienRa(String input) {
         List<KhuyenMaiResponse> list = new ArrayList<>();
         try {
             Session session = HibernateUtil.getSession();
             String hql = "SELECT NEW core.quanly.viewmodel.KhuyenMaiResponse(a.id, a.ma,a.ten, a.loaiKhuyenMai,"
-                    + " a.giaTri, a.ngayBatDau, a.ngayKetThuc ) FROM KhuyenMai a WHERE (a.ma LIKE CONCAT('%',:input,'%') OR a.ten LIKE CONCAT('%',:input,'%')) and  :currentTime > a.ngayKetThuc";
+                    + " a.giaTri, a.ngayBatDau, a.ngayKetThuc, a.moTa ) FROM KhuyenMai a WHERE (a.ma LIKE CONCAT('%',:input,'%') or a.ten LIKE CONCAT('%',:input,'%')) and  :currentTime > a.ngayKetThuc order by a.createdDate DESC";
             javax.persistence.Query query = session.createQuery(hql);
             query.setParameter("input", input);
             query.setParameter("currentTime", new Date());
@@ -151,7 +148,7 @@ public class KhuyenMaiRepository extends repository.CrudRepository<String, ChiTi
         try {
             Session session = HibernateUtil.getSession();
             String hql = "SELECT NEW core.quanly.viewmodel.KhuyenMaiResponse(a.id, a.ma,a.ten, a.loaiKhuyenMai,"
-                    + " a.giaTri, a.ngayBatDau, a.ngayKetThuc ) FROM KhuyenMai a WHERE (a.ma LIKE CONCAT('%',:input,'%') OR a.ten LIKE CONCAT('%',:input,'%')) and  :currentTime < a.ngayBatDau";
+                    + " a.giaTri, a.ngayBatDau, a.ngayKetThuc, a.moTa ) FROM KhuyenMai a WHERE (a.ma LIKE CONCAT('%',:input,'%') or a.ten LIKE CONCAT('%',:input,'%')) and  :currentTime < a.ngayBatDau order by a.createdDate DESC";
             javax.persistence.Query query = session.createQuery(hql);
             query.setParameter("input", input);
             query.setParameter("currentTime", new Date());
@@ -196,11 +193,49 @@ public class KhuyenMaiRepository extends repository.CrudRepository<String, ChiTi
 
     }
 
+    public boolean updateKhuyenMaiDangDienRa(String idKhuyenMai) {
+        boolean check = false;
+        try {
+            String sql = "Update ctsp_khuyen_mai set trang_thai = 0 where id_khuyen_mai = :idKhuyenMai";
+            session = HibernateUtil.getSession();
+            trans = session.beginTransaction();
+            org.hibernate.query.Query query = session.createNativeQuery(sql);
+            query.setParameter("idKhuyenMai", idKhuyenMai);
+            query.executeUpdate();
+            check = true;
+            trans.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            trans.rollback();
+        }
+        return check;
+
+    }
+
+    public boolean updateKhuyenMaiKhongDienRa(String idKhuyenMai) {
+        boolean check = false;
+        try {
+            String sql = "Update ctsp_khuyen_mai set trang_thai = 1 where id_khuyen_mai = :idKhuyenMai";
+            session = HibernateUtil.getSession();
+            trans = session.beginTransaction();
+            org.hibernate.query.Query query = session.createNativeQuery(sql);
+            query.setParameter("idKhuyenMai", idKhuyenMai);
+            query.executeUpdate();
+            check = true;
+            trans.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            trans.rollback();
+        }
+        return check;
+
+    }
+
     public List<KhuyenMaiResponse> getAllResponseKhuyenMai() {
         List<KhuyenMaiResponse> list = new ArrayList<>();
         try {
             session = HibernateUtil.getSession();
-            String hql = "SELECT  NEW core.quanly.viewmodel.KhuyenMaiResponse(a.id, a.ma,a.ten, a.loaiKhuyenMai,  a.giaTri, a.ngayBatDau, a.ngayKetThuc ) FROM KhuyenMai a";
+            String hql = "SELECT  NEW core.quanly.viewmodel.KhuyenMaiResponse(a.id, a.ma,a.ten, a.loaiKhuyenMai,  a.giaTri, a.ngayBatDau, a.ngayKetThuc, a.moTa) FROM KhuyenMai a";
             org.hibernate.query.Query query = session.createQuery(hql);
             list = query.getResultList();
         } catch (Exception e) {
@@ -214,7 +249,22 @@ public class KhuyenMaiRepository extends repository.CrudRepository<String, ChiTi
         List<KhuyenMaiResponse> list = new ArrayList<>();
         try {
             session = HibernateUtil.getSession();
-            String hql = "SELECT  NEW core.quanly.viewmodel.KhuyenMaiResponse(a.id, a.ma,a.ten, a.loaiKhuyenMai,  a.giaTri, a.ngayBatDau, a.ngayKetThuc ) FROM KhuyenMai a where a.ngayBatDau < :currentTime and :currentTime <a.ngayKetThuc";
+            String hql = "SELECT  NEW core.quanly.viewmodel.KhuyenMaiResponse(a.id, a.ma,a.ten, a.loaiKhuyenMai,  a.giaTri, a.ngayBatDau, a.ngayKetThuc, a.moTa ) FROM KhuyenMai a where a.ngayBatDau < :currentTime and :currentTime < a.ngayKetThuc order by a.createdDate DESC";
+            org.hibernate.query.Query query = session.createQuery(hql);
+            query.setParameter("currentTime", new Date());
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return list;
+    }
+
+    public List<KhuyenMaiResponse> GetKhuyenMaiKhongDienRa() {
+        List<KhuyenMaiResponse> list = new ArrayList<>();
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "SELECT  NEW core.quanly.viewmodel.KhuyenMaiResponse(a.id, a.ma,a.ten, a.loaiKhuyenMai,  a.giaTri, a.ngayBatDau, a.ngayKetThuc, a.moTa ) FROM KhuyenMai a where a.ngayBatDau > :currentTime or :currentTime > a.ngayKetThuc order by a.createdDate DESC";
             org.hibernate.query.Query query = session.createQuery(hql);
             query.setParameter("currentTime", new Date());
             list = query.getResultList();
@@ -229,7 +279,7 @@ public class KhuyenMaiRepository extends repository.CrudRepository<String, ChiTi
         List<KhuyenMaiResponse> list = new ArrayList<>();
         try {
             session = HibernateUtil.getSession();
-            String hql = "SELECT  NEW core.quanly.viewmodel.KhuyenMaiResponse(a.id, a.ma,a.ten, a.loaiKhuyenMai,  a.giaTri, a.ngayBatDau, a.ngayKetThuc ) FROM KhuyenMai a where  :currentTime < a.ngayBatDau";
+            String hql = "SELECT  NEW core.quanly.viewmodel.KhuyenMaiResponse(a.id, a.ma,a.ten, a.loaiKhuyenMai,  a.giaTri, a.ngayBatDau, a.ngayKetThuc, a.moTa ) FROM KhuyenMai a where  :currentTime < a.ngayBatDau order by a.createdDate DESC";
             org.hibernate.query.Query query = session.createQuery(hql);
             query.setParameter("currentTime", new Date());
             list = query.getResultList();
@@ -244,7 +294,8 @@ public class KhuyenMaiRepository extends repository.CrudRepository<String, ChiTi
         List<KhuyenMaiResponse> list = new ArrayList<>();
         try {
             session = HibernateUtil.getSession();
-            String hql = "SELECT  NEW core.quanly.viewmodel.KhuyenMaiResponse(a.id, a.ma,a.ten, a.loaiKhuyenMai,  a.giaTri, a.ngayBatDau, a.ngayKetThuc ) FROM KhuyenMai a where  :currentTime > a.ngayKetThuc";
+            String hql = "SELECT  NEW core.quanly.viewmodel.KhuyenMaiResponse(a.id, a.ma,a.ten, a.loaiKhuyenMai,"
+                    + "  a.giaTri, a.ngayBatDau, a.ngayKetThuc, a.moTa ) FROM KhuyenMai a where  :currentTime > a.ngayKetThuc order by a.createdDate DESC";
             org.hibernate.query.Query query = session.createQuery(hql);
             query.setParameter("currentTime", new Date());
             list = query.getResultList();
@@ -253,5 +304,63 @@ public class KhuyenMaiRepository extends repository.CrudRepository<String, ChiTi
             return null;
         }
         return list;
+    }
+
+    public int GenMaKhuyenMai() {
+        Session session = HibernateUtil.getSession();
+        String maStr = "";
+        try {
+            String nativequery = "SELECT MAX(CONVERT(INT, SUBSTRING(ma,3,15))) from khuyen_mai";
+            NativeQuery query = session.createNativeQuery(nativequery);
+            if (query.getSingleResult() != null) {
+                maStr = query.getSingleResult().toString();
+            } else {
+                maStr = null;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (maStr == null) {
+            maStr = "0";
+            int ma = Integer.parseInt(maStr);
+            return ++ma;
+        }
+        int ma = Integer.parseInt(maStr);
+        return ++ma;
+    }
+
+    public List<KMChiTietSPResponse> FindSanPhamByTen(Object input) {
+        List<KMChiTietSPResponse> list = new ArrayList<>();
+        try {
+            Session session = HibernateUtil.getSession();
+            String hql = "SELECT NEW core.quanly.viewmodel.KMChiTietSPResponse(a.id, a.maChiTietSP, a.sanPham.ten, a.hang.ten, a.mauSac.ten\n"
+                    + "                         , a.kichThuoc.ten, a.chatLieu.ten) FROM ChiTietSP a WHERE a.sanPham.ten LIKE CONCAT('%',:input,'%') AND (SELECT b.id FROM ChiTietSPKhuyenMai b where b.trangThai = 0 AND b.chiTietSPId.id = a.id) IS NULL";
+            javax.persistence.Query query = session.createQuery(hql);
+            query.setParameter("input", input);
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public List<String> SelectTenSanPham() {
+        List<String> list = new ArrayList<>();
+        try {
+            Session session = HibernateUtil.getSession();
+            String hql = "SELECT  a.ten FROM SanPham a ";
+            javax.persistence.Query query = session.createQuery(hql);
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+//    
+
+    public static void main(String[] args) {
+        List<KMChiTietSPResponse> list = new KhuyenMaiRepository().FindSanPhamByTen("Adidas F1");
+        System.out.println(list);
     }
 }
