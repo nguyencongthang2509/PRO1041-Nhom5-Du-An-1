@@ -37,7 +37,7 @@ public class HibernateUtil {
         properties.put(Environment.USER, "sa");
         properties.put(Environment.PASS, "123456");
         properties.put(Environment.SHOW_SQL, "true");
-        properties.put(Environment.HBM2DDL_AUTO, "create");//gen DB tự động
+//        properties.put(Environment.HBM2DDL_AUTO, "create");//gen DB tự động
 
         conf.addAnnotatedClass(SanPham.class);
         conf.addAnnotatedClass(KhuyenMai.class);
