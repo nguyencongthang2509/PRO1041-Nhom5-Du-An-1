@@ -32,10 +32,11 @@ public class KhuyenMaiResponse {
     private Double giaTri;
     private Date ngayBatDau;
     private Date ngayKetThuc;
+    private String moTa;
     
     
     public Object[] ToDaTa1(){
-    return new Object[]{ makm, tenkm, loaiKhuyenMai== 1 ?"Giảm theo số tiền":"Giảm theo %" , loaiKhuyenMai == 1 ? giaTri+" VND" : giaTri+" %",ngayBatDau,ngayKetThuc};
+    return new Object[]{ makm, tenkm, loaiKhuyenMai== 1 ?"Giảm theo số tiền":"Giảm theo %" , loaiKhuyenMai == 1 ? giaTri+" Vnđ" : giaTri+" %",ngayBatDau,ngayKetThuc,moTa};
     }
 
 }

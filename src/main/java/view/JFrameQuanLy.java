@@ -18,6 +18,7 @@ import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import util.DailyCheckingKhuyenMai;
 
 /**
  *
@@ -26,6 +27,7 @@ import javax.swing.JOptionPane;
 public class JFrameQuanLy extends javax.swing.JFrame {
 
     private NhanVien nhanVien = new NhanVien();
+    
 
     public JFrameQuanLy(NhanVien nv) {
         initComponents();
@@ -43,6 +45,8 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         ImageIcon img = new ImageIcon("src/main/images/sneaker.jpg");
 
         this.setIconImage(img.getImage());
+        
+        DailyCheckingKhuyenMai.dailyChecking();
 
         Thread countDownThread = new Thread() {
             @Override
