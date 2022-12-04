@@ -34,12 +34,7 @@ public class SanPhamserviceImpl implements SanPhamService {
 
     @Override
     public String add(SanPham sanPham) {
-        if (sanPham.getMa().trim().isEmpty()) {
-            return "Mã không được trống";
-        }
-        if (sanPham.getTen().trim().isEmpty()) {
-            return "Tên không được trống";
-        }
+        
         SanPham sanPhamFind = sanPhamRepository.findByMa(sanPham.getMa());
         if (sanPhamFind != null) {
             return "Mã không được trùng";
@@ -58,13 +53,7 @@ public class SanPhamserviceImpl implements SanPhamService {
         if (sanPhamFindById == null) {
             return "Không tìm thấy sản phẩm";
         }
-        if (sanPham.getMa().isEmpty()) {
-            return "Mã không được để trống";
-        }
-        if (sanPham.getTen().isEmpty()) {
-            return "Tên không được để trống";
-        }
-      
+        
         if (!sanPham.getMa().equals(sanPhamFindById.getMa())) {
             SanPham sanPhamFindByMa = sanPhamRepository.findByMa(sanPham.getMa());
             if (sanPhamFindByMa != null) {
