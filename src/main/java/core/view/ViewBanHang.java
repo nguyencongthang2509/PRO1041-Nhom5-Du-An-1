@@ -114,7 +114,7 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
     public void run() {
         do {
             try {
-                Thread.sleep(10);
+                Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -2070,7 +2070,7 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
             }
             int rowSanPham = tblSanPham.getSelectedRow();
             rowHoaDon = tblHoaDonCho.getSelectedRow();
-
+            
             BhHoaDonResponse bhHoaDonResponse = listHoaDon.get(rowHoaDon);
             BhChiTietSPResponse bhChiTietSPCheck = listSanPham.get(rowSanPham);
             BhHoaDonChiTietResponse hoaDonChiTietCheck = mapGioHang.get(bhChiTietSPCheck.getId());
