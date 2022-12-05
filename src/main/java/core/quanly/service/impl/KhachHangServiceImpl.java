@@ -159,4 +159,13 @@ public class KhachHangServiceImpl implements KhachHangService {
         return khachHangRe.getTongTienByIdKhachHang(id);
     }
 
+    @Override
+    public boolean saveOrUpdateKH(KhachHang entity) {
+        KhachHang kh = khachHangRe.saveOrUpdateKH(entity);
+        if(kh != null){
+            return true;
+        }
+        return false;
+    }
+
 }

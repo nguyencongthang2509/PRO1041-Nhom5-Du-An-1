@@ -13,9 +13,9 @@ import domainmodels.KhachHang;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.Query;
 import lombok.Synchronized;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 import repository.CrudRepository;
 
 /**
@@ -118,5 +118,19 @@ public class KhachHangRespository extends CrudRepository<String, KhachHang, Khac
             e.printStackTrace();
         }
         return list;
+    }
+    
+    public KhachHang saveOrUpdateKH(KhachHang entity) {
+        try {
+            session = HibernateUtil.getSession();
+            trans = session.beginTransaction();
+            session.saveOrUpdate(entity);
+            trans.commit();
+            session.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return entity;
     }
 }

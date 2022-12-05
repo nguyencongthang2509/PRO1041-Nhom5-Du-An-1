@@ -96,8 +96,12 @@ public class HoaDon extends PrimaryEntity implements Serializable {
 
     @Column(name = "phan_tram_giam_gia")
     private Double phamTramGiamGia;
+    
+    @Column(name = "ma_giao_dich")
+    private String maGiaoDich;
 
     @Column(name = "ly_do")
+    @Nationalized
     private String lyDo;
     
     @Column(name = "trang_thai_thanh_toan")

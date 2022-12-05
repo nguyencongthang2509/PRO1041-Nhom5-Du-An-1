@@ -48,7 +48,7 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         this.setIconImage(img.getImage());
         
         DailyCheckingKhuyenMai.dailyChecking();
-        DailyCheckingRankCustomer.dailyChecking();
+        DailyCheckingKhuyenMai.dailyCheckingRankCustomer();
 
         Thread countDownThread = new Thread() {
             @Override

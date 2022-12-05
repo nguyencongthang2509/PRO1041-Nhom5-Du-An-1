@@ -587,7 +587,6 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
             }
             tbpkhuyenmai.setSelectedIndex(1);
             listsanpham2 = khuyenMaiService.GetAllSanPhamDangApDung(khuyenMaiResponse.getIdkm());
-            System.out.println(listsanpham2.size());
             FillToSanPhamDangKM(listsanpham2);
         } catch (Exception e) {
             e.printStackTrace();

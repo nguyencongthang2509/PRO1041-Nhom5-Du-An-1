@@ -50,7 +50,7 @@ public abstract class CrudRepository<Key, Entity, Response> {
             trans = session.beginTransaction();
             session.saveOrUpdate(entity);
             trans.commit();
-//            session.close();
+            session.close();
         } catch (Exception e) {
             e.printStackTrace();
             return null;

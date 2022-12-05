@@ -45,11 +45,11 @@ public class DailyCheckingRankCustomer extends Thread {
                             if (tienKhachMua.compareTo(new BigDecimal(10000000)) > 0) {
                                 xx.setCapBac(3);
                             }
-                            khachHangRespository.saveOrUpdate(xx);
+                            khachHangRespository.saveOrUpdateKH(xx);
                         }
                     }
                     try {
-                        Thread.sleep(1000);
+                        Thread.sleep(20000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
