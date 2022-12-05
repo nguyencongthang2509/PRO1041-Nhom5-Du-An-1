@@ -22,6 +22,8 @@ public interface KhachHangService {
     String insert(KhachHang khachHang);
 
     String update(KhachHang khachHang);
+    
+    boolean saveOrUpdateKH(KhachHang entity);
 
 //    List<KhachHang> getAll();
     List<KhachHangRespone> findKhachHangByMaOrTen(String input);

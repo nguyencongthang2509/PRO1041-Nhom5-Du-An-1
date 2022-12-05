@@ -148,7 +148,6 @@ public class KhuyenMaiImpl implements core.quanly.service.KhuyenMaiService {
     }
 
     @Override
-    @Synchronized
     public boolean updateKhuyenMaiDangDienRa(String idKhuyenMai) {
         return khuyenMaiRepository.updateKhuyenMaiDangDienRa(idKhuyenMai);
     }
@@ -159,7 +158,6 @@ public class KhuyenMaiImpl implements core.quanly.service.KhuyenMaiService {
     }
 
     @Override
-    @Synchronized
     public boolean updateKhuyenMaiKhongDienRa(String idKhuyenMai) {
         return khuyenMaiRepository.updateKhuyenMaiKhongDienRa(idKhuyenMai);
     }
