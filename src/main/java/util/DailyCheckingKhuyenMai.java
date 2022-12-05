@@ -42,6 +42,7 @@ public class DailyCheckingKhuyenMai extends Thread {
 
     private static final SessionFactory FACTORY;
     private static Session SESSION;
+    private Session session;
     private Transaction TRANS;
 
     static {
@@ -89,9 +90,9 @@ public class DailyCheckingKhuyenMai extends Thread {
     public List<KhuyenMai> GetAllKhuyenMaiDangDienRa() {
         List<KhuyenMai> list = new ArrayList<>();
         try {
-            Session sessions = getSession();
+            session = getSession();
             String hql = "SELECT a FROM KhuyenMai a where a.ngayBatDau < :currentTime and :currentTime < a.ngayKetThuc order by a.createdDate DESC";
-            Query query = sessions.createQuery(hql);
+            Query query = session.createQuery(hql);
             query.setParameter("currentTime", new Date());
             list = query.getResultList();
         } catch (Exception e) {
@@ -104,9 +105,9 @@ public class DailyCheckingKhuyenMai extends Thread {
     public List<KhuyenMai> GetAllKhuyenMaiKhongDienRa() {
         List<KhuyenMai> list = new ArrayList<>();
         try {
-            Session sessions = getSession();
+            session = getSession();
             String hql = "SELECT a FROM KhuyenMai a where a.ngayBatDau > :currentTime or :currentTime > a.ngayKetThuc order by a.createdDate DESC";
-            Query query = sessions.createQuery(hql);
+            Query query = session.createQuery(hql);
             query.setParameter("currentTime", new Date());
             list = query.getResultList();
         } catch (Exception e) {
@@ -119,10 +120,10 @@ public class DailyCheckingKhuyenMai extends Thread {
     public boolean updateKhuyenMaiDangDienRa(String idKhuyenMai) {
         boolean check = false;
         try {
-            Session sessions = getSession();
+            session = getSession();
             String sql = "Update ctsp_khuyen_mai set trang_thai = 0 where id_khuyen_mai = :idKhuyenMai";
-            TRANS = sessions.beginTransaction();
-            Query query = sessions.createNativeQuery(sql);
+            TRANS = session.beginTransaction();
+            Query query = session.createNativeQuery(sql);
             query.setParameter("idKhuyenMai", idKhuyenMai);
             query.executeUpdate();
             check = true;
@@ -138,10 +139,10 @@ public class DailyCheckingKhuyenMai extends Thread {
     public boolean updateKhuyenMaiKhongDienRa(String idKhuyenMai) {
         boolean check = false;
         try {
-            Session sessions = getSession();
+            session = getSession();
             String sql = "Update ctsp_khuyen_mai set trang_thai = 1 where id_khuyen_mai = :idKhuyenMai";
-            TRANS = sessions.beginTransaction();
-            Query query = sessions.createNativeQuery(sql);
+            TRANS = session.beginTransaction();
+            Query query = session.createNativeQuery(sql);
             query.setParameter("idKhuyenMai", idKhuyenMai);
             query.executeUpdate();
             check = true;
@@ -172,7 +173,7 @@ public class DailyCheckingKhuyenMai extends Thread {
                         }
                     }
                     try {
-                        Thread.sleep(30000);
+                        Thread.sleep(60000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -185,9 +186,9 @@ public class DailyCheckingKhuyenMai extends Thread {
     public List<KhachHang> getAllKhacHangDangHoatDong() {
         List<KhachHang> list = new ArrayList<>();
         try {
-            Session sessions = getSession();
+            session = getSession();
             String hql = "SELECT a FROM KhachHang a where a.trangThaiXoa = 0 AND a.ma <> 'KH000'";
-            Query query = sessions.createQuery(hql);
+            Query query = session.createQuery(hql);
             list = query.getResultList();
         } catch (Exception e) {
             e.printStackTrace();
@@ -198,9 +199,9 @@ public class DailyCheckingKhuyenMai extends Thread {
     public BigDecimal getTongTienByIdKhachHang(String id) {
         BigDecimal money = new BigDecimal(0);
         try {
-             Session sessions = getSession();
+            session = getSession();
             String hql = "SELECT sum(a.thanhTien) FROM HoaDon a where a.khachHang.id = :id";
-            Query query = sessions.createQuery(hql);
+            Query query = session.createQuery(hql);
             query.setParameter("id", id);
             money = (BigDecimal) query.getSingleResult();
         } catch (Exception e) {
@@ -211,11 +212,11 @@ public class DailyCheckingKhuyenMai extends Thread {
 
     public KhachHang saveOrUpdateKH(KhachHang entity) {
         try {
-            Session sessions = getSession();
-            TRANS = sessions.beginTransaction();
-            sessions.saveOrUpdate(entity);
+            session = getSession();
+            TRANS = session.beginTransaction();
+            session.saveOrUpdate(entity);
             TRANS.commit();
-            sessions.close();
+            session.close();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -252,7 +253,7 @@ public class DailyCheckingKhuyenMai extends Thread {
                         }
                     }
                     try {
-                        Thread.sleep(20000);
+                        Thread.sleep(60000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

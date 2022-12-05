@@ -139,7 +139,6 @@ public class BanHangServiceImpl implements BanHangService {
             bhHoaDonChiTietResponse.setSoLuong(xx.getSoLuong());
             bhHoaDonChiTietResponse.setSoLuongTon(xx.getSoLuongTon());
             bhHoaDonChiTietResponse.setTenSP(xx.getTenSP());
-            bhHoaDonChiTietResponse.setTrangThai(xx.getTrangThai());
             mapHoaDonChiTietResponse.put(bhHoaDonChiTietResponse.getIdChiTietSP(), bhHoaDonChiTietResponse);
         }
         return mapHoaDonChiTietResponse;

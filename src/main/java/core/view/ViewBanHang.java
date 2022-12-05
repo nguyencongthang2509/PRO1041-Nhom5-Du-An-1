@@ -114,7 +114,7 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
     public void run() {
         do {
             try {
-                Thread.sleep(100);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -3502,14 +3502,13 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
                         thanhTienConLai = new BigDecimal(array[0].replace(",", "")).subtract(new BigDecimal(array[0].replace(",", "")).multiply(new BigDecimal(10.0).divide(new BigDecimal(100))));
                     }
                 }
-                tienCanTra = thanhTienConLai;
                 txtThanhToanTaiQuay.setText(df.format(thanhTienConLai) + " Vnđ");
                 if (cboHTThanhToanTaiQuay.getSelectedIndex() == 1) {
                     txtTienKhachCKTaiQuay.setText(txtThanhToanTaiQuay.getText());
                     return;
                 }
                 if (cboHTThanhToanTaiQuay.getSelectedIndex() == 2) {
-                    BigDecimal tienCKTaiQuay = tienCanTra.subtract(new BigDecimal(txtTienKhachDuaTaiQuay.getText().trim().toString()));
+                    BigDecimal tienCKTaiQuay = thanhTienConLai.subtract(new BigDecimal(txtTienKhachDuaTaiQuay.getText().trim().toString()));
                     txtTienKhachCKTaiQuay.setText(tienCKTaiQuay + "");
                     txtTienThuaTaiQuay.setText("0 Vnđ");
                     return;
@@ -3519,7 +3518,7 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
                 }
                 BigDecimal tienKhachDua = new BigDecimal(txtTienKhachDuaTaiQuay.getText().trim());
                 BigDecimal tienThua = null;
-                tienThua = tienKhachDua.subtract(tienCanTra);
+                tienThua = tienKhachDua.subtract(thanhTienConLai);
                 if (tienThua.compareTo(BigDecimal.ZERO) == -1) {
                     txtTienThuaTaiQuay.setText(tienThua + " Vnđ");
                 } else {

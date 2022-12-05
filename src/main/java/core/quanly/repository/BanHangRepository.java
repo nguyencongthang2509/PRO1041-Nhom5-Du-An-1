@@ -143,7 +143,7 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
                          (b.id, a.id, c.id, b.maChiTietSP, b.sanPham.ma,
                          b.sanPham.ten, b.hang.ten, b.chatLieu.ten,
                          b.mauSac.ten, b.kichThuoc.ten, b.giaBan, a.soLuong, b.soLuongTon,
-                         a.giamGiaKhuyenMai, a.giaBan, a.trangThai)
+                         a.giamGiaKhuyenMai, a.giaBan)
                          FROM HoaDonChiTiet a LEFT JOIN a.chiTietSPId b 
                          LEFT JOIN a.hoaDonId c
                          WHERE c.id = :idHoaDon

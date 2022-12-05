@@ -60,7 +60,7 @@ public class ThongKeHangHoaRepository {
         BigDecimal nv = null;
         try {
             Session session = HibernateUtil.getSession();
-            String hql = "select sum(a.thanhTien) from HoaDon a where  a.trangThai=2";
+            String hql = "select sum(a.thanhTien) from HoaDon a where a.trangThai=2 OR a.trangThai = 5";
             Query query = session.createQuery(hql);
             nv = (BigDecimal) query.getSingleResult();
         } catch (Exception e) {

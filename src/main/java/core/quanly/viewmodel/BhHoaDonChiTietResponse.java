@@ -44,8 +44,6 @@ public class BhHoaDonChiTietResponse {
 
     private BigDecimal giaBan;
 
-    private Integer trangThai;
-
     public Object[] toDataRow() {
         return new Object[]{maCTSP, tenSP, donGia, soLuong, giamGia, giaBan, new BigDecimal(soLuong).multiply(giaBan), false};
     }
