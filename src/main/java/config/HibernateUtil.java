@@ -6,8 +6,8 @@ import domainmodels.ChiTietSPKhuyenMai;
 import domainmodels.Hang;
 import domainmodels.HoaDon;
 import domainmodels.HoaDonChiTiet;
-import domainmodels.HoaDonDoiHang;
-import domainmodels.HoaDonDoiHangChiTiet;
+import domainmodels.HoaDonTraHang;
+import domainmodels.HoaDonTraHangChiTiet;
 import domainmodels.KhachHang;
 import domainmodels.KhuyenMai;
 import domainmodels.KichThuoc;
@@ -51,8 +51,8 @@ public class HibernateUtil {
         conf.addAnnotatedClass(ChiTietSP.class);
         conf.addAnnotatedClass(ChiTietSPKhuyenMai.class);
         conf.addAnnotatedClass(HoaDonChiTiet.class);
-        conf.addAnnotatedClass(HoaDonDoiHang.class);
-        conf.addAnnotatedClass(HoaDonDoiHangChiTiet.class);
+        conf.addAnnotatedClass(HoaDonTraHang.class);
+        conf.addAnnotatedClass(HoaDonTraHangChiTiet.class);
         
         conf.setProperties(properties);
 

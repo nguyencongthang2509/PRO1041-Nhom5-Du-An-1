@@ -7,6 +7,7 @@ package domainmodels;
 import domainmodels.base.PrimaryEntity;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -27,23 +28,20 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "hoa_don_doi_hang_chi_tiet")
-public class HoaDonDoiHangChiTiet extends PrimaryEntity implements Serializable {
+@Table(name = "hoa_don_tra_hang")
+public class HoaDonTraHang extends PrimaryEntity implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_hoa_don_doi_hang")
-    private HoaDonDoiHang hoaDonDoiTra;
+    @JoinColumn(name = "id_hoa_don")
+    private HoaDon hoaDon;
+
+    @Column(name = "ngay_tra")
+    private Date ngayDoiTra;
+
+    @Column(name = "tien_hoan_tra_khach")
+    private BigDecimal tienHoanTraKhach;
     
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_ctsp")
-    private ChiTietSP chiTietSP;
+    @Column(name = "ghi_chu")
+    private String ghiChu;
     
-    @Column(name = "gia_ban")
-    private BigDecimal giaBan;
-    
-    @Column(name = "so_luong")
-    private Integer soLuong;
-    
-    @Column(name = "trang_thai")
-    private Integer trangThai;
 }

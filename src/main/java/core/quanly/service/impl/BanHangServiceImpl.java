@@ -109,7 +109,6 @@ public class BanHangServiceImpl implements BanHangService {
         hoaDonChiTiet.setChiTietSPId(chiTietSP);
         hoaDonChiTiet.setHoaDonId(hoaDon);
         hoaDonChiTiet.setSoLuong(bhHoaDonChiTietResponse.getSoLuong());
-        hoaDonChiTiet.setTrangThai(0);
         hoaDonChiTiet.setGiamGiaKhuyenMai(bhHoaDonChiTietResponse.getGiamGia());
         hoaDonChiTiet.setDonGia(bhHoaDonChiTietResponse.getDonGia());
         hoaDonChiTiet.setGiaBan(bhHoaDonChiTietResponse.getGiaBan());

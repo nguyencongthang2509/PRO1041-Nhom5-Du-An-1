@@ -428,7 +428,6 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
                 hoaDonChiTiet.setDonGia(value.getDonGia());
                 hoaDonChiTiet.setGiaBan(value.getGiaBan());
                 hoaDonChiTiet.setSoLuong(value.getSoLuong());
-                hoaDonChiTiet.setTrangThai(0);
 
                 session.saveOrUpdate(hoaDonChiTiet);
             }
