@@ -33,6 +33,7 @@ public class HdHoaDonResponse1 {
     private String tenKH;
     private String sdt;
     private String diaChi;
+    private String lydo;
     private Integer trangThai;
 
     public String getNgayThanhToanStr() {
@@ -105,12 +106,19 @@ public class HdHoaDonResponse1 {
         }
         return "Đã giao";
     }
+    
+    public String getLyDoStr(){
+        if(lydo == null){
+            return "..........";
+        }
+        return lydo;
+    }
 
     public String getHinhThucTT() {
-        return hinhThucThanhToan == 0 ? "Tiền mặt" : (hinhThucThanhToan == 1 ? "Chuyển khoản" : "Kết hợp");
+        return hinhThucThanhToan == null ? "Chưa chọn" : (hinhThucThanhToan == 0 ? "Tiền mặt" : hinhThucThanhToan == 1 ? "Chuyển khoản" : "Kết hợp");
     }
 
     public Object[] toDaTaRow() {
-        return new Object[]{ma, ngayTao, ngayThanhToan == null ? "No" : ngayThanhToan, getThanhTienStr(), maNV, tenKH == null ? "Khách bán lẻ" : tenKH, getTT()};
+        return new Object[]{ma, ngayTao, ngayThanhToan == null ? "No" : ngayThanhToan, getThanhTienStr(), maNV, tenKH == null ? "Khách bán lẻ" : tenKH, getLyDoStr(), getTT()};
     }
 }

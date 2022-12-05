@@ -38,6 +38,7 @@ public class HdHoaDonResponse2 {
     private BigDecimal tienship;
     private Date ngayship;
     private Date ngaynhan;
+    private String lydo;
     private Integer trangThai;
 
     public String getNgayThanhToanStr() {
@@ -145,13 +146,20 @@ public class HdHoaDonResponse2 {
         }
         return "Đã giao";
     }
+    
+    public String getLyDoStr(){
+        if(lydo == null){
+            return "..........";
+        }
+        return lydo;
+    }
 
     public String getHinhThucTT() {
-        return hinhThucThanhToan == 0 ? "Tiền mặt" : (hinhThucThanhToan == 1 ? "Chuyển khoản" : "Kết hợp");
+        return hinhThucThanhToan == null ? "Chưa chọn" : (hinhThucThanhToan == 0 ? "Tiền mặt" : hinhThucThanhToan == 1 ? "Chuyển khoản" : "Kết hợp");
     }
 
     public Object[] toDaTaRow() {
         return new Object[]{ma, ngayTao, ngayThanhToan == null ? "No" : ngayThanhToan, getThanhTienStr(), maNV,
-            tenNguoiNhan == null ? "No" : tenNguoiNhan, diaChi == null ? "No" : diaChi, tennguoiship == null ? "No" : tennguoiship, ngayship == null ? "No" : ngayship, ngaynhan == null ? "No" : ngaynhan, getTT()};
+            tenNguoiNhan == null ? "No" : tenNguoiNhan, diaChi == null ? "No" : diaChi, tennguoiship == null ? "No" : tennguoiship, ngayship == null ? "No" : ngayship, ngaynhan == null ? "No" : ngaynhan, getLyDoStr(), getTT()};
     }
 }

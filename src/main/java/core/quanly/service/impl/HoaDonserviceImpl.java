@@ -121,8 +121,8 @@ public class HoaDonserviceImpl implements HoaDonservice {
     }
 
     @Override
-    public boolean updateTTHoaDon(String id) {
-        return repo.updateTTHoaDon(id);
+    public boolean updateTTHoaDon(String id, String lydo) {
+        return repo.updateTTHoaDon(id, lydo);
     }
 
     @Override

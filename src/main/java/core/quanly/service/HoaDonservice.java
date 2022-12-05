@@ -56,7 +56,7 @@ public interface HoaDonservice {
 
     List<HdHoaDonResponse2> getList2byHinhthucandTime(int httt, Date time1, Date time2, int htgh);
     
-    boolean updateTTHoaDon(String id);
+    boolean updateTTHoaDon(String id, String lydo);
     
     String findIdbyMa(String ma);
 }

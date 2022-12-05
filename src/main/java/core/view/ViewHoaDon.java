@@ -55,6 +55,8 @@ public class ViewHoaDon extends javax.swing.JPanel {
         initComponents();
         this.modelHoaDon = (DefaultTableModel) tblHoadon.getModel();
         this.modelHoaDon2 = (DefaultTableModel) tblHD2.getModel();
+        lblRecordHD.setText(tranghientai + 1 + "/" + tongsoTrang);
+        lblRecordHD2.setText(tranghientai + 1 + "/" + tongsoTrang);
         listHoaDon = hoadonservice.getList(0);
         listHoaDon2 = hoadonservice.getList2(1);
         this.loadTableHoaDon(listHoaDon);
@@ -388,6 +390,7 @@ public class ViewHoaDon extends javax.swing.JPanel {
         btnLast = new javax.swing.JButton();
         btnFirst = new javax.swing.JButton();
         btnHuy = new javax.swing.JButton();
+        lblRecordHD2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblHoadonchitiet = new javax.swing.JTable();
@@ -413,6 +416,7 @@ public class ViewHoaDon extends javax.swing.JPanel {
         btnLast2 = new javax.swing.JButton();
         btnBack2 = new javax.swing.JButton();
         btnHuy2 = new javax.swing.JButton();
+        lblRecordHD = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblHoaDonChiTiet2 = new javax.swing.JTable();
@@ -688,11 +692,11 @@ public class ViewHoaDon extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã hóa đơn", "Ngày tạo", "Ngày thanh toán", "Tổng tiền", "Mã NV", "Tên KH", "Trạng thái"
+                "Mã hóa đơn", "Ngày tạo", "Ngày thanh toán", "Tổng tiền", "Mã NV", "Tên KH", "Lý do", "Trạng thái"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -798,6 +802,8 @@ public class ViewHoaDon extends javax.swing.JPanel {
             }
         });
 
+        lblRecordHD2.setText("jLabel40");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -837,11 +843,13 @@ public class ViewHoaDon extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(225, 225, 225)
                 .addComponent(btnFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
+                .addGap(35, 35, 35)
                 .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblRecordHD2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
+                .addGap(37, 37, 37)
                 .addComponent(btnLast, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(180, 180, 180)
                 .addComponent(btnXemchitiet)
@@ -873,12 +881,14 @@ public class ViewHoaDon extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnBack)
-                        .addComponent(btnNext)
                         .addComponent(btnLast)
                         .addComponent(btnXemchitiet)
                         .addComponent(btnHuy))
-                    .addComponent(btnFirst))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnFirst)
+                        .addComponent(btnBack)
+                        .addComponent(lblRecordHD2)
+                        .addComponent(btnNext)))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
@@ -996,11 +1006,11 @@ public class ViewHoaDon extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã hóa đơn", "Ngày tạo", "Ngày thanh toán", "Thành tiền", "Mã NV", "Tên người nhận", "Địa chỉ", "Tên người ship", "Ngày ship", "Ngày nhận", "Trạng thái"
+                "Mã hóa đơn", "Ngày tạo", "Ngày thanh toán", "Thành tiền", "Mã NV", "Tên người nhận", "Địa chỉ", "Tên người ship", "Ngày ship", "Ngày nhận", "Lý do", "Trạng thái"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1076,6 +1086,8 @@ public class ViewHoaDon extends javax.swing.JPanel {
             }
         });
 
+        lblRecordHD.setText("jLabel40");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -1116,7 +1128,9 @@ public class ViewHoaDon extends javax.swing.JPanel {
                 .addComponent(btnFirst2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46)
                 .addComponent(btnBack2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblRecordHD)
+                .addGap(4, 4, 4)
                 .addComponent(btnNext2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
                 .addComponent(btnLast2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1154,7 +1168,8 @@ public class ViewHoaDon extends javax.swing.JPanel {
                     .addComponent(btnNext2)
                     .addComponent(btnLast2)
                     .addComponent(btnXemchitiet2)
-                    .addComponent(btnHuy2))
+                    .addComponent(btnHuy2)
+                    .addComponent(lblRecordHD))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
@@ -1425,6 +1440,9 @@ public class ViewHoaDon extends javax.swing.JPanel {
             cell.setCellValue("Tên KH");
 
             cell = row.createCell(7, CellType.STRING);
+            cell.setCellValue("Lý do");
+
+            cell = row.createCell(8, CellType.STRING);
             cell.setCellValue("Trạng thái");
             int index = 2;
             int x = 1;
@@ -1453,6 +1471,9 @@ public class ViewHoaDon extends javax.swing.JPanel {
                 cell.setCellValue(h.getTenKHStr());
 
                 cell = row.createCell(7, CellType.STRING);
+                cell.setCellValue(h.getLyDoStr());
+
+                cell = row.createCell(8, CellType.STRING);
                 cell.setCellValue(h.getTT());
                 x++;
                 index++;
@@ -1584,6 +1605,9 @@ public class ViewHoaDon extends javax.swing.JPanel {
             cell.setCellValue("Ngày nhận");
 
             cell = row.createCell(11, CellType.STRING);
+            cell.setCellValue("Lý do");
+
+            cell = row.createCell(12, CellType.STRING);
             cell.setCellValue("Trạng thái");
             int index = 2;
             int x = 1;
@@ -1624,6 +1648,9 @@ public class ViewHoaDon extends javax.swing.JPanel {
                 cell.setCellValue(h.getNgayNhanStr());
 
                 cell = row.createCell(11, CellType.STRING);
+                cell.setCellValue(h.getLyDoStr());
+
+                cell = row.createCell(12, CellType.STRING);
                 cell.setCellValue(h.getTT());
                 x++;
                 index++;
@@ -1648,16 +1675,19 @@ public class ViewHoaDon extends javax.swing.JPanel {
         if (tranghientai > tongsoTrang - 1) {
             tranghientai = tongsoTrang - 1;
         }
+        lblRecordHD.setText(tranghientai + 1 + "/" + tongsoTrang);
         loadTableHoaDon(listHoaDon);
     }//GEN-LAST:event_btnNextActionPerformed
 
     private void btnFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstActionPerformed
         tranghientai = 0;
+        lblRecordHD.setText(tranghientai + 1 + "/" + tongsoTrang);
         loadTableHoaDon(listHoaDon);
     }//GEN-LAST:event_btnFirstActionPerformed
 
     private void btnLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastActionPerformed
         tranghientai = tongsoTrang - 1;
+        lblRecordHD.setText(tranghientai + 1 + "/" + tongsoTrang);
         loadTableHoaDon(listHoaDon);
     }//GEN-LAST:event_btnLastActionPerformed
 
@@ -1666,11 +1696,14 @@ public class ViewHoaDon extends javax.swing.JPanel {
         if (tranghientai < 0) {
             tranghientai = 0;
         }
+        lblRecordHD.setText(tranghientai + 1 + "/" + tongsoTrang);
         loadTableHoaDon(listHoaDon);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnFirst2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirst2ActionPerformed
         tranghientai = 0;
+        lblRecordHD2.setText(tranghientai + 1 + "/" + tongsoTrang);
+
         loadTableHoaDon2(listHoaDon2);
     }//GEN-LAST:event_btnFirst2ActionPerformed
 
@@ -1679,11 +1712,13 @@ public class ViewHoaDon extends javax.swing.JPanel {
         if (tranghientai > tongsoTrang - 1) {
             tranghientai = tongsoTrang - 1;
         }
+        lblRecordHD2.setText(tranghientai + 1 + "/" + tongsoTrang);
         loadTableHoaDon2(listHoaDon2);
     }//GEN-LAST:event_btnNext2ActionPerformed
 
     private void btnLast2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLast2ActionPerformed
         tranghientai = tongsoTrang - 1;
+        lblRecordHD2.setText(tranghientai + 1 + "/" + tongsoTrang);
         loadTableHoaDon2(listHoaDon2);
     }//GEN-LAST:event_btnLast2ActionPerformed
 
@@ -1692,6 +1727,7 @@ public class ViewHoaDon extends javax.swing.JPanel {
         if (tranghientai < 0) {
             tranghientai = 0;
         }
+        lblRecordHD2.setText(tranghientai + 1 + "/" + tongsoTrang);
         loadTableHoaDon2(listHoaDon2);
     }//GEN-LAST:event_btnBack2ActionPerformed
 
@@ -1709,7 +1745,12 @@ public class ViewHoaDon extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "Hóa đơn này đã bị hủy trước đó");
                     return;
                 }
-                hoadonservice.updateTTHoaDon(h.getId());
+                String lydo = JOptionPane.showInputDialog("Lý do hủy:");
+                if (lydo == null || lydo.isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Bạn chưa nhập lý do");
+                    return;
+                }
+                hoadonservice.updateTTHoaDon(h.getId(), lydo);
             }
         }
         JOptionPane.showMessageDialog(this, "Hủy thành công hóa đơn " + ma);
@@ -1731,7 +1772,12 @@ public class ViewHoaDon extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "Hóa đơn này đã bị hủy trước đó");
                     return;
                 }
-                hoadonservice.updateTTHoaDon(h.getId());
+                String lydo = JOptionPane.showInputDialog("Lý do hủy:");
+                if (lydo == null || lydo.isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Bạn chưa nhập lý do");
+                    return;
+                }
+                hoadonservice.updateTTHoaDon(h.getId(), lydo);
             }
         }
         JOptionPane.showMessageDialog(this, "Hủy thành công hóa đơn " + ma);
@@ -1835,6 +1881,8 @@ public class ViewHoaDon extends javax.swing.JPanel {
     private javax.swing.JLabel lblNgayThanhToan2;
     private javax.swing.JLabel lblNgaynhan;
     private javax.swing.JLabel lblNgayship;
+    private javax.swing.JLabel lblRecordHD;
+    private javax.swing.JLabel lblRecordHD2;
     private javax.swing.JLabel lblSDT;
     private javax.swing.JLabel lblSDT2;
     private javax.swing.JLabel lblSDTnguoiship;
