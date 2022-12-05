@@ -1249,7 +1249,7 @@ public class ViewSanPham extends javax.swing.JPanel {
             cbbHangct.setSelectedItem(ctSanPhamViewModel.getHang());
             cbbChatLieu.setSelectedItem(ctSanPhamViewModel.getChatLieu());
             cbbSanPham.setSelectedItem(ctSanPhamViewModel.getTensp());
-            if (ctSanPhamViewModel.getTrangThai().equals("Đang hoạt động")) {
+            if (ctSanPhamViewModel.getTrangThai() == 0) {
                 rdoDangHoatDong.setSelected(true);
             } else {
                 rdoDungHoatDong.setSelected(true);
@@ -1645,6 +1645,8 @@ public class ViewSanPham extends javax.swing.JPanel {
 //            }
         ImportExcelCTSP excelCTSP = new ImportExcelCTSP();
         excelCTSP.ImportFile(file.getAbsolutePath());
+        lstctSpViewModel = ctsanPhamService.getAllViewModel();
+        loadTableChiTietSP(lstctSpViewModel);
     }//GEN-LAST:event_btnImportExcelActionPerformed
 
     private void btnDauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDauActionPerformed

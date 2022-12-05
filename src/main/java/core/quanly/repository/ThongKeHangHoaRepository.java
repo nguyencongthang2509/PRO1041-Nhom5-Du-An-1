@@ -121,7 +121,7 @@ public class ThongKeHangHoaRepository {
         Long id = null;
         try {
             Session session = HibernateUtil.getSession();
-            String hql = "select count(a.ma) from HoaDon a";
+            String hql = "select count(a.id) from KhachHang a where a.ma <> 'KH000'";
             Query query = session.createQuery(hql);
             id = (Long) query.getSingleResult();
         } catch (Exception e) {

@@ -15,6 +15,7 @@ import domainmodels.ChiTietSPKhuyenMai;
 import domainmodels.KhuyenMai;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.Synchronized;
 
 /**
  *
@@ -44,7 +45,7 @@ public class KhuyenMaiImpl implements core.quanly.service.KhuyenMaiService {
     @Override
     public String saveOrUpdateKM(KhuyenMai khuyenMai) {
         if (khuyenMai.getMa().trim().isEmpty()) {
-            return "ma khuyen mai khong duoc trong";          
+            return "ma khuyen mai khong duoc trong";
         }
         if (khuyenMai.getTen().trim().isEmpty()) {
             return "ma khuyen mai khong duoc trong";
@@ -133,20 +134,21 @@ public class KhuyenMaiImpl implements core.quanly.service.KhuyenMaiService {
 
     @Override
     public int GenMaKhuyenMai() {
-    return khuyenMaiRepository.GenMaKhuyenMai();
+        return khuyenMaiRepository.GenMaKhuyenMai();
     }
 
     @Override
     public List<KMChiTietSPResponse> FindSanPhamByTen(Object input) {
-    return khuyenMaiRepository.FindSanPhamByTen(input);
+        return khuyenMaiRepository.FindSanPhamByTen(input);
     }
 
     @Override
     public List<String> SelectTenSanPham() {
-    return khuyenMaiRepository.SelectTenSanPham();
+        return khuyenMaiRepository.SelectTenSanPham();
     }
 
     @Override
+    @Synchronized
     public boolean updateKhuyenMaiDangDienRa(String idKhuyenMai) {
         return khuyenMaiRepository.updateKhuyenMaiDangDienRa(idKhuyenMai);
     }
@@ -157,7 +159,18 @@ public class KhuyenMaiImpl implements core.quanly.service.KhuyenMaiService {
     }
 
     @Override
+    @Synchronized
     public boolean updateKhuyenMaiKhongDienRa(String idKhuyenMai) {
         return khuyenMaiRepository.updateKhuyenMaiKhongDienRa(idKhuyenMai);
+    }
+
+    @Override
+    public List<KhuyenMai> GetAllKhuyenMaiDangDienRa() {
+        return khuyenMaiRepository.GetAllKhuyenMaiDangDienRa();
+    }
+
+    @Override
+    public List<KhuyenMai> GetAllKhuyenMaiKhongDienRa() {
+        return khuyenMaiRepository.GetAllKhuyenMaiKhongDienRa();
     }
 }

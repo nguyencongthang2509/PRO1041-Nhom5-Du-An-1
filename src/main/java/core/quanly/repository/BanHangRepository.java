@@ -282,6 +282,20 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
         }
         return entity;
     }
+    
+    public KhachHang saveOrUpdateKH(KhachHang entity) {
+        try {
+            session = HibernateUtil.getSession();
+            trans = session.beginTransaction();
+            session.saveOrUpdate(entity);
+            trans.commit();
+            session.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return entity;
+    }
 
     public boolean deleteHDCT(HoaDonChiTiet hoaDonChiTiet) {
         boolean check = false;
@@ -368,6 +382,31 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
         int ma = Integer.parseInt(maStr);
         return ++ma;
     }
+    
+    public int genMaKH() {
+        String maStr = "";
+        session = HibernateUtil.getSession();
+        try {
+            String nativeQuery = "SELECT MAX(CONVERT(INT, SUBSTRING(ma,3,10))) from khach_hang";
+            NativeQuery query = session.createNativeQuery(nativeQuery);
+            if (query.getSingleResult() != null) {
+                maStr = query.getSingleResult().toString();
+            } else {
+                maStr = null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (maStr == null) {
+            maStr = "0";
+            int ma = Integer.parseInt(maStr);
+            return ++ma;
+        }
+        int ma = Integer.parseInt(maStr);
+        return ++ma;
+    }
+    
+    
 
     public boolean insertHDCT(String idHoaDon, Map<String, BhHoaDonChiTietResponse> list) {
         boolean check = false;

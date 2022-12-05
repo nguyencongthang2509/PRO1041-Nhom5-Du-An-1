@@ -4,6 +4,7 @@ import core.quanly.service.KhuyenMaiService;
 import core.quanly.service.impl.KhuyenMaiImpl;
 import core.quanly.viewmodel.KhachHangRespone;
 import core.quanly.viewmodel.KhuyenMaiResponse;
+import domainmodels.KhuyenMai;
 import java.util.List;
 
 /**
@@ -13,22 +14,26 @@ import java.util.List;
 public class DailyCheckingKhuyenMai extends Thread {
 
     private static KhuyenMaiService khuyenMaiService = new KhuyenMaiImpl();
-    
+
     public static void dailyChecking() {
         Thread countDownThread = new Thread() {
             @Override
             public void run() {
                 do {
-                    List<KhuyenMaiResponse> listDangdienRa = khuyenMaiService.GetKhuyenMaiDangDienRa();
-                    for (KhuyenMaiResponse xx : listDangdienRa) {
-                        khuyenMaiService.updateKhuyenMaiDangDienRa(xx.getIdkm());
+                    List<KhuyenMai> listDangdienRa = khuyenMaiService.GetAllKhuyenMaiDangDienRa();
+                    if (listDangdienRa != null) {
+                        for (KhuyenMai xx : listDangdienRa) {
+                            khuyenMaiService.updateKhuyenMaiDangDienRa(xx.getId());
+                        }
                     }
-                    List<KhuyenMaiResponse> listKhongDienRa = khuyenMaiService.GetKhuyenMaiKhongDienRa();
-                    for (KhuyenMaiResponse xx : listKhongDienRa) {
-                        khuyenMaiService.updateKhuyenMaiKhongDienRa(xx.getIdkm());
+                    List<KhuyenMai> listKhongDienRa = khuyenMaiService.GetAllKhuyenMaiKhongDienRa();
+                    if (listKhongDienRa != null) {
+                        for (KhuyenMai xx : listKhongDienRa) {
+                            khuyenMaiService.updateKhuyenMaiKhongDienRa(xx.getId());
+                        }
                     }
                     try {
-                        Thread.sleep(10000);
+                        Thread.sleep(1000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

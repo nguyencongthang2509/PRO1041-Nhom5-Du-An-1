@@ -28,7 +28,11 @@ public interface BanHangService {
     List<BhNhanVienResponse> getAllNhanVienResponse();
 
     int genMaHoaDonTuDong();
+    
+    int genMaKH();
 
+    boolean saveOrUpdateKH(KhachHang entity);
+    
     String saveOrUpdate(HoaDon hoaDon);
 
     KhachHang findByMaKhachHang(String ma);

@@ -4,6 +4,7 @@ import config.HibernateUtil;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Data;
+import lombok.Synchronized;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -49,7 +50,7 @@ public abstract class CrudRepository<Key, Entity, Response> {
             trans = session.beginTransaction();
             session.saveOrUpdate(entity);
             trans.commit();
-            session.close();
+//            session.close();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -57,6 +58,7 @@ public abstract class CrudRepository<Key, Entity, Response> {
         return entity;
     }
     
+    @Synchronized
     public boolean saveAll(List<Entity> list) {
         try {
             session = HibernateUtil.getSession();

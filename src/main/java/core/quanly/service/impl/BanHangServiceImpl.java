@@ -196,4 +196,18 @@ public class BanHangServiceImpl implements BanHangService {
         return banHangRepository.getAllNhanVienResponse();
     }
 
+    @Override
+    public int genMaKH() {
+        return banHangRepository.genMaKH();
+    }
+
+    @Override
+    public boolean saveOrUpdateKH(KhachHang entity) {
+        KhachHang khachHang = banHangRepository.saveOrUpdateKH(entity);
+        if(khachHang != null){
+            return true;
+        }
+        return false;
+    }
+
 }

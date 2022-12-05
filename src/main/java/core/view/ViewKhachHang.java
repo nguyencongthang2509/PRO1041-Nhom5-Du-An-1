@@ -26,21 +26,21 @@ import javax.swing.JOptionPane;
  * @author thangncph26123
  */
 public class ViewKhachHang extends javax.swing.JPanel {
-    
+
     KhachHangService khachhang;
     DefaultTableModel mol = new DefaultTableModel();
     List<KhachHangRespone> listKhachHang;
     List<KhachHangLichSuRespone> listLS;
     DatePicker date;
     DefaultComboBoxModel cbom = new DefaultComboBoxModel();
-    
+
     public ViewKhachHang() {
         initComponents();
         khachhang = new KhachHangServiceImpl();
         listKhachHang = khachhang.getAllResponse();
         fillTable(listKhachHang);
     }
-    
+
     public void fillTable(List<KhachHangRespone> list) {
         mol = (DefaultTableModel) tbl_khachhang.getModel();
         mol.setRowCount(0);
@@ -50,7 +50,7 @@ public class ViewKhachHang extends javax.swing.JPanel {
             mol.addRow(new Object[]{stt++, x.getMa(), x.getHoTen(), x.getGioiTinh() == 0 ? "Nam" : "Nữ", x.getSdt(), x.getDiaChi(),
                 x.getEmail(), dateFormat.format(x.getNgaySinh()), x.getCapBac() == 0 ? "Đồng" : (x.getCapBac() == 1 ? "Bạc" : (x.getCapBac() == 2 ? "Vàng" : "Kim cương"))});
         }
-   
+
     }
 
     /**
@@ -569,65 +569,79 @@ public class ViewKhachHang extends javax.swing.JPanel {
 
     private void tbl_khachhangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_khachhangMouseClicked
         try {
-             int index = tbl_khachhang.getSelectedRow();
-        KhachHangRespone khachHangRespone = listKhachHang.get(index);
-        txt_makh.setText(tbl_khachhang.getValueAt(index, 1).toString());
-        txt_hoten.setText(tbl_khachhang.getValueAt(index, 2).toString());
-        String gioitinh = tbl_khachhang.getValueAt(index, 3).toString();
-        if (gioitinh.equalsIgnoreCase("Nam")) {
-            rdo_nam.setSelected(true);
-            rdo_nu.setSelected(false);
-        } else {
-            rdo_nu.setSelected(true);
-            rdo_nam.setSelected(false);
-        }
-        txt_sdt.setText(tbl_khachhang.getValueAt(index, 4).toString());
-        txt_diachi.setText(tbl_khachhang.getValueAt(index, 5).toString());
-        txt_email.setText(tbl_khachhang.getValueAt(index, 6).toString());
-        txt_ngaysinh.setDate(LocalDate.parse(tbl_khachhang.getValueAt(index, 7).toString()));
-        String capbac = tbl_khachhang.getValueAt(index, 8).toString();
-        cbo_capbac.setSelectedItem(capbac);
-        if (khachHangRespone.getCapBac() == 0){
-            pbgTienDo.setMaximum(3000000);
-            BigDecimal money = khachhang.getTongTienByIdKhachHang(khachHangRespone.getId());
-            int tien = (int) money.doubleValue();
-            pbgTienDo.setValue(tien);
-        } 
-        if (khachHangRespone.getCapBac() == 1){
-            pbgTienDo.setMaximum(5000000);
-            BigDecimal money = khachhang.getTongTienByIdKhachHang(khachHangRespone.getId());
-            int tien = (int) money.doubleValue();
-            pbgTienDo.setValue(tien);
-        } 
-        if (khachHangRespone.getCapBac() == 2){
-            pbgTienDo.setMaximum(10000000);
-            BigDecimal money = khachhang.getTongTienByIdKhachHang(khachHangRespone.getId());
-            int tien = (int) money.doubleValue();
-            pbgTienDo.setValue(tien);
-        } 
-        
-        if (khachHangRespone.getCapBac() == 3){
-            pbgTienDo.setMaximum(20000000);
-            BigDecimal money = khachhang.getTongTienByIdKhachHang(khachHangRespone.getId());
-            int tien = (int) money.doubleValue();
-            pbgTienDo.setValue(tien);
-        } 
+            pbgTienDo.setMaximum(0);
+            pbgTienDo.setValue(0);
+            int index = tbl_khachhang.getSelectedRow();
+            KhachHangRespone khachHangRespone = listKhachHang.get(index);
+            txt_makh.setText(tbl_khachhang.getValueAt(index, 1).toString());
+            txt_hoten.setText(tbl_khachhang.getValueAt(index, 2).toString());
+            String gioitinh = tbl_khachhang.getValueAt(index, 3).toString();
+            if (gioitinh.equalsIgnoreCase("Nam")) {
+                rdo_nam.setSelected(true);
+                rdo_nu.setSelected(false);
+            } else {
+                rdo_nu.setSelected(true);
+                rdo_nam.setSelected(false);
+            }
+            txt_sdt.setText(tbl_khachhang.getValueAt(index, 4).toString());
+            txt_diachi.setText(tbl_khachhang.getValueAt(index, 5).toString());
+            txt_email.setText(tbl_khachhang.getValueAt(index, 6).toString());
+            txt_ngaysinh.setDate(LocalDate.parse(tbl_khachhang.getValueAt(index, 7).toString()));
+            String capbac = tbl_khachhang.getValueAt(index, 8).toString();
+            cbo_capbac.setSelectedItem(capbac);
+            if (khachHangRespone.getMa().equals("KH000")) {
+                pbgTienDo.setMaximum(0);
+                pbgTienDo.setValue(0);
+            }
+            if (khachHangRespone.getCapBac() == 0 && !khachHangRespone.getMa().equals("KH000")) {
+                pbgTienDo.setMaximum(3000000);
+                BigDecimal money = khachhang.getTongTienByIdKhachHang(khachHangRespone.getId());
+                if (money != null) {
+                    int tien = (int) money.doubleValue();
+                    pbgTienDo.setValue(tien);
+                }
+            }
+            if (khachHangRespone.getCapBac() == 1) {
+                pbgTienDo.setMaximum(5000000);
+                BigDecimal money = khachhang.getTongTienByIdKhachHang(khachHangRespone.getId());
+                if (money != null) {
+                    int tien = (int) money.doubleValue();
+                    pbgTienDo.setValue(tien);
+                }
+            }
+            if (khachHangRespone.getCapBac() == 2) {
+                pbgTienDo.setMaximum(10000000);
+                BigDecimal money = khachhang.getTongTienByIdKhachHang(khachHangRespone.getId());
+                if (money != null) {
+                    int tien = (int) money.doubleValue();
+                    pbgTienDo.setValue(tien);
+                }
+            }
+
+            if (khachHangRespone.getCapBac() == 3) {
+                pbgTienDo.setMaximum(20000000);
+                BigDecimal money = khachhang.getTongTienByIdKhachHang(khachHangRespone.getId());
+                if (money != null) {
+                    int tien = (int) money.doubleValue();
+                    pbgTienDo.setValue(tien);
+                }
+            }
 //      
-        String id = tbl_khachhang.getValueAt(index, 1).toString();
-        listLS = khachhang.getKhachHangByLichSu(id);
-        mol = (DefaultTableModel) tbl_lichsugiaodich.getModel();
-        mol.setRowCount(0);
-        int stt = 1;
-        for (KhachHangLichSuRespone x : listLS) {
-            mol.addRow(x.toDaTaRow(stt));
-            stt++;
-        }
-        System.out.println(listLS);
+            String id = tbl_khachhang.getValueAt(index, 1).toString();
+            listLS = khachhang.getKhachHangByLichSu(id);
+            mol = (DefaultTableModel) tbl_lichsugiaodich.getModel();
+            mol.setRowCount(0);
+            int stt = 1;
+            for (KhachHangLichSuRespone x : listLS) {
+                mol.addRow(x.toDaTaRow(stt));
+                stt++;
+            }
+            System.out.println(listLS);
         } catch (Exception e) {
             e.printStackTrace();
         }
 // TODO add your handling code here:
-       
+
     }//GEN-LAST:event_tbl_khachhangMouseClicked
 
     private void tbl_lichsugiaodichMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_lichsugiaodichMouseClicked
@@ -653,7 +667,7 @@ public class ViewKhachHang extends javax.swing.JPanel {
         if (list.isEmpty()) {
             return;
         }
-        
+
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         int stt = 1;
         for (KhachHangRespone x : list) {
@@ -665,7 +679,7 @@ public class ViewKhachHang extends javax.swing.JPanel {
     private void txt_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_emailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_emailActionPerformed
-    
+
     public KhachHang getKhachHangByForm() {
         KhachHang kh = new KhachHang();
         kh.setMa(txt_makh.getText());

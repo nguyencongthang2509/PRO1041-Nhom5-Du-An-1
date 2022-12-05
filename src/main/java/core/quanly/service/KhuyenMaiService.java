@@ -44,6 +44,8 @@ public interface KhuyenMaiService {
     
     List<KhuyenMaiResponse> GetKhuyenMaiDangDienRa(); 
     
+    List<KhuyenMai> GetAllKhuyenMaiDangDienRa(); 
+    
     List<KhuyenMaiResponse> GetKhuyenMaiSapDienRa(); 
     
     List<KhuyenMaiResponse> GetKhuyenMaiDaDienRa(); 
@@ -57,6 +59,8 @@ public interface KhuyenMaiService {
     boolean updateKhuyenMaiDangDienRa(String idKhuyenMai);
     
     List<KhuyenMaiResponse> GetKhuyenMaiKhongDienRa();
+    
+    List<KhuyenMai> GetAllKhuyenMaiKhongDienRa();
     
     boolean updateKhuyenMaiKhongDienRa(String idKhuyenMai);
 }

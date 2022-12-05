@@ -63,18 +63,23 @@ public class ImportExcelCTSP {
                 String soLuongTon = String.valueOf(getCellValue(currentRow.getCell(7))).trim();
                 String giaBan = String.valueOf(getCellValue(currentRow.getCell(8))).trim();
                 String maVach = String.valueOf(getCellValue(currentRow.getCell(9))).trim();
-
+                if (mauSacStr.isEmpty() && sanPhamStr.isEmpty() && tenkichThuoc.isEmpty() && hangStr.isEmpty()
+                        && chatLieuStr.isEmpty() && moTa.isEmpty() && soLuongTon.isEmpty() && giaBan.isEmpty() && maVach.isEmpty()) {
+                    continue;
+                }
                 if (mauSacStr.isEmpty() || sanPhamStr.isEmpty() || tenkichThuoc.isEmpty() || hangStr.isEmpty()
                         || chatLieuStr.isEmpty() || moTa.isEmpty() || soLuongTon.isEmpty() || giaBan.isEmpty() || maVach.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Không để trống");
                     return;
                 }
                 SanPham sanPham = cTSanPhamRepository.findSanPhamByTen(sanPhamStr);
+                System.out.println(sanPham.getTen());
                 if (sanPham == null) {
                     JOptionPane.showMessageDialog(null, "Không tìm thấy sản phẩm");
                     return;
                 }
                 MauSac mauSac = cTSanPhamRepository.findMauSacByTen(mauSacStr);
+                System.out.println(mauSac.getTen());
                 if (mauSac == null) {
                     JOptionPane.showMessageDialog(null, "Không tìm thấy màu sắc");
                     return;
@@ -95,9 +100,8 @@ public class ImportExcelCTSP {
                     return;
                 }
                 ChiTietSP chiTietSP = new ChiTietSP();
-                ChiTietSP chiTietSPcheck = cTSanPhamRepository.findByCBB(sanPhamStr, hangStr, mauSacStr, String.valueOf((int) Double.parseDouble(tenkichThuoc)), chatLieuStr);
-                JOptionPane.showMessageDialog(null, chiTietSPcheck.getId());
-                if (chiTietSPcheck == null) {
+                ChiTietSP chiTietSPcheck = cTSanPhamRepository.findByCBB(sanPham.getTen(), hang.getTen(), mauSac.getTen(), kichThuoc1.getTen(), chatLieu.getTen());
+                if (chiTietSPcheck.getMaChiTietSP() == null) {
                     chiTietSP.setMaChiTietSP("CTSP" + mactsp++);
                     chiTietSP.setSanPham(sanPham);
                     chiTietSP.setMauSac(mauSac);
@@ -107,27 +111,19 @@ public class ImportExcelCTSP {
                     chiTietSP.setMoTa(moTa);
                     chiTietSP.setSoLuongTon((int) Double.parseDouble(soLuongTon));
                     chiTietSP.setGiaBan(new BigDecimal(giaBan));
-                    chiTietSP.setMaVach(String.valueOf((int) Double.parseDouble(maVach))); 
+                    chiTietSP.setMaVach(String.valueOf((int) Double.parseDouble(maVach)));
                     listctsp.add(chiTietSP);
-                }else{
+                } else {
                     chiTietSPcheck.setMaVach(String.valueOf((int) Double.parseDouble(maVach)));
                     chiTietSPcheck.setGiaBan(new BigDecimal(giaBan));
                     chiTietSPcheck.setMoTa(moTa);
-                    chiTietSPcheck.setSoLuongTon((int) Double.parseDouble(soLuongTon) + chiTietSPcheck.getSoLuongTon());
+                    if (chiTietSPcheck.getSoLuongTon() != null) {
+                        chiTietSPcheck.setSoLuongTon((int) Double.parseDouble(soLuongTon) + chiTietSPcheck.getSoLuongTon());
+                    } else {
+                        chiTietSPcheck.setSoLuongTon((int) Double.parseDouble(soLuongTon));
+                    }
                     listctsp.add(chiTietSPcheck);
                 }
-
-               
-//                System.out.println(currentRow.getCell(1).getStringCellValue());
-//                System.out.println(currentRow.getCell(2).getStringCellValue());
-//                System.out.println(currentRow.getCell(3).getStringCellValue());
-//                System.out.println(currentRow.getCell(4).getStringCellValue());
-//                System.out.println(currentRow.getCell(5).getStringCellValue());
-//                System.out.println(currentRow.getCell(6).getStringCellValue());
-//                System.out.println(currentRow.getCell(7).getStringCellValue());
-//                System.out.println(currentRow.getCell(8).getStringCellValue());
-//                System.out.println(currentRow.getCell(9).getStringCellValue());
-
             }
             cTSanPhamRepository.saveAll(listctsp);
             JOptionPane.showMessageDialog(null, "Import file excel thành công");

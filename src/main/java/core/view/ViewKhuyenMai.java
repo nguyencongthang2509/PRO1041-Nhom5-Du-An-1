@@ -42,7 +42,7 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
      */
     DefaultTableModel modelsanpham = new DefaultTableModel();
     DefaultTableModel modelkhuyenmai = new DefaultTableModel();
-    DefaultTableModel modelsanphamdangkm = new DefaultTableModel();   
+    DefaultTableModel modelsanphamdangkm = new DefaultTableModel();
     DefaultComboBoxModel modelloaikhuyenmai;
     DefaultComboBoxModel modelcobsanpham;
     KMSanPhamService sanPhamService = new KMSanPhamImpl();
@@ -564,35 +564,40 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tblkhuyenmaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblkhuyenmaiMouseClicked
-        int index = tblkhuyenmai.getSelectedRow();
-        KhuyenMaiResponse khuyenMaiResponse = listkhuyenmai.get(index);
-        if (index >= 0) {
-            txtmakm.setText(khuyenMaiResponse.getMakm());
-            txttenkm.setText(khuyenMaiResponse.getTenkm());
-            txtgiamgia.setText(khuyenMaiResponse.getGiaTri() + "");
-            Date ngaybatdau = khuyenMaiResponse.getNgayBatDau();
-            Instant instant1 = ngaybatdau.toInstant();
-            LocalDateTime localDateTime1 = LocalDateTime.ofInstant(instant1, ZoneId.systemDefault());
-            Date ngayketthuc = khuyenMaiResponse.getNgayKetThuc();
-            Instant instant2 = ngayketthuc.toInstant();
-            LocalDateTime localDateTime2 = LocalDateTime.ofInstant(instant2, ZoneId.systemDefault());
-            dtpngaybatdau.setDateTimePermissive(localDateTime1);
-            dtpngayketthuc.setDateTimePermissive(localDateTime2);
-            if (khuyenMaiResponse.getLoaiKhuyenMai().equals(0)) {
-                cobgiamgia.setSelectedIndex(0);
-            } else {
-                cobgiamgia.setSelectedIndex(1);
+        try {
+            int index = tblkhuyenmai.getSelectedRow();
+            KhuyenMaiResponse khuyenMaiResponse = listkhuyenmai.get(index);
+            if (index >= 0) {
+                txtmakm.setText(khuyenMaiResponse.getMakm());
+                txttenkm.setText(khuyenMaiResponse.getTenkm());
+                txtgiamgia.setText(khuyenMaiResponse.getGiaTri() + "");
+                Date ngaybatdau = khuyenMaiResponse.getNgayBatDau();
+                Instant instant1 = ngaybatdau.toInstant();
+                LocalDateTime localDateTime1 = LocalDateTime.ofInstant(instant1, ZoneId.systemDefault());
+                Date ngayketthuc = khuyenMaiResponse.getNgayKetThuc();
+                Instant instant2 = ngayketthuc.toInstant();
+                LocalDateTime localDateTime2 = LocalDateTime.ofInstant(instant2, ZoneId.systemDefault());
+                dtpngaybatdau.setDateTimePermissive(localDateTime1);
+                dtpngayketthuc.setDateTimePermissive(localDateTime2);
+                if (khuyenMaiResponse.getLoaiKhuyenMai().equals(0)) {
+                    cobgiamgia.setSelectedIndex(0);
+                } else {
+                    cobgiamgia.setSelectedIndex(1);
+                }
             }
+            tbpkhuyenmai.setSelectedIndex(1);
+            listsanpham2 = khuyenMaiService.GetAllSanPhamDangApDung(khuyenMaiResponse.getIdkm());
+            System.out.println(listsanpham2.size());
+            FillToSanPhamDangKM(listsanpham2);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        tbpkhuyenmai.setSelectedIndex(1);
-        listsanpham2 = khuyenMaiService.GetAllSanPhamDangApDung(khuyenMaiResponse.getIdkm());
-        System.out.println(listsanpham2);
-        FillToSanPhamDangKM(listsanpham2);
+
     }//GEN-LAST:event_tblkhuyenmaiMouseClicked
-    
+
     private void btnthemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnthemActionPerformed
         try {
-            
+
             LocalDateTime time1 = dtpngaybatdau.getDateTimePermissive();
             LocalDateTime time2 = dtpngayketthuc.getDateTimePermissive();
             System.out.println(time1);
@@ -600,7 +605,7 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
             String t2 = String.valueOf(time2);
             String array1[] = t1.split("T");
             String arrayDaoChuoi[] = array1[0].split("-");
-            String ngayDao = arrayDaoChuoi[2] + "-" + arrayDaoChuoi[1]+ "-" + arrayDaoChuoi[0];
+            String ngayDao = arrayDaoChuoi[2] + "-" + arrayDaoChuoi[1] + "-" + arrayDaoChuoi[0];
 
             String timeDau = ngayDao + " " + array1[1];
 
@@ -635,18 +640,18 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Giá trị giảm giá không được âm");
                 return;
             }
-            if(ngaybatdau.getTime() > ngayketthuc.getTime()){
+            if (ngaybatdau.getTime() > ngayketthuc.getTime()) {
                 JOptionPane.showMessageDialog(this, "Ngày kết thúc không hợp lệ");
-                return; 
+                return;
             }
-            if(txttenkm.getText().trim().length() > 100){
+            if (txttenkm.getText().trim().length() > 100) {
                 JOptionPane.showMessageDialog(this, "Tên khuyến mại không quá 100 kí tự");
                 return;
             }
-            
+
             String makm = String.valueOf(khuyenMaiService.GenMaKhuyenMai());
             KhuyenMai khuyenMai = new KhuyenMai();
-            khuyenMai.setMa("KM00"+ makm);
+            khuyenMai.setMa("KM00" + makm);
             khuyenMai.setTen(txttenkm.getText().trim());
             khuyenMai.setLoaiKhuyenMai(cobgiamgia.getSelectedIndex());
             khuyenMai.setGiaTri(Double.parseDouble(txtgiamgia.getText().trim()));
@@ -673,7 +678,7 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
                 khuyenMaiService.saveOrUpdate(chiTietSPKhuyenMai);
             }
 
-            listsanpham = khuyenMaiService.FindSanPhamByTen(cobtensanpham.getSelectedItem());          
+            listsanpham = khuyenMaiService.FindSanPhamByTen(cobtensanpham.getSelectedItem());
             FillToSanPham(listsanpham);
             if (cobtrangthaikhuyenmai.getSelectedIndex() == 0) {
                 listkhuyenmai = khuyenMaiService.GetKhuyenMaiDangDienRa();
@@ -682,7 +687,7 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
             } else {
                 listkhuyenmai = khuyenMaiService.GetKhuyenMaiDaDienRa();
             }
-            
+
             FillToKhuyenMai(listkhuyenmai);
             JOptionPane.showMessageDialog(this, "Tạo chương trình khuyến mại thành công");
         } catch (Exception e) {
@@ -719,7 +724,7 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
             String t2 = String.valueOf(time2);
             String array1[] = t1.split("T");
             String arrayDaoChuoi[] = array1[0].split("-");
-            String ngayDao = arrayDaoChuoi[2] + "-" + arrayDaoChuoi[1]+ "-" + arrayDaoChuoi[0];
+            String ngayDao = arrayDaoChuoi[2] + "-" + arrayDaoChuoi[1] + "-" + arrayDaoChuoi[0];
 
             String timeDau = ngayDao + " " + array1[1];
 
@@ -751,11 +756,11 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Giá trị giảm giá không được âm");
                 return;
             }
-            if(ngaybatdau.getTime() > ngayketthuc.getTime()){
+            if (ngaybatdau.getTime() > ngayketthuc.getTime()) {
                 JOptionPane.showMessageDialog(this, "Ngày kết thúc không hợp lệ");
-                return; 
+                return;
             }
-            if(txttenkm.getText().trim().length() > 100){
+            if (txttenkm.getText().trim().length() > 100) {
                 JOptionPane.showMessageDialog(this, "Tên khuyến mại không quá 100 kí tự");
                 return;
             }
@@ -787,8 +792,8 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
                 }
                 khuyenMaiService.saveOrUpdate(chiTietSPKhuyenMai);
             }
-              listsanpham = khuyenMaiService.FindSanPhamByTen(cobtensanpham.getSelectedItem());          
-              FillToSanPham(listsanpham);
+            listsanpham = khuyenMaiService.FindSanPhamByTen(cobtensanpham.getSelectedItem());
+            FillToSanPham(listsanpham);
             if (cobtrangthaikhuyenmai.getSelectedIndex() == 0) {
                 listkhuyenmai = khuyenMaiService.GetKhuyenMaiDangDienRa();
             } else if (cobtrangthaikhuyenmai.getSelectedIndex() == 1) {
@@ -797,12 +802,12 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
                 listkhuyenmai = khuyenMaiService.GetKhuyenMaiDaDienRa();
             }
             FillToKhuyenMai(listkhuyenmai);
-            
+
             KhuyenMaiResponse khuyenMaiResponse = listkhuyenmai.get(index);
             listsanpham2 = khuyenMaiService.GetAllSanPhamDangApDung(khuyenMaiResponse.getIdkm());
             FillToSanPhamDangKM(listsanpham2);
             JOptionPane.showMessageDialog(this, "Sửa chương trình khuyến mại thành công");
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -858,7 +863,7 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
     }//GEN-LAST:event_txttimActionPerformed
 
     private void cobtensanphamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cobtensanphamActionPerformed
-        listsanpham = khuyenMaiService.FindSanPhamByTen(cobtensanpham.getSelectedItem());          
+        listsanpham = khuyenMaiService.FindSanPhamByTen(cobtensanpham.getSelectedItem());
         FillToSanPham(listsanpham);
     }//GEN-LAST:event_cobtensanphamActionPerformed
 
@@ -915,9 +920,9 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
             modelkhuyenmai.addRow(x.ToDaTa1());
         }
     }
-    
+
     private void FillToCobSanpham() {
-        
+
         listcobsanpham = khuyenMaiService.SelectTenSanPham();
         for (String x : listcobsanpham) {
             modelcobsanpham.addElement(x);
@@ -961,5 +966,5 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
         }
         return listselected;
     }
-    
+
 }

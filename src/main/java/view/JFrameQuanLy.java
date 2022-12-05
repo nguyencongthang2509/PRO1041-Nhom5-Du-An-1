@@ -19,6 +19,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import util.DailyCheckingKhuyenMai;
+import util.DailyCheckingRankCustomer;
 
 /**
  *
@@ -47,6 +48,7 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         this.setIconImage(img.getImage());
         
         DailyCheckingKhuyenMai.dailyChecking();
+        DailyCheckingRankCustomer.dailyChecking();
 
         Thread countDownThread = new Thread() {
             @Override

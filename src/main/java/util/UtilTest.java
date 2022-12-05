@@ -58,7 +58,6 @@ public class UtilTest  {
 
     public JFreeChart createChartTheoNam() throws Exception {
         Date date = new Date();
-
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
         simpleDateFormat.applyPattern("yyyy");
         String format = simpleDateFormat.format(date);
@@ -98,7 +97,6 @@ public class UtilTest  {
             dataset.addValue(new Double(Get().getDoanhThuNam2(i).doubleValue()), "Doanh số", i + "");
         }
         System.out.println(getyear);
-
         return dataset;
     }
 

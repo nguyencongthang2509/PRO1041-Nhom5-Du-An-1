@@ -151,11 +151,11 @@ public class CTSanPhamRepository extends CrudRepository<String, ChiTietSP, CTSan
                     + "AND a.kichThuoc.ten = :tenKichThuoc "
                     + "AND a.chatLieu.ten = :tenchatLieu";
             Query query = session.createQuery(hql);
-            query.setParameter("tenSp", tenSp);
-            query.setParameter("tenHang", tenHang);
-            query.setParameter("tenMauSac", tenMauSac);
-            query.setParameter("tenKichThuoc", tenKichThuoc);
-            query.setParameter("tenchatLieu", tenchatLieu);
+            query.setParameter("tenSp", tenSp.trim());
+            query.setParameter("tenHang", tenHang.trim());
+            query.setParameter("tenMauSac", tenMauSac.trim());
+            query.setParameter("tenKichThuoc", tenKichThuoc.trim());
+            query.setParameter("tenchatLieu", tenchatLieu.trim());
             chiTietSP = (ChiTietSP) query.getSingleResult();
         } catch (Exception e) {
         }

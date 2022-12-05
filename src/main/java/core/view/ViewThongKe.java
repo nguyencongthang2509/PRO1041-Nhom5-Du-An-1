@@ -416,10 +416,7 @@ public class ViewThongKe extends javax.swing.JPanel {
 
         tblHangHoa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "STT", "Mã Sản Phẩm", "Tên Sản Phẩm", "Hãng", "Màu Sắc", "Size", "Số Lượng", "Đơn Giá"
@@ -488,6 +485,11 @@ public class ViewThongKe extends javax.swing.JPanel {
         txtTimKiem.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 txtTimKiemCaretUpdate(evt);
+            }
+        });
+        txtTimKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTimKiemActionPerformed(evt);
             }
         });
 
@@ -983,6 +985,10 @@ public class ViewThongKe extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txtTimKiemCaretUpdate
 
+    private void txtTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimKiemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTimKiemActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JPenalBieuDo;
@@ -1108,7 +1114,6 @@ public class ViewThongKe extends javax.swing.JPanel {
         String format = simpleDateFormat.format(date);
         int namhientai = Integer.parseInt(format);
         for (int i = namhientai; i > namhientai - 5; i--) {
-
             cboBieuDo.addItem(i + "");
         }
     }
