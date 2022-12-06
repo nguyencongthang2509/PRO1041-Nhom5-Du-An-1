@@ -19,7 +19,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import util.DailyCheckingKhuyenMai;
-import util.DailyCheckingRankCustomer;
 
 /**
  *
@@ -28,7 +27,6 @@ import util.DailyCheckingRankCustomer;
 public class JFrameQuanLy extends javax.swing.JFrame {
 
     private NhanVien nhanVien = new NhanVien();
-    
 
     public JFrameQuanLy(NhanVien nv) {
         initComponents();
@@ -47,28 +45,27 @@ public class JFrameQuanLy extends javax.swing.JFrame {
 
         this.setIconImage(img.getImage());
         
-        DailyCheckingKhuyenMai.dailyChecking();
-        DailyCheckingKhuyenMai.dailyCheckingRankCustomer();
+//        new DailyCheckingKhuyenMai().start();
 
-        Thread countDownThread = new Thread() {
-            @Override
-            public void run() {
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm aa");
-                do {
-                    Date now = new Date();
-
-                    String st = sdf.format(now);
-
-                    lblNgayGio.setText(st);
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                } while (true);
-            }
-        };
-        countDownThread.start();
+//        Thread countDownThread = new Thread() {
+//            @Override
+//            public void run() {
+//                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm aa");
+//                do {
+//                    Date now = new Date();
+//
+//                    String st = sdf.format(now);
+//
+//                    lblNgayGio.setText(st);
+//                    try {
+//                        Thread.sleep(1000);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                } while (true);
+//            }
+//        };
+//        countDownThread.start();
         txtMaNV.setText(nhanVien.getMa());
         txtTenNV.setText(nhanVien.getTen());
         txtChucVu.setText(nhanVien.getVaiTro() == 0 ? "Quản lý" : "Nhân viên");

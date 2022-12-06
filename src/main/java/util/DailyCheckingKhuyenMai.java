@@ -25,6 +25,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
+import javax.swing.JOptionPane;
+import lombok.Synchronized;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -87,6 +89,7 @@ public class DailyCheckingKhuyenMai extends Thread {
         return SESSION;
     }
 
+    @Synchronized
     public List<KhuyenMai> GetAllKhuyenMaiDangDienRa() {
         List<KhuyenMai> list = new ArrayList<>();
         try {
@@ -102,6 +105,7 @@ public class DailyCheckingKhuyenMai extends Thread {
         return list;
     }
 
+    @Synchronized
     public List<KhuyenMai> GetAllKhuyenMaiKhongDienRa() {
         List<KhuyenMai> list = new ArrayList<>();
         try {
@@ -112,11 +116,11 @@ public class DailyCheckingKhuyenMai extends Thread {
             list = query.getResultList();
         } catch (Exception e) {
             e.printStackTrace();
-            
         }
         return list;
     }
 
+    @Synchronized
     public boolean updateKhuyenMaiDangDienRa(String idKhuyenMai) {
         boolean check = false;
         try {
@@ -130,12 +134,12 @@ public class DailyCheckingKhuyenMai extends Thread {
             TRANS.commit();
         } catch (Exception e) {
             e.printStackTrace();
-            TRANS.rollback();
         }
         return check;
 
     }
 
+    @Synchronized
     public boolean updateKhuyenMaiKhongDienRa(String idKhuyenMai) {
         boolean check = false;
         try {
@@ -149,40 +153,84 @@ public class DailyCheckingKhuyenMai extends Thread {
             TRANS.commit();
         } catch (Exception e) {
             e.printStackTrace();
-            TRANS.rollback();
         }
         return check;
 
     }
 
-    public static void dailyChecking() {
-        Thread countDownThread = new Thread() {
-            @Override
-            public void run() {
-                do {
-                    List<KhuyenMai> listDangdienRa = new DailyCheckingKhuyenMai().GetAllKhuyenMaiDangDienRa();
-                    if (listDangdienRa != null) {
-                        for (KhuyenMai xx : listDangdienRa) {
-                            new DailyCheckingKhuyenMai().updateKhuyenMaiDangDienRa(xx.getId());
-                        }
-                    }
-                    List<KhuyenMai> listKhongDienRa = new DailyCheckingKhuyenMai().GetAllKhuyenMaiKhongDienRa();
-                    if (listKhongDienRa != null) {
-                        for (KhuyenMai xx : listKhongDienRa) {
-                            new DailyCheckingKhuyenMai().updateKhuyenMaiKhongDienRa(xx.getId());
-                        }
-                    }
-                    try {
-                        Thread.sleep(60000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                } while (true);
+    @Override
+    public synchronized void run() {
+        while (true) {
+            List<KhuyenMai> listDangdienRa = GetAllKhuyenMaiDangDienRa();
+            if (listDangdienRa != null) {
+                for (KhuyenMai xx : listDangdienRa) {
+                    updateKhuyenMaiDangDienRa(xx.getId());
+                }
             }
-        };
-        countDownThread.start();
+            List<KhuyenMai> listKhongDienRa = GetAllKhuyenMaiKhongDienRa();
+            if (listKhongDienRa != null) {
+                for (KhuyenMai xx : listKhongDienRa) {
+                    updateKhuyenMaiKhongDienRa(xx.getId());
+                }
+            }
+            List<KhachHang> listKhachHang = getAllKhacHangDangHoatDong();
+            for (KhachHang xx : listKhachHang) {
+                BigDecimal tienKhachMua = getTongTienByIdKhachHang(xx.getId());
+                if (tienKhachMua == null) {
+                    continue;
+                }
+                if (tienKhachMua != null) {
+                    if (tienKhachMua.compareTo(new BigDecimal(3000000)) < 0) {
+                        xx.setCapBac(0);
+                    }
+                    if (tienKhachMua.compareTo(new BigDecimal(3000000)) > 0 && tienKhachMua.compareTo(new BigDecimal(5000000)) < 0) {
+                        xx.setCapBac(1);
+                    }
+                    if (tienKhachMua.compareTo(new BigDecimal(5000000)) > 0 && tienKhachMua.compareTo(new BigDecimal(10000000)) < 0) {
+                        xx.setCapBac(2);
+                    }
+                    if (tienKhachMua.compareTo(new BigDecimal(10000000)) > 0) {
+                        xx.setCapBac(3);
+                    }
+                    saveOrUpdateKH(xx);
+                }
+            }
+            try {
+                Thread.sleep(60000);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
+//    public static void dailyChecking() {
+//        Thread countDownThread = new Thread() {
+//            @Override
+//            public void run() {
+//                do {
+//                    List<KhuyenMai> listDangdienRa = new DailyCheckingKhuyenMai().GetAllKhuyenMaiDangDienRa();
+//                    if (listDangdienRa != null) {
+//                        for (KhuyenMai xx : listDangdienRa) {
+//                            new DailyCheckingKhuyenMai().updateKhuyenMaiDangDienRa(xx.getId());
+//                        }
+//                    }
+//                    List<KhuyenMai> listKhongDienRa = new DailyCheckingKhuyenMai().GetAllKhuyenMaiKhongDienRa();
+//                    if (listKhongDienRa != null) {
+//                        for (KhuyenMai xx : listKhongDienRa) {
+//                            new DailyCheckingKhuyenMai().updateKhuyenMaiKhongDienRa(xx.getId());
+//                        }
+//                    }
+//                    try {
+//                        Thread.sleep(60000);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                } while (true);
+//            }
+//        };
+//        countDownThread.start();
+//    }
+    @Synchronized
     public List<KhachHang> getAllKhacHangDangHoatDong() {
         List<KhachHang> list = new ArrayList<>();
         try {
@@ -196,6 +244,7 @@ public class DailyCheckingKhuyenMai extends Thread {
         return list;
     }
 
+    @Synchronized
     public BigDecimal getTongTienByIdKhachHang(String id) {
         BigDecimal money = new BigDecimal(0);
         try {
@@ -210,6 +259,7 @@ public class DailyCheckingKhuyenMai extends Thread {
         return money;
     }
 
+    @Synchronized
     public KhachHang saveOrUpdateKH(KhachHang entity) {
         try {
             session = getSession();
@@ -224,42 +274,42 @@ public class DailyCheckingKhuyenMai extends Thread {
         return entity;
     }
 
-    public static void dailyCheckingRankCustomer() {
-        Thread countDownThread = new Thread() {
-            @Override
-            public void run() {
-                do {
-//                    List<KhachHang> listKH = new ArrayList<>();
-                    List<KhachHang> listKhachHang = new DailyCheckingKhuyenMai().getAllKhacHangDangHoatDong();
-                    for (KhachHang xx : listKhachHang) {
-                        BigDecimal tienKhachMua = new DailyCheckingKhuyenMai().getTongTienByIdKhachHang(xx.getId());
-                        if (tienKhachMua == null) {
-                            continue;
-                        }
-                        if (tienKhachMua != null) {
-                            if (tienKhachMua.compareTo(new BigDecimal(3000000)) < 0) {
-                                xx.setCapBac(0);
-                            }
-                            if (tienKhachMua.compareTo(new BigDecimal(3000000)) > 0 && tienKhachMua.compareTo(new BigDecimal(5000000)) < 0) {
-                                xx.setCapBac(1);
-                            }
-                            if (tienKhachMua.compareTo(new BigDecimal(5000000)) > 0 && tienKhachMua.compareTo(new BigDecimal(10000000)) < 0) {
-                                xx.setCapBac(2);
-                            }
-                            if (tienKhachMua.compareTo(new BigDecimal(10000000)) > 0) {
-                                xx.setCapBac(3);
-                            }
-                            new DailyCheckingKhuyenMai().saveOrUpdateKH(xx);
-                        }
-                    }
-                    try {
-                        Thread.sleep(60000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                } while (true);
-            }
-        };
-        countDownThread.start();
-    }
+//    public static void dailyCheckingRankCustomer() {
+//        Thread countDownThread = new Thread() {
+//            @Override
+//            public void run() {
+//                do {
+////                    List<KhachHang> listKH = new ArrayList<>();
+//                    List<KhachHang> listKhachHang = new DailyCheckingKhuyenMai().getAllKhacHangDangHoatDong();
+//                    for (KhachHang xx : listKhachHang) {
+//                        BigDecimal tienKhachMua = new DailyCheckingKhuyenMai().getTongTienByIdKhachHang(xx.getId());
+//                        if (tienKhachMua == null) {
+//                            continue;
+//                        }
+//                        if (tienKhachMua != null) {
+//                            if (tienKhachMua.compareTo(new BigDecimal(3000000)) < 0) {
+//                                xx.setCapBac(0);
+//                            }
+//                            if (tienKhachMua.compareTo(new BigDecimal(3000000)) > 0 && tienKhachMua.compareTo(new BigDecimal(5000000)) < 0) {
+//                                xx.setCapBac(1);
+//                            }
+//                            if (tienKhachMua.compareTo(new BigDecimal(5000000)) > 0 && tienKhachMua.compareTo(new BigDecimal(10000000)) < 0) {
+//                                xx.setCapBac(2);
+//                            }
+//                            if (tienKhachMua.compareTo(new BigDecimal(10000000)) > 0) {
+//                                xx.setCapBac(3);
+//                            }
+//                            new DailyCheckingKhuyenMai().saveOrUpdateKH(xx);
+//                        }
+//                    }
+//                    try {
+//                        Thread.sleep(60000);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                } while (true);
+//            }
+//        };
+//        countDownThread.start();
+//    }
 }

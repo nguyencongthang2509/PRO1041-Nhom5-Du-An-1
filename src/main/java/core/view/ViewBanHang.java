@@ -50,7 +50,7 @@ import util.ExportFilePdfByITextTaiQuay;
  *
  * @author thangncph26123
  */
-public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadFactory {
+public class ViewBanHang extends javax.swing.JPanel {
 
     private final DefaultTableModel modelSanPham;
     private final DefaultTableModel modelGioHang;
@@ -70,9 +70,10 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
     private int countTbpDatHang = 0;
     public static WebcamPanel panel = null;
     public static Webcam webcam = null;
+    public Thread capture;
 
     private static final long serialVersionUID = 6441489157408381878L;
-    private Executor executor = Executors.newSingleThreadExecutor(this);
+//    private Executor executor = Executors.newSingleThreadExecutor(this);
 
     public ViewBanHang(NhanVien nv) {
         initComponents();
@@ -95,6 +96,8 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
         loadDataToTableSP(listSanPham);
         loadDataToHoaDon(listHoaDon);
         cboHinhThucThanhToan.setVisible(false);
+        countTbpTaiQuay = 0;
+        countTbpDatHang = 0;
     }
 
     private void initWebcam() {
@@ -107,179 +110,184 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
 
         pnlWebcam.add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 231, 173));
 
-        executor.execute(this);
+//        executor.execute(this);
+        captureThread();
     }
 
-    @Override
-    public void run() {
-        do {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+    public void captureThread() {
+        capture = new Thread() {
+            @Override
+            public void run() {
+                do {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    Result result = null;
+                    BufferedImage image = null;
 
-            Result result = null;
-            BufferedImage image = null;
+                    if (webcam.isOpen()) {
+                        if ((image = webcam.getImage()) == null) {
+                            continue;
+                        }
+                    }
 
-            if (webcam.isOpen()) {
-                if ((image = webcam.getImage()) == null) {
-                    continue;
-                }
-            }
+                    LuminanceSource source = new BufferedImageLuminanceSource(image);
+                    BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
 
-            LuminanceSource source = new BufferedImageLuminanceSource(image);
-            BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
-
-            try {
-                result = new MultiFormatReader().decode(bitmap);
-            } catch (NotFoundException e) {
-                //No result...
-            }
-            if (result != null) {
-                try {
-                    String maVachScan = result.getText();
-                    String idChiTietSP = banHangService.findChiTietSPByMaVach(maVachScan);
+                    try {
+                        result = new MultiFormatReader().decode(bitmap);
+                    } catch (NotFoundException e) {
+                        //No result...
+                    }
+                    if (result != null) {
+                        try {
+                            String maVachScan = result.getText();
+                            String idChiTietSP = banHangService.findChiTietSPByMaVach(maVachScan);
 //                    int rowHoaDon = tblHoaDonCho.getSelectedRow();
 //                    if (rowHoaDon == -1) {
 //                        JOptionPane.showMessageDialog(this, "Mời chọn hóa đơn");
 //                        continue;
 //                    }
-                    int rowHoaDon = tblHoaDonCho.getSelectedRow();
-                    if (rowHoaDon >= 0) {
-                        BhHoaDonResponse bhHoaDonClick = listHoaDon.get(rowHoaDon);
-                        if (bhHoaDonClick.getTrangThai() != 0) {
-                            clearForm();
-                        }
-                    }
-                    rowHoaDon = tblHoaDonCho.getSelectedRow();
-                    if (rowHoaDon == -1) {
-                        if (tbpDonHang.getSelectedIndex() == 0) {
-                            taoHoaDonTaiQuay();
-                        } else {
-                            taoHoaDonDatHang();
-                        }
-                    }
-                    rowHoaDon = tblHoaDonCho.getSelectedRow();
-                    BhHoaDonResponse bhHoaDonResponse = listHoaDon.get(rowHoaDon);
-                    BhChiTietSPResponse bhChiTietSPCheck = banHangService.findCTSPByMaVach(listSanPham, maVachScan);
-                    BhHoaDonChiTietResponse hoaDonChiTietCheck = mapGioHang.get(idChiTietSP);
-                    int soLuongThayDoi = 0;
-                    if (hoaDonChiTietCheck != null) {
-                        Object[] options = {"Thêm số lượng", "Giảm số lượng", "Hủy"};
-                        int resultOption = JOptionPane.showOptionDialog(this,
-                                "Sản phẩm này đã có trong giỏ hàng, bạn muốn làm gì?",
-                                "Xác nhận",
-                                JOptionPane.YES_NO_CANCEL_OPTION,
-                                JOptionPane.QUESTION_MESSAGE,
-                                null,
-                                options,
-                                options[2]);
-                        if (resultOption == 0 || resultOption == 1) {
-                            String soLuongThayDoiStr = JOptionPane.showInputDialog(this, "Nhập số lượng: ");
-                            if (soLuongThayDoiStr == null) {
-                                continue;
+                            int rowHoaDon = tblHoaDonCho.getSelectedRow();
+                            if (rowHoaDon >= 0) {
+                                BhHoaDonResponse bhHoaDonClick = listHoaDon.get(rowHoaDon);
+                                if (bhHoaDonClick.getTrangThai() != 0) {
+                                    clearForm();
+                                }
                             }
-                            try {
-                                soLuongThayDoi = Integer.parseInt(soLuongThayDoiStr);
-                                if (soLuongThayDoi < 0) {
-                                    JOptionPane.showMessageDialog(this, "Số lượng không thể âm");
+                            rowHoaDon = tblHoaDonCho.getSelectedRow();
+                            if (rowHoaDon == -1) {
+                                if (tbpDonHang.getSelectedIndex() == 0) {
+                                    taoHoaDonTaiQuay();
+                                } else {
+                                    taoHoaDonDatHang();
+                                }
+                            }
+                            rowHoaDon = tblHoaDonCho.getSelectedRow();
+                            BhHoaDonResponse bhHoaDonResponse = listHoaDon.get(rowHoaDon);
+                            BhChiTietSPResponse bhChiTietSPCheck = banHangService.findCTSPByMaVach(listSanPham, maVachScan);
+                            BhHoaDonChiTietResponse hoaDonChiTietCheck = mapGioHang.get(idChiTietSP);
+                            int soLuongThayDoi = 0;
+                            if (hoaDonChiTietCheck != null) {
+                                Object[] options = {"Thêm số lượng", "Giảm số lượng", "Hủy"};
+                                int resultOption = JOptionPane.showOptionDialog(null,
+                                        "Sản phẩm này đã có trong giỏ hàng, bạn muốn làm gì?",
+                                        "Xác nhận",
+                                        JOptionPane.YES_NO_CANCEL_OPTION,
+                                        JOptionPane.QUESTION_MESSAGE,
+                                        null,
+                                        options,
+                                        options[2]);
+                                if (resultOption == 0 || resultOption == 1) {
+                                    String soLuongThayDoiStr = JOptionPane.showInputDialog(null, "Nhập số lượng: ");
+                                    if (soLuongThayDoiStr == null) {
+                                        continue;
+                                    }
+                                    try {
+                                        soLuongThayDoi = Integer.parseInt(soLuongThayDoiStr);
+                                        if (soLuongThayDoi < 0) {
+                                            JOptionPane.showMessageDialog(null, "Số lượng không thể âm");
+                                            continue;
+                                        }
+                                    } catch (Exception e) {
+                                        JOptionPane.showMessageDialog(null, "Số lượng phải là số");
+                                        continue;
+                                    }
+                                    if (resultOption == 0) {
+                                        if (soLuongThayDoi > bhChiTietSPCheck.getSoLuongTon() - hoaDonChiTietCheck.getSoLuong()) {
+                                            JOptionPane.showMessageDialog(null, "Không được vượt số lượng tồn");
+                                            continue;
+                                        }
+                                        soLuongThayDoi = soLuongThayDoi;
+                                    } else {
+                                        if (soLuongThayDoi > hoaDonChiTietCheck.getSoLuong()) {
+                                            JOptionPane.showMessageDialog(null, "Số lượng sau khi giảm không được âm");
+                                            continue;
+                                        }
+                                        if (soLuongThayDoi == hoaDonChiTietCheck.getSoLuong()) {
+                                            mapGioHang.remove(hoaDonChiTietCheck.getIdChiTietSP());
+                                            loadDataToTableHDCT(mapGioHang);
+                                            HoaDonChiTiet hoaDonChiTiet = banHangService.findByIdHoaDonChiTiet(hoaDonChiTietCheck.getIdHDCT());
+                                            banHangService.deleteHDCT(hoaDonChiTiet);
+                                        }
+                                        soLuongThayDoi = -soLuongThayDoi;
+                                    }
+                                }
+                            }
+                            if (hoaDonChiTietCheck == null) {
+                                String inputSoLuong = JOptionPane.showInputDialog(null, "Nhập số lượng", "0");
+                                if (inputSoLuong == null) {
                                     continue;
                                 }
-                            } catch (Exception e) {
-                                JOptionPane.showMessageDialog(this, "Số lượng phải là số");
-                                continue;
-                            }
-                            if (resultOption == 0) {
-                                if (soLuongThayDoi > bhChiTietSPCheck.getSoLuongTon() - hoaDonChiTietCheck.getSoLuong()) {
-                                    JOptionPane.showMessageDialog(this, "Không được vượt số lượng tồn");
+                                int soLuong;
+                                try {
+                                    soLuong = Integer.parseInt(inputSoLuong);
+                                    if (soLuong < 0 || soLuong > bhChiTietSPCheck.getSoLuongTon()) {
+                                        JOptionPane.showMessageDialog(null, "Số lượng không được âm, không lớn hơn số lượng tồn");
+                                        continue;
+                                    }
+                                } catch (Exception e) {
+                                    JOptionPane.showMessageDialog(null, "Số lượng phải là số");
                                     continue;
                                 }
-                                soLuongThayDoi = soLuongThayDoi;
+                                if (soLuong == 0) {
+                                    continue;
+                                }
+                                BhHoaDonChiTietResponse bhHoaDonChiTietResponse = new BhHoaDonChiTietResponse();
+                                bhHoaDonChiTietResponse.setIdChiTietSP(bhChiTietSPCheck.getId());
+                                bhHoaDonChiTietResponse.setIdHoaDon(bhHoaDonResponse.getId());
+                                bhHoaDonChiTietResponse.setMaCTSP(bhChiTietSPCheck.getMaCTSP());
+                                bhHoaDonChiTietResponse.setMaSP(bhChiTietSPCheck.getMaSP());
+                                bhHoaDonChiTietResponse.setTenSP(bhChiTietSPCheck.getTenSP());
+                                bhHoaDonChiTietResponse.setSoLuong(soLuong);
+                                bhHoaDonChiTietResponse.setHang(bhChiTietSPCheck.getHang());
+                                bhHoaDonChiTietResponse.setMauSac(bhChiTietSPCheck.getMauSac());
+                                bhHoaDonChiTietResponse.setSize(bhChiTietSPCheck.getSize());
+                                bhHoaDonChiTietResponse.setSoLuongTon(bhChiTietSPCheck.getSoLuongTon());
+                                bhHoaDonChiTietResponse.setDonGia(bhChiTietSPCheck.getDonGia());
+                                ChiTietSPKhuyenMai chiTietSPKhuyenMai = banHangService.getCTSPKhuyenMai(bhChiTietSPCheck.getId());
+                                if (chiTietSPKhuyenMai != null) {
+                                    bhHoaDonChiTietResponse.setGiaBan(chiTietSPKhuyenMai.getDonGiaConLai());
+                                    bhHoaDonChiTietResponse.setGiamGia(bhChiTietSPCheck.getDonGia().subtract(chiTietSPKhuyenMai.getDonGiaConLai()));
+                                } else {
+                                    bhHoaDonChiTietResponse.setGiaBan(bhChiTietSPCheck.getDonGia());
+                                    bhHoaDonChiTietResponse.setGiamGia(new BigDecimal(0));
+                                }
+                                mapGioHang.put(bhHoaDonChiTietResponse.getIdChiTietSP(), bhHoaDonChiTietResponse);
+                                HoaDonChiTiet hoaDonChiTiet = banHangService.convertHoaDonChiTiet(bhHoaDonChiTietResponse);
+                                banHangService.saveOrUpdateHDCT(hoaDonChiTiet);
+                                bhHoaDonChiTietResponse.setIdHDCT(hoaDonChiTiet.getId());
+                                loadDataToTableHDCT(mapGioHang);
                             } else {
-                                if (soLuongThayDoi > hoaDonChiTietCheck.getSoLuong()) {
-                                    JOptionPane.showMessageDialog(this, "Số lượng sau khi giảm không được âm");
-                                    continue;
-                                }
-                                if (soLuongThayDoi == hoaDonChiTietCheck.getSoLuong()) {
-                                    mapGioHang.remove(hoaDonChiTietCheck.getIdChiTietSP());
+                                hoaDonChiTietCheck.setSoLuong(hoaDonChiTietCheck.getSoLuong() + soLuongThayDoi);
+                                if (hoaDonChiTietCheck.getSoLuong() != 0) {
+                                    mapGioHang.replace(hoaDonChiTietCheck.getIdChiTietSP(), hoaDonChiTietCheck);
                                     loadDataToTableHDCT(mapGioHang);
-                                    HoaDonChiTiet hoaDonChiTiet = banHangService.findByIdHoaDonChiTiet(hoaDonChiTietCheck.getIdHDCT());
-                                    banHangService.deleteHDCT(hoaDonChiTiet);
+                                    HoaDonChiTiet hoaDonChiTiet = banHangService.convertHoaDonChiTiet(hoaDonChiTietCheck);
+                                    hoaDonChiTiet.setId(hoaDonChiTietCheck.getIdHDCT());
+                                    banHangService.saveOrUpdateHDCT(hoaDonChiTiet);
                                 }
-                                soLuongThayDoi = -soLuongThayDoi;
                             }
-                        }
-                    }
-                    if (hoaDonChiTietCheck == null) {
-                        String inputSoLuong = JOptionPane.showInputDialog(this, "Nhập số lượng", "0");
-                        if (inputSoLuong == null) {
-                            continue;
-                        }
-                        int soLuong;
-                        try {
-                            soLuong = Integer.parseInt(inputSoLuong);
-                            if (soLuong < 0 || soLuong > bhChiTietSPCheck.getSoLuongTon()) {
-                                JOptionPane.showMessageDialog(this, "Số lượng không được âm, không lớn hơn số lượng tồn");
-                                continue;
-                            }
+                            tinhTongTien();
                         } catch (Exception e) {
-                            JOptionPane.showMessageDialog(this, "Số lượng phải là số");
-                            continue;
-                        }
-                        if (soLuong == 0) {
-                            continue;
-                        }
-                        BhHoaDonChiTietResponse bhHoaDonChiTietResponse = new BhHoaDonChiTietResponse();
-                        bhHoaDonChiTietResponse.setIdChiTietSP(bhChiTietSPCheck.getId());
-                        bhHoaDonChiTietResponse.setIdHoaDon(bhHoaDonResponse.getId());
-                        bhHoaDonChiTietResponse.setMaCTSP(bhChiTietSPCheck.getMaCTSP());
-                        bhHoaDonChiTietResponse.setMaSP(bhChiTietSPCheck.getMaSP());
-                        bhHoaDonChiTietResponse.setTenSP(bhChiTietSPCheck.getTenSP());
-                        bhHoaDonChiTietResponse.setSoLuong(soLuong);
-                        bhHoaDonChiTietResponse.setHang(bhChiTietSPCheck.getHang());
-                        bhHoaDonChiTietResponse.setMauSac(bhChiTietSPCheck.getMauSac());
-                        bhHoaDonChiTietResponse.setSize(bhChiTietSPCheck.getSize());
-                        bhHoaDonChiTietResponse.setSoLuongTon(bhChiTietSPCheck.getSoLuongTon());
-                        bhHoaDonChiTietResponse.setDonGia(bhChiTietSPCheck.getDonGia());
-                        ChiTietSPKhuyenMai chiTietSPKhuyenMai = banHangService.getCTSPKhuyenMai(bhChiTietSPCheck.getId());
-                        if (chiTietSPKhuyenMai != null) {
-                            bhHoaDonChiTietResponse.setGiaBan(chiTietSPKhuyenMai.getDonGiaConLai());
-                            bhHoaDonChiTietResponse.setGiamGia(bhChiTietSPCheck.getDonGia().subtract(chiTietSPKhuyenMai.getDonGiaConLai()));
-                        } else {
-                            bhHoaDonChiTietResponse.setGiaBan(bhChiTietSPCheck.getDonGia());
-                            bhHoaDonChiTietResponse.setGiamGia(new BigDecimal(0));
-                        }
-                        mapGioHang.put(bhHoaDonChiTietResponse.getIdChiTietSP(), bhHoaDonChiTietResponse);
-                        HoaDonChiTiet hoaDonChiTiet = banHangService.convertHoaDonChiTiet(bhHoaDonChiTietResponse);
-                        banHangService.saveOrUpdateHDCT(hoaDonChiTiet);
-                        bhHoaDonChiTietResponse.setIdHDCT(hoaDonChiTiet.getId());
-                        loadDataToTableHDCT(mapGioHang);
-                    } else {
-                        hoaDonChiTietCheck.setSoLuong(hoaDonChiTietCheck.getSoLuong() + soLuongThayDoi);
-                        if (hoaDonChiTietCheck.getSoLuong() != 0) {
-                            mapGioHang.replace(hoaDonChiTietCheck.getIdChiTietSP(), hoaDonChiTietCheck);
-                            loadDataToTableHDCT(mapGioHang);
-                            HoaDonChiTiet hoaDonChiTiet = banHangService.convertHoaDonChiTiet(hoaDonChiTietCheck);
-                            hoaDonChiTiet.setId(hoaDonChiTietCheck.getIdHDCT());
-                            banHangService.saveOrUpdateHDCT(hoaDonChiTiet);
+                            e.printStackTrace();
                         }
                     }
-                    tinhTongTien();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                } while (true);
             }
-        } while (true);
+        };
+        capture.setDaemon(true);
+        capture.start();
     }
 
-    @Override
-    public Thread newThread(Runnable r) {
-        Thread t = new Thread(r, "My Thread");
-        t.setDaemon(true);
-        return t;
-    }
-
+//    @Override
+//    public Thread newThread(Runnable r) {
+//        Thread t = new Thread(r, "My Thread");
+//        t.setDaemon(true);
+//        return t;
+//    }
     private void loadDataToTableSP(List<BhChiTietSPResponse> list) {
         modelSanPham.setRowCount(0);
         for (BhChiTietSPResponse xx : list) {
@@ -2070,7 +2078,7 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
             }
             int rowSanPham = tblSanPham.getSelectedRow();
             rowHoaDon = tblHoaDonCho.getSelectedRow();
-            
+
             BhHoaDonResponse bhHoaDonResponse = listHoaDon.get(rowHoaDon);
             BhChiTietSPResponse bhChiTietSPCheck = listSanPham.get(rowSanPham);
             BhHoaDonChiTietResponse hoaDonChiTietCheck = mapGioHang.get(bhChiTietSPCheck.getId());
@@ -2812,10 +2820,10 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
                 JOptionPane.showMessageDialog(this, "Tiền khách đưa không đủ");
                 return;
             }
-//            if(txtNgayMongMuon.datePicker.getSettings().getAllowKeyboardEditing() || txtNgayMongMuon.timePicker.getSettings().getAllowKeyboardEditing()){
-//                JOptionPane.showMessageDialog(this, "Hãy nhập thời gian khách mong muốn nhận hàng");
-//                return;
-//            }
+            if (txtNgayMongMuon.datePicker.toString().trim().isEmpty() && txtNgayMongMuon.timePicker.toString().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Hãy nhập thời gian khách mong muốn nhận hàng");
+                return;
+            }
             LocalDateTime timeLocal = txtNgayMongMuon.getDateTimePermissive();
             String t1 = String.valueOf(timeLocal);
             String array1[] = t1.split("T");
@@ -3025,17 +3033,19 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
                     khachHang = banHangService.findByMaKhachHang(txtMaKHTaiQuay.getText().trim());
                 }
                 hoaDon.setKhachHang(khachHang);
-                if (khachHang.getCapBac() == 0) {
-                    hoaDon.setPhamTramGiamGia(0.0);
-                }
-                if (khachHang.getCapBac() == 1) {
-                    hoaDon.setPhamTramGiamGia(3.0);
-                }
-                if (khachHang.getCapBac() == 2) {
-                    hoaDon.setPhamTramGiamGia(5.0);
-                }
-                if (khachHang.getCapBac() == 3) {
-                    hoaDon.setPhamTramGiamGia(10.0);
+                if (khachHang != null) {
+                    if (khachHang.getCapBac() == 0) {
+                        hoaDon.setPhamTramGiamGia(0.0);
+                    }
+                    if (khachHang.getCapBac() == 1) {
+                        hoaDon.setPhamTramGiamGia(3.0);
+                    }
+                    if (khachHang.getCapBac() == 2) {
+                        hoaDon.setPhamTramGiamGia(5.0);
+                    }
+                    if (khachHang.getCapBac() == 3) {
+                        hoaDon.setPhamTramGiamGia(10.0);
+                    }
                 }
                 hoaDon.setTrangThai(2);
                 hoaDon.setNhanVien(nhanVien);
@@ -3269,7 +3279,7 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         try {
             int rowNhanVien = tblNhanVienShip.getSelectedRow();
-            if(rowNhanVien >= 0){
+            if (rowNhanVien >= 0) {
                 BhNhanVienResponse bhNhanVienResponse = listNhanVien.get(rowNhanVien);
                 txtTenNguoiShipDatHang.setText(bhNhanVienResponse.getTen());
                 txtSDTNguoiShipDatHang.setText(bhNhanVienResponse.getSdt());
@@ -3289,7 +3299,7 @@ public class ViewBanHang extends javax.swing.JPanel implements Runnable, ThreadF
             int gioiTinh = rdoNam.isSelected() ? 0 : 1;
             String diaChi = txtDiaChi.getText().trim();
             String email = txtEmailKh.getText().trim();
-            if(maKH.isEmpty() || tenKh.isEmpty() || sdtKh.isEmpty() || diaChi.isEmpty() || email.isEmpty()){
+            if (maKH.isEmpty() || tenKh.isEmpty() || sdtKh.isEmpty() || diaChi.isEmpty() || email.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Hãy nhập đầy đủ các thông tin");
                 return;
             }
