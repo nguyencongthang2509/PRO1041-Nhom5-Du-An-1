@@ -7,6 +7,7 @@ package core.quanly.service;
 import core.quanly.viewmodel.HdHoaDonChiTietResponse1;
 import core.quanly.viewmodel.HdHoaDonResponse1;
 import core.quanly.viewmodel.HdHoaDonResponse2;
+import domainmodels.HoaDon;
 import java.util.Date;
 import java.util.List;
 
@@ -56,7 +57,9 @@ public interface HoaDonservice {
 
     List<HdHoaDonResponse2> getList2byHinhthucandTime(int httt, Date time1, Date time2, int htgh);
     
-    boolean updateTTHoaDon(String id);
+    boolean updateTTHoaDon(String id, String lydo);
     
     String findIdbyMa(String ma);
+    
+    HoaDon findHdByMa(String ma);
 }

@@ -38,6 +38,7 @@ public class HdHoaDonResponse2 {
     private BigDecimal tienship;
     private Date ngayship;
     private Date ngaynhan;
+    private String lydo;
     private Integer trangThai;
 
     public String getNgayThanhToanStr() {
@@ -131,7 +132,7 @@ public class HdHoaDonResponse2 {
         return String.valueOf(tienship) + "VNĐ";
     }
 
-    public String getTT() {
+public String getTT() {
         if (trangThai == 0) {
             return "Chờ thanh toán";
         } else if (trangThai == 1) {
@@ -142,16 +143,27 @@ public class HdHoaDonResponse2 {
             return "Chờ giao hàng";
         } else if (trangThai == 4) {
             return "Đang giao";
+        } else if (trangThai == 5) {
+            return "Đã giao";
+        } else if (trangThai == 6) {
+            return "Khách hẹn lại";
         }
-        return "Đã giao";
+        return "Đã trả hàng";
+    }
+    
+    public String getLyDoStr(){
+        if(lydo == null){
+            return "..........";
+        }
+        return lydo;
     }
 
     public String getHinhThucTT() {
-        return hinhThucThanhToan == 0 ? "Tiền mặt" : (hinhThucThanhToan == 1 ? "Chuyển khoản" : "Kết hợp");
+        return hinhThucThanhToan == null ? "Chưa chọn" : (hinhThucThanhToan == 0 ? "Tiền mặt" : hinhThucThanhToan == 1 ? "Chuyển khoản" : "Kết hợp");
     }
 
     public Object[] toDaTaRow() {
         return new Object[]{ma, ngayTao, ngayThanhToan == null ? "No" : ngayThanhToan, getThanhTienStr(), maNV,
-            tenNguoiNhan == null ? "No" : tenNguoiNhan, diaChi == null ? "No" : diaChi, tennguoiship == null ? "No" : tennguoiship, ngayship == null ? "No" : ngayship, ngaynhan == null ? "No" : ngaynhan, getTT()};
+            tenNguoiNhan == null ? "No" : tenNguoiNhan, diaChi == null ? "No" : diaChi, tennguoiship == null ? "No" : tennguoiship, ngayship == null ? "No" : ngayship, ngaynhan == null ? "No" : ngaynhan, getLyDoStr(), getTT()};
     }
 }

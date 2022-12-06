@@ -9,6 +9,7 @@ import core.quanly.service.HoaDonservice;
 import core.quanly.viewmodel.HdHoaDonChiTietResponse1;
 import core.quanly.viewmodel.HdHoaDonResponse1;
 import core.quanly.viewmodel.HdHoaDonResponse2;
+import domainmodels.HoaDon;
 import java.util.Date;
 import java.util.List;
 
@@ -121,12 +122,17 @@ public class HoaDonserviceImpl implements HoaDonservice {
     }
 
     @Override
-    public boolean updateTTHoaDon(String id) {
-        return repo.updateTTHoaDon(id);
+    public boolean updateTTHoaDon(String id, String lydo) {
+        return repo.updateTTHoaDon(id, lydo);
     }
 
     @Override
     public String findIdbyMa(String ma) {
         return repo.findIdByMa(ma);
+    }
+
+    @Override
+    public HoaDon findHdByMa(String ma) {
+        return repo.findHdByMa(ma);
     }
 }
