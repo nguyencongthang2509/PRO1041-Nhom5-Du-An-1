@@ -18,6 +18,7 @@ import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import lombok.Synchronized;
 import util.DailyCheckingKhuyenMai;
 
 /**
@@ -45,27 +46,28 @@ public class JFrameQuanLy extends javax.swing.JFrame {
 
         this.setIconImage(img.getImage());
         
-//        new DailyCheckingKhuyenMai().start();
+        new DailyCheckingKhuyenMai().start();
 
-//        Thread countDownThread = new Thread() {
-//            @Override
-//            public void run() {
-//                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm aa");
-//                do {
-//                    Date now = new Date();
-//
-//                    String st = sdf.format(now);
-//
-//                    lblNgayGio.setText(st);
-//                    try {
-//                        Thread.sleep(1000);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                } while (true);
-//            }
-//        };
-//        countDownThread.start();
+        Thread countDownThread = new Thread() {
+            @Override
+            @Synchronized
+            public synchronized void run() {
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm aa");
+                do {
+                    Date now = new Date();
+
+                    String st = sdf.format(now);
+
+                    lblNgayGio.setText(st);
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                } while (true);
+            }
+        };
+        countDownThread.start();
         txtMaNV.setText(nhanVien.getMa());
         txtTenNV.setText(nhanVien.getTen());
         txtChucVu.setText(nhanVien.getVaiTro() == 0 ? "Quản lý" : "Nhân viên");
@@ -477,7 +479,7 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         menuDoiHang.setForeground(new java.awt.Color(255, 255, 255));
         menuDoiHang.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         menuDoiHang.setIcon(new ImageIcon("src/main/images/cart.png"));
-        menuDoiHang.setText("Đổi hàng");
+        menuDoiHang.setText("Trả hàng");
         menuDoiHang.setToolTipText("");
         menuDoiHang.setInheritsPopupMenu(false);
         menuDoiHang.setMaximumSize(new java.awt.Dimension(84, 20));
@@ -893,7 +895,7 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         pnlThongKe.setBackground(null);
         pnlBanHang.setBackground(null);
         pnlSanPham.setBackground(null);
-        ViewDoiTra viewDoiTra = new ViewDoiTra();
+        ViewDoiTra viewDoiTra = new ViewDoiTra(nhanVien);
         btnCardSon.removeAll();
         btnCardSon.add(viewDoiTra);
         btnCardSon.setLayout(new FlowLayout());

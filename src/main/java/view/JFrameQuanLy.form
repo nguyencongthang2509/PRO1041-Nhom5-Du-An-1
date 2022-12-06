@@ -775,7 +775,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                       <Connection code="new ImageIcon(&quot;src/main/images/cart.png&quot;)" type="code"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="&#x110;&#x1ed5;i h&#xe0;ng"/>
+                    <Property name="text" type="java.lang.String" value="Tr&#x1ea3; h&#xe0;ng"/>
                     <Property name="toolTipText" type="java.lang.String" value=""/>
                     <Property name="inheritsPopupMenu" type="boolean" value="false"/>
                     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">

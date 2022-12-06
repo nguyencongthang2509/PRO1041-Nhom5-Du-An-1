@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class BhHoaDonResponse {
+public class ThHoaDonResponse {
 
     private String id;
 
@@ -30,12 +30,14 @@ public class BhHoaDonResponse {
     private String maKhachHang;
 
     private String tenKhachHang;
-    
+
     private Integer capBac;
-    
+
     private Integer trangThaiThanhToan;
-    
+
     private Date ngayMongMuon;
+
+    private Date ngayThanhToan;
 
     private Integer trangThai;
 
@@ -55,6 +57,8 @@ public class BhHoaDonResponse {
 
     private BigDecimal tienKhachCk;
 
+    private BigDecimal thanhTien;
+
     private BigDecimal tienThua;
 
     private String getTrangThaiHoaDon() {
@@ -62,6 +66,6 @@ public class BhHoaDonResponse {
     }
 
     public Object[] toDataRow() {
-        return new Object[]{maHD, ngayTao, tenNhanVien, tenKhachHang, hinhThucGiaoHang == 0 ? "Tại quầy" : "Đặt hàng", getTrangThaiHoaDon()};
+        return new Object[]{maHD, tenNhanVien, ngayThanhToan, tenKhachHang, thanhTien, getTrangThaiHoaDon()};
     }
 }

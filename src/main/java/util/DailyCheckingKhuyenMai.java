@@ -82,6 +82,7 @@ public class DailyCheckingKhuyenMai extends Thread {
 
     }
 
+    @Synchronized
     public static Session getSession() {
         if (SESSION == null || !SESSION.isConnected()) {
             SESSION = FACTORY.openSession();
@@ -89,12 +90,11 @@ public class DailyCheckingKhuyenMai extends Thread {
         return SESSION;
     }
 
-    @Synchronized
-    public List<KhuyenMai> GetAllKhuyenMaiDangDienRa() {
-        List<KhuyenMai> list = new ArrayList<>();
+    public List<String> GetAllKhuyenMaiDangDienRa() {
+        List<String> list = new ArrayList<>();
         try {
             session = getSession();
-            String hql = "SELECT a FROM KhuyenMai a where a.ngayBatDau < :currentTime and :currentTime < a.ngayKetThuc order by a.createdDate DESC";
+            String hql = "SELECT id FROM KhuyenMai a where a.ngayBatDau < :currentTime and :currentTime < a.ngayKetThuc order by a.createdDate DESC";
             Query query = session.createQuery(hql);
             query.setParameter("currentTime", new Date());
             list = query.getResultList();
@@ -105,12 +105,11 @@ public class DailyCheckingKhuyenMai extends Thread {
         return list;
     }
 
-    @Synchronized
-    public List<KhuyenMai> GetAllKhuyenMaiKhongDienRa() {
-        List<KhuyenMai> list = new ArrayList<>();
+    public List<String> GetAllKhuyenMaiKhongDienRa() {
+        List<String> list = new ArrayList<>();
         try {
             session = getSession();
-            String hql = "SELECT a FROM KhuyenMai a where a.ngayBatDau > :currentTime or :currentTime > a.ngayKetThuc order by a.createdDate DESC";
+            String hql = "SELECT id FROM KhuyenMai a where a.ngayBatDau > :currentTime or :currentTime > a.ngayKetThuc order by a.createdDate DESC";
             Query query = session.createQuery(hql);
             query.setParameter("currentTime", new Date());
             list = query.getResultList();
@@ -159,18 +158,19 @@ public class DailyCheckingKhuyenMai extends Thread {
     }
 
     @Override
+    @Synchronized
     public synchronized void run() {
         while (true) {
-            List<KhuyenMai> listDangdienRa = GetAllKhuyenMaiDangDienRa();
+            List<String> listDangdienRa = GetAllKhuyenMaiDangDienRa();
             if (listDangdienRa != null) {
-                for (KhuyenMai xx : listDangdienRa) {
-                    updateKhuyenMaiDangDienRa(xx.getId());
+                for (String xx : listDangdienRa) {
+                    updateKhuyenMaiDangDienRa(xx);
                 }
             }
-            List<KhuyenMai> listKhongDienRa = GetAllKhuyenMaiKhongDienRa();
+            List<String> listKhongDienRa = GetAllKhuyenMaiKhongDienRa();
             if (listKhongDienRa != null) {
-                for (KhuyenMai xx : listKhongDienRa) {
-                    updateKhuyenMaiKhongDienRa(xx.getId());
+                for (String xx : listKhongDienRa) {
+                    updateKhuyenMaiKhongDienRa(xx);
                 }
             }
             List<KhachHang> listKhachHang = getAllKhacHangDangHoatDong();

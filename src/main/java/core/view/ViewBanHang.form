@@ -2279,13 +2279,13 @@
                               </Group>
                               <EmptySpace min="-2" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtDiaChiDatHang" alignment="1" pref="204" max="32767" attributes="0"/>
+                                  <Component id="txtDiaChiDatHang" alignment="1" max="32767" attributes="0"/>
                                   <Component id="txtSDTKHDatHang" alignment="1" max="32767" attributes="0"/>
                                   <Component id="txtHoTenKHDatHang" alignment="1" max="32767" attributes="0"/>
                                   <Component id="txtTenNguoiShipDatHang" max="32767" attributes="0"/>
                                   <Component id="txtSDTNguoiShipDatHang" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="btnChonNhanVienShip" alignment="1" min="-2" pref="44" max="-2" attributes="0"/>
                                   <Component id="btnChonKhachHangDatHang" alignment="1" min="-2" pref="44" max="-2" attributes="0"/>
@@ -2532,11 +2532,12 @@
                                       <Component id="btnThanhToanDatHang" min="-2" pref="50" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="btnChoGiaoHang" min="-2" pref="48" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                                       <Component id="btnDangGiaoDatHang" min="-2" pref="51" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                                      <Component id="btnKhachHenGiaoLai" min="-2" pref="51" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                                       <Component id="btnDaGiaoDatHang" min="-2" pref="50" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="6" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -2655,6 +2656,7 @@
                                   <Component id="btnDangGiaoDatHang" alignment="0" max="32767" attributes="0"/>
                                   <Component id="btnDaGiaoDatHang" max="32767" attributes="0"/>
                                   <Component id="btnChoGiaoHang" max="32767" attributes="0"/>
+                                  <Component id="btnKhachHenGiaoLai" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace pref="24" max="32767" attributes="0"/>
                           </Group>
@@ -3011,6 +3013,21 @@
                           <Font name="Times New Roman" size="15" style="1"/>
                         </Property>
                       </Properties>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="btnKhachHenGiaoLai">
+                      <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="cc" red="99" type="rgb"/>
+                        </Property>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="new ImageIcon(&quot;src/main/images/khachhenlai.png&quot;)" type="code"/>
+                        </Property>
+                        <Property name="toolTipText" type="java.lang.String" value="Kh&#xe1;ch h&#x1eb9;n giao l&#x1ea1;i"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnKhachHenGiaoLaiMouseClicked"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnKhachHenGiaoLaiActionPerformed"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>

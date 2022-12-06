@@ -74,7 +74,7 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
             if (hinhThucGiaoHang >= 0 && trangThai >= 0) {
                 session = HibernateUtil.getSession();
                 String hql = "SELECT " + "new core.quanly.viewmodel.BhHoaDonResponse"
-                        + "(a.id, a.ma, a.ngayTao, a.hinhThucGiaoHang, a.hinhThucThanhToan ,b.ten, c.ma, c.hoTen, a.trangThaiThanhToan, a.ngayMongMuon, a.trangThai,"
+                        + "(a.id, a.ma, a.ngayTao, a.hinhThucGiaoHang, a.hinhThucThanhToan ,b.ten, c.ma, c.hoTen, c.capBac,a.trangThaiThanhToan, a.ngayMongMuon, a.trangThai,"
                         + "a.tenNguoiNhan, a.sdtNguoiNhan, a.diaChi, a.tenNguoiShip, a.sdtNguoiShip,"
                         + "a.tienShip, a.tienKhachTra, a.tienKhachChuyenKhoan, a.tienThua)"
                         + " FROM HoaDon a LEFT JOIN a.nhanVien b LEFT JOIN a.khachHang c "
@@ -89,7 +89,7 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
             if (hinhThucGiaoHang == -1) {
                 session = HibernateUtil.getSession();
                 String hql = "SELECT " + "new core.quanly.viewmodel.BhHoaDonResponse"
-                        + "(a.id, a.ma, a.ngayTao, a.hinhThucGiaoHang, a.hinhThucThanhToan ,b.ten, c.ma, c.hoTen, a.trangThaiThanhToan , a.ngayMongMuon,a.trangThai,"
+                        + "(a.id, a.ma, a.ngayTao, a.hinhThucGiaoHang, a.hinhThucThanhToan ,b.ten, c.ma, c.hoTen, c.capBac,a.trangThaiThanhToan , a.ngayMongMuon,a.trangThai,"
                         + "a.tenNguoiNhan, a.sdtNguoiNhan, a.diaChi, a.tenNguoiShip, a.sdtNguoiShip,"
                         + "a.tienShip, a.tienKhachTra, a.tienKhachChuyenKhoan, a.tienThua)"
                         + " FROM HoaDon a LEFT JOIN a.nhanVien b LEFT JOIN a.khachHang c "
@@ -103,7 +103,7 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
             if (trangThai == -1) {
                 session = HibernateUtil.getSession();
                 String hql = "SELECT " + "new core.quanly.viewmodel.BhHoaDonResponse"
-                        + "(a.id, a.ma, a.ngayTao, a.hinhThucGiaoHang, a.hinhThucThanhToan ,b.ten, c.ma, c.hoTen,  a.trangThaiThanhToan ,a.ngayMongMuon,a.trangThai,"
+                        + "(a.id, a.ma, a.ngayTao, a.hinhThucGiaoHang, a.hinhThucThanhToan ,b.ten, c.ma, c.hoTen, c.capBac, a.trangThaiThanhToan ,a.ngayMongMuon,a.trangThai,"
                         + "a.tenNguoiNhan, a.sdtNguoiNhan, a.diaChi, a.tenNguoiShip, a.sdtNguoiShip,"
                         + "a.tienShip, a.tienKhachTra, a.tienKhachChuyenKhoan, a.tienThua)"
                         + " FROM HoaDon a LEFT JOIN a.nhanVien b LEFT JOIN a.khachHang c "
@@ -117,7 +117,7 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
             if (hinhThucGiaoHang == -1 && trangThai == -1) {
                 session = HibernateUtil.getSession();
                 String hql = "SELECT " + "new core.quanly.viewmodel.BhHoaDonResponse"
-                        + "(a.id, a.ma, a.ngayTao, a.hinhThucGiaoHang, a.hinhThucThanhToan ,b.ten, c.ma, c.hoTen, a.trangThaiThanhToan ,a.ngayMongMuon, a.trangThai,"
+                        + "(a.id, a.ma, a.ngayTao, a.hinhThucGiaoHang, a.hinhThucThanhToan ,b.ten, c.ma, c.hoTen,c.capBac, a.trangThaiThanhToan ,a.ngayMongMuon, a.trangThai,"
                         + "a.tenNguoiNhan, a.sdtNguoiNhan, a.diaChi, a.tenNguoiShip, a.sdtNguoiShip,"
                         + "a.tienShip, a.tienKhachTra, a.tienKhachChuyenKhoan, a.tienThua)"
                         + " FROM HoaDon a LEFT JOIN a.nhanVien b LEFT JOIN a.khachHang c "
