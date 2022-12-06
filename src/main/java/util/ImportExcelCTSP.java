@@ -72,6 +72,29 @@ public class ImportExcelCTSP {
                     JOptionPane.showMessageDialog(null, "Không để trống");
                     return;
                 }
+                try {
+                    int soLuongTonSo = 0;
+                    soLuongTonSo = Integer.parseInt(soLuongTon);
+                    if (soLuongTonSo <= 0) {
+                        JOptionPane.showMessageDialog(null, "Số lượng tồn lớn hơn 0");
+                        return;
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Số lượng tồn phải là số");
+                    return;
+                }
+                try {
+                    int giaBanSo = 0;
+                    giaBanSo = Integer.parseInt(giaBan);
+                    if (giaBanSo <= 0) {
+                        JOptionPane.showMessageDialog(null, "Giá bán lớn hơn 0");
+                        return ;
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Giá bán phải là số");
+                    return ;
+                }
+                
                 SanPham sanPham = cTSanPhamRepository.findSanPhamByTen(sanPhamStr);
                 System.out.println(sanPham.getTen());
                 if (sanPham == null) {
