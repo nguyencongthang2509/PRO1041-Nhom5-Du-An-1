@@ -928,12 +928,14 @@
                           <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                           <Component id="btnBack" min="-2" pref="88" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lblRecordHD2" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblRecordHD" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="btnNext" min="-2" pref="85" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                           <Component id="btnLast" min="-2" pref="90" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="180" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+                          <Component id="btnInHoaDon" min="-2" pref="90" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="btnXemchitiet" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="btnHuy" min="-2" max="-2" attributes="0"/>
@@ -970,11 +972,12 @@
                                   <Component id="btnLast" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnXemchitiet" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnHuy" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnInHoaDon" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                   <Component id="btnFirst" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnBack" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblRecordHD2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblRecordHD" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnNext" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -1005,6 +1008,7 @@
                             <Column editable="false" title="Tr&#x1ea1;ng th&#xe1;i" type="java.lang.Object"/>
                           </Table>
                         </Property>
+                        <Property name="rowHeight" type="int" value="25"/>
                         <Property name="showGrid" type="boolean" value="false"/>
                       </Properties>
                       <Events>
@@ -1085,6 +1089,9 @@
                 <Component class="javax.swing.JButton" name="btnLoadByTime">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="L&#x1ecd;c"/>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="cc" red="99" type="rgb"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLoadByTimeActionPerformed"/>
@@ -1109,6 +1116,9 @@
                 <Component class="javax.swing.JButton" name="btnXuatDachSach">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Xu&#x1ea5;t danh s&#xe1;ch"/>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="cc" red="99" type="rgb"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXuatDachSachActionPerformed"/>
@@ -1117,6 +1127,9 @@
                 <Component class="javax.swing.JButton" name="btnXemchitiet">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Xem chi ti&#x1ebf;t"/>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="cc" red="99" type="rgb"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXemchitietActionPerformed"/>
@@ -1125,6 +1138,9 @@
                 <Component class="javax.swing.JButton" name="btnBack">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="&lt;"/>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="cc" red="99" type="rgb"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBackActionPerformed"/>
@@ -1133,6 +1149,9 @@
                 <Component class="javax.swing.JButton" name="btnNext">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="&gt;"/>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="cc" red="99" type="rgb"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNextActionPerformed"/>
@@ -1141,6 +1160,9 @@
                 <Component class="javax.swing.JButton" name="btnLast">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="&gt;&gt;"/>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="cc" red="99" type="rgb"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLastActionPerformed"/>
@@ -1149,6 +1171,9 @@
                 <Component class="javax.swing.JButton" name="btnFirst">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="&lt;&lt;"/>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="cc" red="99" type="rgb"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFirstActionPerformed"/>
@@ -1157,15 +1182,29 @@
                 <Component class="javax.swing.JButton" name="btnHuy">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="H&#x1ee7;y"/>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="cc" red="99" type="rgb"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHuyActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lblRecordHD2">
+                <Component class="javax.swing.JLabel" name="lblRecordHD">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="jLabel40"/>
                   </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="btnInHoaDon">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="cc" red="99" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="In h&#xf3;a &#x111;&#x1a1;n"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInHoaDonActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -1230,6 +1269,7 @@
                             <Column editable="false" title="T&#x1ed5;ng ti&#x1ec1;n" type="java.lang.Object"/>
                           </Table>
                         </Property>
+                        <Property name="rowHeight" type="int" value="25"/>
                         <Property name="showGrid" type="boolean" value="false"/>
                       </Properties>
                       <Events>
@@ -1344,12 +1384,14 @@
                           <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                           <Component id="btnBack2" min="-2" pref="82" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lblRecordHD" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblRecordHD2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                           <Component id="btnNext2" min="-2" pref="83" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                           <Component id="btnLast2" min="-2" pref="85" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="168" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+                          <Component id="btnInHoaDon2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="btnXemchitiet2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="btnHuy2" min="-2" pref="66" max="-2" attributes="0"/>
@@ -1388,7 +1430,8 @@
                               <Component id="btnLast2" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btnXemchitiet2" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btnHuy2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblRecordHD" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblRecordHD2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnInHoaDon2" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="26" max="32767" attributes="0"/>
                       </Group>
@@ -1490,6 +1533,7 @@
                             <Column editable="false" title="Tr&#x1ea1;ng th&#xe1;i" type="java.lang.Object"/>
                           </Table>
                         </Property>
+                        <Property name="rowHeight" type="int" value="25"/>
                       </Properties>
                       <Events>
                         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblHD2MouseClicked"/>
@@ -1504,6 +1548,9 @@
                 <Component class="javax.swing.JButton" name="btnLoadByTime2">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="L&#x1ecd;c"/>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="cc" red="99" type="rgb"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLoadByTime2ActionPerformed"/>
@@ -1528,6 +1575,9 @@
                 <Component class="javax.swing.JButton" name="btnXemchitiet2">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Xem chi ti&#x1ebf;t"/>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="cc" red="99" type="rgb"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXemchitiet2ActionPerformed"/>
@@ -1536,6 +1586,9 @@
                 <Component class="javax.swing.JButton" name="btnXuatDanhSach2">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Xu&#x1ea5;t danh s&#xe1;ch"/>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="cc" red="99" type="rgb"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXuatDanhSach2ActionPerformed"/>
@@ -1544,6 +1597,9 @@
                 <Component class="javax.swing.JButton" name="btnFirst2">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="&lt;&lt;"/>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="cc" red="99" type="rgb"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFirst2ActionPerformed"/>
@@ -1552,6 +1608,9 @@
                 <Component class="javax.swing.JButton" name="btnNext2">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="&gt;"/>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="cc" red="99" type="rgb"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNext2ActionPerformed"/>
@@ -1560,6 +1619,9 @@
                 <Component class="javax.swing.JButton" name="btnLast2">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="&gt;&gt;"/>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="cc" red="99" type="rgb"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLast2ActionPerformed"/>
@@ -1568,6 +1630,9 @@
                 <Component class="javax.swing.JButton" name="btnBack2">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="&lt;"/>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="cc" red="99" type="rgb"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBack2ActionPerformed"/>
@@ -1576,15 +1641,29 @@
                 <Component class="javax.swing.JButton" name="btnHuy2">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="H&#x1ee7;y"/>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="cc" red="99" type="rgb"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHuy2ActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lblRecordHD">
+                <Component class="javax.swing.JLabel" name="lblRecordHD2">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="jLabel40"/>
                   </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="btnInHoaDon2">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="cc" red="99" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="In h&#xf3;a &#x111;&#x1a1;n"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInHoaDon2ActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -1649,6 +1728,7 @@
                             <Column editable="false" title="T&#x1ed5;ng ti&#x1ec1;n" type="java.lang.Object"/>
                           </Table>
                         </Property>
+                        <Property name="rowHeight" type="int" value="25"/>
                       </Properties>
                     </Component>
                   </SubComponents>

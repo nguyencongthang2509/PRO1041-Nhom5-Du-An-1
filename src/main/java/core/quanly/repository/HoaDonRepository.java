@@ -230,7 +230,7 @@ public class HoaDonRepository extends CrudRepository<String, HoaDon, HdHoaDonRes
             String hql = "select new core.quanly.viewmodel.HdHoaDonChiTietResponse1"
                     + "(a.id, a.chiTietSPId.sanPham.ma, a.chiTietSPId.sanPham.ten, a.chiTietSPId.hang.ten, a.chiTietSPId.mauSac.ten, "
                     + "a.chiTietSPId.kichThuoc.ten, a.soLuong, a.donGia, a.giaBan, a.giamGiaKhuyenMai)"
-                    + " from HoaDonChiTiet a where a.hoaDonId.ma = :mahd";
+                    + " from HoaDonChiTiet a where a.hoaDonId.ma = :mahd order by a.createdDate desc";
             Query query = session.createQuery(hql);
             query.setParameter("mahd", mahd);
             list = query.getResultList();
@@ -247,7 +247,7 @@ public class HoaDonRepository extends CrudRepository<String, HoaDon, HdHoaDonRes
             String hql = "select new core.quanly.viewmodel.HdHoaDonChiTietResponse1"
                     + "(a.id, a.chiTietSPId.sanPham.ma, a.chiTietSPId.sanPham.ten, a.chiTietSPId.hang.ten, a.chiTietSPId.mauSac.ten, "
                     + "a.chiTietSPId.kichThuoc.ten, a.soLuong, a.donGia, a.giaBan, a.giamGiaKhuyenMai)"
-                    + " from HoaDonChiTiet a where a.hoaDonId.ma = :mahd";
+                    + " from HoaDonChiTiet a where a.hoaDonId.ma = :mahd order by a.createdDate desc";
             Query query = session.createQuery(hql);
             query.setParameter("mahd", mahd);
             list = query.getResultList();
@@ -470,9 +470,25 @@ public class HoaDonRepository extends CrudRepository<String, HoaDon, HdHoaDonRes
         }
         return id;
     }
-
-    public static void main(String[] args) {
-        String id = new HoaDonRepository().findIdByMa("HD7");
-        System.out.println(id);
+    
+    public HoaDon findHdByMa(String ma){
+        HoaDon h = null;
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "select a from HoaDon a where a.ma = :ma";
+            Query query = session.createQuery(hql);
+            query.setParameter("ma", ma);
+            if(query.getSingleResult() != null){
+                h = (HoaDon) query.getSingleResult();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return h;
     }
+
+//    public static void main(String[] args) {
+//        String id = new HoaDonRepository().findIdByMa("HD7");
+//        System.out.println(id);
+//    }
 }

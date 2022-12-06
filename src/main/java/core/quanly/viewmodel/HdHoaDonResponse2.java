@@ -132,7 +132,7 @@ public class HdHoaDonResponse2 {
         return String.valueOf(tienship) + "VNĐ";
     }
 
-    public String getTT() {
+public String getTT() {
         if (trangThai == 0) {
             return "Chờ thanh toán";
         } else if (trangThai == 1) {
@@ -143,8 +143,12 @@ public class HdHoaDonResponse2 {
             return "Chờ giao hàng";
         } else if (trangThai == 4) {
             return "Đang giao";
+        } else if (trangThai == 5) {
+            return "Đã giao";
+        } else if (trangThai == 6) {
+            return "Khách hẹn lại";
         }
-        return "Đã giao";
+        return "Đã trả hàng";
     }
     
     public String getLyDoStr(){

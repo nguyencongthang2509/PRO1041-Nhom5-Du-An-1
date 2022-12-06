@@ -103,12 +103,16 @@ public class HdHoaDonResponse1 {
             return "Chờ giao hàng";
         } else if (trangThai == 4) {
             return "Đang giao";
+        } else if (trangThai == 5) {
+            return "Đã giao";
+        } else if (trangThai == 6) {
+            return "Khách hẹn lại";
         }
-        return "Đã giao";
+        return "Đã trả hàng";
     }
-    
-    public String getLyDoStr(){
-        if(lydo == null){
+
+    public String getLyDoStr() {
+        if (lydo == null) {
             return "..........";
         }
         return lydo;
