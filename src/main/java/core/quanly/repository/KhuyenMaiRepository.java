@@ -101,7 +101,7 @@ public class KhuyenMaiRepository extends CrudRepository<String, ChiTietSP, Khuye
         List<KMSanphamDangKmReponse> list = new ArrayList<>();
         try {
             session = HibernateUtil.getSession();
-            String hql = "SELECT new core.quanly.viewmodel.KMSanphamDangKmReponse(a.chiTietSPId.maChiTietSP, a.chiTietSPId.sanPham.ten, a.chiTietSPId.hang.ten, a.chiTietSPId.mauSac.ten, a.chiTietSPId.kichThuoc.ten, a.chiTietSPId.chatLieu.ten) FROM ChiTietSPKhuyenMai a where a.khuyenMaiId.id =: idkhuyenmai";
+            String hql = "SELECT new core.quanly.viewmodel.KMSanphamDangKmReponse(a.id ,a.chiTietSPId.maChiTietSP, a.chiTietSPId.sanPham.ten, a.chiTietSPId.hang.ten, a.chiTietSPId.mauSac.ten, a.chiTietSPId.kichThuoc.ten, a.chiTietSPId.chatLieu.ten) FROM ChiTietSPKhuyenMai a where a.khuyenMaiId.id =: idkhuyenmai";
             Query query = session.createQuery(hql);
             query.setParameter("idkhuyenmai", idkhuyenmai);
             list = query.getResultList();
@@ -220,6 +220,25 @@ public class KhuyenMaiRepository extends CrudRepository<String, ChiTietSP, Khuye
             trans = session.beginTransaction();
             org.hibernate.query.Query query = session.createNativeQuery(sql);
             query.setParameter("idKhuyenMai", idKhuyenMai);
+            query.executeUpdate();
+            check = true;
+            trans.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            
+        }
+        return check;
+
+    }
+    
+    public boolean HuyKhuyenMai(String idctspkm) {
+        boolean check = false;
+        try {
+            String sql = "Update ctsp_khuyen_mai set trang_thai = 1 where id = :idctspkm";
+            session = HibernateUtil.getSession();
+            trans = session.beginTransaction();
+            org.hibernate.query.Query query = session.createNativeQuery(sql);
+            query.setParameter("idctspkm", idctspkm);
             query.executeUpdate();
             check = true;
             trans.commit();
