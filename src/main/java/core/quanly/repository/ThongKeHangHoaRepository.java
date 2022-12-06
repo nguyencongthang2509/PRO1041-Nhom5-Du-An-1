@@ -42,16 +42,10 @@ public class ThongKeHangHoaRepository {
     }
 
     public static void main(String[] args) throws Exception {
-//        String sDate1 = "01/01/2022";
-//        String sDate2 = "30/12/2022";
-//
-//        SimpleDateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy");
-//        SimpleDateFormat formatter2 = new SimpleDateFormat("dd/MM/yyyy");
-//
-//        Date date11 = formatter1.parse(sDate1);
-//        Date date21 = formatter2.parse(sDate2);
-//        BigDecimal list = new ThongKeHangHoaRepository().getDoanhThuTheoKhoangThoiGian(date11, date21);
-        List<ThongKeHangHoaResponse> list = new ThongKeHangHoaRepository().getListMaxValue();
+        String mm = "06/12/2022";
+        SimpleDateFormat fm = new SimpleDateFormat("yyyy-mm-dd");
+        Date dd = fm.parse(mm);
+       Long list = new ThongKeHangHoaRepository().BaoCaoHDhuy(dd);
         System.out.println(list);
     }
 //Lấy ra doanh thu tất cả các năm
@@ -437,6 +431,70 @@ public class ThongKeHangHoaRepository {
         }
         return list;
     }
+    //doanh thu ngày
+    public BigDecimal BaoCaoDT(Date dat1) {
+        BigDecimal nv = null;
+        try {
+            Session session = HibernateUtil.getSession();
+            String hql = "select sum(a.thanhTien) from HoaDon a where a.trangThai=2 and month(a.ngayThanhToan) = month(:dat1) "
+                    + "and year(a.ngayThanhToan)= year(:dat1) and day(a.ngayThanhToan)= day(:dat1)";
+            Query query = session.createQuery(hql);
+            query.setParameter("dat1", dat1);
+            nv = (BigDecimal) query.getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return nv;
+    }
+    //hoá đơn ngày
+    public Long BaoCaoHD(Date dat1) {
+        Long id = null;
+        try {
+            Session session = HibernateUtil.getSession();
+            String hql = "select count(a.id) from HoaDon a where month(a.ngayThanhToan) = month(:dat1) "
+                    + "and year(a.ngayThanhToan)= year(:dat1) and day(a.ngayThanhToan)= day(:dat1)";
+            Query query = session.createQuery(hql);
+            query.setParameter("dat1", dat1);
+            id = (Long) query.getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return id;
+    }
+    //hoá đơn huỷ ngày
+     public Long BaoCaoHDhuy(Date dat1) {
+        Long id = null;
+        try {
+            Session session = HibernateUtil.getSession();
+            String hql = "select count(a.id) from HoaDon a where a.trangThai=1 and month(a.ngayThanhToan) = month(:dat1) "
+                    + "and year(a.ngayThanhToan)= year(:dat1) and day(a.ngayThanhToan)= day(:dat1)";
+            Query query = session.createQuery(hql);
+            query.setParameter("dat1", dat1);
+            id = (Long) query.getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return id;
+    }
+    //khách hàng ngày
    
+    public Long BaoCaoKH(Date dat1) {
+        Long id = null;
+        try {
+            Session session = HibernateUtil.getSession();
+            String hql = "select count(a.id) from KhachHang a where a.ma <> 'KH000' and month(a.ngayThanhToan) = month(:dat1) "
+                    + "and year(a.ngayThanhToan)= year(:dat1) and day(a.ngayThanhToan)= day(:dat1) ";
+            Query query = session.createQuery(hql);
+            
+            id = (Long) query.getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return id;
+    }
 
 }

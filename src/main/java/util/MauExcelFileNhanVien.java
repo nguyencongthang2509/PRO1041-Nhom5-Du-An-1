@@ -18,7 +18,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  *
  * @author quynhncph26201
  */
-public class ImportExcelFileNhanVien {
+public class MauExcelFileNhanVien {
 
     public boolean ImportExcel() {
         boolean check = false;
@@ -43,6 +43,7 @@ public class ImportExcelFileNhanVien {
             firstCell6.setCellValue("Số Điện Thoại");
             firstCell7.setCellValue("Email");
             firstCell8.setCellValue("Vai Trò");
+            firstCell8.setCellValue("Trạng Thái");
             int index = 1;
             Row row = sheet.createRow(0);
             Cell cell1 = row.createCell(0);
@@ -61,6 +62,7 @@ public class ImportExcelFileNhanVien {
             cell6.setCellValue("066666666");
             cell7.setCellValue("nva6868@gmail.com");
             cell8.setCellValue("Nhân Viên");
+            cell8.setCellValue("Đang làm");
             try {
                 FileOutputStream outputStream = new FileOutputStream("MauNhanVien.xlsx");
                 workbook.write(outputStream);

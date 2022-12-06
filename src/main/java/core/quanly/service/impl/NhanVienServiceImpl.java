@@ -57,7 +57,7 @@ public class NhanVienServiceImpl implements NhanVienService {
         if (nhanVien.getEmail().isEmpty()) {
             return "Email không được để trống";
         }
-        if (!nhanVien.getSdt().matches("^0{1}\\d{10}$")) {
+        if (nhanVien.getSdt().matches("^0{1}\\d{10}$")) {
             return "Số điện thoại phải là số và gồm 10 ký tự";
         }
         if (!nhanVien.getEmail().matches("\\w+@{1}\\w+.+\\w")) {
@@ -79,21 +79,6 @@ public class NhanVienServiceImpl implements NhanVienService {
         if (nhanVienFindById == null) {
             return "Nhân viên không tồn tại";
         }
-        if (nhanVien.getMa().isEmpty()) {
-            return "Mã không được để trống";
-        }
-        if (!nhanVien.getMa().equals(nhanVienFindById.getMa())) {
-            NhanVien nhanVienFindByMa = nhanVienRepos.findByMa(nhanVien.getMa());
-            System.out.println(nhanVien.getMa());
-            if (nhanVienFindByMa != null) {
-                return "Trùng mã nhân viên";
-                
-            } else {
-                nhanVienFindById.setMa(nhanVien.getMa());
-            }
-        }
-        
-//        
         if (nhanVien.getTen().isEmpty()) {
             return "Tên không được để trống";
         }
@@ -106,7 +91,7 @@ public class NhanVienServiceImpl implements NhanVienService {
         if (nhanVien.getEmail().isEmpty()) {
             return "Email không được để trống";
         }
-        if (!nhanVien.getSdt().matches("^0{1}\\d{10}$")) {
+        if (nhanVien.getSdt().matches("^0{1}\\d{10}$")) {
             return "Số điện thoại phải là số và gồm 10 ký tự";
         }
         if (!nhanVien.getEmail().matches("\\w+@{1}\\w+.+\\w")) {
@@ -120,6 +105,7 @@ public class NhanVienServiceImpl implements NhanVienService {
         nhanVienFindById.setEmail(nhanVien.getEmail());
         nhanVienFindById.setVaiTro(nhanVien.getVaiTro());
         nhanVienFindById.setTrangThaiXoa(nhanVien.getTrangThaiXoa());
+        
 
         if (nhanVienRepos.saveOrUpdate(nhanVienFindById) == null) {
             return "Lỗi. Sửa thất bại";
@@ -129,25 +115,12 @@ public class NhanVienServiceImpl implements NhanVienService {
 
     }
 
+
     @Override
     public List<NhanVien> getAll() {
         return nhanVienRepos.getAll();
     }
-//    public static void main(String[] args) {
-//        NhanVienRepository rs  =new NhanVienRepository();
-//        NhanVienService cc =  new NhanVienServiceImpl();
-//        NhanVien nv = new NhanVien();
 
-//        nv.setMa("qq");
-//        nv.setTen("ww");
-//        nv.setSdt("ewrwe");
-//        nv.setDiaChi("sfsa");
-//        nv.setGioiTinh("wqeq");
-//        nv.setEmail("gdfd");
-//        nv.setNgaySinh(new java.util.Date());
-//        nv.setVaiTro(VaiTro.QUAN_LY);
-//        System.out.println(cc.insert(nv));
-//    }
     @Override
     public List<NhanVienResponse> GetAllByMa(String ma) {
 
@@ -172,20 +145,7 @@ public class NhanVienServiceImpl implements NhanVienService {
         return list;
     }
 
-//    public List<NhanVienResponse> getListbyEmail(String input){
-//        List<NhanVienResponse> list = new ArrayList<>();
-//        try {
-//            Session session = HibernateUtil.getSession();
-//            String hql = "select new core.quanly.viewmodel.NhanVienResponse(a.id,a.ma,a.ten,a.gioiTinh,"
-//            + "a.ngaySinh,a.diaChi,a.sdt,a.email,a.vaiTro) from NhanVien a where a.email like CONCAT('%',:input, '%')";
-//            Query query = session.createQuery(hql);
-//            query.setParameter("email", input);
-//            list = query.getResultList();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return list;
-//    }
+
     public String getNhanVienByEmail(String input) {
         String id = "";
         try {
@@ -199,9 +159,7 @@ public class NhanVienServiceImpl implements NhanVienService {
         return id;
     }
 
-    public static void main(String[] args) {
-             
-    }
+    
 
     @Override
     public String updateMatKhau(String matKhau, String email) {
@@ -235,5 +193,11 @@ public class NhanVienServiceImpl implements NhanVienService {
         }
         return list;
     }
+    
+    public static void main(String[] args) {
+//         List<NhanVienNghiResponse> xx = new NhanVienServiceImpl().getNhanVienNghi();
+//         System.out.println(xx);
+    }
+    
 
 }
