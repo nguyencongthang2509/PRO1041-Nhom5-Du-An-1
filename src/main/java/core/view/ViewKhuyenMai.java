@@ -156,7 +156,7 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
                     .addComponent(jLabel8)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dtpngaybatdau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         jPanel5Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {dtpngaybatdau, dtpngayketthuc});
@@ -238,6 +238,7 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tblsanpham.setRowHeight(25);
         tblsanpham.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblsanpham.getTableHeader().setReorderingAllowed(false);
         tblsanpham.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -429,6 +430,7 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tblkhuyenmai.setRowHeight(25);
         tblkhuyenmai.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblkhuyenmai.getTableHeader().setReorderingAllowed(false);
         tblkhuyenmai.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -529,6 +531,7 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tblsanpham2.setRowHeight(25);
         tblsanpham2.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(tblsanpham2);
         if (tblsanpham2.getColumnModel().getColumnCount() > 0) {
@@ -583,7 +586,7 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1252, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
         );
@@ -918,14 +921,11 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
     private void btnhuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhuyActionPerformed
         List<KMSanphamDangKmReponse> listSelectedsanphamkm = GetSelectedsanphamkm();
             for (KMSanphamDangKmReponse xx : listSelectedsanphamkm) {
-                System.out.println(xx.getIdctspkm());
                 khuyenMaiService.HuyKhuyenMai(xx.getIdctspkm());
             }
         int index = tblkhuyenmai.getSelectedRow();    
         listsanpham = khuyenMaiService.getAllChiTietSP();
         FillToSanPham(listsanpham);
-        listkhuyenmai = khuyenMaiService.GetKhuyenMaiDangDienRa();
-        FillToKhuyenMai(listkhuyenmai);  
         KhuyenMaiResponse khuyenMaiResponse = listkhuyenmai.get(index);
         listsanpham2 = khuyenMaiService.GetAllSanPhamDangApDung(khuyenMaiResponse.getIdkm());
         FillToSanPhamDangKM(listsanpham2);

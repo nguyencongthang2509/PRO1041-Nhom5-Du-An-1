@@ -97,8 +97,8 @@ public class ViewBanHang extends javax.swing.JPanel {
         loadDataToTableSP(listSanPham);
         loadDataToHoaDon(listHoaDon);
         cboHinhThucThanhToan.setVisible(false);
-        countTbpTaiQuay = 0;
-        countTbpDatHang = 0;
+        countTbpTaiQuay = 1;
+//        countTbpDatHang = 0;
     }
 
     private void initWebcam() {
@@ -1855,8 +1855,9 @@ public class ViewBanHang extends javax.swing.JPanel {
         jLabel17.setText("Mong muốn:");
         jLabel17.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
 
-        btnKhachHenGiaoLai.setBackground(new java.awt.Color(153, 204, 255));
         btnKhachHenGiaoLai.setIcon(new ImageIcon("src/main/images/khachhenlai.png"));
+        btnKhachHenGiaoLai.setBackground(new java.awt.Color(153, 204, 255));
+        btnKhachHenGiaoLai.setEnabled(false);
         btnKhachHenGiaoLai.setToolTipText("Khách hẹn giao lại");
         btnKhachHenGiaoLai.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

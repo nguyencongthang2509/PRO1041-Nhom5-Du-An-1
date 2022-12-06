@@ -150,7 +150,7 @@ public class ThongKeHangHoaRepository {
         BigDecimal nv = null;
         try {
             Session session = HibernateUtil.getSession();
-            String hql = "select sum(a.thanhTien) from HoaDon a where (a.ngayThanhToan between :date1 and :date2) and a.trangThai=2";
+            String hql = "select sum(a.thanhTien) from HoaDon a where (a.ngayThanhToan between :date1 and :date2) and (a.trangThai=2 OR a.trangThai = 5)";
             Query query = session.createQuery(hql);
             query.setParameter("date1", date1);
             query.setParameter("date2", date2);
@@ -192,7 +192,7 @@ public class ThongKeHangHoaRepository {
         BigDecimal nv = null;
         try {
             Session session = HibernateUtil.getSession();
-            String hql = "select sum(a.thanhTien) from HoaDon a where month(a.ngayThanhToan)=:date1 and year(a.ngayThanhToan)=:date2 and a.trangThai=2";
+            String hql = "select sum(a.thanhTien) from HoaDon a where month(a.ngayThanhToan)=:date1 and year(a.ngayThanhToan)=:date2 and (a.trangThai=2 OR a.trangThai=5)";
             Query query = session.createQuery(hql);
             query.setParameter("date1", thang);
             query.setParameter("date2", nam);

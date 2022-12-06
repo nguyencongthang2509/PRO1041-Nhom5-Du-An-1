@@ -18,6 +18,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Nationalized;
 
 /**
  *
@@ -42,6 +43,7 @@ public class HoaDonTraHang extends PrimaryEntity implements Serializable {
     private BigDecimal tienHoanTraKhach;
     
     @Column(name = "ghi_chu")
+    @Nationalized
     private String ghiChu;
     
 }

@@ -30,6 +30,10 @@ public class ThHoaDonResponse {
     private String maKhachHang;
 
     private String tenKhachHang;
+    
+    private String sdtKhachHang;
+    
+    private String diaChiKhachHang;
 
     private Integer capBac;
 
@@ -62,7 +66,7 @@ public class ThHoaDonResponse {
     private BigDecimal tienThua;
 
     private String getTrangThaiHoaDon() {
-        return trangThai == 0 ? "Chờ thanh toán" : (trangThai == 1 ? "Đã hủy" : (trangThai == 2 ? "Đã thanh toán" : (trangThai == 3 ? "Chờ giao hàng" : (trangThai == 4 ? "Đang giao" : "Đã giao"))));
+        return trangThai == 0 ? "Chờ thanh toán" : (trangThai == 1 ? "Đã hủy" : (trangThai == 2 ? "Đã thanh toán" : (trangThai == 3 ? "Chờ giao hàng" : (trangThai == 4 ? "Đang giao" : (trangThai == 5 ? "Đã giao" : (trangThai == 6 ? "Khách hẹn giao lại" : "Đã trả hàng"))))));
     }
 
     public Object[] toDataRow() {
