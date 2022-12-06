@@ -21,6 +21,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class KMSanphamDangKmReponse {
+    private String idctspkm;
     private String ma;
     private String ten;
     private String tenhang;

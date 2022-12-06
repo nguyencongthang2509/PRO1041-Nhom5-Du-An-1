@@ -171,4 +171,9 @@ public class KhuyenMaiImpl implements core.quanly.service.KhuyenMaiService {
     public List<KhuyenMai> GetAllKhuyenMaiKhongDienRa() {
         return khuyenMaiRepository.GetAllKhuyenMaiKhongDienRa();
     }
+
+    @Override
+    public boolean HuyKhuyenMai(String idctspkm) {
+         return khuyenMaiRepository.HuyKhuyenMai(idctspkm);
+    }
 }

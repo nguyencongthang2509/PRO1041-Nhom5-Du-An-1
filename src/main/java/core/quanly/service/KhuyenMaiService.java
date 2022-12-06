@@ -63,4 +63,6 @@ public interface KhuyenMaiService {
     List<KhuyenMai> GetAllKhuyenMaiKhongDienRa();
     
     boolean updateKhuyenMaiKhongDienRa(String idKhuyenMai);
+    
+    boolean HuyKhuyenMai(String idctspkm);
 }
