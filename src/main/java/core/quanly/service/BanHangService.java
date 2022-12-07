@@ -41,7 +41,7 @@ public interface BanHangService {
 
     boolean insertHDCT(String idHoaDon, Map<String, BhHoaDonChiTietResponse> list);
 
-    public boolean updateSoLuong(Map<String, BhHoaDonChiTietResponse> list);
+    public boolean updateSoLuong(String id, Integer soLuong);
 
     public boolean updateTrangThaiHoaDon(String id);
 

@@ -71,8 +71,8 @@ public class BanHangServiceImpl implements BanHangService {
     }
 
     @Override
-    public boolean updateSoLuong(Map<String, BhHoaDonChiTietResponse> list) {
-        boolean check = banHangRepository.updateSoLuong(list);
+    public boolean updateSoLuong(String id, Integer soLuong) {
+        boolean check = banHangRepository.updateSoLuong(id, soLuong);
         return check;
     }
 

@@ -73,8 +73,8 @@ public class ImportExcelCTSP {
                     return;
                 }
                 try {
-                    int soLuongTonSo = 0;
-                    soLuongTonSo = Integer.parseInt(soLuongTon);
+                    double soLuongTonSo = 0;
+                    soLuongTonSo = Double.parseDouble(soLuongTon);
                     if (soLuongTonSo <= 0) {
                         JOptionPane.showMessageDialog(null, "Số lượng tồn lớn hơn 0");
                         return;
@@ -84,8 +84,8 @@ public class ImportExcelCTSP {
                     return;
                 }
                 try {
-                    int giaBanSo = 0;
-                    giaBanSo = Integer.parseInt(giaBan);
+                    double giaBanSo = 0;
+                    giaBanSo = Double.parseDouble(giaBan);
                     if (giaBanSo <= 0) {
                         JOptionPane.showMessageDialog(null, "Giá bán lớn hơn 0");
                         return ;

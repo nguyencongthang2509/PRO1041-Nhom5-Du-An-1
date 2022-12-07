@@ -233,19 +233,16 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
 //        List<BhHoaDonChiTietResponse> list = new BanHangRepository().getAllHDCTByIdHoaDon("3b278840-82a0-4af1-92b4-a23ed60d0e00");
 //        System.out.println(list);
 //    }
-    public boolean updateSoLuong(Map<String, BhHoaDonChiTietResponse> list) {
+    public boolean updateSoLuong(String id, Integer soLuong) {
         boolean check = false;
         String sql = "UPDATE ChiTietSP SET soLuongTon = soLuongTon - :soLuongMua WHERE id = :id";
         session = HibernateUtil.getSession();
         trans = session.beginTransaction();
         try {
-            for (Map.Entry<String, BhHoaDonChiTietResponse> entry : list.entrySet()) {
-                BhHoaDonChiTietResponse value = entry.getValue();
                 Query query = session.createQuery(sql);
-                query.setParameter("soLuongMua", value.getSoLuong());
-                query.setParameter("id", value.getIdChiTietSP());
+                query.setParameter("soLuongMua", soLuong);
+                query.setParameter("id", id);
                 query.executeUpdate();
-            }
             check = true;
             trans.commit();
         } catch (Exception e) {
