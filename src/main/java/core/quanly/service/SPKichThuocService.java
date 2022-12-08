@@ -15,6 +15,8 @@ import java.util.List;
 public interface SPKichThuocService {
     
     List<SPKichThuocResponse> getAllViewModel();
+    
+    List<SPKichThuocResponse> getAllResponse();
 
     KichThuoc getOne(String ma);
 

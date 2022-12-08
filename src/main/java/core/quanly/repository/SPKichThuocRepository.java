@@ -7,6 +7,7 @@ package core.quanly.repository;
 import config.HibernateUtil;
 import core.quanly.viewmodel.SPKichThuocResponse;
 import domainmodels.KichThuoc;
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.query.NativeQuery;
 import repository.CrudRepository;
@@ -20,6 +21,20 @@ public class SPKichThuocRepository extends CrudRepository<String, KichThuoc, SPK
     public SPKichThuocRepository() {
         className = KichThuoc.class.getName();
         res = "new core.quanly.viewmodel.SPKichThuocResponse(a.id, a.ma, a.ten)";
+    }
+    
+    public List<SPKichThuocResponse> getAllResponseKichThuoc() {
+        List<SPKichThuocResponse> list = new ArrayList<>();
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "SELECT new core.quanly.viewmodel.SPKichThuocResponse(a.id, a.ma, a.ten) FROM KichThuoc a Where a.trangThaiXoa = 0 order by a.createdDate desc";
+            org.hibernate.query.Query query = session.createQuery(hql);
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return list;
     }
     
     public int genMaKichThuoc() {

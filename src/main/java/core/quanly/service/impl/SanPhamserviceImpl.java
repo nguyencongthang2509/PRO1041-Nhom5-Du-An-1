@@ -86,4 +86,9 @@ public class SanPhamserviceImpl implements SanPhamService {
     public int genMaSanPhamTuDong() {
         return sanPhamRepository.genMaSanPham();
     }
+
+    @Override
+    public List<SanPhamResponse> getAllResponse() {
+        return sanPhamRepository.getAllResponseSP();
+    }
 }
