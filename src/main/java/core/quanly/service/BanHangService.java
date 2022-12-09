@@ -5,6 +5,7 @@ import core.quanly.viewmodel.BhHoaDonChiTietResponse;
 import core.quanly.viewmodel.BhHoaDonResponse;
 import core.quanly.viewmodel.BhKhachHangResponse;
 import core.quanly.viewmodel.BhNhanVienResponse;
+import domainmodels.ChiTietSP;
 import domainmodels.ChiTietSPKhuyenMai;
 import domainmodels.HoaDon;
 import domainmodels.HoaDonChiTiet;
@@ -66,5 +67,7 @@ public interface BanHangService {
     BhChiTietSPResponse findCTSPByMaVach(List<BhChiTietSPResponse> list, String maVach);
     
     HoaDon findByIdHoaDon(String id);
+    
+    ChiTietSP findChiTietSPById(String id);
        
 }

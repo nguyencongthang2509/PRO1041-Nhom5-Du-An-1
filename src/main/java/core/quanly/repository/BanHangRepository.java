@@ -216,6 +216,19 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
         return id;
     }
 
+    public ChiTietSP findChiTietSPById(String id) {
+        ChiTietSP idCT = new ChiTietSP();
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "SELECT a FROM ChiTietSP a WHERE a.id = :id";
+            Query query = session.createQuery(hql);
+            query.setParameter("id", id);
+            idCT = (ChiTietSP) query.getSingleResult();
+        } catch (Exception e) {
+        }
+        return idCT;
+    }
+    
     public KhachHang findKhachHangById(String id) {
         KhachHang khachHang = null;
         try {

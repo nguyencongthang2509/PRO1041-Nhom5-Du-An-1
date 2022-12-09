@@ -208,4 +208,9 @@ public class BanHangServiceImpl implements BanHangService {
         return false;
     }
 
+    @Override
+    public ChiTietSP findChiTietSPById(String id) {
+        return banHangRepository.findChiTietSPById(id);
+    }
+
 }
