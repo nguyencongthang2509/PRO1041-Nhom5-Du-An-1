@@ -18,6 +18,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.Nationalized;
 
 /**
@@ -29,6 +30,7 @@ import org.hibernate.annotations.Nationalized;
 @NoArgsConstructor
 @Getter
 @Setter
+@ToString
 @Table(name = "hoa_don_tra_hang")
 public class HoaDonTraHang extends PrimaryEntity implements Serializable {
 

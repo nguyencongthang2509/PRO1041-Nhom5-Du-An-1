@@ -147,6 +147,10 @@ public class ViewBanHang extends javax.swing.JPanel {
                         String maVachScan = result.getText();
                         try {
                             String idChiTietSP = banHangService.findChiTietSPByMaVach(maVachScan);
+                            if(idChiTietSP == null){
+                                JOptionPane.showMessageDialog(null, "Không tìm thấy sản phẩm");
+                                continue;
+                            }
 //                    int rowHoaDon = tblHoaDonCho.getSelectedRow();
 //                    if (rowHoaDon == -1) {
 //                        JOptionPane.showMessageDialog(this, "Mời chọn hóa đơn");
@@ -2922,7 +2926,7 @@ public class ViewBanHang extends javax.swing.JPanel {
     private void btnDaGiaoDatHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDaGiaoDatHangActionPerformed
         try {
             int rowHoaDon = tblHoaDonCho.getSelectedRow();
-            if(rowHoaDon == -1){
+            if (rowHoaDon == -1) {
                 JOptionPane.showMessageDialog(this, "Hãy chọn hóa đơn");
                 return;
             }
@@ -2957,9 +2961,28 @@ public class ViewBanHang extends javax.swing.JPanel {
                     hoaDon.setTienThua(new BigDecimal(arrayTT[0].replace(",", "")));
                     hoaDon.setHinhThucThanhToan(cboHTThanhToanDatHang.getSelectedIndex());
                     hoaDon.setNgayThanhToan(new Date());
+                    KhachHang khachHang = hoaDon.getKhachHang();
+                    if (khachHang != null) {
+                        if (khachHang.getCapBac() == null) {
+                            hoaDon.setPhamTramGiamGia(0.0);
+                        } else {
+                            if (khachHang.getCapBac() == 0) {
+                                hoaDon.setPhamTramGiamGia(0.0);
+                            }
+                            if (khachHang.getCapBac() == 1) {
+                                hoaDon.setPhamTramGiamGia(3.0);
+                            }
+                            if (khachHang.getCapBac() == 2) {
+                                hoaDon.setPhamTramGiamGia(5.0);
+                            }
+                            if (khachHang.getCapBac() == 3) {
+                                hoaDon.setPhamTramGiamGia(10.0);
+                            }
+                        }
+                    }
                 }
                 int confirm = JOptionPane.showConfirmDialog(this, "Bạn có muốn cập nhật trạng thái hóa đơn thành đã giao không?");
-                if(confirm != JOptionPane.YES_OPTION){
+                if (confirm != JOptionPane.YES_OPTION) {
                     return;
                 }
                 hoaDon.setNgayNhan(new Date());
@@ -3037,6 +3060,25 @@ public class ViewBanHang extends javax.swing.JPanel {
             BhHoaDonResponse bhHoaDonResponse = listHoaDon.get(rowHoaDon);
             if (bhHoaDonResponse.getHinhThucGiaoHang() == 1) {
                 HoaDon hoaDon = banHangService.findByIdHoaDon(bhHoaDonResponse.getId());
+                KhachHang khachHang = hoaDon.getKhachHang();
+                if (khachHang != null) {
+                    if (khachHang.getCapBac() == null) {
+                        hoaDon.setPhamTramGiamGia(0.0);
+                    } else {
+                        if (khachHang.getCapBac() == 0) {
+                            hoaDon.setPhamTramGiamGia(0.0);
+                        }
+                        if (khachHang.getCapBac() == 1) {
+                            hoaDon.setPhamTramGiamGia(3.0);
+                        }
+                        if (khachHang.getCapBac() == 2) {
+                            hoaDon.setPhamTramGiamGia(5.0);
+                        }
+                        if (khachHang.getCapBac() == 3) {
+                            hoaDon.setPhamTramGiamGia(10.0);
+                        }
+                    }
+                }
                 hoaDon.setHinhThucGiaoHang(1);
                 hoaDon.setHinhThucThanhToan(cboHTThanhToanDatHang.getSelectedIndex());
                 hoaDon.setTrangThai(2);

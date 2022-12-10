@@ -810,6 +810,7 @@
                     <Component class="javax.swing.JTextField" name="txttimsanphammuonad">
                       <Events>
                         <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="txttimsanphammuonadCaretUpdate"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txttimsanphammuonadActionPerformed"/>
                       </Events>
                     </Component>
                   </SubComponents>

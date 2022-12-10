@@ -481,6 +481,11 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
                 txttimsanphammuonadCaretUpdate(evt);
             }
         });
+        txttimsanphammuonad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txttimsanphammuonadActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -1131,8 +1136,8 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
     }//GEN-LAST:event_txttimActionPerformed
 
     private void cobtensanphamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cobtensanphamActionPerformed
-        listsanpham = khuyenMaiService.FindSanPhamByTen(cobtensanpham.getSelectedItem());
-        FillToSanPham(listsanpham);
+//        listsanpham = khuyenMaiService.FindSanPhamByTen(cobtensanpham.getSelectedItem());
+//        FillToSanPham(listsanpham);
     }//GEN-LAST:event_cobtensanphamActionPerformed
 
     private void btnxoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnxoaActionPerformed
@@ -1328,13 +1333,17 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
 
     private void txttimsanphammuonadCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txttimsanphammuonadCaretUpdate
         try {
-           String input = txttimsanphammuonad.getText();
-           listsanpham = khuyenMaiService.FindSanPhamByTen(input);
-            FillToSanPham(listsanpham);
+//           String input = txttimsanphammuonad.getText();
+//           listsanpham = khuyenMaiService.FindSanPhamByTen(input);
+//            FillToSanPham(listsanpham);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }//GEN-LAST:event_txttimsanphammuonadCaretUpdate
+
+    private void txttimsanphammuonadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttimsanphammuonadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txttimsanphammuonadActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1410,7 +1419,6 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
     }
 
     private void FillToCobSanpham() {
-
         listcobsanpham = khuyenMaiService.SelectTenSanPham();
         for (String x : listcobsanpham) {
             modelcobsanpham.addElement(x);
@@ -1457,7 +1465,7 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
     
     private List<KMChiTietSPResponse> GetSelectedsanphamcothekhuyenmai() {
         List<KMChiTietSPResponse> listselectedsanphamcothekhuyenmai = new ArrayList<>();
-        for (int i = 0; i < listsanphamcotheapdung.size(); i++) {
+        for (int i = 0; i < tblLocSP.getRowCount(); i++) {
             boolean check = Boolean.valueOf(tblLocSP.getValueAt(i, 0).toString());
             System.out.println(check);
             if (check) {
