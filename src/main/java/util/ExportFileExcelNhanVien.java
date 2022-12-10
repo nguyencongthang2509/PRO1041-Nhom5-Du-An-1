@@ -63,14 +63,13 @@ public class ExportFileExcelNhanVien {
                 cell1.setCellValue(String.valueOf(index++));
                 cell2.setCellValue(xx.getMa());
                 cell3.setCellValue(xx.getTen());
-                cell4.setCellValue(xx.getGioitinh()==0?"Nam":"Nữ");
+                cell4.setCellValue(xx.getGioitinh().equals("Nam")?0:1);
                 cell5.setCellValue(xx.getnngaysinh());
                 cell6.setCellValue(xx.getDiachi());
                 cell7.setCellValue(xx.getSdt());
                 cell8.setCellValue(xx.getEmail());
-                cell9.setCellValue(xx.getVaitro()==0?"Quản Lý":"Nhân Viên");
-                cell10.setCellValue(xx.getTrangthaixoa()==0?"Đang Làm":"Đã Nghỉ");
-            }
+                cell9.setCellValue(xx.getVaitro().equals("Quản Lý")?0:1);
+                cell10.setCellValue(xx.getTrangthaixoa().equals("Đang Làm")?0:1);            }
             try {
                 FileOutputStream outputStream = new FileOutputStream("NhanVienExcel.xlsx");
                 workbook.write(outputStream);

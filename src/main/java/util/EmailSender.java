@@ -11,6 +11,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -49,8 +50,8 @@ public class EmailSender extends Thread {
             message.setSubject(title);
             message.setSubject(title, "UTF-8");
             message.setText(body, "UTF-8");
-            String htmlContent = "<h1>" + body + "</h1>";
-            message.setContent(htmlContent, "text/html");
+//            String htmlContent = "<h1>" + body + "</h1>";
+//            message.setContent(htmlContent, "text/html");
             Transport.send(message);
         } catch (Exception e) {
             e.printStackTrace();
@@ -59,7 +60,7 @@ public class EmailSender extends Thread {
 
 //    public static void main(String args[]) {
 //        MyThread t1 = new MyThread();
-//        t1.start();
+//        t1.start();zz
 //    }
     public static void emailSender(String toEmail, String tit, String bod) {
         toEmailInput = toEmail;
@@ -67,5 +68,12 @@ public class EmailSender extends Thread {
         body = bod;
         EmailSender emailSender = new EmailSender();
         emailSender.start();
+//        JOptionPane.showMessageDialog(null, body);
+        
     }
+    public static void main(String[] args) {
+String array[] = {"congq9834@gmail.com", "quynhncph26201@fpt.edu.vn"};
+        for (String string : array) {
+            new EmailSender().emailSender(string, "tttttttttttttttttttttttt", "fffffffffffffffffffff");
+        }    }
 }

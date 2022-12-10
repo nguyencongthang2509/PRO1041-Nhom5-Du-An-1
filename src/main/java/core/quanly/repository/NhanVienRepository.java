@@ -5,6 +5,7 @@
 package core.quanly.repository;
 
 import config.HibernateUtil;
+import core.quanly.viewmodel.NhanVienNghiResponse;
 import core.quanly.viewmodel.NhanVienResponse;
 import domainmodels.NhanVien;
 import java.util.ArrayList;
@@ -27,8 +28,8 @@ public class NhanVienRepository extends CrudRepository<String, NhanVien, NhanVie
     }
 
     public static void main(String[] args) {
-        List<NhanVienResponse> lst = new NhanVienRepository().getAllResponse();
-        System.out.println(lst);
+//        List<NhanVienNghiResponse> lst = new NhanVienRepository().getAllResponseNVNghi();
+//        System.out.println(lst);
     }
 
     public boolean updateMatKhau(String matKhau, String email) {
@@ -48,12 +49,12 @@ public class NhanVienRepository extends CrudRepository<String, NhanVien, NhanVie
         }
         return check > 0;
     }
-    public List<NhanVienResponse> getAllResponseNhanVienNghi() {
-        List<NhanVienResponse> list = new ArrayList<>();
+    public List<NhanVienNghiResponse> getAllResponseNhanVienNghi() {
+        List<NhanVienNghiResponse> list = new ArrayList<>();
         try {
             session = HibernateUtil.getSession();
-            String hql = "SELECT new core.quanly.viewmodel.NhanVienResponse(a.id,a.ma,a.ten,a.gioiTinh,"
-                    + "a.ngaySinh,a.diaChi,a.sdt,a.email,a.vaiTro,a.trangThaiXoa) FROM  NhanVien a where a.trangThaiXoa=1";
+            String hql = "SELECT new core.quanly.viewmodel.NhanVienNghiResponse(a.id,a.ma,a.ten,a.gioiTinh,"
+                    + "a.ngaySinh,a.diaChi,a.sdt,a.email,a.vaiTro,a.trangThaiXoa) FROM  NhanVien a where a.trangThaiXoa=1 order by a.createdDate desc";
             Query query = session.createQuery(hql);
             list = query.getResultList();
         } catch (Exception e) {
@@ -67,7 +68,7 @@ public class NhanVienRepository extends CrudRepository<String, NhanVien, NhanVie
         try {
             session = HibernateUtil.getSession();
             String hql = "SELECT new core.quanly.viewmodel.NhanVienResponse(a.id,a.ma,a.ten,a.gioiTinh,"
-                    + "a.ngaySinh,a.diaChi,a.sdt,a.email,a.vaiTro,a.trangThaiXoa) FROM  NhanVien a where trangThaiXoa=0";
+                    + "a.ngaySinh,a.diaChi,a.sdt,a.email,a.vaiTro,a.trangThaiXoa) FROM  NhanVien a where trangThaiXoa=0 order by a.createdDate desc";
             Query query = session.createQuery(hql);
             list = query.getResultList();
         } catch (Exception e) {
