@@ -26,6 +26,8 @@ public interface BanHangService {
 
     List<BhKhachHangResponse> getAllKhachHangResponse();
     
+    List<BhKhachHangResponse> findKhachHang(String input);
+    
     List<BhNhanVienResponse> getAllNhanVienResponse();
 
     int genMaHoaDonTuDong();

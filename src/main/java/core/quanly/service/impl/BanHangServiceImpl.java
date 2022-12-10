@@ -213,4 +213,9 @@ public class BanHangServiceImpl implements BanHangService {
         return banHangRepository.findChiTietSPById(id);
     }
 
+    @Override
+    public List<BhKhachHangResponse> findKhachHang(String input) {
+        return banHangRepository.findKhachHang(input);
+    }
+
 }

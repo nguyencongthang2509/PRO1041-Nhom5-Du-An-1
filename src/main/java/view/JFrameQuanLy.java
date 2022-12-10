@@ -111,7 +111,7 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         btnCardSon = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Quản lý bán giày thời trang Sneaker Store");
+        setTitle("Phần mềm bán giày thời trang Sneaker");
         setBackground(new java.awt.Color(153, 204, 255));
         setResizable(false);
 

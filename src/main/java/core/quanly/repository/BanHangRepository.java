@@ -353,6 +353,23 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
         }
         return list;
     }
+    
+    public List<BhKhachHangResponse> findKhachHang(String input) {
+        List<BhKhachHangResponse> list = new ArrayList<>();
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "SELECT " + "new core.quanly.viewmodel.BhKhachHangResponse"
+                    + "(a.id, a.ma, a.hoTen, a.sdt, a.email, a.gioiTinh, a.diaChi, a.capBac)"
+                    + " FROM KhachHang a where a.hoTen LIKE CONCAT('%',:input,'%') OR a.sdt LIKE CONCAT('%',:input,'%') OR a.email LIKE CONCAT('%',:input,'%') OR a.diaChi LIKE CONCAT('%',:input,'%')";
+            Query query = session.createQuery(hql);
+            query.setParameter("input", input);
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return list;
+    }
 
     public List<BhNhanVienResponse> getAllNhanVienResponse() {
         List<BhNhanVienResponse> list = new ArrayList<>();
