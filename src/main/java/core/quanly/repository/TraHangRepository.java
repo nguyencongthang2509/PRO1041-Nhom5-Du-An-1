@@ -6,6 +6,7 @@ import domainmodels.HoaDon;
 import domainmodels.HoaDonTraHang;
 import domainmodels.HoaDonTraHangChiTiet;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.query.Query;
 import repository.CrudRepository;
@@ -18,6 +19,7 @@ public class TraHangRepository extends CrudRepository<String, HoaDon, Object> {
 
     public List<ThHoaDonResponse> getAllResponseHD() {
         List<ThHoaDonResponse> list = new ArrayList<>();
+        Date now = new Date();
         try {
                 session = HibernateUtil.getSession();
                 String hql = "SELECT " + "new core.quanly.viewmodel.ThHoaDonResponse"
@@ -25,7 +27,7 @@ public class TraHangRepository extends CrudRepository<String, HoaDon, Object> {
                         + "a.tenNguoiNhan, a.sdtNguoiNhan, a.diaChi, a.tenNguoiShip, a.sdtNguoiShip,"
                         + "a.tienShip, a.tienKhachTra, a.tienKhachChuyenKhoan, a.thanhTien,a.tienThua)"
                         + " FROM HoaDon a LEFT JOIN a.nhanVien b LEFT JOIN a.khachHang c "
-                        + "WHERE (a.trangThai = 2 or a.trangThai = 5) AND c.ma <> 'KH000'"
+                        + "WHERE (a.trangThai = 2 or a.trangThai = 5) AND c.ma <> 'KH000' AND a.ngayThanhToan + "
                         + " ORDER BY a.lastModifiedDate DESC";
                 Query query = session.createQuery(hql);
                 list = query.getResultList();

@@ -125,7 +125,7 @@ public class ViewHoaDon extends javax.swing.JPanel {
         if (count % 10 == 0) {
             for (int i = n; i < m; i++) {
                 modelHoaDon2.addRow(new Object[]{i + 1, listHD2.get(i).getMa(), listHD2.get(i).getNgayTao(), listHD2.get(i).getNgayThanhToanStr(),
-                    listHD2.get(i).getThanhTienStr(), listHD2.get(i).getMaNV(), listHD2.get(i).getTenNguoiNhan(), listHD2.get(i).getDiaChiStr(),
+                    listHD2.get(i).getThanhTienStr(), listHD2.get(i).getMaNV(), listHD2.get(i).getTenKHStr(), listHD2.get(i).getDiaChiStr(),
                     listHD2.get(i).getTenNguoiShipStr(), listHD2.get(i).getNgayShipStr(), listHD2.get(i).getNgayNhanStr(), listHD2.get(i).getLyDoStr(), listHD2.get(i).getTT()});
             }
         } else {
@@ -133,13 +133,13 @@ public class ViewHoaDon extends javax.swing.JPanel {
                 int k = n + count % 10;
                 for (int i = n; i < k; i++) {
                     modelHoaDon2.addRow(new Object[]{i + 1, listHD2.get(i).getMa(), listHD2.get(i).getNgayTao(), listHD2.get(i).getNgayThanhToanStr(),
-                        listHD2.get(i).getThanhTienStr(), listHD2.get(i).getMaNV(), listHD2.get(i).getTenNguoiNhan(), listHD2.get(i).getDiaChiStr(),
+                        listHD2.get(i).getThanhTienStr(), listHD2.get(i).getMaNV(), listHD2.get(i).getTenKHStr(), listHD2.get(i).getDiaChiStr(),
                         listHD2.get(i).getTenNguoiShipStr(), listHD2.get(i).getNgayShipStr(), listHD2.get(i).getNgayNhanStr(), listHD2.get(i).getLyDoStr(), listHD2.get(i).getTT()});
                 }
             } else {
                 for (int i = n; i < m; i++) {
                     modelHoaDon2.addRow(new Object[]{i + 1, listHD2.get(i).getMa(), listHD2.get(i).getNgayTao(), listHD2.get(i).getNgayThanhToanStr(),
-                        listHD2.get(i).getThanhTienStr(), listHD2.get(i).getMaNV(), listHD2.get(i).getTenNguoiNhan(), listHD2.get(i).getDiaChiStr(),
+                        listHD2.get(i).getThanhTienStr(), listHD2.get(i).getMaNV(), listHD2.get(i).getTenKHStr(), listHD2.get(i).getDiaChiStr(),
                         listHD2.get(i).getTenNguoiShipStr(), listHD2.get(i).getNgayShipStr(), listHD2.get(i).getNgayNhanStr(), listHD2.get(i).getLyDoStr(), listHD2.get(i).getTT()});
                 }
             }
@@ -732,11 +732,11 @@ public class ViewHoaDon extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Hóa đơn", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
-        jPanel1.setToolTipText("");
         jPanel1.setMaximumSize(new java.awt.Dimension(1240, 300));
         jPanel1.setMinimumSize(new java.awt.Dimension(1240, 300));
         jPanel1.setName(""); // NOI18N
         jPanel1.setPreferredSize(new java.awt.Dimension(1240, 300));
+        jPanel1.setToolTipText("");
 
         tblHoadon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -756,6 +756,7 @@ public class ViewHoaDon extends javax.swing.JPanel {
         });
         tblHoadon.setRowHeight(25);
         tblHoadon.setShowGrid(false);
+        tblHoadon.getTableHeader().setReorderingAllowed(false);
         tblHoadon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblHoadonMouseClicked(evt);
@@ -931,7 +932,7 @@ public class ViewHoaDon extends javax.swing.JPanel {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(691, 691, 691)))
-                                .addGap(0, 8, Short.MAX_VALUE)))
+                                .addGap(0, 3, Short.MAX_VALUE)))
                         .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
@@ -992,6 +993,7 @@ public class ViewHoaDon extends javax.swing.JPanel {
         });
         tblHoadonchitiet.setRowHeight(25);
         tblHoadonchitiet.setShowGrid(false);
+        tblHoadonchitiet.getTableHeader().setReorderingAllowed(false);
         tblHoadonchitiet.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblHoadonchitietMouseClicked(evt);
@@ -1012,7 +1014,7 @@ public class ViewHoaDon extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1030,7 +1032,7 @@ public class ViewHoaDon extends javax.swing.JPanel {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -1097,6 +1099,7 @@ public class ViewHoaDon extends javax.swing.JPanel {
             }
         });
         tblHD2.setRowHeight(25);
+        tblHD2.getTableHeader().setReorderingAllowed(false);
         tblHD2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblHD2MouseClicked(evt);
@@ -1240,7 +1243,7 @@ public class ViewHoaDon extends javax.swing.JPanel {
                                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtSearch2, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 113, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -1274,7 +1277,7 @@ public class ViewHoaDon extends javax.swing.JPanel {
                     .addComponent(lblRecordHD2)
                     .addComponent(btnInHoaDon2)
                     .addComponent(btnXuatDanhSach2))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
@@ -1298,6 +1301,7 @@ public class ViewHoaDon extends javax.swing.JPanel {
             }
         });
         tblHoaDonChiTiet2.setRowHeight(25);
+        tblHoaDonChiTiet2.getTableHeader().setReorderingAllowed(false);
         jScrollPane4.setViewportView(tblHoaDonChiTiet2);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -1306,7 +1310,7 @@ public class ViewHoaDon extends javax.swing.JPanel {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1237, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1233, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(

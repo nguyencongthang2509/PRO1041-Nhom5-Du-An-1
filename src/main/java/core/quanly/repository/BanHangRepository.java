@@ -78,7 +78,7 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
                         + "a.tenNguoiNhan, a.sdtNguoiNhan, a.diaChi, a.tenNguoiShip, a.sdtNguoiShip,"
                         + "a.tienShip, a.tienKhachTra, a.tienKhachChuyenKhoan, a.tienThua)"
                         + " FROM HoaDon a LEFT JOIN a.nhanVien b LEFT JOIN a.khachHang c "
-                        + "WHERE a.trangThai <> 1 AND b.id = :idNhanVien AND a.hinhThucGiaoHang LIKE CONCAT('%', CONVERT(VARCHAR, :hinhThucGiaoHang),'%') AND a.trangThai LIKE CONCAT('%',CONVERT(VARCHAR, :trangThai),'%')"
+                        + "WHERE a.trangThai <> 1 AND a.trangThai <> 7 AND b.id = :idNhanVien AND a.hinhThucGiaoHang LIKE CONCAT('%', CONVERT(VARCHAR, :hinhThucGiaoHang),'%') AND a.trangThai LIKE CONCAT('%',CONVERT(VARCHAR, :trangThai),'%')"
                         + " ORDER BY a.lastModifiedDate DESC";
                 Query query = session.createQuery(hql);
                 query.setParameter("idNhanVien", idNhanVien);
@@ -93,7 +93,7 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
                         + "a.tenNguoiNhan, a.sdtNguoiNhan, a.diaChi, a.tenNguoiShip, a.sdtNguoiShip,"
                         + "a.tienShip, a.tienKhachTra, a.tienKhachChuyenKhoan, a.tienThua)"
                         + " FROM HoaDon a LEFT JOIN a.nhanVien b LEFT JOIN a.khachHang c "
-                        + "WHERE a.trangThai <> 1 AND b.id = :idNhanVien AND a.hinhThucGiaoHang LIKE CONCAT('%','','%') AND a.trangThai LIKE CONCAT('%',CONVERT(VARCHAR, :trangThai),'%')"
+                        + "WHERE a.trangThai <> 1 AND a.trangThai <> 7 AND b.id = :idNhanVien AND a.hinhThucGiaoHang LIKE CONCAT('%','','%') AND a.trangThai LIKE CONCAT('%',CONVERT(VARCHAR, :trangThai),'%')"
                         + " ORDER BY a.lastModifiedDate DESC";
                 Query query = session.createQuery(hql);
                 query.setParameter("idNhanVien", idNhanVien);
@@ -107,7 +107,7 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
                         + "a.tenNguoiNhan, a.sdtNguoiNhan, a.diaChi, a.tenNguoiShip, a.sdtNguoiShip,"
                         + "a.tienShip, a.tienKhachTra, a.tienKhachChuyenKhoan, a.tienThua)"
                         + " FROM HoaDon a LEFT JOIN a.nhanVien b LEFT JOIN a.khachHang c "
-                        + "WHERE a.trangThai <> 1 AND b.id = :idNhanVien AND a.hinhThucGiaoHang LIKE CONCAT('%', CONVERT(VARCHAR, :hinhThucGiaoHang),'%') AND a.trangThai LIKE CONCAT('%','','%')"
+                        + "WHERE a.trangThai <> 1 AND a.trangThai <> 7  AND b.id = :idNhanVien AND a.hinhThucGiaoHang LIKE CONCAT('%', CONVERT(VARCHAR, :hinhThucGiaoHang),'%') AND a.trangThai LIKE CONCAT('%','','%')"
                         + " ORDER BY a.lastModifiedDate DESC";
                 Query query = session.createQuery(hql);
                 query.setParameter("idNhanVien", idNhanVien);
@@ -121,7 +121,7 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
                         + "a.tenNguoiNhan, a.sdtNguoiNhan, a.diaChi, a.tenNguoiShip, a.sdtNguoiShip,"
                         + "a.tienShip, a.tienKhachTra, a.tienKhachChuyenKhoan, a.tienThua)"
                         + " FROM HoaDon a LEFT JOIN a.nhanVien b LEFT JOIN a.khachHang c "
-                        + "WHERE a.trangThai <> 1 AND b.id = :idNhanVien"
+                        + "WHERE a.trangThai <> 1 AND a.trangThai <> 7 AND b.id = :idNhanVien"
                         + " ORDER BY a.lastModifiedDate DESC";
                 Query query = session.createQuery(hql);
                 query.setParameter("idNhanVien", idNhanVien);

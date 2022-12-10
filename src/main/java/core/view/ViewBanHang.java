@@ -68,7 +68,7 @@ public class ViewBanHang extends javax.swing.JPanel {
     private int soLuongCu;
     private boolean selected;
     private int countTbpTaiQuay = 0;
-    private int countTbpDatHang = 0;
+    private int countTbpDatHang;
     public static WebcamPanel panel = null;
     public static Webcam webcam = null;
     public Thread capture;
@@ -98,7 +98,7 @@ public class ViewBanHang extends javax.swing.JPanel {
         loadDataToHoaDon(listHoaDon);
         cboHinhThucThanhToan.setVisible(false);
         countTbpTaiQuay = 1;
-        countTbpDatHang = 1;
+        countTbpDatHang = 0;
     }
 
     private void initWebcam() {
@@ -2111,7 +2111,7 @@ public class ViewBanHang extends javax.swing.JPanel {
             int rowHoaDon = tblHoaDonCho.getSelectedRow();
             if (rowHoaDon >= 0) {
                 BhHoaDonResponse bhHoaDonClick = listHoaDon.get(rowHoaDon);
-                if (bhHoaDonClick.getTrangThai() != 0) {
+                if (bhHoaDonClick.getTrangThai() == 2 || bhHoaDonClick.getTrangThai() == 4 || bhHoaDonClick.getTrangThai() == 5 || bhHoaDonClick.getTrangThai() == 6) {
                     clearForm();
                 }
             }
@@ -2512,6 +2512,7 @@ public class ViewBanHang extends javax.swing.JPanel {
                     btnChoGiaoHang.setEnabled(false);
                     btnDangGiaoDatHang.setEnabled(false);
                     btnDaGiaoDatHang.setEnabled(false);
+                    btnKhachHenGiaoLai.setEnabled(false);
                     btnChonKhachHangDatHang.setEnabled(true);
                     btnChonNhanVienShip.setEnabled(true);
                     btnXoa1.setEnabled(true);
@@ -2521,6 +2522,7 @@ public class ViewBanHang extends javax.swing.JPanel {
                     btnThanhToanDatHang.setEnabled(false);
                     btnChoGiaoHang.setEnabled(true);
                     btnDangGiaoDatHang.setEnabled(false);
+                    btnKhachHenGiaoLai.setEnabled(false);
                     btnDaGiaoDatHang.setEnabled(false);
                     btnChonKhachHangDatHang.setEnabled(true);
                     btnChonNhanVienShip.setEnabled(true);
@@ -2530,6 +2532,7 @@ public class ViewBanHang extends javax.swing.JPanel {
                 if (bhHoaDonResponse.getTrangThai() == 3) {
                     btnThanhToanDatHang.setEnabled(false);
                     btnChoGiaoHang.setEnabled(false);
+                    btnKhachHenGiaoLai.setEnabled(false);
                     btnDangGiaoDatHang.setEnabled(true);
                     btnDaGiaoDatHang.setEnabled(false);
                     btnChonKhachHangDatHang.setEnabled(true);
@@ -2540,6 +2543,7 @@ public class ViewBanHang extends javax.swing.JPanel {
                     btnThanhToanDatHang.setEnabled(false);
                     btnChoGiaoHang.setEnabled(false);
                     btnDangGiaoDatHang.setEnabled(false);
+                    btnKhachHenGiaoLai.setEnabled(true);
                     btnDaGiaoDatHang.setEnabled(true);
                     btnChonKhachHangDatHang.setEnabled(false);
                     btnChonNhanVienShip.setEnabled(false);
@@ -2549,6 +2553,17 @@ public class ViewBanHang extends javax.swing.JPanel {
                     btnThanhToanDatHang.setEnabled(false);
                     btnChoGiaoHang.setEnabled(false);
                     btnDangGiaoDatHang.setEnabled(false);
+                    btnDaGiaoDatHang.setEnabled(false);
+                    btnChonKhachHangDatHang.setEnabled(false);
+                    btnKhachHenGiaoLai.setEnabled(false);
+                    btnChonNhanVienShip.setEnabled(false);
+                    btnXoa1.setEnabled(false);
+                }
+                if (bhHoaDonResponse.getTrangThai() == 6) {
+                    btnThanhToanDatHang.setEnabled(false);
+                    btnChoGiaoHang.setEnabled(false);
+                    btnKhachHenGiaoLai.setEnabled(false);
+                    btnDangGiaoDatHang.setEnabled(true);
                     btnDaGiaoDatHang.setEnabled(false);
                     btnChonKhachHangDatHang.setEnabled(false);
                     btnChonNhanVienShip.setEnabled(false);
@@ -2811,6 +2826,27 @@ public class ViewBanHang extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Hãy nhập tiền ship");
                 return;
             }
+            if (txtNgayMongMuon.datePicker.toString().trim().isEmpty() || txtNgayMongMuon.timePicker.toString().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Hãy nhập thời gian khách mong muốn nhận hàng");
+                return;
+            }
+            LocalDateTime time1 = txtNgayMongMuon.getDateTimePermissive();
+            String t1 = String.valueOf(time1);
+            String array1[] = t1.split("T");
+            String arrayDaoChuoi[] = array1[0].split("-");
+            String ngayDao = arrayDaoChuoi[2] + "-" + arrayDaoChuoi[1] + "-" + arrayDaoChuoi[0];
+            String timeNgayMongMuon = "";
+            if (Integer.parseInt(t1.substring(11, 13)) < 12) {
+                timeNgayMongMuon = ngayDao + " " + array1[1] + " AM";
+            } else {
+                timeNgayMongMuon = ngayDao + " " + array1[1] + " PM";
+            }
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm");
+            Date ngayMongMuon = sdf.parse(timeNgayMongMuon);
+            if (ngayMongMuon.getTime() < new Date().getTime()) {
+                JOptionPane.showMessageDialog(this, "Thời gian khách mong muốn không được nằm trong quá khứ");
+                return;
+            }
             int confirm = JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn cập nhật trạng thái hóa đơn thành đang giao hàng không?");
             if (confirm != JOptionPane.YES_OPTION) {
                 return;
@@ -2820,6 +2856,7 @@ public class ViewBanHang extends javax.swing.JPanel {
             if (bhHoaDonResponse.getHinhThucGiaoHang() == 1) {
                 HoaDon hoaDon = banHangService.findByIdHoaDon(bhHoaDonResponse.getId());
                 hoaDon.setTrangThai(4);
+                hoaDon.setNgayMongMuon(ngayMongMuon);
                 hoaDon.setTenNguoiNhan(tenNguoiNhan);
                 hoaDon.setSdtNguoiNhan(sdtNguoiNhan);
                 hoaDon.setDiaChi(diaChi);
@@ -2885,8 +2922,12 @@ public class ViewBanHang extends javax.swing.JPanel {
     private void btnDaGiaoDatHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDaGiaoDatHangActionPerformed
         try {
             int rowHoaDon = tblHoaDonCho.getSelectedRow();
+            if(rowHoaDon == -1){
+                JOptionPane.showMessageDialog(this, "Hãy chọn hóa đơn");
+                return;
+            }
             BhHoaDonResponse bhHoaDonResponse = listHoaDon.get(rowHoaDon);
-            if (bhHoaDonResponse.getHinhThucGiaoHang() == 1 && bhHoaDonResponse.getTrangThai() == 4) {
+            if (bhHoaDonResponse.getHinhThucGiaoHang() == 1 && (bhHoaDonResponse.getTrangThai() == 4 || bhHoaDonResponse.getTrangThai() == 6)) {
                 HoaDon hoaDon = banHangService.findByIdHoaDon(bhHoaDonResponse.getId());
                 if (hoaDon.getTrangThaiThanhToan() == 1) {
                     if (cboHTThanhToanDatHang.getSelectedIndex() == 0 && txtTienKhachDuaDatHang.getText().trim().isEmpty()) {
@@ -2917,11 +2958,15 @@ public class ViewBanHang extends javax.swing.JPanel {
                     hoaDon.setHinhThucThanhToan(cboHTThanhToanDatHang.getSelectedIndex());
                     hoaDon.setNgayThanhToan(new Date());
                 }
+                int confirm = JOptionPane.showConfirmDialog(this, "Bạn có muốn cập nhật trạng thái hóa đơn thành đã giao không?");
+                if(confirm != JOptionPane.YES_OPTION){
+                    return;
+                }
                 hoaDon.setNgayNhan(new Date());
                 hoaDon.setTrangThai(5);
                 banHangService.saveOrUpdate(hoaDon);
                 listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 5);
-                setSelected(1, 4);
+                setSelected(1, 5);
                 tblHoaDonCho.setRowSelectionInterval(0, 0);
                 loadDataToHoaDon(listHoaDon);
                 clearFormDatHang();
@@ -2963,19 +3008,27 @@ public class ViewBanHang extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Tiền khách đưa không đủ");
                 return;
             }
-            if (txtNgayMongMuon.datePicker.toString().trim().isEmpty() && txtNgayMongMuon.timePicker.toString().trim().isEmpty()) {
+            if (txtNgayMongMuon.datePicker.toString().trim().isEmpty() || txtNgayMongMuon.timePicker.toString().trim().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Hãy nhập thời gian khách mong muốn nhận hàng");
                 return;
             }
-            LocalDateTime timeLocal = txtNgayMongMuon.getDateTimePermissive();
-            String t1 = String.valueOf(timeLocal);
+            LocalDateTime time1 = txtNgayMongMuon.getDateTimePermissive();
+            String t1 = String.valueOf(time1);
             String array1[] = t1.split("T");
             String arrayDaoChuoi[] = array1[0].split("-");
             String ngayDao = arrayDaoChuoi[2] + "-" + arrayDaoChuoi[1] + "-" + arrayDaoChuoi[0];
-            String timeMongMuonStr = ngayDao + " " + array1[1];
+            String timeNgayMongMuon = "";
+            if (Integer.parseInt(t1.substring(11, 13)) < 12) {
+                timeNgayMongMuon = ngayDao + " " + array1[1] + " AM";
+            } else {
+                timeNgayMongMuon = ngayDao + " " + array1[1] + " PM";
+            }
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm");
-            Date timeMongMuon = sdf.parse(timeMongMuonStr);
-
+            Date ngayMongMuon = sdf.parse(timeNgayMongMuon);
+            if (ngayMongMuon.getTime() < new Date().getTime()) {
+                JOptionPane.showMessageDialog(this, "Thời gian khách mong muốn không được nằm trong quá khứ");
+                return;
+            }
             int hoi = JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn thanh toán không?");
             if (hoi != JOptionPane.YES_OPTION) {
                 return;
@@ -2990,7 +3043,7 @@ public class ViewBanHang extends javax.swing.JPanel {
                 hoaDon.setTenNguoiNhan(tenNguoiNhan);
                 hoaDon.setSdtNguoiNhan(sdtNguoiNhan);
                 hoaDon.setDiaChi(diaChi);
-                hoaDon.setNgayMongMuon(timeMongMuon);
+                hoaDon.setNgayMongMuon(ngayMongMuon);
                 hoaDon.setTrangThaiThanhToan(0);
                 hoaDon.setTenNguoiShip(tenNguoiShip);
                 hoaDon.setSdtNguoiShip(sdtNguoiShip);
@@ -3065,19 +3118,31 @@ public class ViewBanHang extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Hãy nhập tiền ship");
                 return;
             }
+            if (txtNgayMongMuon.datePicker.toString().trim().isEmpty() || txtNgayMongMuon.timePicker.toString().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Hãy nhập thời gian khách mong muốn nhận hàng");
+                return;
+            }
+            LocalDateTime time1 = txtNgayMongMuon.getDateTimePermissive();
+            String t1 = String.valueOf(time1);
+            String array1[] = t1.split("T");
+            String arrayDaoChuoi[] = array1[0].split("-");
+            String ngayDao = arrayDaoChuoi[2] + "-" + arrayDaoChuoi[1] + "-" + arrayDaoChuoi[0];
+            String timeNgayMongMuon = "";
+            if (Integer.parseInt(t1.substring(11, 13)) < 12) {
+                timeNgayMongMuon = ngayDao + " " + array1[1] + " AM";
+            } else {
+                timeNgayMongMuon = ngayDao + " " + array1[1] + " PM";
+            }
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm");
+            Date ngayMongMuon = sdf.parse(timeNgayMongMuon);
+            if (ngayMongMuon.getTime() < new Date().getTime()) {
+                JOptionPane.showMessageDialog(this, "Thời gian khách mong muốn không được nằm trong quá khứ");
+                return;
+            }
             int hoi = JOptionPane.showConfirmDialog(this, "Bạn có muốn cập nhật hóa đơn thành trạng thái chờ giao hàng hay không?");
             if (hoi != JOptionPane.YES_OPTION) {
                 return;
             }
-            LocalDateTime timeLocal = txtNgayMongMuon.getDateTimePermissive();
-            String t1 = String.valueOf(timeLocal);
-            String array1[] = t1.split("T");
-            String arrayDaoChuoi[] = array1[0].split("-");
-            String ngayDao = arrayDaoChuoi[2] + "-" + arrayDaoChuoi[1] + "-" + arrayDaoChuoi[0];
-            String timeMongMuonStr = ngayDao + " " + array1[1];
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm");
-            Date timeMongMuon = sdf.parse(timeMongMuonStr);
-
             int rowHoaDon = tblHoaDonCho.getSelectedRow();
             BhHoaDonResponse bhHoaDonResponse = listHoaDon.get(rowHoaDon);
             if (bhHoaDonResponse.getHinhThucGiaoHang() == 1) {
@@ -3085,7 +3150,7 @@ public class ViewBanHang extends javax.swing.JPanel {
                     HoaDon hoaDon = banHangService.findByIdHoaDon(bhHoaDonResponse.getId());
                     hoaDon.setHinhThucGiaoHang(1);
                     hoaDon.setTrangThai(3);
-                    hoaDon.setNgayMongMuon(timeMongMuon);
+                    hoaDon.setNgayMongMuon(ngayMongMuon);
                     hoaDon.setTenNguoiNhan(tenNguoiNhan);
                     hoaDon.setSdtNguoiNhan(sdtNguoiNhan);
                     hoaDon.setDiaChi(diaChi);
@@ -3103,7 +3168,7 @@ public class ViewBanHang extends javax.swing.JPanel {
                     hoaDon.setTenNguoiNhan(tenNguoiNhan);
                     hoaDon.setSdtNguoiNhan(sdtNguoiNhan);
                     hoaDon.setDiaChi(diaChi);
-                    hoaDon.setNgayMongMuon(timeMongMuon);
+                    hoaDon.setNgayMongMuon(ngayMongMuon);
                     String array[] = txtThanhToanDatHang.getText().trim().split(" ");
                     hoaDon.setThanhTien(new BigDecimal(array[0].replace(",", "")));
                     hoaDon.setTenNguoiShip(tenNguoiShip);
@@ -3305,6 +3370,7 @@ public class ViewBanHang extends javax.swing.JPanel {
             cboTrangThaiHoaDon.addItem("Đã thanh toán");
             cboTrangThaiHoaDon.addItem("Chờ giao hàng");
             cboTrangThaiHoaDon.addItem("Đang giao");
+            cboTrangThaiHoaDon.addItem("Khách hẹn giao lại");
             cboTrangThaiHoaDon.addItem("Đã giao");
             cboTrangThaiHoaDon.addItem("Tất cả");
             if (cboTrangThaiHoaDon.getSelectedIndex() == 1) {
@@ -3359,6 +3425,8 @@ public class ViewBanHang extends javax.swing.JPanel {
         } else if (cboTrangThaiHoaDon.getSelectedIndex() == 3) {
             listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 4);
         } else if (cboTrangThaiHoaDon.getSelectedIndex() == 4) {
+            listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 6);
+        } else if (cboTrangThaiHoaDon.getSelectedIndex() == 5) {
             listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 5);
         }
 //        if (cboTrangThaiHoaDon.getSelectedIndex() == 5) {
@@ -3376,10 +3444,10 @@ public class ViewBanHang extends javax.swing.JPanel {
         if (cboHinhThucGiaoHang.getSelectedIndex() == 2 && cboTrangThaiHoaDon.getSelectedIndex() == 2) {
             listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), -1, -1);
         }
-        if (cboHinhThucGiaoHang.getSelectedIndex() == 1 && cboTrangThaiHoaDon.getSelectedIndex() == 5) {
+        if (cboHinhThucGiaoHang.getSelectedIndex() == 1 && cboTrangThaiHoaDon.getSelectedIndex() == 6) {
             listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, -1);
         }
-        if (cboHinhThucGiaoHang.getSelectedIndex() == 2 && cboTrangThaiHoaDon.getSelectedIndex() == 5) {
+        if (cboHinhThucGiaoHang.getSelectedIndex() == 2 && cboTrangThaiHoaDon.getSelectedIndex() == 6) {
             listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), -1, -1);
         }
         loadDataToHoaDon(listHoaDon);
@@ -3410,6 +3478,7 @@ public class ViewBanHang extends javax.swing.JPanel {
                 loadDataToHoaDon(listHoaDon);
                 btnThanhToanDatHang.setEnabled(false);
                 btnChoGiaoHang.setEnabled(false);
+                btnKhachHenGiaoLai.setEnabled(false);
                 btnDangGiaoDatHang.setEnabled(false);
                 btnDaGiaoDatHang.setEnabled(false);
             }
@@ -3485,7 +3554,7 @@ public class ViewBanHang extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Hãy nhập đầy đủ các thông tin");
                 return;
             }
-            if(txtNgaySinhAdd.getDate() == null){
+            if (txtNgaySinhAdd.getDate() == null) {
                 JOptionPane.showMessageDialog(this, "Ngày sinh không được để trống");
                 return;
             }
@@ -3512,7 +3581,56 @@ public class ViewBanHang extends javax.swing.JPanel {
     }//GEN-LAST:event_btnKhachHenGiaoLaiMouseClicked
 
     private void btnKhachHenGiaoLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhachHenGiaoLaiActionPerformed
-
+        try {
+            int row = tblHoaDonCho.getSelectedRow();
+            if (row == -1) {
+                JOptionPane.showMessageDialog(this, "Hãy chọn hóa đơn");
+                return;
+            }
+            BhHoaDonResponse bhHoaDonResponse = listHoaDon.get(row);
+            if (txtNgayMongMuon.datePicker.toString().trim().isEmpty() || txtNgayMongMuon.timePicker.toString().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Hãy nhập thời gian khách mong muốn nhận hàng");
+                return;
+            }
+            LocalDateTime time1 = txtNgayMongMuon.getDateTimePermissive();
+            String t1 = String.valueOf(time1);
+            String array1[] = t1.split("T");
+            String arrayDaoChuoi[] = array1[0].split("-");
+            String ngayDao = arrayDaoChuoi[2] + "-" + arrayDaoChuoi[1] + "-" + arrayDaoChuoi[0];
+            String timeNgayMongMuon = "";
+            if (Integer.parseInt(t1.substring(11, 13)) < 12) {
+                timeNgayMongMuon = ngayDao + " " + array1[1] + " AM";
+            } else {
+                timeNgayMongMuon = ngayDao + " " + array1[1] + " PM";
+            }
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm");
+            Date ngayMongMuon = sdf.parse(timeNgayMongMuon);
+            if (ngayMongMuon.getTime() < new Date().getTime()) {
+                JOptionPane.showMessageDialog(this, "Thời gian khách mong muốn không được nằm trong quá khứ");
+                return;
+            }
+            if (ngayMongMuon.getTime() == bhHoaDonResponse.getNgayMongMuon().getTime()) {
+                JOptionPane.showMessageDialog(this, "Thời gian khách hẹn lại phải lớn hơn thời gian cũ");
+                return;
+            }
+            int confirm = JOptionPane.showConfirmDialog(this, "Bạn có muốn cập nhật hóa đơn về trạng thái khách hẹn giao lại hay không?");
+            if (confirm != JOptionPane.YES_OPTION) {
+                return;
+            }
+            HoaDon hoaDon = banHangService.findByIdHoaDon(bhHoaDonResponse.getId());
+            hoaDon.setNgayMongMuon(ngayMongMuon);
+            hoaDon.setTrangThai(6);
+            hoaDon.setTienShip(new BigDecimal(txtTienShip.getText().trim()));
+            String array[] = txtThanhToanDatHang.getText().trim().split(" ");
+            hoaDon.setThanhTien(new BigDecimal(array[0].replace(",", "")));
+            banHangService.saveOrUpdate(hoaDon);
+            listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 6);
+            setSelected(1, 4);
+            loadDataToHoaDon(listHoaDon);
+            JOptionPane.showMessageDialog(this, "Cập nhật thành công");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btnKhachHenGiaoLaiActionPerformed
 
     private void txtTimKiemKhachHangCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTimKiemKhachHangCaretUpdate

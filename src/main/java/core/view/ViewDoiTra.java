@@ -536,6 +536,7 @@ public class ViewDoiTra extends javax.swing.JPanel {
         });
         tblHoaDon.setRowHeight(25);
         tblHoaDon.setSelectionBackground(new java.awt.Color(86, 154, 222));
+        tblHoaDon.getTableHeader().setReorderingAllowed(false);
         tblHoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblHoaDonMouseClicked(evt);
@@ -580,8 +581,7 @@ public class ViewDoiTra extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -639,6 +639,7 @@ public class ViewDoiTra extends javax.swing.JPanel {
         });
         tblHoaDonTraHang.setRowHeight(25);
         tblHoaDonTraHang.setSelectionBackground(new java.awt.Color(86, 154, 222));
+        tblHoaDonTraHang.getTableHeader().setReorderingAllowed(false);
         tblHoaDonTraHang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblHoaDonTraHangMouseClicked(evt);

@@ -190,6 +190,7 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tblLocSP.getTableHeader().setReorderingAllowed(false);
         tblLocSP.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblLocSPMouseClicked(evt);
@@ -340,7 +341,7 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
                             .addComponent(jLabel5)
                             .addComponent(jLabel8)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(16, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
@@ -441,8 +442,6 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
         jScrollPane4.setViewportView(tblsanpham);
         if (tblsanpham.getColumnModel().getColumnCount() > 0) {
             tblsanpham.getColumnModel().getColumn(1).setResizable(false);
-            tblsanpham.getColumnModel().getColumn(2).setResizable(false);
-            tblsanpham.getColumnModel().getColumn(3).setResizable(false);
             tblsanpham.getColumnModel().getColumn(5).setResizable(false);
         }
 
@@ -599,7 +598,7 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnhuy, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnsua, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())
+                        .addContainerGap(183, Short.MAX_VALUE))
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel3Layout.setVerticalGroup(
@@ -656,14 +655,6 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(tblkhuyenmai);
-        if (tblkhuyenmai.getColumnModel().getColumnCount() > 0) {
-            tblkhuyenmai.getColumnModel().getColumn(0).setResizable(false);
-            tblkhuyenmai.getColumnModel().getColumn(1).setResizable(false);
-            tblkhuyenmai.getColumnModel().getColumn(2).setResizable(false);
-            tblkhuyenmai.getColumnModel().getColumn(3).setResizable(false);
-            tblkhuyenmai.getColumnModel().getColumn(4).setResizable(false);
-            tblkhuyenmai.getColumnModel().getColumn(5).setResizable(false);
-        }
 
         txttim.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
@@ -751,13 +742,6 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
         tblsanpham2.setRowHeight(25);
         tblsanpham2.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(tblsanpham2);
-        if (tblsanpham2.getColumnModel().getColumnCount() > 0) {
-            tblsanpham2.getColumnModel().getColumn(0).setResizable(false);
-            tblsanpham2.getColumnModel().getColumn(1).setResizable(false);
-            tblsanpham2.getColumnModel().getColumn(2).setResizable(false);
-            tblsanpham2.getColumnModel().getColumn(3).setResizable(false);
-            tblsanpham2.getColumnModel().getColumn(4).setResizable(false);
-        }
 
         chkallsanphamdangkm.setText("Select all");
         chkallsanphamdangkm.addActionListener(new java.awt.event.ActionListener() {
@@ -816,7 +800,7 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1252, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
         );

@@ -627,8 +627,17 @@ public class ViewSanPham extends javax.swing.JPanel {
             new String [] {
                 "STT", "Mã sản phẩm", "Tên sản phẩm"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tblSanPhamm.setRowHeight(30);
+        tblSanPhamm.getTableHeader().setReorderingAllowed(false);
         tblSanPhamm.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblSanPhammMouseClicked(evt);
@@ -1065,6 +1074,7 @@ public class ViewSanPham extends javax.swing.JPanel {
             }
         });
         tblCTSanPham.setRowHeight(30);
+        tblCTSanPham.getTableHeader().setReorderingAllowed(false);
         tblCTSanPham.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblCTSanPhamMouseClicked(evt);
@@ -1441,8 +1451,17 @@ public class ViewSanPham extends javax.swing.JPanel {
             new String [] {
                 "Mã thuộc tính", "Tên thuộc tính"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tblThuocTinhSP.setRowHeight(30);
+        tblThuocTinhSP.getTableHeader().setReorderingAllowed(false);
         tblThuocTinhSP.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblThuocTinhSPMouseClicked(evt);
