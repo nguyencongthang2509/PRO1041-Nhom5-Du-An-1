@@ -326,9 +326,6 @@
     <Container class="javax.swing.JFrame" name="ViewHoaDonTraHangChiTiet">
       <Properties>
         <Property name="title" type="java.lang.String" value="H&#xf3;a &#x111;&#x1a1;n tr&#x1ea3; h&#xe0;ng chi ti&#x1ebf;t"/>
-        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[790, 433]"/>
-        </Property>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[790, 433]"/>
         </Property>
@@ -697,7 +694,7 @@
                   <Component id="jPanel4" max="32767" attributes="0"/>
                   <Component id="jPanel5" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -1515,7 +1512,9 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="jTextField7" min="-2" pref="254" max="-2" attributes="0"/>
+                                  <Component id="jTextField7" min="-2" pref="216" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jLabel7" min="-2" pref="29" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                               <Component id="jScrollPane2" pref="809" max="32767" attributes="0"/>
@@ -1528,7 +1527,10 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTextField7" min="-2" pref="34" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jTextField7" min="-2" pref="34" max="-2" attributes="0"/>
+                              <Component id="jLabel7" min="-2" pref="34" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jScrollPane2" pref="285" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -1547,13 +1549,12 @@
                     <Component class="javax.swing.JTable" name="tblHoaDonTraHang">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="6" rowCount="0">
+                          <Table columnCount="5" rowCount="0">
                             <Column editable="false" title="M&#xe3; H&#x110;" type="java.lang.Object"/>
                             <Column editable="false" title="Nh&#xe2;n vi&#xea;n" type="java.lang.Object"/>
                             <Column editable="false" title="Ng&#xe0;y thanh to&#xe1;n" type="java.lang.Object"/>
                             <Column editable="false" title="Kh&#xe1;ch h&#xe0;ng" type="java.lang.Object"/>
                             <Column editable="false" title="Ti&#x1ec1;n ho&#xe0;n tr&#x1ea3;" type="java.lang.Object"/>
-                            <Column editable="false" title="Trang th&#xe1;i" type="java.lang.Object"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -1610,6 +1611,13 @@
                       <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
                         <MatteColorBorder bottom="1" left="0" right="0" top="0"/>
                       </Border>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel7">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new ImageIcon(&quot;src/main/images/search.png&quot;)" type="code"/>
                     </Property>
                   </Properties>
                 </Component>

@@ -74,4 +74,8 @@ public class ThHoaDonResponse {
     public Object[] toDataRow() {
         return new Object[]{maHD, tenNhanVien, ngayThanhToan, tenKhachHang, thanhTien, getTrangThaiHoaDon()};
     }
+    
+    public Object[] toDataRowTraHang() {
+        return new Object[]{maHD, tenNhanVien, ngayThanhToan, tenKhachHang, thanhTien};
+    }
 }

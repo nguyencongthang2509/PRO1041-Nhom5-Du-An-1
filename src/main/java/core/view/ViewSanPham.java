@@ -1035,7 +1035,6 @@ public class ViewSanPham extends javax.swing.JPanel {
             }
         });
 
-        tblCTSanPham.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         tblCTSanPham.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null, null},
@@ -1226,11 +1225,11 @@ public class ViewSanPham extends javax.swing.JPanel {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(5, 5, 5)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("CHI TIẾT SẢN PHẨM", jPanel2);
@@ -1540,11 +1539,11 @@ public class ViewSanPham extends javax.swing.JPanel {
     }
 
     private void showChiTietSp() {
-        int row = this.tblSanPhamm.getSelectedRow();
+        int row = tblSanPhamm.getSelectedRow();
         if (row == -1) {
             return;
         }
-        String maSp = this.tblSanPhamm.getValueAt(row, 1).toString();
+        String maSp = tblSanPhamm.getValueAt(row, 1).toString();
         System.out.println(maSp);
         dtmshowctsp = (DefaultTableModel) tblCTSanPham.getModel();
         dtmshowctsp.setRowCount(0);
@@ -1586,7 +1585,7 @@ public class ViewSanPham extends javax.swing.JPanel {
 
     private void tblSanPhammMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSanPhammMouseClicked
         int index = tblSanPhamm.getSelectedRow();
-        SanPhamResponse sanPhamViewModel = sanPhamService.getAllResponse().get(index);
+        SanPhamResponse sanPhamViewModel = lstSpViewModel.get(index);
         if (index >= 0) {
             txtMaSanPham.setText(sanPhamViewModel.getMa());
             txtTenSanPham.setText(sanPhamViewModel.getTen());
@@ -2146,9 +2145,9 @@ public class ViewSanPham extends javax.swing.JPanel {
             List<CTSanPhamResponse> listSelected = GetSelected();
             for (CTSanPhamResponse xx : listSelected) {
                 ctsanPhamService.updateTrangThai(1, xx.getMa());
-                System.out.println(xx.getMa());
             }
 //                lstctSpViewModel = ctsanPhamService.getAllViewModel();
+            cbbTrangThai.setSelectedIndex(1);
             loadTableChiTietSP(lstctSpViewModel);
             JOptionPane.showMessageDialog(this, "Cập nhật thành công");
         } catch (Exception e) {
@@ -2175,6 +2174,7 @@ public class ViewSanPham extends javax.swing.JPanel {
                 System.out.println(xx.getMa());
             }
 //                lstctSpViewModel = ctsanPhamService.getAllViewModel();
+            cbbTrangThai.setSelectedIndex(0);
             loadTableChiTietSP(lstctSpViewModel);
             JOptionPane.showMessageDialog(this, "Cập nhật thành công");
         } catch (Exception e) {

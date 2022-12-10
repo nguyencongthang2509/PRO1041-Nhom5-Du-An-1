@@ -197,7 +197,7 @@ public class ViewThongKe extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(55, 55, 55)
                         .addComponent(lblHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
         );
@@ -237,7 +237,7 @@ public class ViewThongKe extends javax.swing.JPanel {
                         .addComponent(lblHangTra, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,7 +273,7 @@ public class ViewThongKe extends javax.swing.JPanel {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(59, 59, 59)
                         .addComponent(lblKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
         );
@@ -391,7 +391,7 @@ public class ViewThongKe extends javax.swing.JPanel {
                         .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(36, 36, 36)
                         .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 133, Short.MAX_VALUE))
+                        .addGap(0, 122, Short.MAX_VALUE))
                     .addComponent(JPenalBieuDo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -401,7 +401,7 @@ public class ViewThongKe extends javax.swing.JPanel {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 1275, Short.MAX_VALUE)
+                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 1289, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -438,7 +438,7 @@ public class ViewThongKe extends javax.swing.JPanel {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cboHot)
+                .addComponent(cboHot, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -465,7 +465,7 @@ public class ViewThongKe extends javax.swing.JPanel {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cboSanPham)
+                .addComponent(cboSanPham, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -508,6 +508,7 @@ public class ViewThongKe extends javax.swing.JPanel {
                 "STT", "Mã Sản Phẩm", "Tên Sản Phẩm", "Hãng", "Màu Sắc", "Size", "Số Lượng", "Đơn Giá"
             }
         ));
+        tblHangHoa.setSelectionBackground(new java.awt.Color(86, 154, 222));
         jScrollPane1.setViewportView(tblHangHoa);
 
         jButton1.setText("Export to excel");
@@ -587,7 +588,7 @@ public class ViewThongKe extends javax.swing.JPanel {
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel18Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cboMaxMin)
+                .addComponent(cboMaxMin, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -614,7 +615,7 @@ public class ViewThongKe extends javax.swing.JPanel {
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel19Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cboSanPhamTra)
+                .addComponent(cboSanPhamTra, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -657,6 +658,7 @@ public class ViewThongKe extends javax.swing.JPanel {
                 "STT", "Mã Sản Phẩm", "Tên Sản Phẩm", "Hãng", "Màu Sắc", "Size", "Số Lượng", "Đơn Giá"
             }
         ));
+        tblHangHoa1.setSelectionBackground(new java.awt.Color(86, 154, 222));
         jScrollPane2.setViewportView(tblHangHoa1);
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
@@ -762,9 +764,7 @@ public class ViewThongKe extends javax.swing.JPanel {
         });
 
         jTextField1.setText("đến");
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
         jTextField1.setBorder(null);
-        jTextField1.setForeground(new java.awt.Color(0, 0, 0));
 
         btnTimTheoNgay.setText("Tìm");
         btnTimTheoNgay.setBackground(new java.awt.Color(153, 204, 255));
@@ -786,7 +786,7 @@ public class ViewThongKe extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dPNgay2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnTimTheoNgay, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+                .addComponent(btnTimTheoNgay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(5, 5, 5))
         );
         jPanel17Layout.setVerticalGroup(
@@ -860,7 +860,7 @@ public class ViewThongKe extends javax.swing.JPanel {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jPanel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jPanel17, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 19, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnGuiBaoCao, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1001,24 +1001,27 @@ public class ViewThongKe extends javax.swing.JPanel {
     }//GEN-LAST:event_cboThangActionPerformed
 
     private void cboNamDoanhThuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboNamDoanhThuActionPerformed
-//        DecimalFormat df = new DecimalFormat("#,###");
+        DecimalFormat df = new DecimalFormat("#,###");
         if (cboNamDoanhThu.getSelectedIndex() == 0) {
             try {
-                if (thongKeRespo.getDoanhThu() == null) {
-                    lblDoanhThu.setText("0" + " " + "VND");
+                BigDecimal bigDecimal = thongKeRespo.getDoanhThu();
+                if (bigDecimal == null) {
+                    lblDoanhThu.setText("0" + " " + " Vnđ");
                 } else {
-                    lblDoanhThu.setText(thongKeRespo.getDoanhThu().toPlainString() + " " + "VND");
+                    lblDoanhThu.setText(df.format(bigDecimal) + " " + " Vnđ");
                 }
                 if (thongKeRespo.getHoaDon() == null) {
                     lblDoanhThu.setText("0");
                 } else {
                     lblHoaDon.setText(thongKeRespo.getHoaDon().toString());
                 }
+
                 if (thongKeRespo.getHoaDonHuy() == null) {
                     lblDoanhThu.setText("0");
                 } else {
                     lblHangTra.setText(thongKeRespo.getHoaDonHuy().toString());
                 }
+
                 if (thongKeRespo.getSoKhachHang() == null) {
                     lblDoanhThu.setText("0");
                 } else {
@@ -1027,95 +1030,13 @@ public class ViewThongKe extends javax.swing.JPanel {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
-        if (cboNamDoanhThu.getSelectedIndex() == 1) {
+        } else {
             cboThangDT.setEnabled(true);
             try {
                 if (thongKeRespo.getDoanhThuNamChiTiet(Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())) == null) {
-                    lblDoanhThu.setText("0" + " " + "VND");
+                    lblDoanhThu.setText("0" + " " + " Vnđ");
                 } else {
-                    lblDoanhThu.setText(thongKeRespo.getDoanhThuNamChiTiet(Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())).toPlainString() + " " + "VND");
-                }
-                if (thongKeRespo.getHoaDonTungNam(Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())) == null) {
-                    lblDoanhThu.setText("0");
-                } else {
-                    lblHoaDon.setText(thongKeRespo.getHoaDonTungNam(Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())).toString());
-                }
-                if (thongKeRespo.getHoaDonHuyTungNam(Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())) == null) {
-                    lblDoanhThu.setText("0");
-                } else {
-                    lblHangTra.setText(thongKeRespo.getHoaDonHuyTungNam(Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())).toString());
-                }
-                if (thongKeRespo.getSoKhachHangTungNam(Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())) == null) {
-                    lblDoanhThu.setText("0");
-                } else {
-                    lblKhachHang.setText(thongKeRespo.getSoKhachHangTungNam(Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())).toString());
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboNamDoanhThu.getSelectedIndex() == 2) {
-            cboThangDT.setEnabled(true);
-            try {
-                if (thongKeRespo.getDoanhThuNamChiTiet(Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())) == null) {
-                    lblDoanhThu.setText("0" + " " + "VND");
-                } else {
-                    lblDoanhThu.setText(thongKeRespo.getDoanhThuNamChiTiet(Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())).toPlainString() + " " + "VND");
-                }
-                if (thongKeRespo.getHoaDonTungNam(Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())) == null) {
-                    lblDoanhThu.setText("0");
-                } else {
-                    lblHoaDon.setText(thongKeRespo.getHoaDonTungNam(Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())).toString());
-                }
-                if (thongKeRespo.getHoaDonHuyTungNam(Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())) == null) {
-                    lblDoanhThu.setText("0");
-                } else {
-                    lblHangTra.setText(thongKeRespo.getHoaDonHuyTungNam(Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())).toString());
-                }
-                if (thongKeRespo.getSoKhachHangTungNam(Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())) == null) {
-                    lblDoanhThu.setText("0");
-                } else {
-                    lblKhachHang.setText(thongKeRespo.getSoKhachHangTungNam(Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())).toString());
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboNamDoanhThu.getSelectedIndex() == 3) {
-            cboThangDT.setEnabled(true);
-            try {
-                if (thongKeRespo.getDoanhThuNamChiTiet(Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())) == null) {
-                    lblDoanhThu.setText("0" + " " + "VND");
-                } else {
-                    lblDoanhThu.setText(thongKeRespo.getDoanhThuNamChiTiet(Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())).toPlainString() + " " + "VND");
-                }
-                if (thongKeRespo.getHoaDonTungNam(Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())) == null) {
-                    lblDoanhThu.setText("0");
-                } else {
-                    lblHoaDon.setText(thongKeRespo.getHoaDonTungNam(Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())).toString());
-                }
-                if (thongKeRespo.getHoaDonHuyTungNam(Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())) == null) {
-                    lblDoanhThu.setText("0");
-                } else {
-                    lblHangTra.setText(thongKeRespo.getHoaDonHuyTungNam(Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())).toString());
-                }
-                if (thongKeRespo.getSoKhachHangTungNam(Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())) == null) {
-                    lblDoanhThu.setText("0");
-                } else {
-                    lblKhachHang.setText(thongKeRespo.getSoKhachHangTungNam(Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())).toString());
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboNamDoanhThu.getSelectedIndex() == 4) {
-            cboThangDT.setEnabled(true);
-            try {
-                if (thongKeRespo.getDoanhThuNamChiTiet(Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())) == null) {
-                    lblDoanhThu.setText("0" + " " + "VND");
-                } else {
-                    lblDoanhThu.setText(thongKeRespo.getDoanhThuNamChiTiet(Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())).toPlainString() + " " + "VND");
+                    lblDoanhThu.setText(df.format(thongKeRespo.getDoanhThuNamChiTiet(Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()))) + " " + " Vnđ");
                 }
                 if (thongKeRespo.getHoaDonTungNam(Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())) == null) {
                     lblDoanhThu.setText("0");
@@ -1140,10 +1061,10 @@ public class ViewThongKe extends javax.swing.JPanel {
 
     private void btnTimTheoNgayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimTheoNgayActionPerformed
         if (dPNgay1.getDate() == null || dPNgay2.getDate() == null) {
-            JOptionPane.showMessageDialog(this, "Vui lòng không để trống ngày sinh");
+            JOptionPane.showMessageDialog(this, " Vui lòng không để trống thời gian");
             return;
         }
-//        DecimalFormat df = new DecimalFormat("#,###");
+        DecimalFormat df = new DecimalFormat("#,###");
         Date time3 = java.sql.Date.valueOf(dPNgay1.getDate());
         Date time4 = java.sql.Date.valueOf(dPNgay2.getDate());
         SimpleDateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy");
@@ -1156,11 +1077,11 @@ public class ViewThongKe extends javax.swing.JPanel {
             System.out.println(time4);
             System.out.println(date11);
             System.out.println(date12);
-
-            if (thongKeRespo.getDoanhThuTheoKhoangThoiGian(time3, time4) == null) {
+            BigDecimal bigDecimal = thongKeRespo.getDoanhThuTheoKhoangThoiGian(time3, time4);
+            if (bigDecimal == null) {
                 lblDoanhThu.setText("0");
             } else {
-                lblDoanhThu.setText(thongKeRespo.getDoanhThuTheoKhoangThoiGian(time3, time4).toPlainString() + " " + "VND");
+                lblDoanhThu.setText(df.format(bigDecimal)+ " " + " Vnđ");
             }
             if (thongKeRespo.getHoaDonTungKhoang(time3, time4) == null) {
                 lblDoanhThu.setText("0");
@@ -1247,89 +1168,10 @@ public class ViewThongKe extends javax.swing.JPanel {
     }//GEN-LAST:event_txtTimKiemTraActionPerformed
 
     private void cboThangDTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboThangDTActionPerformed
-        if (cboThangDT.getSelectedIndex() == 0) {
-            try {
-                GetDoanhThuThang();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboThangDT.getSelectedIndex() == 1) {
-            try {
-                GetDoanhThuThang();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboThangDT.getSelectedIndex() == 2) {
-            try {
-                GetDoanhThuThang();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboThangDT.getSelectedIndex() == 3) {
-            try {
-                GetDoanhThuThang();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboThangDT.getSelectedIndex() == 4) {
-            try {
-                GetDoanhThuThang();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboThangDT.getSelectedIndex() == 5) {
-            try {
-                GetDoanhThuThang();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboThangDT.getSelectedIndex() == 6) {
-            try {
-                GetDoanhThuThang();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboThangDT.getSelectedIndex() == 7) {
-            try {
-                GetDoanhThuThang();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboThangDT.getSelectedIndex() == 8) {
-            try {
-                GetDoanhThuThang();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboThangDT.getSelectedIndex() == 9) {
-            try {
-                GetDoanhThuThang();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboThangDT.getSelectedIndex() == 10) {
-            try {
-                GetDoanhThuThang();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboThangDT.getSelectedIndex() == 11) {
-            try {
-                GetDoanhThuThang();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        try {
+            GetDoanhThuThang();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }//GEN-LAST:event_cboThangDTActionPerformed
 
@@ -1347,7 +1189,6 @@ public class ViewThongKe extends javax.swing.JPanel {
             Long hoaDonngay = thongKeRespo.BaoCaoHD(ee);
             Long HDhuyngay = thongKeRespo.BaoCaoHDhuy(ee);
             int KHngay = thongKeRespo.BaoCaoKH(ee);
-            
 
             String vv = JOptionPane.showInputDialog(this, "Nhập Email: ");
             String nv = nvImpl.getNhanVienByEmail(vv);
@@ -1521,7 +1362,7 @@ public class ViewThongKe extends javax.swing.JPanel {
         if (thongKeRespo.getDoanhThu() == null) {
             lblDoanhThu.setText("0");
         } else {
-            lblDoanhThu.setText(thongKeRespo.getDoanhThu().toPlainString() + " " + "VND");
+            lblDoanhThu.setText(thongKeRespo.getDoanhThu().toPlainString() + " " + " Vnđ");
         }
         if (thongKeRespo.getHoaDon() == null) {
             lblDoanhThu.setText("0");
@@ -1691,11 +1532,12 @@ public class ViewThongKe extends javax.swing.JPanel {
 
     private void GetDoanhThuThang() {
         try {
+            DecimalFormat df = new DecimalFormat("#,###");
             thongKeRespo.getDoanhThuThangDoanhThuChiTiet(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()));
             if (thongKeRespo.getDoanhThuThangDoanhThuChiTiet(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())) == null) {
-                lblDoanhThu.setText("0" + " " + "VND");
+                lblDoanhThu.setText("0" + " " + " Vnđ");
             } else {
-                lblDoanhThu.setText(thongKeRespo.getDoanhThuThangDoanhThuChiTiet(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())).toPlainString() + " " + "VND");
+                lblDoanhThu.setText(df.format(thongKeRespo.getDoanhThuThangDoanhThuChiTiet(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()))) + " " + " Vnđ");
             }
             if (thongKeRespo.getHoaDonTungThangTrongNam(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())) == null) {
                 lblDoanhThu.setText("0");

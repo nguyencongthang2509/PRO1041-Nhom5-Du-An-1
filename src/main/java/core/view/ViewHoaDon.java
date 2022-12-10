@@ -755,6 +755,7 @@ public class ViewHoaDon extends javax.swing.JPanel {
             }
         });
         tblHoadon.setRowHeight(25);
+        tblHoadon.setSelectionBackground(new java.awt.Color(86, 154, 222));
         tblHoadon.setShowGrid(false);
         tblHoadon.getTableHeader().setReorderingAllowed(false);
         tblHoadon.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -992,6 +993,7 @@ public class ViewHoaDon extends javax.swing.JPanel {
             }
         });
         tblHoadonchitiet.setRowHeight(25);
+        tblHoadonchitiet.setSelectionBackground(new java.awt.Color(86, 154, 222));
         tblHoadonchitiet.setShowGrid(false);
         tblHoadonchitiet.getTableHeader().setReorderingAllowed(false);
         tblHoadonchitiet.addMouseListener(new java.awt.event.MouseAdapter() {

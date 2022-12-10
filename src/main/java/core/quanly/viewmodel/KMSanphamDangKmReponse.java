@@ -6,6 +6,7 @@ package core.quanly.viewmodel;
 
 import java.util.Date;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,10 +18,9 @@ import lombok.ToString;
  */
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
-@ToString
+@Data
 public class KMSanphamDangKmReponse {
+
     private String idctspkm;
     private String ma;
     private String ten;
@@ -28,8 +28,8 @@ public class KMSanphamDangKmReponse {
     private String mausac;
     private String kichthuoc;
     private String chatlieu;
-    
-    public Object[] ToDaTa(){
-    return new Object[]{ma, ten, tenhang, mausac, kichthuoc, chatlieu};
+
+    public Object[] ToDaTa() {
+        return new Object[]{ma, ten, tenhang, mausac, kichthuoc, chatlieu};
     }
 }

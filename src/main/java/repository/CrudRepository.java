@@ -11,10 +11,10 @@ import org.hibernate.query.Query;
 
 public abstract class CrudRepository<Key, Entity, Response> {
 
-    protected Session session;
-    protected Transaction trans;
-    protected String className;
-    protected String res;
+    public Session session;
+    public Transaction trans;
+    public String className;
+    public String res;
 
     public List<Response> getAllResponse() {
         List<Response> list = new ArrayList<>();

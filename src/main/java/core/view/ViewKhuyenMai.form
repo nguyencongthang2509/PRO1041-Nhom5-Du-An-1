@@ -181,6 +181,9 @@
                         </Column>
                       </TableColumnModel>
                     </Property>
+                    <Property name="selectionBackground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="de" green="9a" red="56" type="rgb"/>
+                    </Property>
                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                       <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
                     </Property>
@@ -357,7 +360,7 @@
                                   <Component id="btnhuy" min="-2" pref="149" max="-2" attributes="0"/>
                                   <Component id="btnsua" min="-2" pref="149" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="183" max="32767" attributes="0"/>
+                              <EmptySpace pref="181" max="32767" attributes="0"/>
                           </Group>
                           <Component id="jPanel5" max="32767" attributes="0"/>
                       </Group>
@@ -551,17 +554,19 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                                  <Component id="txttenkm" min="-2" pref="180" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="txtmakm" max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                               </Group>
+                          </Group>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="txtmakm" max="32767" attributes="0"/>
+                              <Component id="txttenkm" pref="180" max="32767" attributes="0"/>
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
@@ -578,7 +583,7 @@
                               <Component id="txtgiamgia" max="32767" attributes="0"/>
                               <Component id="cobgiamgia" min="-2" pref="140" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="40" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="62" max="32767" attributes="0"/>
                       </Group>
                       <Component id="jPanel8" max="32767" attributes="0"/>
                   </Group>
@@ -671,12 +676,14 @@
                                       <Component id="chkselectedall" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="btnbokhoidanhsach" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="txttimsanphammuonad" min="-2" pref="152" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
                                       <Component id="cobtensanpham" min="-2" pref="131" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="txttimsanphammuonad" min="-2" pref="165" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jLabel6" min="-2" pref="33" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="jScrollPane4" pref="620" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane4" pref="622" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -686,11 +693,14 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="chkselectedall" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="cobtensanpham" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnbokhoidanhsach" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txttimsanphammuonad" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="chkselectedall" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cobtensanpham" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnbokhoidanhsach" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txttimsanphammuonad" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="jLabel6" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jScrollPane4" min="-2" pref="220" max="-2" attributes="0"/>
@@ -760,6 +770,9 @@
                               </TableColumnModel>
                             </Property>
                             <Property name="rowHeight" type="int" value="25"/>
+                            <Property name="selectionBackground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="de" green="9a" red="56" type="rgb"/>
+                            </Property>
                             <Property name="selectionModel" type="javax.swing.ListSelectionModel" editor="org.netbeans.modules.form.editors2.JTableSelectionModelEditor">
                               <JTableSelectionModel selectionMode="0"/>
                             </Property>
@@ -812,6 +825,13 @@
                         <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="txttimsanphammuonadCaretUpdate"/>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txttimsanphammuonadActionPerformed"/>
                       </Events>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel6">
+                      <Properties>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="new ImageIcon(&quot;src/main/images/search.png&quot;)" type="code"/>
+                        </Property>
+                      </Properties>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -978,6 +998,9 @@
                               </TableColumnModel>
                             </Property>
                             <Property name="rowHeight" type="int" value="25"/>
+                            <Property name="selectionBackground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="de" green="9a" red="56" type="rgb"/>
+                            </Property>
                             <Property name="selectionModel" type="javax.swing.ListSelectionModel" editor="org.netbeans.modules.form.editors2.JTableSelectionModelEditor">
                               <JTableSelectionModel selectionMode="0"/>
                             </Property>
@@ -1026,8 +1049,8 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Danh s&#xe1;ch s&#x1ea3;n ph&#x1ea9;m &#x111;&#xe3; &#xe1;p d&#x1ee5;ng khuy&#x1ebf;n m&#x1ea1;i">
-                    <Property name="tabTitle" type="java.lang.String" value="Danh s&#xe1;ch s&#x1ea3;n ph&#x1ea9;m &#x111;&#xe3; &#xe1;p d&#x1ee5;ng khuy&#x1ebf;n m&#x1ea1;i"/>
+                  <JTabbedPaneConstraints tabName="Danh s&#xe1;ch s&#x1ea3;n ph&#x1ea9;m c&#xf3; trong khuy&#x1ebf;n m&#x1ea1;i">
+                    <Property name="tabTitle" type="java.lang.String" value="Danh s&#xe1;ch s&#x1ea3;n ph&#x1ea9;m c&#xf3; trong khuy&#x1ebf;n m&#x1ea1;i"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -1121,6 +1144,9 @@
                           </TableColumnModel>
                         </Property>
                         <Property name="rowHeight" type="int" value="25"/>
+                        <Property name="selectionBackground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="de" green="9a" red="56" type="rgb"/>
+                        </Property>
                         <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                           <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
                         </Property>

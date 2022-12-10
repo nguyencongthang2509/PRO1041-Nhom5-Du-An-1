@@ -50,7 +50,7 @@ public class TraHangRepository extends CrudRepository<String, HoaDon, Object> {
                         + "a.tenNguoiNhan, a.sdtNguoiNhan, a.diaChi, a.tenNguoiShip, a.sdtNguoiShip,"
                         + "a.tienShip, a.tienKhachTra, a.tienKhachChuyenKhoan, a.thanhTien,a.tienThua,a.phamTramGiamGia)"
                         + " FROM HoaDon a LEFT JOIN a.nhanVien b LEFT JOIN a.khachHang c "
-                        + "WHERE (SELECT b FROM HoaDonTraHang b WHERE b.hoaDon.id = a.id) IS NOT NULL AND c.ma <> 'KH000'"
+                        + "WHERE a.trangThai = 7 AND c.ma <> 'KH000'"
                         + " ORDER BY a.createdDate";
                 Query query = session.createQuery(hql);
                 list = query.getResultList();

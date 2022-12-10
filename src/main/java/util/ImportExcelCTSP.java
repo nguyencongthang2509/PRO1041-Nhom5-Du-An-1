@@ -88,13 +88,13 @@ public class ImportExcelCTSP {
                     giaBanSo = Double.parseDouble(giaBan);
                     if (giaBanSo <= 0) {
                         JOptionPane.showMessageDialog(null, "Giá bán lớn hơn 0");
-                        return ;
+                        return;
                     }
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, "Giá bán phải là số");
-                    return ;
+                    return;
                 }
-                
+
                 SanPham sanPham = cTSanPhamRepository.findSanPhamByTen(sanPhamStr);
                 if (sanPham == null) {
                     JOptionPane.showMessageDialog(null, "Không tìm thấy sản phẩm");
@@ -134,7 +134,8 @@ public class ImportExcelCTSP {
                     chiTietSP.setSoLuongTon((int) Double.parseDouble(soLuongTon));
                     chiTietSP.setGiaBan(new BigDecimal(giaBan));
                     chiTietSP.setMaVach(String.valueOf((int) Double.parseDouble(maVach)));
-                    listctsp.add(chiTietSP);
+//                    listctsp.add(chiTietSP);
+                    cTSanPhamRepository.saveOrUpdate(chiTietSP);
                 } else {
                     chiTietSPcheck.setMaVach(String.valueOf((int) Double.parseDouble(maVach)));
                     chiTietSPcheck.setGiaBan(new BigDecimal(giaBan));
@@ -144,10 +145,11 @@ public class ImportExcelCTSP {
                     } else {
                         chiTietSPcheck.setSoLuongTon((int) Double.parseDouble(soLuongTon));
                     }
-                    listctsp.add(chiTietSPcheck);
+//                    listctsp.add(chiTietSPcheck);
+                    cTSanPhamRepository.saveOrUpdate(chiTietSPcheck);
                 }
             }
-            cTSanPhamRepository.saveAll(listctsp);
+//            cTSanPhamRepository.saveAll(listctsp);
             JOptionPane.showMessageDialog(null, "Import file excel thành công");
             workbook.close();
         } catch (FileNotFoundException e) {

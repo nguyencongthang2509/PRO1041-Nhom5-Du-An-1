@@ -203,35 +203,35 @@ public class ViewNhanVien extends javax.swing.JPanel {
         jLabel11.setText("Trạng Thái");
         jLabel11.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
 
-        jRadioButton1.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup3.add(jRadioButton1);
         jRadioButton1.setSelected(true);
         jRadioButton1.setText("Đang Làm");
+        jRadioButton1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jRadioButton2.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup3.add(jRadioButton2);
         jRadioButton2.setText("Đã Nghỉ");
+        jRadioButton2.setBackground(new java.awt.Color(255, 255, 255));
 
-        rdoNhanVien6.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup2.add(rdoNhanVien6);
         rdoNhanVien6.setSelected(true);
         rdoNhanVien6.setText("Nhân viên");
+        rdoNhanVien6.setBackground(new java.awt.Color(255, 255, 255));
 
-        rdoQuanLy6.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup2.add(rdoQuanLy6);
         rdoQuanLy6.setText("Quản lý");
+        rdoQuanLy6.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel67.setText("Vai trò");
         jLabel67.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
 
-        rdoNu6.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(rdoNu6);
         rdoNu6.setText("Nữ");
+        rdoNu6.setBackground(new java.awt.Color(255, 255, 255));
 
-        rdoNam6.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(rdoNam6);
         rdoNam6.setSelected(true);
         rdoNam6.setText("Nam");
+        rdoNam6.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel66.setText("Giới tính");
         jLabel66.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
@@ -438,6 +438,7 @@ public class ViewNhanVien extends javax.swing.JPanel {
             }
         });
         tblNhanVien.setRowHeight(25);
+        tblNhanVien.setSelectionBackground(new java.awt.Color(86, 154, 222));
         tblNhanVien.getTableHeader().setReorderingAllowed(false);
         tblNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -572,8 +573,8 @@ public class ViewNhanVien extends javax.swing.JPanel {
                 "STT", "Mã NV", "Tên NV", "Giới Tình", "Ngày Sinh", "Địa Chỉ", "SDT", "Email", "Vai Trò", "Trạng Thái"
             }
         ));
-        tblNhanVien1.setBackground(new java.awt.Color(204, 255, 255));
         tblNhanVien1.setRowHeight(25);
+        tblNhanVien1.setSelectionBackground(new java.awt.Color(86, 154, 222));
         tblNhanVien1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblNhanVien1MouseClicked(evt);

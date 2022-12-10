@@ -74,7 +74,7 @@ public class ViewDoiTra extends javax.swing.JPanel {
     private void loadTableHoaDonTraHang(List<ThHoaDonResponse> list) {
         modelHoaDonTraHang.setRowCount(0);
         for (ThHoaDonResponse xx : list) {
-            modelHoaDonTraHang.addRow(xx.toDataRow());
+            modelHoaDonTraHang.addRow(xx.toDataRowTraHang());
         }
     }
 
@@ -156,6 +156,7 @@ public class ViewDoiTra extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         tblHoaDonTraHang = new javax.swing.JTable();
         jTextField7 = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
 
         ViewHoaDonChiTiet.setTitle("Thông tin chi tiết của hóa đơn");
         ViewHoaDonChiTiet.setMinimumSize(new java.awt.Dimension(942, 542));
@@ -329,7 +330,6 @@ public class ViewDoiTra extends javax.swing.JPanel {
         );
 
         ViewHoaDonTraHangChiTiet.setTitle("Hóa đơn trả hàng chi tiết");
-        ViewHoaDonTraHangChiTiet.setMaximumSize(new java.awt.Dimension(790, 433));
         ViewHoaDonTraHangChiTiet.setMinimumSize(new java.awt.Dimension(790, 433));
         ViewHoaDonTraHangChiTiet.setResizable(false);
         ViewHoaDonTraHangChiTiet.setSize(new java.awt.Dimension(790, 433));
@@ -842,11 +842,11 @@ public class ViewDoiTra extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã HĐ", "Nhân viên", "Ngày thanh toán", "Khách hàng", "Tiền hoàn trả", "Trang thái"
+                "Mã HĐ", "Nhân viên", "Ngày thanh toán", "Khách hàng", "Tiền hoàn trả"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -865,6 +865,8 @@ public class ViewDoiTra extends javax.swing.JPanel {
 
         jTextField7.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
+        jLabel7.setIcon(new ImageIcon("src/main/images/search.png"));
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
@@ -873,7 +875,9 @@ public class ViewDoiTra extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 809, Short.MAX_VALUE))
                 .addContainerGap())
@@ -882,7 +886,9 @@ public class ViewDoiTra extends javax.swing.JPanel {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
                 .addContainerGap())
@@ -919,7 +925,7 @@ public class ViewDoiTra extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGap(10, 10, 10))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1102,7 +1108,7 @@ public class ViewDoiTra extends javax.swing.JPanel {
             banHangService.saveOrUpdate(hoaDonMoi);
 
             HoaDonTraHang hoaDonTraHang = new HoaDonTraHang();
-            hoaDonTraHang.setHoaDon(hoaDonMoi);
+            hoaDonTraHang.setHoaDon(hoaDonCu);
             hoaDonTraHang.setNgayDoiTra(new Date());
             String tienTraKhachStr[] = txtTienTraKhach.getText().trim().split(" ");
             hoaDonTraHang.setTienHoanTraKhach(new BigDecimal(tienTraKhachStr[0].replace(",", "")));
@@ -1120,7 +1126,7 @@ public class ViewDoiTra extends javax.swing.JPanel {
                 hoaDonTraHangChiTiet.setMauSac(value.getMauSac());
                 hoaDonTraHangChiTiet.setTenHang(value.getHang());
                 hoaDonTraHangChiTiet.setTenSP(value.getTenSP());
-                banHangService.updateSoLuong(value.getIdChiTietSP(), value.getSoLuong());
+                banHangService.updateSoLuong(value.getIdChiTietSP(), -value.getSoLuong());
                 traHangService.saveOrUpdateHoaDonTraHangChiTiet(hoaDonTraHangChiTiet);
                 if (value.getSoLuongTruocKhiTra() == value.getSoLuong()) {
                     continue;
@@ -1195,6 +1201,7 @@ public class ViewDoiTra extends javax.swing.JPanel {
 
     private void tblHoaDonTraHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonTraHangMouseClicked
         try {
+            clearForm();
             ViewHoaDonTraHangChiTiet.setVisible(true);
             ViewHoaDonTraHangChiTiet.setLocationRelativeTo(null);
             int row = tblHoaDonTraHang.getSelectedRow();
@@ -1286,6 +1293,7 @@ public class ViewDoiTra extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;

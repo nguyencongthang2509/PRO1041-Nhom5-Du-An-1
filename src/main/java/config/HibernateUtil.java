@@ -1,5 +1,7 @@
 package config;
 
+import core.quanly.repository.KhuyenMaiRepository;
+import core.quanly.viewmodel.KMSanphamDangKmReponse;
 import domainmodels.ChatLieu;
 import domainmodels.ChiTietSP;
 import domainmodels.ChiTietSPKhuyenMai;
@@ -14,6 +16,7 @@ import domainmodels.KichThuoc;
 import domainmodels.MauSac;
 import domainmodels.NhanVien;
 import domainmodels.SanPham;
+import java.util.List;
 import java.util.Properties;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -25,7 +28,7 @@ import org.hibernate.service.ServiceRegistry;
 public class HibernateUtil {
 
     private static final SessionFactory FACTORY;
-    private static Session SESSION;
+    private static Session SESSION = null;
 
     static {
         Configuration conf = new Configuration();
@@ -70,7 +73,7 @@ public class HibernateUtil {
     }
 
     public static void main(String[] args) {
-        if (SESSION != null) {
+        if (getSession() != null) {
             System.out.println("Thành công");
         }
     }
