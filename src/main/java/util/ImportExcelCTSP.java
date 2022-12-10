@@ -96,7 +96,6 @@ public class ImportExcelCTSP {
                 }
                 
                 SanPham sanPham = cTSanPhamRepository.findSanPhamByTen(sanPhamStr);
-                System.out.println(sanPham.getTen());
                 if (sanPham == null) {
                     JOptionPane.showMessageDialog(null, "Không tìm thấy sản phẩm");
                     return;

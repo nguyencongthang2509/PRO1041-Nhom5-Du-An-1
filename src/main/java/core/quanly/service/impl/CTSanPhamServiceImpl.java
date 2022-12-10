@@ -85,8 +85,8 @@ public class CTSanPhamServiceImpl implements CTSanPhamService {
     }
 
     @Override
-    public List<CTSanPhamResponse> findByMaOrTen(String input) {
-        return CTSanPhamRepository.findByMaOrTen(input);
+    public List<CTSanPhamResponse> findByMaOrTen(String input, int TrangThai) {
+        return CTSanPhamRepository.findByMaOrTen(input, TrangThai);
     }
 
     @Override
@@ -107,6 +107,11 @@ public class CTSanPhamServiceImpl implements CTSanPhamService {
     @Override
     public int genMaCTSPTuDong() {
         return CTSanPhamRepository.genMaCTSP();
+    }
+
+    @Override
+    public boolean updateTrangThai(int trangThai, String id) {
+        return CTSanPhamRepository.updateTrangThai(trangThai, id);
     }
 
 }

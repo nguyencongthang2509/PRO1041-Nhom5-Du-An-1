@@ -7,6 +7,7 @@ package core.quanly.repository;
 import config.HibernateUtil;
 import core.quanly.viewmodel.SPHangResponse;
 import domainmodels.Hang;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import org.hibernate.Session;
@@ -19,13 +20,27 @@ import repository.CrudRepository;
  *
  * @author HP
  */
-public class SPHangRepository extends CrudRepository<String, Hang, SPHangResponse>{
-    
+public class SPHangRepository extends CrudRepository<String, Hang, SPHangResponse> {
+
     public SPHangRepository() {
         className = Hang.class.getName();
         res = "new core.quanly.viewmodel.SPHangResponse(a.id, a.ma, a.ten)";
     }
-    
+
+    public List<SPHangResponse> getAllResponseHang() {
+        List<SPHangResponse> list = new ArrayList<>();
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "SELECT new core.quanly.viewmodel.SPHangResponse(a.id, a.ma, a.ten) FROM Hang a Where a.trangThaiXoa = 0 order by a.createdDate desc";
+            org.hibernate.query.Query query = session.createQuery(hql);
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return list;
+    }
+
     public int genMaHang() {
         String maStr = "";
         session = HibernateUtil.getSession();
@@ -48,7 +63,7 @@ public class SPHangRepository extends CrudRepository<String, Hang, SPHangRespons
         int ma = Integer.parseInt(maStr);
         return ++ma;
     }
-    
+
     public static void main(String[] args) {
         List<Hang> list = new SPHangRepository().getAll();
         System.out.println(list);

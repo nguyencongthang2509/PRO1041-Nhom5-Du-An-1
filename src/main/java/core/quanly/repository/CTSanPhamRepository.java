@@ -5,6 +5,8 @@
 package core.quanly.repository;
 
 import config.HibernateUtil;
+import core.quanly.service.CTSanPhamService;
+import core.quanly.service.impl.CTSanPhamServiceImpl;
 import core.quanly.viewmodel.CTSanPhamResponse;
 import core.quanly.viewmodel.SanPhamResponse;
 import domainmodels.ChatLieu;
@@ -18,6 +20,7 @@ import java.util.List;
 import java.util.UUID;
 import javax.persistence.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.NativeQuery;
 import repository.CrudRepository;
 
@@ -117,22 +120,44 @@ public class CTSanPhamRepository extends CrudRepository<String, ChiTietSP, CTSan
         return list;
     }
 
-    public static void main(String[] args) {
-        ChiTietSP list = new CTSanPhamRepository().findByCBB("Adidas1", "Nike", "Blue", "38", "Da PU");
-        System.out.println(list.getId());
+    public boolean updateTrangThai(int trangThai, String id) {
+        boolean check = false;
+        try {
+            session = HibernateUtil.getSession();
+            Transaction transs = session.beginTransaction();
+            String sql = "UPDATE ChiTietSP SET trangThaiXoa = :trangThai where id = :id";
+            Query query = session.createQuery(sql);
+            query.setParameter("trangThai", trangThai);
+            query.setParameter("id", id);
+            query.executeUpdate();
+            transs.commit();
+            check = true;
+        } catch (Exception e) {
+        }
+        return check;
     }
 
-    public List<CTSanPhamResponse> findByMaOrTen(String input) {
+    public static void main(String[] args) {
+//        ChiTietSP list = new CTSanPhamRepository().findByCBB("Adidas1", "Nike", "Blue", "38", "Da PU");
+//        new CTSanPhamRepository().updateTrangThai(1, "f75121ec-3c6c-4925-bfca-513662ed8bfc");
+        List<CTSanPhamResponse> list = new CTSanPhamRepository().findTrangThai(1);
+        for (CTSanPhamResponse c : list) {
+            System.out.println(c.getMa());
+        }
+    }
+
+    public List<CTSanPhamResponse> findByMaOrTen(String input, int TrangThai) {
         List<CTSanPhamResponse> lst = new ArrayList<>();
         try {
             Session session = HibernateUtil.getSession();
             String hql = "SELECT new core.quanly.viewmodel.CTSanPhamResponse(a.id, a.sanPham.ma, a.sanPham.ten,"
                     + "a.mauSac.ten, a.kichThuoc.ten, a.hang.ten, a.chatLieu.ten ,a.maChiTietSP, a.moTa, a.soLuongTon, a.giaBan, a.maVach, a.trangThaiXoa) FROM ChiTietSP a"
-                    + " WHERE a.sanPham.ma LIKE CONCAT('%',:input,'%') OR a.maChiTietSP LIKE CONCAT('%',:input,'%')"
+                    + " WHERE (a.sanPham.ma LIKE CONCAT('%',:input,'%') OR a.maChiTietSP LIKE CONCAT('%',:input,'%')"
                     + "OR a.mauSac.ten LIKE CONCAT('%',:input,'%') OR a.giaBan LIKE CONCAT('%',:input,'%')"
-                    + "OR a.kichThuoc.ten LIKE CONCAT('%',:input,'%') OR a.soLuongTon LIKE CONCAT('%',:input,'%')";
+                    + "OR a.kichThuoc.ten LIKE CONCAT('%',:input,'%') OR a.soLuongTon LIKE CONCAT('%',:input,'%')) AND a.trangThaiXoa = :TrangThai";
             Query query = session.createQuery(hql);
             query.setParameter("input", input);
+            query.setParameter("TrangThai", TrangThai);
             lst = query.getResultList();
         } catch (Exception e) {
             e.printStackTrace();

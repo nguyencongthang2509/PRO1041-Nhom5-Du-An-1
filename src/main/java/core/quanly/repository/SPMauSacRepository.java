@@ -7,6 +7,7 @@ package core.quanly.repository;
 import config.HibernateUtil;
 import core.quanly.viewmodel.SPMauSacResponse;
 import domainmodels.MauSac;
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.query.NativeQuery;
 import repository.CrudRepository;
@@ -21,6 +22,21 @@ public class SPMauSacRepository extends CrudRepository<String, MauSac, SPMauSacR
         className = MauSac.class.getName();
         res = "new core.quanly.viewmodel.SPMauSacResponse(a.id, a.ma, a.ten)";
     }
+    
+    public List<SPMauSacResponse> getAllResponseKichThuoc() {
+        List<SPMauSacResponse> list = new ArrayList<>();
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "SELECT new core.quanly.viewmodel.SPMauSacResponse(a.id, a.ma, a.ten) FROM MauSac a Where a.trangThaiXoa = 0 order by a.createdDate desc";
+            org.hibernate.query.Query query = session.createQuery(hql);
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return list;
+    }
+    
     
     public int genMaMauSac() {
         String maStr = "";

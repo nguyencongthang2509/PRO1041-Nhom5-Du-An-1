@@ -90,5 +90,10 @@ public class SPKichThuocServiceImpl implements SPKichThuocService{
     public int genMaKichThuocTuDong() {
         return kichThuocRepository.genMaKichThuoc();
     }
+
+    @Override
+    public List<SPKichThuocResponse> getAllResponse() {
+        return kichThuocRepository.getAllResponseKichThuoc();
+    }
     
 }

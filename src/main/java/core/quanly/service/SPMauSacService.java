@@ -15,6 +15,8 @@ import java.util.List;
 public interface SPMauSacService {
     
     List<SPMauSacResponse> getAllViewModel();
+    
+    List<SPMauSacResponse> getAllResponse();
 
     MauSac getOne(String ma);
 
