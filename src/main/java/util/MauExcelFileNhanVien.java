@@ -35,6 +35,7 @@ public class MauExcelFileNhanVien {
             Cell firstCell6 = firstRow.createCell(5);
             Cell firstCell7 = firstRow.createCell(6);
             Cell firstCell8 = firstRow.createCell(7);
+            Cell firstCell9 = firstRow.createCell(7);
             firstCell1.setCellValue("STT");
             firstCell2.setCellValue("Họ Tên");
             firstCell3.setCellValue("Giới Tính");
@@ -43,9 +44,9 @@ public class MauExcelFileNhanVien {
             firstCell6.setCellValue("Số Điện Thoại");
             firstCell7.setCellValue("Email");
             firstCell8.setCellValue("Vai Trò");
-            firstCell8.setCellValue("Trạng Thái");
+//            firstCell9.setCellValue("Trạng Thái");
             int index = 1;
-            Row row = sheet.createRow(0);
+            Row row = sheet.createRow(1);
             Cell cell1 = row.createCell(0);
             Cell cell2 = row.createCell(1);
             Cell cell3 = row.createCell(2);
@@ -54,15 +55,16 @@ public class MauExcelFileNhanVien {
             Cell cell6 = row.createCell(5);
             Cell cell7 = row.createCell(6);
             Cell cell8 = row.createCell(7);
+            Cell cell9 = row.createCell(8);
             cell1.setCellValue(String.valueOf(1));
             cell2.setCellValue("Nguyễn Văn A");
             cell3.setCellValue("Nam");
             cell4.setCellValue("01-04-2003");
             cell5.setCellValue("Thái Bình");
             cell6.setCellValue("066666666");
-            cell7.setCellValue("nva6868@gmail.com");
+            cell7.setCellValue("congq9834@gmail.com");
             cell8.setCellValue("Nhân Viên");
-            cell8.setCellValue("Đang làm");
+//            cell9.setCellValue("0");
             try {
                 FileOutputStream outputStream = new FileOutputStream("MauNhanVien.xlsx");
                 workbook.write(outputStream);
