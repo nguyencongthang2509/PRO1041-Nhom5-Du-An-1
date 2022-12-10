@@ -17,6 +17,7 @@ import java.awt.Panel;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.Date;
+//import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -1000,13 +1001,13 @@ public class ViewThongKe extends javax.swing.JPanel {
     }//GEN-LAST:event_cboThangActionPerformed
 
     private void cboNamDoanhThuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboNamDoanhThuActionPerformed
-        DecimalFormat df = new DecimalFormat("#,###");
+//        DecimalFormat df = new DecimalFormat("#,###");
         if (cboNamDoanhThu.getSelectedIndex() == 0) {
             try {
                 if (thongKeRespo.getDoanhThu() == null) {
                     lblDoanhThu.setText("0" + " " + "VND");
                 } else {
-                    lblDoanhThu.setText(df.format(thongKeRespo.getDoanhThu().toPlainString()) + " " + "VND");
+                    lblDoanhThu.setText(thongKeRespo.getDoanhThu().toPlainString() + " " + "VND");
                 }
                 if (thongKeRespo.getHoaDon() == null) {
                     lblDoanhThu.setText("0");
@@ -1142,7 +1143,7 @@ public class ViewThongKe extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Vui lòng không để trống ngày sinh");
             return;
         }
-        DecimalFormat df = new DecimalFormat("#,###");
+//        DecimalFormat df = new DecimalFormat("#,###");
         Date time3 = java.sql.Date.valueOf(dPNgay1.getDate());
         Date time4 = java.sql.Date.valueOf(dPNgay2.getDate());
         SimpleDateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy");
@@ -1159,7 +1160,7 @@ public class ViewThongKe extends javax.swing.JPanel {
             if (thongKeRespo.getDoanhThuTheoKhoangThoiGian(time3, time4) == null) {
                 lblDoanhThu.setText("0");
             } else {
-                lblDoanhThu.setText(df.format(thongKeRespo.getDoanhThuTheoKhoangThoiGian(time3, time4).toPlainString()) + " " + "VND");
+                lblDoanhThu.setText(thongKeRespo.getDoanhThuTheoKhoangThoiGian(time3, time4).toPlainString() + " " + "VND");
             }
             if (thongKeRespo.getHoaDonTungKhoang(time3, time4) == null) {
                 lblDoanhThu.setText("0");
@@ -1333,6 +1334,7 @@ public class ViewThongKe extends javax.swing.JPanel {
     }//GEN-LAST:event_cboThangDTActionPerformed
 
     private void btnGuiBaoCaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuiBaoCaoActionPerformed
+
         SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
         Date dd = new Date();
         String rr = fm.format(dd);
@@ -1340,17 +1342,13 @@ public class ViewThongKe extends javax.swing.JPanel {
         try {
             ee = fm.parse(rr);
             //báo cáo ngày hiện tại
+
             BigDecimal doanhthungay = thongKeRespo.BaoCaoDT(ee);
             Long hoaDonngay = thongKeRespo.BaoCaoHD(ee);
             Long HDhuyngay = thongKeRespo.BaoCaoHDhuy(ee);
             int KHngay = thongKeRespo.BaoCaoKH(ee);
-            //báo cáo khoảng thời gian
-            Date time3 = java.sql.Date.valueOf(dPNgay1.getDate());
-            Date time4 = java.sql.Date.valueOf(dPNgay2.getDate());
-            BigDecimal doanhthukhoangngay = thongKeRespo.getDoanhThuTheoKhoangThoiGian(time3, time4);
-            Long hoadonkhoangngay = thongKeRespo.getHoaDonTungKhoang(time3, time4);
-            Long hoadonhuykhoangngay = thongKeRespo.getHoaDonHuyKhoang(time4, time4);
-            Long khachhangkhoangngay = thongKeRespo.getKhachHangTungKhoangTG(time3, time4);
+            
+
             String vv = JOptionPane.showInputDialog(this, "Nhập Email: ");
             String nv = nvImpl.getNhanVienByEmail(vv);
             if (vv == null) {
@@ -1383,6 +1381,13 @@ public class ViewThongKe extends javax.swing.JPanel {
             } else if (nv == "") {
                 JOptionPane.showMessageDialog(this, "Không tim thay Email");
             } else {
+                Date time3 = java.sql.Date.valueOf(dPNgay1.getDate());
+                Date time4 = java.sql.Date.valueOf(dPNgay2.getDate());
+                //báo cáo khoảng thời gian
+                BigDecimal doanhthukhoangngay = thongKeRespo.getDoanhThuTheoKhoangThoiGian(time3, time4);
+                Long hoadonkhoangngay = thongKeRespo.getHoaDonTungKhoang(time3, time4);
+                Long hoadonhuykhoangngay = thongKeRespo.getHoaDonHuyKhoang(time4, time4);
+                Long khachhangkhoangngay = thongKeRespo.getKhachHangTungKhoangTG(time3, time4);
                 //Send to Email
                 if (firstSend == 0L) {
 
@@ -1430,7 +1435,7 @@ public class ViewThongKe extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void dPNgay1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dPNgay1MouseClicked
-        
+
     }//GEN-LAST:event_dPNgay1MouseClicked
 
 
@@ -1710,6 +1715,10 @@ public class ViewThongKe extends javax.swing.JPanel {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void GetThongKeBaoCao() {
+
     }
 
 }
