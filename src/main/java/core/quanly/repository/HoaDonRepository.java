@@ -470,21 +470,55 @@ public class HoaDonRepository extends CrudRepository<String, HoaDon, HdHoaDonRes
         }
         return id;
     }
-    
-    public HoaDon findHdByMa(String ma){
+
+    public HoaDon findHdByMa(String ma) {
         HoaDon h = null;
         try {
             session = HibernateUtil.getSession();
             String hql = "select a from HoaDon a where a.ma = :ma";
             Query query = session.createQuery(hql);
             query.setParameter("ma", ma);
-            if(query.getSingleResult() != null){
+            if (query.getSingleResult() != null) {
                 h = (HoaDon) query.getSingleResult();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return h;
+    }
+
+    public String findIdSPbyHDCT(String id) {
+        String idsp = "";
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "SELECT a.chiTietSPId.id FROM HoaDonChiTiet a WHERE a.id = :id";
+            Query query = session.createQuery(hql);
+            query.setParameter("id", id);
+            if (query.getSingleResult() != null) {
+                idsp = (String) query.getSingleResult();
+            }
+        } catch (Exception e) {
+        }
+        return idsp;
+    }
+
+    public boolean updateSoLuong(String id, Integer soLuong) {
+        boolean check = false;
+        String sql = "UPDATE ChiTietSP SET soLuongTon = soLuongTon + :soLuongMua WHERE id = :id";
+        session = HibernateUtil.getSession();
+        trans = session.beginTransaction();
+        try {
+            Query query = session.createQuery(sql);
+            query.setParameter("soLuongMua", soLuong);
+            query.setParameter("id", id);
+            query.executeUpdate();
+            check = true;
+            trans.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            trans.rollback();
+        }
+        return check;
     }
 
 //    public static void main(String[] args) {
