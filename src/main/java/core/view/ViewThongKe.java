@@ -441,6 +441,7 @@ public class ViewThongKe extends javax.swing.JPanel {
                 "STT", "Mã Sản Phẩm", "Tên Sản Phẩm", "Hãng", "Màu Sắc", "Size", "Số Lượng", "Đơn Giá"
             }
         ));
+        tblHangHoa.setRowHeight(25);
         tblHangHoa.setSelectionBackground(new java.awt.Color(86, 154, 222));
         jScrollPane1.setViewportView(tblHangHoa);
 
@@ -591,6 +592,7 @@ public class ViewThongKe extends javax.swing.JPanel {
                 "STT", "Mã Sản Phẩm", "Tên Sản Phẩm", "Hãng", "Màu Sắc", "Size", "Số Lượng", "Đơn Giá"
             }
         ));
+        tblHangHoa1.setRowHeight(25);
         tblHangHoa1.setSelectionBackground(new java.awt.Color(86, 154, 222));
         jScrollPane2.setViewportView(tblHangHoa1);
 
