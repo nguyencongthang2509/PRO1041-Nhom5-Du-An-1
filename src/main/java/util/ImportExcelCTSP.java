@@ -122,28 +122,28 @@ public class ImportExcelCTSP {
                 }
                 
                 if(mapHang.get(hangStr) == null){
-                    JOptionPane.showMessageDialog(null, "Không tìm thấy sản phẩm");
+                    JOptionPane.showMessageDialog(null, "Không tìm thấy hãng");
                     return;
                 }else{
                     hang = mapHang.get(hangStr);
                 }
                 
                 if(mapMS.get(mauSacStr) == null){
-                    JOptionPane.showMessageDialog(null, "Không tìm thấy sản phẩm");
+                    JOptionPane.showMessageDialog(null, "Không tìm thấy màu sắc");
                     return;
                 }else{
                     mauSac = mapMS.get(mauSacStr);
                 }
                 
                 if(mapKT.get(String.valueOf((int) Double.parseDouble(tenkichThuoc))) == null){
-                    JOptionPane.showMessageDialog(null, "Không tìm thấy sản phẩm");
+                    JOptionPane.showMessageDialog(null, "Không tìm thấy kích thước");
                     return;
                 }else{
                     kichThuoc1 = mapKT.get(String.valueOf((int) Double.parseDouble(tenkichThuoc)));
                 }
                 
                 if(mapCL.get(chatLieuStr) == null){
-                    JOptionPane.showMessageDialog(null, "Không tìm thấy sản phẩm");
+                    JOptionPane.showMessageDialog(null, "Không tìm thấy chất liệu");
                     return;
                 }else{
                     chatLieu = mapCL.get(chatLieuStr);

@@ -7,6 +7,7 @@ package core.quanly.repository;
 import config.HibernateUtil;
 import core.quanly.viewmodel.ThongKeHangHoaResponse;
 import domainmodels.HoaDon;
+import domainmodels.HoaDonChiTiet;
 import domainmodels.HoaDonTraHangChiTiet;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
@@ -29,10 +30,15 @@ public class ThongKeHangHoaRepository {
         List<ThongKeHangHoaResponse> list = new ArrayList<>();
         try {
             Session session = HibernateUtil.getSession();
-            String hql = "select new core.quanly.viewmodel.ThongKeHangHoaResponse"
-                    + "(a.id, a.chiTietSPId.sanPham.ma, a.chiTietSPId.sanPham.ten, a.chiTietSPId.hang.ten, a.chiTietSPId.mauSac.ten, "
-                    + "a.chiTietSPId.kichThuoc.ten,a.soLuong, a.donGia)"
-                    + " from HoaDonChiTiet a ";
+            String hql = """
+                         select new core.quanly.viewmodel.ThongKeHangHoaResponse
+                         (a.chiTietSPId.id, a.chiTietSPId.sanPham.ma, a.chiTietSPId.sanPham.ten,
+                         a.chiTietSPId.hang.ten, a.chiTietSPId.mauSac.ten, 
+                        a.chiTietSPId.kichThuoc.ten, a.soLuong, a.donGia)
+                         from HoaDonChiTiet a Group by a.chiTietSPId.id, a.chiTietSPId.sanPham.ma, 
+                         a.chiTietSPId.sanPham.ten, a.chiTietSPId.hang.ten, a.chiTietSPId.mauSac.ten,
+                         a.chiTietSPId.kichThuoc.ten,a.donGia
+                         """;
             Query query = session.createQuery(hql);
             list = query.getResultList();
         } catch (Exception e) {
@@ -293,11 +299,6 @@ public class ThongKeHangHoaRepository {
             return null;
         }
         return id;
-    }
-
-    public static void main(String[] args) {
-        List id = new ThongKeHangHoaRepository().getListTraHang();
-        System.out.println(id);
     }
 //số khách hàng theo từng tháng
 
@@ -596,7 +597,5 @@ public class ThongKeHangHoaRepository {
         }
         return id;
     }
-
-
 
 }

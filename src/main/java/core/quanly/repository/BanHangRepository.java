@@ -47,6 +47,16 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
         }
         return list;
     }
+    
+//    public static void main(String[] args) {
+//        List<ChiTietSP> list = new BanHangRepository().getAll();
+//        System.out.println(list);
+//    }
+    
+    public static void main(String[] args) {
+        List<BhChiTietSPResponse> list = new BanHangRepository().getAllResponseCTSP();
+        System.out.println(list);
+    }
 
     public ChiTietSPKhuyenMai getCTSPKhuyenMai(String idChiTietSP) {
         ChiTietSPKhuyenMai chiTietSPKhuyenMai = new ChiTietSPKhuyenMai();
