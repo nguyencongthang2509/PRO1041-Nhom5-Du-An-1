@@ -78,7 +78,7 @@ public class ViewBanHang extends javax.swing.JPanel {
     public ViewBanHang(NhanVien nv) {
         initComponents();
         nhanVien = nv;
-//        initWebcam();
+        initWebcam();
         modelSanPham = (DefaultTableModel) tblSanPham.getModel();
         modelGioHang = (DefaultTableModel) tblGioHang.getModel();
         modelHoaDon = (DefaultTableModel) tblHoaDonCho.getModel();

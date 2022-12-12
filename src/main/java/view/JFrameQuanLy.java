@@ -124,7 +124,7 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         );
         pnlBanHangLayout.setVerticalGroup(
             pnlBanHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menuBanHang, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(menuBanHang, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
         );
 
         pnlHoaDon.setBackground(new java.awt.Color(153, 204, 255));
