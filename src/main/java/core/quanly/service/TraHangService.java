@@ -13,6 +13,10 @@ public interface TraHangService {
     
     List<ThHoaDonResponse> getAllResponseHD();
     
+    HoaDonTraHang findHoaDonTraHang(String id);
+    
+    List<HoaDonTraHangChiTiet> getAllHoaDonTraHangChiTiet(String id);
+    
     List<ThHoaDonResponse> getAllResponseHDTraHang();
     
     List<ThHoaDonResponse> findHoaDon(String input);

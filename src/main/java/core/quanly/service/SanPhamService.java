@@ -16,6 +16,8 @@ import javax.print.DocFlavor;
 public interface SanPhamService {
 
     List<SanPhamResponse> getAllViewModel();
+    
+    List<SanPhamResponse> getAllResponse();
 
     SanPham getOne(String ma);
 

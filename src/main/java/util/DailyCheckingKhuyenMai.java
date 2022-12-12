@@ -94,7 +94,7 @@ public class DailyCheckingKhuyenMai extends Thread {
         List<String> list = new ArrayList<>();
         try {
             session = getSession();
-            String hql = "SELECT id FROM KhuyenMai a where a.ngayBatDau < :currentTime and :currentTime < a.ngayKetThuc order by a.createdDate DESC";
+            String hql = "SELECT a.khuyenMaiId.id FROM ChiTietSPKhuyenMai a where a.khuyenMaiId.ngayBatDau < :currentTime and :currentTime < a.khuyenMaiId.ngayKetThuc order by a.createdDate DESC";
             Query query = session.createQuery(hql);
             query.setParameter("currentTime", new Date());
             list = query.getResultList();
@@ -109,7 +109,7 @@ public class DailyCheckingKhuyenMai extends Thread {
         List<String> list = new ArrayList<>();
         try {
             session = getSession();
-            String hql = "SELECT id FROM KhuyenMai a where a.ngayBatDau > :currentTime or :currentTime > a.ngayKetThuc order by a.createdDate DESC";
+            String hql = "SELECT a.khuyenMaiId.id FROM ChiTietSPKhuyenMai a where a.khuyenMaiId.ngayBatDau > :currentTime or :currentTime > a.khuyenMaiId.ngayKetThuc order by a.createdDate DESC";
             Query query = session.createQuery(hql);
             query.setParameter("currentTime", new Date());
             list = query.getResultList();

@@ -17,6 +17,8 @@ import java.util.List;
 public interface SPHangService {
 
     List<SPHangResponse> getAllViewModel();
+    
+    List<SPHangResponse> getAllResponse();
 
     Hang getOne(String ma);
 

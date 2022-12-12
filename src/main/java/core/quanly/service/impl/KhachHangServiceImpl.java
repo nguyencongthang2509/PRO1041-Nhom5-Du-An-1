@@ -168,4 +168,9 @@ public class KhachHangServiceImpl implements KhachHangService {
         return false;
     }
 
+    @Override
+    public int genMaKhachHang() {
+        return khachHangRe.genMaKhachHang();
+    }
+
 }

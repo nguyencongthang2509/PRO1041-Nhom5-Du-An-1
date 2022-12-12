@@ -64,6 +64,8 @@ public class ThHoaDonResponse {
     private BigDecimal thanhTien;
 
     private BigDecimal tienThua;
+    
+    private Double phanTramGiamGia;
 
     private String getTrangThaiHoaDon() {
         return trangThai == 0 ? "Chờ thanh toán" : (trangThai == 1 ? "Đã hủy" : (trangThai == 2 ? "Đã thanh toán" : (trangThai == 3 ? "Chờ giao hàng" : (trangThai == 4 ? "Đang giao" : (trangThai == 5 ? "Đã giao" : (trangThai == 6 ? "Khách hẹn giao lại" : "Đã trả hàng"))))));
@@ -71,5 +73,9 @@ public class ThHoaDonResponse {
 
     public Object[] toDataRow() {
         return new Object[]{maHD, tenNhanVien, ngayThanhToan, tenKhachHang, thanhTien, getTrangThaiHoaDon()};
+    }
+    
+    public Object[] toDataRowTraHang() {
+        return new Object[]{maHD, tenNhanVien, ngayThanhToan, tenKhachHang, thanhTien};
     }
 }

@@ -44,10 +44,10 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 
-public class UtilTest  {
+public class UtilTest {
 
     public UtilTest() {
-        
+
     }
 
     private static ThongKeHangHoaRepository Get() {
@@ -66,7 +66,7 @@ public class UtilTest  {
         JFreeChart barChart = ChartFactory.createBarChart(
                 "BIỂU ĐỒ DOANH THU CỦA CỬA HÀNG TỪ NĂM " + (nam - 4) + "-HIỆN TẠI",
                 "Năm", "Doanh số",
-                createDatasetTheoNam(), PlotOrientation.VERTICAL, false, false, false);
+                createDatasetTheoNam(), PlotOrientation.VERTICAL, true, true, true);
         return barChart;
     }
 
@@ -74,14 +74,15 @@ public class UtilTest  {
         JFreeChart barChart = ChartFactory.createBarChart(
                 "BIỂU ĐỒ DOANH THU CỦA CỬA HÀNG NĂM " + nam,
                 "Tháng", "Doanh số",
-                createDatasetTheoThangCuaNam(nam), PlotOrientation.VERTICAL, false, false, false);
+                createDatasetTheoThangCuaNam(nam), PlotOrientation.VERTICAL, true, true, true);
         return barChart;
     }
-    public JFreeChart createChartTheoThang(int thang ,int nam) throws Exception {
+
+    public JFreeChart createChartTheoThang(int thang, int nam) throws Exception {
         JFreeChart barChart = ChartFactory.createBarChart(
                 "BIỂU ĐỒ DOANH THU CỦA CỬA HÀNG NĂM " + thang,
                 "Ngày", "Doanh số",
-                createDatasetTheoThang(thang, nam), PlotOrientation.VERTICAL, false, false, false);
+                createDatasetTheoThang(thang, nam), PlotOrientation.VERTICAL, true, true, true);
         return barChart;
     }
 
@@ -107,17 +108,24 @@ public class UtilTest  {
         }
         return dataset;
     }
-    public CategoryDataset createDatasetTheoThang(int thang,int nam) throws Exception {
+
+    public CategoryDataset createDatasetTheoThang(int thang, int nam) throws Exception {
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        
-        for (int i = 1; i <=31; i++) {
-            dataset.addValue(new Double(Get().getDoanhThuNgayTrongThang(i, thang, nam).doubleValue()), "Doanh số", i+"");
+        if (thang == 4 || thang == 6 || thang == 9 || thang == 11) {
+            for (int i = 1; i <= 30; i++) {
+                dataset.addValue(new Double(Get().getDoanhThuNgayTrongThang(i, thang, nam).doubleValue()), "Doanh số", i + "");
+            }
+        } else if (thang == 2) {
+            for (int i = 1; i <= 28; i++) {
+                dataset.addValue(new Double(Get().getDoanhThuNgayTrongThang(i, thang, nam).doubleValue()), "Doanh số", i + "");
+            }
+        } else {
+
+            for (int i = 1; i <= 31; i++) {
+                dataset.addValue(new Double(Get().getDoanhThuNgayTrongThang(i, thang, nam).doubleValue()), "Doanh số", i + "");
+            }
         }
         return dataset;
     }
-
-    
-
-    
 
 }

@@ -5,6 +5,8 @@
 package util;
 
 import core.quanly.viewmodel.CTSanPhamResponse;
+import java.awt.Desktop;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -96,9 +98,17 @@ public class ExportFileCTSP {
 
             }
             try {
-                FileOutputStream outputStream = new FileOutputStream("ChiTietSanPham" + Calendar.getInstance().getTimeInMillis() + ".xlsx");
+                File file = new File("ChiTietSanPham" + Calendar.getInstance().getTimeInMillis() + ".xlsx");
+                FileOutputStream outputStream = new FileOutputStream(file);
                 workbook.write(outputStream);
                 workbook.close();
+                if(!Desktop.isDesktopSupported()){
+                    return false;
+                }
+                Desktop desktop = Desktop.getDesktop();
+                if(file.exists()){
+                    desktop.open(file);
+                }
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {

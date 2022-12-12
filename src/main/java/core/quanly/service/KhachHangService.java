@@ -18,6 +18,8 @@ import java.util.List;
 public interface KhachHangService {
 
     List<KhachHangRespone> getAllResponse();
+    
+    int genMaKhachHang();
 
     String insert(KhachHang khachHang);
 

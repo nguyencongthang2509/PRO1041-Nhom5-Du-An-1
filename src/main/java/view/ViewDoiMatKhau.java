@@ -66,9 +66,11 @@ public class ViewDoiMatKhau extends javax.swing.JFrame {
         jLabel2.setText("jLabel2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Đổi mật khẩu");
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setToolTipText("Đổi mật khẩu");
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 204, 255));

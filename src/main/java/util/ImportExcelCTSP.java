@@ -19,6 +19,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import org.apache.poi.ss.usermodel.Cell;
@@ -36,6 +38,12 @@ public class ImportExcelCTSP {
 
     private CTSanPhamRepository cTSanPhamRepository;
 
+    private ConcurrentMap<String, ChatLieu> mapCL = new ConcurrentHashMap<>();
+    private ConcurrentMap<String, MauSac> mapMS = new ConcurrentHashMap<>();
+    private ConcurrentMap<String, KichThuoc> mapKT = new ConcurrentHashMap<>();
+    private ConcurrentMap<String, SanPham> mapSP = new ConcurrentHashMap<>();
+    private ConcurrentMap<String, Hang> mapHang = new ConcurrentHashMap<>();
+
     public ImportExcelCTSP() {
         cTSanPhamRepository = new CTSanPhamRepository();
     }
@@ -51,6 +59,11 @@ public class ImportExcelCTSP {
             Row firstRow = iterator.next();
             Cell firstCell = firstRow.getCell(0);
             int mactsp = cTSanPhamRepository.genMaCTSP();
+            addDataInMapCL(mapCL);
+            addDataInMapHANG(mapHang);
+            addDataInMapKT(mapKT);
+            addDataInMapMS(mapMS);
+            addDataInMapSP(mapSP);
             while (iterator.hasNext()) {
                 Row currentRow = iterator.next();
 
@@ -73,8 +86,8 @@ public class ImportExcelCTSP {
                     return;
                 }
                 try {
-                    int soLuongTonSo = 0;
-                    soLuongTonSo = Integer.parseInt(soLuongTon);
+                    double soLuongTonSo = 0;
+                    soLuongTonSo = Double.parseDouble(soLuongTon);
                     if (soLuongTonSo <= 0) {
                         JOptionPane.showMessageDialog(null, "Số lượng tồn lớn hơn 0");
                         return;
@@ -84,44 +97,59 @@ public class ImportExcelCTSP {
                     return;
                 }
                 try {
-                    int giaBanSo = 0;
-                    giaBanSo = Integer.parseInt(giaBan);
+                    double giaBanSo = 0;
+                    giaBanSo = Double.parseDouble(giaBan);
                     if (giaBanSo <= 0) {
                         JOptionPane.showMessageDialog(null, "Giá bán lớn hơn 0");
-                        return ;
+                        return;
                     }
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, "Giá bán phải là số");
-                    return ;
+                    return;
                 }
                 
-                SanPham sanPham = cTSanPhamRepository.findSanPhamByTen(sanPhamStr);
-                System.out.println(sanPham.getTen());
-                if (sanPham == null) {
+                SanPham sanPham = new SanPham();
+                Hang hang = new Hang();
+                MauSac mauSac = new MauSac();
+                ChatLieu chatLieu = new ChatLieu();
+                KichThuoc kichThuoc1 = new KichThuoc();
+                
+                if(mapSP.get(sanPhamStr) == null){
                     JOptionPane.showMessageDialog(null, "Không tìm thấy sản phẩm");
                     return;
+                }else{
+                    sanPham = mapSP.get(sanPhamStr);
                 }
-                MauSac mauSac = cTSanPhamRepository.findMauSacByTen(mauSacStr);
-                System.out.println(mauSac.getTen());
-                if (mauSac == null) {
-                    JOptionPane.showMessageDialog(null, "Không tìm thấy màu sắc");
-                    return;
-                }
-                KichThuoc kichThuoc1 = cTSanPhamRepository.findKichThuocByTen(String.valueOf((int) Double.parseDouble(tenkichThuoc)));
-                if (kichThuoc1 == null) {
-                    JOptionPane.showMessageDialog(null, "Không tìm thấy kích thước");
-                    return;
-                }
-                Hang hang = cTSanPhamRepository.findHangByTen(hangStr);
-                if (hang == null) {
+                
+                if(mapHang.get(hangStr) == null){
                     JOptionPane.showMessageDialog(null, "Không tìm thấy hãng");
                     return;
+                }else{
+                    hang = mapHang.get(hangStr);
                 }
-                ChatLieu chatLieu = cTSanPhamRepository.findChatLieuByTen(chatLieuStr);
-                if (chatLieu == null) {
+                
+                if(mapMS.get(mauSacStr) == null){
+                    JOptionPane.showMessageDialog(null, "Không tìm thấy màu sắc");
+                    return;
+                }else{
+                    mauSac = mapMS.get(mauSacStr);
+                }
+                
+                if(mapKT.get(String.valueOf((int) Double.parseDouble(tenkichThuoc))) == null){
+                    JOptionPane.showMessageDialog(null, "Không tìm thấy kích thước");
+                    return;
+                }else{
+                    kichThuoc1 = mapKT.get(String.valueOf((int) Double.parseDouble(tenkichThuoc)));
+                }
+                
+                if(mapCL.get(chatLieuStr) == null){
                     JOptionPane.showMessageDialog(null, "Không tìm thấy chất liệu");
                     return;
+                }else{
+                    chatLieu = mapCL.get(chatLieuStr);
                 }
+                    
+                    
                 ChiTietSP chiTietSP = new ChiTietSP();
                 ChiTietSP chiTietSPcheck = cTSanPhamRepository.findByCBB(sanPham.getTen(), hang.getTen(), mauSac.getTen(), kichThuoc1.getTen(), chatLieu.getTen());
                 if (chiTietSPcheck.getMaChiTietSP() == null) {
@@ -136,6 +164,7 @@ public class ImportExcelCTSP {
                     chiTietSP.setGiaBan(new BigDecimal(giaBan));
                     chiTietSP.setMaVach(String.valueOf((int) Double.parseDouble(maVach)));
                     listctsp.add(chiTietSP);
+//                    cTSanPhamRepository.saveOrUpdate(chiTietSP);
                 } else {
                     chiTietSPcheck.setMaVach(String.valueOf((int) Double.parseDouble(maVach)));
                     chiTietSPcheck.setGiaBan(new BigDecimal(giaBan));
@@ -146,6 +175,7 @@ public class ImportExcelCTSP {
                         chiTietSPcheck.setSoLuongTon((int) Double.parseDouble(soLuongTon));
                     }
                     listctsp.add(chiTietSPcheck);
+//                    cTSanPhamRepository.saveOrUpdate(chiTietSPcheck);
                 }
             }
             cTSanPhamRepository.saveAll(listctsp);
@@ -155,6 +185,61 @@ public class ImportExcelCTSP {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+    
+    public void addDataInMapSP(ConcurrentMap<String, SanPham> mapSimple){
+        List<SanPham> listSP = cTSanPhamRepository.getALLSP();
+        getALlPutMapCheckSP(mapSimple, listSP);
+    }
+    
+    public void addDataInMapMS(ConcurrentMap<String, MauSac> mapSimple){
+        List<MauSac> listSP = cTSanPhamRepository.getALLMS();
+        getALlPutMapCheckMS(mapSimple, listSP);
+    }
+    
+    public void addDataInMapKT(ConcurrentMap<String, KichThuoc> mapSimple){
+        List<KichThuoc> listSP = cTSanPhamRepository.getALLKichThuoc();
+        getALlPutMapCheckKT(mapSimple, listSP);
+    }
+    
+    public void addDataInMapHANG(ConcurrentMap<String, Hang> mapSimple){
+        List<Hang> listSP = cTSanPhamRepository.getALLHang();
+        getALlPutMapCheckHang(mapSimple, listSP);
+    }
+    
+    public void addDataInMapCL(ConcurrentMap<String, ChatLieu> mapSimple){
+        List<ChatLieu> listSP = cTSanPhamRepository.getALLChatLieu();
+        getALlPutMapCheckCL(mapSimple, listSP);
+    }
+
+    public void getALlPutMapCheckSP(ConcurrentMap<String, SanPham> mapSimple, List<SanPham> list) {
+        for (SanPham xx : list) {
+            mapSimple.put(xx.getTen(), xx);
+        }
+    }
+    
+    public void getALlPutMapCheckHang(ConcurrentMap<String, Hang> mapSimple, List<Hang> list) {
+        for (Hang xx : list) {
+            mapSimple.put(xx.getTen(), xx);
+        }
+    }
+    
+    public void getALlPutMapCheckKT(ConcurrentMap<String, KichThuoc> mapSimple, List<KichThuoc> list) {
+        for (KichThuoc xx : list) {
+            mapSimple.put(xx.getTen(), xx);
+        }
+    }
+    
+    public void getALlPutMapCheckMS(ConcurrentMap<String, MauSac> mapSimple, List<MauSac> list) {
+        for (MauSac xx : list) {
+            mapSimple.put(xx.getTen(), xx);
+        }
+    }
+    
+    public void getALlPutMapCheckCL(ConcurrentMap<String, ChatLieu> mapSimple, List<ChatLieu> list) {
+        for (ChatLieu xx : list) {
+            mapSimple.put(xx.getTen(), xx);
         }
     }
 

@@ -14,6 +14,7 @@ import domainmodels.ChiTietSP;
 import domainmodels.ChiTietSPKhuyenMai;
 import domainmodels.KhuyenMai;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import lombok.Synchronized;
 
@@ -175,5 +176,10 @@ public class KhuyenMaiImpl implements core.quanly.service.KhuyenMaiService {
     @Override
     public boolean HuyKhuyenMai(String idctspkm) {
          return khuyenMaiRepository.HuyKhuyenMai(idctspkm);
+    }
+
+    @Override
+    public List<KMChiTietSPResponse> getAllChiTietSPCoTheApDung(Date ngayBayDau, Date ngayKetThuc) {
+        return khuyenMaiRepository.getAllChiTietSPCoTheApDung(ngayBayDau, ngayKetThuc);
     }
 }

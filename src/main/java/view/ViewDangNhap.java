@@ -65,7 +65,7 @@ public class ViewDangNhap extends javax.swing.JFrame {
         lblEye = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Phần mềm quản lý bán giày thời trang Sneaker Store");
+        setTitle("Phần mềm bán giày thời trang Sneaker");
         setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
 

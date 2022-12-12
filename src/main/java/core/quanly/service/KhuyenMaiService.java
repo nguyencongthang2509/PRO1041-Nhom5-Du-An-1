@@ -10,6 +10,7 @@ import core.quanly.viewmodel.KhuyenMaiResponse;
 import domainmodels.ChiTietSP;
 import domainmodels.ChiTietSPKhuyenMai;
 import domainmodels.KhuyenMai;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -65,4 +66,6 @@ public interface KhuyenMaiService {
     boolean updateKhuyenMaiKhongDienRa(String idKhuyenMai);
     
     boolean HuyKhuyenMai(String idctspkm);
+    
+    List<KMChiTietSPResponse> getAllChiTietSPCoTheApDung(Date ngayBayDau, Date ngayKetThuc);
 }

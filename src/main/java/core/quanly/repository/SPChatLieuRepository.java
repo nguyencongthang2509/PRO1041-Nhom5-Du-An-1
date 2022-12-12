@@ -23,6 +23,20 @@ public class SPChatLieuRepository extends CrudRepository<String, ChatLieu, SPCha
         res = "new core.quanly.viewmodel.SPChatLieuResponse(a.id, a.ma, a.ten)";
     }
     
+    public List<SPChatLieuResponse> getAllResponseChatLieu() {
+        List<SPChatLieuResponse> list = new ArrayList<>();
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "SELECT new core.quanly.viewmodel.SPChatLieuResponse(a.id, a.ma, a.ten) FROM ChatLieu a Where a.trangThaiXoa = 0 order by a.createdDate desc";
+            org.hibernate.query.Query query = session.createQuery(hql);
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return list;
+    }
+    
     public int genMaChatLieu() {
         String maStr = "";
         session = HibernateUtil.getSession();

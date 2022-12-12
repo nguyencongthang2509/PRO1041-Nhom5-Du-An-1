@@ -135,4 +135,14 @@ public class HoaDonserviceImpl implements HoaDonservice {
     public HoaDon findHdByMa(String ma) {
         return repo.findHdByMa(ma);
     }
+
+    @Override
+    public boolean updateSoLuong(String id, Integer soLuong) {
+        return repo.updateSoLuong(id, soLuong);
+    }
+
+    @Override
+    public String findIdSPbyHDCT(String id) {
+        return repo.findIdSPbyHDCT(id);
+    }
 }
