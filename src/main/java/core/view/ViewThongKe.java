@@ -10,6 +10,7 @@ import core.quanly.service.ThongKeHangHoaService;
 import core.quanly.service.impl.NhanVienServiceImpl;
 import core.quanly.service.impl.ThongKeHangHoaServiceImpl;
 import core.quanly.viewmodel.ThongKeHangHoaResponse;
+import core.quanly.viewmodel.ThongKeTheoKhoangResponse;
 import domainmodels.HoaDonTraHangChiTiet;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -61,7 +62,6 @@ public class ViewThongKe extends javax.swing.JPanel {
     public ViewThongKe() {
         initComponents();
 
-        GetYearNow();
         GetYearNow2();
         modelHangHoa = new DefaultTableModel();
         modelHangHoa = (DefaultTableModel) tblHangHoa.getModel();
@@ -70,7 +70,6 @@ public class ViewThongKe extends javax.swing.JPanel {
         loadList();
         loadListTraHang();
         LableLoadHoaDon();
-        cboThang.setEnabled(false);
         cboThangDT.setEnabled(false);
     }
 
@@ -103,10 +102,6 @@ public class ViewThongKe extends javax.swing.JPanel {
         jPanel5 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         JPenalBieuDo = new javax.swing.JPanel();
-        jPanel11 = new javax.swing.JPanel();
-        cboThang = new javax.swing.JComboBox<>();
-        jPanel12 = new javax.swing.JPanel();
-        cboBieuDo = new javax.swing.JComboBox<>();
         jPanel6 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         cboHot = new javax.swing.JComboBox<>();
@@ -200,7 +195,7 @@ public class ViewThongKe extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(55, 55, 55)
                         .addComponent(lblHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
         );
@@ -240,7 +235,7 @@ public class ViewThongKe extends javax.swing.JPanel {
                         .addComponent(lblHangTra, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,7 +271,7 @@ public class ViewThongKe extends javax.swing.JPanel {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(59, 59, 59)
                         .addComponent(lblKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
         );
@@ -304,72 +299,18 @@ public class ViewThongKe extends javax.swing.JPanel {
         jPanel7.setPreferredSize(new java.awt.Dimension(1200, 300));
 
         JPenalBieuDo.setBackground(new java.awt.Color(204, 204, 204));
+        JPenalBieuDo.setMaximumSize(new java.awt.Dimension(1269, 385));
+        JPenalBieuDo.setMinimumSize(new java.awt.Dimension(1269, 385));
 
         javax.swing.GroupLayout JPenalBieuDoLayout = new javax.swing.GroupLayout(JPenalBieuDo);
         JPenalBieuDo.setLayout(JPenalBieuDoLayout);
         JPenalBieuDoLayout.setHorizontalGroup(
             JPenalBieuDoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1035, Short.MAX_VALUE)
+            .addGap(0, 1269, Short.MAX_VALUE)
         );
         JPenalBieuDoLayout.setVerticalGroup(
             JPenalBieuDoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        jPanel11.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder("Lọc theo tháng"));
-
-        cboThang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
-        cboThang.setBackground(new java.awt.Color(153, 204, 255));
-        cboThang.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboThangActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
-        jPanel11.setLayout(jPanel11Layout);
-        jPanel11Layout.setHorizontalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(cboThang, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel11Layout.setVerticalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(cboThang)
-                .addContainerGap(31, Short.MAX_VALUE))
-        );
-
-        jPanel12.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder("Lọc Theo Năm"));
-
-        cboBieuDo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất Cả", "2022", "2021", "2020", " " }));
-        cboBieuDo.setBackground(new java.awt.Color(153, 204, 255));
-        cboBieuDo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboBieuDoActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
-        jPanel12.setLayout(jPanel12Layout);
-        jPanel12Layout.setHorizontalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel12Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(cboBieuDo, 0, 152, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel12Layout.setVerticalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel12Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(cboBieuDo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+            .addGap(0, 385, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -378,24 +319,13 @@ public class ViewThongKe extends javax.swing.JPanel {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(26, 26, 26)
                 .addComponent(JPenalBieuDo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)
-                        .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 133, Short.MAX_VALUE))
-                    .addComponent(JPenalBieuDo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(JPenalBieuDo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -404,7 +334,7 @@ public class ViewThongKe extends javax.swing.JPanel {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 1283, Short.MAX_VALUE)
+                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 1297, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -441,7 +371,7 @@ public class ViewThongKe extends javax.swing.JPanel {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cboHot)
+                .addComponent(cboHot, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -468,7 +398,7 @@ public class ViewThongKe extends javax.swing.JPanel {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cboSanPham)
+                .addComponent(cboSanPham, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -591,7 +521,7 @@ public class ViewThongKe extends javax.swing.JPanel {
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel18Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cboMaxMin)
+                .addComponent(cboMaxMin, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -618,7 +548,7 @@ public class ViewThongKe extends javax.swing.JPanel {
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel19Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cboSanPhamTra)
+                .addComponent(cboSanPhamTra, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -873,136 +803,6 @@ public class ViewThongKe extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cboBieuDoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboBieuDoActionPerformed
-        if (cboBieuDo.getSelectedIndex() == 0) {
-            try {
-                PanelBieuDoHangNam();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboBieuDo.getSelectedIndex() == 1) {
-            try {
-                PanelBieuDoNam(Integer.parseInt(cboBieuDo.getSelectedItem().toString()));
-                cboThang.setEnabled(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboBieuDo.getSelectedIndex() == 2) {
-            try {
-                PanelBieuDoNam(Integer.parseInt(cboBieuDo.getSelectedItem().toString()));
-                cboThang.setEnabled(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboBieuDo.getSelectedIndex() == 3) {
-            try {
-                PanelBieuDoNam(Integer.parseInt(cboBieuDo.getSelectedItem().toString()));
-                cboThang.setEnabled(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboBieuDo.getSelectedIndex() == 4) {
-            try {
-                PanelBieuDoNam(Integer.parseInt(cboBieuDo.getSelectedItem().toString()));
-                cboThang.setEnabled(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }//GEN-LAST:event_cboBieuDoActionPerformed
-
-    private void cboThangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboThangActionPerformed
-        if (cboThang.getSelectedIndex() == 0) {
-            try {
-                PanelBieuDoNgay(Integer.parseInt(cboThang.getSelectedItem().toString()), Integer.parseInt(cboBieuDo.getSelectedItem().toString()));
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboThang.getSelectedIndex() == 1) {
-            try {
-                PanelBieuDoNgay(Integer.parseInt(cboThang.getSelectedItem().toString()), Integer.parseInt(cboBieuDo.getSelectedItem().toString()));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboThang.getSelectedIndex() == 2) {
-            try {
-                PanelBieuDoNgay(Integer.parseInt(cboThang.getSelectedItem().toString()), Integer.parseInt(cboBieuDo.getSelectedItem().toString()));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboThang.getSelectedIndex() == 3) {
-            try {
-                PanelBieuDoNgay(Integer.parseInt(cboThang.getSelectedItem().toString()), Integer.parseInt(cboBieuDo.getSelectedItem().toString()));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboThang.getSelectedIndex() == 4) {
-            try {
-                PanelBieuDoNgay(Integer.parseInt(cboThang.getSelectedItem().toString()), Integer.parseInt(cboBieuDo.getSelectedItem().toString()));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboThang.getSelectedIndex() == 5) {
-            try {
-                PanelBieuDoNgay(Integer.parseInt(cboThang.getSelectedItem().toString()), Integer.parseInt(cboBieuDo.getSelectedItem().toString()));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboThang.getSelectedIndex() == 6) {
-            try {
-                PanelBieuDoNgay(Integer.parseInt(cboThang.getSelectedItem().toString()), Integer.parseInt(cboBieuDo.getSelectedItem().toString()));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboThang.getSelectedIndex() == 7) {
-            try {
-                PanelBieuDoNgay(Integer.parseInt(cboThang.getSelectedItem().toString()), Integer.parseInt(cboBieuDo.getSelectedItem().toString()));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboThang.getSelectedIndex() == 8) {
-            try {
-                PanelBieuDoNgay(Integer.parseInt(cboThang.getSelectedItem().toString()), Integer.parseInt(cboBieuDo.getSelectedItem().toString()));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboThang.getSelectedIndex() == 9) {
-            try {
-                PanelBieuDoNgay(Integer.parseInt(cboThang.getSelectedItem().toString()), Integer.parseInt(cboBieuDo.getSelectedItem().toString()));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboThang.getSelectedIndex() == 10) {
-            try {
-                PanelBieuDoNgay(Integer.parseInt(cboThang.getSelectedItem().toString()), Integer.parseInt(cboBieuDo.getSelectedItem().toString()));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboThang.getSelectedIndex() == 11) {
-            try {
-                PanelBieuDoNgay(Integer.parseInt(cboThang.getSelectedItem().toString()), Integer.parseInt(cboBieuDo.getSelectedItem().toString()));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }//GEN-LAST:event_cboThangActionPerformed
-
     private void cboNamDoanhThuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboNamDoanhThuActionPerformed
         DecimalFormat df = new DecimalFormat("#,###");
 
@@ -1068,9 +868,49 @@ public class ViewThongKe extends javax.swing.JPanel {
                 }
             }
         }
+        if (cboNamDoanhThu.getSelectedIndex() == 0) {
+            try {
+                PanelBieuDoHangNam();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if (cboNamDoanhThu.getSelectedIndex() == 1) {
+            try {
+                PanelBieuDoNam(Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()));
+                cboThangDT.setEnabled(true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if (cboNamDoanhThu.getSelectedIndex() == 2) {
+            try {
+                PanelBieuDoNam(Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()));
+                cboThangDT.setEnabled(true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if (cboNamDoanhThu.getSelectedIndex() == 3) {
+            try {
+                PanelBieuDoNam(Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()));
+                cboThangDT.setEnabled(true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if (cboNamDoanhThu.getSelectedIndex() == 4) {
+            try {
+                PanelBieuDoNam(Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()));
+                cboThangDT.setEnabled(true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }//GEN-LAST:event_cboNamDoanhThuActionPerformed
 
     private void btnTimTheoNgayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimTheoNgayActionPerformed
+        List<ThongKeTheoKhoangResponse> list = new ArrayList<>();
         if (dPNgay1.getDate() == null || dPNgay2.getDate() == null) {
             JOptionPane.showMessageDialog(this, " Vui lòng không để trống thời gian");
             return;
@@ -1125,7 +965,7 @@ public class ViewThongKe extends javax.swing.JPanel {
                 System.out.println(ngay);
                 System.out.println(thang);
                 System.out.println(nam);
-
+                list.add(new ThongKeTheoKhoangResponse(ngay, thang, nam));
 //            DoanhThuTheoNgayDto doanhThu = thongKeRepository.doanhThuTheoNgay(ngay, thang, nam);
 //            if (doanhThu == null) {
 //                doanhThu = new DoanhThuTheoNgayDto(ngay, thang, nam, BigDecimal.ZERO, 0l, BigDecimal.ZERO, BigDecimal.ZERO);
@@ -1134,8 +974,9 @@ public class ViewThongKe extends javax.swing.JPanel {
 //                doanhThu.setThang(thang);
 //                doanhThu.setNam(nam);
 //            }
-                PanelBieuDoTheoKhoang(ngay, thang, nam);
+                
             }
+            PanelBieuDoTheoKhoang(list);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -1208,6 +1049,91 @@ public class ViewThongKe extends javax.swing.JPanel {
     private void cboThangDTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboThangDTActionPerformed
         try {
             GetDoanhThuThang();
+                    if (cboThangDT.getSelectedIndex() == 0) {
+            try {
+                PanelBieuDoNgay(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()));
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if (cboThangDT.getSelectedIndex() == 1) {
+            try {
+                PanelBieuDoNgay(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if (cboThangDT.getSelectedIndex() == 2) {
+            try {
+                PanelBieuDoNgay(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if (cboThangDT.getSelectedIndex() == 3) {
+            try {
+                PanelBieuDoNgay(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if (cboThangDT.getSelectedIndex() == 4) {
+            try {
+                PanelBieuDoNgay(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if (cboThangDT.getSelectedIndex() == 5) {
+            try {
+                PanelBieuDoNgay(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if (cboThangDT.getSelectedIndex() == 6) {
+            try {
+                PanelBieuDoNgay(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if (cboThangDT.getSelectedIndex() == 7) {
+            try {
+                PanelBieuDoNgay(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if (cboThangDT.getSelectedIndex() == 8) {
+            try {
+                PanelBieuDoNgay(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if (cboThangDT.getSelectedIndex() == 9) {
+            try {
+                PanelBieuDoNgay(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if (cboThangDT.getSelectedIndex() == 10) {
+            try {
+                PanelBieuDoNgay(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if (cboThangDT.getSelectedIndex() == 11) {
+            try {
+                PanelBieuDoNgay(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1322,13 +1248,11 @@ public class ViewThongKe extends javax.swing.JPanel {
     private javax.swing.JPanel JPenalBieuDo;
     private javax.swing.JButton btnGuiBaoCao;
     private javax.swing.JButton btnTimTheoNgay;
-    private javax.swing.JComboBox<String> cboBieuDo;
     private javax.swing.JComboBox<String> cboHot;
     private javax.swing.JComboBox<String> cboMaxMin;
     private javax.swing.JComboBox<String> cboNamDoanhThu;
     private javax.swing.JComboBox<String> cboSanPham;
     private javax.swing.JComboBox<String> cboSanPhamTra;
-    private javax.swing.JComboBox<String> cboThang;
     private javax.swing.JComboBox<String> cboThangDT;
     private com.github.lgooddatepicker.components.DatePicker dPNgay1;
     private com.github.lgooddatepicker.components.DatePicker dPNgay2;
@@ -1343,8 +1267,6 @@ public class ViewThongKe extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
@@ -1422,7 +1344,7 @@ public class ViewThongKe extends javax.swing.JPanel {
 
     private void PanelBieuDoHangNam() throws ParseException, Exception {
         ChartPanel chartPanel = new ChartPanel(ut.createChartTheoNam());
-        JPenalBieuDo.setSize(1067, 382);
+        JPenalBieuDo.setSize(1260, 382);
         JPenalBieuDo.removeAll();
         JPenalBieuDo.setLayout(new CardLayout());
         JPenalBieuDo.add(chartPanel);
@@ -1430,9 +1352,9 @@ public class ViewThongKe extends javax.swing.JPanel {
         JPenalBieuDo.repaint();
     }
     
-    private void PanelBieuDoTheoKhoang(int ngay, int thang, int nam) throws ParseException, Exception {
-        ChartPanel chartPanel = new ChartPanel(ut.createChartTheoKhoangThoiGian(ngay, thang, nam));
-        JPenalBieuDo.setSize(1067, 382);
+    private void PanelBieuDoTheoKhoang(List<ThongKeTheoKhoangResponse> list) throws ParseException, Exception {
+        ChartPanel chartPanel = new ChartPanel(ut.createChartTheoKhoangThoiGian(list));
+        JPenalBieuDo.setSize(1260, 382);
         JPenalBieuDo.removeAll();
         JPenalBieuDo.setLayout(new CardLayout());
         JPenalBieuDo.add(chartPanel);
@@ -1442,7 +1364,7 @@ public class ViewThongKe extends javax.swing.JPanel {
 
     private void PanelBieuDoNam(int nam) throws ParseException, Exception {
         ChartPanel chartPanel = new ChartPanel(ut.createChartTheoThang(nam));
-        JPenalBieuDo.setSize(1067, 382);
+        JPenalBieuDo.setSize(1260, 382);
         JPenalBieuDo.removeAll();
         JPenalBieuDo.setLayout(new CardLayout());
         JPenalBieuDo.add(chartPanel);
@@ -1452,7 +1374,7 @@ public class ViewThongKe extends javax.swing.JPanel {
 
     private void PanelBieuDoNgay(int thang, int nam) throws ParseException, Exception {
         ChartPanel chartPanel = new ChartPanel(ut.createChartTheoThang(thang, nam));
-        JPenalBieuDo.setSize(1067, 382);
+        JPenalBieuDo.setSize(1260, 382);
         JPenalBieuDo.removeAll();
         JPenalBieuDo.setLayout(new CardLayout());
         JPenalBieuDo.add(chartPanel);
@@ -1460,18 +1382,18 @@ public class ViewThongKe extends javax.swing.JPanel {
         JPenalBieuDo.repaint();
     }
 
-    public void GetYearNow() {
-        Date date = new Date();
-        cboBieuDo.removeAllItems();
-        cboBieuDo.addItem("Tất cả");
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
-        simpleDateFormat.applyPattern("yyyy");
-        String format = simpleDateFormat.format(date);
-        int namhientai = Integer.parseInt(format);
-        for (int i = namhientai; i > namhientai - 5; i--) {
-            cboBieuDo.addItem(i + "");
-        }
-    }
+//    public void GetYearNow() {
+//        Date date = new Date();
+//        cboNamDoanhThu.removeAllItems();
+//        cboNamDoanhThu.addItem("Tất cả");
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
+//        simpleDateFormat.applyPattern("yyyy");
+//        String format = simpleDateFormat.format(date);
+//        int namhientai = Integer.parseInt(format);
+//        for (int i = namhientai; i > namhientai - 5; i--) {
+//            cboNamDoanhThu.addItem(i + "");
+//        }
+//    }
 
     public void GetYearNow2() {
         Date date = new Date();

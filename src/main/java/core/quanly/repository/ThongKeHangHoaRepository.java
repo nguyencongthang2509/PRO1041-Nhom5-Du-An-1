@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.Session;
-import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 import repository.CrudRepository;
 
@@ -34,7 +33,7 @@ public class ThongKeHangHoaRepository {
                          select new core.quanly.viewmodel.ThongKeHangHoaResponse
                          (a.chiTietSPId.id, a.chiTietSPId.sanPham.ma, a.chiTietSPId.sanPham.ten,
                          a.chiTietSPId.hang.ten, a.chiTietSPId.mauSac.ten, 
-                        a.chiTietSPId.kichThuoc.ten, a.soLuong, a.donGia)
+                        a.chiTietSPId.kichThuoc.ten, SUM(a.soLuong), a.donGia)
                          from HoaDonChiTiet a Group by a.chiTietSPId.id, a.chiTietSPId.sanPham.ma, 
                          a.chiTietSPId.sanPham.ten, a.chiTietSPId.hang.ten, a.chiTietSPId.mauSac.ten,
                          a.chiTietSPId.kichThuoc.ten,a.donGia
@@ -46,6 +45,11 @@ public class ThongKeHangHoaRepository {
             return null;
         }
         return list;
+    }
+    
+    public static void main(String[] args) {
+        List<ThongKeHangHoaResponse> list = new ThongKeHangHoaRepository().getListHDCT();
+        System.out.println(list);
     }
 //lấy ra danh sách sản phẩm đã trả
 
