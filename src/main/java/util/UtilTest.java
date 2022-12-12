@@ -86,6 +86,14 @@ public class UtilTest {
         return barChart;
     }
 
+    public JFreeChart createChartTheoKhoangThoiGian(int ngay, int thang, int nam) throws Exception {
+        JFreeChart barChart = ChartFactory.createBarChart(
+                "BIỂU ĐỒ DOANH THU CỦA CỬA HÀNG NĂM " + thang,
+                "Ngày", "Doanh số",
+                createDatasetTheoKhoangThoiGian(ngay, thang, nam), PlotOrientation.VERTICAL, true, true, true);
+        return barChart;
+    }
+
     private CategoryDataset createDatasetTheoNam() throws Exception {
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         Date date = new Date();
@@ -120,11 +128,16 @@ public class UtilTest {
                 dataset.addValue(new Double(Get().getDoanhThuNgayTrongThang(i, thang, nam).doubleValue()), "Doanh số", i + "");
             }
         } else {
-
             for (int i = 1; i <= 31; i++) {
                 dataset.addValue(new Double(Get().getDoanhThuNgayTrongThang(i, thang, nam).doubleValue()), "Doanh số", i + "");
             }
         }
+        return dataset;
+    }
+
+    public CategoryDataset createDatasetTheoKhoangThoiGian(int ngay, int thang, int nam) throws Exception {
+        final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        dataset.addValue(new Double(Get().getDoanhThuNgayTrongThang(ngay, thang, nam).doubleValue()), "Doanh số", ngay + "");
         return dataset;
     }
 
