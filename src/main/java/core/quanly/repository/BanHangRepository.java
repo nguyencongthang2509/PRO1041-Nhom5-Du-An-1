@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import javax.swing.JOptionPane;
+import org.hibernate.Session;
 import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 import repository.CrudRepository;
@@ -39,8 +40,6 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
                     + "a.mauSac.ten, a.kichThuoc.ten, a.hang.ten, a.soLuongTon, a.giaBan, a.moTa, a.maVach)"
                     + " FROM ChiTietSP a WHERE a.trangThaiXoa = 0 order by a.createdDate DESC";
             Query query = session.createQuery(hql);
-//            query.setFirstResult(1);
-//            query.setMaxResults(8);
             list = query.getResultList();
         } catch (Exception e) {
             e.printStackTrace();
@@ -48,26 +47,36 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
         }
         return list;
     }
+    
+    public static void main(String[] args) {
+        List<ChiTietSP> list = new BanHangRepository().getAll();
+        System.out.println(list);
+    }
+    
+//    public static void main(String[] args) {
+//        List<BhChiTietSPResponse> list = new BanHangRepository().getAllResponseCTSP();
+//        System.out.println(list);
+//    }
 
     public ChiTietSPKhuyenMai getCTSPKhuyenMai(String idChiTietSP) {
         ChiTietSPKhuyenMai chiTietSPKhuyenMai = new ChiTietSPKhuyenMai();
         try {
             session = HibernateUtil.getSession();
-            String hql = "SELECT a FROM ChiTietSPKhuyenMai a WHERE a.chiTietSPId.id = :idChiTietSP AND a.trangThai = 0";
+            String hql = "SELECT a FROM ChiTietSPKhuyenMai a WHERE a.chiTietSPId.id = :idChiTietSP";
             Query query = session.createQuery(hql);
             query.setParameter("idChiTietSP", idChiTietSP);
             chiTietSPKhuyenMai = (ChiTietSPKhuyenMai) query.getSingleResult();
         } catch (Exception e) {
+            
             return null;
         }
         return chiTietSPKhuyenMai;
     }
 
-    public static void main(String[] args) {
-        List<BhHoaDonChiTietResponse> list = new BanHangRepository().getAllHDCTByIdHoaDon("7b207910-96b6-4859-ba86-00b01a6f0f37");
-        System.out.println(list);
-    }
-
+//    public static void main(String[] args) {
+//        List<BhHoaDonChiTietResponse> list = new BanHangRepository().getAllHDCTByIdHoaDon("7b207910-96b6-4859-ba86-00b01a6f0f37");
+//        System.out.println(list);
+//    }
     public List<BhHoaDonResponse> getAllResponseHD(String idNhanVien, Integer hinhThucGiaoHang, Integer trangThai) {
         List<BhHoaDonResponse> list = new ArrayList<>();
         try {
@@ -78,7 +87,7 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
                         + "a.tenNguoiNhan, a.sdtNguoiNhan, a.diaChi, a.tenNguoiShip, a.sdtNguoiShip,"
                         + "a.tienShip, a.tienKhachTra, a.tienKhachChuyenKhoan, a.tienThua)"
                         + " FROM HoaDon a LEFT JOIN a.nhanVien b LEFT JOIN a.khachHang c "
-                        + "WHERE a.trangThai <> 1 AND b.id = :idNhanVien AND a.hinhThucGiaoHang LIKE CONCAT('%', CONVERT(VARCHAR, :hinhThucGiaoHang),'%') AND a.trangThai LIKE CONCAT('%',CONVERT(VARCHAR, :trangThai),'%')"
+                        + "WHERE a.trangThai <> 1 AND a.trangThai <> 7 AND b.id = :idNhanVien AND a.hinhThucGiaoHang LIKE CONCAT('%', CONVERT(VARCHAR, :hinhThucGiaoHang),'%') AND a.trangThai LIKE CONCAT('%',CONVERT(VARCHAR, :trangThai),'%')"
                         + " ORDER BY a.lastModifiedDate DESC";
                 Query query = session.createQuery(hql);
                 query.setParameter("idNhanVien", idNhanVien);
@@ -93,7 +102,7 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
                         + "a.tenNguoiNhan, a.sdtNguoiNhan, a.diaChi, a.tenNguoiShip, a.sdtNguoiShip,"
                         + "a.tienShip, a.tienKhachTra, a.tienKhachChuyenKhoan, a.tienThua)"
                         + " FROM HoaDon a LEFT JOIN a.nhanVien b LEFT JOIN a.khachHang c "
-                        + "WHERE a.trangThai <> 1 AND b.id = :idNhanVien AND a.hinhThucGiaoHang LIKE CONCAT('%','','%') AND a.trangThai LIKE CONCAT('%',CONVERT(VARCHAR, :trangThai),'%')"
+                        + "WHERE a.trangThai <> 1 AND a.trangThai <> 7 AND b.id = :idNhanVien AND a.hinhThucGiaoHang LIKE CONCAT('%','','%') AND a.trangThai LIKE CONCAT('%',CONVERT(VARCHAR, :trangThai),'%')"
                         + " ORDER BY a.lastModifiedDate DESC";
                 Query query = session.createQuery(hql);
                 query.setParameter("idNhanVien", idNhanVien);
@@ -107,7 +116,7 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
                         + "a.tenNguoiNhan, a.sdtNguoiNhan, a.diaChi, a.tenNguoiShip, a.sdtNguoiShip,"
                         + "a.tienShip, a.tienKhachTra, a.tienKhachChuyenKhoan, a.tienThua)"
                         + " FROM HoaDon a LEFT JOIN a.nhanVien b LEFT JOIN a.khachHang c "
-                        + "WHERE a.trangThai <> 1 AND b.id = :idNhanVien AND a.hinhThucGiaoHang LIKE CONCAT('%', CONVERT(VARCHAR, :hinhThucGiaoHang),'%') AND a.trangThai LIKE CONCAT('%','','%')"
+                        + "WHERE a.trangThai <> 1 AND a.trangThai <> 7  AND b.id = :idNhanVien AND a.hinhThucGiaoHang LIKE CONCAT('%', CONVERT(VARCHAR, :hinhThucGiaoHang),'%') AND a.trangThai LIKE CONCAT('%','','%')"
                         + " ORDER BY a.lastModifiedDate DESC";
                 Query query = session.createQuery(hql);
                 query.setParameter("idNhanVien", idNhanVien);
@@ -121,7 +130,7 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
                         + "a.tenNguoiNhan, a.sdtNguoiNhan, a.diaChi, a.tenNguoiShip, a.sdtNguoiShip,"
                         + "a.tienShip, a.tienKhachTra, a.tienKhachChuyenKhoan, a.tienThua)"
                         + " FROM HoaDon a LEFT JOIN a.nhanVien b LEFT JOIN a.khachHang c "
-                        + "WHERE a.trangThai <> 1 AND b.id = :idNhanVien"
+                        + "WHERE a.trangThai <> 1 AND a.trangThai <> 7 AND b.id = :idNhanVien"
                         + " ORDER BY a.lastModifiedDate DESC";
                 Query query = session.createQuery(hql);
                 query.setParameter("idNhanVien", idNhanVien);
@@ -216,6 +225,19 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
         return id;
     }
 
+    public ChiTietSP findChiTietSPById(String id) {
+        ChiTietSP idCT = new ChiTietSP();
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "SELECT a FROM ChiTietSP a WHERE a.id = :id";
+            Query query = session.createQuery(hql);
+            query.setParameter("id", id);
+            idCT = (ChiTietSP) query.getSingleResult();
+        } catch (Exception e) {
+        }
+        return idCT;
+    }
+
     public KhachHang findKhachHangById(String id) {
         KhachHang khachHang = null;
         try {
@@ -233,19 +255,16 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
 //        List<BhHoaDonChiTietResponse> list = new BanHangRepository().getAllHDCTByIdHoaDon("3b278840-82a0-4af1-92b4-a23ed60d0e00");
 //        System.out.println(list);
 //    }
-    public boolean updateSoLuong(Map<String, BhHoaDonChiTietResponse> list) {
+    public boolean updateSoLuong(String id, Integer soLuong) {
         boolean check = false;
         String sql = "UPDATE ChiTietSP SET soLuongTon = soLuongTon - :soLuongMua WHERE id = :id";
         session = HibernateUtil.getSession();
         trans = session.beginTransaction();
         try {
-            for (Map.Entry<String, BhHoaDonChiTietResponse> entry : list.entrySet()) {
-                BhHoaDonChiTietResponse value = entry.getValue();
-                Query query = session.createQuery(sql);
-                query.setParameter("soLuongMua", value.getSoLuong());
-                query.setParameter("id", value.getIdChiTietSP());
-                query.executeUpdate();
-            }
+            Query query = session.createQuery(sql);
+            query.setParameter("soLuongMua", soLuong);
+            query.setParameter("id", id);
+            query.executeUpdate();
             check = true;
             trans.commit();
         } catch (Exception e) {
@@ -282,7 +301,7 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
         }
         return entity;
     }
-    
+
     public KhachHang saveOrUpdateKH(KhachHang entity) {
         try {
             session = HibernateUtil.getSession();
@@ -344,6 +363,23 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
         return list;
     }
 
+    public List<BhKhachHangResponse> findKhachHang(String input) {
+        List<BhKhachHangResponse> list = new ArrayList<>();
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "SELECT " + "new core.quanly.viewmodel.BhKhachHangResponse"
+                    + "(a.id, a.ma, a.hoTen, a.sdt, a.email, a.gioiTinh, a.diaChi, a.capBac)"
+                    + " FROM KhachHang a where a.hoTen LIKE CONCAT('%',:input,'%') OR a.sdt LIKE CONCAT('%',:input,'%') OR a.email LIKE CONCAT('%',:input,'%') OR a.diaChi LIKE CONCAT('%',:input,'%')";
+            Query query = session.createQuery(hql);
+            query.setParameter("input", input);
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return list;
+    }
+
     public List<BhNhanVienResponse> getAllNhanVienResponse() {
         List<BhNhanVienResponse> list = new ArrayList<>();
         try {
@@ -382,7 +418,7 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
         int ma = Integer.parseInt(maStr);
         return ++ma;
     }
-    
+
     public int genMaKH() {
         String maStr = "";
         session = HibernateUtil.getSession();
@@ -405,8 +441,6 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
         int ma = Integer.parseInt(maStr);
         return ++ma;
     }
-    
-    
 
     public boolean insertHDCT(String idHoaDon, Map<String, BhHoaDonChiTietResponse> list) {
         boolean check = false;

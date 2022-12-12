@@ -183,6 +183,7 @@ public class InsertData {
             }
             khachHangBanLe.setSdt("0123456789");
             khachHangBanLe.setDiaChi("Hà Nội");
+            khachHangBanLe.setCapBac(null);
             session.saveOrUpdate(khachHangBanLe);
 
             KhachHang khachHang = new KhachHang();

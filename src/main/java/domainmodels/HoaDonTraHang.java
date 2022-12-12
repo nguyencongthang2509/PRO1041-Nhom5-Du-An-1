@@ -13,11 +13,17 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+<<<<<<< HEAD
+=======
+import lombok.ToString;
+import org.hibernate.annotations.Nationalized;
+>>>>>>> develop_phase_2
 
 /**
  *
@@ -28,12 +34,17 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
+@ToString
 @Table(name = "hoa_don_tra_hang")
 public class HoaDonTraHang extends PrimaryEntity implements Serializable {
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_hoa_don")
-    private HoaDon hoaDon;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_hoa_don_cu")
+    private HoaDon hoaDonCu;
+    
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_hoa_don_moi")
+    private HoaDon hoaDonMoi;
 
     @Column(name = "ngay_tra")
     private Date ngayDoiTra;

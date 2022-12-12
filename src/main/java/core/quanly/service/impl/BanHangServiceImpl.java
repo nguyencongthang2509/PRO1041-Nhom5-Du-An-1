@@ -71,8 +71,8 @@ public class BanHangServiceImpl implements BanHangService {
     }
 
     @Override
-    public boolean updateSoLuong(Map<String, BhHoaDonChiTietResponse> list) {
-        boolean check = banHangRepository.updateSoLuong(list);
+    public boolean updateSoLuong(String id, Integer soLuong) {
+        boolean check = banHangRepository.updateSoLuong(id, soLuong);
         return check;
     }
 
@@ -206,6 +206,16 @@ public class BanHangServiceImpl implements BanHangService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public ChiTietSP findChiTietSPById(String id) {
+        return banHangRepository.findChiTietSPById(id);
+    }
+
+    @Override
+    public List<BhKhachHangResponse> findKhachHang(String input) {
+        return banHangRepository.findKhachHang(input);
     }
 
 }

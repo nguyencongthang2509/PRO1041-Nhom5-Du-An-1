@@ -7,6 +7,7 @@ package core.quanly.repository;
 import config.HibernateUtil;
 import core.quanly.viewmodel.ThongKeHangHoaResponse;
 import domainmodels.HoaDon;
+import domainmodels.HoaDonTraHangChiTiet;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -31,7 +32,22 @@ public class ThongKeHangHoaRepository {
             String hql = "select new core.quanly.viewmodel.ThongKeHangHoaResponse"
                     + "(a.id, a.chiTietSPId.sanPham.ma, a.chiTietSPId.sanPham.ten, a.chiTietSPId.hang.ten, a.chiTietSPId.mauSac.ten, "
                     + "a.chiTietSPId.kichThuoc.ten, a.soLuong, a.donGia)"
-                    + " from HoaDonChiTiet a ";
+                    + " from HoaDonChiTiet a  ";
+            Query query = session.createQuery(hql);
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return list;
+    }
+//lấy ra danh sách sản phẩm đã trả
+
+    public List<HoaDonTraHangChiTiet> getListTraHang() {
+        List<HoaDonTraHangChiTiet> list = new ArrayList<>();
+        try {
+            Session session = HibernateUtil.getSession();
+            String hql = "select a from HoaDonTraHangChiTiet a ";
             Query query = session.createQuery(hql);
             list = query.getResultList();
         } catch (Exception e) {
@@ -41,6 +57,7 @@ public class ThongKeHangHoaRepository {
         return list;
     }
 
+<<<<<<< HEAD
     public static void main(String[] args) throws Exception {
 //        String sDate1 = "01/01/2022";
 //        String sDate2 = "30/12/2022";
@@ -54,13 +71,14 @@ public class ThongKeHangHoaRepository {
         List<ThongKeHangHoaResponse> list = new ThongKeHangHoaRepository().getListMaxValue();
         System.out.println(list);
     }
+=======
+>>>>>>> develop_phase_2
 //Lấy ra doanh thu tất cả các năm
-
     public BigDecimal getDoanhThu() {
         BigDecimal nv = null;
         try {
             Session session = HibernateUtil.getSession();
-            String hql = "select sum(a.thanhTien) from HoaDon a where a.trangThai=2 OR a.trangThai = 5";
+            String hql = "select sum(a.thanhTien) from HoaDon a where a.trangThai = 2 OR a.trangThai = 5";
             Query query = session.createQuery(hql);
             nv = (BigDecimal) query.getSingleResult();
         } catch (Exception e) {
@@ -75,7 +93,7 @@ public class ThongKeHangHoaRepository {
         BigDecimal nv = null;
         try {
             Session session = HibernateUtil.getSession();
-            String hql = "select sum(a.thanhTien) from HoaDon a where  a.trangThai=2 and year(a.ngayThanhToan)=:date1";
+            String hql = "select sum(a.thanhTien) from HoaDon a where  (a.trangThai=2 or a.trangThai = 5) and year(a.ngayThanhToan)=:date1";
             Query query = session.createQuery(hql);
             query.setParameter("date1", nam);
             nv = (BigDecimal) query.getSingleResult();
@@ -91,7 +109,7 @@ public class ThongKeHangHoaRepository {
         Long id = null;
         try {
             Session session = HibernateUtil.getSession();
-            String hql = "select count(a.id) from HoaDon a ";
+            String hql = "select count(a.id) from HoaDon a where a.ngayThanhToan is not null";
             Query query = session.createQuery(hql);
             id = (Long) query.getSingleResult();
         } catch (Exception e) {
@@ -136,7 +154,7 @@ public class ThongKeHangHoaRepository {
         BigDecimal nv = null;
         try {
             Session session = HibernateUtil.getSession();
-            String hql = "select sum(a.thanhTien) from HoaDon a where year(a.ngayThanhToan)=:date1 ";
+            String hql = "select sum(a.thanhTien) from HoaDon a where year(a.ngayThanhToan)=:date1  AND (a.trangThai = 2 OR a.trangThai = 5)";
             Query query = session.createQuery(hql);
             query.setParameter("date1", date1);
             nv = (BigDecimal) query.getSingleResult();
@@ -177,7 +195,7 @@ public class ThongKeHangHoaRepository {
         BigDecimal nv = null;
         try {
             Session session = HibernateUtil.getSession();
-            String hql = "select sum(a.thanhTien) from HoaDon a where month(a.ngayThanhToan)=:date1 and year(a.ngayThanhToan)=:date2";
+            String hql = "select sum(a.thanhTien) from HoaDon a where (a.trangThai = 2 OR a.trangThai = 5) AND month(a.ngayThanhToan)=:date1 and year(a.ngayThanhToan)=:date2";
             Query query = session.createQuery(hql);
             query.setParameter("date1", thang);
             query.setParameter("date2", nam);
@@ -241,7 +259,7 @@ public class ThongKeHangHoaRepository {
         Long id = null;
         try {
             Session session = HibernateUtil.getSession();
-            String hql = "select count(a.id) from HoaDon a where year(a.ngayThanhToan)=:date1 ";
+            String hql = "select count(a.id) from HoaDon a where year(a.ngayThanhToan)=:date1";
             Query query = session.createQuery(hql);
             query.setParameter("date1", date1);
             id = (Long) query.getSingleResult();
@@ -257,7 +275,7 @@ public class ThongKeHangHoaRepository {
         Long id = null;
         try {
             Session session = HibernateUtil.getSession();
-            String hql = "select count(a.id) from HoaDon a where a.trangThai=1 and year(a.ngayThanhToan)=:date1";
+            String hql = "select count(a.id) from HoaDon a where a.trangThai=1 and year(a.ngayTao)=:date1";
             Query query = session.createQuery(hql);
             query.setParameter("date1", date1);
             id = (Long) query.getSingleResult();
@@ -272,10 +290,16 @@ public class ThongKeHangHoaRepository {
     public Long getSoKhachHangTungNam(int date1) {
         Long id = null;
         try {
+            String dateStr = "01-01-" + date1;
+            String dateStr1 = "31-12-" + date1;
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            Long time1 = sdf.parse(dateStr).getTime();
+            Long time2 = sdf.parse(dateStr1).getTime();
             Session session = HibernateUtil.getSession();
-            String hql = "select count(a.ma) from HoaDon a where year(a.ngayThanhToan)=:date1";
+            String hql = "select count(id) FROm KhachHang where ma <> 'KH000' AND createdDate > :time1 AND createdDate < :time2";
             Query query = session.createQuery(hql);
-            query.setParameter("date1", date1);
+            query.setParameter("time1", time1);
+            query.setParameter("time2", time2);
             id = (Long) query.getSingleResult();
         } catch (Exception e) {
             e.printStackTrace();
@@ -283,16 +307,35 @@ public class ThongKeHangHoaRepository {
         }
         return id;
     }
+
+    public static void main(String[] args) {
+        long id = new ThongKeHangHoaRepository().getSoKhachHangTungNam(2022);
+        System.out.println(id);
+    }
 //số khách hàng theo từng tháng
 
     public Long getKhachHangTungThang(int thang, int nam) {
         Long id = null;
         try {
+            Long time1 = null;
+            Long time2 = null;
+            String dateStr = "01-" + thang + "-" + nam;
+            String dateStr1 = "";
+            if (thang == 1 || thang == 3 || thang == 5 || thang == 7 || thang == 8 || thang == 10 || thang == 12) {
+                dateStr1 = "31-" + thang + "-" + nam;
+            } else if (thang == 4 || thang == 6 || thang == 9 || thang == 11) {
+                dateStr1 = "30-" + thang + "-" + nam;
+            } else {
+                dateStr1 = "28-" + thang + "-" + nam;
+            }
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            time1 = sdf.parse(dateStr).getTime();
+            time2 = sdf.parse(dateStr1).getTime();
             Session session = HibernateUtil.getSession();
-            String hql = "select count(a.ma) from HoaDon a where  month(a.ngayThanhToan)=:date1 and year(a.ngayThanhToan)=:date2 ";
+            String hql = "select count(id) from KhachHang where ma <> 'KH000' AND createdDate > :time1 AND createdDate < :time2";
             Query query = session.createQuery(hql);
-            query.setParameter("date1", thang);
-            query.setParameter("date2", nam);
+            query.setParameter("time1", time1);
+            query.setParameter("time2", time2);
             id = (Long) query.getSingleResult();
         } catch (Exception e) {
             e.printStackTrace();
@@ -306,7 +349,7 @@ public class ThongKeHangHoaRepository {
         Long id = null;
         try {
             Session session = HibernateUtil.getSession();
-            String hql = "select count(a.id) from HoaDon a where a.trangThai=1 and month(a.ngayThanhToan)=:date1 and year(a.ngayThanhToan)=:date2";
+            String hql = "select count(a.id) from HoaDon a where a.trangThai=1 and month(a.ngayTao)=:date1 and year(a.ngayTao)=:date2";
             Query query = session.createQuery(hql);
             query.setParameter("date1", thang);
             query.setParameter("date2", nam);
@@ -349,6 +392,9 @@ public class ThongKeHangHoaRepository {
             e.printStackTrace();
             return null;
         }
+        if (id == null) {
+            id = Long.valueOf("0");
+        }
         return id;
     }
 
@@ -357,7 +403,7 @@ public class ThongKeHangHoaRepository {
         Long id = null;
         try {
             Session session = HibernateUtil.getSession();
-            String hql = "select count(a.id) from HoaDon a where a.trangThai=1 and (a.ngayThanhToan between :date1 and :date2)";
+            String hql = "select count(a.id) from HoaDon a where a.trangThai=1 and (a.ngayTao between :date1 and :date2)";
             Query query = session.createQuery(hql);
             query.setParameter("date1", date1);
             query.setParameter("date2", date2);
@@ -365,6 +411,9 @@ public class ThongKeHangHoaRepository {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        }
+        if (id == null) {
+            id = Long.valueOf("0");
         }
         return id;
     }
@@ -374,14 +423,17 @@ public class ThongKeHangHoaRepository {
         Long id = null;
         try {
             Session session = HibernateUtil.getSession();
-            String hql = "select count(a.ma) from HoaDon a where a.ngayThanhToan between :date1 and :date2";
+            String hql = "select count(id) from KhachHang where ma <> 'KH000' AND createdDate between :date1 AND :date2";
             Query query = session.createQuery(hql);
-            query.setParameter("date1", date1);
-            query.setParameter("date2", date2);
+            query.setParameter("date1", date1.getTime());
+            query.setParameter("date2", date2.getTime());
             id = (Long) query.getSingleResult();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        }
+        if (id == null) {
+            id = Long.valueOf("0");
         }
         return id;
     }
@@ -402,6 +454,37 @@ public class ThongKeHangHoaRepository {
         }
         return list;
     }
+
+    //Lọc SP trả Nhiều
+    public List<HoaDonTraHangChiTiet> getListMaxValueTra() {
+        List<HoaDonTraHangChiTiet> list = new ArrayList<>();
+        try {
+            Session session = HibernateUtil.getSession();
+            String hql = "select a from HoaDonTraHangChiTiet a where a.soLuongTra=(select max(soLuongTra) from HoaDonTraHangChiTiet )";
+            Query query = session.createQuery(hql);
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return list;
+    }
+
+    //Lọc SP trả Ít
+    public List<HoaDonTraHangChiTiet> getListMinValueTra() {
+        List<HoaDonTraHangChiTiet> list = new ArrayList<>();
+        try {
+            Session session = HibernateUtil.getSession();
+            String hql = "select a from HoaDonTraHangChiTiet a where a.soLuongTra=(select min(a.soLuongTra) from HoaDonTraHangChiTiet a)";
+            Query query = session.createQuery(hql);
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return list;
+    }
+//SP bán chậm
 
     public List<ThongKeHangHoaResponse> getListMinValue() {
         List<ThongKeHangHoaResponse> list = new ArrayList<>();
@@ -437,6 +520,100 @@ public class ThongKeHangHoaRepository {
         }
         return list;
     }
+<<<<<<< HEAD
    
+=======
+    //tìm kiếm hàng trả
+
+    public List<HoaDonTraHangChiTiet> TimKiemHangHoaTra(String input) {
+        List<HoaDonTraHangChiTiet> list = new ArrayList<>();
+        try {
+            Session session = HibernateUtil.getSession();
+            String hql = "select a from HoaDonTraHangChiTiet a where a.maChiTietSanPham like CONCAT('%',:input,'%') or "
+                    + "a.tenSP like CONCAT('%',:input,'%') or a.tenHang like CONCAT('%',:input,'%') or a.kichThuoc like CONCAT('%',:input,'%') or"
+                    + " a.mauSac like CONCAT('%',:input,'%') or a.giaBan like CONCAT('%',:input,'%') or a.soLuongTra like CONCAT('%',:input,'%')";
+            Query query = session.createQuery(hql);
+            query.setParameter("input", input);
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return list;
+    }
+
+    //doanh thu ngày
+    public BigDecimal BaoCaoDT(Date dat1) {
+        BigDecimal nv = null;
+        try {
+            Session session = HibernateUtil.getSession();
+            String hql = "select sum(a.thanhTien) from HoaDon a where (a.trangThai=2 or a.trangThai = 5) and month(a.ngayThanhToan) = month(:dat1) "
+                    + "and year(a.ngayThanhToan)= year(:dat1) and day(a.ngayThanhToan)= day(:dat1)";
+            Query query = session.createQuery(hql);
+            query.setParameter("dat1", dat1);
+            nv = (BigDecimal) query.getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        if (nv == null) {
+            nv = BigDecimal.valueOf(0.00);
+        }
+        return nv;
+    }
+
+    //hoá đơn ngày
+    public Long BaoCaoHD(Date dat1) {
+        Long id = null;
+        try {
+            Session session = HibernateUtil.getSession();
+            String hql = "select count(id) from HoaDon  where month(ngayThanhToan) = month(:dat1) "
+                    + "and year(ngayThanhToan)= year(:dat1) and day(ngayThanhToan)= day(:dat1)";
+            Query query = session.createQuery(hql);
+            query.setParameter("dat1", dat1);
+            id = (Long) query.getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return id;
+    }
+
+    //hoá đơn huỷ ngày
+    public Long BaoCaoHDhuy(Date dat1) {
+        Long id = null;
+        try {
+            Session session = HibernateUtil.getSession();
+            String hql = "select count(a.id) from HoaDon a where a.trangThai=1 and month(a.ngayThanhToan) = month(:dat1) "
+                    + "and year(a.ngayThanhToan)= year(:dat1) and day(a.ngayThanhToan)= day(:dat1)";
+            Query query = session.createQuery(hql);
+            query.setParameter("dat1", dat1);
+            id = (Long) query.getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return id;
+    }
+    //khách hàng ngày
+
+    public int BaoCaoKH(Date dat1) {
+        int id = 0;
+        try {
+            Session session = HibernateUtil.getSession();
+            String hql = "select count(a.id) from khach_hang a inner join hoa_don b on a.id = b.id_khach_hang where(month(b.ngay_thanh_toan) = month(:dat1) \n"
+                    + "  and year(b.ngay_thanh_toan)= year(:dat1) and day(b.ngay_thanh_toan)= day(:dat1)) ";
+            Query query = session.createNativeQuery(hql);
+            query.setParameter("dat1", dat1);
+            id = (int) query.getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        return id;
+    }
+>>>>>>> develop_phase_2
+
+
 
 }

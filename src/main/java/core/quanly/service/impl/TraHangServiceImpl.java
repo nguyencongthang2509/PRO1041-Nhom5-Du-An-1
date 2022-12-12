@@ -54,4 +54,14 @@ public class TraHangServiceImpl implements TraHangService {
         return traHangRepository.getAllResponseHDTraHang();
     }
 
+    @Override
+    public HoaDonTraHang findHoaDonTraHang(String id) {
+        return traHangRepository.findHoaDonTraHang(id);
+    }
+
+    @Override
+    public List<HoaDonTraHangChiTiet> getAllHoaDonTraHangChiTiet(String id) {
+        return traHangRepository.getAllHoaDonTraHangChiTiet(id);
+    }
+
 }

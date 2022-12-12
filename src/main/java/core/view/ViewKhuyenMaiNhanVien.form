@@ -137,8 +137,6 @@
                         <Column editable="false" title="Ch&#x1ea5;t li&#x1ec7;u" type="java.lang.Object"/>
                       </Table>
                     </Property>
-<<<<<<< HEAD
-=======
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
@@ -189,7 +187,6 @@
                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                       <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
                     </Property>
->>>>>>> develop_phase_2
                   </Properties>
                   <Events>
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblLocSPMouseClicked"/>
@@ -272,7 +269,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="14" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Component id="jPanel2" min="-2" pref="1252" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
           </Group>
@@ -363,11 +360,7 @@
                                   <Component id="btnhuy" min="-2" pref="149" max="-2" attributes="0"/>
                                   <Component id="btnsua" min="-2" pref="149" max="-2" attributes="0"/>
                               </Group>
-<<<<<<< HEAD
-                              <EmptySpace max="32767" attributes="0"/>
-=======
                               <EmptySpace pref="181" max="32767" attributes="0"/>
->>>>>>> develop_phase_2
                           </Group>
                           <Component id="jPanel5" max="32767" attributes="0"/>
                       </Group>
@@ -433,11 +426,7 @@
                                       <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="jScrollPane3" alignment="0" min="-2" pref="489" max="-2" attributes="0"/>
                                   </Group>
-<<<<<<< HEAD
-                                  <EmptySpace pref="16" max="32767" attributes="0"/>
-=======
                                   <EmptySpace max="32767" attributes="0"/>
->>>>>>> develop_phase_2
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -594,11 +583,7 @@
                               <Component id="txtgiamgia" max="32767" attributes="0"/>
                               <Component id="cobgiamgia" min="-2" pref="140" max="-2" attributes="0"/>
                           </Group>
-<<<<<<< HEAD
-                          <EmptySpace min="0" pref="40" max="32767" attributes="0"/>
-=======
                           <EmptySpace min="0" pref="62" max="32767" attributes="0"/>
->>>>>>> develop_phase_2
                       </Group>
                       <Component id="jPanel8" max="32767" attributes="0"/>
                   </Group>
@@ -691,14 +676,6 @@
                                       <Component id="chkselectedall" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="btnbokhoidanhsach" min="-2" max="-2" attributes="0"/>
-<<<<<<< HEAD
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="txttimsanphammuonad" min="-2" pref="152" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="cobtensanpham" min="-2" pref="131" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="jScrollPane4" pref="620" max="32767" attributes="0"/>
-=======
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="cobtensanpham" min="-2" pref="131" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
@@ -707,7 +684,6 @@
                                       <Component id="jLabel6" min="-2" pref="33" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jScrollPane4" pref="622" max="32767" attributes="0"/>
->>>>>>> develop_phase_2
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -717,13 +693,6 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-<<<<<<< HEAD
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="chkselectedall" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="cobtensanpham" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnbokhoidanhsach" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txttimsanphammuonad" alignment="3" min="-2" max="-2" attributes="0"/>
-=======
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="chkselectedall" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -732,7 +701,6 @@
                                       <Component id="txttimsanphammuonad" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jLabel6" max="32767" attributes="0"/>
->>>>>>> develop_phase_2
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jScrollPane4" min="-2" pref="220" max="-2" attributes="0"/>
@@ -855,10 +823,6 @@
                     <Component class="javax.swing.JTextField" name="txttimsanphammuonad">
                       <Events>
                         <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="txttimsanphammuonadCaretUpdate"/>
-<<<<<<< HEAD
-                      </Events>
-                    </Component>
-=======
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txttimsanphammuonadActionPerformed"/>
                       </Events>
                     </Component>
@@ -869,7 +833,6 @@
                         </Property>
                       </Properties>
                     </Component>
->>>>>>> develop_phase_2
                   </SubComponents>
                 </Container>
               </SubComponents>

@@ -15,6 +15,8 @@ import java.util.List;
 public interface SPChatLieuService {
     
     List<SPChatLieuResponse> getAllViewModel();
+    
+    List<SPChatLieuResponse> getAllResponse();
 
     ChatLieu getOne(String ma);
 

@@ -59,4 +59,13 @@ public interface HoaDonservice {
     boolean updateTTHoaDon(String id);
     
     String findIdbyMa(String ma);
+<<<<<<< HEAD
+=======
+    
+    HoaDon findHdByMa(String ma);
+    
+    boolean updateSoLuong(String id, Integer soLuong);
+    
+    String findIdSPbyHDCT(String id);
+>>>>>>> develop_phase_2
 }

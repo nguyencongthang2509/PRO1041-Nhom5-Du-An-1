@@ -56,7 +56,7 @@ public class BhHoaDonResponse {
     private BigDecimal tienThua;
 
     private String getTrangThaiHoaDon() {
-        return trangThai == 0 ? "Chờ thanh toán" : (trangThai == 1 ? "Đã hủy" : (trangThai == 2 ? "Đã thanh toán" : (trangThai == 3 ? "Chờ giao hàng" : (trangThai == 4 ? "Đang giao" : "Đã giao"))));
+        return trangThai == 0 ? "Chờ thanh toán" : (trangThai == 1 ? "Đã hủy" : (trangThai == 2 ? "Đã thanh toán" : (trangThai == 3 ? "Chờ giao hàng" : (trangThai == 4 ? "Đang giao" : (trangThai == 5 ? "Đã giao" : (trangThai == 6 ? "Khách hẹn lại" : "Đã trả hàng"))))));
     }
 
     public Object[] toDataRow() {

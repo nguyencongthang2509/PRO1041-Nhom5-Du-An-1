@@ -27,6 +27,20 @@ public class SanPhamRepository extends CrudRepository<String, SanPham, SanPhamRe
         res = "new core.quanly.viewmodel.SanPhamResponse(a.id, a.ma, a.ten)";
     }
     
+    public List<SanPhamResponse> getAllResponseSP() {
+        List<SanPhamResponse> list = new ArrayList<>();
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "SELECT new core.quanly.viewmodel.SanPhamResponse(a.id, a.ma, a.ten) FROM SanPham a Where a.trangThaiXoa = 0 order by a.createdDate desc";
+            org.hibernate.query.Query query = session.createQuery(hql);
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return list;
+    }
+    
     public List<SanPhamResponse> findByMaOrTen(String input) {
         List<SanPhamResponse> lst = new ArrayList<>();
         try {

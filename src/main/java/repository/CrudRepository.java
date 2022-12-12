@@ -12,6 +12,8 @@ import org.hibernate.query.Query;
 public abstract class CrudRepository<Key, Entity, Response> {
 
     protected Session session;
+    protected Session sessionDaily;
+    protected Transaction transDaily;
     protected Transaction trans;
     protected String className;
     protected String res;

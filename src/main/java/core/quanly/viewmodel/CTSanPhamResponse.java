@@ -37,6 +37,13 @@ public class CTSanPhamResponse {
     private String maVach;
     private Integer trangThai;
 
+    public String getTT(){
+        if(trangThai == 0){
+            return "Đang hoạt động";
+        }
+        return "Dừng hoạt động";
+    }
+    
     public Object[] toDateRow() {
         return new Object[]{mactsp, masp, mauSac, kichThuoc, hang, chatLieu,
             moTa, soLuongTon, giaBan, maVach, trangThai == 0 ? "Đang hoạt động" : "Dừng hoạt động"
