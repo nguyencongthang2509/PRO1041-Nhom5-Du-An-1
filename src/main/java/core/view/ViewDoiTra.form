@@ -690,7 +690,7 @@
                   <Component id="jTabbedPane1" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jPanel4" max="32767" attributes="0"/>
                   <Component id="jPanel5" max="32767" attributes="0"/>
               </Group>
@@ -880,7 +880,7 @@
                       <Component id="txtTenKHNgoai" min="-2" pref="212" max="-2" attributes="0"/>
                       <Component id="txtMaHDNgoai" min="-2" pref="212" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="37" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -1130,6 +1130,7 @@
                           <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace pref="13" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -1467,8 +1468,8 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="L&#x1ecb;ch s&#x1eed; c&#xe1;c h&#xf3;a &#x111;&#x1a1;n tr&#x1ea3; h&#xe0;ng">
-                <Property name="tabTitle" type="java.lang.String" value="L&#x1ecb;ch s&#x1eed; c&#xe1;c h&#xf3;a &#x111;&#x1a1;n tr&#x1ea3; h&#xe0;ng"/>
+              <JTabbedPaneConstraints tabName="L&#x1ecb;ch s&#x1eed; h&#xf3;a &#x111;&#x1a1;n tr&#x1ea3; h&#xe0;ng">
+                <Property name="tabTitle" type="java.lang.String" value="L&#x1ecb;ch s&#x1eed; h&#xf3;a &#x111;&#x1a1;n tr&#x1ea3; h&#xe0;ng"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
