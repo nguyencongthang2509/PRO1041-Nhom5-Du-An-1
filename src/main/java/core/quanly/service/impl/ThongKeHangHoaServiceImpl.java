@@ -7,6 +7,7 @@ package core.quanly.service.impl;
 import core.quanly.repository.ThongKeHangHoaRepository;
 import core.quanly.service.ThongKeHangHoaService;
 import core.quanly.viewmodel.ThongKeHangHoaResponse;
+import domainmodels.HoaDonChiTiet;
 import java.util.List;
 
 /**

@@ -24,7 +24,7 @@ public class ThongKeHangHoaResponse {
     private String hang;
     private String mau;
     private String size;
-    private Integer soLuong;
+    private long soLuong;
     private BigDecimal donGia;
     
     public Object[] toDataRow(int index){

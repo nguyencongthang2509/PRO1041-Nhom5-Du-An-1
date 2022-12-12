@@ -1548,9 +1548,7 @@ public class ViewSanPham extends javax.swing.JPanel {
         dtmshowctsp = (DefaultTableModel) tblCTSanPham.getModel();
         dtmshowctsp.setRowCount(0);
         lstctSpViewModel = ctsanPhamService.getFormCTSP(maSp);
-        for (CTSanPhamResponse ctsp : lstctSpViewModel) {
-            dtmshowctsp.addRow(ctsp.toDateRow());
-        }
+        loadTableChiTietSP(lstctSpViewModel);
     }
 
     private void ShowDataComboBoxHang(List<Hang> lstHang) {
@@ -2371,6 +2369,7 @@ public class ViewSanPham extends javax.swing.JPanel {
                 }
             }
         }
+        lblRecord.setText(tranghientai + 1 + " of " + tongsoTrang);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
