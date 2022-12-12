@@ -48,15 +48,15 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
         return list;
     }
     
-//    public static void main(String[] args) {
-//        List<ChiTietSP> list = new BanHangRepository().getAll();
-//        System.out.println(list);
-//    }
-    
     public static void main(String[] args) {
-        List<BhChiTietSPResponse> list = new BanHangRepository().getAllResponseCTSP();
+        List<ChiTietSP> list = new BanHangRepository().getAll();
         System.out.println(list);
     }
+    
+//    public static void main(String[] args) {
+//        List<BhChiTietSPResponse> list = new BanHangRepository().getAllResponseCTSP();
+//        System.out.println(list);
+//    }
 
     public ChiTietSPKhuyenMai getCTSPKhuyenMai(String idChiTietSP) {
         ChiTietSPKhuyenMai chiTietSPKhuyenMai = new ChiTietSPKhuyenMai();
@@ -71,11 +71,6 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
             return null;
         }
         return chiTietSPKhuyenMai;
-    }
-
-    public static void main(String[] args) {
-        ChiTietSPKhuyenMai getCTSPKhuyenMai = new BanHangRepository().getCTSPKhuyenMai("02d198fd-1022-4226-8016-9e227ebf52cc");
-        System.out.println(getCTSPKhuyenMai);
     }
 
 //    public static void main(String[] args) {
