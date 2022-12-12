@@ -304,15 +304,17 @@ public class ViewBanHang extends javax.swing.JPanel {
 //    }
     private void loadDataToTableSP(List<BhChiTietSPResponse> list) {
         modelSanPham.setRowCount(0);
+        int i = 0;
         for (BhChiTietSPResponse xx : list) {
             BigDecimal giaBan = new BigDecimal(0);
             ChiTietSPKhuyenMai chiTietSPKhuyenMai = banHangService.getCTSPKhuyenMai(xx.getId());
             if (chiTietSPKhuyenMai != null) {
                 giaBan = chiTietSPKhuyenMai.getDonGiaConLai();
+                i++;
             } else {
                 giaBan = xx.getDonGia();
             }
-            modelSanPham.addRow(new Object[]{xx.getMaCTSP(), xx.getTenSP(), xx.getMauSac(), xx.getSize(), xx.getHang(), xx.getSoLuongTon(), xx.getDonGia() + " Vnđ", giaBan + " Vnđ"});
+            modelSanPham.addRow(new Object[]{xx.getMaCTSP(), xx.getTenSP(), xx.getMauSac(), xx.getSize(), xx.getHang(), xx.getSoLuongTon(), xx.getDonGia() + " Vnđ", xx.getDonGia() + " Vnđ"});
         }
     }
 

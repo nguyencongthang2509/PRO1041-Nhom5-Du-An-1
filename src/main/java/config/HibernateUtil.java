@@ -28,7 +28,7 @@ import org.hibernate.service.ServiceRegistry;
 public class HibernateUtil {
 
     private static final SessionFactory FACTORY;
-    private static Session SESSION = null;
+    private static Session SESSION;
 
     static {
         Configuration conf = new Configuration();

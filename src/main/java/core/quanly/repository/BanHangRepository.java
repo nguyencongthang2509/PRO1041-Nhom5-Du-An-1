@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import javax.swing.JOptionPane;
+import org.hibernate.Session;
 import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 import repository.CrudRepository;
@@ -39,8 +40,6 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
                     + "a.mauSac.ten, a.kichThuoc.ten, a.hang.ten, a.soLuongTon, a.giaBan, a.moTa, a.maVach)"
                     + " FROM ChiTietSP a WHERE a.trangThaiXoa = 0 order by a.createdDate DESC";
             Query query = session.createQuery(hql);
-//            query.setFirstResult(1);
-//            query.setMaxResults(8);
             list = query.getResultList();
         } catch (Exception e) {
             e.printStackTrace();
@@ -53,21 +52,26 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
         ChiTietSPKhuyenMai chiTietSPKhuyenMai = new ChiTietSPKhuyenMai();
         try {
             session = HibernateUtil.getSession();
-            String hql = "SELECT a FROM ChiTietSPKhuyenMai a WHERE a.chiTietSPId.id = :idChiTietSP AND a.trangThai = 0";
+            String hql = "SELECT a FROM ChiTietSPKhuyenMai a WHERE a.chiTietSPId.id = :idChiTietSP";
             Query query = session.createQuery(hql);
             query.setParameter("idChiTietSP", idChiTietSP);
             chiTietSPKhuyenMai = (ChiTietSPKhuyenMai) query.getSingleResult();
         } catch (Exception e) {
+            
             return null;
         }
         return chiTietSPKhuyenMai;
     }
 
     public static void main(String[] args) {
-        List<BhHoaDonChiTietResponse> list = new BanHangRepository().getAllHDCTByIdHoaDon("7b207910-96b6-4859-ba86-00b01a6f0f37");
-        System.out.println(list);
+        ChiTietSPKhuyenMai getCTSPKhuyenMai = new BanHangRepository().getCTSPKhuyenMai("02d198fd-1022-4226-8016-9e227ebf52cc");
+        System.out.println(getCTSPKhuyenMai);
     }
 
+//    public static void main(String[] args) {
+//        List<BhHoaDonChiTietResponse> list = new BanHangRepository().getAllHDCTByIdHoaDon("7b207910-96b6-4859-ba86-00b01a6f0f37");
+//        System.out.println(list);
+//    }
     public List<BhHoaDonResponse> getAllResponseHD(String idNhanVien, Integer hinhThucGiaoHang, Integer trangThai) {
         List<BhHoaDonResponse> list = new ArrayList<>();
         try {
@@ -228,7 +232,7 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
         }
         return idCT;
     }
-    
+
     public KhachHang findKhachHangById(String id) {
         KhachHang khachHang = null;
         try {
@@ -252,10 +256,10 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
         session = HibernateUtil.getSession();
         trans = session.beginTransaction();
         try {
-                Query query = session.createQuery(sql);
-                query.setParameter("soLuongMua", soLuong);
-                query.setParameter("id", id);
-                query.executeUpdate();
+            Query query = session.createQuery(sql);
+            query.setParameter("soLuongMua", soLuong);
+            query.setParameter("id", id);
+            query.executeUpdate();
             check = true;
             trans.commit();
         } catch (Exception e) {
@@ -292,7 +296,7 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
         }
         return entity;
     }
-    
+
     public KhachHang saveOrUpdateKH(KhachHang entity) {
         try {
             session = HibernateUtil.getSession();
@@ -353,7 +357,7 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
         }
         return list;
     }
-    
+
     public List<BhKhachHangResponse> findKhachHang(String input) {
         List<BhKhachHangResponse> list = new ArrayList<>();
         try {
@@ -409,7 +413,7 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
         int ma = Integer.parseInt(maStr);
         return ++ma;
     }
-    
+
     public int genMaKH() {
         String maStr = "";
         session = HibernateUtil.getSession();
@@ -432,8 +436,6 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
         int ma = Integer.parseInt(maStr);
         return ++ma;
     }
-    
-    
 
     public boolean insertHDCT(String idHoaDon, Map<String, BhHoaDonChiTietResponse> list) {
         boolean check = false;

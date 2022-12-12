@@ -1108,7 +1108,7 @@ public class ViewDoiTra extends javax.swing.JPanel {
             banHangService.saveOrUpdate(hoaDonMoi);
 
             HoaDonTraHang hoaDonTraHang = new HoaDonTraHang();
-            hoaDonTraHang.setHoaDon(hoaDonCu);
+            hoaDonTraHang.setHoaDonCu(hoaDonCu);
             hoaDonTraHang.setNgayDoiTra(new Date());
             String tienTraKhachStr[] = txtTienTraKhach.getText().trim().split(" ");
             hoaDonTraHang.setTienHoanTraKhach(new BigDecimal(tienTraKhachStr[0].replace(",", "")));

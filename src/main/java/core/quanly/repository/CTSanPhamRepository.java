@@ -34,6 +34,71 @@ public class CTSanPhamRepository extends CrudRepository<String, ChiTietSP, CTSan
         className = ChiTietSP.class.getName();
         res = "";
     }
+    
+    public List<SanPham> getALLSP() {
+        List<SanPham> sanPham = new ArrayList<>();
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "SELECT a FROM SanPham a";
+            org.hibernate.query.Query query = session.createQuery(hql);
+            sanPham = query.getResultList();
+        } catch (Exception e) {
+            return null;
+        }
+        return sanPham;
+    }
+    
+    public List<MauSac> getALLMS() {
+        List<MauSac> mauSacs = new ArrayList<>();
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "SELECT a FROM MauSac a";
+            org.hibernate.query.Query query = session.createQuery(hql);
+            mauSacs = query.getResultList();
+        } catch (Exception e) {
+            return null;
+        }
+        return mauSacs;
+    }
+    
+    public List<Hang> getALLHang() {
+        List<Hang> hangs = new ArrayList<>();
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "SELECT a FROM Hang a";
+            org.hibernate.query.Query query = session.createQuery(hql);
+            hangs = query.getResultList();
+        } catch (Exception e) {
+            return null;
+        }
+        return hangs;
+    }
+    
+    public List<KichThuoc> getALLKichThuoc() {
+        List<KichThuoc> kichThuocs = new ArrayList<>();
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "SELECT a FROM KichThuoc a";
+            org.hibernate.query.Query query = session.createQuery(hql);
+            kichThuocs = query.getResultList();
+        } catch (Exception e) {
+            return null;
+        }
+        return kichThuocs;
+    }
+    
+    public List<ChatLieu> getALLChatLieu() {
+        List<ChatLieu> chatLieus = new ArrayList<>();
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "SELECT a FROM ChatLieu a";
+            org.hibernate.query.Query query = session.createQuery(hql);
+            chatLieus = query.getResultList();
+        } catch (Exception e) {
+            return null;
+        }
+        return chatLieus;
+    }
 
     public MauSac findMauSacByTen(String ten) {
         MauSac mauSac = new MauSac();

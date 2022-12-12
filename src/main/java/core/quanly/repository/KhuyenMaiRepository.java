@@ -125,7 +125,7 @@ public class KhuyenMaiRepository extends CrudRepository<String, ChiTietSP, Khuye
         List<KMSanphamDangKmReponse> list = new ArrayList<>();
         try {
             session = HibernateUtil.getSession();
-            String hql = "SELECT new core.quanly.viewmodel.KMSanphamDangKmReponse(a.id ,a.chiTietSPId.maChiTietSP, a.chiTietSPId.sanPham.ten, a.chiTietSPId.hang.ten, a.chiTietSPId.mauSac.ten, a.chiTietSPId.kichThuoc.ten, a.chiTietSPId.chatLieu.ten) FROM ChiTietSPKhuyenMai a where a.khuyenMaiId.id =: idkhuyenmai";
+            String hql = "SELECT new core.quanly.viewmodel.KMSanphamDangKmReponse(a.id ,a.chiTietSPId.id, a.chiTietSPId.maChiTietSP, a.chiTietSPId.sanPham.ten, a.chiTietSPId.hang.ten, a.chiTietSPId.mauSac.ten, a.chiTietSPId.kichThuoc.ten, a.chiTietSPId.chatLieu.ten) FROM ChiTietSPKhuyenMai a where a.khuyenMaiId.id =: idkhuyenmai";
             Query query = session.createQuery(hql);
             query.setParameter("idkhuyenmai", idkhuyenmai);
             list = query.getResultList();

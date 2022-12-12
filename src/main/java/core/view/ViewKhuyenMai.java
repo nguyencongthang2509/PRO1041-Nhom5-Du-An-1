@@ -941,7 +941,7 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
             khuyenMai.setNgayKetThuc(ngayketthuc);
             khuyenMai.setMoTa(txtMoTa.getText().trim());
             khuyenMaiService.saveOrUpdateKM(khuyenMai);
-            
+
             for (KMChiTietSPResponse xx : listsanpham) {
                 ChiTietSPKhuyenMai chiTietSPKhuyenMai = new ChiTietSPKhuyenMai();
                 ChiTietSP chiTietSP = khuyenMaiService.findChiTietSpById(xx.getId());
@@ -1066,6 +1066,25 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
                 for (KMChiTietSPResponse xx : listsanpham) {
                     ChiTietSPKhuyenMai chiTietSPKhuyenMai = new ChiTietSPKhuyenMai();
                     ChiTietSP chiTietSP = khuyenMaiService.findChiTietSpById(xx.getId());
+                    chiTietSPKhuyenMai.setChiTietSPId(chiTietSP);
+                    chiTietSPKhuyenMai.setKhuyenMaiId(khuyenMai);
+                    chiTietSPKhuyenMai.setDonGia(chiTietSP.getGiaBan());
+                    chiTietSPKhuyenMai.setTrangThai(0);
+                    if (khuyenMai.getLoaiKhuyenMai() == 0) {
+                        BigDecimal donGiaConLai = chiTietSP.getGiaBan().subtract(chiTietSP.getGiaBan().multiply(new BigDecimal(khuyenMai.getGiaTri()).divide(new BigDecimal(100))));
+                        chiTietSPKhuyenMai.setDonGiaConLai(donGiaConLai);
+                    } else {
+                        BigDecimal donGiaConLai = chiTietSP.getGiaBan().subtract(new BigDecimal(khuyenMai.getGiaTri()));
+                        chiTietSPKhuyenMai.setDonGiaConLai(donGiaConLai);
+                    }
+                    khuyenMaiService.saveOrUpdate(chiTietSPKhuyenMai);
+                }
+            }
+            listsanpham2 = khuyenMaiService.GetAllSanPhamDangApDung(khuyenMai.getId());
+            if (listsanpham2 != null) {
+                for (KMSanphamDangKmReponse xx : listsanpham2) {
+                    ChiTietSPKhuyenMai chiTietSPKhuyenMai = new ChiTietSPKhuyenMai();
+                    ChiTietSP chiTietSP = khuyenMaiService.findChiTietSpById(xx.getIdctsp());
                     chiTietSPKhuyenMai.setChiTietSPId(chiTietSP);
                     chiTietSPKhuyenMai.setKhuyenMaiId(khuyenMai);
                     chiTietSPKhuyenMai.setDonGia(chiTietSP.getGiaBan());
@@ -1329,19 +1348,19 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
     }//GEN-LAST:event_btnlastActionPerformed
 
     private void btnnextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnextActionPerformed
-        tranghientai++;
-        System.out.println(tranghientai);
-        if (tranghientai > tongsoTrang - 1) {
-            tranghientai = tongsoTrang - 1;
+        tranghientai--;
+        if (tranghientai < 0) {
+            tranghientai = 0;
         }
         FillToLocsanpham(listsanphamcotheapdung);
         lblsotrang.setText(tranghientai + 1 + "/" + tongsoTrang);
     }//GEN-LAST:event_btnnextActionPerformed
 
     private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
-        tranghientai--;
-        if (tranghientai < 0) {
-            tranghientai = 0;
+        tranghientai++;
+        System.out.println(tranghientai);
+        if (tranghientai > tongsoTrang - 1) {
+            tranghientai = tongsoTrang - 1;
         }
         FillToLocsanpham(listsanphamcotheapdung);
         lblsotrang.setText(tranghientai + 1 + "/" + tongsoTrang);

@@ -22,6 +22,7 @@ import lombok.ToString;
 public class KMSanphamDangKmReponse {
 
     private String idctspkm;
+    private String idctsp;
     private String ma;
     private String ten;
     private String tenhang;

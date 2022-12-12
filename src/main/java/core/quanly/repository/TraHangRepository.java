@@ -30,7 +30,7 @@ public class TraHangRepository extends CrudRepository<String, HoaDon, Object> {
                         + "a.tienShip, a.tienKhachTra, a.tienKhachChuyenKhoan, a.thanhTien,a.tienThua, a.phamTramGiamGia)"
                         + " FROM HoaDon a LEFT JOIN a.nhanVien b LEFT JOIN a.khachHang c "
                         + "WHERE (a.trangThai = 2 or a.trangThai = 5) AND c.ma <> 'KH000' AND a.ngayThanhToan > :ngayTra"
-                        + " ORDER BY a.lastModifiedDate DESC";
+                        + " ORDER BY a.createdDate DESC";
                 Query query = session.createQuery(hql);
                 query.setParameter("ngayTra", ngayTra);
                 list = query.getResultList();
@@ -68,10 +68,10 @@ public class TraHangRepository extends CrudRepository<String, HoaDon, Object> {
                 String hql = "SELECT " + "new core.quanly.viewmodel.ThHoaDonResponse"
                         + "(a.id, a.ma, a.ngayTao, a.hinhThucGiaoHang, a.hinhThucThanhToan ,b.ten, c.ma, c.hoTen, c.sdt,c.diaChi,c.capBac,a.trangThaiThanhToan, a.ngayMongMuon, a.ngayThanhToan,a.trangThai,"
                         + "a.tenNguoiNhan, a.sdtNguoiNhan, a.diaChi, a.tenNguoiShip, a.sdtNguoiShip,"
-                        + "a.tienShip, a.tienKhachTra, a.tienKhachChuyenKhoan, a.thanhTien,a.tienThua)"
+                        + "a.tienShip, a.tienKhachTra, a.tienKhachChuyenKhoan, a.thanhTien,a.tienThua, a.phamTramGiamGia)"
                         + " FROM HoaDon a LEFT JOIN a.nhanVien b LEFT JOIN a.khachHang c "
                         + "WHERE (a.trangThai = 2 or a.trangThai = 5) AND (a.ma LIKE CONCAT('%',:input,'%') OR c.sdt LIKE CONCAT('%',:input,'%') OR c.hoTen LIKE CONCAT('%',:input,'%'))"
-                        + " ORDER BY a.lastModifiedDate DESC";
+                        + " ORDER BY a.createdDate DESC";
                 Query query = session.createQuery(hql);
                 query.setParameter("input", input);
                 list = query.getResultList();
