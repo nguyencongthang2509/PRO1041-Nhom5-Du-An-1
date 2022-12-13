@@ -11,6 +11,7 @@ import core.view.ViewNhanVien;
 import core.view.ViewSanPham;
 import core.view.ViewSanPhamNhanVien;
 import core.view.ViewThongKe;
+import core.view.ViewThongKeNhanVien;
 import domainmodels.NhanVien;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -817,7 +818,7 @@ public class JFrameQuanLy extends javax.swing.JFrame {
             this.pack();
             ViewBanHang.webcam.close();
             btnCardSon.setVisible(true);
-        }else{
+        } else {
             ViewHoaDonNhanVien viewHoaDon = new ViewHoaDonNhanVien(nhanVien);
             btnCardSon.removeAll();
             btnCardSon.add(viewHoaDon);
@@ -889,13 +890,23 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         pnlSanPham.setBackground(null);
         pnlThoat.setBackground(null);
         pnlDangXuat.setBackground(null);
-        ViewThongKe viewThongKe = new ViewThongKe();
-        btnCardSon.removeAll();
-        btnCardSon.add(viewThongKe);
-        btnCardSon.setLayout(new FlowLayout());
-        this.pack();
-        ViewBanHang.webcam.close();
-        btnCardSon.setVisible(true);
+        if (nhanVien.getVaiTro() == 0) {
+            ViewThongKe viewThongKe = new ViewThongKe();
+            btnCardSon.removeAll();
+            btnCardSon.add(viewThongKe);
+            btnCardSon.setLayout(new FlowLayout());
+            this.pack();
+            ViewBanHang.webcam.close();
+            btnCardSon.setVisible(true);
+        } else {
+            ViewThongKeNhanVien viewThongKe = new ViewThongKeNhanVien(nhanVien);
+            btnCardSon.removeAll();
+            btnCardSon.add(viewThongKe);
+            btnCardSon.setLayout(new FlowLayout());
+            this.pack();
+            ViewBanHang.webcam.close();
+            btnCardSon.setVisible(true);
+        }
     }//GEN-LAST:event_menuThongKeMouseClicked
 
     private void menuNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuNhanVienMouseClicked

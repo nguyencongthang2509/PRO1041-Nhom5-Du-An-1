@@ -11,6 +11,7 @@ import core.quanly.service.impl.NhanVienServiceImpl;
 import core.quanly.service.impl.ThongKeHangHoaServiceImpl;
 import core.quanly.viewmodel.ThongKeHangHoaResponse;
 import core.quanly.viewmodel.ThongKeTheoKhoangResponse;
+import core.quanly.viewmodel.ThongKeTraHangResponse;
 import domainmodels.HoaDonTraHangChiTiet;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -37,6 +38,7 @@ import javax.swing.table.TableRowSorter;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import util.EmailSender;
+import util.ExportThongKeHangHoaTra;
 import util.ExportThongKeSanPhamBan;
 import util.UtilTest;
 
@@ -52,7 +54,7 @@ public class ViewThongKe extends javax.swing.JPanel {
     DefaultTableModel modelHangHoa;
     DefaultTableModel modelHangHoa1;
     List<ThongKeHangHoaResponse> listHangHoa = new ArrayList<>();
-    List<HoaDonTraHangChiTiet> listHangHoaTra = new ArrayList<>();
+    List<ThongKeTraHangResponse> listHangHoaTra = new ArrayList<>();
     ThongKeHangHoaService hangHoaService = new ThongKeHangHoaServiceImpl();
     ThongKeHangHoaRepository thongKeRespo = new ThongKeHangHoaRepository();
     UtilTest ut = new UtilTest();
@@ -121,6 +123,7 @@ public class ViewThongKe extends javax.swing.JPanel {
         txtTimKiemTra = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblHangHoa1 = new javax.swing.JTable();
+        btnExportTraHang = new javax.swing.JButton();
         jPanel15 = new javax.swing.JPanel();
         cboThangDT = new javax.swing.JComboBox<>();
         jPanel16 = new javax.swing.JPanel();
@@ -197,7 +200,7 @@ public class ViewThongKe extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(55, 55, 55)
                         .addComponent(lblHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
         );
@@ -238,7 +241,7 @@ public class ViewThongKe extends javax.swing.JPanel {
                         .addComponent(lblHangTra, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -275,7 +278,7 @@ public class ViewThongKe extends javax.swing.JPanel {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(59, 59, 59)
                         .addComponent(lblKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
         );
@@ -314,7 +317,7 @@ public class ViewThongKe extends javax.swing.JPanel {
         );
         JPenalBieuDoLayout.setVerticalGroup(
             JPenalBieuDoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 385, Short.MAX_VALUE)
+            .addGap(0, 387, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -338,7 +341,7 @@ public class ViewThongKe extends javax.swing.JPanel {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 1245, Short.MAX_VALUE)
+                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 1251, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -375,7 +378,7 @@ public class ViewThongKe extends javax.swing.JPanel {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cboHot, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                .addComponent(cboHot)
                 .addContainerGap())
         );
 
@@ -402,7 +405,7 @@ public class ViewThongKe extends javax.swing.JPanel {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cboSanPham, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                .addComponent(cboSanPham)
                 .addContainerGap())
         );
 
@@ -526,7 +529,7 @@ public class ViewThongKe extends javax.swing.JPanel {
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel18Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cboMaxMin, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                .addComponent(cboMaxMin)
                 .addContainerGap())
         );
 
@@ -553,7 +556,7 @@ public class ViewThongKe extends javax.swing.JPanel {
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel19Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cboSanPhamTra, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                .addComponent(cboSanPhamTra)
                 .addContainerGap())
         );
 
@@ -600,6 +603,13 @@ public class ViewThongKe extends javax.swing.JPanel {
         tblHangHoa1.setSelectionBackground(new java.awt.Color(86, 154, 222));
         jScrollPane2.setViewportView(tblHangHoa1);
 
+        btnExportTraHang.setText("Xuất File Excel");
+        btnExportTraHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportTraHangActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
@@ -607,11 +617,13 @@ public class ViewThongKe extends javax.swing.JPanel {
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addGap(66, 66, 66)
                 .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(123, 123, 123)
+                .addGap(44, 44, 44)
                 .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                .addGap(43, 43, 43)
                 .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(68, 68, 68))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addComponent(btnExportTraHang, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33))
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2)
@@ -623,17 +635,20 @@ public class ViewThongKe extends javax.swing.JPanel {
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addComponent(btnExportTraHang, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
         );
-
-        jPanel13Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jPanel18, jPanel19, jPanel20});
 
         jTabbedPane1.addTab("Hàng hoá trả lại", jPanel13);
 
@@ -683,7 +698,7 @@ public class ViewThongKe extends javax.swing.JPanel {
             .addGroup(jPanel16Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(cboNamDoanhThu, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -773,7 +788,7 @@ public class ViewThongKe extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1253,6 +1268,7 @@ public class ViewThongKe extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Export File Excel thất bại");
             }
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -1260,9 +1276,26 @@ public class ViewThongKe extends javax.swing.JPanel {
 
     }//GEN-LAST:event_dPNgay1MouseClicked
 
+    private void btnExportTraHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportTraHangActionPerformed
+        try {
+            ExportThongKeHangHoaTra export = new ExportThongKeHangHoaTra();
+            listHangHoaTra = thongKeRespo.getListTraHang();
+            boolean check = export.ExportFileExcel(listHangHoaTra);
+
+            if (check) {
+                JOptionPane.showMessageDialog(this, "Export File Excel thành công");
+            } else {
+                JOptionPane.showMessageDialog(this, "Export File Excel thất bại");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnExportTraHangActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JPenalBieuDo;
+    private javax.swing.JButton btnExportTraHang;
     private javax.swing.JButton btnGuiBaoCao;
     private javax.swing.JButton btnTimTheoNgay;
     private javax.swing.JComboBox<String> cboHot;
@@ -1328,9 +1361,9 @@ public class ViewThongKe extends javax.swing.JPanel {
         modelHangHoa1.setRowCount(0);
         int index = 1;
 //        listHangHoaTra = thongKeRespo.getListTraHang();
-        for (HoaDonTraHangChiTiet xx : listHangHoaTra) {
-            modelHangHoa1.addRow(new Object[]{index, xx.getMaChiTietSanPham(), xx.getTenSP(), xx.getTenHang(),
-                xx.getMauSac(), xx.getKichThuoc(), xx.getSoLuongTra(), xx.getGiaBan()});
+        for (ThongKeTraHangResponse xx : listHangHoaTra) {
+            modelHangHoa1.addRow(new Object[]{index, xx.getMa(), xx.getTenSP(), xx.getHang(),
+                xx.getMau(), xx.getKichThuoc(), xx.getSoLuong(), xx.getGiaBan()});
             index++;
         }
     }

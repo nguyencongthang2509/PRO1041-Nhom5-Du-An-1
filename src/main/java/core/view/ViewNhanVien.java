@@ -112,6 +112,7 @@ public class ViewNhanVien extends javax.swing.JPanel {
         cboVaiTro = new javax.swing.JComboBox<>();
         jPanel18 = new javax.swing.JPanel();
         txtTimKiembyMa = new javax.swing.JTextField();
+        btnNghi = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblNhanVien1 = new javax.swing.JTable();
@@ -120,6 +121,7 @@ public class ViewNhanVien extends javax.swing.JPanel {
         cboVaiTro1 = new javax.swing.JComboBox<>();
         jPanel20 = new javax.swing.JPanel();
         txtTimKiembyMa2 = new javax.swing.JTextField();
+        btnKhoiPhuc2 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1292, 784));
@@ -427,12 +429,19 @@ public class ViewNhanVien extends javax.swing.JPanel {
 
             },
             new String [] {
-                "STT", "Mã NV", "Tên NV", "Giới Tính", "Ngày Sinh", "Địa Chỉ", "SDT", "Email", "Vai Trò", "Trạng Thái"
+                "STT", "Mã NV", "Tên NV", "Giới Tính", "Ngày Sinh", "Địa Chỉ", "SDT", "Email", "Vai Trò", "Trạng Thái", "Select"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -525,6 +534,13 @@ public class ViewNhanVien extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        btnNghi.setText("Nghỉ");
+        btnNghi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNghiActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -532,13 +548,15 @@ public class ViewNhanVien extends javax.swing.JPanel {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(96, 96, 96)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 193, Short.MAX_VALUE)
                 .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(109, 109, 109))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnNghi, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -548,8 +566,10 @@ public class ViewNhanVien extends javax.swing.JPanel {
                     .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(414, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnNghi, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(407, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Đang làm", jPanel4);
@@ -572,9 +592,24 @@ public class ViewNhanVien extends javax.swing.JPanel {
 
             },
             new String [] {
-                "STT", "Mã NV", "Tên NV", "Giới Tình", "Ngày Sinh", "Địa Chỉ", "SDT", "Email", "Vai Trò", "Trạng Thái"
+                "STT", "Mã NV", "Tên NV", "Giới Tình", "Ngày Sinh", "Địa Chỉ", "SDT", "Email", "Vai Trò", "Trạng Thái", "Select"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tblNhanVien1.setRowHeight(25);
         tblNhanVien1.setSelectionBackground(new java.awt.Color(86, 154, 222));
         tblNhanVien1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -658,6 +693,13 @@ public class ViewNhanVien extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        btnKhoiPhuc2.setText("Khôi Phục ");
+        btnKhoiPhuc2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnKhoiPhuc2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -665,12 +707,16 @@ public class ViewNhanVien extends javax.swing.JPanel {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(98, 98, 98)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 155, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 167, Short.MAX_VALUE)
                 .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(104, 104, 104))
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnKhoiPhuc2)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -683,9 +729,11 @@ public class ViewNhanVien extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnKhoiPhuc2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
         );
 
         jTabbedPane1.addTab("Nghỉ việc", jPanel5);
@@ -706,8 +754,8 @@ public class ViewNhanVien extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 412, Short.MAX_VALUE)
+                .addGap(7, 7, 7)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -849,7 +897,7 @@ public class ViewNhanVien extends javax.swing.JPanel {
         try {
             NhanVien nv = getformData();
 
-//            if (tblNhanVien.getSelectedRow() < 0||tblNhanVien1.getSelectedRow()<0) {
+//            if (tblNhanVien.getSelectedRow() ==-1||tblNhanVien1.getSelectedRow()==-1) {
 //                JOptionPane.showMessageDialog(this, "Bạn chưa chọn đối tượng nào");
 //                return;
 //            } 
@@ -1017,12 +1065,64 @@ public class ViewNhanVien extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTimKiembyMa2ActionPerformed
 
+    private void btnNghiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNghiActionPerformed
+        try {
+            NhanVien nv = new NhanVien();
+            int chon = tblNhanVien.getSelectedRow();
+            if (chon ==-1) {
+                JOptionPane.showMessageDialog(this, "Bạn chưa chọn đối tượng nào");
+                return;
+            }
+            int hoi = JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn cập nhật trạng thái không?");
+            if (hoi != JOptionPane.YES_OPTION) {
+                return;
+            }
+            List<NhanVienResponse> listSelected = GetSelected();
+            for (NhanVienResponse xx : listSelected) {
+                nvImpl.updateTrangThai(1, xx.getId());
+            }
+
+            loadTable();
+            loadTableDaNghi();
+            JOptionPane.showMessageDialog(this, "Cập nhật thành công");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnNghiActionPerformed
+
+    private void btnKhoiPhuc2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhoiPhuc2ActionPerformed
+        try {
+            
+            int chon = tblNhanVien1.getSelectedRow();
+            if (chon ==-1) {
+                JOptionPane.showMessageDialog(this, "Bạn chưa chọn đối tượng nào");
+                return;
+            }
+            int hoi = JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn cập nhật trạng thái không?");
+            if (hoi != JOptionPane.YES_OPTION) {
+                return;
+            }
+            List<NhanVienNghiResponse> listSelected = GetSelected2();
+            for (NhanVienNghiResponse xx : listSelected) {
+                nvImpl.updateTrangThai(0, xx.getId());
+            }
+
+            loadTable();
+            loadTableDaNghi();
+            JOptionPane.showMessageDialog(this, "Cập nhật thành công");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnKhoiPhuc2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExport;
     private javax.swing.JButton btnImport;
+    private javax.swing.JButton btnKhoiPhuc2;
     private javax.swing.JButton btnMauImport;
     private javax.swing.JButton btnNew6;
+    private javax.swing.JButton btnNghi;
     private javax.swing.JButton btnSua7;
     private javax.swing.JButton btnThem6;
     private javax.swing.ButtonGroup buttonGroup1;
@@ -1168,5 +1268,29 @@ public class ViewNhanVien extends javax.swing.JPanel {
 
         }
     }
+
+    private List<NhanVienResponse> GetSelected() {
+
+        List<NhanVienResponse> listselected = new ArrayList<>();
+        for (int i = 0; i < tblNhanVien.getRowCount(); i++) {
+            boolean check = Boolean.valueOf(tblNhanVien.getValueAt(i,10) + "");
+            if (check) {
+                listselected.add(listNhanVien.get(i));
+            }
+        }
+        return listselected;
+    }    
+    private List<NhanVienNghiResponse> GetSelected2() {
+
+        List<NhanVienNghiResponse> listselected = new ArrayList<>();
+        for (int i = 0; i < tblNhanVien1.getRowCount(); i++) {
+            boolean check = Boolean.valueOf(tblNhanVien1.getValueAt(i,10) + "");
+            if (check) {
+                listselected.add(listNhanVien1.get(i));
+            }
+        }
+        return listselected;
+    }    
+   
 
 }
