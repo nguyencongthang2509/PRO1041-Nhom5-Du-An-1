@@ -612,7 +612,7 @@ public class ViewDoiTra extends javax.swing.JPanel {
                     .addComponent(txtSDTNgoai, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTenKHNgoai, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtMaHDNgoai, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -707,7 +707,8 @@ public class ViewDoiTra extends javax.swing.JPanel {
                         .addGap(19, 19, 19))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addComponent(btnTraHang, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(125, 125, 125))))
+                        .addGap(125, 125, 125)))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -910,7 +911,7 @@ public class ViewDoiTra extends javax.swing.JPanel {
                 .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Lịch sử các hóa đơn trả hàng", jPanel6);
+        jTabbedPane1.addTab("Lịch sử hóa đơn trả hàng", jPanel6);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -922,7 +923,7 @@ public class ViewDoiTra extends javax.swing.JPanel {
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTabbedPane1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(10, 10, 10))
@@ -1109,6 +1110,7 @@ public class ViewDoiTra extends javax.swing.JPanel {
 
             HoaDonTraHang hoaDonTraHang = new HoaDonTraHang();
             hoaDonTraHang.setHoaDonCu(hoaDonCu);
+            hoaDonTraHang.setHoaDonMoi(hoaDonMoi);
             hoaDonTraHang.setNgayDoiTra(new Date());
             String tienTraKhachStr[] = txtTienTraKhach.getText().trim().split(" ");
             hoaDonTraHang.setTienHoanTraKhach(new BigDecimal(tienTraKhachStr[0].replace(",", "")));
@@ -1164,6 +1166,8 @@ public class ViewDoiTra extends javax.swing.JPanel {
             }
             listHoaDonTraHang = traHangService.getAllResponseHDTraHang();
             loadTableHoaDonTraHang(listHoaDonTraHang);
+            listHoaDon = traHangService.getAllResponseHD();
+            loadTableHoaDon(listHoaDon);
             JOptionPane.showMessageDialog(this, "Trả hàng thành công");
             clearForm();
         } catch (Exception e) {

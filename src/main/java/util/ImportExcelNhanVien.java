@@ -69,7 +69,7 @@ public class ImportExcelNhanVien {
                     return;
                 }
 
-                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
                 Date strDate = formatter.parse(ngaysinh);
                 nv.setMa("NV" + mactsp++);
                 nv.setTen(ten);

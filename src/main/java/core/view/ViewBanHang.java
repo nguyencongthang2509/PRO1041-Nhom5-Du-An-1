@@ -25,6 +25,7 @@ import domainmodels.KhachHang;
 import domainmodels.NhanVien;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -40,7 +41,9 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import lombok.Synchronized;
 import util.ExportFilePdfByITextDatHang;
@@ -78,7 +81,7 @@ public class ViewBanHang extends javax.swing.JPanel {
     public ViewBanHang(NhanVien nv) {
         initComponents();
         nhanVien = nv;
-//        initWebcam();
+        initWebcam();
         modelSanPham = (DefaultTableModel) tblSanPham.getModel();
         modelGioHang = (DefaultTableModel) tblGioHang.getModel();
         modelHoaDon = (DefaultTableModel) tblHoaDonCho.getModel();
@@ -91,7 +94,11 @@ public class ViewBanHang extends javax.swing.JPanel {
         listHoaDon = new ArrayList<>();
         mapGioHang = new HashMap<>();
         listSanPham = banHangService.getAllChiTietSP();
-        listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 0, 0);
+        if (nhanVien.getVaiTro() == 1) {
+            listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 0, 0);
+        } else {
+            listHoaDon = banHangService.getAllResponseHD("", 0, 0);
+        }
         setSelected(0, 0);
         loadDataToTableSP(listSanPham);
         loadDataToHoaDon(listHoaDon);
@@ -100,7 +107,7 @@ public class ViewBanHang extends javax.swing.JPanel {
         countTbpDatHang = 0;
     }
 
-    private void initWebcam() {
+    public void initWebcam() {
         Dimension size = WebcamResolution.QVGA.getSize();
         webcam = Webcam.getWebcams().get(0); //0 is default webcam
         webcam.setViewSize(size);
@@ -146,7 +153,7 @@ public class ViewBanHang extends javax.swing.JPanel {
                         String maVachScan = result.getText();
                         try {
                             String idChiTietSP = banHangService.findChiTietSPByMaVach(maVachScan);
-                            if(idChiTietSP == null){
+                            if (idChiTietSP == null) {
                                 JOptionPane.showMessageDialog(null, "Không tìm thấy sản phẩm");
                                 continue;
                             }
@@ -1249,7 +1256,8 @@ public class ViewBanHang extends javax.swing.JPanel {
 
         btnClear.setIcon(new ImageIcon("src/main/images/clear.png"));
         btnClear.setBackground(new java.awt.Color(153, 204, 255));
-        btnClear.setToolTipText("Clear hóa đơn");
+        btnClear.setToolTipText("Làm mới");
+        btnClear.setVerifyInputWhenFocusTarget(false);
         btnClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnClearActionPerformed(evt);
@@ -2322,9 +2330,17 @@ public class ViewBanHang extends javax.swing.JPanel {
             BhHoaDonResponse bhHoaDonResponse = listHoaDon.get(rowHoaDon);
             banHangService.updateKhachHangInHoaDon(bhHoaDonResponse.getId(), bhKhachHangResponse.getId());
             if (bhHoaDonResponse.getHinhThucGiaoHang() == 0) {
-                listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 0, 0);
+                if (nhanVien.getVaiTro() == 1) {
+                    listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 0, 0);
+                } else {
+                    listHoaDon = banHangService.getAllResponseHD("", 0, 0);
+                }
             } else {
-                listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 0);
+                if (nhanVien.getVaiTro() == 1) {
+                    listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 0);
+                } else {
+                    listHoaDon = banHangService.getAllResponseHD("", 1, 0);
+                }
             }
             loadDataToHoaDon(listHoaDon);
             if (tblHoaDonCho.getRowCount() > 0) {
@@ -2337,7 +2353,10 @@ public class ViewBanHang extends javax.swing.JPanel {
     private void tblHoaDonChoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonChoMouseClicked
         try {
             int row = tblHoaDonCho.getSelectedRow();
-            BhHoaDonResponse bhHoaDonResponse = listHoaDon.get(row);
+            BhHoaDonResponse bhHoaDonResponse = null;
+            if (row >= 0) {
+                bhHoaDonResponse = listHoaDon.get(row);
+            }
             if (bhHoaDonResponse.getHinhThucGiaoHang() == 0) {
                 if (bhHoaDonResponse.getTrangThai() != 0) {
                     btnXoa1.setEnabled(false);
@@ -2404,9 +2423,21 @@ public class ViewBanHang extends javax.swing.JPanel {
                 tbpDonHang.setSelectedIndex(1);
                 txtMaHDDatHang.setText(bhHoaDonResponse.getMaHD());
                 txtTenNVDatHang.setText(bhHoaDonResponse.getTenNhanVien());
-                txtHoTenKHDatHang.setText(bhHoaDonResponse.getTenNguoiNhan());
-                txtSDTKHDatHang.setText(bhHoaDonResponse.getSdtNguoiNhan());
-                txtDiaChiDatHang.setText(bhHoaDonResponse.getDiaChi());
+                if (bhHoaDonResponse.getTenNguoiNhan() != null) {
+                    txtHoTenKHDatHang.setText(bhHoaDonResponse.getTenNguoiNhan());
+                    txtSDTKHDatHang.setText(bhHoaDonResponse.getSdtNguoiNhan());
+                    txtDiaChiDatHang.setText(bhHoaDonResponse.getDiaChi());
+                } else {
+                    if (!bhHoaDonResponse.getMaKhachHang().equals("KH000")) {
+                        txtHoTenKHDatHang.setText(bhHoaDonResponse.getTenKhachHang());
+                        txtSDTKHDatHang.setText(bhHoaDonResponse.getSdtKhachHang());
+                        txtDiaChiDatHang.setText(bhHoaDonResponse.getDiaChiKhachHang());
+                    } else {
+                        txtHoTenKHDatHang.setText(bhHoaDonResponse.getTenNguoiNhan());
+                        txtSDTKHDatHang.setText(bhHoaDonResponse.getSdtNguoiNhan());
+                        txtDiaChiDatHang.setText(bhHoaDonResponse.getDiaChi());
+                    }
+                }
                 txtTenNguoiShipDatHang.setText(bhHoaDonResponse.getTenNguoiShip());
                 txtSDTNguoiShipDatHang.setText(bhHoaDonResponse.getSdtNguoiShip());
                 if (bhHoaDonResponse.getCapBac() == null) {
@@ -2769,6 +2800,8 @@ public class ViewBanHang extends javax.swing.JPanel {
 
     private void clearFormDatHang() {
         mapGioHang.clear();
+        lblCapBacDatHang.setIcon(new ImageIcon(""));
+        lblTenCapBacDatHang.setText("");
         loadDataToTableHDCT(mapGioHang);
         txtHoTenKHDatHang.setText("");
         txtSDTKHDatHang.setText("");
@@ -2786,8 +2819,6 @@ public class ViewBanHang extends javax.swing.JPanel {
         txtTienKhachCKDatHang.setText("");
         txtTienKhachDuaDatHang.setText("");
         txtTienThuaDatHang.setText("");
-        lblCapBacDatHang.setIcon(new ImageIcon(""));
-        lblTenCapBacDatHang.setText("");
     }
 
     private void cboHTThanhToanDatHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboHTThanhToanDatHangActionPerformed
@@ -2801,7 +2832,8 @@ public class ViewBanHang extends javax.swing.JPanel {
             txtTienKhachDuaDatHang.setEnabled(false);
             txtTienKhachCKDatHang.setEnabled(true);
             txtTienKhachDuaDatHang.setText("");
-            txtTienKhachCKDatHang.setText(txtThanhToanDatHang.getText());
+            String array[] = txtThanhToanDatHang.getText().trim().split(" ");
+            txtTienKhachCKDatHang.setText(array[0].replace(",", ""));
             txtTienThuaDatHang.setText("0 Vnđ");
         }
         if (cboHTThanhToanDatHang.getSelectedIndex() == 2) {
@@ -2874,7 +2906,11 @@ public class ViewBanHang extends javax.swing.JPanel {
                 hoaDon.setTienShip(new BigDecimal(txtTienShip.getText().trim()));
 
                 banHangService.saveOrUpdate(hoaDon);
-                listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 4);
+                if (nhanVien.getVaiTro() == 1) {
+                    listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 4);
+                } else {
+                    listHoaDon = banHangService.getAllResponseHD("", 1, 4);
+                }
                 setSelected(1, 3);
                 loadDataToHoaDon(listHoaDon);
                 tblHoaDonCho.setRowSelectionInterval(0, 0);
@@ -2947,16 +2983,16 @@ public class ViewBanHang extends javax.swing.JPanel {
                     String array[] = txtThanhToanDatHang.getText().trim().split(" ");
                     hoaDon.setThanhTien(new BigDecimal(array[0].replace(",", "")));
                     if (cboHTThanhToanDatHang.getSelectedIndex() == 0) {
-                        String arrayTKT[] = txtTienKhachDuaDatHang.getText().trim().split(" ");
-                        hoaDon.setTienKhachTra(new BigDecimal(arrayTKT[0].replace(",", "")));
+//                        String arrayTKT[] = txtTienKhachDuaDatHang.getText().trim().split(" ");
+                        hoaDon.setTienKhachTra(new BigDecimal(txtTienKhachDuaDatHang.getText().trim()));
                     } else if (cboHTThanhToanDatHang.getSelectedIndex() == 1) {
-                        String arrayTKCK[] = txtTienKhachCKDatHang.getText().trim().split(" ");
-                        hoaDon.setTienKhachChuyenKhoan(new BigDecimal(arrayTKCK[0].replace(",", "")));
+//                        String arrayTKCK[] = txtTienKhachCKDatHang.getText().trim().split(" ");
+                        hoaDon.setTienKhachChuyenKhoan(new BigDecimal(txtTienKhachCKDatHang.getText().trim()));
                     } else {
-                        String arrayTKT[] = txtTienKhachDuaDatHang.getText().trim().split(" ");
-                        hoaDon.setTienKhachTra(new BigDecimal(arrayTKT[0].replace(",", "")));
-                        String arrayTKCK[] = txtTienKhachCKDatHang.getText().trim().split(" ");
-                        hoaDon.setTienKhachChuyenKhoan(new BigDecimal(arrayTKCK[0].replace(",", "")));
+//                        String arrayTKT[] = txtTienKhachDuaDatHang.getText().trim().split(" ");
+                        hoaDon.setTienKhachTra(new BigDecimal(txtTienKhachDuaDatHang.getText().trim()));
+//                        String arrayTKCK[] = txtTienKhachCKDatHang.getText().trim().split(" ");
+                        hoaDon.setTienKhachChuyenKhoan(new BigDecimal(txtTienKhachCKDatHang.getText().trim()));
                     }
                     String arrayTT[] = txtTienThuaDatHang.getText().trim().split(" ");
                     hoaDon.setTienThua(new BigDecimal(arrayTT[0].replace(",", "")));
@@ -2989,7 +3025,11 @@ public class ViewBanHang extends javax.swing.JPanel {
                 hoaDon.setNgayNhan(new Date());
                 hoaDon.setTrangThai(5);
                 banHangService.saveOrUpdate(hoaDon);
-                listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 5);
+                if (nhanVien.getVaiTro() == 1) {
+                    listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 5);
+                } else {
+                    listHoaDon = banHangService.getAllResponseHD("", 1, 5);
+                }
                 setSelected(1, 5);
                 tblHoaDonCho.setRowSelectionInterval(0, 0);
                 loadDataToHoaDon(listHoaDon);
@@ -3096,16 +3136,16 @@ public class ViewBanHang extends javax.swing.JPanel {
                 String array[] = txtThanhToanDatHang.getText().trim().split(" ");
                 hoaDon.setThanhTien(new BigDecimal(array[0].replace(",", "")));
                 if (cboHTThanhToanDatHang.getSelectedIndex() == 0) {
-                    String arrayTKT[] = txtTienKhachDuaDatHang.getText().trim().split(" ");
-                    hoaDon.setTienKhachTra(new BigDecimal(arrayTKT[0].replace(",", "")));
+//                    String arrayTKT[] = txtTienKhachDuaDatHang.getText().trim().split(" ");
+                    hoaDon.setTienKhachTra(new BigDecimal(txtTienKhachDuaDatHang.getText().trim()));
                 } else if (cboHTThanhToanDatHang.getSelectedIndex() == 1) {
-                    String arrayTKCK[] = txtTienKhachCKDatHang.getText().trim().split(" ");
-                    hoaDon.setTienKhachChuyenKhoan(new BigDecimal(arrayTKCK[0].replace(",", "")));
+//                    String arrayTKCK[] = txtTienKhachCKDatHang.getText().trim().split(" ");
+                    hoaDon.setTienKhachChuyenKhoan(new BigDecimal(txtTienKhachCKDatHang.getText().trim()));
                 } else {
-                    String arrayTKT[] = txtTienKhachDuaDatHang.getText().trim().split(" ");
-                    hoaDon.setTienKhachTra(new BigDecimal(arrayTKT[0].replace(",", "")));
-                    String arrayTKCK[] = txtTienKhachCKDatHang.getText().trim().split(" ");
-                    hoaDon.setTienKhachChuyenKhoan(new BigDecimal(arrayTKCK[0].replace(",", "")));
+//                    String arrayTKT[] = txtTienKhachDuaDatHang.getText().trim().split(" ");
+                    hoaDon.setTienKhachTra(new BigDecimal(txtTienKhachDuaDatHang.getText().trim()));
+//                    String arrayTKCK[] = txtTienKhachCKDatHang.getText().trim().split(" ");
+                    hoaDon.setTienKhachChuyenKhoan(new BigDecimal(txtTienKhachCKDatHang.getText().trim()));
                 }
                 String arrayTT[] = txtTienThuaDatHang.getText().trim().split(" ");
                 hoaDon.setTienThua(new BigDecimal(arrayTT[0].replace(",", "")));
@@ -3128,7 +3168,11 @@ public class ViewBanHang extends javax.swing.JPanel {
                 } else {
                     clearFormDatHang();
                 }
-                listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 2);
+                if (nhanVien.getVaiTro() == 1) {
+                    listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 2);
+                } else {
+                    listHoaDon = banHangService.getAllResponseHD("", 1, 2);
+                }
                 setSelected(1, 1);
                 loadDataToHoaDon(listHoaDon);
                 tblHoaDonCho.setRowSelectionInterval(0, 0);
@@ -3237,7 +3281,11 @@ public class ViewBanHang extends javax.swing.JPanel {
 //                } else {
 //                    clearFormDatHang();
 //                }
-                listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 3);
+                if (nhanVien.getVaiTro() == 1) {
+                    listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 3);
+                } else {
+                    listHoaDon = banHangService.getAllResponseHD("", 1, 3);
+                }
                 setSelected(1, 2);
                 loadDataToHoaDon(listHoaDon);
                 tblHoaDonCho.setRowSelectionInterval(0, 0);
@@ -3260,6 +3308,7 @@ public class ViewBanHang extends javax.swing.JPanel {
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
         clearForm();
+        clearFormDatHang();
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnThanhToanTaiQuayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanTaiQuayActionPerformed
@@ -3340,9 +3389,21 @@ public class ViewBanHang extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Thanh toán thành công");
                 int confirm = JOptionPane.showConfirmDialog(this, "Bạn có muốn in hóa đơn không?");
                 if (confirm == JOptionPane.YES_OPTION) {
+                    JFileChooser avatarChooser = new JFileChooser("D:\\");
+                    avatarChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY); //Giới hạn chỉ chọn đc thư mục
+                    FileNameExtensionFilter avatarFilter = new FileNameExtensionFilter("Exel File", "xlsx");
+                    avatarChooser.setFileFilter(avatarFilter);
+                    avatarChooser.setAcceptAllFileFilterUsed(false);
+                    int selectFileCheck = avatarChooser.showOpenDialog(this);
+                    File selectedFile = avatarChooser.getSelectedFile();
+                    if (!(selectFileCheck == JFileChooser.APPROVE_OPTION)) {
+                        return;
+                    }
+                    //Muốn lấy đường dẫn và để vào export PDF thì 
+                    String path = selectedFile.getAbsolutePath();
                     try {
                         ExportFilePdfByITextTaiQuay export = new ExportFilePdfByITextTaiQuay();
-                        export.exportBill(hoaDon, new ArrayList<>(mapGioHang.values()));
+                        export.exportBill(hoaDon, new ArrayList<>(mapGioHang.values()), path);
                         JOptionPane.showMessageDialog(this, "In hóa đơn thành công");
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(this, "In hóa đơn thất bại");
@@ -3351,7 +3412,11 @@ public class ViewBanHang extends javax.swing.JPanel {
                 } else {
                     clearForm();
                 }
-                listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 0, 2);
+                if (nhanVien.getVaiTro() == 1) {
+                    listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 0, 2);
+                } else {
+                    listHoaDon = banHangService.getAllResponseHD("", 0, 2);
+                }
                 setSelected(0, 1);
                 loadDataToHoaDon(listHoaDon);
                 tblHoaDonCho.setRowSelectionInterval(0, 0);
@@ -3395,9 +3460,17 @@ public class ViewBanHang extends javax.swing.JPanel {
             cboTrangThaiHoaDon.addItem("Đã thanh toán");
             cboTrangThaiHoaDon.addItem("Tất cả");
             if (cboTrangThaiHoaDon.getSelectedIndex() == 1) {
-                listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 0, 2);
+                if (nhanVien.getVaiTro() == 1) {
+                    listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 0, 2);
+                } else {
+                    listHoaDon = banHangService.getAllResponseHD("", 0, 2);
+                }
             } else if (cboTrangThaiHoaDon.getSelectedIndex() == 1) {
-                listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 0, 0);
+                if (nhanVien.getVaiTro() == 1) {
+                    listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 0, 0);
+                } else {
+                    listHoaDon = banHangService.getAllResponseHD("", 0, 0);
+                }
             }
             loadDataToHoaDon(listHoaDon);
             countTbpDatHang = 1;
@@ -3416,31 +3489,60 @@ public class ViewBanHang extends javax.swing.JPanel {
             cboTrangThaiHoaDon.addItem("Khách hẹn giao lại");
             cboTrangThaiHoaDon.addItem("Đã giao");
             cboTrangThaiHoaDon.addItem("Tất cả");
-            if (cboTrangThaiHoaDon.getSelectedIndex() == 1) {
-                listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 2);
-            } else if (cboTrangThaiHoaDon.getSelectedIndex() == 2) {
-                listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 3);
-            } else if (cboTrangThaiHoaDon.getSelectedIndex() == 3) {
-                listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 4);
-            } else if (cboTrangThaiHoaDon.getSelectedIndex() == 4) {
-                listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 5);
+            if (nhanVien.getVaiTro() == 1) {
+                if (cboTrangThaiHoaDon.getSelectedIndex() == 1) {
+                    listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 2);
+                } else if (cboTrangThaiHoaDon.getSelectedIndex() == 2) {
+                    listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 3);
+                } else if (cboTrangThaiHoaDon.getSelectedIndex() == 3) {
+                    listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 4);
+                } else if (cboTrangThaiHoaDon.getSelectedIndex() == 4) {
+                    listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 5);
+                } else {
+                    listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 0);
+                }
             } else {
-                listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 0);
+                if (cboTrangThaiHoaDon.getSelectedIndex() == 1) {
+                    listHoaDon = banHangService.getAllResponseHD("", 1, 2);
+                } else if (cboTrangThaiHoaDon.getSelectedIndex() == 2) {
+                    listHoaDon = banHangService.getAllResponseHD("", 1, 3);
+                } else if (cboTrangThaiHoaDon.getSelectedIndex() == 3) {
+                    listHoaDon = banHangService.getAllResponseHD("", 1, 4);
+                } else if (cboTrangThaiHoaDon.getSelectedIndex() == 4) {
+                    listHoaDon = banHangService.getAllResponseHD("", 1, 5);
+                } else {
+                    listHoaDon = banHangService.getAllResponseHD("", 1, 0);
+                }
             }
             loadDataToHoaDon(listHoaDon);
             countTbpTaiQuay = 1;
         } else {
-            if (cboTrangThaiHoaDon.getSelectedIndex() == 1) {
-                listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), -1, 2);
-            }
-            if (cboTrangThaiHoaDon.getSelectedIndex() == 2) {
-                listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), -1, -1);
-            }
-            if (cboTrangThaiHoaDon.getSelectedIndex() == 0) {
-                listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), -1, 0);
-            }
-            if (cboTrangThaiHoaDon.getSelectedIndex() == 5) {
-                listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), -1, -1);
+            if (nhanVien.getVaiTro() == 1) {
+                if (cboTrangThaiHoaDon.getSelectedIndex() == 1) {
+                    listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), -1, 2);
+                }
+                if (cboTrangThaiHoaDon.getSelectedIndex() == 2) {
+                    listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), -1, -1);
+                }
+                if (cboTrangThaiHoaDon.getSelectedIndex() == 0) {
+                    listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), -1, 0);
+                }
+                if (cboTrangThaiHoaDon.getSelectedIndex() == 5) {
+                    listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), -1, -1);
+                }
+            } else {
+                if (cboTrangThaiHoaDon.getSelectedIndex() == 1) {
+                    listHoaDon = banHangService.getAllResponseHD("", -1, 2);
+                }
+                if (cboTrangThaiHoaDon.getSelectedIndex() == 2) {
+                    listHoaDon = banHangService.getAllResponseHD("", -1, -1);
+                }
+                if (cboTrangThaiHoaDon.getSelectedIndex() == 0) {
+                    listHoaDon = banHangService.getAllResponseHD("", -1, 0);
+                }
+                if (cboTrangThaiHoaDon.getSelectedIndex() == 5) {
+                    listHoaDon = banHangService.getAllResponseHD("", -1, -1);
+                }
             }
             loadDataToHoaDon(listHoaDon);
             countTbpDatHang = 1;
@@ -3451,27 +3553,28 @@ public class ViewBanHang extends javax.swing.JPanel {
     private void cboTrangThaiHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboTrangThaiHoaDonActionPerformed
         clearForm();
         clearFormDatHang();
-        if (cboTrangThaiHoaDon.getSelectedIndex() == 0) {
-            if (cboHinhThucGiaoHang.getSelectedIndex() == 0) {
-                listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 0, 0);
-            } else {
-                listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 0);
+        if (nhanVien.getVaiTro() == 1) {
+            if (cboTrangThaiHoaDon.getSelectedIndex() == 0) {
+                if (cboHinhThucGiaoHang.getSelectedIndex() == 0) {
+                    listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 0, 0);
+                } else {
+                    listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 0);
+                }
+            } else if (cboTrangThaiHoaDon.getSelectedIndex() == 1) {
+                if (cboHinhThucGiaoHang.getSelectedIndex() == 0) {
+                    listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 0, 2);
+                } else {
+                    listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 2);
+                }
+            } else if (cboTrangThaiHoaDon.getSelectedIndex() == 2) {
+                listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 3);
+            } else if (cboTrangThaiHoaDon.getSelectedIndex() == 3) {
+                listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 4);
+            } else if (cboTrangThaiHoaDon.getSelectedIndex() == 4) {
+                listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 6);
+            } else if (cboTrangThaiHoaDon.getSelectedIndex() == 5) {
+                listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 5);
             }
-        } else if (cboTrangThaiHoaDon.getSelectedIndex() == 1) {
-            if (cboHinhThucGiaoHang.getSelectedIndex() == 0) {
-                listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 0, 2);
-            } else {
-                listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 2);
-            }
-        } else if (cboTrangThaiHoaDon.getSelectedIndex() == 2) {
-            listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 3);
-        } else if (cboTrangThaiHoaDon.getSelectedIndex() == 3) {
-            listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 4);
-        } else if (cboTrangThaiHoaDon.getSelectedIndex() == 4) {
-            listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 6);
-        } else if (cboTrangThaiHoaDon.getSelectedIndex() == 5) {
-            listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 5);
-        }
 //        if (cboTrangThaiHoaDon.getSelectedIndex() == 5) {
 //            if (cboHinhThucGiaoHang.getSelectedIndex() == 0) {
 //                listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 0, -1);
@@ -3481,17 +3584,61 @@ public class ViewBanHang extends javax.swing.JPanel {
 //                listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), -1, -1);
 //            }
 //        }
-        if (cboHinhThucGiaoHang.getSelectedIndex() == 0 && cboTrangThaiHoaDon.getSelectedIndex() == 2) {
-            listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 0, -1);
-        }
-        if (cboHinhThucGiaoHang.getSelectedIndex() == 2 && cboTrangThaiHoaDon.getSelectedIndex() == 2) {
-            listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), -1, -1);
-        }
-        if (cboHinhThucGiaoHang.getSelectedIndex() == 1 && cboTrangThaiHoaDon.getSelectedIndex() == 6) {
-            listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, -1);
-        }
-        if (cboHinhThucGiaoHang.getSelectedIndex() == 2 && cboTrangThaiHoaDon.getSelectedIndex() == 6) {
-            listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), -1, -1);
+            if (cboHinhThucGiaoHang.getSelectedIndex() == 0 && cboTrangThaiHoaDon.getSelectedIndex() == 2) {
+                listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 0, -1);
+            }
+            if (cboHinhThucGiaoHang.getSelectedIndex() == 2 && cboTrangThaiHoaDon.getSelectedIndex() == 2) {
+                listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), -1, -1);
+            }
+            if (cboHinhThucGiaoHang.getSelectedIndex() == 1 && cboTrangThaiHoaDon.getSelectedIndex() == 6) {
+                listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, -1);
+            }
+            if (cboHinhThucGiaoHang.getSelectedIndex() == 2 && cboTrangThaiHoaDon.getSelectedIndex() == 6) {
+                listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), -1, -1);
+            }
+        } else {
+            if (cboTrangThaiHoaDon.getSelectedIndex() == 0) {
+                if (cboHinhThucGiaoHang.getSelectedIndex() == 0) {
+                    listHoaDon = banHangService.getAllResponseHD("", 0, 0);
+                } else {
+                    listHoaDon = banHangService.getAllResponseHD("", 1, 0);
+                }
+            } else if (cboTrangThaiHoaDon.getSelectedIndex() == 1) {
+                if (cboHinhThucGiaoHang.getSelectedIndex() == 0) {
+                    listHoaDon = banHangService.getAllResponseHD("", 0, 2);
+                } else {
+                    listHoaDon = banHangService.getAllResponseHD("", 1, 2);
+                }
+            } else if (cboTrangThaiHoaDon.getSelectedIndex() == 2) {
+                listHoaDon = banHangService.getAllResponseHD("", 1, 3);
+            } else if (cboTrangThaiHoaDon.getSelectedIndex() == 3) {
+                listHoaDon = banHangService.getAllResponseHD("", 1, 4);
+            } else if (cboTrangThaiHoaDon.getSelectedIndex() == 4) {
+                listHoaDon = banHangService.getAllResponseHD("", 1, 6);
+            } else if (cboTrangThaiHoaDon.getSelectedIndex() == 5) {
+                listHoaDon = banHangService.getAllResponseHD("", 1, 5);
+            }
+//        if (cboTrangThaiHoaDon.getSelectedIndex() == 5) {
+//            if (cboHinhThucGiaoHang.getSelectedIndex() == 0) {
+//                listHoaDon = banHangService.getAllResponseHD("", 0, -1);
+//            } else if (cboHinhThucGiaoHang.getSelectedIndex() == 1) {
+//                listHoaDon = banHangService.getAllResponseHD("", 1, -1);
+//            } else {
+//                listHoaDon = banHangService.getAllResponseHD("", -1, -1);
+//            }
+//        }
+            if (cboHinhThucGiaoHang.getSelectedIndex() == 0 && cboTrangThaiHoaDon.getSelectedIndex() == 2) {
+                listHoaDon = banHangService.getAllResponseHD("", 0, -1);
+            }
+            if (cboHinhThucGiaoHang.getSelectedIndex() == 2 && cboTrangThaiHoaDon.getSelectedIndex() == 2) {
+                listHoaDon = banHangService.getAllResponseHD("", -1, -1);
+            }
+            if (cboHinhThucGiaoHang.getSelectedIndex() == 1 && cboTrangThaiHoaDon.getSelectedIndex() == 6) {
+                listHoaDon = banHangService.getAllResponseHD("", 1, -1);
+            }
+            if (cboHinhThucGiaoHang.getSelectedIndex() == 2 && cboTrangThaiHoaDon.getSelectedIndex() == 6) {
+                listHoaDon = banHangService.getAllResponseHD("", -1, -1);
+            }
         }
         loadDataToHoaDon(listHoaDon);
     }//GEN-LAST:event_cboTrangThaiHoaDonActionPerformed
@@ -3507,7 +3654,11 @@ public class ViewBanHang extends javax.swing.JPanel {
     private void tbpDonHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbpDonHangMouseClicked
         if (tbpDonHang.getSelectedIndex() == 0) {
             if (countTbpTaiQuay == 0) {
-                listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 0, 0);
+                if (nhanVien.getVaiTro() == 1) {
+                    listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 0, 0);
+                } else {
+                    listHoaDon = banHangService.getAllResponseHD("", 0, 0);
+                }
                 setSelected(0, 0);
                 loadDataToHoaDon(listHoaDon);
                 btnThanhToanTaiQuay.setEnabled(false);
@@ -3516,7 +3667,11 @@ public class ViewBanHang extends javax.swing.JPanel {
             countTbpDatHang = 0;
         } else {
             if (countTbpDatHang == 0) {
-                listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 0);
+                if (nhanVien.getVaiTro() == 1) {
+                    listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 0);
+                } else {
+                    listHoaDon = banHangService.getAllResponseHD("", 1, 0);
+                }
                 setSelected(1, 0);
                 loadDataToHoaDon(listHoaDon);
                 btnThanhToanDatHang.setEnabled(false);
@@ -3667,7 +3822,11 @@ public class ViewBanHang extends javax.swing.JPanel {
             String array[] = txtThanhToanDatHang.getText().trim().split(" ");
             hoaDon.setThanhTien(new BigDecimal(array[0].replace(",", "")));
             banHangService.saveOrUpdate(hoaDon);
-            listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 6);
+            if (nhanVien.getVaiTro() == 1) {
+                listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 6);
+            } else {
+                listHoaDon = banHangService.getAllResponseHD("", 1, 6);
+            }
             setSelected(1, 4);
             loadDataToHoaDon(listHoaDon);
             JOptionPane.showMessageDialog(this, "Cập nhật thành công");
@@ -3883,7 +4042,8 @@ public class ViewBanHang extends javax.swing.JPanel {
                 }
                 txtThanhToanTaiQuay.setText(df.format(thanhTienConLai) + " Vnđ");
                 if (cboHTThanhToanTaiQuay.getSelectedIndex() == 1) {
-                    txtTienKhachCKTaiQuay.setText(txtThanhToanTaiQuay.getText());
+                    String array[] = txtThanhToanTaiQuay.getText().trim().split(" ");
+                    txtTienKhachCKTaiQuay.setText(array[0].replace(",", ""));
                     return;
                 }
                 if (cboHTThanhToanTaiQuay.getSelectedIndex() == 2) {
@@ -3921,9 +4081,32 @@ public class ViewBanHang extends javax.swing.JPanel {
                 txtTongTienDatHang.setText(df.format(tong) + " Vnđ");
                 txtGiamGiaDatHang.setText(df.format(giamGia) + " Vnđ");
                 BigDecimal tienCanTra = tong.subtract(giamGia).add(tienShip);
-                txtThanhToanDatHang.setText(df.format(tienCanTra) + " Vnđ");
+                KhachHang khachHang = banHangService.findByMaKhachHang(bhHoaDonResponse.getMaKhachHang());
+                BigDecimal thanhTienConLai = null;
+                if (khachHang != null) {
+                    String array[] = txtThanhToanTaiQuay.getText().trim().split(" ");
+                    if (khachHang.getCapBac() == null) {
+                        thanhTienConLai = tienCanTra.subtract(tienCanTra.multiply(new BigDecimal(0.0).divide(new BigDecimal(100))));
+                    } else {
+                        if (khachHang.getCapBac() == 0) {
+                            thanhTienConLai = tienCanTra.subtract(tienCanTra.multiply(new BigDecimal(0.0).divide(new BigDecimal(100))));
+                        }
+                        if (khachHang.getCapBac() == 1) {
+                            thanhTienConLai = tienCanTra.subtract(tienCanTra.multiply(new BigDecimal(3.0).divide(new BigDecimal(100))));
+                        }
+                        if (khachHang.getCapBac() == 2) {
+                            thanhTienConLai = tienCanTra.subtract(tienCanTra.multiply(new BigDecimal(5.0).divide(new BigDecimal(100))));
+                        }
+                        if (khachHang.getCapBac() == 3) {
+                            thanhTienConLai = tienCanTra.subtract(tienCanTra.multiply(new BigDecimal(10.0).divide(new BigDecimal(100))));
+                        }
+                    }
+                }
+//                txtThanhToanTaiQuay.setText(df.format(thanhTienConLai) + " Vnđ");
+                txtThanhToanDatHang.setText(df.format(thanhTienConLai) + " Vnđ");
                 if (cboHTThanhToanDatHang.getSelectedIndex() == 1) {
-                    txtTienKhachCKDatHang.setText(txtThanhToanDatHang.getText());
+                    String array[] = txtThanhToanDatHang.getText().trim().split(" ");
+                    txtTienKhachCKDatHang.setText(array[0].replace(",", ""));
                     txtTienThuaDatHang.setText("0 Vnđ");
                     return;
                 }
@@ -3968,7 +4151,11 @@ public class ViewBanHang extends javax.swing.JPanel {
             hoaDon.setHinhThucGiaoHang(1);
             hoaDon.setTrangThai(0);
             banHangService.saveOrUpdate(hoaDon);
-            listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 0);
+            if (nhanVien.getVaiTro() == 1) {
+                listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 0);
+            } else {
+                listHoaDon = banHangService.getAllResponseHD("", 1, 0);
+            }
             setSelected(1, 0);
             loadDataToHoaDon(listHoaDon);
             JOptionPane.showMessageDialog(this, "Tạo hóa đơn thành công");
@@ -4005,7 +4192,11 @@ public class ViewBanHang extends javax.swing.JPanel {
             }
             hoaDon.setTrangThai(0);
             banHangService.saveOrUpdate(hoaDon);
-            listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 0, 0);
+            if (nhanVien.getVaiTro() == 1) {
+                listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 0, 0);
+            } else {
+                listHoaDon = banHangService.getAllResponseHD("", 0, 0);
+            }
             setSelected(0, 0);
             loadDataToHoaDon(listHoaDon);
             JOptionPane.showMessageDialog(this, "Tạo hóa đơn thành công");
