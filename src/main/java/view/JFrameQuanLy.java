@@ -109,6 +109,7 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         ThongTinCaNhan.setMaximumSize(new java.awt.Dimension(449, 649));
         ThongTinCaNhan.setMinimumSize(new java.awt.Dimension(449, 649));
         ThongTinCaNhan.setPreferredSize(new java.awt.Dimension(449, 649));
+        ThongTinCaNhan.setResizable(false);
         ThongTinCaNhan.setSize(new java.awt.Dimension(449, 649));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -199,14 +200,13 @@ public class JFrameQuanLy extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel5)
                     .addComponent(jLabel6)
                     .addComponent(jLabel7)
                     .addComponent(jLabel9)
                     .addComponent(jLabel8)
-                    .addComponent(jLabel10)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel3)
-                        .addComponent(jLabel5)))
+                    .addComponent(jLabel10))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(30, 30, 30)

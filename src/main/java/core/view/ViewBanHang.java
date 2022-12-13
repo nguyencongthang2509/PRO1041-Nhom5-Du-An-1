@@ -2832,7 +2832,8 @@ public class ViewBanHang extends javax.swing.JPanel {
             txtTienKhachDuaDatHang.setEnabled(false);
             txtTienKhachCKDatHang.setEnabled(true);
             txtTienKhachDuaDatHang.setText("");
-            txtTienKhachCKDatHang.setText(txtThanhToanDatHang.getText());
+            String array[] = txtThanhToanDatHang.getText().trim().split(" ");
+            txtTienKhachCKDatHang.setText(array[0].replace(",", ""));
             txtTienThuaDatHang.setText("0 Vnđ");
         }
         if (cboHTThanhToanDatHang.getSelectedIndex() == 2) {
@@ -2982,16 +2983,16 @@ public class ViewBanHang extends javax.swing.JPanel {
                     String array[] = txtThanhToanDatHang.getText().trim().split(" ");
                     hoaDon.setThanhTien(new BigDecimal(array[0].replace(",", "")));
                     if (cboHTThanhToanDatHang.getSelectedIndex() == 0) {
-                        String arrayTKT[] = txtTienKhachDuaDatHang.getText().trim().split(" ");
-                        hoaDon.setTienKhachTra(new BigDecimal(arrayTKT[0].replace(",", "")));
+//                        String arrayTKT[] = txtTienKhachDuaDatHang.getText().trim().split(" ");
+                        hoaDon.setTienKhachTra(new BigDecimal(txtTienKhachDuaDatHang.getText().trim()));
                     } else if (cboHTThanhToanDatHang.getSelectedIndex() == 1) {
-                        String arrayTKCK[] = txtTienKhachCKDatHang.getText().trim().split(" ");
-                        hoaDon.setTienKhachChuyenKhoan(new BigDecimal(arrayTKCK[0].replace(",", "")));
+//                        String arrayTKCK[] = txtTienKhachCKDatHang.getText().trim().split(" ");
+                        hoaDon.setTienKhachChuyenKhoan(new BigDecimal(txtTienKhachCKDatHang.getText().trim()));
                     } else {
-                        String arrayTKT[] = txtTienKhachDuaDatHang.getText().trim().split(" ");
-                        hoaDon.setTienKhachTra(new BigDecimal(arrayTKT[0].replace(",", "")));
-                        String arrayTKCK[] = txtTienKhachCKDatHang.getText().trim().split(" ");
-                        hoaDon.setTienKhachChuyenKhoan(new BigDecimal(arrayTKCK[0].replace(",", "")));
+//                        String arrayTKT[] = txtTienKhachDuaDatHang.getText().trim().split(" ");
+                        hoaDon.setTienKhachTra(new BigDecimal(txtTienKhachDuaDatHang.getText().trim()));
+//                        String arrayTKCK[] = txtTienKhachCKDatHang.getText().trim().split(" ");
+                        hoaDon.setTienKhachChuyenKhoan(new BigDecimal(txtTienKhachCKDatHang.getText().trim()));
                     }
                     String arrayTT[] = txtTienThuaDatHang.getText().trim().split(" ");
                     hoaDon.setTienThua(new BigDecimal(arrayTT[0].replace(",", "")));
@@ -3135,16 +3136,16 @@ public class ViewBanHang extends javax.swing.JPanel {
                 String array[] = txtThanhToanDatHang.getText().trim().split(" ");
                 hoaDon.setThanhTien(new BigDecimal(array[0].replace(",", "")));
                 if (cboHTThanhToanDatHang.getSelectedIndex() == 0) {
-                    String arrayTKT[] = txtTienKhachDuaDatHang.getText().trim().split(" ");
-                    hoaDon.setTienKhachTra(new BigDecimal(arrayTKT[0].replace(",", "")));
+//                    String arrayTKT[] = txtTienKhachDuaDatHang.getText().trim().split(" ");
+                    hoaDon.setTienKhachTra(new BigDecimal(txtTienKhachDuaDatHang.getText().trim()));
                 } else if (cboHTThanhToanDatHang.getSelectedIndex() == 1) {
-                    String arrayTKCK[] = txtTienKhachCKDatHang.getText().trim().split(" ");
-                    hoaDon.setTienKhachChuyenKhoan(new BigDecimal(arrayTKCK[0].replace(",", "")));
+//                    String arrayTKCK[] = txtTienKhachCKDatHang.getText().trim().split(" ");
+                    hoaDon.setTienKhachChuyenKhoan(new BigDecimal(txtTienKhachCKDatHang.getText().trim()));
                 } else {
-                    String arrayTKT[] = txtTienKhachDuaDatHang.getText().trim().split(" ");
-                    hoaDon.setTienKhachTra(new BigDecimal(arrayTKT[0].replace(",", "")));
-                    String arrayTKCK[] = txtTienKhachCKDatHang.getText().trim().split(" ");
-                    hoaDon.setTienKhachChuyenKhoan(new BigDecimal(arrayTKCK[0].replace(",", "")));
+//                    String arrayTKT[] = txtTienKhachDuaDatHang.getText().trim().split(" ");
+                    hoaDon.setTienKhachTra(new BigDecimal(txtTienKhachDuaDatHang.getText().trim()));
+//                    String arrayTKCK[] = txtTienKhachCKDatHang.getText().trim().split(" ");
+                    hoaDon.setTienKhachChuyenKhoan(new BigDecimal(txtTienKhachCKDatHang.getText().trim()));
                 }
                 String arrayTT[] = txtTienThuaDatHang.getText().trim().split(" ");
                 hoaDon.setTienThua(new BigDecimal(arrayTT[0].replace(",", "")));
@@ -4041,7 +4042,8 @@ public class ViewBanHang extends javax.swing.JPanel {
                 }
                 txtThanhToanTaiQuay.setText(df.format(thanhTienConLai) + " Vnđ");
                 if (cboHTThanhToanTaiQuay.getSelectedIndex() == 1) {
-                    txtTienKhachCKTaiQuay.setText(txtThanhToanTaiQuay.getText());
+                    String array[] = txtThanhToanTaiQuay.getText().trim().split(" ");
+                    txtTienKhachCKTaiQuay.setText(array[0].replace(",", ""));
                     return;
                 }
                 if (cboHTThanhToanTaiQuay.getSelectedIndex() == 2) {
@@ -4103,7 +4105,8 @@ public class ViewBanHang extends javax.swing.JPanel {
 //                txtThanhToanTaiQuay.setText(df.format(thanhTienConLai) + " Vnđ");
                 txtThanhToanDatHang.setText(df.format(thanhTienConLai) + " Vnđ");
                 if (cboHTThanhToanDatHang.getSelectedIndex() == 1) {
-                    txtTienKhachCKDatHang.setText(txtThanhToanDatHang.getText());
+                    String array[] = txtThanhToanDatHang.getText().trim().split(" ");
+                    txtTienKhachCKDatHang.setText(array[0].replace(",", ""));
                     txtTienThuaDatHang.setText("0 Vnđ");
                     return;
                 }

@@ -1166,6 +1166,8 @@ public class ViewDoiTra extends javax.swing.JPanel {
             }
             listHoaDonTraHang = traHangService.getAllResponseHDTraHang();
             loadTableHoaDonTraHang(listHoaDonTraHang);
+            listHoaDon = traHangService.getAllResponseHD();
+            loadTableHoaDon(listHoaDon);
             JOptionPane.showMessageDialog(this, "Trả hàng thành công");
             clearForm();
         } catch (Exception e) {
