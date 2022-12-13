@@ -1006,7 +1006,7 @@ public class ViewThongKe extends javax.swing.JPanel {
 //                doanhThu.setThang(thang);
 //                doanhThu.setNam(nam);
 //            }
-                
+
             }
             PanelBieuDoTheoKhoang(list);
         } catch (Exception ex) {
@@ -1081,91 +1081,91 @@ public class ViewThongKe extends javax.swing.JPanel {
     private void cboThangDTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboThangDTActionPerformed
         try {
             GetDoanhThuThang();
-                    if (cboThangDT.getSelectedIndex() == 0) {
-            try {
-                PanelBieuDoNgay(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()));
+            if (cboThangDT.getSelectedIndex() == 0) {
+                try {
+                    PanelBieuDoNgay(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()));
 
-            } catch (Exception e) {
-                e.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-        }
-        if (cboThangDT.getSelectedIndex() == 1) {
-            try {
-                PanelBieuDoNgay(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()));
-            } catch (Exception e) {
-                e.printStackTrace();
+            if (cboThangDT.getSelectedIndex() == 1) {
+                try {
+                    PanelBieuDoNgay(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-        }
-        if (cboThangDT.getSelectedIndex() == 2) {
-            try {
-                PanelBieuDoNgay(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()));
-            } catch (Exception e) {
-                e.printStackTrace();
+            if (cboThangDT.getSelectedIndex() == 2) {
+                try {
+                    PanelBieuDoNgay(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-        }
-        if (cboThangDT.getSelectedIndex() == 3) {
-            try {
-                PanelBieuDoNgay(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()));
-            } catch (Exception e) {
-                e.printStackTrace();
+            if (cboThangDT.getSelectedIndex() == 3) {
+                try {
+                    PanelBieuDoNgay(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-        }
-        if (cboThangDT.getSelectedIndex() == 4) {
-            try {
-                PanelBieuDoNgay(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()));
-            } catch (Exception e) {
-                e.printStackTrace();
+            if (cboThangDT.getSelectedIndex() == 4) {
+                try {
+                    PanelBieuDoNgay(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-        }
-        if (cboThangDT.getSelectedIndex() == 5) {
-            try {
-                PanelBieuDoNgay(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()));
-            } catch (Exception e) {
-                e.printStackTrace();
+            if (cboThangDT.getSelectedIndex() == 5) {
+                try {
+                    PanelBieuDoNgay(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-        }
-        if (cboThangDT.getSelectedIndex() == 6) {
-            try {
-                PanelBieuDoNgay(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()));
-            } catch (Exception e) {
-                e.printStackTrace();
+            if (cboThangDT.getSelectedIndex() == 6) {
+                try {
+                    PanelBieuDoNgay(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-        }
-        if (cboThangDT.getSelectedIndex() == 7) {
-            try {
-                PanelBieuDoNgay(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()));
-            } catch (Exception e) {
-                e.printStackTrace();
+            if (cboThangDT.getSelectedIndex() == 7) {
+                try {
+                    PanelBieuDoNgay(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-        }
-        if (cboThangDT.getSelectedIndex() == 8) {
-            try {
-                PanelBieuDoNgay(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()));
-            } catch (Exception e) {
-                e.printStackTrace();
+            if (cboThangDT.getSelectedIndex() == 8) {
+                try {
+                    PanelBieuDoNgay(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-        }
-        if (cboThangDT.getSelectedIndex() == 9) {
-            try {
-                PanelBieuDoNgay(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()));
-            } catch (Exception e) {
-                e.printStackTrace();
+            if (cboThangDT.getSelectedIndex() == 9) {
+                try {
+                    PanelBieuDoNgay(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-        }
-        if (cboThangDT.getSelectedIndex() == 10) {
-            try {
-                PanelBieuDoNgay(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()));
-            } catch (Exception e) {
-                e.printStackTrace();
+            if (cboThangDT.getSelectedIndex() == 10) {
+                try {
+                    PanelBieuDoNgay(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-        }
-        if (cboThangDT.getSelectedIndex() == 11) {
-            try {
-                PanelBieuDoNgay(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()));
-            } catch (Exception e) {
-                e.printStackTrace();
+            if (cboThangDT.getSelectedIndex() == 11) {
+                try {
+                    PanelBieuDoNgay(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-        }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1187,10 +1187,18 @@ public class ViewThongKe extends javax.swing.JPanel {
             int KHngay = thongKeRespo.BaoCaoKH(ee);
 
             String vv = JOptionPane.showInputDialog(this, "Nhập Email: ");
-            String nv = nvImpl.getNhanVienByEmail(vv);
             if (vv == null) {
                 return;
             }
+            if (vv.isEmpty()) {
+                return;
+            }
+
+            if(nvImpl.getNhanVienByEmail(vv) == null){
+                JOptionPane.showMessageDialog(this, "Không tìm thấy nhân viên này");
+                return;
+            }
+            String nv = nvImpl.getNhanVienByEmail(vv);
             if (dPNgay1.getDate() == null || dPNgay2.getDate() == null) {
                 if (nv == "") {
                     JOptionPane.showMessageDialog(this, "Khong tim thay Email");
@@ -1360,7 +1368,7 @@ public class ViewThongKe extends javax.swing.JPanel {
     private void loadListTraHang() {
         modelHangHoa1.setRowCount(0);
         int index = 1;
-//        listHangHoaTra = thongKeRespo.getListTraHang();
+        listHangHoaTra = thongKeRespo.getListTraHang();
         for (ThongKeTraHangResponse xx : listHangHoaTra) {
             modelHangHoa1.addRow(new Object[]{index, xx.getMa(), xx.getTenSP(), xx.getHang(),
                 xx.getMau(), xx.getKichThuoc(), xx.getSoLuong(), xx.getGiaBan()});
@@ -1402,7 +1410,7 @@ public class ViewThongKe extends javax.swing.JPanel {
         JPenalBieuDo.validate();
         JPenalBieuDo.repaint();
     }
-    
+
     private void PanelBieuDoTheoKhoang(List<ThongKeTheoKhoangResponse> list) throws ParseException, Exception {
         ChartPanel chartPanel = new ChartPanel(ut.createChartTheoKhoangThoiGian(list));
         JPenalBieuDo.setSize(1260, 382);
@@ -1445,7 +1453,6 @@ public class ViewThongKe extends javax.swing.JPanel {
 //            cboNamDoanhThu.addItem(i + "");
 //        }
 //    }
-
     public void GetYearNow2() {
         Date date = new Date();
         cboNamDoanhThu.removeAllItems();
@@ -1496,10 +1503,10 @@ public class ViewThongKe extends javax.swing.JPanel {
     private void LoadTimKiemTra() {
         modelHangHoa1.setRowCount(0);
         int index = 1;
-        List<HoaDonTraHangChiTiet> thongkeRespon = thongKeRespo.TimKiemHangHoaTra(txtTimKiemTra.getText());
-        for (HoaDonTraHangChiTiet xx : thongkeRespon) {
-            modelHangHoa1.addRow(new Object[]{index, xx.getMaChiTietSanPham(), xx.getTenSP(), xx.getTenHang(),
-                xx.getMauSac(), xx.getKichThuoc(), xx.getSoLuongTra(), xx.getGiaBan()});
+        List<ThongKeTraHangResponse> thongkeRespon = thongKeRespo.TimKiemHangHoaTra(txtTimKiemTra.getText());
+        for (ThongKeTraHangResponse xx : thongkeRespon) {
+            modelHangHoa1.addRow(new Object[]{index, xx.getMa(), xx.getTenSP(), xx.getHang(),
+                xx.getMau(), xx.getKichThuoc(), xx.getSoLuong(), xx.getGiaBan()});
             index++;
 
         }
@@ -1535,7 +1542,6 @@ public class ViewThongKe extends javax.swing.JPanel {
         for (ThongKeHangHoaResponse xx : thongkeRespon) {
             modelHangHoa.addRow(xx.toDataRow(index));
             index++;
-
         }
     }
 
