@@ -1179,8 +1179,10 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
     private void cobtensanphamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cobtensanphamActionPerformed
 
         try {
-
             String input = (String) cobtensanpham.getSelectedItem();
+            if(input.equals("Tất cả")){
+               input = "";
+            }
             modelsanpham.setRowCount(0);
             for (KMChiTietSPResponse xx : listsanpham) {
                 if (xx.getTenSP().contains(input)) {
@@ -1195,6 +1197,8 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
 
     private void btnxoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnxoaActionPerformed
         Clear();
+        listsanpham.clear();
+        FillToSanPham(listsanpham);
     }//GEN-LAST:event_btnxoaActionPerformed
 
     private void btnhuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhuyActionPerformed
@@ -1330,8 +1334,13 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
             System.out.println(listSelectedcotheapdung);
 
             for (KMChiTietSPResponse xx : listSelectedcotheapdung) {
-                listsanpham.add(xx);
-                listsanphamcotheapdung.remove(xx);
+                if(FillChiTietSanPham(xx.getMaCTSP())){
+                    continue;
+                }else{
+                  listsanpham.add(xx);
+                listsanphamcotheapdung.remove(xx);  
+                }
+                
             }
             FillToLocsanpham(listsanphamcotheapdung);
             FillToSanPham(listsanpham);
@@ -1343,6 +1352,15 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jButton7ActionPerformed
 
+    public boolean FillChiTietSanPham(String ma){
+        for (KMChiTietSPResponse xx : listsanpham) {
+            if(ma.equals(xx.getMaCTSP())){
+            return true;
+            }
+        }
+        return false;
+    }
+    
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         if (!alllocsanpham) {
             for (int i = 0; i < tblLocSP.getRowCount(); i++) {
@@ -1360,9 +1378,8 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
     private void btnbokhoidanhsachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbokhoidanhsachActionPerformed
         try {
             List<KMChiTietSPResponse> listSelected = GetSelected();
-            int index = tblsanpham.getSelectedRow();
-            if (index == -1) {
-                JOptionPane.showMessageDialog(this, "Bạn chưa chọn dòng");
+            if (listSelected.size() == 0 ) {
+                JOptionPane.showMessageDialog(this, "Bạn chưa chọn sản phẩm");
                 return;
             }
             for (KMChiTietSPResponse xx : listSelected) {
@@ -1440,20 +1457,11 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
             String input = txttimsanphammuonad.getText();
             modelsanpham.setRowCount(0);
             for (KMChiTietSPResponse xx : listsanpham) {
-                if (xx.getMaCTSP().contains(input)) {
+                if (xx.getMaCTSP().contains(input) || xx.getTenSP().contains(input) || xx.getHang().contains(input)
+                        ||xx.getSize().contains(input) || xx.getMauSac().contains(input)) {
                     modelsanpham.addRow(xx.toDaTaRow());
                 }
-                if (xx.getTenSP().contains(input)) {
-                    modelsanpham.addRow(xx.toDaTaRow());
-                }
-                if (xx.getMauSac().contains(input)) {
-                    modelsanpham.addRow(xx.toDaTaRow());
-                }if (xx.getSize().contains(input)) {
-                    modelsanpham.addRow(xx.toDaTaRow());
-                }
-                if (xx.getHang().contains(input)) {
-                    modelsanpham.addRow(xx.toDaTaRow());
-                }
+                
             }
 
         } catch (Exception e) {
