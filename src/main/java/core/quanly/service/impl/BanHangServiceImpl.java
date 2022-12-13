@@ -147,9 +147,17 @@ public class BanHangServiceImpl implements BanHangService {
     @Override
     public boolean updateKhachHangInHoaDon(String idHoaDon, String idKhachHang) {
         HoaDon hoaDon = banHangRepository.findByIdHoaDon(idHoaDon);
-        KhachHang khachHang = new KhachHang();
-        khachHang.setId(idKhachHang);
+        KhachHang khachHang = banHangRepository.findByIdKhachHang(idKhachHang);
         hoaDon.setKhachHang(khachHang);
+        if (khachHang.getCapBac() == 0) {
+            hoaDon.setPhamTramGiamGia(0.0);
+        } else if (khachHang.getCapBac() == 1) {
+            hoaDon.setPhamTramGiamGia(3.0);
+        } else if (khachHang.getCapBac() == 2) {
+            hoaDon.setPhamTramGiamGia(5.0);
+        } else if (khachHang.getCapBac() == 3) {
+            hoaDon.setPhamTramGiamGia(10.0);
+        }
         banHangRepository.saveOrUpdateHD(hoaDon);
         return true;
     }
@@ -162,7 +170,7 @@ public class BanHangServiceImpl implements BanHangService {
     @Override
     public BhChiTietSPResponse findCTSPByMaVach(List<BhChiTietSPResponse> list, String maVach) {
         for (BhChiTietSPResponse xx : list) {
-            if(maVach.equals(xx.getMaVach())){
+            if (maVach.equals(xx.getMaVach())) {
                 return xx;
             }
         }
@@ -202,7 +210,7 @@ public class BanHangServiceImpl implements BanHangService {
     @Override
     public boolean saveOrUpdateKH(KhachHang entity) {
         KhachHang khachHang = banHangRepository.saveOrUpdateKH(entity);
-        if(khachHang != null){
+        if (khachHang != null) {
             return true;
         }
         return false;
@@ -216,6 +224,11 @@ public class BanHangServiceImpl implements BanHangService {
     @Override
     public List<BhKhachHangResponse> findKhachHang(String input) {
         return banHangRepository.findKhachHang(input);
+    }
+
+    @Override
+    public List<BhNhanVienResponse> findNhanVien(String input) {
+        return banHangRepository.findNhanVien(input);
     }
 
 }

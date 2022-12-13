@@ -37,6 +37,8 @@ public class BhHoaDonResponse {
     
     private Integer capBac;
     
+    private Double phanTramGiamGia;
+    
     private Integer trangThaiThanhToan;
     
     private Date ngayMongMuon;

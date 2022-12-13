@@ -71,5 +71,7 @@ public interface BanHangService {
     HoaDon findByIdHoaDon(String id);
     
     ChiTietSP findChiTietSPById(String id);
+    
+    List<BhNhanVienResponse> findNhanVien(String input);
        
 }
