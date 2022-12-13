@@ -104,6 +104,7 @@ public class ViewHoaDon extends javax.swing.JPanel {
             }
         }
         lblRecordHD.setText(tranghientai + 1 + "/" + tongsoTrang);
+        lblSoHoaDon.setText("Số hóa đơn: " + count);
     }
 
     public void loadTableHoaDon2(List<HdHoaDonResponse2> listHD2) {
@@ -145,6 +146,8 @@ public class ViewHoaDon extends javax.swing.JPanel {
             }
         }
         lblRecordHD2.setText(tranghientai + 1 + "/" + tongsoTrang);
+        lblSoHoaDon2.setText("Số hóa đơn: " + count);
+
     }
 
     public void loadTableHDbyText() {
@@ -441,6 +444,7 @@ public class ViewHoaDon extends javax.swing.JPanel {
         btnHuy = new javax.swing.JButton();
         lblRecordHD = new javax.swing.JLabel();
         btnInHoaDon = new javax.swing.JButton();
+        lblSoHoaDon = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblHoadonchitiet = new javax.swing.JTable();
@@ -468,6 +472,7 @@ public class ViewHoaDon extends javax.swing.JPanel {
         btnHuy2 = new javax.swing.JButton();
         lblRecordHD2 = new javax.swing.JLabel();
         btnInHoaDon2 = new javax.swing.JButton();
+        lblSoHoaDon2 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblHoaDonChiTiet2 = new javax.swing.JTable();
@@ -732,11 +737,11 @@ public class ViewHoaDon extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Hóa đơn", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
+        jPanel1.setToolTipText("");
         jPanel1.setMaximumSize(new java.awt.Dimension(1240, 300));
         jPanel1.setMinimumSize(new java.awt.Dimension(1240, 300));
         jPanel1.setName(""); // NOI18N
         jPanel1.setPreferredSize(new java.awt.Dimension(1240, 300));
-        jPanel1.setToolTipText("");
 
         tblHoadon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -879,6 +884,8 @@ public class ViewHoaDon extends javax.swing.JPanel {
             }
         });
 
+        lblSoHoaDon.setText("jLabel40");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -909,8 +916,10 @@ public class ViewHoaDon extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(lblSoHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(btnFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(35, 35, 35)
                                         .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -933,7 +942,7 @@ public class ViewHoaDon extends javax.swing.JPanel {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(691, 691, 691)))
-                                .addGap(0, 3, Short.MAX_VALUE)))
+                                .addGap(0, 8, Short.MAX_VALUE)))
                         .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
@@ -968,7 +977,8 @@ public class ViewHoaDon extends javax.swing.JPanel {
                         .addComponent(btnFirst)
                         .addComponent(btnBack)
                         .addComponent(lblRecordHD)
-                        .addComponent(btnNext)))
+                        .addComponent(btnNext)
+                        .addComponent(lblSoHoaDon)))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -1016,7 +1026,7 @@ public class ViewHoaDon extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1034,7 +1044,7 @@ public class ViewHoaDon extends javax.swing.JPanel {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -1194,6 +1204,8 @@ public class ViewHoaDon extends javax.swing.JPanel {
             }
         });
 
+        lblSoHoaDon2.setText("jLabel40");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -1202,7 +1214,8 @@ public class ViewHoaDon extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lblSoHoaDon2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnFirst2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(36, 36, 36)
                         .addComponent(btnBack2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1245,7 +1258,7 @@ public class ViewHoaDon extends javax.swing.JPanel {
                                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtSearch2, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 113, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -1278,8 +1291,9 @@ public class ViewHoaDon extends javax.swing.JPanel {
                     .addComponent(btnHuy2)
                     .addComponent(lblRecordHD2)
                     .addComponent(btnInHoaDon2)
-                    .addComponent(btnXuatDanhSach2))
-                .addContainerGap(25, Short.MAX_VALUE))
+                    .addComponent(btnXuatDanhSach2)
+                    .addComponent(lblSoHoaDon2))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
@@ -1312,7 +1326,7 @@ public class ViewHoaDon extends javax.swing.JPanel {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1233, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1237, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -2104,6 +2118,8 @@ public class ViewHoaDon extends javax.swing.JPanel {
     private javax.swing.JLabel lblSDT;
     private javax.swing.JLabel lblSDT2;
     private javax.swing.JLabel lblSDTnguoiship;
+    private javax.swing.JLabel lblSoHoaDon;
+    private javax.swing.JLabel lblSoHoaDon2;
     private javax.swing.JLabel lblTenKhachHang;
     private javax.swing.JLabel lblTenNV;
     private javax.swing.JLabel lblTenNV2;

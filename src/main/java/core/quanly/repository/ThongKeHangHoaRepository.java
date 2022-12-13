@@ -6,6 +6,7 @@ package core.quanly.repository;
 
 import config.HibernateUtil;
 import core.quanly.viewmodel.ThongKeHangHoaResponse;
+import core.quanly.viewmodel.ThongKeTraHangResponse;
 import domainmodels.HoaDon;
 import domainmodels.HoaDonChiTiet;
 import domainmodels.HoaDonTraHangChiTiet;
@@ -34,7 +35,7 @@ public class ThongKeHangHoaRepository {
                          select new core.quanly.viewmodel.ThongKeHangHoaResponse
                          (a.chiTietSPId.id, a.chiTietSPId.sanPham.ma, a.chiTietSPId.sanPham.ten,
                          a.chiTietSPId.hang.ten, a.chiTietSPId.mauSac.ten, 
-                        a.chiTietSPId.kichThuoc.ten, a.soLuong, a.donGia)
+                        a.chiTietSPId.kichThuoc.ten, sum(a.soLuong), a.donGia)
                          from HoaDonChiTiet a Group by a.chiTietSPId.id, a.chiTietSPId.sanPham.ma, 
                          a.chiTietSPId.sanPham.ten, a.chiTietSPId.hang.ten, a.chiTietSPId.mauSac.ten,
                          a.chiTietSPId.kichThuoc.ten,a.donGia
@@ -49,11 +50,12 @@ public class ThongKeHangHoaRepository {
     }
 //lấy ra danh sách sản phẩm đã trả
 
-    public List<HoaDonTraHangChiTiet> getListTraHang() {
-        List<HoaDonTraHangChiTiet> list = new ArrayList<>();
+    public List<ThongKeTraHangResponse> getListTraHang() {
+        List<ThongKeTraHangResponse> list = new ArrayList<>();
         try {
             Session session = HibernateUtil.getSession();
-            String hql = "select a from HoaDonTraHangChiTiet a ";
+            String hql = "select new core.quanly.viewmodel.ThongKeTraHangResponse(a.maChiTietSanPham, a.tenSP, a.tenHang, a.mauSac, a.kichThuoc, sum(a.soLuongTra), a.giaBan) "
+                    + "from HoaDonTraHangChiTiet a group by a.maChiTietSanPham, a.tenSP, a.tenHang, a.mauSac, a.kichThuoc, a.giaBan";
             Query query = session.createQuery(hql);
             list = query.getResultList();
         } catch (Exception e) {
@@ -299,7 +301,7 @@ public class ThongKeHangHoaRepository {
     }
 
     public static void main(String[] args) {
-        List id = new ThongKeHangHoaRepository().getListHDCT();
+        List id = new ThongKeHangHoaRepository().getListTraHang();
         System.out.println(id);
     }
 //số khách hàng theo từng tháng

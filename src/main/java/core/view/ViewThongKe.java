@@ -10,6 +10,7 @@ import core.quanly.service.ThongKeHangHoaService;
 import core.quanly.service.impl.NhanVienServiceImpl;
 import core.quanly.service.impl.ThongKeHangHoaServiceImpl;
 import core.quanly.viewmodel.ThongKeHangHoaResponse;
+import core.quanly.viewmodel.ThongKeTraHangResponse;
 import domainmodels.HoaDonTraHangChiTiet;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -49,7 +50,7 @@ public class ViewThongKe extends javax.swing.JPanel {
     DefaultTableModel modelHangHoa;
     DefaultTableModel modelHangHoa1;
     List<ThongKeHangHoaResponse> listHangHoa = new ArrayList<>();
-    List<HoaDonTraHangChiTiet> listHangHoaTra = new ArrayList<>();
+    List<ThongKeTraHangResponse> listHangHoaTra = new ArrayList<>();
     ThongKeHangHoaService hangHoaService = new ThongKeHangHoaServiceImpl();
     ThongKeHangHoaRepository thongKeRespo = new ThongKeHangHoaRepository();
     UtilTest ut = new UtilTest();
@@ -1350,9 +1351,9 @@ public class ViewThongKe extends javax.swing.JPanel {
         modelHangHoa1.setRowCount(0);
         int index = 1;
         listHangHoaTra = thongKeRespo.getListTraHang();
-        for (HoaDonTraHangChiTiet xx : listHangHoaTra) {
-            modelHangHoa1.addRow(new Object[]{index, xx.getMaChiTietSanPham(), xx.getTenSP(), xx.getTenHang(),
-                xx.getMauSac(), xx.getKichThuoc(), xx.getSoLuongTra(), xx.getGiaBan()});
+        for (ThongKeTraHangResponse xx : listHangHoaTra) {
+            modelHangHoa1.addRow(new Object[]{index, xx.getMa(), xx.getTenSP(), xx.getHang(),
+                xx.getMau(), xx.getKichThuoc(), xx.getSoLuong(), xx.getGiaBan()});
             index++;
         }
     }
