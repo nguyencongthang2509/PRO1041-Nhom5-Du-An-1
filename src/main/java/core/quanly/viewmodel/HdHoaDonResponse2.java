@@ -40,12 +40,28 @@ public class HdHoaDonResponse2 {
     private Date ngaynhan;
     private String lydo;
     private Integer trangThai;
+    private Double phanTramGiamGia;
+    private Date ngayMongMuon;
 
     public String getNgayThanhToanStr() {
         if (ngayThanhToan == null) {
             return "..........";
         }
         return String.valueOf(ngayThanhToan);
+    }
+
+    public String getGiamGiaStr() {
+        if (phanTramGiamGia == null) {
+            return "0%";
+        }
+        return String.valueOf(phanTramGiamGia) + "%";
+    }
+
+    public String getNgayMongMuonStr() {
+        if (ngayMongMuon == null) {
+            return "..........";
+        }
+        return String.valueOf(ngayMongMuon);
     }
 
     public String getThanhTienStr() {
@@ -132,7 +148,7 @@ public class HdHoaDonResponse2 {
         return String.valueOf(tienship) + "VNĐ";
     }
 
-public String getTT() {
+    public String getTT() {
         if (trangThai == 0) {
             return "Chờ thanh toán";
         } else if (trangThai == 1) {
@@ -150,9 +166,9 @@ public String getTT() {
         }
         return "Đã trả hàng";
     }
-    
-    public String getLyDoStr(){
-        if(lydo == null){
+
+    public String getLyDoStr() {
+        if (lydo == null) {
             return "..........";
         }
         return lydo;
