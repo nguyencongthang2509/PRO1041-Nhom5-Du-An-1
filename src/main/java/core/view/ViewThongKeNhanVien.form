@@ -34,27 +34,21 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="jTabbedPane1" min="-2" pref="1274" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="6" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
                       <Component id="jPanel1" linkSize="1" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jPanel2" linkSize="1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                              <Component id="jPanel3" linkSize="1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                              <Component id="jPanel4" linkSize="1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="btnGuiBaoCao" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                          </Group>
+                      <Component id="jPanel2" linkSize="1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      <Component id="jPanel3" linkSize="1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      <Component id="jPanel4" linkSize="1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="btnGuiBaoCao" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTabbedPane1" min="-2" pref="1274" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="0" pref="6" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -70,9 +64,9 @@
                   <Component id="jPanel2" max="32767" attributes="0"/>
                   <Component id="jPanel1" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="43" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               <Component id="btnGuiBaoCao" min="-2" pref="39" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+              <EmptySpace pref="44" max="32767" attributes="0"/>
               <Component id="jTabbedPane1" pref="448" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -126,18 +120,18 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblDoanhThu">
           <Properties>
-            <Property name="text" type="java.lang.String" value="0"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="21" style="1"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Doanh Thu"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="21" style="1"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="Doanh Thu"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -193,18 +187,18 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
-            <Property name="text" type="java.lang.String" value="S&#x1ed1; H&#xf3;a &#x110;&#x1a1;n"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="21" style="1"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="S&#x1ed1; H&#xf3;a &#x110;&#x1a1;n"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblHoaDon">
           <Properties>
-            <Property name="text" type="java.lang.String" value="0"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="21" style="1"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -260,18 +254,18 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblHangTra">
           <Properties>
-            <Property name="text" type="java.lang.String" value="0"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="21" style="1"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel12">
           <Properties>
-            <Property name="text" type="java.lang.String" value="S&#x1ed1; H&#xf3;a &#x110;&#x1a1;n H&#x1ee7;y"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="21" style="1"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="S&#x1ed1; H&#xf3;a &#x110;&#x1a1;n H&#x1ee7;y"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -327,18 +321,18 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblKhachHang">
           <Properties>
-            <Property name="text" type="java.lang.String" value="0"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="21" style="1"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel10">
           <Properties>
-            <Property name="text" type="java.lang.String" value="S&#x1ed1; Kh&#xe1;ch H&#xe0;ng"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="21" style="1"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="S&#x1ed1; Kh&#xe1;ch H&#xe0;ng"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -743,10 +737,10 @@
             </Container>
             <Component class="javax.swing.JButton" name="jButton1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Export to excel"/>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="cc" red="99" type="rgb"/>
                 </Property>
+                <Property name="text" type="java.lang.String" value="Export to excel"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
@@ -1038,10 +1032,10 @@
     </Container>
     <Component class="javax.swing.JButton" name="btnGuiBaoCao">
       <Properties>
-        <Property name="text" type="java.lang.String" value="G&#x1eed;i B&#xe1;o C&#xe1;o"/>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="cc" red="99" type="rgb"/>
         </Property>
+        <Property name="text" type="java.lang.String" value="G&#x1eed;i B&#xe1;o C&#xe1;o"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGuiBaoCaoActionPerformed"/>
