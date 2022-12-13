@@ -12,6 +12,7 @@ import core.quanly.viewmodel.SanPhamResponse;
 import domainmodels.ChiTietSP;
 import domainmodels.ChiTietSPKhuyenMai;
 import domainmodels.KhuyenMai;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -68,20 +69,35 @@ public class KhuyenMaiRepository extends CrudRepository<String, ChiTietSP, Khuye
         return list;
     }
 
-    public List<KMChiTietSPResponse> getAllChiTietSPCoTheApDung(Date ngayBatDau, Date ngayKetThuc) {
+    public List<KMChiTietSPResponse> getAllChiTietSPCoTheApDung(Date ngayBatDau, Date ngayKetThuc, int loaikhuyenmai, Double giatri) {
         List<KMChiTietSPResponse> list = new ArrayList<>();
         try {
             session = HibernateUtil.getSession();
             String hql = """
                          SELECT new core.quanly.viewmodel.KMChiTietSPResponse
                          (a.id, a.maChiTietSP, a.sanPham.ten, a.hang.ten, a.mauSac.ten
-                         , a.kichThuoc.ten, a.chatLieu.ten) FROM ChiTietSP a
+                         , a.kichThuoc.ten, a.chatLieu.ten, a.giaBan) FROM ChiTietSP a
                          where (SELECT b.id FROM ChiTietSPKhuyenMai b 
                          where :ngayBatDau < b.khuyenMaiId.ngayKetThuc AND :ngayKetThuc > b.khuyenMaiId.ngayBatDau
                          AND b.chiTietSPId.id = a.id AND b.trangThai <> 1) IS NULL
                          AND a.trangThaiXoa = 0
                          """;
-            org.hibernate.query.Query query = session.createQuery(hql);
+            String hql2 = """
+                         SELECT new core.quanly.viewmodel.KMChiTietSPResponse
+                         (a.id, a.maChiTietSP, a.sanPham.ten, a.hang.ten, a.mauSac.ten
+                         , a.kichThuoc.ten, a.chatLieu.ten, a.giaBan) FROM ChiTietSP a
+                         where (SELECT b.id FROM ChiTietSPKhuyenMai b 
+                         where :ngayBatDau < b.khuyenMaiId.ngayKetThuc AND :ngayKetThuc > b.khuyenMaiId.ngayBatDau
+                         AND b.chiTietSPId.id = a.id AND b.trangThai <> 1) IS NULL
+                         AND a.trangThaiXoa = 0 AND a.giaBan > :giatri
+                         """;
+            Query query = null;
+            if (loaikhuyenmai == 1) {
+                 query = session.createQuery(hql2);
+                 query.setParameter("giatri",new BigDecimal(giatri));
+            } else {
+                query = session.createQuery(hql);
+            }
             query.setParameter("ngayBatDau", ngayBatDau);
             query.setParameter("ngayKetThuc", ngayKetThuc);
             list = query.getResultList();
@@ -99,6 +115,20 @@ public class KhuyenMaiRepository extends CrudRepository<String, ChiTietSP, Khuye
             String hql = "SELECT a FROM ChiTietSPKhuyenMai a WHERE a.chiTietSPId.id = :idChiTietSP AND a.trangThai = 0";
             org.hibernate.query.Query query = session.createQuery(hql);
             query.setParameter("idChiTietSP", idChiTietSP);
+            chiTietSPKhuyenMai = (ChiTietSPKhuyenMai) query.getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+        return chiTietSPKhuyenMai;
+    }
+
+    public ChiTietSPKhuyenMai getChiTietSPKM2(String idkhuyenmai) {
+        ChiTietSPKhuyenMai chiTietSPKhuyenMai = new ChiTietSPKhuyenMai();
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "SELECT a FROM ChiTietSPKhuyenMai a WHERE a.khuyenMaiId.id = :idkhuyenmai ";
+            org.hibernate.query.Query query = session.createQuery(hql);
+            query.setParameter("idkhuyenmai", idkhuyenmai);
             chiTietSPKhuyenMai = (ChiTietSPKhuyenMai) query.getSingleResult();
         } catch (Exception e) {
             return null;
@@ -450,7 +480,8 @@ public class KhuyenMaiRepository extends CrudRepository<String, ChiTietSP, Khuye
         try {
             session = HibernateUtil.getSession();
             String hql = "SELECT NEW core.quanly.viewmodel.KMChiTietSPResponse(a.id, a.maChiTietSP, a.sanPham.ten, a.hang.ten, a.mauSac.ten\n"
-                    + "                         , a.kichThuoc.ten, a.chatLieu.ten) FROM ChiTietSP a WHERE (a.sanPham.ten LIKE CONCAT('%',:input,'%') OR a.maChiTietSP LIKE CONCAT('%',:input,'%')) AND (SELECT b.id FROM ChiTietSPKhuyenMai b where b.trangThai = 0 AND b.chiTietSPId.id = a.id) IS NULL";
+                    + " , a.kichThuoc.ten, a.chatLieu.ten) FROM ChiTietSP a WHERE (a.sanPham.ten LIKE CONCAT('%',:input,'%') OR a.maChiTietSP LIKE CONCAT('%',:input,'%')) "
+                    + "AND (SELECT b.id FROM ChiTietSPKhuyenMai b where b.trangThai = 0 AND b.chiTietSPId.id = a.id) IS NULL";
             javax.persistence.Query query = session.createQuery(hql);
             query.setParameter("input", input);
             list = query.getResultList();

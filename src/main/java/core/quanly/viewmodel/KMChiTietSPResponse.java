@@ -4,6 +4,8 @@
  */
 package core.quanly.viewmodel;
 
+import com.beust.jcommander.converters.BigDecimalConverter;
+import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,8 +26,10 @@ public class KMChiTietSPResponse {
     private String mauSac;
     private String size;
     private String chatLieu;
+    private BigDecimal giaban;
+    
 
     public Object[] toDaTaRow() {
-        return new Object[]{false, maCTSP, tenSP, hang, mauSac, size, chatLieu};
+        return new Object[]{false, maCTSP, tenSP, giaban, hang, mauSac, size, chatLieu};
     }
 }
