@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.Session;
-import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 import repository.CrudRepository;
 
@@ -33,10 +32,15 @@ public class ThongKeHangHoaRepository {
             Session session = HibernateUtil.getSession();
             String hql = """
                          select new core.quanly.viewmodel.ThongKeHangHoaResponse
-                         (a.chiTietSPId.id, a.chiTietSPId.sanPham.ma, a.chiTietSPId.sanPham.ten,
+                         (a.chiTietSPId.id, a.chiTietSPId.maChiTietSP, a.chiTietSPId.sanPham.ten,
                          a.chiTietSPId.hang.ten, a.chiTietSPId.mauSac.ten, 
+<<<<<<< HEAD
                         a.chiTietSPId.kichThuoc.ten, sum(a.soLuong), a.donGia)
                          from HoaDonChiTiet a Group by a.chiTietSPId.id, a.chiTietSPId.sanPham.ma, 
+=======
+                        a.chiTietSPId.kichThuoc.ten, SUM(a.soLuong), a.donGia)
+                         from HoaDonChiTiet a Group by a.chiTietSPId.id, a.chiTietSPId.maChiTietSP, 
+>>>>>>> thangncph26123
                          a.chiTietSPId.sanPham.ten, a.chiTietSPId.hang.ten, a.chiTietSPId.mauSac.ten,
                          a.chiTietSPId.kichThuoc.ten,a.donGia
                          """;
@@ -47,6 +51,11 @@ public class ThongKeHangHoaRepository {
             return null;
         }
         return list;
+    }
+
+    public static void main(String[] args) {
+        List<ThongKeHangHoaResponse> list = new ThongKeHangHoaRepository().getListHDCT();
+        System.out.println(list);
     }
 //lấy ra danh sách sản phẩm đã trả
 
@@ -92,6 +101,9 @@ public class ThongKeHangHoaRepository {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        }
+        if (nv == null) {
+            nv = BigDecimal.valueOf(0.00);
         }
         return nv;
     }
@@ -300,10 +312,10 @@ public class ThongKeHangHoaRepository {
         return id;
     }
 
-    public static void main(String[] args) {
-        List id = new ThongKeHangHoaRepository().getListTraHang();
-        System.out.println(id);
-    }
+//    public static void main(String[] args) {
+//        List id = new ThongKeHangHoaRepository().getListTraHang();
+//        System.out.println(id);
+//    }
 //số khách hàng theo từng tháng
 
     public Long getKhachHangTungThang(int thang, int nam) {
@@ -437,7 +449,9 @@ public class ThongKeHangHoaRepository {
             Session session = HibernateUtil.getSession();
             String hql = "select new core.quanly.viewmodel.ThongKeHangHoaResponse"
                     + "(a.id, a.chiTietSPId.sanPham.ma, a.chiTietSPId.sanPham.ten, a.chiTietSPId.hang.ten, a.chiTietSPId.mauSac.ten, "
-                    + "a.chiTietSPId.kichThuoc.ten, a.soLuong, a.donGia) from HoaDonChiTiet a where a.soLuong=(select max(a.soLuong) from HoaDonChiTiet a)";
+                    + "a.chiTietSPId.kichThuoc.ten, sum(a.soLuong), a.donGia) from HoaDonChiTiet a where a.soLuong=(select max(a.soLuong) from HoaDonChiTiet a) Group by a.id, a.chiTietSPId.id, a.chiTietSPId.maChiTietSP,a.chiTietSPId.sanPham.ma, \n" +
+"                         a.chiTietSPId.sanPham.ten, a.chiTietSPId.hang.ten, a.chiTietSPId.mauSac.ten,\n" +
+"                         a.chiTietSPId.kichThuoc.ten,a.donGia";
             Query query = session.createQuery(hql);
             list = query.getResultList();
         } catch (Exception e) {
@@ -500,10 +514,12 @@ public class ThongKeHangHoaRepository {
         try {
             Session session = HibernateUtil.getSession();
             String hql = "select new core.quanly.viewmodel.ThongKeHangHoaResponse"
-                    + "(a.id, a.chiTietSPId.sanPham.ma, a.chiTietSPId.sanPham.ten, a.chiTietSPId.hang.ten, a.chiTietSPId.mauSac.ten, "
-                    + "a.chiTietSPId.kichThuoc.ten, a.soLuong, a.donGia) from HoaDonChiTiet a where a.chiTietSPId.sanPham.ten like CONCAT('%',:input,'%') or "
-                    + "a.chiTietSPId.sanPham.ma like CONCAT('%',:input,'%') or a.chiTietSPId.mauSac.ten like CONCAT('%',:input,'%') or a.chiTietSPId.kichThuoc.ten like CONCAT('%',:input,'%') or"
-                    + " a.chiTietSPId.hang.ten like CONCAT('%',:input,'%') or a.donGia like CONCAT('%',:input,'%')";
+                    + "(a.id, a.chiTietSPId.maChiTietSP, a.chiTietSPId.sanPham.ten, a.chiTietSPId.hang.ten, a.chiTietSPId.mauSac.ten, "
+                    + "a.chiTietSPId.kichThuoc.ten, sum(a.soLuong), a.donGia) from HoaDonChiTiet a where a.chiTietSPId.sanPham.ten like CONCAT('%',:input,'%') or "
+                    + "a.chiTietSPId.sanPham.ma like CONCAT('%',:input,'%') or a.chiTietSPId.mauSac.ten like CONCAT('%',:input,'%') or a.chiTietSPId.maChiTietSP like CONCAT('%',:input,'%') or a.chiTietSPId.kichThuoc.ten like CONCAT('%',:input,'%') or"
+                    + " a.chiTietSPId.hang.ten like CONCAT('%',:input,'%') or a.donGia like CONCAT('%',:input,'%') Group by a.id, a.chiTietSPId.id, a.chiTietSPId.maChiTietSP, a.chiTietSPId.sanPham.ten,\n"
+                    + "                         a.chiTietSPId.maChiTietSP, a.chiTietSPId.hang.ten, a.chiTietSPId.mauSac.ten,\n"
+                    + "                         a.chiTietSPId.kichThuoc.ten,a.donGia";
             Query query = session.createQuery(hql);
             query.setParameter("input", input);
             list = query.getResultList();

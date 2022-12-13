@@ -28,7 +28,7 @@ public class NhanVienNghiResponse {
     private Integer vaitro;
     private Integer trangthaixoa;
        public String getnngaysinh(){
-           SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+           SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
             String strDate = formatter.format(ngaysinh);
         return strDate;
              
