@@ -1069,6 +1069,7 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         new ViewDoiMatKhau(nhanVien, this).setVisible(true);
 //        ViewBanHang.webcam.close();
         new ViewDoiMatKhau(nhanVien, this).setLocationRelativeTo(null);
+        ThongTinCaNhan.dispose();
     }//GEN-LAST:event_jLabel11MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

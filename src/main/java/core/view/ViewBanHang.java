@@ -1253,6 +1253,11 @@ public class ViewBanHang extends javax.swing.JPanel {
 
         cboHinhThucThanhToan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Thanh toán trước", "Thanh toán khi nhận", "Tất cả" }));
         cboHinhThucThanhToan.setBackground(new java.awt.Color(153, 204, 255));
+        cboHinhThucThanhToan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboHinhThucThanhToanActionPerformed(evt);
+            }
+        });
 
         btnClear.setIcon(new ImageIcon("src/main/images/clear.png"));
         btnClear.setBackground(new java.awt.Color(153, 204, 255));
@@ -3843,6 +3848,10 @@ public class ViewBanHang extends javax.swing.JPanel {
             e.printStackTrace();
         }
     }//GEN-LAST:event_txtTimKiemKhachHangCaretUpdate
+
+    private void cboHinhThucThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboHinhThucThanhToanActionPerformed
+        
+    }//GEN-LAST:event_cboHinhThucThanhToanActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFrame KhachHangView;
