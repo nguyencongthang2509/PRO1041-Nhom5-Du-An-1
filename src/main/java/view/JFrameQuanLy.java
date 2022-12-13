@@ -5,8 +5,10 @@ import core.view.ViewDoiTra;
 import core.view.ViewHoaDon;
 import core.view.ViewKhachHang;
 import core.view.ViewKhuyenMai;
+import core.view.ViewKhuyenMaiNhanVien;
 import core.view.ViewNhanVien;
 import core.view.ViewSanPham;
+import core.view.ViewSanPhamNhanVien;
 import core.view.ViewThongKe;
 import domainmodels.NhanVien;
 import java.awt.Color;
@@ -26,9 +28,9 @@ import util.DailyCheckingKhuyenMai;
  * @author thangncph26123
  */
 public class JFrameQuanLy extends javax.swing.JFrame {
-    
+
     private NhanVien nhanVien = new NhanVien();
-    
+
     public JFrameQuanLy(NhanVien nv) {
         initComponents();
         setLocationRelativeTo(null);
@@ -43,15 +45,20 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         btnCardSon.setVisible(true);
         lblTenNhanVien.setText(nhanVien.getTen());
         ImageIcon img = new ImageIcon("src/main/images/sneaker.jpg");
-        
+
         lblAvartar.setIcon(img);
-        
+
         this.setIconImage(img.getImage());
-        
+
         new DailyCheckingKhuyenMai().start();
-        
+
+        if (nhanVien.getVaiTro() == 1) {
+            pnlNhanVien.setVisible(false);
+        } else {
+            pnlNhanVien.setVisible(true);
+        }
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -831,13 +838,23 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         pnlThongKe.setBackground(null);
         pnlThoat.setBackground(null);
         pnlDangXuat.setBackground(null);
-        ViewSanPham viewSanPham = new ViewSanPham();
-        btnCardSon.removeAll();
-        btnCardSon.add(viewSanPham);
-        btnCardSon.setLayout(new FlowLayout());
-        this.pack();
-        ViewBanHang.webcam.close();
-        btnCardSon.setVisible(true);
+        if (nhanVien.getVaiTro() == 0) {
+            ViewSanPham viewSanPham = new ViewSanPham();
+            btnCardSon.removeAll();
+            btnCardSon.add(viewSanPham);
+            btnCardSon.setLayout(new FlowLayout());
+            this.pack();
+            ViewBanHang.webcam.close();
+            btnCardSon.setVisible(true);
+        } else {
+            ViewSanPhamNhanVien viewSanPham = new ViewSanPhamNhanVien();
+            btnCardSon.removeAll();
+            btnCardSon.add(viewSanPham);
+            btnCardSon.setLayout(new FlowLayout());
+            this.pack();
+            ViewBanHang.webcam.close();
+            btnCardSon.setVisible(true);
+        }
     }//GEN-LAST:event_menuSanPhamMouseClicked
 
     private void menuThongKeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuThongKeMouseClicked
@@ -951,13 +968,23 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         pnlThongKe.setBackground(null);
         pnlBanHang.setBackground(null);
         pnlSanPham.setBackground(null);
-        ViewKhuyenMai viewKhuyenMai = new ViewKhuyenMai();
-        btnCardSon.removeAll();
-        btnCardSon.add(viewKhuyenMai);
-        btnCardSon.setLayout(new FlowLayout());
-        this.pack();
-        ViewBanHang.webcam.close();
-        btnCardSon.setVisible(true);
+        if (nhanVien.getVaiTro() == 0) {
+            ViewKhuyenMai viewKhuyenMai = new ViewKhuyenMai();
+            btnCardSon.removeAll();
+            btnCardSon.add(viewKhuyenMai);
+            btnCardSon.setLayout(new FlowLayout());
+            this.pack();
+            ViewBanHang.webcam.close();
+            btnCardSon.setVisible(true);
+        } else {
+            ViewKhuyenMaiNhanVien viewKhuyenMai = new ViewKhuyenMaiNhanVien();
+            btnCardSon.removeAll();
+            btnCardSon.add(viewKhuyenMai);
+            btnCardSon.setLayout(new FlowLayout());
+            this.pack();
+            ViewBanHang.webcam.close();
+            btnCardSon.setVisible(true);
+        }
     }//GEN-LAST:event_menuKhuyenMaiMouseClicked
 
     private void menuDangXuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuDangXuatMouseClicked
