@@ -494,6 +494,7 @@ public class ViewSanPhamNhanVien extends javax.swing.JPanel {
         btnThem.setBackground(new java.awt.Color(153, 204, 255));
         btnThem.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
         btnThem.setText("Thêm");
+        btnThem.setEnabled(false);
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemActionPerformed(evt);
@@ -503,6 +504,7 @@ public class ViewSanPhamNhanVien extends javax.swing.JPanel {
         btnSua.setBackground(new java.awt.Color(153, 204, 255));
         btnSua.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
         btnSua.setText("Sửa");
+        btnSua.setEnabled(false);
         btnSua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSuaActionPerformed(evt);
@@ -512,6 +514,7 @@ public class ViewSanPhamNhanVien extends javax.swing.JPanel {
         btnChiTietSanPham.setBackground(new java.awt.Color(153, 204, 255));
         btnChiTietSanPham.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
         btnChiTietSanPham.setText("Chi tiết sản phẩm");
+        btnChiTietSanPham.setEnabled(false);
         btnChiTietSanPham.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnChiTietSanPhamActionPerformed(evt);
@@ -521,6 +524,7 @@ public class ViewSanPhamNhanVien extends javax.swing.JPanel {
         btnClear.setBackground(new java.awt.Color(153, 204, 255));
         btnClear.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
         btnClear.setText("Làm mới");
+        btnClear.setEnabled(false);
         btnClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnClearActionPerformed(evt);
@@ -768,6 +772,7 @@ public class ViewSanPhamNhanVien extends javax.swing.JPanel {
         btnAdd.setBackground(new java.awt.Color(153, 204, 255));
         btnAdd.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
         btnAdd.setText("Thêm sản phẩm");
+        btnAdd.setEnabled(false);
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
@@ -777,6 +782,7 @@ public class ViewSanPhamNhanVien extends javax.swing.JPanel {
         btnUpdate.setBackground(new java.awt.Color(153, 204, 255));
         btnUpdate.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
         btnUpdate.setText("Cập nhật sản phẩm");
+        btnUpdate.setEnabled(false);
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
@@ -786,6 +792,7 @@ public class ViewSanPhamNhanVien extends javax.swing.JPanel {
         btnClearr.setBackground(new java.awt.Color(153, 204, 255));
         btnClearr.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
         btnClearr.setText("Làm mới");
+        btnClearr.setEnabled(false);
         btnClearr.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnClearrActionPerformed(evt);
@@ -795,6 +802,7 @@ public class ViewSanPhamNhanVien extends javax.swing.JPanel {
         btXuatFileExcel.setBackground(new java.awt.Color(153, 204, 255));
         btXuatFileExcel.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
         btXuatFileExcel.setText("Xuất File Excel");
+        btXuatFileExcel.setEnabled(false);
         btXuatFileExcel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btXuatFileExcelActionPerformed(evt);
@@ -804,6 +812,7 @@ public class ViewSanPhamNhanVien extends javax.swing.JPanel {
         btnTaiMauExcel.setBackground(new java.awt.Color(153, 204, 255));
         btnTaiMauExcel.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
         btnTaiMauExcel.setText("Tải mẫu Excel");
+        btnTaiMauExcel.setEnabled(false);
         btnTaiMauExcel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTaiMauExcelActionPerformed(evt);
@@ -813,6 +822,7 @@ public class ViewSanPhamNhanVien extends javax.swing.JPanel {
         btnImportExcel.setBackground(new java.awt.Color(153, 204, 255));
         btnImportExcel.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
         btnImportExcel.setText("Import File Excel");
+        btnImportExcel.setEnabled(false);
         btnImportExcel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnImportExcelActionPerformed(evt);
@@ -872,6 +882,7 @@ public class ViewSanPhamNhanVien extends javax.swing.JPanel {
         btnAddMs.setBackground(new java.awt.Color(153, 204, 255));
         btnAddMs.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnAddMs.setText("+");
+        btnAddMs.setEnabled(false);
         btnAddMs.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddMsActionPerformed(evt);
@@ -881,6 +892,7 @@ public class ViewSanPhamNhanVien extends javax.swing.JPanel {
         btnAddKichThuoc.setBackground(new java.awt.Color(153, 204, 255));
         btnAddKichThuoc.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnAddKichThuoc.setText("+");
+        btnAddKichThuoc.setEnabled(false);
         btnAddKichThuoc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddKichThuocActionPerformed(evt);
@@ -890,6 +902,7 @@ public class ViewSanPhamNhanVien extends javax.swing.JPanel {
         btnAddHang.setBackground(new java.awt.Color(153, 204, 255));
         btnAddHang.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnAddHang.setText("+");
+        btnAddHang.setEnabled(false);
         btnAddHang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddHangActionPerformed(evt);
@@ -899,6 +912,7 @@ public class ViewSanPhamNhanVien extends javax.swing.JPanel {
         btnAddChatLieu.setBackground(new java.awt.Color(153, 204, 255));
         btnAddChatLieu.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnAddChatLieu.setText("+");
+        btnAddChatLieu.setEnabled(false);
         btnAddChatLieu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddChatLieuActionPerformed(evt);
@@ -1227,10 +1241,10 @@ public class ViewSanPhamNhanVien extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(5, 5, 5)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("CHI TIẾT SẢN PHẨM", jPanel2);
@@ -1359,6 +1373,7 @@ public class ViewSanPhamNhanVien extends javax.swing.JPanel {
         btnThemThuocTinh.setBackground(new java.awt.Color(153, 204, 255));
         btnThemThuocTinh.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
         btnThemThuocTinh.setText("Thêm");
+        btnThemThuocTinh.setEnabled(false);
         btnThemThuocTinh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemThuocTinhActionPerformed(evt);
@@ -1368,6 +1383,7 @@ public class ViewSanPhamNhanVien extends javax.swing.JPanel {
         btnSuaThuocTinh.setBackground(new java.awt.Color(153, 204, 255));
         btnSuaThuocTinh.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
         btnSuaThuocTinh.setText("Sửa");
+        btnSuaThuocTinh.setEnabled(false);
         btnSuaThuocTinh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSuaThuocTinhActionPerformed(evt);
@@ -1377,6 +1393,7 @@ public class ViewSanPhamNhanVien extends javax.swing.JPanel {
         btnLamMoiThuocTinh.setBackground(new java.awt.Color(153, 204, 255));
         btnLamMoiThuocTinh.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
         btnLamMoiThuocTinh.setText("Làm mới");
+        btnLamMoiThuocTinh.setEnabled(false);
         btnLamMoiThuocTinh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLamMoiThuocTinhActionPerformed(evt);
