@@ -1194,7 +1194,7 @@ public class ViewThongKe extends javax.swing.JPanel {
                 return;
             }
 
-            if(nvImpl.getNhanVienByEmail(vv) == null){
+            if (nvImpl.getNhanVienByEmail(vv) == null) {
                 JOptionPane.showMessageDialog(this, "Không tìm thấy nhân viên này");
                 return;
             }
@@ -1515,7 +1515,9 @@ public class ViewThongKe extends javax.swing.JPanel {
     private void LoadMax() {
         modelHangHoa.setRowCount(0);
         int index = 1;
-        List<ThongKeHangHoaResponse> thongkeRespon = thongKeRespo.getListMaxValue();
+        List<ThongKeHangHoaResponse> listMax = thongKeRespo.getSoLuongBanMax();
+        long soluong = listMax.get(0).getSoLuong();
+        List<ThongKeHangHoaResponse> thongkeRespon = thongKeRespo.getListMaxValue(soluong);
         for (ThongKeHangHoaResponse xx : thongkeRespon) {
             modelHangHoa.addRow(xx.toDataRow(index));
             index++;
@@ -1526,19 +1528,22 @@ public class ViewThongKe extends javax.swing.JPanel {
     private void LoadMaxSLtra() {
         modelHangHoa1.setRowCount(0);
         int index = 1;
-        List<HoaDonTraHangChiTiet> thongkeRespon = thongKeRespo.getListMaxValueTra();
-        for (HoaDonTraHangChiTiet xx : thongkeRespon) {
-            modelHangHoa1.addRow(new Object[]{index, xx.getMaChiTietSanPham(), xx.getTenSP(), xx.getTenHang(),
-                xx.getMauSac(), xx.getKichThuoc(), xx.getSoLuongTra(), xx.getGiaBan()});
+        List<ThongKeTraHangResponse> listMin = thongKeRespo.getSoLuongTra();
+        long soluong = listMin.get(0).getSoLuong();
+        List<ThongKeTraHangResponse> thongkeRespon = thongKeRespo.getListMaxValueTra(soluong);
+        for (ThongKeTraHangResponse xx : thongkeRespon) {
+            modelHangHoa1.addRow(new Object[]{index, xx.getMa(), xx.getTenSP(), xx.getHang(),
+                xx.getMau(), xx.getKichThuoc(), xx.getSoLuong(), xx.getGiaBan()});
             index++;
-
         }
     }
 
     private void LoadMinDS() {
         modelHangHoa.setRowCount(0);
         int index = 1;
-        List<ThongKeHangHoaResponse> thongkeRespon = thongKeRespo.getListMinValue();
+        List<ThongKeHangHoaResponse> listMin = thongKeRespo.getSoLuongBanMin();
+        long soluong = listMin.get(0).getSoLuong();
+        List<ThongKeHangHoaResponse> thongkeRespon = thongKeRespo.getListMinValue(soluong);
         for (ThongKeHangHoaResponse xx : thongkeRespon) {
             modelHangHoa.addRow(xx.toDataRow(index));
             index++;
@@ -1548,12 +1553,13 @@ public class ViewThongKe extends javax.swing.JPanel {
     private void LoadMinDStra() {
         modelHangHoa1.setRowCount(0);
         int index = 1;
-        List<HoaDonTraHangChiTiet> thongkeRespon = thongKeRespo.getListMinValueTra();
-        for (HoaDonTraHangChiTiet xx : thongkeRespon) {
-            modelHangHoa1.addRow(new Object[]{index, xx.getMaChiTietSanPham(), xx.getTenSP(), xx.getTenHang(),
-                xx.getMauSac(), xx.getKichThuoc(), xx.getSoLuongTra(), xx.getGiaBan()});
+        List<ThongKeTraHangResponse> listSLMax = thongKeRespo.getSoLuongTra();
+        long soluong = listSLMax.get(listSLMax.size() - 1).getSoLuong();
+        List<ThongKeTraHangResponse> thongkeRespon = thongKeRespo.getListMinValueTra(soluong);
+        for (ThongKeTraHangResponse xx : thongkeRespon) {
+            modelHangHoa1.addRow(new Object[]{index, xx.getMa(), xx.getTenSP(), xx.getHang(),
+                xx.getMau(), xx.getKichThuoc(), xx.getSoLuong(), xx.getGiaBan()});
             index++;
-
         }
     }
 
