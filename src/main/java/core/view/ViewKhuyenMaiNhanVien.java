@@ -1155,14 +1155,14 @@ public class ViewKhuyenMaiNhanVien extends javax.swing.JPanel {
     private void cobtrangthaikhuyenmaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cobtrangthaikhuyenmaiActionPerformed
         if (cobtrangthaikhuyenmai.getSelectedIndex() == 0) {
 
-            btnsua.setEnabled(true);
-            btnthem.setEnabled(true);
+            btnsua.setEnabled(false);
+            btnthem.setEnabled(false);
             listkhuyenmai = khuyenMaiService.GetKhuyenMaiDangDienRa();
             FillToKhuyenMai(listkhuyenmai);
 
         } else if (cobtrangthaikhuyenmai.getSelectedIndex() == 1) {
-            btnsua.setEnabled(true);
-            btnthem.setEnabled(true);
+            btnsua.setEnabled(false);
+            btnthem.setEnabled(false);
             listkhuyenmai = khuyenMaiService.GetKhuyenMaiSapDienRa();
             FillToKhuyenMai(listkhuyenmai);
 

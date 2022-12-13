@@ -2218,14 +2218,14 @@ public class ViewSanPhamNhanVien extends javax.swing.JPanel {
         try {
             if (cbbTrangThai.getSelectedIndex() == 0) {
                 btnKhoiPhuc.setEnabled(false);
-                btnXoa.setEnabled(true);
+                btnXoa.setEnabled(false);
                 dtm1 = (DefaultTableModel) tblCTSanPham.getModel();
                 dtm1.setRowCount(0);
                 lstctSpViewModel = ctsanPhamService.findTrangThai(0);
                 loadTableChiTietSP(lstctSpViewModel);
             } else if (cbbTrangThai.getSelectedIndex() == 1) {
                 btnXoa.setEnabled(false);
-                btnKhoiPhuc.setEnabled(true);
+                btnKhoiPhuc.setEnabled(false);
                 dtm1 = (DefaultTableModel) tblCTSanPham.getModel();
                 dtm1.setRowCount(0);
                 lstctSpViewModel = ctsanPhamService.findTrangThai(1);
