@@ -65,6 +65,7 @@ public class HoaDonRepositoryNhanVien extends CrudRepository<String, HoaDon, HdH
                     + "a.nhanVien b where a.hinhThucGiaoHang = :htgh and a.nhanVien.id = :id order by a.createdDate desc";
             Query query = session.createQuery(hql);
             query.setParameter("htgh", htgh);
+            query.setParameter("id", id);
             list = query.getResultList();
         } catch (Exception e) {
             e.printStackTrace();

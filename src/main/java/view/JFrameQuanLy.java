@@ -3,6 +3,7 @@ package view;
 import core.view.ViewBanHang;
 import core.view.ViewDoiTra;
 import core.view.ViewHoaDon;
+import core.view.ViewHoaDonNhanVien;
 import core.view.ViewKhachHang;
 import core.view.ViewKhuyenMai;
 import core.view.ViewKhuyenMaiNhanVien;
@@ -808,13 +809,23 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         pnlThongKe.setBackground(null);
         pnlThoat.setBackground(null);
         pnlDangXuat.setBackground(null);
-        ViewHoaDon viewHoaDon = new ViewHoaDon();
-        btnCardSon.removeAll();
-        btnCardSon.add(viewHoaDon);
-        btnCardSon.setLayout(new FlowLayout());
-        this.pack();
-        ViewBanHang.webcam.close();
-        btnCardSon.setVisible(true);
+        if (nhanVien.getVaiTro() == 0) {
+            ViewHoaDon viewHoaDon = new ViewHoaDon();
+            btnCardSon.removeAll();
+            btnCardSon.add(viewHoaDon);
+            btnCardSon.setLayout(new FlowLayout());
+            this.pack();
+            ViewBanHang.webcam.close();
+            btnCardSon.setVisible(true);
+        }else{
+            ViewHoaDonNhanVien viewHoaDon = new ViewHoaDonNhanVien(nhanVien);
+            btnCardSon.removeAll();
+            btnCardSon.add(viewHoaDon);
+            btnCardSon.setLayout(new FlowLayout());
+            this.pack();
+            ViewBanHang.webcam.close();
+            btnCardSon.setVisible(true);
+        }
     }//GEN-LAST:event_menuHoaDonMouseClicked
 
     private void menuSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuSanPhamMouseClicked
