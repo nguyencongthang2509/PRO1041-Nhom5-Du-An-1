@@ -32,15 +32,10 @@ public class ThongKeHangHoaRepository {
             Session session = HibernateUtil.getSession();
             String hql = """
                          select new core.quanly.viewmodel.ThongKeHangHoaResponse
-                         (a.chiTietSPId.id, a.chiTietSPId.maChiTietSP, a.chiTietSPId.sanPham.ten,
+                         (a.chiTietSPId.id, a.chiTietSPId.sanPham.ma, a.chiTietSPId.sanPham.ten,
                          a.chiTietSPId.hang.ten, a.chiTietSPId.mauSac.ten, 
-<<<<<<< HEAD
-                        a.chiTietSPId.kichThuoc.ten, sum(a.soLuong), a.donGia)
-                         from HoaDonChiTiet a Group by a.chiTietSPId.id, a.chiTietSPId.sanPham.ma, 
-=======
                         a.chiTietSPId.kichThuoc.ten, SUM(a.soLuong), a.donGia)
-                         from HoaDonChiTiet a Group by a.chiTietSPId.id, a.chiTietSPId.maChiTietSP, 
->>>>>>> thangncph26123
+                         from HoaDonChiTiet a Group by a.chiTietSPId.id, a.chiTietSPId.sanPham.ma, 
                          a.chiTietSPId.sanPham.ten, a.chiTietSPId.hang.ten, a.chiTietSPId.mauSac.ten,
                          a.chiTietSPId.kichThuoc.ten,a.donGia
                          """;
@@ -311,12 +306,6 @@ public class ThongKeHangHoaRepository {
         }
         return id;
     }
-
-//    public static void main(String[] args) {
-//        List id = new ThongKeHangHoaRepository().getListTraHang();
-//        System.out.println(id);
-//    }
-//số khách hàng theo từng tháng
 
     public Long getKhachHangTungThang(int thang, int nam) {
         Long id = null;

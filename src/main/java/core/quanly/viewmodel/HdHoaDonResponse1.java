@@ -35,12 +35,20 @@ public class HdHoaDonResponse1 {
     private String diaChi;
     private String lydo;
     private Integer trangThai;
+    private Double phanTramGiamGia;
 
     public String getNgayThanhToanStr() {
         if (ngayThanhToan == null) {
             return "..........";
         }
         return String.valueOf(ngayThanhToan);
+    }
+
+    public String getGiamGiaStr() {
+        if (phanTramGiamGia == null) {
+            return "0%";
+        }
+        return String.valueOf(phanTramGiamGia) + "%";
     }
 
     public String getThanhTienStr() {
