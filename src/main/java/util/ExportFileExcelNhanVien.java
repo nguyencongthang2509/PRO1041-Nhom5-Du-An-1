@@ -5,9 +5,12 @@
 package util;
 
 import core.quanly.viewmodel.NhanVienResponse;
+import java.awt.Desktop;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.List;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -63,17 +66,26 @@ public class ExportFileExcelNhanVien {
                 cell1.setCellValue(String.valueOf(index++));
                 cell2.setCellValue(xx.getMa());
                 cell3.setCellValue(xx.getTen());
-                cell4.setCellValue(xx.getGioitinh().equals("Nam")?0:1);
+                cell4.setCellValue(xx.getGioitinh().equals("Nam") ? 0 : 1);
                 cell5.setCellValue(xx.getnngaysinh());
                 cell6.setCellValue(xx.getDiachi());
                 cell7.setCellValue(xx.getSdt());
                 cell8.setCellValue(xx.getEmail());
-                cell9.setCellValue(xx.getVaitro().equals("Quản Lý")?0:1);
-                cell10.setCellValue(xx.getTrangthaixoa().equals("Đang Làm")?0:1);            }
+                cell9.setCellValue(xx.getVaitro().equals("Quản Lý") ? 0 : 1);
+                cell10.setCellValue(xx.getTrangthaixoa().equals("Đang Làm") ? 0 : 1);
+            }
             try {
+                File file = new File("NhanVienExcel" + Calendar.getInstance().getTimeInMillis() + ".xlsx");
                 FileOutputStream outputStream = new FileOutputStream("NhanVienExcel.xlsx");
                 workbook.write(outputStream);
                 workbook.close();
+                if (!Desktop.isDesktopSupported()) {
+                    return false;
+                }
+                Desktop desktop = Desktop.getDesktop();
+                if (file.exists()) {
+                    desktop.open(file);
+                }
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {

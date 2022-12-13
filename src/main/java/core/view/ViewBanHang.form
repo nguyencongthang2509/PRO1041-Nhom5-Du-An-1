@@ -1577,7 +1577,8 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="cc" red="99" type="rgb"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Clear h&#xf3;a &#x111;&#x1a1;n"/>
+            <Property name="toolTipText" type="java.lang.String" value="L&#xe0;m m&#x1edb;i"/>
+            <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnClearActionPerformed"/>

@@ -83,14 +83,14 @@ public class UtilTest {
 
     public JFreeChart createChartTheoThang(int thang, int nam) throws Exception {
         JFreeChart barChart = ChartFactory.createBarChart(
-                "BIỂU ĐỒ DOANH THU CỦA CỬA HÀNG NĂM " + thang,
+                "BIỂU ĐỒ DOANH THU CỦA CỬA HÀNG THÁNG " + thang + "-" + nam,
                 "Ngày", "Doanh số",
                 createDatasetTheoThang(thang, nam), PlotOrientation.VERTICAL, true, true, true);
         return barChart;
     }
 
     public JFreeChart createChartTheoKhoangThoiGian(List<ThongKeTheoKhoangResponse> list) throws Exception {
-        JFreeChart barChart = ChartFactory.createBarChart("BIỂU ĐỒ DOANH THU CỦA CỬA HÀNG TỪ " + list.get(0).getNgay() + "/" + list.get(0).getThang() + "/" + list.get(0).getNam() + " ĐẾN " + +list.get(list.size() - 1).getNgay() + "/" + list.get(list.size() - 1).getThang() + "/" + list.get(list.size() - 1).getNam(),"NGÀY", "Doanh số", createDatasetTheoKhoangThoiGian(list), PlotOrientation.VERTICAL, true, true, true);
+        JFreeChart barChart = ChartFactory.createBarChart("BIỂU ĐỒ DOANH THU CỦA CỬA HÀNG TỪ " + list.get(0).getNgay() + "/" + list.get(0).getThang() + "/" + list.get(0).getNam() + " ĐẾN " + +list.get(list.size() - 1).getNgay() + "/" + list.get(list.size() - 1).getThang() + "/" + list.get(list.size() - 1).getNam(), "NGÀY", "Doanh số", createDatasetTheoKhoangThoiGian(list), PlotOrientation.VERTICAL, true, true, true);
         return barChart;
     }
 
@@ -124,8 +124,14 @@ public class UtilTest {
                 dataset.addValue(new Double(Get().getDoanhThuNgayTrongThang(i, thang, nam).doubleValue()), "Doanh số", i + "");
             }
         } else if (thang == 2) {
-            for (int i = 1; i <= 28; i++) {
-                dataset.addValue(new Double(Get().getDoanhThuNgayTrongThang(i, thang, nam).doubleValue()), "Doanh số", i + "");
+            if ((nam % 4 == 0 && nam % 100 != 0) || nam % 400 == 0) {
+                for (int i = 1; i <= 29; i++) {
+                    dataset.addValue(new Double(Get().getDoanhThuNgayTrongThang(i, thang, nam).doubleValue()), "Doanh số", i + "");
+                }
+            } else {
+                for (int i = 1; i <= 28; i++) {
+                    dataset.addValue(new Double(Get().getDoanhThuNgayTrongThang(i, thang, nam).doubleValue()), "Doanh số", i + "");
+                }
             }
         } else {
             for (int i = 1; i <= 31; i++) {
@@ -138,7 +144,7 @@ public class UtilTest {
     public CategoryDataset createDatasetTheoKhoangThoiGian(List<ThongKeTheoKhoangResponse> list) throws Exception {
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         for (int i = 0; i < list.size(); i++) {
-            dataset.addValue(new Double(Get().getDoanhThuNgayTrongThang(list.get(i).getNgay(), list.get(i).getThang(), list.get(i).getNam()).doubleValue()), "Doanh số", list.get(i).getNgay() +"|"+ list.get(i).getThang() + "");
+            dataset.addValue(new Double(Get().getDoanhThuNgayTrongThang(list.get(i).getNgay(), list.get(i).getThang(), list.get(i).getNam()).doubleValue()), "Doanh số", list.get(i).getNgay() + "-" + list.get(i).getThang() + "");
         }
         return dataset;
     }

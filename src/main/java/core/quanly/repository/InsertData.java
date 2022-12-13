@@ -181,8 +181,8 @@ public class InsertData {
                 khachHangBanLe.setNgaySinh(new SimpleDateFormat("dd-MM-yyyy").parse("1-1-2000"));
             } catch (Exception e) {
             }
-            khachHangBanLe.setSdt("0123456789");
-            khachHangBanLe.setDiaChi("Hà Nội");
+            khachHangBanLe.setSdt("Không có");
+            khachHangBanLe.setDiaChi("Không có");
             khachHangBanLe.setCapBac(null);
             session.saveOrUpdate(khachHangBanLe);
 
