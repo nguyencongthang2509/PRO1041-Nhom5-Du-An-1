@@ -95,5 +95,7 @@ public class SPKichThuocServiceImpl implements SPKichThuocService{
     public List<SPKichThuocResponse> getAllResponse() {
         return kichThuocRepository.getAllResponseKichThuoc();
     }
+
+    
     
 }

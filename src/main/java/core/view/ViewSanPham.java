@@ -250,7 +250,6 @@ public class ViewSanPham extends javax.swing.JPanel {
 
         JFrameMauSac.setTitle("Thiết lập màu sắc");
         JFrameMauSac.setBackground(new java.awt.Color(255, 255, 255));
-        JFrameMauSac.setMaximumSize(null);
         JFrameMauSac.setMinimumSize(null);
         JFrameMauSac.setResizable(false);
         JFrameMauSac.setSize(new java.awt.Dimension(402, 151));
@@ -311,7 +310,6 @@ public class ViewSanPham extends javax.swing.JPanel {
 
         JframeKichThuoc.setTitle("Thiết lập kích thước");
         JframeKichThuoc.setBackground(new java.awt.Color(255, 255, 255));
-        JframeKichThuoc.setMaximumSize(new java.awt.Dimension(400, 141));
         JframeKichThuoc.setMinimumSize(new java.awt.Dimension(400, 141));
         JframeKichThuoc.setSize(new java.awt.Dimension(400, 141));
 
@@ -370,9 +368,7 @@ public class ViewSanPham extends javax.swing.JPanel {
 
         JframeHang.setTitle("Thiết lập hãng");
         JframeHang.setBackground(new java.awt.Color(255, 255, 255));
-        JframeHang.setMaximumSize(new java.awt.Dimension(399, 130));
         JframeHang.setMinimumSize(new java.awt.Dimension(399, 130));
-        JframeHang.setPreferredSize(new java.awt.Dimension(399, 130));
         JframeHang.setSize(new java.awt.Dimension(399, 130));
 
         jPanel18.setBackground(new java.awt.Color(255, 255, 255));
@@ -429,9 +425,7 @@ public class ViewSanPham extends javax.swing.JPanel {
 
         JframeChatLieu.setTitle("Thiết lập chất liệu");
         JframeChatLieu.setBackground(new java.awt.Color(255, 255, 255));
-        JframeChatLieu.setMaximumSize(new java.awt.Dimension(392, 146));
         JframeChatLieu.setMinimumSize(new java.awt.Dimension(392, 146));
-        JframeChatLieu.setPreferredSize(new java.awt.Dimension(392, 146));
         JframeChatLieu.setSize(new java.awt.Dimension(392, 146));
 
         jPanel19.setBackground(new java.awt.Color(255, 255, 255));
@@ -680,7 +674,7 @@ public class ViewSanPham extends javax.swing.JPanel {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(txtTimKiemSp, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(822, 822, 822)))
@@ -696,7 +690,7 @@ public class ViewSanPham extends javax.swing.JPanel {
                         .addComponent(jLabel4))
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -956,7 +950,7 @@ public class ViewSanPham extends javax.swing.JPanel {
                     .addComponent(jLabel5))
                 .addGap(50, 50, 50)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cbbChatLieu, 0, 239, Short.MAX_VALUE)
+                    .addComponent(cbbChatLieu, 0, 246, Short.MAX_VALUE)
                     .addComponent(cbbHangct, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cbbMauSac, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cbbKichThuocct, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1199,7 +1193,7 @@ public class ViewSanPham extends javax.swing.JPanel {
                                 .addComponent(btnSau)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnCuoi)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 524, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 533, Short.MAX_VALUE)
                                 .addComponent(btnXoa)
                                 .addGap(41, 41, 41)
                                 .addComponent(btnKhoiPhuc, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -1425,7 +1419,7 @@ public class ViewSanPham extends javax.swing.JPanel {
                 .addComponent(btnThemThuocTinh)
                 .addGap(36, 36, 36)
                 .addComponent(btnSuaThuocTinh)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnLamMoiThuocTinh)
                 .addGap(30, 30, 30))
         );
@@ -1489,14 +1483,14 @@ public class ViewSanPham extends javax.swing.JPanel {
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1198, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1210, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1534,10 +1528,7 @@ public class ViewSanPham extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 756, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jTabbedPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -1586,6 +1577,9 @@ public class ViewSanPham extends javax.swing.JPanel {
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         try {
             SanPham sp = getSanPhamByForm();
+            if (sp == null) {
+                return;
+            }
             sp.setMa("Sp" + sanPhamService.genMaSanPhamTuDong());
             String messsage = sanPhamService.add(sp);
             lstSpViewModel = sanPhamService.getAllResponse();
@@ -1677,7 +1671,9 @@ public class ViewSanPham extends javax.swing.JPanel {
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         SanPham sp = getSanPhamByForm();
-
+        if(sp ==  null){
+        return;
+        }
         int chon = tblSanPhamm.getSelectedRow();
         if (chon < 0) {
             JOptionPane.showMessageDialog(this, "Bạn chưa chọn đối tượng nào");
@@ -1715,6 +1711,9 @@ public class ViewSanPham extends javax.swing.JPanel {
 //                return; 
 //            }
             ChiTietSP chiTietSp = getChiTietSp();
+            if (chiTietSp == null) {
+                return;
+            }
             chiTietSp.setMaChiTietSP("CTSP" + ctsanPhamService.genMaCTSPTuDong());
             String messsage = ctsanPhamService.add(chiTietSp);
             lstctSpViewModel = ctsanPhamService.getAllViewModel();
@@ -1728,6 +1727,9 @@ public class ViewSanPham extends javax.swing.JPanel {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         ChiTietSP spct = getChiTietSp();
+        if(spct  == null){
+            return;
+        }
         int chon = tblCTSanPham.getSelectedRow();
         if (chon < 0) {
             JOptionPane.showMessageDialog(this, "Bạn chưa chọn đối tượng nào");
@@ -1780,6 +1782,26 @@ public class ViewSanPham extends javax.swing.JPanel {
         try {
             if (radioHang.isSelected()) {
                 try {
+                    if(txtTenThuocTinh.getText().trim().isEmpty()){
+                       JOptionPane.showMessageDialog(this, "Không được để trống");
+                       return;
+                    }
+                    try {
+                        txtTenThuocTinh.getText().trim();                    
+                    } catch (Exception e) {                       
+                        JOptionPane.showMessageDialog(this, "Hãng phải là chữ");
+                        return;
+                    }
+                    if(txtTenThuocTinh.getText().trim().length() < 50 ){
+                        JOptionPane.showMessageDialog(this, "không thể vượt quá 50 kí tự");
+                        return;
+                    }
+                    for (SPHangResponse xx : lstHangRepon) {
+                       if(txtTenThuocTinh.getText().equals(xx.getTen())){
+                        JOptionPane.showMessageDialog(this, "Đã có hãng này ");
+                        return;
+                    } 
+                    }
                     Hang hang = getHangByForm();
                     hang.setMa("H" + hangService.genMaHangTuDong());
                     String messsage = hangService.add(hang);
@@ -1789,8 +1811,32 @@ public class ViewSanPham extends javax.swing.JPanel {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                
             } else if (radioKichThuoc.isSelected()) {
                 try {
+                    if(txtTenThuocTinh.getText().trim().isEmpty()){
+                       JOptionPane.showMessageDialog(this, "Không được để trống");
+                       return;
+                    }
+                    try {
+                        Double.parseDouble(txtTenThuocTinh.getText().trim());                    
+                    } catch (Exception e) {                       
+                        JOptionPane.showMessageDialog(this, "Kích thước phải là số");
+                        return;
+                    }
+                    if(Double.parseDouble(txtTenThuocTinh.getText().trim())< 30 || 
+                            Double.parseDouble(txtTenThuocTinh.getText().trim())> 50){
+                        JOptionPane.showMessageDialog(this, "Kích thước phải từ 30 đến 50");
+                        return;
+                    }
+                    for (SPKichThuocResponse xx : lstKichThuocRepon) {
+                       if(txtTenThuocTinh.getText().equals(xx.getTen())){
+                        JOptionPane.showMessageDialog(this, "Đã có kích thước này ");
+                        return;
+                    } 
+                    }
+                    
+                    
                     KichThuoc kichThuoc = getKichThuocByForm();
                     kichThuoc.setMa("KT" + kichThuocService.genMaKichThuocTuDong());
                     String messsage = kichThuocService.add(kichThuoc);
@@ -1802,6 +1848,26 @@ public class ViewSanPham extends javax.swing.JPanel {
                 }
             } else if (radioMausac.isSelected()) {
                 try {
+                    if(txtTenThuocTinh.getText().trim().isEmpty()){
+                       JOptionPane.showMessageDialog(this, "Không được để trống");
+                       return;
+                    }
+                    try {
+                        txtTenThuocTinh.getText().trim();                    
+                    } catch (Exception e) {                       
+                        JOptionPane.showMessageDialog(this, "Màu sắc phải là chữ");
+                        return;
+                    }
+                    if(txtTenThuocTinh.getText().trim().length() < 50){
+                        JOptionPane.showMessageDialog(this, "không thể vượt quá 50 kí tự");
+                        return;
+                    }
+                    for (SPMauSacResponse xx : lstMauSacRespon) {
+                       if(txtTenThuocTinh.getText().equals(xx.getTen())){
+                        JOptionPane.showMessageDialog(this, "Đã có Màu sắc này ");
+                        return;
+                    } 
+                    }
                     MauSac mauSac = getMauSacByForm();
                     mauSac.setMa("MS" + mauSacService.genMaMauSacTuDong());
                     String messsage = mauSacService.add(mauSac);
@@ -1813,6 +1879,26 @@ public class ViewSanPham extends javax.swing.JPanel {
                 }
             } else {
                 try {
+                    if(txtTenThuocTinh.getText().trim().isEmpty()){
+                       JOptionPane.showMessageDialog(this, "Không được để trống");
+                       return;
+                    }
+                    try {
+                        txtTenThuocTinh.getText().trim();                    
+                    } catch (Exception e) {                       
+                        JOptionPane.showMessageDialog(this, "Chất liệu phải là chữ");
+                        return;
+                    }
+                  if(txtTenThuocTinh.getText().trim().length() < 50  ){
+                        JOptionPane.showMessageDialog(this, "không thể vượt quá 50 kí tự");
+                        return;
+                    }
+                    for (SPChatLieuResponse xx : lstChatLieuRespon) {
+                       if(txtTenThuocTinh.getText().equals(xx.getTen())){
+                        JOptionPane.showMessageDialog(this, "Đã có chất liệu này ");
+                        return;
+                    } 
+                    }
                     ChatLieu chatLieu = getChatLieuByForm();
                     chatLieu.setMa("CL" + chatLieuService.genChatLieuTuDong());
                     String messsage = chatLieuService.add(chatLieu);
@@ -1862,12 +1948,32 @@ public class ViewSanPham extends javax.swing.JPanel {
         try {
             if (radioHang.isSelected()) {
                 Hang hang = getHangByForm();
-
+                
                 int chon = tblThuocTinhSP.getSelectedRow();
                 if (chon < 0) {
                     JOptionPane.showMessageDialog(this, "Bạn chưa chọn đối tượng nào");
                     return;
                 }
+                if(txtTenThuocTinh.getText().trim().isEmpty()){
+                       JOptionPane.showMessageDialog(this, "Không được để trống");
+                       return;
+                    }
+                    try {
+                        txtTenThuocTinh.getText().trim();                    
+                    } catch (Exception e) {                       
+                        JOptionPane.showMessageDialog(this, "Hãng phải là chữ");
+                        return;
+                    }
+                    if(txtTenThuocTinh.getText().trim().length() > 50 ){
+                        JOptionPane.showMessageDialog(this, "không thể vượt quá 50 kí tự");
+                        return;
+                    }
+                    for (SPHangResponse xx : lstHangRepon) {
+                       if(txtTenThuocTinh.getText().equals(xx.getTen())){
+                        JOptionPane.showMessageDialog(this, "Đã có hãng này ");
+                        return;
+                    } 
+                    }
                 int hoi = JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn sửa không?");
                 if (hoi != JOptionPane.YES_OPTION) {
                     return;
@@ -1885,6 +1991,27 @@ public class ViewSanPham extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "Bạn chưa chọn đối tượng nào");
                     return;
                 }
+                if(txtTenThuocTinh.getText().trim().isEmpty()){
+                       JOptionPane.showMessageDialog(this, "Không được để trống");
+                       return;
+                    }
+                    try {
+                        Double.parseDouble(txtTenThuocTinh.getText().trim());                    
+                    } catch (Exception e) {                       
+                        JOptionPane.showMessageDialog(this, "Kích thước phải là số");
+                        return;
+                    }
+                    if(Double.parseDouble(txtTenThuocTinh.getText().trim())< 30 || 
+                            Double.parseDouble(txtTenThuocTinh.getText().trim())> 50){
+                        JOptionPane.showMessageDialog(this, "Kích thước phải từ 30 đến 50");
+                        return;
+                    }
+                    for (SPKichThuocResponse xx : lstKichThuocRepon) {
+                       if(txtTenThuocTinh.getText().equals(xx.getTen())){
+                        JOptionPane.showMessageDialog(this, "Đã có kích thước này ");
+                        return;
+                    } 
+                    }
                 int hoi = JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn sửa không?");
                 if (hoi != JOptionPane.YES_OPTION) {
                     return;
@@ -1902,6 +2029,26 @@ public class ViewSanPham extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "Bạn chưa chọn đối tượng nào");
                     return;
                 }
+                if(txtTenThuocTinh.getText().trim().isEmpty()){
+                       JOptionPane.showMessageDialog(this, "Không được để trống");
+                       return;
+                    }
+                    try {
+                        txtTenThuocTinh.getText().trim();                    
+                    } catch (Exception e) {                       
+                        JOptionPane.showMessageDialog(this, "Màu sắc phải là chữ");
+                        return;
+                    }
+                    if(txtTenThuocTinh.getText().trim().length() > 50){
+                        JOptionPane.showMessageDialog(this, "không thể vượt quá 50 kí tự");
+                        return;
+                    }
+                    for (SPMauSacResponse xx : lstMauSacRespon) {
+                       if(txtTenThuocTinh.getText().equals(xx.getTen())){
+                        JOptionPane.showMessageDialog(this, "Đã có Màu sắc này ");
+                        return;
+                    } 
+                    }
                 int hoi = JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn sửa không?");
                 if (hoi != JOptionPane.YES_OPTION) {
                     return;
@@ -1919,6 +2066,26 @@ public class ViewSanPham extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "Bạn chưa chọn đối tượng nào");
                     return;
                 }
+                if(txtTenThuocTinh.getText().trim().isEmpty()){
+                       JOptionPane.showMessageDialog(this, "Không được để trống");
+                       return;
+                    }
+                    try {
+                        txtTenThuocTinh.getText().trim();                    
+                    } catch (Exception e) {                       
+                        JOptionPane.showMessageDialog(this, "Chất liệu phải là chữ");
+                        return;
+                    }
+                  if(txtTenThuocTinh.getText().trim().length() > 50  ){
+                        JOptionPane.showMessageDialog(this, "không thể vượt quá 50 kí tự");
+                        return;
+                    }
+                    for (SPChatLieuResponse xx : lstChatLieuRespon) {
+                       if(txtTenThuocTinh.getText().equals(xx.getTen())){
+                        JOptionPane.showMessageDialog(this, "Đã có chất liệu này ");
+                        return;
+                    } 
+                    }
                 int hoi = JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn sửa không?");
                 if (hoi != JOptionPane.YES_OPTION) {
                     return;
@@ -2253,6 +2420,14 @@ public class ViewSanPham extends javax.swing.JPanel {
         if (txtTenSanPham.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, " Tên sản phẩm không được rỗng");
         }
+        for (SanPhamResponse xx : lstSpViewModel) {
+            if (txtTenSanPham.getText().equals(xx.getTen())) {
+                JOptionPane.showMessageDialog(this, "Đã có sản phẩm này này ");
+                return null;
+            }
+            
+        }
+        
         if (txtTenSanPham.getText().length() > 100) {
             JOptionPane.showMessageDialog(this, " Tên sản phẩm tối đa 100 ký tự");
         }
@@ -2306,6 +2481,29 @@ public class ViewSanPham extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Mã vạch không được rỗng");
             return null;
         }
+        for (CTSanPhamResponse xx : lstctSpViewModel) {
+                       if(txtMaVach.getText().equals(xx.getMaVach())){
+                        JOptionPane.showMessageDialog(this, "Đã có mã vạch này ");
+                        return null;
+                    } 
+                    }
+        try {
+            int mavach = 0;
+            mavach = Integer.parseInt(txtMaVach.getText().trim());
+            if (mavach <= 0) {
+                JOptionPane.showMessageDialog(this, "Giá bán lớn hơn 0");
+                return null;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Mã vạch phải là số");
+            return null;
+        }
+        for (CTSanPhamResponse xx : lstctSpViewModel) {
+                       if(txtMaVach.getText().equals(xx.getMaVach())){
+                        JOptionPane.showMessageDialog(this, "Đã có mã vạch này ");
+                        return null;
+                    } 
+                    }
         if (txtMaVach.getText().length() > 36) {
             JOptionPane.showMessageDialog(this, "Mã vạch tối đa 36 ký tự");
             return null;
@@ -2322,7 +2520,7 @@ public class ViewSanPham extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Số lượng tồn không được rỗng");
             return null;
         }
-
+       
         try {
             int soLuongTon = 0;
             soLuongTon = Integer.parseInt(txtSoLuongTon.getText().trim());

@@ -17,6 +17,7 @@ import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 
 
@@ -460,11 +461,11 @@ public class ViewKhachHang extends javax.swing.JPanel {
 
             },
             new String [] {
-                "STT", "Tên KH", "SĐT", "Giới tính", "Mã HĐ", "Ngày giao dịch", "Tổng tiền", "Trạng thái", "Cấp bậc"
+                "STT", "Mã HĐ", "Ngày giao dịch", "Tổng tiền", "Trạng thái", "Cấp bậc tại thời điểm giao dịch"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -660,8 +661,20 @@ public class ViewKhachHang extends javax.swing.JPanel {
             mol.setRowCount(0);
             int stt = 1;
             for (KhachHangLichSuRespone x : listLS) {
-                mol.addRow(x.toDaTaRow(stt));
-                stt++;
+                
+                String capbac1 = khachhang.getCapBacTheoNgayThanhToan(x.getMa());
+                System.out.println(capbac1);
+                int capbac2 = (int) Double.parseDouble(capbac1);
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+                String ngaythanhtoan = dateFormat.format(x.getNgayThanhToan());
+                Object[] row = new Object[]{stt,
+                        x.getMa(),
+                        ngaythanhtoan,
+                        x.getThanhTien(),
+                        x.getTrangThai() == 0 ? "Chờ thanh toán" : (x.getTrangThai() == 1 ? "Đã hủy" : (x.getTrangThai() == 2 ? "Đã thanh toán" : (x.getTrangThai() == 3 ? "Đang giao" : "Đã giao"))),
+                        capbac2 == 0 ? "Đồng" : (capbac2 == 3 ? "Bạc" : (capbac2 == 5 ? "Vàng" : "Kim cương"))};
+                mol.addRow(row);
+                stt ++;
             }
             System.out.println(listLS);
         } catch (Exception e) {
@@ -708,9 +721,9 @@ public class ViewKhachHang extends javax.swing.JPanel {
     }//GEN-LAST:event_txt_emailActionPerformed
 
     public KhachHang getKhachHangByForm() {
-         String makh = String.valueOf(khachhang.genMaKhachHang());
         KhachHang kh = new KhachHang();
-        kh.setMa("KH00" + makh);        
+        String makh = String.valueOf(khachhang.genMaKhachHang());
+        kh.setMa("KM00"+ makh);
         kh.setHoTen(txt_hoten.getText());
         int tt;
         if (rdo_nam.isSelected()) {
