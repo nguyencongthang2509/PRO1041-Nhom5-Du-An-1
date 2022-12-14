@@ -1519,9 +1519,8 @@ public class ViewThongKe extends javax.swing.JPanel {
         long soluong = listMax.get(0).getSoLuong();
         List<ThongKeHangHoaResponse> thongkeRespon = thongKeRespo.getListMaxValue(soluong);
         for (ThongKeHangHoaResponse xx : thongkeRespon) {
-            modelHangHoa.addRow(xx.toDataRow(index));
+            modelHangHoa.addRow(new Object[]{index, xx.getMaSP(), xx.getTenSP(), xx.getHang(), xx.getMau(), xx.getSize(), xx.getSoLuong(), xx.getDonGia()});
             index++;
-
         }
     }
 
@@ -1545,7 +1544,7 @@ public class ViewThongKe extends javax.swing.JPanel {
         long soluong = listMin.get(0).getSoLuong();
         List<ThongKeHangHoaResponse> thongkeRespon = thongKeRespo.getListMinValue(soluong);
         for (ThongKeHangHoaResponse xx : thongkeRespon) {
-            modelHangHoa.addRow(xx.toDataRow(index));
+            modelHangHoa.addRow(new Object[]{index, xx.getMaSP(), xx.getTenSP(), xx.getHang(), xx.getMau(), xx.getSize(), xx.getSoLuong(), xx.getDonGia()});
             index++;
         }
     }
