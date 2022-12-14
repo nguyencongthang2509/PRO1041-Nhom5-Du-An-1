@@ -55,8 +55,8 @@ public class TraHangServiceImpl implements TraHangService {
     }
 
     @Override
-    public HoaDonTraHang findHoaDonTraHang(String id) {
-        return traHangRepository.findHoaDonTraHang(id);
+    public HoaDonTraHang findHoaDonTraHang(String idMoi, String idCu) {
+        return traHangRepository.findHoaDonTraHang(idMoi, idCu);
     }
 
     @Override

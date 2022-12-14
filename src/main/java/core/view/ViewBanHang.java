@@ -4181,7 +4181,7 @@ public class ViewBanHang extends javax.swing.JPanel {
                     }
                 }
                 txtThanhToanTaiQuay.setText(df.format(thanhTienConLai) + " Vnđ");
-                lblTienChu.setText(ConvertMoneyToString.convertMoneyToText(String.valueOf((long) thanhTienConLai.doubleValue())));
+                lblTienChu.setText(ConvertMoneyToString.convertMoneyToText(String.valueOf(thanhTienConLai)));
                 if (cboHTThanhToanTaiQuay.getSelectedIndex() == 1) {
                     String array[] = txtThanhToanTaiQuay.getText().trim().split(" ");
                     txtTienKhachCKTaiQuay.setText(array[0].replace(",", ""));

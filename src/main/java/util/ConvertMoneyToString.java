@@ -1,6 +1,7 @@
 package util;
 
 import com.ibm.icu.text.RuleBasedNumberFormat;
+import java.math.BigDecimal;
 import java.util.Locale;
 
 /**
@@ -13,7 +14,7 @@ public class ConvertMoneyToString {
         String output = "";
         try {
             RuleBasedNumberFormat ruleBasedNumberFormat = new RuleBasedNumberFormat(new Locale("vi", "VN"), RuleBasedNumberFormat.SPELLOUT);
-            output = ruleBasedNumberFormat.format(Long.parseLong(input)) + " Đồng";
+            output = ruleBasedNumberFormat.format(new BigDecimal(input)) + " Đồng";
         } catch (Exception e) {
             output = "0 Đồng";
         }
@@ -27,6 +28,6 @@ public class ConvertMoneyToString {
     }
     
     public static void main(String[] args) {
-        System.out.println(convertMoneyToText("100000"));
+        System.out.println(convertMoneyToText("100000000000000000"));
     }
 }

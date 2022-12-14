@@ -13,7 +13,7 @@ public interface TraHangService {
     
     List<ThHoaDonResponse> getAllResponseHD();
     
-    HoaDonTraHang findHoaDonTraHang(String id);
+    HoaDonTraHang findHoaDonTraHang(String idMoi, String idCu);
     
     List<HoaDonTraHangChiTiet> getAllHoaDonTraHangChiTiet(String id);
     
