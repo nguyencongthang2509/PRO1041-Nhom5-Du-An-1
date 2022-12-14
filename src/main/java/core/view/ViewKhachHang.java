@@ -256,13 +256,11 @@ public class ViewKhachHang extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txt_email, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(428, 428, 428)
-                                        .addComponent(txt_email, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(txt_makh, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txt_makh, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(164, 164, 164)
                                         .addComponent(txt_sdt, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(85, 85, 85))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -280,7 +278,7 @@ public class ViewKhachHang extends javax.swing.JPanel {
                             .addComponent(btn_clear1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(994, 994, 994))
         );
@@ -297,13 +295,15 @@ public class ViewKhachHang extends javax.swing.JPanel {
                                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(17, 17, 17)
-                                        .addComponent(jLabel1))
-                                    .addComponent(txt_makh, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(jLabel1))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(23, 23, 23)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(cbo_capbac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel9))))
+                                    .addComponent(jLabel9)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(txt_makh, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(30, 30, 30)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txt_hoten, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -544,7 +544,7 @@ public class ViewKhachHang extends javax.swing.JPanel {
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
         // TODO add your handling code here:
         KhachHang khachhangg = getKhachHangByForm();
-        int cf = JOptionPane.showConfirmDialog(this, "Ban muon them?");
+        int cf = JOptionPane.showConfirmDialog(this, "Bạn muốn thêm khách hàng?");
         if (cf == 0) {
             String mess = khachhang.insert(khachhangg);
             listKhachHang = khachhang.getAllResponse();
@@ -560,7 +560,7 @@ public class ViewKhachHang extends javax.swing.JPanel {
         if (chon < 0) {
             JOptionPane.showMessageDialog(this, "Bạn chưa chọn đối tượng nào");
         } else {
-            int cf = JOptionPane.showConfirmDialog(this, "Bạn muốn sửa?");
+            int cf = JOptionPane.showConfirmDialog(this, "Bạn muốn sửa khách hàng?");
             if (cf == 0) {
                 khachhangg.setId(listKhachHang.get(chon).getId());
                 String mess = khachhang.update(khachhangg);
@@ -708,8 +708,9 @@ public class ViewKhachHang extends javax.swing.JPanel {
     }//GEN-LAST:event_txt_emailActionPerformed
 
     public KhachHang getKhachHangByForm() {
+         String makh = String.valueOf(khachhang.genMaKhachHang());
         KhachHang kh = new KhachHang();
-        kh.setMa(txt_makh.getText());
+        kh.setMa("KH00" + makh);        
         kh.setHoTen(txt_hoten.getText());
         int tt;
         if (rdo_nam.isSelected()) {

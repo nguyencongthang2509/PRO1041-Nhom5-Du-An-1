@@ -35,9 +35,7 @@ public class KhachHangServiceImpl implements KhachHangService {
         if (khachHangFind != null) {
             return "Mã không được trùng";
         }
-        if (khachHang.getMa().trim().isEmpty()) {
-            return "Mã không được trống";
-        }
+        
         if (khachHang.getHoTen().trim().isEmpty()) {
             return "Tên không được trống";
         }
@@ -77,9 +75,7 @@ public class KhachHangServiceImpl implements KhachHangService {
         if (khachHangFindById == null) {
             return "Không tìm thấy";
         }
-        if (khachHang.getMa().isEmpty()) {
-            return "Mã trống";
-        }
+       
         if (khachHang.getHoTen().isEmpty()) {
             return "Tên trống";
         }
