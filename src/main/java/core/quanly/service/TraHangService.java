@@ -14,9 +14,13 @@ public interface TraHangService {
     
     List<ThHoaDonResponse> getAllResponseHD();
     
-    List<HoaDonTraHang> getAllHoaDonTraHang();
+    List<HoaDon> getAllHoaDonTraHang();
+    
+    boolean updateSoLuong(String idHDCT, Integer soLuong);
     
     HoaDon getHoaDonByMa(String ma);
+    
+    List<HoaDonTraHang> getAllHoaDonTraHangByIdHoaDon(String id);
     
     HoaDonTraHang findHoaDonTraHang(String idMoi, String idCu);
     

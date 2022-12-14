@@ -126,7 +126,7 @@ public class KhuyenMaiRepository extends CrudRepository<String, ChiTietSP, Khuye
         ChiTietSPKhuyenMai chiTietSPKhuyenMai = new ChiTietSPKhuyenMai();
         try {
             session = HibernateUtil.getSession();
-            String hql = "SELECT a FROM ChiTietSPKhuyenMai a WHERE a.khuyenMaiId.id = :idkhuyenmai ";
+            String hql = "SELECT a FROM ChiTietSPKhuyenMai a WHERE a.id = :idkhuyenmai";
             org.hibernate.query.Query query = session.createQuery(hql);
             query.setParameter("idkhuyenmai", idkhuyenmai);
             chiTietSPKhuyenMai = (ChiTietSPKhuyenMai) query.getSingleResult();

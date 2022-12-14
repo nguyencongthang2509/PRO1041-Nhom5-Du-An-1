@@ -66,13 +66,23 @@ public class TraHangServiceImpl implements TraHangService {
     }
 
     @Override
-    public List<HoaDonTraHang> getAllHoaDonTraHang() {
+    public List<HoaDon> getAllHoaDonTraHang() {
         return traHangRepository.getAllHoaDonTraHang();
     }
 
     @Override
     public HoaDon getHoaDonByMa(String ma) {
         return traHangRepository.getHoaDonByMa(ma);
+    }
+
+    @Override
+    public boolean updateSoLuong(String idHDCT, Integer soLuong) {
+        return traHangRepository.updateSoLuong(idHDCT, soLuong);    
+    }
+
+    @Override
+    public List<HoaDonTraHang> getAllHoaDonTraHangByIdHoaDon(String id) {
+        return traHangRepository.getAllHoaDonTraHangByIdHoaDon(id);
     }
 
 }

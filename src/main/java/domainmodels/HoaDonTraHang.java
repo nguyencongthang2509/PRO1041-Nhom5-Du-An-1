@@ -36,12 +36,12 @@ import org.hibernate.annotations.Nationalized;
 public class HoaDonTraHang extends PrimaryEntity implements Serializable {
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_hoa_don_cu")
-    private HoaDon hoaDonCu;
+    @JoinColumn(name = "id_hoa_don")
+    private HoaDon hoaDon;
     
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_hoa_don_moi")
-    private HoaDon hoaDonMoi;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_nhan_vien")
+    private NhanVien nhanVien;
 
     @Column(name = "ngay_tra")
     private Date ngayDoiTra;

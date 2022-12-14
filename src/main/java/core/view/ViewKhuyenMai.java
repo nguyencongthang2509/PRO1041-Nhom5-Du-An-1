@@ -1092,7 +1092,7 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
             listsanpham2 = khuyenMaiService.GetAllSanPhamDangApDung(khuyenMai.getId());
             if (listsanpham2 != null) {
                 for (KMSanphamDangKmReponse xx : listsanpham2) {
-                    ChiTietSPKhuyenMai chiTietSPKhuyenMai = khuyenMaiService.getChiTietSPKM2(khuyenMai.getId());
+                    ChiTietSPKhuyenMai chiTietSPKhuyenMai = khuyenMaiService.getChiTietSPKM2(xx.getIdctspkm());
                     chiTietSPKhuyenMai.setTrangThai(0);
                     if (khuyenMai.getLoaiKhuyenMai() == 0) {
                         BigDecimal donGiaConLai = chiTietSPKhuyenMai.getChiTietSPId().getGiaBan().subtract(chiTietSPKhuyenMai.getChiTietSPId().getGiaBan().multiply(new BigDecimal(khuyenMai.getGiaTri()).divide(new BigDecimal(100))));

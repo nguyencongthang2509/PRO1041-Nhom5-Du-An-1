@@ -981,7 +981,15 @@ public class ViewThongKe extends javax.swing.JPanel {
             } else {
                 lblKhachHang.setText(thongKeRespo.getKhachHangTungKhoangTG(time3, time4).toString());
             }
-
+            Calendar day1 = Calendar.getInstance();
+            day1.setTime(time3);
+            day1.add(Calendar.DATE, 0);
+            time3 = day1.getTime();
+            LocalDateTime local1 = LocalDateTime.ofInstant(time3.toInstant(), ZoneId.of("Asia/Ho_Chi_Minh"));
+            Integer ngay1 = local1.getDayOfMonth();
+            Integer thang1 = local1.getMonthValue();
+            Integer nam1 = local1.getYear();
+            list.add(new ThongKeTheoKhoangResponse(ngay1, thang1, nam1));
             while (true) {
                 Calendar day = Calendar.getInstance();
                 day.setTime(time3);
@@ -1377,11 +1385,11 @@ public class ViewThongKe extends javax.swing.JPanel {
     }
 
     private void LableLoadHoaDon() {
-
+        DecimalFormat df = new DecimalFormat("#,###");
         if (thongKeRespo.getDoanhThu() == null) {
             lblDoanhThu.setText("0");
         } else {
-            lblDoanhThu.setText(thongKeRespo.getDoanhThu().toPlainString() + " " + " Vnđ");
+            lblDoanhThu.setText(df.format(thongKeRespo.getDoanhThu()) + " " + " Vnđ");
         }
         if (thongKeRespo.getHoaDon() == null) {
             lblDoanhThu.setText("0");
