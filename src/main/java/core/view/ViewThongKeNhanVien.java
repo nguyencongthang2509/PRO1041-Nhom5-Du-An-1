@@ -39,6 +39,8 @@ import javax.swing.table.TableRowSorter;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import util.EmailSender;
+import util.ExportNhanVienThongKeBan;
+import util.ExportNhanVienThongKeTra;
 import util.ExportThongKeHangHoaTra;
 import util.ExportThongKeSanPhamBan;
 import util.NhanVienThongKeAllService;
@@ -807,8 +809,8 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            ExportThongKeSanPhamBan export = new ExportThongKeSanPhamBan();
-            listHangHoa = hangHoaService.getAllResponse();
+            ExportNhanVienThongKeBan export = new ExportNhanVienThongKeBan();
+            listHangHoa = nvtlService.getListHDCT(nv.getId());
             boolean check = export.ExportFileExcel(listHangHoa);
 
             if (check) {
@@ -823,8 +825,8 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
 
     private void btnExportTraHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportTraHangActionPerformed
         try {
-            ExportThongKeHangHoaTra export = new ExportThongKeHangHoaTra();
-            listHangHoaTra = thongKeRespo.getListTraHang();
+            ExportNhanVienThongKeTra export = new ExportNhanVienThongKeTra();
+            listHangHoaTra = nvtlService.getListTraHang(nv.getId());
             boolean check = export.ExportFileExcel(listHangHoaTra);
 
             if (check) {
