@@ -149,14 +149,18 @@ public class BanHangServiceImpl implements BanHangService {
         HoaDon hoaDon = banHangRepository.findByIdHoaDon(idHoaDon);
         KhachHang khachHang = banHangRepository.findByIdKhachHang(idKhachHang);
         hoaDon.setKhachHang(khachHang);
-        if (khachHang.getCapBac() == 0) {
+        if (khachHang.getCapBac() != null) {
+            if (khachHang.getCapBac() == 0) {
+                hoaDon.setPhamTramGiamGia(0.0);
+            } else if (khachHang.getCapBac() == 1) {
+                hoaDon.setPhamTramGiamGia(3.0);
+            } else if (khachHang.getCapBac() == 2) {
+                hoaDon.setPhamTramGiamGia(5.0);
+            } else if (khachHang.getCapBac() == 3) {
+                hoaDon.setPhamTramGiamGia(10.0);
+            }
+        }else{
             hoaDon.setPhamTramGiamGia(0.0);
-        } else if (khachHang.getCapBac() == 1) {
-            hoaDon.setPhamTramGiamGia(3.0);
-        } else if (khachHang.getCapBac() == 2) {
-            hoaDon.setPhamTramGiamGia(5.0);
-        } else if (khachHang.getCapBac() == 3) {
-            hoaDon.setPhamTramGiamGia(10.0);
         }
         banHangRepository.saveOrUpdateHD(hoaDon);
         return true;

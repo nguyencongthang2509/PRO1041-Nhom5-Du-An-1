@@ -1,6 +1,7 @@
 package core.quanly.service;
 
 import core.quanly.viewmodel.ThHoaDonResponse;
+import domainmodels.HoaDon;
 import domainmodels.HoaDonTraHang;
 import domainmodels.HoaDonTraHangChiTiet;
 import java.util.List;
@@ -13,7 +14,11 @@ public interface TraHangService {
     
     List<ThHoaDonResponse> getAllResponseHD();
     
-    HoaDonTraHang findHoaDonTraHang(String id);
+    List<HoaDonTraHang> getAllHoaDonTraHang();
+    
+    HoaDon getHoaDonByMa(String ma);
+    
+    HoaDonTraHang findHoaDonTraHang(String idMoi, String idCu);
     
     List<HoaDonTraHangChiTiet> getAllHoaDonTraHangChiTiet(String id);
     

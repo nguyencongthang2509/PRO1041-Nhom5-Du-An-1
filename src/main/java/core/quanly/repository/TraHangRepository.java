@@ -41,6 +41,35 @@ public class TraHangRepository extends CrudRepository<String, HoaDon, Object> {
         return list;
     }
     
+    public List<HoaDonTraHang> getAllHoaDonTraHang() {
+        List<HoaDonTraHang> list = new ArrayList<>();
+        try {
+                session = HibernateUtil.getSession();
+                String hql = "SELECT a FROM HoaDonTraHang a Order by a.ngayDoiTra DESC";
+                Query query = session.createQuery(hql);
+                list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return list;
+    }
+    
+    public HoaDon getHoaDonByMa(String ma) {
+        HoaDon hoaDon = new HoaDon();
+        try {
+                session = HibernateUtil.getSession();
+                String hql = "SELECT a FROM HoaDon a where a.ma = :ma";
+                Query query = session.createQuery(hql);
+                query.setParameter("ma", ma);
+                hoaDon = (HoaDon) query.getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return hoaDon;
+    }
+    
     public List<ThHoaDonResponse> getAllResponseHDTraHang() {
         List<ThHoaDonResponse> list = new ArrayList<>();
         try {
@@ -82,13 +111,14 @@ public class TraHangRepository extends CrudRepository<String, HoaDon, Object> {
         return list;
     }
     
-    public HoaDonTraHang findHoaDonTraHang(String id) {
+    public HoaDonTraHang findHoaDonTraHang(String idMoi, String idCu) {
         HoaDonTraHang list = new HoaDonTraHang();
         try {
                 session = HibernateUtil.getSession();
-                String hql = "SELECT a FROM HoaDonTraHang a WHERE a.hoaDon.id = :id";
+                String hql = "SELECT a FROM HoaDonTraHang a WHERE a.hoaDonMoi.id = :idMoi AND a.hoaDonCu.id = :idCu";
                 Query query = session.createQuery(hql);
-                query.setParameter("id", id);
+                query.setParameter("idMoi", idMoi);
+                query.setParameter("idCu", idCu);
                 list = (HoaDonTraHang) query.getSingleResult();
         } catch (Exception e) {
             e.printStackTrace();
@@ -97,10 +127,10 @@ public class TraHangRepository extends CrudRepository<String, HoaDon, Object> {
         return list;
     }
     
-    public static void main(String[] args) {
-        HoaDonTraHang hang = new TraHangRepository().findHoaDonTraHang("4459dc5d-0666-480d-8f7f-35d493359a80");
-        System.out.println(hang);
-    }
+//    public static void main(String[] args) {
+//        HoaDonTraHang hang = new TraHangRepository().findHoaDonTraHang("4459dc5d-0666-480d-8f7f-35d493359a80");
+//        System.out.println(hang);
+//    }
     
     public List<HoaDonTraHangChiTiet> getAllHoaDonTraHangChiTiet(String id) {
         List<HoaDonTraHangChiTiet> list = new ArrayList<>();
