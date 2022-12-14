@@ -67,8 +67,9 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
     private Long firstSend = 0L;
     private NhanVien nv = new NhanVien();
 
-    public ViewThongKeNhanVien(NhanVien nv) {
+    public ViewThongKeNhanVien(NhanVien nvien) {
         initComponents();
+        nv = nvien;
         modelHangHoa = new DefaultTableModel();
         modelHangHoa = (DefaultTableModel) tblHangHoa.getModel();
         modelHangHoa1 = new DefaultTableModel();
@@ -766,10 +767,10 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
             ee = fm.parse(rr);
             //báo cáo ngày hiện tại
 
-            BigDecimal doanhthungay = nvtlService.BaoCaoDT(ee,nv.getId());
-            Long hoaDonngay = nvtlService.BaoCaoHD(ee,nv.getId());
-            Long HDhuyngay = nvtlService.BaoCaoHDhuy(ee,nv.getId());
-            int KHngay = nvtlService.BaoCaoKH(ee,nv.getId());
+            BigDecimal doanhthungay = nvtlService.BaoCaoDT(ee, nv.getId());
+            Long hoaDonngay = nvtlService.BaoCaoHD(ee, nv.getId());
+            Long HDhuyngay = nvtlService.BaoCaoHDhuy(ee, nv.getId());
+            int KHngay = nvtlService.BaoCaoKH(ee, nv.getId());
 
             String vv = JOptionPane.showInputDialog(this, "Nhập Email: ");
             String nvE = nvImpl.getNhanVienByEmail(vv);
@@ -783,7 +784,7 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
                 //Send to Email
                 if (firstSend == 0L) {
 
-                    EmailSender.emailSender(vv, "Báo Cáo Mới Của Nhân Viên: "+(nv.getTen())+" "+ee, " Lượng Doanh Thu Hôm Nay: " + doanhthungay + " VNĐ" + "<<><>>Lượng Hoá Đơn Ngày: " + hoaDonngay
+                    EmailSender.emailSender(vv, "Báo Cáo Mới Của Nhân Viên: " + (nv.getTen()) + " " + ee, " Lượng Doanh Thu Hôm Nay: " + doanhthungay + " VNĐ" + "<<><>>Lượng Hoá Đơn Ngày: " + hoaDonngay
                             + "<<><>>Lượng Hoa Đơn Huy Ngày: " + HDhuyngay + "<<><>>Lượng Khach Hang Hôm Nay: " + KHngay);
                     JOptionPane.showMessageDialog(this, "Báo Cáo đã được gửi đến Email");
                     System.out.println(HDhuyngay);
@@ -793,7 +794,7 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
                         JOptionPane.showMessageDialog(this, "Khoảng thời gian giữa 2 lần gửi mail là 60s");
                     } else {
 
-                        EmailSender.emailSender(vv, "Báo Cáo Mới Của Nhân Viên: "+(nv.getTen())+" "+ee, "Doanh Thu Hôm Nay: " + doanhthungay + "<<><>>Hoá Đơn Ngày: " + hoaDonngay
+                        EmailSender.emailSender(vv, "Báo Cáo Mới Của Nhân Viên: " + (nv.getTen()) + " " + ee, "Doanh Thu Hôm Nay: " + doanhthungay + "<<><>>Hoá Đơn Ngày: " + hoaDonngay
                                 + "<<><>>Hoa Đơn Huy Ngày: " + HDhuyngay + "<<><>>Lượng Khach Hang Hôm Nay: " + KHngay);
                         firstSend = Calendar.getInstance().getTimeInMillis();
                         JOptionPane.showMessageDialog(this, "Báo Cáo đã được gửi đến Email");
@@ -924,15 +925,15 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
             } else {
                 lblHoaDon.setText(nvtlService.BaoCaoHD(ee, nv.getId()).toString());
             }
-            if (nvtlService.BaoCaoHDhuy(ee, nv.getId())== null) {
+            if (nvtlService.BaoCaoHDhuy(ee, nv.getId()) == null) {
                 lblDoanhThu.setText("0");
             } else {
                 lblHangTra.setText(nvtlService.BaoCaoHDhuy(ee, nv.getId()).toString());
             }
-            if (nvtlService.BaoCaoKH(ee, nv.getId())== 0) {
+            if (nvtlService.BaoCaoKH(ee, nv.getId()) == 0) {
                 lblDoanhThu.setText("0");
             } else {
-                lblKhachHang.setText(nvtlService.BaoCaoKH(ee, nv.getId())+"");
+                lblKhachHang.setText(nvtlService.BaoCaoKH(ee, nv.getId()) + "");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -940,13 +941,9 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
 
     }
 
- 
-
-    
-
-    private void PanelBieuDoNgay(Date date,String id) throws ParseException, Exception {
-        ChartPanel chartPanel = new ChartPanel(nvtlService.createChartTheoThang(date,nv.getId()));
-        JPenalBieuDo.setSize(1269, 382);
+    private void PanelBieuDoNgay(Date date, String id) throws ParseException, Exception {
+        ChartPanel chartPanel = new ChartPanel(nvtlService.createChartTheoThang(date, nv.getId()));
+        JPenalBieuDo.setSize(1260, 382);
         JPenalBieuDo.removeAll();
         JPenalBieuDo.setLayout(new CardLayout());
         JPenalBieuDo.add(chartPanel);
@@ -979,7 +976,7 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
     private void LoadTimKiem() {
         modelHangHoa.setRowCount(0);
         int index = 1;
-        List<ThongKeHangHoaResponse> thongkeRespon = nvtlService.TimKiemHangHoa(txtTimKiem.getText(),nv.getId());
+        List<ThongKeHangHoaResponse> thongkeRespon = nvtlService.TimKiemHangHoa(txtTimKiem.getText(), nv.getId());
         for (ThongKeHangHoaResponse xx : thongkeRespon) {
             modelHangHoa.addRow(xx.toDataRow(index));
             index++;
@@ -990,7 +987,7 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
     private void LoadTimKiemTra() {
         modelHangHoa1.setRowCount(0);
         int index = 1;
-        List<HoaDonTraHangChiTiet> thongkeRespon = nvtlService.TimKiemHangHoaTra(txtTimKiemTra.getText(),nv.getId());
+        List<HoaDonTraHangChiTiet> thongkeRespon = nvtlService.TimKiemHangHoaTra(txtTimKiemTra.getText(), nv.getId());
         for (HoaDonTraHangChiTiet xx : thongkeRespon) {
             modelHangHoa1.addRow(new Object[]{index, xx.getMaChiTietSanPham(), xx.getTenSP(), xx.getTenHang(),
                 xx.getMauSac(), xx.getKichThuoc(), xx.getSoLuongTra(), xx.getGiaBan()});
@@ -1002,7 +999,9 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
     private void LoadMax() {
         modelHangHoa.setRowCount(0);
         int index = 1;
-        List<ThongKeHangHoaResponse> thongkeRespon = nvtlService.getListMaxValue(nv.getId());
+        List<ThongKeHangHoaResponse> listsoluong = nvtlService.getSoLuong(nv.getId());
+        long soluong = listsoluong.get(0).getSoLuong();
+        List<ThongKeHangHoaResponse> thongkeRespon = nvtlService.getListMaxValue(nv.getId(), soluong);
         for (ThongKeHangHoaResponse xx : thongkeRespon) {
             modelHangHoa.addRow(xx.toDataRow(index));
             index++;
@@ -1025,7 +1024,9 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
     private void LoadMinDS() {
         modelHangHoa.setRowCount(0);
         int index = 1;
-        List<ThongKeHangHoaResponse> thongkeRespon = nvtlService.getListMinValue(nv.getId());
+        List<ThongKeHangHoaResponse> listsoluong = nvtlService.getSoLuong(nv.getId());
+        long soluong = listsoluong.get(listsoluong.size() - 1).getSoLuong();
+        List<ThongKeHangHoaResponse> thongkeRespon = nvtlService.getListMinValue(nv.getId(), soluong);
         for (ThongKeHangHoaResponse xx : thongkeRespon) {
             modelHangHoa.addRow(xx.toDataRow(index));
             index++;
@@ -1044,18 +1045,19 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
 
         }
     }
-    private void GetBieuDo(){
+
+    private void GetBieuDo() {
         try {
             SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
             Date dd = new Date();
-            String rr = fm.format(dd);
-            Date ee;
-            ee = fm.parse(rr);
-            PanelBieuDoNgay(ee,nv.getId());
+//            String rr = fm.format(dd);
+//            Date ee;
+//            ee = fm.parse(rr);
+//            System.out.println(ee);
+            PanelBieuDoNgay(dd, nv.getId());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 
 }

@@ -5,6 +5,7 @@
 package core.quanly.viewmodel;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -36,6 +37,7 @@ public class HdHoaDonResponse1 {
     private String lydo;
     private Integer trangThai;
     private Double phanTramGiamGia;
+    private String maGiaoDich;
 
     public String getNgayThanhToanStr() {
         if (ngayThanhToan == null) {
@@ -52,31 +54,35 @@ public class HdHoaDonResponse1 {
     }
 
     public String getThanhTienStr() {
+        DecimalFormat df = new DecimalFormat("#,###");
         if (thanhTien == null) {
             return "0VNĐ";
         }
-        return String.valueOf(thanhTien) + "VNĐ";
+        return String.valueOf(df.format(thanhTien)) + "VNĐ";
     }
 
     public String getTienKhachCKStr() {
+        DecimalFormat df = new DecimalFormat("#,###");
         if (tienKhachCK == null) {
             return "0VNĐ";
         }
-        return String.valueOf(tienKhachCK) + "VNĐ";
+        return String.valueOf(df.format(tienKhachCK)) + "VNĐ";
     }
 
     public String getTienKhachTraStr() {
+        DecimalFormat df = new DecimalFormat("#,###");
         if (tienKhachTra == null) {
             return "0VNĐ";
         }
-        return String.valueOf(tienKhachTra) + "VNĐ";
+        return String.valueOf(df.format(tienKhachTra)) + "VNĐ";
     }
 
     public String getTienThuaStr() {
+        DecimalFormat df = new DecimalFormat("#,###");
         if (tienThua == null) {
             return "0VNĐ";
         }
-        return String.valueOf(tienThua) + "VNĐ";
+        return String.valueOf(df.format(tienThua)) + "VNĐ";
     }
 
     public String getTenKHStr() {
@@ -124,6 +130,13 @@ public class HdHoaDonResponse1 {
             return "..........";
         }
         return lydo;
+    }
+
+    public String getMaGDStr() {
+        if (maGiaoDich == null) {
+            return "..........";
+        }
+        return maGiaoDich;
     }
 
     public String getHinhThucTT() {
