@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 /**
@@ -43,6 +44,10 @@ public class NhanVienServiceImpl implements NhanVienService {
         NhanVien FindNhanVienByMa = nhanVienRepos.findByMa(nhanVien.getMa());
         if (FindNhanVienByMa != null) {
             return "Trung ma nhan vien";
+        }
+        String FindNhanVienByEmail = this.getNhanVienByEmail(nhanVien.getEmail());
+        if (FindNhanVienByEmail != null) {
+            return "Trùng Email nhân viên";
         }
 
         if (nhanVien.getTen().isEmpty()) {
@@ -90,6 +95,10 @@ public class NhanVienServiceImpl implements NhanVienService {
         System.out.println(nhanVien.getTrangThaiXoa() + "ahshduihasuhdiuashidasd");
         if (nhanVienFindById == null) {
             return "Nhân viên không tồn tại";
+        }
+        String FindNhanVienByEmail = this.getNhanVienByEmail(nhanVien.getEmail());
+        if (FindNhanVienByEmail != null) {
+            return "Trùng Email nhân viên";
         }
         if (nhanVien.getTen().isEmpty()) {
             return "Tên không được để trống";
@@ -193,6 +202,8 @@ public class NhanVienServiceImpl implements NhanVienService {
             query.setParameter("input", input);
             id = (String) query.getSingleResult();
         } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
         return id;
     }
@@ -245,8 +256,25 @@ public class NhanVienServiceImpl implements NhanVienService {
     }
 
     public static void main(String[] args) {
-        List<NhanVienNghiResponse> xx = new NhanVienServiceImpl().getListbyAll("N");
-        System.out.println(xx);
+//        List<NhanVienNghiResponse> xx = new NhanVienServiceImpl().updateTrangThai(1, id);
+//        System.out.println(xx);
+    }
+    public boolean updateTrangThai(int trangThai, String id) {
+        boolean check = false;
+        try {
+            session = HibernateUtil.getSession();
+            Transaction transs = session.beginTransaction();
+            String sql = "UPDATE NhanVien SET trangThaiXoa = :trangThai where id = :id";
+            Query query = session.createQuery(sql);
+            query.setParameter("trangThai", trangThai);
+            query.setParameter("id", id);
+            query.executeUpdate();
+            transs.commit();
+            check = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return check;
     }
 
 }

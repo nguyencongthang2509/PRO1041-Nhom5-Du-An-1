@@ -31,7 +31,13 @@ public class BhHoaDonResponse {
 
     private String tenKhachHang;
     
+    private String sdtKhachHang;
+    
+    private String diaChiKhachHang;
+    
     private Integer capBac;
+    
+    private Double phanTramGiamGia;
     
     private Integer trangThaiThanhToan;
     

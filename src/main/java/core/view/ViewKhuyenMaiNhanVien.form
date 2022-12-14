@@ -360,7 +360,7 @@
                                   <Component id="btnhuy" min="-2" pref="149" max="-2" attributes="0"/>
                                   <Component id="btnsua" min="-2" pref="149" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="181" max="32767" attributes="0"/>
+                              <EmptySpace pref="171" max="32767" attributes="0"/>
                           </Group>
                           <Component id="jPanel5" max="32767" attributes="0"/>
                       </Group>
@@ -508,6 +508,7 @@
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="cc" red="99" type="rgb"/>
                     </Property>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnlocsanphamActionPerformed"/>
@@ -521,6 +522,7 @@
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="cc" red="99" type="rgb"/>
                 </Property>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnsuaActionPerformed"/>
@@ -532,6 +534,7 @@
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="cc" red="99" type="rgb"/>
                 </Property>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnthemActionPerformed"/>
@@ -789,6 +792,7 @@
                     <Component class="javax.swing.JCheckBox" name="chkselectedall">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Select all"/>
+                        <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                       <Events>
                         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="chkselectedallMouseClicked"/>
@@ -815,6 +819,7 @@
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="cc" red="99" type="rgb"/>
                         </Property>
+                        <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnbokhoidanhsachActionPerformed"/>
@@ -843,6 +848,7 @@
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="cc" red="99" type="rgb"/>
                 </Property>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnxoaActionPerformed"/>
@@ -854,6 +860,7 @@
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="cc" red="99" type="rgb"/>
                 </Property>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnhuyActionPerformed"/>
@@ -1157,6 +1164,7 @@
                 <Component class="javax.swing.JCheckBox" name="chkallsanphamdangkm">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Select all"/>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chkallsanphamdangkmActionPerformed"/>

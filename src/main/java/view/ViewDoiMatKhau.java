@@ -2,6 +2,7 @@ package view;
 
 import core.quanly.service.DoiMatKhauService;
 import core.quanly.service.impl.DoiMatKhauServiceImpl;
+import core.view.ViewBanHang;
 import domainmodels.NhanVien;
 import java.util.UUID;
 import javax.swing.ImageIcon;
@@ -400,6 +401,7 @@ public class ViewDoiMatKhau extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, mess);
         jFrameQuanLy.dispose();
         this.dispose();
+        ViewBanHang.webcam.close();
         new ViewDangNhap().setVisible(true);
     }//GEN-LAST:event_lblDoiMatKhauMouseClicked
 

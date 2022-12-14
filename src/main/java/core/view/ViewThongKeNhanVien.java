@@ -10,7 +10,10 @@ import core.quanly.service.ThongKeHangHoaService;
 import core.quanly.service.impl.NhanVienServiceImpl;
 import core.quanly.service.impl.ThongKeHangHoaServiceImpl;
 import core.quanly.viewmodel.ThongKeHangHoaResponse;
+import core.quanly.viewmodel.ThongKeTheoKhoangResponse;
+import core.quanly.viewmodel.ThongKeTraHangResponse;
 import domainmodels.HoaDonTraHangChiTiet;
+import domainmodels.NhanVien;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Panel;
@@ -21,6 +24,8 @@ import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -34,7 +39,11 @@ import javax.swing.table.TableRowSorter;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import util.EmailSender;
+import util.ExportNhanVienThongKeBan;
+import util.ExportNhanVienThongKeTra;
+import util.ExportThongKeHangHoaTra;
 import util.ExportThongKeSanPhamBan;
+import util.NhanVienThongKeAllService;
 import util.UtilTest;
 
 /**
@@ -49,14 +58,16 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
     DefaultTableModel modelHangHoa;
     DefaultTableModel modelHangHoa1;
     List<ThongKeHangHoaResponse> listHangHoa = new ArrayList<>();
-    List<HoaDonTraHangChiTiet> listHangHoaTra = new ArrayList<>();
+    List<ThongKeTraHangResponse> listHangHoaTra = new ArrayList<>();
     ThongKeHangHoaService hangHoaService = new ThongKeHangHoaServiceImpl();
     ThongKeHangHoaRepository thongKeRespo = new ThongKeHangHoaRepository();
+    NhanVienThongKeAllService nvtlService = new NhanVienThongKeAllService();
     UtilTest ut = new UtilTest();
     NhanVienServiceImpl nvImpl = new NhanVienServiceImpl();
     private Long firstSend = 0L;
+    private NhanVien nv = new NhanVien();
 
-    public ViewThongKeNhanVien() {
+    public ViewThongKeNhanVien(NhanVien nv) {
         initComponents();
         modelHangHoa = new DefaultTableModel();
         modelHangHoa = (DefaultTableModel) tblHangHoa.getModel();
@@ -65,10 +76,7 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
         loadList();
         loadListTraHang();
         LableLoadHoaDon();
-        GetYearNow();
-        GetYearNow2();
-        cboThang.setEnabled(false);
-        cboThangDT.setEnabled(false);
+        GetBieuDo();
     }
 
     /**
@@ -100,10 +108,6 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
         jPanel5 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         JPenalBieuDo = new javax.swing.JPanel();
-        jPanel11 = new javax.swing.JPanel();
-        cboThang = new javax.swing.JComboBox<>();
-        jPanel12 = new javax.swing.JPanel();
-        cboBieuDo = new javax.swing.JComboBox<>();
         jPanel6 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         cboHot = new javax.swing.JComboBox<>();
@@ -123,15 +127,7 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
         txtTimKiemTra = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblHangHoa1 = new javax.swing.JTable();
-        jPanel15 = new javax.swing.JPanel();
-        cboThangDT = new javax.swing.JComboBox<>();
-        jPanel16 = new javax.swing.JPanel();
-        cboNamDoanhThu = new javax.swing.JComboBox<>();
-        jPanel17 = new javax.swing.JPanel();
-        dPNgay1 = new com.github.lgooddatepicker.components.DatePicker();
-        jTextField1 = new javax.swing.JTextField();
-        dPNgay2 = new com.github.lgooddatepicker.components.DatePicker();
-        btnTimTheoNgay = new javax.swing.JButton();
+        btnExportTraHang = new javax.swing.JButton();
         btnGuiBaoCao = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -158,10 +154,10 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDoanhThu, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
+                    .addComponent(lblDoanhThu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,6 +171,7 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 102, 102));
+        jPanel2.setPreferredSize(new java.awt.Dimension(297, 200));
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setIcon(new ImageIcon("src/main/images/1ngay.png"));
@@ -197,7 +194,7 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(55, 55, 55)
                         .addComponent(lblHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
         );
@@ -213,6 +210,7 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 102));
+        jPanel3.setPreferredSize(new java.awt.Dimension(297, 200));
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setIcon(new ImageIcon("src/main/images/1thang.png"));
@@ -237,7 +235,7 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
                         .addComponent(lblHangTra, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -251,6 +249,7 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
         );
 
         jPanel4.setBackground(new java.awt.Color(153, 255, 153));
+        jPanel4.setPreferredSize(new java.awt.Dimension(297, 200));
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setIcon(new ImageIcon("src/main/images/years.png"));
@@ -273,7 +272,7 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(59, 59, 59)
                         .addComponent(lblKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
         );
@@ -301,98 +300,33 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
         jPanel7.setPreferredSize(new java.awt.Dimension(1200, 300));
 
         JPenalBieuDo.setBackground(new java.awt.Color(204, 204, 204));
+        JPenalBieuDo.setMaximumSize(new java.awt.Dimension(1269, 385));
+        JPenalBieuDo.setMinimumSize(new java.awt.Dimension(1269, 385));
 
         javax.swing.GroupLayout JPenalBieuDoLayout = new javax.swing.GroupLayout(JPenalBieuDo);
         JPenalBieuDo.setLayout(JPenalBieuDoLayout);
         JPenalBieuDoLayout.setHorizontalGroup(
             JPenalBieuDoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1035, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         JPenalBieuDoLayout.setVerticalGroup(
             JPenalBieuDoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        jPanel11.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder("Lọc theo tháng"));
-
-        cboThang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
-        cboThang.setBackground(new java.awt.Color(153, 204, 255));
-        cboThang.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboThangActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
-        jPanel11.setLayout(jPanel11Layout);
-        jPanel11Layout.setHorizontalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(cboThang, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel11Layout.setVerticalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(cboThang)
-                .addContainerGap(31, Short.MAX_VALUE))
-        );
-
-        jPanel12.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder("Lọc Theo Năm"));
-
-        cboBieuDo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất Cả", "2022", "2021", "2020", " " }));
-        cboBieuDo.setBackground(new java.awt.Color(153, 204, 255));
-        cboBieuDo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboBieuDoActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
-        jPanel12.setLayout(jPanel12Layout);
-        jPanel12Layout.setHorizontalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel12Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(cboBieuDo, 0, 152, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel12Layout.setVerticalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel12Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(cboBieuDo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+            .addGap(0, 387, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+            .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(26, 26, 26)
-                .addComponent(JPenalBieuDo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(JPenalBieuDo, javax.swing.GroupLayout.PREFERRED_SIZE, 1237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(2, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)
-                        .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 122, Short.MAX_VALUE))
-                    .addComponent(JPenalBieuDo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(JPenalBieuDo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -401,7 +335,7 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 1289, Short.MAX_VALUE)
+                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 1251, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -438,7 +372,7 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cboHot, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                .addComponent(cboHot)
                 .addContainerGap())
         );
 
@@ -465,7 +399,7 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cboSanPham, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                .addComponent(cboSanPham)
                 .addContainerGap())
         );
 
@@ -508,6 +442,7 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
                 "STT", "Mã Sản Phẩm", "Tên Sản Phẩm", "Hãng", "Màu Sắc", "Size", "Số Lượng", "Đơn Giá"
             }
         ));
+        tblHangHoa.setRowHeight(25);
         tblHangHoa.setSelectionBackground(new java.awt.Color(86, 154, 222));
         jScrollPane1.setViewportView(tblHangHoa);
 
@@ -532,7 +467,7 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(jButton1)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
@@ -554,7 +489,7 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(51, 51, 51)
                         .addComponent(jButton1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -588,7 +523,7 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel18Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cboMaxMin, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                .addComponent(cboMaxMin)
                 .addContainerGap())
         );
 
@@ -615,7 +550,7 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel19Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cboSanPhamTra, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                .addComponent(cboSanPhamTra)
                 .addContainerGap())
         );
 
@@ -658,8 +593,16 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
                 "STT", "Mã Sản Phẩm", "Tên Sản Phẩm", "Hãng", "Màu Sắc", "Size", "Số Lượng", "Đơn Giá"
             }
         ));
+        tblHangHoa1.setRowHeight(25);
         tblHangHoa1.setSelectionBackground(new java.awt.Color(86, 154, 222));
         jScrollPane2.setViewportView(tblHangHoa1);
+
+        btnExportTraHang.setText("Xuất File Excel");
+        btnExportTraHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportTraHangActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -668,11 +611,13 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addGap(66, 66, 66)
                 .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(123, 123, 123)
+                .addGap(44, 44, 44)
                 .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
+                .addGap(43, 43, 43)
                 .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(68, 68, 68))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addComponent(btnExportTraHang, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33))
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2)
@@ -684,122 +629,22 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addComponent(btnExportTraHang, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
         );
 
-        jPanel13Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jPanel18, jPanel19, jPanel20});
-
         jTabbedPane1.addTab("Hàng hoá trả lại", jPanel13);
-
-        jPanel15.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder("Doanh Thu Chi Tiết Tháng"));
-
-        cboThangDT.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
-        cboThangDT.setBackground(new java.awt.Color(153, 204, 255));
-        cboThangDT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboThangDTActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
-        jPanel15.setLayout(jPanel15Layout);
-        jPanel15Layout.setHorizontalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(cboThangDT, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel15Layout.setVerticalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cboThangDT)
-                .addContainerGap())
-        );
-
-        jPanel16.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel16.setBorder(javax.swing.BorderFactory.createTitledBorder("Lọc doanh thu theo năm"));
-
-        cboNamDoanhThu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tat Ca" }));
-        cboNamDoanhThu.setBackground(new java.awt.Color(153, 204, 255));
-        cboNamDoanhThu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboNamDoanhThuActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
-        jPanel16.setLayout(jPanel16Layout);
-        jPanel16Layout.setHorizontalGroup(
-            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel16Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(cboNamDoanhThu, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel16Layout.setVerticalGroup(
-            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel16Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(cboNamDoanhThu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel17.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel17.setBorder(javax.swing.BorderFactory.createTitledBorder("Lọc theo khoảng thời gian"));
-
-        dPNgay1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                dPNgay1MouseClicked(evt);
-            }
-        });
-
-        jTextField1.setText("đến");
-        jTextField1.setBorder(null);
-
-        btnTimTheoNgay.setText("Tìm");
-        btnTimTheoNgay.setBackground(new java.awt.Color(153, 204, 255));
-        btnTimTheoNgay.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTimTheoNgayActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
-        jPanel17.setLayout(jPanel17Layout);
-        jPanel17Layout.setHorizontalGroup(
-            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
-                .addGap(11, 11, 11)
-                .addComponent(dPNgay1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dPNgay2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnTimTheoNgay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(5, 5, 5))
-        );
-        jPanel17Layout.setVerticalGroup(
-            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel17Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(dPNgay1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dPNgay2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTimTheoNgay))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
 
         btnGuiBaoCao.setText("Gửi Báo Cáo");
         btnGuiBaoCao.setBackground(new java.awt.Color(153, 204, 255));
@@ -816,33 +661,22 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1268, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(13, 13, 13)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnGuiBaoCao)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(21, 21, 21)
                                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(20, 20, 20)
+                                .addGap(21, 21, 21)
                                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(20, 20, 20)
-                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(4, 4, 4)
-                                .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnGuiBaoCao)
-                                .addGap(26, 26, 26)))))
+                                .addGap(21, 21, 21)
+                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jPanel1, jPanel2, jPanel3, jPanel4});
-
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -852,258 +686,13 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jPanel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPanel17, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnGuiBaoCao, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)))
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(btnGuiBaoCao, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void cboBieuDoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboBieuDoActionPerformed
-        if (cboBieuDo.getSelectedIndex() == 0) {
-            try {
-                PanelBieuDoHangNam();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboBieuDo.getSelectedIndex() == 1) {
-            try {
-                PanelBieuDoNam(Integer.parseInt(cboBieuDo.getSelectedItem().toString()));
-                cboThang.setEnabled(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboBieuDo.getSelectedIndex() == 2) {
-            try {
-                PanelBieuDoNam(Integer.parseInt(cboBieuDo.getSelectedItem().toString()));
-                cboThang.setEnabled(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboBieuDo.getSelectedIndex() == 3) {
-            try {
-                PanelBieuDoNam(Integer.parseInt(cboBieuDo.getSelectedItem().toString()));
-                cboThang.setEnabled(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboBieuDo.getSelectedIndex() == 4) {
-            try {
-                PanelBieuDoNam(Integer.parseInt(cboBieuDo.getSelectedItem().toString()));
-                cboThang.setEnabled(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }//GEN-LAST:event_cboBieuDoActionPerformed
-
-    private void cboThangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboThangActionPerformed
-        if (cboThang.getSelectedIndex() == 0) {
-            try {
-                PanelBieuDoNgay(Integer.parseInt(cboThang.getSelectedItem().toString()), Integer.parseInt(cboBieuDo.getSelectedItem().toString()));
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboThang.getSelectedIndex() == 1) {
-            try {
-                PanelBieuDoNgay(Integer.parseInt(cboThang.getSelectedItem().toString()), Integer.parseInt(cboBieuDo.getSelectedItem().toString()));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboThang.getSelectedIndex() == 2) {
-            try {
-                PanelBieuDoNgay(Integer.parseInt(cboThang.getSelectedItem().toString()), Integer.parseInt(cboBieuDo.getSelectedItem().toString()));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboThang.getSelectedIndex() == 3) {
-            try {
-                PanelBieuDoNgay(Integer.parseInt(cboThang.getSelectedItem().toString()), Integer.parseInt(cboBieuDo.getSelectedItem().toString()));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboThang.getSelectedIndex() == 4) {
-            try {
-                PanelBieuDoNgay(Integer.parseInt(cboThang.getSelectedItem().toString()), Integer.parseInt(cboBieuDo.getSelectedItem().toString()));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboThang.getSelectedIndex() == 5) {
-            try {
-                PanelBieuDoNgay(Integer.parseInt(cboThang.getSelectedItem().toString()), Integer.parseInt(cboBieuDo.getSelectedItem().toString()));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboThang.getSelectedIndex() == 6) {
-            try {
-                PanelBieuDoNgay(Integer.parseInt(cboThang.getSelectedItem().toString()), Integer.parseInt(cboBieuDo.getSelectedItem().toString()));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboThang.getSelectedIndex() == 7) {
-            try {
-                PanelBieuDoNgay(Integer.parseInt(cboThang.getSelectedItem().toString()), Integer.parseInt(cboBieuDo.getSelectedItem().toString()));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboThang.getSelectedIndex() == 8) {
-            try {
-                PanelBieuDoNgay(Integer.parseInt(cboThang.getSelectedItem().toString()), Integer.parseInt(cboBieuDo.getSelectedItem().toString()));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboThang.getSelectedIndex() == 9) {
-            try {
-                PanelBieuDoNgay(Integer.parseInt(cboThang.getSelectedItem().toString()), Integer.parseInt(cboBieuDo.getSelectedItem().toString()));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboThang.getSelectedIndex() == 10) {
-            try {
-                PanelBieuDoNgay(Integer.parseInt(cboThang.getSelectedItem().toString()), Integer.parseInt(cboBieuDo.getSelectedItem().toString()));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (cboThang.getSelectedIndex() == 11) {
-            try {
-                PanelBieuDoNgay(Integer.parseInt(cboThang.getSelectedItem().toString()), Integer.parseInt(cboBieuDo.getSelectedItem().toString()));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }//GEN-LAST:event_cboThangActionPerformed
-
-    private void cboNamDoanhThuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboNamDoanhThuActionPerformed
-        DecimalFormat df = new DecimalFormat("#,###");
-        if (cboNamDoanhThu.getSelectedIndex() == 0) {
-            try {
-                BigDecimal bigDecimal = thongKeRespo.getDoanhThu();
-                if (bigDecimal == null) {
-                    lblDoanhThu.setText("0" + " " + " Vnđ");
-                } else {
-                    lblDoanhThu.setText(df.format(bigDecimal) + " " + " Vnđ");
-                }
-                if (thongKeRespo.getHoaDon() == null) {
-                    lblDoanhThu.setText("0");
-                } else {
-                    lblHoaDon.setText(thongKeRespo.getHoaDon().toString());
-                }
-
-                if (thongKeRespo.getHoaDonHuy() == null) {
-                    lblDoanhThu.setText("0");
-                } else {
-                    lblHangTra.setText(thongKeRespo.getHoaDonHuy().toString());
-                }
-
-                if (thongKeRespo.getSoKhachHang() == null) {
-                    lblDoanhThu.setText("0");
-                } else {
-                    lblKhachHang.setText(thongKeRespo.getSoKhachHang().toString());
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-            cboThangDT.setEnabled(true);
-            try {
-                if (thongKeRespo.getDoanhThuNamChiTiet(Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())) == null) {
-                    lblDoanhThu.setText("0" + " " + " Vnđ");
-                } else {
-                    lblDoanhThu.setText(df.format(thongKeRespo.getDoanhThuNamChiTiet(Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()))) + " " + " Vnđ");
-                }
-                if (thongKeRespo.getHoaDonTungNam(Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())) == null) {
-                    lblDoanhThu.setText("0");
-                } else {
-                    lblHoaDon.setText(thongKeRespo.getHoaDonTungNam(Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())).toString());
-                }
-                if (thongKeRespo.getHoaDonHuyTungNam(Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())) == null) {
-                    lblDoanhThu.setText("0");
-                } else {
-                    lblHangTra.setText(thongKeRespo.getHoaDonHuyTungNam(Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())).toString());
-                }
-                if (thongKeRespo.getSoKhachHangTungNam(Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())) == null) {
-                    lblDoanhThu.setText("0");
-                } else {
-                    lblKhachHang.setText(thongKeRespo.getSoKhachHangTungNam(Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())).toString());
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }//GEN-LAST:event_cboNamDoanhThuActionPerformed
-
-    private void btnTimTheoNgayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimTheoNgayActionPerformed
-        if (dPNgay1.getDate() == null || dPNgay2.getDate() == null) {
-            JOptionPane.showMessageDialog(this, " Vui lòng không để trống thời gian");
-            return;
-        }
-        DecimalFormat df = new DecimalFormat("#,###");
-        Date time3 = java.sql.Date.valueOf(dPNgay1.getDate());
-        Date time4 = java.sql.Date.valueOf(dPNgay2.getDate());
-        SimpleDateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy");
-        String d1 = formatter1.format(time4);
-        String d0 = formatter1.format(time3);
-        try {
-            Date date11 = formatter1.parse(d1);
-            Date date12 = formatter1.parse(d0);
-            System.out.println(time3);
-            System.out.println(time4);
-            System.out.println(date11);
-            System.out.println(date12);
-            BigDecimal bigDecimal = thongKeRespo.getDoanhThuTheoKhoangThoiGian(time3, time4);
-            if (bigDecimal == null) {
-                lblDoanhThu.setText("0");
-            } else {
-                lblDoanhThu.setText(df.format(bigDecimal)+ " " + " Vnđ");
-            }
-            if (thongKeRespo.getHoaDonTungKhoang(time3, time4) == null) {
-                lblDoanhThu.setText("0");
-            } else {
-                lblHoaDon.setText(thongKeRespo.getHoaDonTungKhoang(time3, time4).toString());
-            }
-            if (thongKeRespo.getHoaDonHuyKhoang(time3, time4) == null) {
-                lblDoanhThu.setText("0");
-            } else {
-                lblHangTra.setText(thongKeRespo.getHoaDonHuyKhoang(time3, time4).toString());
-            }
-            if (thongKeRespo.getKhachHangTungKhoangTG(time3, time4) == null) {
-                lblDoanhThu.setText("0");
-            } else {
-                lblKhachHang.setText(thongKeRespo.getKhachHangTungKhoangTG(time3, time4).toString());
-            }
-        } catch (ParseException ex) {
-            ex.printStackTrace();
-        }
-
-
-    }//GEN-LAST:event_btnTimTheoNgayActionPerformed
 
     private void cboSanPhamItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboSanPhamItemStateChanged
         //combobox selection
@@ -1167,14 +756,6 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTimKiemTraActionPerformed
 
-    private void cboThangDTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboThangDTActionPerformed
-        try {
-            GetDoanhThuThang();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }//GEN-LAST:event_cboThangDTActionPerformed
-
     private void btnGuiBaoCaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuiBaoCaoActionPerformed
 
         SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
@@ -1185,57 +766,25 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
             ee = fm.parse(rr);
             //báo cáo ngày hiện tại
 
-            BigDecimal doanhthungay = thongKeRespo.BaoCaoDT(ee);
-            Long hoaDonngay = thongKeRespo.BaoCaoHD(ee);
-            Long HDhuyngay = thongKeRespo.BaoCaoHDhuy(ee);
-            int KHngay = thongKeRespo.BaoCaoKH(ee);
+            BigDecimal doanhthungay = nvtlService.BaoCaoDT(ee,nv.getId());
+            Long hoaDonngay = nvtlService.BaoCaoHD(ee,nv.getId());
+            Long HDhuyngay = nvtlService.BaoCaoHDhuy(ee,nv.getId());
+            int KHngay = nvtlService.BaoCaoKH(ee,nv.getId());
 
             String vv = JOptionPane.showInputDialog(this, "Nhập Email: ");
-            String nv = nvImpl.getNhanVienByEmail(vv);
+            String nvE = nvImpl.getNhanVienByEmail(vv);
             if (vv == null) {
                 return;
             }
-            if (dPNgay1.getDate() == null || dPNgay2.getDate() == null) {
-                if (nv == "") {
-                    JOptionPane.showMessageDialog(this, "Khong tim thay Email");
-                } else {
-                    //Send to Email
-                    if (firstSend == 0L) {
 
-                        EmailSender.emailSender(vv, "Báo Cáo Mới !!!", " Lượng Doanh Thu Hôm Nay: " + doanhthungay + " VNĐ" + "<<><>>Lượng Hoá Đơn Ngày: " + hoaDonngay
-                                + "<<><>>Lượng Hoa Đơn Huy Ngày: " + HDhuyngay + "<<><>>Lượng Khach Hang Hôm Nay: " + KHngay);
-                        JOptionPane.showMessageDialog(this, "Báo Cáo đã được gửi đến Email");
-                        System.out.println(HDhuyngay);
-                        firstSend = Calendar.getInstance().getTimeInMillis();
-                    } else {
-                        if (firstSend + 60000L > Calendar.getInstance().getTimeInMillis()) {
-                            JOptionPane.showMessageDialog(this, "Khoảng thời gian giữa 2 lần gửi mail là 60s");
-                        } else {
-
-                            EmailSender.emailSender(vv, "Báo Cáo Mới !!!", "Doanh Thu Hôm Nay: " + doanhthungay + "<<><>>Hoá Đơn Ngày: " + hoaDonngay
-                                    + "<<><>>Hoa Đơn Huy Ngày: " + HDhuyngay + "<<><>>Lượng Khach Hang Hôm Nay: " + KHngay);
-                            firstSend = Calendar.getInstance().getTimeInMillis();
-                            JOptionPane.showMessageDialog(this, "Báo Cáo đã được gửi đến Email");
-                        }
-                    }
-                }
-            } else if (nv == "") {
-                JOptionPane.showMessageDialog(this, "Không tim thay Email");
+            if (nvE == "") {
+                JOptionPane.showMessageDialog(this, "Khong tim thay Email");
             } else {
-                Date time3 = java.sql.Date.valueOf(dPNgay1.getDate());
-                Date time4 = java.sql.Date.valueOf(dPNgay2.getDate());
-                //báo cáo khoảng thời gian
-                BigDecimal doanhthukhoangngay = thongKeRespo.getDoanhThuTheoKhoangThoiGian(time3, time4);
-                Long hoadonkhoangngay = thongKeRespo.getHoaDonTungKhoang(time3, time4);
-                Long hoadonhuykhoangngay = thongKeRespo.getHoaDonHuyKhoang(time4, time4);
-                Long khachhangkhoangngay = thongKeRespo.getKhachHangTungKhoangTG(time3, time4);
                 //Send to Email
                 if (firstSend == 0L) {
 
-                    EmailSender.emailSender(vv, "Báo Cáo Mới !!!", " Lượng Doanh Thu từ " + time3 + " đến " + time4 + ": " + doanhthukhoangngay + " VNĐ"
-                            + "<<><>>Lượng Hoá Đơn từ " + time3 + " đến " + time4 + ": " + hoadonkhoangngay
-                            + "<<><>>Lượng Hoa Đơn Huỷ từ " + time3 + " đến " + time4 + ": " + hoadonhuykhoangngay
-                            + "<<><>>Lượng Khách Hàng từ " + time3 + " đến " + time4 + ": " + khachhangkhoangngay);
+                    EmailSender.emailSender(vv, "Báo Cáo Mới Của Nhân Viên: "+(nv.getTen())+" "+ee, " Lượng Doanh Thu Hôm Nay: " + doanhthungay + " VNĐ" + "<<><>>Lượng Hoá Đơn Ngày: " + hoaDonngay
+                            + "<<><>>Lượng Hoa Đơn Huy Ngày: " + HDhuyngay + "<<><>>Lượng Khach Hang Hôm Nay: " + KHngay);
                     JOptionPane.showMessageDialog(this, "Báo Cáo đã được gửi đến Email");
                     System.out.println(HDhuyngay);
                     firstSend = Calendar.getInstance().getTimeInMillis();
@@ -1244,26 +793,24 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
                         JOptionPane.showMessageDialog(this, "Khoảng thời gian giữa 2 lần gửi mail là 60s");
                     } else {
 
-                        EmailSender.emailSender(vv, "Báo Cáo Mới !!!", " Lượng Doanh Thu từ " + time3 + " đến " + time4 + ": " + doanhthukhoangngay + " VNĐ"
-                                + "<<><>>Lượng Hoá Đơn từ " + time3 + " đến " + time4 + ": " + hoadonkhoangngay
-                                + "<<><>>Lượng Hoa Đơn Huỷ từ " + time3 + " đến " + time4 + ": " + hoadonhuykhoangngay
-                                + "<<><>>Lượng Khách Hàng từ " + time3 + " đến " + time4 + ": " + khachhangkhoangngay);
+                        EmailSender.emailSender(vv, "Báo Cáo Mới Của Nhân Viên: "+(nv.getTen())+" "+ee, "Doanh Thu Hôm Nay: " + doanhthungay + "<<><>>Hoá Đơn Ngày: " + hoaDonngay
+                                + "<<><>>Hoa Đơn Huy Ngày: " + HDhuyngay + "<<><>>Lượng Khach Hang Hôm Nay: " + KHngay);
                         firstSend = Calendar.getInstance().getTimeInMillis();
                         JOptionPane.showMessageDialog(this, "Báo Cáo đã được gửi đến Email");
                     }
                 }
             }
-
         } catch (Exception e) {
-            e.printStackTrace();
+
         }
+
 
     }//GEN-LAST:event_btnGuiBaoCaoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            ExportThongKeSanPhamBan export = new ExportThongKeSanPhamBan();
-            listHangHoa = hangHoaService.getAllResponse();
+            ExportNhanVienThongKeBan export = new ExportNhanVienThongKeBan();
+            listHangHoa = nvtlService.getListHDCT(nv.getId());
             boolean check = export.ExportFileExcel(listHangHoa);
 
             if (check) {
@@ -1272,28 +819,35 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Export File Excel thất bại");
             }
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void dPNgay1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dPNgay1MouseClicked
+    private void btnExportTraHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportTraHangActionPerformed
+        try {
+            ExportNhanVienThongKeTra export = new ExportNhanVienThongKeTra();
+            listHangHoaTra = nvtlService.getListTraHang(nv.getId());
+            boolean check = export.ExportFileExcel(listHangHoaTra);
 
-    }//GEN-LAST:event_dPNgay1MouseClicked
+            if (check) {
+                JOptionPane.showMessageDialog(this, "Export File Excel thành công");
+            } else {
+                JOptionPane.showMessageDialog(this, "Export File Excel thất bại");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnExportTraHangActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JPenalBieuDo;
+    private javax.swing.JButton btnExportTraHang;
     private javax.swing.JButton btnGuiBaoCao;
-    private javax.swing.JButton btnTimTheoNgay;
-    private javax.swing.JComboBox<String> cboBieuDo;
     private javax.swing.JComboBox<String> cboHot;
     private javax.swing.JComboBox<String> cboMaxMin;
-    private javax.swing.JComboBox<String> cboNamDoanhThu;
     private javax.swing.JComboBox<String> cboSanPham;
     private javax.swing.JComboBox<String> cboSanPhamTra;
-    private javax.swing.JComboBox<String> cboThang;
-    private javax.swing.JComboBox<String> cboThangDT;
-    private com.github.lgooddatepicker.components.DatePicker dPNgay1;
-    private com.github.lgooddatepicker.components.DatePicker dPNgay2;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1305,12 +859,7 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel15;
-    private javax.swing.JPanel jPanel16;
-    private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
@@ -1325,7 +874,6 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblDoanhThu;
     private javax.swing.JLabel lblHangTra;
     private javax.swing.JLabel lblHoaDon;
@@ -1339,7 +887,7 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
     private void loadList() {
         modelHangHoa.setRowCount(0);
         int index = 1;
-        listHangHoa = hangHoaService.getAllResponse();
+        listHangHoa = nvtlService.getListHDCT(nv.getId());
         for (ThongKeHangHoaResponse xx : listHangHoa) {
             modelHangHoa.addRow(xx.toDataRow(index));
             index++;
@@ -1349,94 +897,61 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
     private void loadListTraHang() {
         modelHangHoa1.setRowCount(0);
         int index = 1;
-        listHangHoaTra = thongKeRespo.getListTraHang();
-        for (HoaDonTraHangChiTiet xx : listHangHoaTra) {
-            modelHangHoa1.addRow(new Object[]{index, xx.getMaChiTietSanPham(), xx.getTenSP(), xx.getTenHang(),
-                xx.getMauSac(), xx.getKichThuoc(), xx.getSoLuongTra(), xx.getGiaBan()});
+        listHangHoaTra = nvtlService.getListTraHang(nv.getId());
+        for (ThongKeTraHangResponse xx : listHangHoaTra) {
+            modelHangHoa1.addRow(new Object[]{index, xx.getMa(), xx.getTenSP(), xx.getHang(),
+                xx.getMau(), xx.getKichThuoc(), xx.getSoLuong(), xx.getGiaBan()});
             index++;
         }
     }
 
     private void LableLoadHoaDon() {
+        try {
+            SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
+            Date dd = new Date();
+            String rr = fm.format(dd);
+            Date ee;
+            ee = fm.parse(rr);
+            DecimalFormat df = new DecimalFormat("#,###");
 
-        if (thongKeRespo.getDoanhThu() == null) {
-            lblDoanhThu.setText("0");
-        } else {
-            lblDoanhThu.setText(thongKeRespo.getDoanhThu().toPlainString() + " " + " Vnđ");
-        }
-        if (thongKeRespo.getHoaDon() == null) {
-            lblDoanhThu.setText("0");
-        } else {
-            lblHoaDon.setText(thongKeRespo.getHoaDon().toString());
-        }
-        if (thongKeRespo.getHoaDonHuy() == null) {
-            lblDoanhThu.setText("0");
-        } else {
-            lblHangTra.setText(thongKeRespo.getHoaDonHuy().toString());
-        }
-        if (thongKeRespo.getSoKhachHang() == null) {
-            lblDoanhThu.setText("0");
-        } else {
-            lblKhachHang.setText(thongKeRespo.getSoKhachHang().toString());
+            if (nvtlService.BaoCaoDT(ee, nv.getId()) == null) {
+                lblDoanhThu.setText("0");
+            } else {
+                lblDoanhThu.setText(df.format(nvtlService.BaoCaoDT(ee, nv.getId())) + " " + " Vnđ");
+            }
+            if (nvtlService.BaoCaoHD(ee, nv.getId()) == null) {
+                lblDoanhThu.setText("0");
+            } else {
+                lblHoaDon.setText(nvtlService.BaoCaoHD(ee, nv.getId()).toString());
+            }
+            if (nvtlService.BaoCaoHDhuy(ee, nv.getId())== null) {
+                lblDoanhThu.setText("0");
+            } else {
+                lblHangTra.setText(nvtlService.BaoCaoHDhuy(ee, nv.getId()).toString());
+            }
+            if (nvtlService.BaoCaoKH(ee, nv.getId())== 0) {
+                lblDoanhThu.setText("0");
+            } else {
+                lblKhachHang.setText(nvtlService.BaoCaoKH(ee, nv.getId())+"");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }
 
-    private void PanelBieuDoHangNam() throws ParseException, Exception {
-        ChartPanel chartPanel = new ChartPanel(ut.createChartTheoNam());
-        JPenalBieuDo.setSize(1067, 382);
+ 
+
+    
+
+    private void PanelBieuDoNgay(Date date,String id) throws ParseException, Exception {
+        ChartPanel chartPanel = new ChartPanel(nvtlService.createChartTheoThang(date,nv.getId()));
+        JPenalBieuDo.setSize(1269, 382);
         JPenalBieuDo.removeAll();
         JPenalBieuDo.setLayout(new CardLayout());
         JPenalBieuDo.add(chartPanel);
         JPenalBieuDo.validate();
         JPenalBieuDo.repaint();
-    }
-
-    private void PanelBieuDoNam(int nam) throws ParseException, Exception {
-        ChartPanel chartPanel = new ChartPanel(ut.createChartTheoThang(nam));
-        JPenalBieuDo.setSize(1067, 382);
-        JPenalBieuDo.removeAll();
-        JPenalBieuDo.setLayout(new CardLayout());
-        JPenalBieuDo.add(chartPanel);
-        JPenalBieuDo.validate();
-        JPenalBieuDo.repaint();
-    }
-
-    private void PanelBieuDoNgay(int thang, int nam) throws ParseException, Exception {
-        ChartPanel chartPanel = new ChartPanel(ut.createChartTheoThang(thang, nam));
-        JPenalBieuDo.setSize(1067, 382);
-        JPenalBieuDo.removeAll();
-        JPenalBieuDo.setLayout(new CardLayout());
-        JPenalBieuDo.add(chartPanel);
-        JPenalBieuDo.validate();
-        JPenalBieuDo.repaint();
-    }
-
-    public void GetYearNow() {
-        Date date = new Date();
-        cboBieuDo.removeAllItems();
-        cboBieuDo.addItem("Tất cả");
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
-        simpleDateFormat.applyPattern("yyyy");
-        String format = simpleDateFormat.format(date);
-        int namhientai = Integer.parseInt(format);
-        for (int i = namhientai; i > namhientai - 5; i--) {
-            cboBieuDo.addItem(i + "");
-        }
-    }
-
-    public void GetYearNow2() {
-        Date date = new Date();
-        cboNamDoanhThu.removeAllItems();
-        cboNamDoanhThu.addItem("Tất cả");
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
-        simpleDateFormat.applyPattern("yyyy");
-        String format = simpleDateFormat.format(date);
-        int namhientai = Integer.parseInt(format);
-        for (int i = namhientai; i > namhientai - 5; i--) {
-
-            cboNamDoanhThu.addItem(i + "");
-        }
     }
 
     private void Filter(String query) {
@@ -1464,7 +979,7 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
     private void LoadTimKiem() {
         modelHangHoa.setRowCount(0);
         int index = 1;
-        List<ThongKeHangHoaResponse> thongkeRespon = thongKeRespo.TimKiemHangHoa(txtTimKiem.getText());
+        List<ThongKeHangHoaResponse> thongkeRespon = nvtlService.TimKiemHangHoa(txtTimKiem.getText(),nv.getId());
         for (ThongKeHangHoaResponse xx : thongkeRespon) {
             modelHangHoa.addRow(xx.toDataRow(index));
             index++;
@@ -1475,7 +990,7 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
     private void LoadTimKiemTra() {
         modelHangHoa1.setRowCount(0);
         int index = 1;
-        List<HoaDonTraHangChiTiet> thongkeRespon = thongKeRespo.TimKiemHangHoaTra(txtTimKiemTra.getText());
+        List<HoaDonTraHangChiTiet> thongkeRespon = nvtlService.TimKiemHangHoaTra(txtTimKiemTra.getText(),nv.getId());
         for (HoaDonTraHangChiTiet xx : thongkeRespon) {
             modelHangHoa1.addRow(new Object[]{index, xx.getMaChiTietSanPham(), xx.getTenSP(), xx.getTenHang(),
                 xx.getMauSac(), xx.getKichThuoc(), xx.getSoLuongTra(), xx.getGiaBan()});
@@ -1487,7 +1002,7 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
     private void LoadMax() {
         modelHangHoa.setRowCount(0);
         int index = 1;
-        List<ThongKeHangHoaResponse> thongkeRespon = thongKeRespo.getListMaxValue();
+        List<ThongKeHangHoaResponse> thongkeRespon = nvtlService.getListMaxValue(nv.getId());
         for (ThongKeHangHoaResponse xx : thongkeRespon) {
             modelHangHoa.addRow(xx.toDataRow(index));
             index++;
@@ -1498,7 +1013,7 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
     private void LoadMaxSLtra() {
         modelHangHoa1.setRowCount(0);
         int index = 1;
-        List<HoaDonTraHangChiTiet> thongkeRespon = thongKeRespo.getListMaxValueTra();
+        List<HoaDonTraHangChiTiet> thongkeRespon = nvtlService.getListMaxValueTra(nv.getId());
         for (HoaDonTraHangChiTiet xx : thongkeRespon) {
             modelHangHoa1.addRow(new Object[]{index, xx.getMaChiTietSanPham(), xx.getTenSP(), xx.getTenHang(),
                 xx.getMauSac(), xx.getKichThuoc(), xx.getSoLuongTra(), xx.getGiaBan()});
@@ -1510,7 +1025,7 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
     private void LoadMinDS() {
         modelHangHoa.setRowCount(0);
         int index = 1;
-        List<ThongKeHangHoaResponse> thongkeRespon = thongKeRespo.getListMinValue();
+        List<ThongKeHangHoaResponse> thongkeRespon = nvtlService.getListMinValue(nv.getId());
         for (ThongKeHangHoaResponse xx : thongkeRespon) {
             modelHangHoa.addRow(xx.toDataRow(index));
             index++;
@@ -1521,7 +1036,7 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
     private void LoadMinDStra() {
         modelHangHoa1.setRowCount(0);
         int index = 1;
-        List<HoaDonTraHangChiTiet> thongkeRespon = thongKeRespo.getListMinValueTra();
+        List<HoaDonTraHangChiTiet> thongkeRespon = nvtlService.getListMinValueTra(nv.getId());
         for (HoaDonTraHangChiTiet xx : thongkeRespon) {
             modelHangHoa1.addRow(new Object[]{index, xx.getMaChiTietSanPham(), xx.getTenSP(), xx.getTenHang(),
                 xx.getMauSac(), xx.getKichThuoc(), xx.getSoLuongTra(), xx.getGiaBan()});
@@ -1529,38 +1044,18 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
 
         }
     }
-
-    private void GetDoanhThuThang() {
+    private void GetBieuDo(){
         try {
-            DecimalFormat df = new DecimalFormat("#,###");
-            thongKeRespo.getDoanhThuThangDoanhThuChiTiet(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()));
-            if (thongKeRespo.getDoanhThuThangDoanhThuChiTiet(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())) == null) {
-                lblDoanhThu.setText("0" + " " + " Vnđ");
-            } else {
-                lblDoanhThu.setText(df.format(thongKeRespo.getDoanhThuThangDoanhThuChiTiet(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString()))) + " " + " Vnđ");
-            }
-            if (thongKeRespo.getHoaDonTungThangTrongNam(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())) == null) {
-                lblDoanhThu.setText("0");
-            } else {
-                lblHoaDon.setText(thongKeRespo.getHoaDonTungThangTrongNam(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())).toString());
-            }
-            if (thongKeRespo.getHoaDonHuyTungThang(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())) == null) {
-                lblDoanhThu.setText("0");
-            } else {
-                lblHangTra.setText(thongKeRespo.getHoaDonHuyTungThang(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())).toString());
-            }
-            if (thongKeRespo.getKhachHangTungThang(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())) == null) {
-                lblDoanhThu.setText("0");
-            } else {
-                lblKhachHang.setText(thongKeRespo.getKhachHangTungThang(Integer.parseInt(cboThangDT.getSelectedItem().toString()), Integer.parseInt(cboNamDoanhThu.getSelectedItem().toString())).toString());
-            }
+            SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
+            Date dd = new Date();
+            String rr = fm.format(dd);
+            Date ee;
+            ee = fm.parse(rr);
+            PanelBieuDoNgay(ee,nv.getId());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void GetThongKeBaoCao() {
-
-    }
 
 }

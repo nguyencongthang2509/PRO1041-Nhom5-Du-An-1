@@ -47,30 +47,34 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
         }
         return list;
     }
-    
-    public static void main(String[] args) {
-        List<ChiTietSP> list = new BanHangRepository().getAll();
-        System.out.println(list);
-    }
-    
+
+//    public static void main(String[] args) {
+//        List<ChiTietSP> list = new BanHangRepository().getAll();
+//        System.out.println(list);
+//    }
+
 //    public static void main(String[] args) {
 //        List<BhChiTietSPResponse> list = new BanHangRepository().getAllResponseCTSP();
 //        System.out.println(list);
 //    }
-
     public ChiTietSPKhuyenMai getCTSPKhuyenMai(String idChiTietSP) {
         ChiTietSPKhuyenMai chiTietSPKhuyenMai = new ChiTietSPKhuyenMai();
         try {
             session = HibernateUtil.getSession();
-            String hql = "SELECT a FROM ChiTietSPKhuyenMai a WHERE a.chiTietSPId.id = :idChiTietSP";
+            String hql = "SELECT a FROM ChiTietSPKhuyenMai a WHERE a.chiTietSPId.id = :idChiTietSP AND a.trangThai = 0";
             Query query = session.createQuery(hql);
             query.setParameter("idChiTietSP", idChiTietSP);
             chiTietSPKhuyenMai = (ChiTietSPKhuyenMai) query.getSingleResult();
         } catch (Exception e) {
-            
+
             return null;
         }
         return chiTietSPKhuyenMai;
+    }
+    
+    public static void main(String[] args) {
+        ChiTietSPKhuyenMai chiTietSPKhuyenMai = new BanHangRepository().getCTSPKhuyenMai("0fd07b81-128e-4081-8b20-2f73b1c1a34e");
+        System.out.println(chiTietSPKhuyenMai.getId());
     }
 
 //    public static void main(String[] args) {
@@ -83,11 +87,11 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
             if (hinhThucGiaoHang >= 0 && trangThai >= 0) {
                 session = HibernateUtil.getSession();
                 String hql = "SELECT " + "new core.quanly.viewmodel.BhHoaDonResponse"
-                        + "(a.id, a.ma, a.ngayTao, a.hinhThucGiaoHang, a.hinhThucThanhToan ,b.ten, c.ma, c.hoTen, c.capBac,a.trangThaiThanhToan, a.ngayMongMuon, a.trangThai,"
+                        + "(a.id, a.ma, a.ngayTao, a.hinhThucGiaoHang, a.hinhThucThanhToan ,b.ten, c.ma, c.hoTen, c.sdt, c.diaChi ,c.capBac, a.phamTramGiamGia,a.trangThaiThanhToan, a.ngayMongMuon, a.trangThai,"
                         + "a.tenNguoiNhan, a.sdtNguoiNhan, a.diaChi, a.tenNguoiShip, a.sdtNguoiShip,"
                         + "a.tienShip, a.tienKhachTra, a.tienKhachChuyenKhoan, a.tienThua)"
                         + " FROM HoaDon a LEFT JOIN a.nhanVien b LEFT JOIN a.khachHang c "
-                        + "WHERE a.trangThai <> 1 AND a.trangThai <> 7 AND b.id = :idNhanVien AND a.hinhThucGiaoHang LIKE CONCAT('%', CONVERT(VARCHAR, :hinhThucGiaoHang),'%') AND a.trangThai LIKE CONCAT('%',CONVERT(VARCHAR, :trangThai),'%')"
+                        + "WHERE a.trangThai <> 1 AND a.trangThai <> 7 AND b.id LIKE CONCAT('%', CONVERT(VARCHAR,:idNhanVien),'%') AND a.hinhThucGiaoHang LIKE CONCAT('%', CONVERT(VARCHAR, :hinhThucGiaoHang),'%') AND a.trangThai LIKE CONCAT('%',CONVERT(VARCHAR, :trangThai),'%')"
                         + " ORDER BY a.lastModifiedDate DESC";
                 Query query = session.createQuery(hql);
                 query.setParameter("idNhanVien", idNhanVien);
@@ -98,11 +102,11 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
             if (hinhThucGiaoHang == -1) {
                 session = HibernateUtil.getSession();
                 String hql = "SELECT " + "new core.quanly.viewmodel.BhHoaDonResponse"
-                        + "(a.id, a.ma, a.ngayTao, a.hinhThucGiaoHang, a.hinhThucThanhToan ,b.ten, c.ma, c.hoTen, c.capBac,a.trangThaiThanhToan , a.ngayMongMuon,a.trangThai,"
+                        + "(a.id, a.ma, a.ngayTao, a.hinhThucGiaoHang, a.hinhThucThanhToan ,b.ten, c.ma, c.hoTen, c.sdt, c.diaChi, c.capBac, a.phamTramGiamGia,a.trangThaiThanhToan , a.ngayMongMuon,a.trangThai,"
                         + "a.tenNguoiNhan, a.sdtNguoiNhan, a.diaChi, a.tenNguoiShip, a.sdtNguoiShip,"
                         + "a.tienShip, a.tienKhachTra, a.tienKhachChuyenKhoan, a.tienThua)"
                         + " FROM HoaDon a LEFT JOIN a.nhanVien b LEFT JOIN a.khachHang c "
-                        + "WHERE a.trangThai <> 1 AND a.trangThai <> 7 AND b.id = :idNhanVien AND a.hinhThucGiaoHang LIKE CONCAT('%','','%') AND a.trangThai LIKE CONCAT('%',CONVERT(VARCHAR, :trangThai),'%')"
+                        + "WHERE a.trangThai <> 1 AND a.trangThai <> 7 AND b.id LIKE CONCAT('%', CONVERT(VARCHAR,:idNhanVien),'%') AND a.hinhThucGiaoHang LIKE CONCAT('%','','%') AND a.trangThai LIKE CONCAT('%',CONVERT(VARCHAR, :trangThai),'%')"
                         + " ORDER BY a.lastModifiedDate DESC";
                 Query query = session.createQuery(hql);
                 query.setParameter("idNhanVien", idNhanVien);
@@ -112,11 +116,11 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
             if (trangThai == -1) {
                 session = HibernateUtil.getSession();
                 String hql = "SELECT " + "new core.quanly.viewmodel.BhHoaDonResponse"
-                        + "(a.id, a.ma, a.ngayTao, a.hinhThucGiaoHang, a.hinhThucThanhToan ,b.ten, c.ma, c.hoTen, c.capBac, a.trangThaiThanhToan ,a.ngayMongMuon,a.trangThai,"
+                        + "(a.id, a.ma, a.ngayTao, a.hinhThucGiaoHang, a.hinhThucThanhToan ,b.ten, c.ma, c.hoTen, c.sdt, c.diaChi, c.capBac, a.phamTramGiamGia, a.trangThaiThanhToan ,a.ngayMongMuon,a.trangThai,"
                         + "a.tenNguoiNhan, a.sdtNguoiNhan, a.diaChi, a.tenNguoiShip, a.sdtNguoiShip,"
                         + "a.tienShip, a.tienKhachTra, a.tienKhachChuyenKhoan, a.tienThua)"
                         + " FROM HoaDon a LEFT JOIN a.nhanVien b LEFT JOIN a.khachHang c "
-                        + "WHERE a.trangThai <> 1 AND a.trangThai <> 7  AND b.id = :idNhanVien AND a.hinhThucGiaoHang LIKE CONCAT('%', CONVERT(VARCHAR, :hinhThucGiaoHang),'%') AND a.trangThai LIKE CONCAT('%','','%')"
+                        + "WHERE a.trangThai <> 1 AND a.trangThai <> 7  AND b.id LIKE CONCAT('%', CONVERT(VARCHAR,:idNhanVien),'%') AND a.hinhThucGiaoHang LIKE CONCAT('%', CONVERT(VARCHAR, :hinhThucGiaoHang),'%') AND a.trangThai LIKE CONCAT('%','','%')"
                         + " ORDER BY a.lastModifiedDate DESC";
                 Query query = session.createQuery(hql);
                 query.setParameter("idNhanVien", idNhanVien);
@@ -126,11 +130,11 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
             if (hinhThucGiaoHang == -1 && trangThai == -1) {
                 session = HibernateUtil.getSession();
                 String hql = "SELECT " + "new core.quanly.viewmodel.BhHoaDonResponse"
-                        + "(a.id, a.ma, a.ngayTao, a.hinhThucGiaoHang, a.hinhThucThanhToan ,b.ten, c.ma, c.hoTen,c.capBac, a.trangThaiThanhToan ,a.ngayMongMuon, a.trangThai,"
+                        + "(a.id, a.ma, a.ngayTao, a.hinhThucGiaoHang, a.hinhThucThanhToan ,b.ten, c.ma, c.hoTen, c.sdt, c.diaChi,c.capBac, a.phamTramGiamGia, a.trangThaiThanhToan ,a.ngayMongMuon, a.trangThai,"
                         + "a.tenNguoiNhan, a.sdtNguoiNhan, a.diaChi, a.tenNguoiShip, a.sdtNguoiShip,"
                         + "a.tienShip, a.tienKhachTra, a.tienKhachChuyenKhoan, a.tienThua)"
                         + " FROM HoaDon a LEFT JOIN a.nhanVien b LEFT JOIN a.khachHang c "
-                        + "WHERE a.trangThai <> 1 AND a.trangThai <> 7 AND b.id = :idNhanVien"
+                        + "WHERE a.trangThai <> 1 AND a.trangThai <> 7 AND b.id LIKE CONCAT('%', CONVERT(VARCHAR,:idNhanVien),'%')"
                         + " ORDER BY a.lastModifiedDate DESC";
                 Query query = session.createQuery(hql);
                 query.setParameter("idNhanVien", idNhanVien);
@@ -347,6 +351,22 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
         return khachHang;
     }
 
+    public KhachHang findByIdKhachHang(String id) {
+        KhachHang khachHang = null;
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "SELECT a FROM KhachHang a WHERE a.id = :id";
+            Query query = session.createQuery(hql);
+            query.setParameter("id", id);
+            if (query.getSingleResult() != null) {
+                khachHang = (KhachHang) query.getSingleResult();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return khachHang;
+    }
+
     public List<BhKhachHangResponse> getAllResponseKhachHang() {
         List<BhKhachHangResponse> list = new ArrayList<>();
         try {
@@ -388,6 +408,23 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
                     + "(a.id, a.ma, a.ten, a.sdt, a.email, a.diaChi)"
                     + " FROM NhanVien a where a.vaiTro = 1";
             Query query = session.createQuery(hql);
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return list;
+    }
+
+    public List<BhNhanVienResponse> findNhanVien(String input) {
+        List<BhNhanVienResponse> list = new ArrayList<>();
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "SELECT " + "new core.quanly.viewmodel.BhNhanVienResponse"
+                    + "(a.id, a.ma, a.ten, a.sdt, a.email, a.diaChi)"
+                    + " FROM NhanVien a where a.vaiTro = 1 AND (a.ma LIKE CONCAT('%',:input,'%') OR a.ten LIKE CONCAT('%',:input,'%') OR a.sdt LIKE CONCAT('%',:input,'%') OR a.email LIKE CONCAT('%',:input,'%'))";
+            Query query = session.createQuery(hql);
+            query.setParameter("input", input);
             list = query.getResultList();
         } catch (Exception e) {
             e.printStackTrace();

@@ -197,6 +197,7 @@ public class CTSanPhamRepository extends CrudRepository<String, ChiTietSP, CTSan
             query.executeUpdate();
             transs.commit();
             check = true;
+            session.close();
         } catch (Exception e) {
         }
         return check;

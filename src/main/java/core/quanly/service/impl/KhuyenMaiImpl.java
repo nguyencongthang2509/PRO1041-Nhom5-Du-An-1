@@ -179,7 +179,12 @@ public class KhuyenMaiImpl implements core.quanly.service.KhuyenMaiService {
     }
 
     @Override
-    public List<KMChiTietSPResponse> getAllChiTietSPCoTheApDung(Date ngayBayDau, Date ngayKetThuc) {
-        return khuyenMaiRepository.getAllChiTietSPCoTheApDung(ngayBayDau, ngayKetThuc);
+    public List<KMChiTietSPResponse> getAllChiTietSPCoTheApDung(Date ngayBatDau, Date ngayKetThuc, int loaikhuyenmai, Double giatri) {
+        return khuyenMaiRepository.getAllChiTietSPCoTheApDung(ngayBatDau, ngayKetThuc, loaikhuyenmai, giatri);
+    }
+
+    @Override
+    public ChiTietSPKhuyenMai getChiTietSPKM2(String idkhuyenmai) {
+     return khuyenMaiRepository.getChiTietSPKM2(idkhuyenmai);
     }
 }

@@ -67,5 +67,7 @@ public interface KhuyenMaiService {
     
     boolean HuyKhuyenMai(String idctspkm);
     
-    List<KMChiTietSPResponse> getAllChiTietSPCoTheApDung(Date ngayBayDau, Date ngayKetThuc);
+    List<KMChiTietSPResponse> getAllChiTietSPCoTheApDung(Date ngayBatDau, Date ngayKetThuc, int loaikhuyenmai, Double giatri);
+    
+    ChiTietSPKhuyenMai getChiTietSPKM2(String idkhuyenmai);
 }

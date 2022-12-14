@@ -13,6 +13,7 @@ import core.quanly.viewmodel.HdHoaDonChiTietResponse1;
 import core.quanly.viewmodel.HdHoaDonResponse1;
 import core.quanly.viewmodel.HdHoaDonResponse2;
 import domainmodels.HoaDon;
+import domainmodels.NhanVien;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -43,7 +44,7 @@ import view.JFrameQuanLy;
  *
  * @author longnh26222
  */
-public class ViewHoaDon extends javax.swing.JPanel {
+public class ViewHoaDonNhanVien extends javax.swing.JPanel {
 
     private HoaDonservice hoadonservice = new HoaDonserviceImpl();
     private DefaultTableModel modelHoaDon;
@@ -56,13 +57,15 @@ public class ViewHoaDon extends javax.swing.JPanel {
     private int tranghientai = 0;
     private int tongsoTrang = 1;
     private int count = 1;
+    private NhanVien nhanvien;
 
-    public ViewHoaDon() {
+    public ViewHoaDonNhanVien(NhanVien nv) {
         initComponents();
+        nhanvien = nv;
         this.modelHoaDon = (DefaultTableModel) tblHoadon.getModel();
         this.modelHoaDon2 = (DefaultTableModel) tblHD2.getModel();
-        listHoaDon = hoadonservice.getList(0);
-        listHoaDon2 = hoadonservice.getList2(1);
+        listHoaDon = hoadonservice.getListHDNV(0, nv.getId());
+        listHoaDon2 = hoadonservice.getListHDNV2(1, nv.getId());
         this.loadTableHoaDon(listHoaDon);
         this.loadTableHoaDon2(listHoaDon2);
     }
@@ -159,7 +162,7 @@ public class ViewHoaDon extends javax.swing.JPanel {
 
     public void loadTableHDbyText() {
         tranghientai = 0;
-        listHoaDon = hoadonservice.getListbyText(0, txtSearch.getText());
+        listHoaDon = hoadonservice.getListbyTextNV(0, txtSearch.getText(), nhanvien.getId());
         if (listHoaDon == null) {
             return;
         }
@@ -168,7 +171,7 @@ public class ViewHoaDon extends javax.swing.JPanel {
 
     public void loadTableHD2byText() {
         tranghientai = 0;
-        listHoaDon2 = hoadonservice.getListHD2byText(txtSearch2.getText(), 1);
+        listHoaDon2 = hoadonservice.getListHD2byTextNV(txtSearch2.getText(), 1, nhanvien.getId());
         if (listHoaDon2 == null) {
             return;
         }
@@ -213,24 +216,24 @@ public class ViewHoaDon extends javax.swing.JPanel {
                 return;
             }
             if (cboHinhthucthanhtoan.getSelectedIndex() == 0 && cboTrangthaithanhtoan.getSelectedIndex() == 0) {
-                listHoaDon = hoadonservice.getListbyTime(time3, time4, 0);
+                listHoaDon = hoadonservice.getListbyTimeNV(time3, time4, 0, nhanvien.getId());
             } else if (cboHinhthucthanhtoan.getSelectedIndex() == 0 && cboTrangthaithanhtoan.getSelectedIndex() > 0) {
                 int tt = cboTrangthaithanhtoan.getSelectedIndex();
                 if (cboTrangthaithanhtoan.getSelectedIndex() > 3) {
-                    listHoaDon = hoadonservice.getListbyTrangThaiandTime(tt + 2, time3, time4, 0);
+                    listHoaDon = hoadonservice.getListbyTrangThaiandTimeNV(tt + 2, time3, time4, 0, nhanvien.getId());
                 } else {
-                    listHoaDon = hoadonservice.getListbyTrangThaiandTime(tt - 1, time3, time4, 0);
+                    listHoaDon = hoadonservice.getListbyTrangThaiandTimeNV(tt - 1, time3, time4, 0, nhanvien.getId());
                 }
             } else if (cboHinhthucthanhtoan.getSelectedIndex() > 0 && cboTrangthaithanhtoan.getSelectedIndex() == 0) {
                 int ht = cboHinhthucthanhtoan.getSelectedIndex();
-                listHoaDon = hoadonservice.getListbyHinhthucandTime(ht - 1, time3, time4, 0);
+                listHoaDon = hoadonservice.getListbyHinhthucandTimeNV(ht - 1, time3, time4, 0, nhanvien.getId());
             } else if (cboHinhthucthanhtoan.getSelectedIndex() > 0 && cboTrangthaithanhtoan.getSelectedIndex() > 0) {
                 int tt = cboTrangthaithanhtoan.getSelectedIndex();
                 int ht = cboHinhthucthanhtoan.getSelectedIndex();
                 if (cboTrangthaithanhtoan.getSelectedIndex() > 3) {
-                    listHoaDon = hoadonservice.getListbyAllComboBox(tt + 2, ht - 1, time3, time4, 0);
+                    listHoaDon = hoadonservice.getListbyAllComboBoxNV(tt + 2, ht - 1, time3, time4, 0, nhanvien.getId());
                 } else {
-                    listHoaDon = hoadonservice.getListbyAllComboBox(tt - 1, ht - 1, time3, time4, 0);
+                    listHoaDon = hoadonservice.getListbyAllComboBoxNV(tt - 1, ht - 1, time3, time4, 0, nhanvien.getId());
                 }
             }
             tranghientai = 0;
@@ -245,7 +248,7 @@ public class ViewHoaDon extends javax.swing.JPanel {
     public void loadTblHD2byTime() {
         try {
             modelHoaDon2.setRowCount(0);
-            listHoaDon2 = hoadonservice.getList2(1);
+            listHoaDon2 = hoadonservice.getListHDNV2(1, nhanvien.getId());
             LocalDateTime time1 = txtTime3.getDateTimePermissive();
             LocalDateTime time2 = txtTime4.getDateTimePermissive();
             System.out.println(time1);
@@ -279,17 +282,17 @@ public class ViewHoaDon extends javax.swing.JPanel {
                 return;
             }
             if (cboHinhThucTT2.getSelectedIndex() == 0 && cboTrangThai2.getSelectedIndex() == 0) {
-                listHoaDon2 = hoadonservice.getList2byTime(time3, time4, 1);
+                listHoaDon2 = hoadonservice.getList2byTimeNV(time3, time4, 1, nhanvien.getId());
             } else if (cboHinhThucTT2.getSelectedIndex() == 0 && cboTrangThai2.getSelectedIndex() > 0) {
                 int tt = cboTrangThai2.getSelectedIndex();
-                listHoaDon2 = hoadonservice.getList2byTrangThaiandTime(tt - 1, time3, time4, 1);
+                listHoaDon2 = hoadonservice.getList2byTrangThaiandTimeNV(tt - 1, time3, time4, 1, nhanvien.getId());
             } else if (cboHinhThucTT2.getSelectedIndex() > 0 && cboTrangThai2.getSelectedIndex() == 0) {
                 int ht = cboHinhThucTT2.getSelectedIndex();
-                listHoaDon2 = hoadonservice.getList2byHinhthucandTime(ht - 1, time3, time4, 1);
+                listHoaDon2 = hoadonservice.getList2byHinhthucandTimeNV(ht - 1, time3, time4, 1, nhanvien.getId());
             } else if (cboHinhThucTT2.getSelectedIndex() > 0 && cboTrangThai2.getSelectedIndex() > 0) {
                 int tt = cboTrangThai2.getSelectedIndex();
                 int ht = cboHinhThucTT2.getSelectedIndex();
-                listHoaDon2 = hoadonservice.getList2byAllComboBox(tt - 1, ht - 1, time3, time4, 1);
+                listHoaDon2 = hoadonservice.getList2byAllComboBoxNV(tt - 1, ht - 1, time3, time4, 1, nhanvien.getId());
             }
             tranghientai = 0;
             loadTableHoaDon2(listHoaDon2);
@@ -1455,11 +1458,11 @@ public class ViewHoaDon extends javax.swing.JPanel {
         resetTableHDCT();
         if (cboTrangthaithanhtoan.getSelectedIndex() == 0) {
             if (cboHinhthucthanhtoan.getSelectedIndex() == 0) {
-                listHoaDon = hoadonservice.getList(0);
+                listHoaDon = hoadonservice.getListHDNV(0, nhanvien.getId());
             } else if (cboHinhthucthanhtoan.getSelectedIndex() > 0) {
                 int hinhthuctt = cboHinhthucthanhtoan.getSelectedIndex();
                 modelHoaDon.setRowCount(0);
-                listHoaDon = hoadonservice.getListbyHinhThucThanhToan(hinhthuctt - 1, 0);
+                listHoaDon = hoadonservice.getListbyHinhThucThanhToanNV(hinhthuctt - 1, 0, nhanvien.getId());
             }
         }
         if (cboTrangthaithanhtoan.getSelectedIndex() > 0) {
@@ -1467,24 +1470,24 @@ public class ViewHoaDon extends javax.swing.JPanel {
                 if (cboHinhthucthanhtoan.getSelectedIndex() == 0) {
                     int trangthai = cboTrangthaithanhtoan.getSelectedIndex();
                     modelHoaDon.setRowCount(0);
-                    listHoaDon = hoadonservice.getListbyTrangThai(trangthai + 2, 0);
+                    listHoaDon = hoadonservice.getListbyTrangThaiNV(trangthai + 2, 0, nhanvien.getId());
 
                 } else if (cboHinhthucthanhtoan.getSelectedIndex() > 0) {
                     int trangthaihd = cboTrangthaithanhtoan.getSelectedIndex();
                     int hinhthuctt = cboHinhthucthanhtoan.getSelectedIndex();
                     modelHoaDon.setRowCount(0);
-                    listHoaDon = hoadonservice.getListbyAllTT(trangthaihd + 2, hinhthuctt - 1, 0);
+                    listHoaDon = hoadonservice.getListbyAllTTNV(trangthaihd + 2, hinhthuctt - 1, 0, nhanvien.getId());
                 }
             } else {
                 if (cboHinhthucthanhtoan.getSelectedIndex() == 0) {
                     int trangthai = cboTrangthaithanhtoan.getSelectedIndex();
                     modelHoaDon.setRowCount(0);
-                    listHoaDon = hoadonservice.getListbyTrangThai(trangthai - 1, 0);
+                    listHoaDon = hoadonservice.getListbyTrangThaiNV(trangthai - 1, 0, nhanvien.getId());
                 } else if (cboHinhthucthanhtoan.getSelectedIndex() > 0) {
                     int trangthaihd = cboTrangthaithanhtoan.getSelectedIndex();
                     int hinhthuctt = cboHinhthucthanhtoan.getSelectedIndex();
                     modelHoaDon.setRowCount(0);
-                    listHoaDon = hoadonservice.getListbyAllTT(trangthaihd - 1, hinhthuctt - 1, 0);
+                    listHoaDon = hoadonservice.getListbyAllTTNV(trangthaihd - 1, hinhthuctt - 1, 0, nhanvien.getId());
                 }
             }
 
@@ -1501,27 +1504,27 @@ public class ViewHoaDon extends javax.swing.JPanel {
         resetTableHDCT();
         if (cboHinhthucthanhtoan.getSelectedIndex() == 0) {
             if (cboTrangthaithanhtoan.getSelectedIndex() == 0) {
-                listHoaDon = hoadonservice.getList(0);
+                listHoaDon = hoadonservice.getListHDNV(0, nhanvien.getId());
             } else if (cboTrangthaithanhtoan.getSelectedIndex() > 0) {
                 int trangthai = cboTrangthaithanhtoan.getSelectedIndex();
                 if (cboTrangthaithanhtoan.getSelectedIndex() > 3) {
-                    listHoaDon = hoadonservice.getListbyTrangThai(trangthai + 2, 0);
+                    listHoaDon = hoadonservice.getListbyTrangThaiNV(trangthai + 2, 0, nhanvien.getId());
                 } else {
-                    listHoaDon = hoadonservice.getListbyTrangThai(trangthai - 1, 0);
+                    listHoaDon = hoadonservice.getListbyTrangThaiNV(trangthai - 1, 0, nhanvien.getId());
                 }
             }
         }
         if (cboHinhthucthanhtoan.getSelectedIndex() > 0) {
             if (cboTrangthaithanhtoan.getSelectedIndex() == 0) {
                 int hinhthuc = cboHinhthucthanhtoan.getSelectedIndex();
-                listHoaDon = hoadonservice.getListbyHinhThucThanhToan(hinhthuc - 1, 0);
+                listHoaDon = hoadonservice.getListbyHinhThucThanhToanNV(hinhthuc - 1, 0, nhanvien.getId());
             } else if (cboTrangthaithanhtoan.getSelectedIndex() > 0) {
                 int hinhthuctt = cboHinhthucthanhtoan.getSelectedIndex();
                 int trangthaihd = cboTrangthaithanhtoan.getSelectedIndex();
                 if (cboTrangthaithanhtoan.getSelectedIndex() > 3) {
-                    listHoaDon = hoadonservice.getListbyAllTT(trangthaihd + 2, hinhthuctt - 1, 0);
+                    listHoaDon = hoadonservice.getListbyAllTTNV(trangthaihd + 2, hinhthuctt - 1, 0, nhanvien.getId());
                 } else {
-                    listHoaDon = hoadonservice.getListbyAllTT(trangthaihd - 1, hinhthuctt - 1, 0);
+                    listHoaDon = hoadonservice.getListbyAllTTNV(trangthaihd - 1, hinhthuctt - 1, 0, nhanvien.getId());
                 }
             }
         }
@@ -1564,12 +1567,12 @@ public class ViewHoaDon extends javax.swing.JPanel {
         tranghientai = 0;
         if (cboTrangThai2.getSelectedIndex() == 0) {
             if (cboHinhThucTT2.getSelectedIndex() == 0) {
-                listHoaDon2 = hoadonservice.getList2(1);
+                listHoaDon2 = hoadonservice.getListHDNV2(1, nhanvien.getId());
                 loadTableHoaDon2(listHoaDon2);
             } else if (cboHinhThucTT2.getSelectedIndex() > 0) {
                 int hinhthuctt = cboHinhThucTT2.getSelectedIndex();
                 modelHoaDon2.setRowCount(0);
-                listHoaDon2 = hoadonservice.getList2byHinhThucThanhToan(hinhthuctt - 1, 1);
+                listHoaDon2 = hoadonservice.getList2byHinhThucThanhToanNV(hinhthuctt - 1, 1, nhanvien.getId());
                 loadTableHoaDon2(listHoaDon2);
             }
         }
@@ -1577,13 +1580,13 @@ public class ViewHoaDon extends javax.swing.JPanel {
             if (cboHinhThucTT2.getSelectedIndex() == 0) {
                 int trangthai = cboTrangThai2.getSelectedIndex();
                 modelHoaDon2.setRowCount(0);
-                listHoaDon2 = hoadonservice.getList2byTrangThai(trangthai - 1, 1);
+                listHoaDon2 = hoadonservice.getList2byTrangThaiNV(trangthai - 1, 1, nhanvien.getId());
                 loadTableHoaDon2(listHoaDon2);
             } else if (cboHinhThucTT2.getSelectedIndex() > 0) {
                 int trangthaihd = cboTrangThai2.getSelectedIndex();
                 int hinhthuctt = cboHinhThucTT2.getSelectedIndex();
                 modelHoaDon2.setRowCount(0);
-                listHoaDon2 = hoadonservice.getList2byAllTT(trangthaihd - 1, hinhthuctt - 1, 1);
+                listHoaDon2 = hoadonservice.getList2byAllTTNV(trangthaihd - 1, hinhthuctt - 1, 1, nhanvien.getId());
                 loadTableHoaDon2(listHoaDon2);
             }
         }
@@ -1594,12 +1597,12 @@ public class ViewHoaDon extends javax.swing.JPanel {
         tranghientai = 0;
         if (cboHinhThucTT2.getSelectedIndex() == 0) {
             if (cboTrangThai2.getSelectedIndex() == 0) {
-                listHoaDon2 = hoadonservice.getList2(1);
+                listHoaDon2 = hoadonservice.getListHDNV2(1, nhanvien.getId());
                 loadTableHoaDon2(listHoaDon2);
             } else if (cboTrangThai2.getSelectedIndex() > 0) {
                 int trangthai = cboTrangThai2.getSelectedIndex();
                 modelHoaDon2.setRowCount(0);
-                listHoaDon2 = hoadonservice.getList2byTrangThai(trangthai - 1, 1);
+                listHoaDon2 = hoadonservice.getList2byTrangThaiNV(trangthai - 1, 1, nhanvien.getId());
                 loadTableHoaDon2(listHoaDon2);
             }
         }
@@ -1607,13 +1610,13 @@ public class ViewHoaDon extends javax.swing.JPanel {
             if (cboTrangThai2.getSelectedIndex() == 0) {
                 int hinhthuctt = cboHinhThucTT2.getSelectedIndex();
                 modelHoaDon2.setRowCount(0);
-                listHoaDon2 = hoadonservice.getList2byHinhThucThanhToan(hinhthuctt - 1, 1);
+                listHoaDon2 = hoadonservice.getList2byHinhThucThanhToanNV(hinhthuctt - 1, 1, nhanvien.getId());
                 loadTableHoaDon2(listHoaDon2);
             } else if (cboTrangThai2.getSelectedIndex() > 0) {
                 int hinhthuctt = cboHinhThucTT2.getSelectedIndex();
                 int trangthaihd = cboTrangThai2.getSelectedIndex();
                 modelHoaDon2.setRowCount(0);
-                listHoaDon2 = hoadonservice.getList2byAllTT(trangthaihd - 1, hinhthuctt - 1, 1);
+                listHoaDon2 = hoadonservice.getList2byAllTTNV(trangthaihd - 1, hinhthuctt - 1, 1, nhanvien.getId());
                 loadTableHoaDon2(listHoaDon2);
             }
         }
@@ -2020,7 +2023,7 @@ public class ViewHoaDon extends javax.swing.JPanel {
             }
         }
         JOptionPane.showMessageDialog(this, "Hủy thành công hóa đơn " + ma);
-        listHoaDon2 = hoadonservice.getList2(1);
+        listHoaDon2 = hoadonservice.getListHDNV2(1, nhanvien.getId());
         loadTableHoaDon2(listHoaDon2);
     }//GEN-LAST:event_btnHuy2ActionPerformed
 
@@ -2069,7 +2072,7 @@ public class ViewHoaDon extends javax.swing.JPanel {
             }
         }
         JOptionPane.showMessageDialog(this, "Hủy thành công hóa đơn " + ma);
-        listHoaDon = hoadonservice.getList(0);
+        listHoaDon = hoadonservice.getListHDNV(0, nhanvien.getId());
         loadTableHoaDon(listHoaDon);
 
     }//GEN-LAST:event_btnHuyActionPerformed

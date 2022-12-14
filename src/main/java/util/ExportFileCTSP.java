@@ -24,7 +24,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  */
 public class ExportFileCTSP {
 
-    public boolean ExportFileExcel(List<CTSanPhamResponse> lst) {
+    public boolean ExportFileExcel(List<CTSanPhamResponse> lst, String path) {
         boolean check = false;
         try {
             XSSFWorkbook workbook = new XSSFWorkbook();
@@ -98,7 +98,7 @@ public class ExportFileCTSP {
 
             }
             try {
-                File file = new File("ChiTietSanPham" + Calendar.getInstance().getTimeInMillis() + ".xlsx");
+                File file = new File(path + "\\" + "ChiTietSanPham" + Calendar.getInstance().getTimeInMillis() + ".xlsx");
                 FileOutputStream outputStream = new FileOutputStream(file);
                 workbook.write(outputStream);
                 workbook.close();

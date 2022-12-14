@@ -6,7 +6,9 @@ package core.quanly.repository;
 
 import config.HibernateUtil;
 import core.quanly.viewmodel.ThongKeHangHoaResponse;
+import core.quanly.viewmodel.ThongKeTraHangResponse;
 import domainmodels.HoaDon;
+import domainmodels.HoaDonChiTiet;
 import domainmodels.HoaDonTraHangChiTiet;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
@@ -14,7 +16,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.Session;
-import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 import repository.CrudRepository;
 
@@ -29,10 +30,15 @@ public class ThongKeHangHoaRepository {
         List<ThongKeHangHoaResponse> list = new ArrayList<>();
         try {
             Session session = HibernateUtil.getSession();
-            String hql = "select new core.quanly.viewmodel.ThongKeHangHoaResponse"
-                    + "(a.id, a.chiTietSPId.sanPham.ma, a.chiTietSPId.sanPham.ten, a.chiTietSPId.hang.ten, a.chiTietSPId.mauSac.ten, "
-                    + "a.chiTietSPId.kichThuoc.ten, a.soLuong, a.donGia)"
-                    + " from HoaDonChiTiet a  ";
+            String hql = """
+                         select new core.quanly.viewmodel.ThongKeHangHoaResponse
+                         (a.chiTietSPId.id, a.chiTietSPId.sanPham.ma, a.chiTietSPId.sanPham.ten,
+                         a.chiTietSPId.hang.ten, a.chiTietSPId.mauSac.ten, 
+                        a.chiTietSPId.kichThuoc.ten, SUM(a.soLuong), a.donGia)
+                         from HoaDonChiTiet a Group by a.chiTietSPId.id, a.chiTietSPId.sanPham.ma, 
+                         a.chiTietSPId.sanPham.ten, a.chiTietSPId.hang.ten, a.chiTietSPId.mauSac.ten,
+                         a.chiTietSPId.kichThuoc.ten,a.donGia
+                         """;
             Query query = session.createQuery(hql);
             list = query.getResultList();
         } catch (Exception e) {
@@ -41,13 +47,21 @@ public class ThongKeHangHoaRepository {
         }
         return list;
     }
+
+    public static void main(String[] args) {
+//        List<ThongKeHangHoaResponse> list = new ThongKeHangHoaRepository().getListMaxValue();
+        List<ThongKeHangHoaResponse> count = new ThongKeHangHoaRepository().getSoLuongBanMax();
+        long sl = count.get(0).getSoLuong();
+        System.out.println(count);
+    }
 //lấy ra danh sách sản phẩm đã trả
 
-    public List<HoaDonTraHangChiTiet> getListTraHang() {
-        List<HoaDonTraHangChiTiet> list = new ArrayList<>();
+    public List<ThongKeTraHangResponse> getListTraHang() {
+        List<ThongKeTraHangResponse> list = new ArrayList<>();
         try {
             Session session = HibernateUtil.getSession();
-            String hql = "select a from HoaDonTraHangChiTiet a ";
+            String hql = "select new core.quanly.viewmodel.ThongKeTraHangResponse(a.maChiTietSanPham, a.tenSP, a.tenHang, a.mauSac, a.kichThuoc, sum(a.soLuongTra), a.giaBan) "
+                    + "from HoaDonTraHangChiTiet a group by a.maChiTietSanPham, a.tenSP, a.tenHang, a.mauSac, a.kichThuoc, a.giaBan";
             Query query = session.createQuery(hql);
             list = query.getResultList();
         } catch (Exception e) {
@@ -84,6 +98,9 @@ public class ThongKeHangHoaRepository {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        }
+        if (nv == null) {
+            nv = BigDecimal.valueOf(0.00);
         }
         return nv;
     }
@@ -292,12 +309,6 @@ public class ThongKeHangHoaRepository {
         return id;
     }
 
-    public static void main(String[] args) {
-        long id = new ThongKeHangHoaRepository().getSoKhachHangTungNam(2022);
-        System.out.println(id);
-    }
-//số khách hàng theo từng tháng
-
     public Long getKhachHangTungThang(int thang, int nam) {
         Long id = null;
         try {
@@ -423,13 +434,55 @@ public class ThongKeHangHoaRepository {
     }
 //lọc sp bán chạy><không chạy
 
-    public List<ThongKeHangHoaResponse> getListMaxValue() {
+    public List<ThongKeHangHoaResponse> getSoLuongBanMax() {
         List<ThongKeHangHoaResponse> list = new ArrayList<>();
         try {
             Session session = HibernateUtil.getSession();
-            String hql = "select new core.quanly.viewmodel.ThongKeHangHoaResponse"
-                    + "(a.id, a.chiTietSPId.sanPham.ma, a.chiTietSPId.sanPham.ten, a.chiTietSPId.hang.ten, a.chiTietSPId.mauSac.ten, "
-                    + "a.chiTietSPId.kichThuoc.ten, a.soLuong, a.donGia) from HoaDonChiTiet a where a.soLuong=(select max(a.soLuong) from HoaDonChiTiet a)";
+            String hql = """
+                         select new core.quanly.viewmodel.ThongKeHangHoaResponse
+                         (a.chiTietSPId.id, a.chiTietSPId.sanPham.ma, a.chiTietSPId.sanPham.ten,
+                         a.chiTietSPId.hang.ten, a.chiTietSPId.mauSac.ten, 
+                        a.chiTietSPId.kichThuoc.ten, SUM(a.soLuong), a.donGia)
+                         from HoaDonChiTiet a Group by a.chiTietSPId.id, a.chiTietSPId.sanPham.ma, 
+                         a.chiTietSPId.sanPham.ten, a.chiTietSPId.hang.ten, a.chiTietSPId.mauSac.ten,
+                         a.chiTietSPId.kichThuoc.ten,a.donGia order by sum(a.soLuong) desc
+                         """;
+            Query query = session.createQuery(hql);
+            list = query.getResultList();
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    public List<ThongKeHangHoaResponse> getListMaxValue(long soluong) {
+        List<ThongKeHangHoaResponse> list = new ArrayList<>();
+        try {
+            Session session = HibernateUtil.getSession();
+            String hql = """
+                         select new core.quanly.viewmodel.ThongKeHangHoaResponse
+                         (a.chiTietSPId.id, a.chiTietSPId.sanPham.ma, a.chiTietSPId.sanPham.ten,
+                         a.chiTietSPId.hang.ten, a.chiTietSPId.mauSac.ten, 
+                        a.chiTietSPId.kichThuoc.ten, SUM(a.soLuong), a.donGia)
+                         from HoaDonChiTiet a Group by a.chiTietSPId.id, a.chiTietSPId.sanPham.ma, 
+                         a.chiTietSPId.sanPham.ten, a.chiTietSPId.hang.ten, a.chiTietSPId.mauSac.ten,
+                         a.chiTietSPId.kichThuoc.ten,a.donGia having SUM(a.soLuong) = :soluong
+                         """;
+            Query query = session.createQuery(hql);
+            query.setParameter("soluong", soluong);
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return list;
+    }
+
+    public List<ThongKeTraHangResponse> getSoLuongTra() {
+        List<ThongKeTraHangResponse> list = new ArrayList<>();
+        try {
+            Session session = HibernateUtil.getSession();
+            String hql = "select new core.quanly.viewmodel.ThongKeTraHangResponse(a.maChiTietSanPham, a.tenSP, a.tenHang, a.mauSac, a.kichThuoc, sum(a.soLuongTra), a.giaBan) "
+                    + "from HoaDonTraHangChiTiet a group by a.maChiTietSanPham, a.tenSP, a.tenHang, a.mauSac, a.kichThuoc, a.giaBan order by sum(a.soLuongTra) desc";
             Query query = session.createQuery(hql);
             list = query.getResultList();
         } catch (Exception e) {
@@ -440,12 +493,14 @@ public class ThongKeHangHoaRepository {
     }
 
     //Lọc SP trả Nhiều
-    public List<HoaDonTraHangChiTiet> getListMaxValueTra() {
-        List<HoaDonTraHangChiTiet> list = new ArrayList<>();
+    public List<ThongKeTraHangResponse> getListMaxValueTra(long soluong) {
+        List<ThongKeTraHangResponse> list = new ArrayList<>();
         try {
             Session session = HibernateUtil.getSession();
-            String hql = "select a from HoaDonTraHangChiTiet a where a.soLuongTra=(select max(soLuongTra) from HoaDonTraHangChiTiet )";
+            String hql = "select new core.quanly.viewmodel.ThongKeTraHangResponse(a.maChiTietSanPham, a.tenSP, a.tenHang, a.mauSac, a.kichThuoc, sum(a.soLuongTra), a.giaBan) "
+                    + "from HoaDonTraHangChiTiet a group by a.maChiTietSanPham, a.tenSP, a.tenHang, a.mauSac, a.kichThuoc, a.giaBan having sum(a.soLuongTra) = :soluong";
             Query query = session.createQuery(hql);
+            query.setParameter("soluong", soluong);
             list = query.getResultList();
         } catch (Exception e) {
             e.printStackTrace();
@@ -455,12 +510,14 @@ public class ThongKeHangHoaRepository {
     }
 
     //Lọc SP trả Ít
-    public List<HoaDonTraHangChiTiet> getListMinValueTra() {
-        List<HoaDonTraHangChiTiet> list = new ArrayList<>();
+    public List<ThongKeTraHangResponse> getListMinValueTra(long soluong) {
+        List<ThongKeTraHangResponse> list = new ArrayList<>();
         try {
             Session session = HibernateUtil.getSession();
-            String hql = "select a from HoaDonTraHangChiTiet a where a.soLuongTra=(select min(a.soLuongTra) from HoaDonTraHangChiTiet a)";
+            String hql = "select new core.quanly.viewmodel.ThongKeTraHangResponse(a.maChiTietSanPham, a.tenSP, a.tenHang, a.mauSac, a.kichThuoc, sum(a.soLuongTra), a.giaBan) "
+                    + "from HoaDonTraHangChiTiet a group by a.maChiTietSanPham, a.tenSP, a.tenHang, a.mauSac, a.kichThuoc, a.giaBan having sum(a.soLuongTra) = :soluong";
             Query query = session.createQuery(hql);
+            query.setParameter("soluong", soluong);
             list = query.getResultList();
         } catch (Exception e) {
             e.printStackTrace();
@@ -470,14 +527,41 @@ public class ThongKeHangHoaRepository {
     }
 //SP bán chậm
 
-    public List<ThongKeHangHoaResponse> getListMinValue() {
+    public List<ThongKeHangHoaResponse> getSoLuongBanMin() {
         List<ThongKeHangHoaResponse> list = new ArrayList<>();
         try {
             Session session = HibernateUtil.getSession();
-            String hql = "select new core.quanly.viewmodel.ThongKeHangHoaResponse"
-                    + "(a.id, a.chiTietSPId.sanPham.ma, a.chiTietSPId.sanPham.ten, a.chiTietSPId.hang.ten, a.chiTietSPId.mauSac.ten, "
-                    + "a.chiTietSPId.kichThuoc.ten, a.soLuong, a.donGia) from HoaDonChiTiet a where a.soLuong=(select min(a.soLuong) from HoaDonChiTiet a)";
+            String hql = """
+                         select new core.quanly.viewmodel.ThongKeHangHoaResponse
+                         (a.chiTietSPId.id, a.chiTietSPId.sanPham.ma, a.chiTietSPId.sanPham.ten,
+                         a.chiTietSPId.hang.ten, a.chiTietSPId.mauSac.ten, 
+                        a.chiTietSPId.kichThuoc.ten, SUM(a.soLuong), a.donGia)
+                         from HoaDonChiTiet a Group by a.chiTietSPId.id, a.chiTietSPId.sanPham.ma, 
+                         a.chiTietSPId.sanPham.ten, a.chiTietSPId.hang.ten, a.chiTietSPId.mauSac.ten,
+                         a.chiTietSPId.kichThuoc.ten,a.donGia order by sum(a.soLuong) asc
+                         """;
             Query query = session.createQuery(hql);
+            list = query.getResultList();
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    public List<ThongKeHangHoaResponse> getListMinValue(long soluong) {
+        List<ThongKeHangHoaResponse> list = new ArrayList<>();
+        try {
+            Session session = HibernateUtil.getSession();
+            String hql = """
+                         select new core.quanly.viewmodel.ThongKeHangHoaResponse
+                         (a.chiTietSPId.id, a.chiTietSPId.sanPham.ma, a.chiTietSPId.sanPham.ten,
+                         a.chiTietSPId.hang.ten, a.chiTietSPId.mauSac.ten, 
+                        a.chiTietSPId.kichThuoc.ten, SUM(a.soLuong), a.donGia)
+                         from HoaDonChiTiet a Group by a.chiTietSPId.id, a.chiTietSPId.sanPham.ma, 
+                         a.chiTietSPId.sanPham.ten, a.chiTietSPId.hang.ten, a.chiTietSPId.mauSac.ten,
+                         a.chiTietSPId.kichThuoc.ten,a.donGia having SUM(a.soLuong) = :soluong
+                         """;
+            Query query = session.createQuery(hql);
+            query.setParameter("soluong", soluong);
             list = query.getResultList();
         } catch (Exception e) {
             e.printStackTrace();
@@ -491,11 +575,18 @@ public class ThongKeHangHoaRepository {
         List<ThongKeHangHoaResponse> list = new ArrayList<>();
         try {
             Session session = HibernateUtil.getSession();
-            String hql = "select new core.quanly.viewmodel.ThongKeHangHoaResponse"
-                    + "(a.id, a.chiTietSPId.sanPham.ma, a.chiTietSPId.sanPham.ten, a.chiTietSPId.hang.ten, a.chiTietSPId.mauSac.ten, "
-                    + "a.chiTietSPId.kichThuoc.ten, a.soLuong, a.donGia) from HoaDonChiTiet a where a.chiTietSPId.sanPham.ten like CONCAT('%',:input,'%') or "
-                    + "a.chiTietSPId.sanPham.ma like CONCAT('%',:input,'%') or a.chiTietSPId.mauSac.ten like CONCAT('%',:input,'%') or a.chiTietSPId.kichThuoc.ten like CONCAT('%',:input,'%') or"
-                    + " a.chiTietSPId.hang.ten like CONCAT('%',:input,'%') or a.donGia like CONCAT('%',:input,'%')";
+            String hql = """
+                         select new core.quanly.viewmodel.ThongKeHangHoaResponse
+                         (a.chiTietSPId.id, a.chiTietSPId.sanPham.ma, a.chiTietSPId.sanPham.ten,
+                         a.chiTietSPId.hang.ten, a.chiTietSPId.mauSac.ten, 
+                        a.chiTietSPId.kichThuoc.ten, SUM(a.soLuong), a.donGia)
+                         from HoaDonChiTiet a where a.chiTietSPId.sanPham.ten like CONCAT('%',:input,'%') or 
+                    a.chiTietSPId.sanPham.ma like CONCAT('%',:input,'%') or a.chiTietSPId.mauSac.ten like CONCAT('%',:input,'%') or a.chiTietSPId.maChiTietSP like CONCAT('%',:input,'%') 
+                         or a.chiTietSPId.kichThuoc.ten like CONCAT('%',:input,'%') or 
+                    a.chiTietSPId.hang.ten like CONCAT('%',:input,'%') or a.donGia like CONCAT('%',:input,'%') Group by a.chiTietSPId.id, a.chiTietSPId.sanPham.ma, 
+                         a.chiTietSPId.sanPham.ten, a.chiTietSPId.hang.ten, a.chiTietSPId.mauSac.ten,
+                         a.chiTietSPId.kichThuoc.ten,a.donGia
+                         """;
             Query query = session.createQuery(hql);
             query.setParameter("input", input);
             list = query.getResultList();
@@ -506,13 +597,15 @@ public class ThongKeHangHoaRepository {
     }
     //tìm kiếm hàng trả
 
-    public List<HoaDonTraHangChiTiet> TimKiemHangHoaTra(String input) {
-        List<HoaDonTraHangChiTiet> list = new ArrayList<>();
+    public List<ThongKeTraHangResponse> TimKiemHangHoaTra(String input) {
+        List<ThongKeTraHangResponse> list = new ArrayList<>();
         try {
             Session session = HibernateUtil.getSession();
-            String hql = "select a from HoaDonTraHangChiTiet a where a.maChiTietSanPham like CONCAT('%',:input,'%') or "
+            String hql = "select new core.quanly.viewmodel.ThongKeTraHangResponse(a.maChiTietSanPham, a.tenSP, a.tenHang, a.mauSac, a.kichThuoc, sum(a.soLuongTra), a.giaBan) "
+                    + "from HoaDonTraHangChiTiet a where a.maChiTietSanPham like CONCAT('%',:input,'%') or "
                     + "a.tenSP like CONCAT('%',:input,'%') or a.tenHang like CONCAT('%',:input,'%') or a.kichThuoc like CONCAT('%',:input,'%') or"
-                    + " a.mauSac like CONCAT('%',:input,'%') or a.giaBan like CONCAT('%',:input,'%') or a.soLuongTra like CONCAT('%',:input,'%')";
+                    + " a.mauSac like CONCAT('%',:input,'%') or a.giaBan like CONCAT('%',:input,'%') "
+                    + "group by a.maChiTietSanPham, a.tenSP, a.tenHang, a.mauSac, a.kichThuoc, a.giaBan";
             Query query = session.createQuery(hql);
             query.setParameter("input", input);
             list = query.getResultList();
@@ -593,7 +686,5 @@ public class ThongKeHangHoaRepository {
         }
         return id;
     }
-
-
 
 }

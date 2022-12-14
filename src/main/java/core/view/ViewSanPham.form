@@ -10,368 +10,410 @@
     </Component>
     <Container class="javax.swing.JFrame" name="JFrameMauSac">
       <Properties>
+        <Property name="title" type="java.lang.String" value="Thi&#x1ebf;t l&#x1ead;p m&#xe0;u s&#x1eaf;c"/>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="null"/>
+        </Property>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="null"/>
+        </Property>
+        <Property name="resizable" type="boolean" value="false"/>
+        <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[402, 151]"/>
         </Property>
       </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel19" alignment="0" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="txtAddMauSac" alignment="0" pref="214" max="32767" attributes="0"/>
-                      <Component id="txtAddTenMauSac" alignment="0" max="32767" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                          <Component id="btnAddMausac" min="-2" pref="90" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <EmptySpace pref="40" max="32767" attributes="0"/>
-              </Group>
+              <Component id="jPanel16" alignment="0" min="-2" max="-2" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtAddMauSac" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtAddTenMauSac" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="42" max="32767" attributes="0"/>
-                  <Component id="btnAddMausac" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-              </Group>
+              <Component id="jPanel16" min="-2" max="-2" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel9">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Times New Roman" size="14" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="M&#xe3; m&#xe0;u s&#x1eaf;c:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel19">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Times New Roman" size="14" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="T&#xea;n m&#xe0;u s&#x1eaf;c:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtAddMauSac">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtAddTenMauSac">
-        </Component>
-        <Component class="javax.swing.JButton" name="btnAddMausac">
+        <Container class="javax.swing.JPanel" name="jPanel16">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="cc" red="99" type="rgb"/>
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Times New Roman" size="18" style="0"/>
+            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[402, 151]"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Add"/>
+            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[402, 151]"/>
+            </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddMausacActionPerformed"/>
-          </Events>
-        </Component>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                      <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="txtAddTenMauSac" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace pref="157" max="32767" attributes="0"/>
+                      <Component id="btnAddMausac" min="-2" pref="90" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="155" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtAddTenMauSac" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnAddMausac" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="59" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JTextField" name="txtAddTenMauSac">
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel19">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Times New Roman" size="15" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="T&#xea;n m&#xe0;u s&#x1eaf;c:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnAddMausac">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="cc" red="99" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Times New Roman" size="18" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddMausacActionPerformed"/>
+              </Events>
+            </Component>
+          </SubComponents>
+        </Container>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JFrame" name="JframeKichThuoc">
       <Properties>
+        <Property name="title" type="java.lang.String" value="Thi&#x1ebf;t l&#x1ead;p k&#xed;ch th&#x1b0;&#x1edb;c"/>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[400, 141]"/>
+        </Property>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[400, 141]"/>
+        </Property>
+        <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[400, 141]"/>
         </Property>
       </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel20" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel21" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="txtJraTenKichThuoc" pref="230" max="32767" attributes="0"/>
-                              <Component id="txtJraMaKichThuoc" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
-                          <Component id="btnAddJraKichThuoc" min="-2" pref="115" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <EmptySpace pref="36" max="32767" attributes="0"/>
-              </Group>
+              <Component id="jPanel17" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtJraMaKichThuoc" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtJraTenKichThuoc" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                  <Component id="btnAddJraKichThuoc" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="32" max="32767" attributes="0"/>
-              </Group>
+              <Component id="jPanel17" min="-2" max="-2" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel20">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Times New Roman" size="14" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="M&#xe3; k&#xed;ch th&#x1b0;&#x1edb;c:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel21">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Times New Roman" size="14" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="T&#xea;n k&#xed;ch th&#x1b0;&#x1edb;c:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtJraMaKichThuoc">
-          <Properties>
-            <Property name="enabled" type="boolean" value="false"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtJraMaKichThuocActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtJraTenKichThuoc">
-        </Component>
-        <Component class="javax.swing.JButton" name="btnAddJraKichThuoc">
+        <Container class="javax.swing.JPanel" name="jPanel17">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="cc" red="99" type="rgb"/>
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Times New Roman" size="18" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Add"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddJraKichThuocActionPerformed"/>
-          </Events>
-        </Component>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtJraTenKichThuoc" min="-2" pref="237" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="139" max="-2" attributes="0"/>
+                              <Component id="btnAddJraKichThuoc" min="-2" pref="115" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="48" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="txtJraTenKichThuoc" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                          <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btnAddJraKichThuoc" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="52" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JTextField" name="txtJraTenKichThuoc">
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel21">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Times New Roman" size="15" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="T&#xea;n k&#xed;ch th&#x1b0;&#x1edb;c:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnAddJraKichThuoc">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="cc" red="99" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Times New Roman" size="18" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddJraKichThuocActionPerformed"/>
+              </Events>
+            </Component>
+          </SubComponents>
+        </Container>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JFrame" name="JframeHang">
       <Properties>
+        <Property name="title" type="java.lang.String" value="Thi&#x1ebf;t l&#x1ead;p h&#xe3;ng"/>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[399, 130]"/>
+        </Property>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[399, 130]"/>
+        </Property>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[399, 130]"/>
+        </Property>
+        <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[399, 130]"/>
         </Property>
       </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel22" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel24" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="txtJfrMahang" max="32767" attributes="0"/>
-                              <Component id="txtJfraTenHang" pref="227" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="135" max="-2" attributes="0"/>
-                          <Component id="btnJfraAddHang" min="-2" pref="104" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <EmptySpace pref="51" max="32767" attributes="0"/>
-              </Group>
+              <Component id="jPanel18" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel22" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtJfrMahang" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtJfraTenHang" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                  <Component id="btnJfraAddHang" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="46" max="32767" attributes="0"/>
-              </Group>
+              <Component id="jPanel18" min="-2" max="-2" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel22">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Times New Roman" size="14" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="M&#xe3; h&#xe3;ng:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel24">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Times New Roman" size="14" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="T&#xea;n h&#xe3;ng:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtJfrMahang">
-          <Properties>
-            <Property name="enabled" type="boolean" value="false"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtJfraTenHang">
-        </Component>
-        <Component class="javax.swing.JButton" name="btnJfraAddHang">
+        <Container class="javax.swing.JPanel" name="jPanel18">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="cc" red="99" type="rgb"/>
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Times New Roman" size="18" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Add"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnJfraAddHangActionPerformed"/>
-          </Events>
-        </Component>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                      <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="txtJfraTenHang" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace pref="153" max="32767" attributes="0"/>
+                      <Component id="btnJfraAddHang" min="-2" pref="104" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="142" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="txtJfraTenHang" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                          <Component id="jLabel24" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btnJfraAddHang" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="40" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JTextField" name="txtJfraTenHang">
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel24">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Times New Roman" size="15" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="T&#xea;n h&#xe3;ng:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnJfraAddHang">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="cc" red="99" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Times New Roman" size="18" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnJfraAddHangActionPerformed"/>
+              </Events>
+            </Component>
+          </SubComponents>
+        </Container>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JFrame" name="JframeChatLieu">
       <Properties>
+        <Property name="title" type="java.lang.String" value="Thi&#x1ebf;t l&#x1ead;p ch&#x1ea5;t li&#x1ec7;u"/>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[392, 146]"/>
+        </Property>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[392, 146]"/>
+        </Property>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[392, 146]"/>
+        </Property>
+        <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[392, 146]"/>
         </Property>
       </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel25" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel26" alignment="0" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="txtJraMaChatLieu" max="32767" attributes="0"/>
-                          <Component id="txtJfraTenChatLieu" pref="227" max="32767" attributes="0"/>
-                      </Group>
-                      <Component id="btnJfraAddChatLieu" min="-2" pref="121" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="36" max="32767" attributes="0"/>
-              </Group>
+              <Component id="jPanel19" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel25" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtJraMaChatLieu" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel26" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtJfraTenChatLieu" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                  <Component id="btnJfraAddChatLieu" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="46" max="32767" attributes="0"/>
-              </Group>
+              <Component id="jPanel19" min="-2" max="-2" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel25">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Times New Roman" size="14" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="M&#xe3; ch&#x1ea5;t li&#x1ec7;u:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel26">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Times New Roman" size="14" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="T&#xea;n ch&#x1ea5;t li&#x1ec7;u:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtJraMaChatLieu">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtJfraTenChatLieu">
-        </Component>
-        <Component class="javax.swing.JButton" name="btnJfraAddChatLieu">
+        <Container class="javax.swing.JPanel" name="jPanel19">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="cc" red="99" type="rgb"/>
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Times New Roman" size="18" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Add"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnJfraAddChatLieuActionPerformed"/>
-          </Events>
-        </Component>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="jLabel26" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="txtJfraTenChatLieu" min="-2" pref="227" max="-2" attributes="0"/>
+                      <EmptySpace pref="38" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="btnJfraAddChatLieu" min="-2" pref="121" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="txtJfraTenChatLieu" min="-2" pref="33" max="-2" attributes="0"/>
+                          <Component id="jLabel26" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnJfraAddChatLieu" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="52" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JTextField" name="txtJfraTenChatLieu">
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel26">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Times New Roman" size="15" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="T&#xea;n ch&#x1ea5;t li&#x1ec7;u:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnJfraAddChatLieu">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="cc" red="99" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Times New Roman" size="18" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnJfraAddChatLieuActionPerformed"/>
+              </Events>
+            </Component>
+          </SubComponents>
+        </Container>
       </SubComponents>
     </Container>
   </NonVisualComponents>
@@ -404,15 +446,20 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              <Component id="jTabbedPane2" min="-2" pref="1292" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jTabbedPane2" pref="1271" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jTabbedPane2" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jTabbedPane2" pref="756" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -443,8 +490,8 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="S&#x1ea2;N PH&#x1ea8;M">
-                <Property name="tabTitle" type="java.lang.String" value="S&#x1ea2;N PH&#x1ea8;M"/>
+              <JTabbedPaneConstraints tabName="S&#x1ea3;n ph&#x1ea9;m">
+                <Property name="tabTitle" type="java.lang.String" value="S&#x1ea3;n ph&#x1ea9;m"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -454,11 +501,11 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jPanel4" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="jPanel6" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jPanel4" max="32767" attributes="0"/>
+                          <Component id="jPanel6" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -483,7 +530,7 @@
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                     <TitledBorder title="Th&#xf4;ng tin s&#x1ea3;n ph&#x1ea9;m">
-                      <Font PropertyName="font" name="Times New Roman" size="20" style="0"/>
+                      <Font PropertyName="font" name="Times New Roman" size="16" style="1"/>
                     </TitledBorder>
                   </Border>
                 </Property>
@@ -500,7 +547,7 @@
                           <Component id="jPanel8" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="227" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -712,19 +759,20 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jScrollPane1" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel4" pref="79" max="32767" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="txtTimKiemSp" min="-2" pref="1104" max="-2" attributes="0"/>
+                                  <Component id="txtTimKiemSp" min="-2" pref="271" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="822" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -740,7 +788,7 @@
                               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" pref="371" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" pref="338" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -832,8 +880,8 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="CHI TI&#x1ebe;T S&#x1ea2;N PH&#x1ea8;M">
-                <Property name="tabTitle" type="java.lang.String" value="CHI TI&#x1ebe;T S&#x1ea2;N PH&#x1ea8;M"/>
+              <JTabbedPaneConstraints tabName="Chi ti&#x1ebf;t s&#x1ea3;n ph&#x1ea9;m">
+                <Property name="tabTitle" type="java.lang.String" value="Chi ti&#x1ebf;t s&#x1ea3;n ph&#x1ea9;m"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -855,10 +903,10 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                      <Component id="jPanel7" min="-2" pref="335" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                       <Component id="jPanel14" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="62" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -872,7 +920,7 @@
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                     <TitledBorder title="Th&#xf4;ng tin s&#x1ea3;n ph&#x1ea9;m">
-                      <Font PropertyName="font" name="Times New Roman" size="20" style="0"/>
+                      <Font PropertyName="font" name="Times New Roman" size="16" style="1"/>
                     </TitledBorder>
                   </Border>
                 </Property>
@@ -907,13 +955,13 @@
                               </Group>
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane2" min="-2" pref="281" max="-2" attributes="0"/>
                               <Component id="txtGiaBan" min="-2" pref="281" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="txtSoLuongTon" alignment="1" pref="283" max="32767" attributes="0"/>
                                   <Component id="txtmaCTSP" alignment="1" pref="283" max="32767" attributes="0"/>
                                   <Component id="cbbSanPham" alignment="1" max="32767" attributes="0"/>
                               </Group>
+                              <Component id="jScrollPane2" min="-2" pref="281" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -925,29 +973,22 @@
                           </Group>
                           <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="cbbChatLieu" alignment="0" pref="242" max="32767" attributes="0"/>
-                                      <Component id="cbbHangct" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="cbbMauSac" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="cbbKichThuocct" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="btnAddKichThuoc" min="-2" max="-2" attributes="0"/>
-                                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                          <Component id="btnAddHang" min="-2" max="-2" attributes="0"/>
-                                          <Component id="btnAddChatLieu" min="-2" max="-2" attributes="0"/>
-                                          <Component id="btnAddMs" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="txtMaVach" min="-2" pref="246" max="-2" attributes="0"/>
-                                  <EmptySpace pref="97" max="32767" attributes="0"/>
+                              <Component id="cbbChatLieu" alignment="0" pref="239" max="32767" attributes="0"/>
+                              <Component id="cbbHangct" alignment="0" max="32767" attributes="0"/>
+                              <Component id="cbbMauSac" alignment="0" max="32767" attributes="0"/>
+                              <Component id="cbbKichThuocct" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtMaVach" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="btnAddKichThuoc" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                  <Component id="btnAddHang" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnAddChatLieu" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnAddMs" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
+                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           <Component id="jPanel12" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                       </Group>
@@ -956,76 +997,82 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="cbbMauSac" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="cbbSanPham" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                                      <Component id="btnAddMs" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="cbbKichThuocct" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="btnAddKichThuoc" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                                              <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="3" attributes="0">
-                                                  <Component id="txtSoLuongTon" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="103" groupAlignment="3" attributes="0">
-                                                  <Component id="cbbHangct" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="btnAddHang" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="txtGiaBan" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="cbbChatLieu" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="btnAddChatLieu" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" alignment="1" attributes="0">
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" attributes="0">
-                                                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="3" attributes="0">
-                                                      <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="txtMaVach" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="txtmaCTSP" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                  </Group>
-                              </Group>
-                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                  <Component id="jScrollPane2" alignment="1" min="-2" pref="52" max="-2" attributes="0"/>
-                                  <Component id="jPanel12" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="cbbMauSac" linkSize="14" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnAddMs" linkSize="14" alignment="0" min="-2" pref="24" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="13" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="cbbKichThuocct" linkSize="12" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnAddKichThuoc" linkSize="12" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="btnAddHang" linkSize="13" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="cbbHangct" linkSize="13" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="btnAddChatLieu" linkSize="15" alignment="0" min="-2" pref="26" max="-2" attributes="0"/>
+                              <Component id="cbbChatLieu" linkSize="15" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtMaVach" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jScrollPane2" min="-2" pref="48" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
+                          <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
+                          <Component id="cbbSanPham" min="-2" pref="29" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
+                          <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="119" pref="119" max="-2" attributes="0"/>
+                          <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="119" pref="119" max="-2" attributes="0"/>
+                          <Component id="txtSoLuongTon" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="119" pref="119" max="-2" attributes="0"/>
+                          <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="jPanel12" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="176" pref="176" max="-2" attributes="0"/>
+                          <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="176" pref="176" max="-2" attributes="0"/>
+                          <Component id="txtGiaBan" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="176" pref="176" max="-2" attributes="0"/>
+                          <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="63" pref="63" max="-2" attributes="0"/>
+                          <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="63" pref="63" max="-2" attributes="0"/>
+                          <Component id="txtmaCTSP" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="63" pref="63" max="-2" attributes="0"/>
+                          <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1199,16 +1246,16 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="2" attributes="0">
-                                  <Component id="btnAdd" linkSize="2" alignment="2" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnUpdate" linkSize="2" alignment="2" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnClearr" linkSize="2" alignment="2" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btXuatFileExcel" linkSize="2" alignment="2" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnTaiMauExcel" linkSize="2" alignment="2" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnImportExcel" linkSize="2" alignment="2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="btnImportExcel" linkSize="2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnUpdate" linkSize="2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnAdd" linkSize="2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnClearr" linkSize="2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btXuatFileExcel" linkSize="2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnTaiMauExcel" linkSize="2" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="26" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1454,12 +1501,13 @@
                               <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                                   <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                                   <Component id="txtFindCTSanPham" min="-2" pref="303" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Component id="cbbTrangThai" min="-2" pref="203" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
@@ -1475,7 +1523,7 @@
                                           <Component id="btnSau" linkSize="6" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="btnCuoi" linkSize="6" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
+                                          <EmptySpace pref="524" max="32767" attributes="0"/>
                                           <Component id="btnXoa" linkSize="8" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                                           <Component id="btnKhoiPhuc" linkSize="8" min="-2" pref="102" max="-2" attributes="0"/>
@@ -1490,24 +1538,14 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="cbbTrangThai" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="txtFindCTSanPham" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel23" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace pref="9" max="32767" attributes="0"/>
-                              </Group>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="txtFindCTSanPham" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                              <Component id="jLabel23" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cbbTrangThai" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jScrollPane3" min="-2" pref="249" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jScrollPane3" pref="264" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="btnCuoi" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1766,8 +1804,8 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="THU&#x1ed8;C T&#xcd;NH S&#x1ea2;N PH&#x1ea8;M">
-                <Property name="tabTitle" type="java.lang.String" value="THU&#x1ed8;C T&#xcd;NH S&#x1ea2;N PH&#x1ea8;M"/>
+              <JTabbedPaneConstraints tabName="Thu&#x1ed9;c t&#xed;nh s&#x1ea3;n ph&#x1ea9;m">
+                <Property name="tabTitle" type="java.lang.String" value="Thu&#x1ed9;c t&#xed;nh s&#x1ea3;n ph&#x1ea9;m"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -1806,7 +1844,7 @@
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                     <TitledBorder title="Thi&#x1ebf;t l&#x1ead;p thu&#x1ed9;c t&#xed;nh">
-                      <Font PropertyName="font" name="Times New Roman" size="20" style="0"/>
+                      <Font PropertyName="font" name="Times New Roman" size="16" style="1"/>
                     </TitledBorder>
                   </Border>
                 </Property>
@@ -2129,7 +2167,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane4" pref="1227" max="32767" attributes="0"/>
+                          <Component id="jScrollPane4" pref="1198" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -2138,7 +2176,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane4" pref="381" max="32767" attributes="0"/>
+                          <Component id="jScrollPane4" pref="348" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>

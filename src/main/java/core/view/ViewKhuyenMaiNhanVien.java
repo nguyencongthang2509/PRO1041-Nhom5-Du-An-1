@@ -325,6 +325,7 @@ public class ViewKhuyenMaiNhanVien extends javax.swing.JPanel {
 
         btnlocsanpham.setText("Lọc sản phẩm");
         btnlocsanpham.setBackground(new java.awt.Color(153, 204, 255));
+        btnlocsanpham.setEnabled(false);
         btnlocsanpham.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnlocsanphamActionPerformed(evt);
@@ -379,6 +380,7 @@ public class ViewKhuyenMaiNhanVien extends javax.swing.JPanel {
 
         btnsua.setText("Sửa");
         btnsua.setBackground(new java.awt.Color(153, 204, 255));
+        btnsua.setEnabled(false);
         btnsua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnsuaActionPerformed(evt);
@@ -387,6 +389,7 @@ public class ViewKhuyenMaiNhanVien extends javax.swing.JPanel {
 
         btnthem.setText("Thêm");
         btnthem.setBackground(new java.awt.Color(153, 204, 255));
+        btnthem.setEnabled(false);
         btnthem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnthemActionPerformed(evt);
@@ -450,6 +453,7 @@ public class ViewKhuyenMaiNhanVien extends javax.swing.JPanel {
         }
 
         chkselectedall.setText("Select all");
+        chkselectedall.setEnabled(false);
         chkselectedall.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 chkselectedallMouseClicked(evt);
@@ -474,6 +478,7 @@ public class ViewKhuyenMaiNhanVien extends javax.swing.JPanel {
 
         btnbokhoidanhsach.setText("Bỏ khỏi danh sách");
         btnbokhoidanhsach.setBackground(new java.awt.Color(153, 204, 255));
+        btnbokhoidanhsach.setEnabled(false);
         btnbokhoidanhsach.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnbokhoidanhsachActionPerformed(evt);
@@ -583,6 +588,7 @@ public class ViewKhuyenMaiNhanVien extends javax.swing.JPanel {
 
         btnxoa.setText("Xóa trắng");
         btnxoa.setBackground(new java.awt.Color(153, 204, 255));
+        btnxoa.setEnabled(false);
         btnxoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnxoaActionPerformed(evt);
@@ -591,6 +597,7 @@ public class ViewKhuyenMaiNhanVien extends javax.swing.JPanel {
 
         btnhuy.setText("Hủy");
         btnhuy.setBackground(new java.awt.Color(153, 204, 255));
+        btnhuy.setEnabled(false);
         btnhuy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnhuyActionPerformed(evt);
@@ -614,7 +621,7 @@ public class ViewKhuyenMaiNhanVien extends javax.swing.JPanel {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnhuy, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnsua, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(181, Short.MAX_VALUE))
+                        .addContainerGap(171, Short.MAX_VALUE))
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel3Layout.setVerticalGroup(
@@ -762,6 +769,7 @@ public class ViewKhuyenMaiNhanVien extends javax.swing.JPanel {
         jScrollPane2.setViewportView(tblsanpham2);
 
         chkallsanphamdangkm.setText("Select all");
+        chkallsanphamdangkm.setEnabled(false);
         chkallsanphamdangkm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chkallsanphamdangkmActionPerformed(evt);
@@ -1147,14 +1155,14 @@ public class ViewKhuyenMaiNhanVien extends javax.swing.JPanel {
     private void cobtrangthaikhuyenmaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cobtrangthaikhuyenmaiActionPerformed
         if (cobtrangthaikhuyenmai.getSelectedIndex() == 0) {
 
-            btnsua.setEnabled(true);
-            btnthem.setEnabled(true);
+            btnsua.setEnabled(false);
+            btnthem.setEnabled(false);
             listkhuyenmai = khuyenMaiService.GetKhuyenMaiDangDienRa();
             FillToKhuyenMai(listkhuyenmai);
 
         } else if (cobtrangthaikhuyenmai.getSelectedIndex() == 1) {
-            btnsua.setEnabled(true);
-            btnthem.setEnabled(true);
+            btnsua.setEnabled(false);
+            btnthem.setEnabled(false);
             listkhuyenmai = khuyenMaiService.GetKhuyenMaiSapDienRa();
             FillToKhuyenMai(listkhuyenmai);
 
@@ -1272,7 +1280,7 @@ public class ViewKhuyenMaiNhanVien extends javax.swing.JPanel {
             LocSanPham.setVisible(true);
             LocSanPham.setLocationRelativeTo(null);
 
-            listsanphamcotheapdung = khuyenMaiService.getAllChiTietSPCoTheApDung(time3, time4);
+//            listsanphamcotheapdung = khuyenMaiService.getAllChiTietSPCoTheApDung(time3, time4);
             FillToLocsanpham(listsanphamcotheapdung);
         } catch (Exception e) {
             e.printStackTrace();
@@ -1473,23 +1481,6 @@ public class ViewKhuyenMaiNhanVien extends javax.swing.JPanel {
         }
     }
 
-    private List<KMChiTietSPResponse> GetSelectedAll() {
-        listsanpham = khuyenMaiService.getAllChiTietSP();
-        for (int i = 0; i < listsanpham.size(); i++) {
-            String id = tblsanpham.getValueAt(i, 0).toString();
-            String ma = tblsanpham.getValueAt(i, 1).toString();
-            String ten = tblsanpham.getValueAt(i, 2).toString();
-            String hang = tblsanpham.getValueAt(i, 3).toString();
-            String mausac = tblsanpham.getValueAt(i, 4).toString();
-            String kichthuoc = tblsanpham.getValueAt(i, 5).toString();
-            String chatlieu = tblsanpham.getValueAt(i, 6).toString();
-            tblsanpham.setValueAt(true, i, 0);
-            KMChiTietSPResponse chiTietSPResponse = new KMChiTietSPResponse(id, ma, ten, hang, mausac, kichthuoc, chatlieu);
-            List<KMChiTietSPResponse> listselectall = new ArrayList<>();
-            listselectall.add(chiTietSPResponse);
-        }
-        return listsanpham;
-    }
 
     private List<KMChiTietSPResponse> GetSelected() {
         List<KMChiTietSPResponse> listselected = new ArrayList<>();
