@@ -86,7 +86,7 @@ public class KhachHangRespository extends CrudRepository<String, KhachHang, Khac
         List<KhachHangLichSuRespone> list = new ArrayList<>();
         try {
             session = HibernateUtil.getSession();
-            String hql = "SELECT new core.quanly.viewmodel.KhachHangLichSuRespone(b.id,b.hoTen,b.sdt,b.gioiTinh,a.ma,a.ngayThanhToan,a.thanhTien,a.trangThai,b.capBac) "
+            String hql = "SELECT new core.quanly.viewmodel.KhachHangLichSuRespone(b.id,a.ma,a.ngayThanhToan,a.thanhTien,a.trangThai,b.capBac) "
                     + "FROM HoaDon a LEFT JOIN a.khachHang b WHERE b.ma =:id";
             Query query = session.createQuery(hql);
             query.setParameter("id", id);
@@ -98,8 +98,9 @@ public class KhachHangRespository extends CrudRepository<String, KhachHang, Khac
     }
 
     public static void main(String[] args) {
-        List<KhachHangLichSuRespone> list = new KhachHangRespository().getKhachHangByLichSu("KH001");
-        System.out.println(list);
+       
+        String trangthai =  new KhachHangRespository().getCapBacTheoNgayThanhToan("HD22121418276");
+        System.out.println(trangthai);
     }
 
     public List<KhachHangLichSuRespone> getKhachHangByCapBac(String id) {
@@ -115,6 +116,15 @@ public class KhachHangRespository extends CrudRepository<String, KhachHang, Khac
             e.printStackTrace();
         }
         return list;
+    }
+    
+    public String getCapBacTheoNgayThanhToan(String mahd) {      
+            session = HibernateUtil.getSession();
+            String nativequery = "SELECT phan_tram_giam_gia FROM hoa_don a WHERE a.ma =:mahd";
+            Query query = session.createNativeQuery(nativequery);
+            query.setParameter("mahd", mahd);
+            String trangthai = query.getSingleResult().toString();
+            return trangthai;       
     }
 
     public BigDecimal getTongTienByIdKhachHang(String id) {

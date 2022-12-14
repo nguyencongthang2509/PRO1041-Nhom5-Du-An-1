@@ -173,4 +173,9 @@ public class KhachHangServiceImpl implements KhachHangService {
         return khachHangRe.genMaKhachHang();
     }
 
+    @Override
+    public String getCapBacTheoNgayThanhToan(String mahd) {
+    return khachHangRe.getCapBacTheoNgayThanhToan(mahd);
+    }
+
 }

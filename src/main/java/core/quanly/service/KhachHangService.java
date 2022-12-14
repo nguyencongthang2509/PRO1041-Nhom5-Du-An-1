@@ -37,4 +37,6 @@ public interface KhachHangService {
      List<KhachHangLichSuRespone> getKhachHangByCapBac(String id);
      
      BigDecimal getTongTienByIdKhachHang(String id);
+     
+     public String getCapBacTheoNgayThanhToan(String mahd);
 }

@@ -64,4 +64,5 @@ public class SPKichThuocRepository extends CrudRepository<String, KichThuoc, SPK
         List<KichThuoc> list = new SPKichThuocRepository().getAll();
         System.out.println(list);
     }
+    
 }
