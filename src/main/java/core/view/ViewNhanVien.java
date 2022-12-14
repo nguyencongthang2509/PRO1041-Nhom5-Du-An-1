@@ -90,9 +90,6 @@ public class ViewNhanVien extends javax.swing.JPanel {
         btnThem6 = new javax.swing.JButton();
         btnNew6 = new javax.swing.JButton();
         jPanel17 = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
         rdoNhanVien6 = new javax.swing.JRadioButton();
         rdoQuanLy6 = new javax.swing.JRadioButton();
         jLabel67 = new javax.swing.JLabel();
@@ -190,7 +187,7 @@ public class ViewNhanVien extends javax.swing.JPanel {
             }
         });
 
-        btnNew6.setText("Clear");
+        btnNew6.setText("Mới");
         btnNew6.setBackground(new java.awt.Color(153, 204, 255));
         btnNew6.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
         btnNew6.addActionListener(new java.awt.event.ActionListener() {
@@ -201,18 +198,6 @@ public class ViewNhanVien extends javax.swing.JPanel {
 
         jPanel17.setBackground(new java.awt.Color(255, 255, 255));
         jPanel17.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-
-        jLabel11.setText("Trạng Thái");
-        jLabel11.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
-
-        jRadioButton1.setBackground(new java.awt.Color(255, 255, 255));
-        buttonGroup3.add(jRadioButton1);
-        jRadioButton1.setSelected(true);
-        jRadioButton1.setText("Đang Làm");
-
-        jRadioButton2.setBackground(new java.awt.Color(255, 255, 255));
-        buttonGroup3.add(jRadioButton2);
-        jRadioButton2.setText("Đã Nghỉ");
 
         rdoNhanVien6.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup2.add(rdoNhanVien6);
@@ -245,17 +230,14 @@ public class ViewNhanVien extends javax.swing.JPanel {
             .addGroup(jPanel17Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11)
                     .addComponent(jLabel67)
                     .addComponent(jLabel66))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButton1)
                     .addComponent(rdoQuanLy6)
                     .addComponent(rdoNam6))
-                .addGap(18, 18, 18)
+                .addGap(30, 30, 30)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButton2)
                     .addComponent(rdoNhanVien6)
                     .addComponent(rdoNu6))
                 .addGap(20, 20, 20))
@@ -268,18 +250,12 @@ public class ViewNhanVien extends javax.swing.JPanel {
                     .addComponent(rdoNam6)
                     .addComponent(rdoNu6)
                     .addComponent(jLabel66))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(40, 40, 40)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel67)
                     .addComponent(rdoQuanLy6)
                     .addComponent(rdoNhanVien6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jRadioButton1)
-                        .addComponent(jRadioButton2))
-                    .addComponent(jLabel11))
-                .addGap(47, 47, 47))
+                .addGap(46, 46, 46))
         );
 
         btnExport.setText("Export");
@@ -429,14 +405,14 @@ public class ViewNhanVien extends javax.swing.JPanel {
 
             },
             new String [] {
-                "STT", "Mã NV", "Tên NV", "Giới Tính", "Ngày Sinh", "Địa Chỉ", "SDT", "Email", "Vai Trò", "Trạng Thái", "Select"
+                "STT", "Mã NV", "Tên NV", "Giới Tính", "Ngày Sinh", "Địa Chỉ", "SDT", "Email", "Vai Trò", "Select"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, true
+                false, false, false, false, false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -592,14 +568,14 @@ public class ViewNhanVien extends javax.swing.JPanel {
 
             },
             new String [] {
-                "STT", "Mã NV", "Tên NV", "Giới Tình", "Ngày Sinh", "Địa Chỉ", "SDT", "Email", "Vai Trò", "Trạng Thái", "Select"
+                "STT", "Mã NV", "Tên NV", "Giới Tình", "Ngày Sinh", "Địa Chỉ", "SDT", "Email", "Vai Trò", "Select"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, true
+                false, false, false, false, false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -805,7 +781,7 @@ public class ViewNhanVien extends javax.swing.JPanel {
     private void tblNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNhanVienMouseClicked
         try {
             index = tblNhanVien.getSelectedRow();
-            NhanVienResponse nvr = nhanVienService.getAllResponse().get(index);
+            NhanVienResponse nvr = nhanVienService.getAllResponseLam().get(index);
             if (index >= 0) {
                 txtMaNhanVien6.setText(tblNhanVien.getValueAt(index, 1).toString());
                 txtEmail6.setText(tblNhanVien.getValueAt(index, 7).toString());
@@ -833,15 +809,6 @@ public class ViewNhanVien extends javax.swing.JPanel {
                     rdoQuanLy6.setSelected(true);
                     rdoNhanVien6.setSelected(false);
                 }
-                String trangThaiXoa = tblNhanVien.getValueAt(index, 9).toString();
-                if (trangThaiXoa.equalsIgnoreCase("Đang Làm")) {
-                    jRadioButton1.setSelected(true);
-                    jRadioButton2.setSelected(false);
-                } else {
-                    jRadioButton2.setSelected(true);
-                    jRadioButton1.setSelected(false);
-                }
-
             }
             loadTableDaNghi();
         } catch (Exception e) {
@@ -865,6 +832,29 @@ public class ViewNhanVien extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Vui lòng không để trống ngày sinh");
                 return;
             }
+            if (!txtSdtNhanVien6.getText().matches("(84|0[3|5|7|8|9])+([0-9]{8})\\b")) {
+
+                JOptionPane.showMessageDialog(this, "Số điện thoại phải là số và gồm 10 ký tự");
+                return;
+            }
+            if (!txtEmail6.getText().matches("\\w+@{1}\\w+.+\\w")) {
+                JOptionPane.showMessageDialog(this, "Định dạng Email không đúng");
+                return;
+            }
+            if (!txtTenNhanVien6.getText().matches("[a-zA-Z][a-zA-Z ]*")) {
+                JOptionPane.showMessageDialog(this, "Định dạng Tên không đúng");
+                return;
+            }
+            for (NhanVienResponse xx : listNhanVien) {
+                if (txtSdtNhanVien6.getText().equalsIgnoreCase(xx.getSdt())) {
+                    JOptionPane.showMessageDialog(this, "Trùng số điện thoại");
+                    return;
+                }
+                if (txtEmail6.getText().equalsIgnoreCase(xx.getEmail())) {
+                    JOptionPane.showMessageDialog(this, "Email đã tồn tại");
+                    return;
+                }
+            }
 
             nv = getformData();
             String password = String.valueOf((int) (Math.random() * 100000000));
@@ -886,7 +876,7 @@ public class ViewNhanVien extends javax.swing.JPanel {
             loadTable();
 
             loadTableDaNghi();
-            NewForm();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -901,17 +891,48 @@ public class ViewNhanVien extends javax.swing.JPanel {
 //                JOptionPane.showMessageDialog(this, "Bạn chưa chọn đối tượng nào");
 //                return;
 //            } 
+            if (datePickerNgaysinh.getDate() == null) {
+                JOptionPane.showMessageDialog(this, "Vui lòng không để trống ngày sinh");
+                return;
+            }
+            if (!txtSdtNhanVien6.getText().matches("(84|0[3|5|7|8|9])+([0-9]{8})\\b")) {
+
+                JOptionPane.showMessageDialog(this, "Số điện thoại phải là số và gồm 10 ký tự");
+                return;
+            }
+            if (!txtEmail6.getText().matches("\\w+@{1}\\w+.+\\w")) {
+                JOptionPane.showMessageDialog(this, "Định dạng Email không đúng");
+                return;
+            }
+            if (!txtTenNhanVien6.getText().matches("[a-zA-Z][a-zA-Z ]*")) {
+                JOptionPane.showMessageDialog(this, "Định dạng Tên không đúng");
+                return;
+            }
+            for (NhanVienResponse xx : listNhanVien) {
+                if (txtSdtNhanVien6.getText().equalsIgnoreCase(xx.getSdt())) {
+                    JOptionPane.showMessageDialog(this, "Trùng số điện thoại");
+                    return;
+                }
+                if (txtEmail6.getText().equalsIgnoreCase(xx.getEmail())) {
+                    JOptionPane.showMessageDialog(this, "Email đã tồn tại");
+                    return;
+                }
+            }
             if (tblNhanVien.getSelectedRow() >= 0) {
                 nv.setId(listNhanVien.get(tblNhanVien.getSelectedRow()).getId());
                 String message = nhanVienService.update(nv);
                 JOptionPane.showMessageDialog(this, message);
 
+            } else {
+                JOptionPane.showMessageDialog(this, "Mời chọn nhân viên");
             }
             if (tblNhanVien1.getSelectedRow() >= 0) {
                 nv.setId(listNhanVien1.get(tblNhanVien1.getSelectedRow()).getId());
                 String message = nhanVienService.update(nv);
                 JOptionPane.showMessageDialog(this, message);
 
+            } else {
+                JOptionPane.showMessageDialog(this, "Mời chọn nhân viên");
             }
             loadTable();
             loadTableDaNghi();
@@ -928,7 +949,7 @@ public class ViewNhanVien extends javax.swing.JPanel {
     private void tblNhanVien1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNhanVien1MouseClicked
         try {
             index1 = tblNhanVien1.getSelectedRow();
-            NhanVienResponse nvr = nhanVienService.getAllResponse().get(index1);
+            NhanVienNghiResponse nvr = nhanVienService.getAllResponseNghi().get(index1);
             if (index1 >= 0) {
                 txtMaNhanVien6.setText(tblNhanVien1.getValueAt(index1, 1).toString());
                 txtEmail6.setText(tblNhanVien1.getValueAt(index1, 7).toString());
@@ -956,14 +977,7 @@ public class ViewNhanVien extends javax.swing.JPanel {
                     rdoQuanLy6.setSelected(true);
                     rdoNhanVien6.setSelected(false);
                 }
-                String trangThaiXoa = tblNhanVien1.getValueAt(index1, 9).toString();
-                if (trangThaiXoa.equalsIgnoreCase("Đang Làm")) {
-                    jRadioButton1.setSelected(true);
-                    jRadioButton2.setSelected(false);
-                } else {
-                    jRadioButton2.setSelected(true);
-                    jRadioButton1.setSelected(false);
-                }
+
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -1069,7 +1083,7 @@ public class ViewNhanVien extends javax.swing.JPanel {
         try {
             NhanVien nv = new NhanVien();
             int chon = tblNhanVien.getSelectedRow();
-            if (chon ==-1) {
+            if (chon == -1) {
                 JOptionPane.showMessageDialog(this, "Bạn chưa chọn đối tượng nào");
                 return;
             }
@@ -1092,9 +1106,9 @@ public class ViewNhanVien extends javax.swing.JPanel {
 
     private void btnKhoiPhuc2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhoiPhuc2ActionPerformed
         try {
-            
+
             int chon = tblNhanVien1.getSelectedRow();
-            if (chon ==-1) {
+            if (chon == -1) {
                 JOptionPane.showMessageDialog(this, "Bạn chưa chọn đối tượng nào");
                 return;
             }
@@ -1134,7 +1148,6 @@ public class ViewNhanVien extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cboVaiTro1;
     private com.github.lgooddatepicker.components.DatePicker datePickerNgaysinh;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel62;
@@ -1152,8 +1165,6 @@ public class ViewNhanVien extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
@@ -1184,7 +1195,7 @@ public class ViewNhanVien extends javax.swing.JPanel {
 
     private NhanVien getformData() {
         NhanVien nv = new NhanVien();
-        nv.setMa("NV" + nvnnv.genMaNhanVien());
+        nv.setMa("NV00" + nvnnv.genMaNhanVien());
 
         nv.setTen(txtTenNhanVien6.getText().trim());
         nv.setGioiTinh(rdoNam6.isSelected() ? 0 : 1);
@@ -1195,7 +1206,6 @@ public class ViewNhanVien extends javax.swing.JPanel {
         nv.setEmail(txtEmail6.getText().trim());
 
         nv.setVaiTro(rdoQuanLy6.isSelected() ? 0 : 1);
-        nv.setTrangThaiXoa(jRadioButton1.isSelected() ? 0 : 1);
 
         return nv;
     }
@@ -1273,24 +1283,24 @@ public class ViewNhanVien extends javax.swing.JPanel {
 
         List<NhanVienResponse> listselected = new ArrayList<>();
         for (int i = 0; i < tblNhanVien.getRowCount(); i++) {
-            boolean check = Boolean.valueOf(tblNhanVien.getValueAt(i,10) + "");
+            boolean check = Boolean.valueOf(tblNhanVien.getValueAt(i, 9) + "");
             if (check) {
                 listselected.add(listNhanVien.get(i));
             }
         }
         return listselected;
-    }    
+    }
+
     private List<NhanVienNghiResponse> GetSelected2() {
 
         List<NhanVienNghiResponse> listselected = new ArrayList<>();
         for (int i = 0; i < tblNhanVien1.getRowCount(); i++) {
-            boolean check = Boolean.valueOf(tblNhanVien1.getValueAt(i,10) + "");
+            boolean check = Boolean.valueOf(tblNhanVien1.getValueAt(i, 9) + "");
             if (check) {
                 listselected.add(listNhanVien1.get(i));
             }
         }
         return listselected;
-    }    
-   
+    }
 
 }

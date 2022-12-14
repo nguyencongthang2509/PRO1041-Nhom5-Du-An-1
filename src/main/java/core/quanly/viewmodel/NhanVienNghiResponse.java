@@ -36,6 +36,6 @@ public class NhanVienNghiResponse {
 
     public Object[] toDataRow(int index){
     return new Object[]{index,ma,ten,gioitinh==0?"Nam":"Nữ",getnngaysinh(),diachi,sdt,email,vaitro==0?
-            "Quản Lý":"Nhân Viên",trangthaixoa==0?"Đang Làm":"Đã Nghỉ"};
+            "Quản Lý":"Nhân Viên"};
     }
 }

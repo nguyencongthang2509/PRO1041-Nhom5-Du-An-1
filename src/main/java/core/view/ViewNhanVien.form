@@ -366,7 +366,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnNew6">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Clear"/>
+                <Property name="text" type="java.lang.String" value="M&#x1edb;i"/>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="cc" red="99" type="rgb"/>
                 </Property>
@@ -396,19 +396,16 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel67" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel66" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="97" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jRadioButton1" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="rdoQuanLy6" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="rdoNam6" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jRadioButton2" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="rdoNhanVien6" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="rdoNu6" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -425,57 +422,18 @@
                               <Component id="rdoNu6" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel66" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel67" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="rdoQuanLy6" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="rdoNhanVien6" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                  <Component id="jRadioButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jRadioButton2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="jLabel11">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Tr&#x1ea1;ng Th&#xe1;i"/>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Times New Roman" size="15" style="1"/>
-                    </Property>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton1">
-                  <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
-                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                      <ComponentRef name="buttonGroup3"/>
-                    </Property>
-                    <Property name="selected" type="boolean" value="true"/>
-                    <Property name="text" type="java.lang.String" value="&#x110;ang L&#xe0;m"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton2">
-                  <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
-                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                      <ComponentRef name="buttonGroup3"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="&#x110;&#xe3; Ngh&#x1ec9;"/>
-                  </Properties>
-                </Component>
                 <Component class="javax.swing.JRadioButton" name="rdoNhanVien6">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -664,7 +622,7 @@
                     <Component class="javax.swing.JTable" name="tblNhanVien">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="11" rowCount="0">
+                          <Table columnCount="10" rowCount="0">
                             <Column editable="false" title="STT" type="java.lang.Object"/>
                             <Column editable="false" title="M&#xe3; NV" type="java.lang.Object"/>
                             <Column editable="false" title="T&#xea;n NV" type="java.lang.Object"/>
@@ -674,17 +632,11 @@
                             <Column editable="false" title="SDT" type="java.lang.Object"/>
                             <Column editable="false" title="Email" type="java.lang.Object"/>
                             <Column editable="false" title="Vai Tr&#xf2;" type="java.lang.Object"/>
-                            <Column editable="false" title="Tr&#x1ea1;ng Th&#xe1;i" type="java.lang.Object"/>
                             <Column editable="true" title="Select" type="java.lang.Boolean"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                           <TableColumnModel selectionModel="0">
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                              <Title/>
-                              <Editor/>
-                              <Renderer/>
-                            </Column>
                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                               <Title/>
                               <Editor/>
@@ -952,7 +904,7 @@
                     <Component class="javax.swing.JTable" name="tblNhanVien1">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="11" rowCount="0">
+                          <Table columnCount="10" rowCount="0">
                             <Column editable="false" title="STT" type="java.lang.Object"/>
                             <Column editable="false" title="M&#xe3; NV" type="java.lang.Object"/>
                             <Column editable="false" title="T&#xea;n NV" type="java.lang.Object"/>
@@ -962,17 +914,11 @@
                             <Column editable="false" title="SDT" type="java.lang.Object"/>
                             <Column editable="false" title="Email" type="java.lang.Object"/>
                             <Column editable="false" title="Vai Tr&#xf2;" type="java.lang.Object"/>
-                            <Column editable="false" title="Tr&#x1ea1;ng Th&#xe1;i" type="java.lang.Object"/>
                             <Column editable="true" title="Select" type="java.lang.Boolean"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                           <TableColumnModel selectionModel="0">
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                              <Title/>
-                              <Editor/>
-                              <Renderer/>
-                            </Column>
                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                               <Title/>
                               <Editor/>
