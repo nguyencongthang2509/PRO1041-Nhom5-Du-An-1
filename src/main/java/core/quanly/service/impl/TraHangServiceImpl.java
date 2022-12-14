@@ -3,6 +3,7 @@ package core.quanly.service.impl;
 import core.quanly.repository.TraHangRepository;
 import core.quanly.service.TraHangService;
 import core.quanly.viewmodel.ThHoaDonResponse;
+import domainmodels.HoaDon;
 import domainmodels.HoaDonTraHang;
 import domainmodels.HoaDonTraHangChiTiet;
 import java.util.List;
@@ -62,6 +63,16 @@ public class TraHangServiceImpl implements TraHangService {
     @Override
     public List<HoaDonTraHangChiTiet> getAllHoaDonTraHangChiTiet(String id) {
         return traHangRepository.getAllHoaDonTraHangChiTiet(id);
+    }
+
+    @Override
+    public List<HoaDonTraHang> getAllHoaDonTraHang() {
+        return traHangRepository.getAllHoaDonTraHang();
+    }
+
+    @Override
+    public HoaDon getHoaDonByMa(String ma) {
+        return traHangRepository.getHoaDonByMa(ma);
     }
 
 }

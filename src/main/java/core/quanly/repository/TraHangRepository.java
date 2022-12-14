@@ -41,6 +41,35 @@ public class TraHangRepository extends CrudRepository<String, HoaDon, Object> {
         return list;
     }
     
+    public List<HoaDonTraHang> getAllHoaDonTraHang() {
+        List<HoaDonTraHang> list = new ArrayList<>();
+        try {
+                session = HibernateUtil.getSession();
+                String hql = "SELECT a FROM HoaDonTraHang a Order by a.ngayDoiTra DESC";
+                Query query = session.createQuery(hql);
+                list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return list;
+    }
+    
+    public HoaDon getHoaDonByMa(String ma) {
+        HoaDon hoaDon = new HoaDon();
+        try {
+                session = HibernateUtil.getSession();
+                String hql = "SELECT a FROM HoaDon a where a.ma = :ma";
+                Query query = session.createQuery(hql);
+                query.setParameter("ma", ma);
+                hoaDon = (HoaDon) query.getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return hoaDon;
+    }
+    
     public List<ThHoaDonResponse> getAllResponseHDTraHang() {
         List<ThHoaDonResponse> list = new ArrayList<>();
         try {
