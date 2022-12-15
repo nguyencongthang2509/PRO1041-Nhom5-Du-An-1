@@ -311,6 +311,11 @@ public class ViewHoaDonNhanVien extends javax.swing.JPanel {
         modelHoaDonChiTiet = (DefaultTableModel) tblHoadonchitiet.getModel();
         modelHoaDonChiTiet.setRowCount(0);
         listHDCT = hoadonservice.getListHDCT(mahd);
+        if (listHDCT.size() == 0 && listHoaDon.get(row + tranghientai * 10).getTrangThai() == 2) {
+            lblHDCT.setText("Hóa đơn này đã trả hết sản phẩm");
+            return;
+        }
+        lblHDCT.setText("");
         if (listHDCT == null) {
             return;
         }
@@ -328,6 +333,11 @@ public class ViewHoaDonNhanVien extends javax.swing.JPanel {
         modelHoaDonChiTiet2 = (DefaultTableModel) tblHoaDonChiTiet2.getModel();
         modelHoaDonChiTiet2.setRowCount(0);
         listHDCT = hoadonservice.getListHDCT(mahd);
+        if (listHDCT.size() == 0 && (listHoaDon2.get(row + tranghientai * 10).getTrangThai() == 2 || listHoaDon2.get(row + tranghientai * 10).getTrangThai() == 5)) {
+            lblHDCT2.setText("Hóa đơn này đã trả hết sản phẩm");
+            return;
+        }
+        lblHDCT2.setText("");
         if (listHDCT == null) {
             return;
         }
@@ -464,6 +474,7 @@ public class ViewHoaDonNhanVien extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblHoadonchitiet = new javax.swing.JTable();
+        lblHDCT = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         txtSearch2 = new javax.swing.JTextField();
@@ -492,6 +503,7 @@ public class ViewHoaDonNhanVien extends javax.swing.JPanel {
         jPanel6 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblHoaDonChiTiet2 = new javax.swing.JTable();
+        lblHDCT2 = new javax.swing.JLabel();
 
         chiTietHoaDon.setTitle("Chi tiết hóa đơn");
         chiTietHoaDon.setBackground(new java.awt.Color(255, 255, 255));
@@ -1028,7 +1040,7 @@ public class ViewHoaDonNhanVien extends javax.swing.JPanel {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(691, 691, 691)))
-                                .addGap(0, 8, Short.MAX_VALUE)))
+                                .addGap(0, 3, Short.MAX_VALUE)))
                         .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
@@ -1099,20 +1111,30 @@ public class ViewHoaDonNhanVien extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tblHoadonchitiet);
 
+        lblHDCT.setText("                ");
+        lblHDCT.setBackground(new java.awt.Color(255, 0, 0));
+        lblHDCT.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblHDCT.setForeground(new java.awt.Color(255, 0, 0));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(lblHDCT, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addComponent(lblHDCT)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -1130,7 +1152,7 @@ public class ViewHoaDonNhanVien extends javax.swing.JPanel {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -1344,7 +1366,7 @@ public class ViewHoaDonNhanVien extends javax.swing.JPanel {
                                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtSearch2, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 113, Short.MAX_VALUE)))
+                        .addGap(0, 90, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -1379,7 +1401,7 @@ public class ViewHoaDonNhanVien extends javax.swing.JPanel {
                     .addComponent(btnInHoaDon2)
                     .addComponent(btnXuatDanhSach2)
                     .addComponent(lblSoHoaDon2))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
@@ -1406,21 +1428,30 @@ public class ViewHoaDonNhanVien extends javax.swing.JPanel {
         tblHoaDonChiTiet2.getTableHeader().setReorderingAllowed(false);
         jScrollPane4.setViewportView(tblHoaDonChiTiet2);
 
+        lblHDCT2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblHDCT2.setForeground(new java.awt.Color(255, 0, 0));
+        lblHDCT2.setText("      ");
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1237, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1239, Short.MAX_VALUE)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(lblHDCT2, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(201, 201, 201))
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(lblHDCT2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -1456,6 +1487,7 @@ public class ViewHoaDonNhanVien extends javax.swing.JPanel {
 
     private void cboTrangthaithanhtoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboTrangthaithanhtoanActionPerformed
         resetTableHDCT();
+        lblHDCT.setText("");
         if (cboTrangthaithanhtoan.getSelectedIndex() == 0) {
             if (cboHinhthucthanhtoan.getSelectedIndex() == 0) {
                 listHoaDon = hoadonservice.getListHDNV(0, nhanvien.getId());
@@ -1502,6 +1534,8 @@ public class ViewHoaDonNhanVien extends javax.swing.JPanel {
 
     private void cboHinhthucthanhtoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboHinhthucthanhtoanActionPerformed
         resetTableHDCT();
+        lblHDCT.setText("");
+
         if (cboHinhthucthanhtoan.getSelectedIndex() == 0) {
             if (cboTrangthaithanhtoan.getSelectedIndex() == 0) {
                 listHoaDon = hoadonservice.getListHDNV(0, nhanvien.getId());
@@ -1534,6 +1568,7 @@ public class ViewHoaDonNhanVien extends javax.swing.JPanel {
 
     private void txtSearchCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtSearchCaretUpdate
         resetTableHDCT();
+        lblHDCT.setText("");
         try {
             loadTableHDbyText();
         } catch (Exception e) {
@@ -1555,6 +1590,7 @@ public class ViewHoaDonNhanVien extends javax.swing.JPanel {
 
     private void txtSearch2CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtSearch2CaretUpdate
         resetTableHDCT2();
+        lblHDCT2.setText("");
         try {
             loadTableHD2byText();
         } catch (Exception e) {
@@ -1564,6 +1600,7 @@ public class ViewHoaDonNhanVien extends javax.swing.JPanel {
 
     private void cboTrangThai2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboTrangThai2ActionPerformed
         resetTableHDCT2();
+        lblHDCT2.setText("");
         tranghientai = 0;
         if (cboTrangThai2.getSelectedIndex() == 0) {
             if (cboHinhThucTT2.getSelectedIndex() == 0) {
@@ -1594,6 +1631,7 @@ public class ViewHoaDonNhanVien extends javax.swing.JPanel {
 
     private void cboHinhThucTT2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboHinhThucTT2ActionPerformed
         resetTableHDCT2();
+        lblHDCT2.setText("");
         tranghientai = 0;
         if (cboHinhThucTT2.getSelectedIndex() == 0) {
             if (cboTrangThai2.getSelectedIndex() == 0) {
@@ -1624,6 +1662,7 @@ public class ViewHoaDonNhanVien extends javax.swing.JPanel {
 
     private void btnLoadByTime2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadByTime2ActionPerformed
         resetTableHDCT2();
+        lblHDCT2.setText("");
         if (txtTime3.datePicker.toString().trim().isEmpty() || txtTime3.timePicker.toString().trim().isEmpty()
                 || txtTime4.datePicker.toString().trim().isEmpty() || txtTime4.timePicker.toString().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ ngày và giờ");
@@ -1634,6 +1673,7 @@ public class ViewHoaDonNhanVien extends javax.swing.JPanel {
 
     private void btnLoadByTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadByTimeActionPerformed
         resetTableHDCT();
+        lblHDCT.setText("");
         if (txtTime1.datePicker.toString().trim().isEmpty() || txtTime1.timePicker.toString().trim().isEmpty()
                 || txtTime2.datePicker.toString().trim().isEmpty() || txtTime2.timePicker.toString().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ ngày và giờ");
@@ -2212,6 +2252,8 @@ public class ViewHoaDonNhanVien extends javax.swing.JPanel {
     private javax.swing.JLabel lblDiaChi;
     private javax.swing.JLabel lblDiachi2;
     private javax.swing.JLabel lblHD2;
+    private javax.swing.JLabel lblHDCT;
+    private javax.swing.JLabel lblHDCT2;
     private javax.swing.JLabel lblHinhThucThanhToan;
     private javax.swing.JLabel lblHinhthucthanhtoan2;
     private javax.swing.JLabel lblMaHD;
