@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 
-
 import javax.swing.JOptionPane;
 
 /**
@@ -551,6 +550,12 @@ public class ViewKhachHang extends javax.swing.JPanel {
             listKhachHang = khachhang.getAllResponse();
             fillTable(listKhachHang);
             JOptionPane.showMessageDialog(this, mess);
+            txt_diachi.setText(null);
+            txt_email.setText(null);
+            txt_hoten.setText(null);
+            txt_makh.setText(null);
+            txt_sdt.setText(null);
+            txt_ngaysinh.setDate(null);
         }
     }//GEN-LAST:event_btn_themActionPerformed
 
@@ -589,6 +594,7 @@ public class ViewKhachHang extends javax.swing.JPanel {
         txt_hoten.setText(null);
         txt_makh.setText(null);
         txt_sdt.setText(null);
+        txt_ngaysinh.setDate(null);
     }//GEN-LAST:event_btn_clear1ActionPerformed
 
     private void tbl_khachhangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_khachhangMouseClicked
@@ -618,7 +624,7 @@ public class ViewKhachHang extends javax.swing.JPanel {
                 pbgTienDo.setValue(0);
             }
             if (khachHangRespone.getCapBac() == null) {
-                
+
             } else {
                 if (khachHangRespone.getCapBac() == 0 && !khachHangRespone.getMa().equals("KH000")) {
                     pbgTienDo.setMaximum(3000000);
@@ -661,20 +667,20 @@ public class ViewKhachHang extends javax.swing.JPanel {
             mol.setRowCount(0);
             int stt = 1;
             for (KhachHangLichSuRespone x : listLS) {
-                
+
                 String capbac1 = khachhang.getCapBacTheoNgayThanhToan(x.getMa());
                 System.out.println(capbac1);
                 int capbac2 = (int) Double.parseDouble(capbac1);
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
                 String ngaythanhtoan = dateFormat.format(x.getNgayThanhToan());
                 Object[] row = new Object[]{stt,
-                        x.getMa(),
-                        ngaythanhtoan,
-                        x.getThanhTien(),
-                        x.getTrangThai() == 0 ? "Chờ thanh toán" : (x.getTrangThai() == 1 ? "Đã hủy" : (x.getTrangThai() == 2 ? "Đã thanh toán" : (x.getTrangThai() == 3 ? "Đang giao" : "Đã giao"))),
-                        capbac2 == 0 ? "Đồng" : (capbac2 == 3 ? "Bạc" : (capbac2 == 5 ? "Vàng" : "Kim cương"))};
+                    x.getMa(),
+                    ngaythanhtoan,
+                    x.getThanhTien(),
+                    x.getTrangThai() == 0 ? "Chờ thanh toán" : (x.getTrangThai() == 1 ? "Đã hủy" : (x.getTrangThai() == 2 ? "Đã thanh toán" : (x.getTrangThai() == 3 ? "Đang giao" : "Đã giao"))),
+                    capbac2 == 0 ? "Đồng" : (capbac2 == 3 ? "Bạc" : (capbac2 == 5 ? "Vàng" : "Kim cương"))};
                 mol.addRow(row);
-                stt ++;
+                stt++;
             }
             System.out.println(listLS);
         } catch (Exception e) {
@@ -723,7 +729,7 @@ public class ViewKhachHang extends javax.swing.JPanel {
     public KhachHang getKhachHangByForm() {
         KhachHang kh = new KhachHang();
         String makh = String.valueOf(khachhang.genMaKhachHang());
-        kh.setMa("KH00"+ makh);
+        kh.setMa("KH00" + makh);
         kh.setHoTen(txt_hoten.getText());
         int tt;
         if (rdo_nam.isSelected()) {
