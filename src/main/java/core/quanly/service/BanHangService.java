@@ -23,6 +23,10 @@ public interface BanHangService {
     ChiTietSPKhuyenMai getCTSPKhuyenMai(String idChiTietSP);
 
     List<BhChiTietSPResponse> getAllChiTietSP();
+    
+    List<BhChiTietSPResponse> findCTSPByMa(String input);
+    
+    List<BhChiTietSPResponse> findCTSP(String hang, String mauSac, String kichThuoc);
 
     List<BhKhachHangResponse> getAllKhachHangResponse();
     

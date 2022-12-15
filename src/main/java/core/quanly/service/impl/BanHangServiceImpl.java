@@ -159,7 +159,7 @@ public class BanHangServiceImpl implements BanHangService {
             } else if (khachHang.getCapBac() == 3) {
                 hoaDon.setPhamTramGiamGia(10.0);
             }
-        }else{
+        } else {
             hoaDon.setPhamTramGiamGia(0.0);
         }
         banHangRepository.saveOrUpdateHD(hoaDon);
@@ -238,6 +238,16 @@ public class BanHangServiceImpl implements BanHangService {
     @Override
     public List<BhHoaDonResponse> getAllResponseHDByTrangThai(String idNhanVien, int trangThaiThanhToan) {
         return banHangRepository.getAllResponseHDByTrangThai(idNhanVien, trangThaiThanhToan);
+    }
+
+    @Override
+    public List<BhChiTietSPResponse> findCTSP(String hang, String mauSac, String kichThuoc) {
+        return banHangRepository.findCTSP(hang, mauSac, kichThuoc);
+    }
+
+    @Override
+    public List<BhChiTietSPResponse> findCTSPByMa(String input) {
+        return banHangRepository.findCTSPByMa(input);
     }
 
 }

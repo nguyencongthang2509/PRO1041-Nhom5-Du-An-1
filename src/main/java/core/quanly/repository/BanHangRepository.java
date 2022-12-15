@@ -48,6 +48,44 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
         return list;
     }
 
+    public List<BhChiTietSPResponse> findCTSP(String hang, String mauSac, String kichThuoc) {
+        List<BhChiTietSPResponse> list = new ArrayList<>();
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "SELECT " + "new core.quanly.viewmodel.BhChiTietSPResponse"
+                    + "(a.id, a.maChiTietSP,a.sanPham.ma, a.sanPham.ten, "
+                    + "a.mauSac.ten, a.kichThuoc.ten, a.hang.ten, a.soLuongTon, a.giaBan, a.moTa, a.maVach)"
+                    + " FROM ChiTietSP a WHERE a.trangThaiXoa = 0 AND a.hang.ten LIKE CONCAT('%', CONVERT(VARCHAR,:hang),'%') AND a.mauSac.ten LIKE CONCAT('%', CONVERT(VARCHAR,:mauSac),'%') AND a.kichThuoc.ten LIKE CONCAT('%', CONVERT(VARCHAR,:kichThuoc),'%') order by a.createdDate DESC";
+            Query query = session.createQuery(hql);
+            query.setParameter("hang", hang);
+            query.setParameter("mauSac", mauSac);
+            query.setParameter("kichThuoc", kichThuoc);
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return list;
+    }
+    
+    public List<BhChiTietSPResponse> findCTSPByMa(String input) {
+        List<BhChiTietSPResponse> list = new ArrayList<>();
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "SELECT " + "new core.quanly.viewmodel.BhChiTietSPResponse"
+                    + "(a.id, a.maChiTietSP,a.sanPham.ma, a.sanPham.ten, "
+                    + "a.mauSac.ten, a.kichThuoc.ten, a.hang.ten, a.soLuongTon, a.giaBan, a.moTa, a.maVach)"
+                    + " FROM ChiTietSP a WHERE a.trangThaiXoa = 0 AND (a.maVach LIKE CONCAT('%', CONVERT(VARCHAR,:input),'%') OR a.sanPham.ten LIKE CONCAT('%', CONVERT(VARCHAR,:input),'%') OR a.maChiTietSP LIKE CONCAT('%', CONVERT(VARCHAR,:input),'%')) order by a.createdDate DESC";
+            Query query = session.createQuery(hql);
+            query.setParameter("input", input);
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return list;
+    }
+
 //    public static void main(String[] args) {
 //        List<ChiTietSP> list = new BanHangRepository().getAll();
 //        System.out.println(list);
