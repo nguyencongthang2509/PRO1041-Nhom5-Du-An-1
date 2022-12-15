@@ -105,8 +105,6 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         menuKhachHang = new javax.swing.JLabel();
         pnlDangXuat = new javax.swing.JPanel();
         menuDangXuat = new javax.swing.JLabel();
-        pnlThoat = new javax.swing.JPanel();
-        menuThoat = new javax.swing.JLabel();
         pnlDoiHang = new javax.swing.JPanel();
         menuDoiHang = new javax.swing.JLabel();
         lblAvartar = new util.ImageAvatar();
@@ -115,9 +113,7 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         btnCardSon = new javax.swing.JPanel();
 
         ThongTinCaNhan.setTitle("Thông tin cá nhân");
-        ThongTinCaNhan.setMaximumSize(new java.awt.Dimension(449, 649));
         ThongTinCaNhan.setMinimumSize(new java.awt.Dimension(449, 649));
-        ThongTinCaNhan.setPreferredSize(new java.awt.Dimension(449, 649));
         ThongTinCaNhan.setResizable(false);
         ThongTinCaNhan.setSize(new java.awt.Dimension(449, 649));
 
@@ -329,17 +325,17 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         pnlBanHang.setBackground(new java.awt.Color(153, 204, 255));
         pnlBanHang.setPreferredSize(new java.awt.Dimension(84, 50));
 
-        menuBanHang.setBackground(new java.awt.Color(51, 255, 51));
-        menuBanHang.setFont(new java.awt.Font("Source Sans Pro Black", 0, 20)); // NOI18N
-        menuBanHang.setForeground(new java.awt.Color(255, 255, 255));
         menuBanHang.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         menuBanHang.setIcon(new ImageIcon("src/main/images/cart.png"));
         menuBanHang.setText("Bán hàng");
-        menuBanHang.setToolTipText("");
+        menuBanHang.setBackground(new java.awt.Color(51, 255, 51));
+        menuBanHang.setFont(new java.awt.Font("Source Sans Pro Black", 0, 20)); // NOI18N
+        menuBanHang.setForeground(new java.awt.Color(255, 255, 255));
         menuBanHang.setInheritsPopupMenu(false);
         menuBanHang.setMaximumSize(new java.awt.Dimension(84, 20));
         menuBanHang.setMinimumSize(new java.awt.Dimension(84, 20));
         menuBanHang.setPreferredSize(new java.awt.Dimension(84, 20));
+        menuBanHang.setToolTipText("");
         menuBanHang.setVerifyInputWhenFocusTarget(false);
         menuBanHang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -363,14 +359,14 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         pnlHoaDon.setBackground(new java.awt.Color(153, 204, 255));
         pnlHoaDon.setPreferredSize(new java.awt.Dimension(74, 50));
 
-        menuHoaDon.setBackground(new java.awt.Color(51, 255, 51));
-        menuHoaDon.setFont(new java.awt.Font("Source Sans Pro Black", 0, 20)); // NOI18N
-        menuHoaDon.setForeground(new java.awt.Color(255, 255, 255));
         menuHoaDon.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         menuHoaDon.setIcon(new ImageIcon("src/main/images/invoice.png"));
         menuHoaDon.setText("Hóa đơn");
-        menuHoaDon.setToolTipText("");
+        menuHoaDon.setBackground(new java.awt.Color(51, 255, 51));
+        menuHoaDon.setFont(new java.awt.Font("Source Sans Pro Black", 0, 20)); // NOI18N
+        menuHoaDon.setForeground(new java.awt.Color(255, 255, 255));
         menuHoaDon.setInheritsPopupMenu(false);
+        menuHoaDon.setToolTipText("");
         menuHoaDon.setVerifyInputWhenFocusTarget(false);
         menuHoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -457,14 +453,14 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         pnlThongKe.setBackground(new java.awt.Color(153, 204, 255));
         pnlThongKe.setPreferredSize(new java.awt.Dimension(83, 50));
 
-        menuThongKe.setBackground(new java.awt.Color(51, 255, 51));
-        menuThongKe.setFont(new java.awt.Font("Source Sans Pro Black", 0, 20)); // NOI18N
-        menuThongKe.setForeground(new java.awt.Color(255, 255, 255));
         menuThongKe.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         menuThongKe.setIcon(new ImageIcon("src/main/images/trend.png"));
         menuThongKe.setText("Thống kê");
-        menuThongKe.setToolTipText("");
+        menuThongKe.setBackground(new java.awt.Color(51, 255, 51));
+        menuThongKe.setFont(new java.awt.Font("Source Sans Pro Black", 0, 20)); // NOI18N
+        menuThongKe.setForeground(new java.awt.Color(255, 255, 255));
         menuThongKe.setInheritsPopupMenu(false);
+        menuThongKe.setToolTipText("");
         menuThongKe.setVerifyInputWhenFocusTarget(false);
         menuThongKe.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -578,37 +574,6 @@ public class JFrameQuanLy extends javax.swing.JFrame {
             .addComponent(menuDangXuat, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
 
-        pnlThoat.setBackground(new java.awt.Color(153, 204, 255));
-        pnlThoat.setPreferredSize(new java.awt.Dimension(92, 50));
-
-        menuThoat.setBackground(new java.awt.Color(51, 255, 51));
-        menuThoat.setFont(new java.awt.Font("Source Sans Pro Black", 0, 20)); // NOI18N
-        menuThoat.setForeground(new java.awt.Color(255, 255, 255));
-        menuThoat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        menuThoat.setIcon(new ImageIcon("src/main/images/exit.png"));
-        menuThoat.setText("Thoát");
-        menuThoat.setToolTipText("");
-        menuThoat.setInheritsPopupMenu(false);
-        menuThoat.setVerifyInputWhenFocusTarget(false);
-        menuThoat.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menuThoatMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnlThoatLayout = new javax.swing.GroupLayout(pnlThoat);
-        pnlThoat.setLayout(pnlThoatLayout);
-        pnlThoatLayout.setHorizontalGroup(
-            pnlThoatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlThoatLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(menuThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        pnlThoatLayout.setVerticalGroup(
-            pnlThoatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menuThoat, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-        );
-
         pnlDoiHang.setBackground(new java.awt.Color(153, 204, 255));
         pnlDoiHang.setPreferredSize(new java.awt.Dimension(84, 50));
 
@@ -666,7 +631,6 @@ public class JFrameQuanLy extends javax.swing.JFrame {
             .addComponent(pnlNhanVien, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
             .addComponent(pnlKhachHang, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
             .addComponent(pnlDangXuat, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
-            .addComponent(pnlThoat, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
             .addComponent(pnlBanHang, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
             .addComponent(pnlDoiHang, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -708,9 +672,7 @@ public class JFrameQuanLy extends javax.swing.JFrame {
                 .addComponent(pnlKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(pnlDangXuat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(pnlThoat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         btnCardSon.setBackground(new java.awt.Color(255, 255, 255));
@@ -771,7 +733,6 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         menuSanPham.setForeground(Color.WHITE);
         menuThongKe.setForeground(Color.WHITE);
         menuDangXuat.setForeground(Color.WHITE);
-        menuThoat.setForeground(Color.WHITE);
         pnlHoaDon.setBackground(null);
         pnlDoiHang.setBackground(null);
         pnlKhachHang.setBackground(null);
@@ -779,7 +740,6 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         pnlNhanVien.setBackground(null);
         pnlSanPham.setBackground(null);
         pnlThongKe.setBackground(null);
-        pnlThoat.setBackground(null);
         pnlDangXuat.setBackground(null);
         ViewBanHang viewBanHang = new ViewBanHang(nhanVien);
         btnCardSon.removeAll();
@@ -800,7 +760,6 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         menuSanPham.setForeground(Color.WHITE);
         menuThongKe.setForeground(Color.WHITE);
         menuDangXuat.setForeground(Color.WHITE);
-        menuThoat.setForeground(Color.WHITE);
         pnlBanHang.setBackground(null);
         pnlDoiHang.setBackground(null);
         pnlKhachHang.setBackground(null);
@@ -808,7 +767,6 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         pnlNhanVien.setBackground(null);
         pnlSanPham.setBackground(null);
         pnlThongKe.setBackground(null);
-        pnlThoat.setBackground(null);
         pnlDangXuat.setBackground(null);
         if (nhanVien.getVaiTro() == 0) {
             ViewHoaDon viewHoaDon = new ViewHoaDon();
@@ -840,7 +798,6 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         menuHoaDon.setForeground(Color.WHITE);
         menuThongKe.setForeground(Color.WHITE);
         menuDangXuat.setForeground(Color.WHITE);
-        menuThoat.setForeground(Color.WHITE);
         pnlHoaDon.setBackground(null);
         pnlDoiHang.setBackground(null);
         pnlKhachHang.setBackground(null);
@@ -848,7 +805,6 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         pnlNhanVien.setBackground(null);
         pnlBanHang.setBackground(null);
         pnlThongKe.setBackground(null);
-        pnlThoat.setBackground(null);
         pnlDangXuat.setBackground(null);
         if (nhanVien.getVaiTro() == 0) {
             ViewSanPham viewSanPham = new ViewSanPham();
@@ -880,7 +836,6 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         menuHoaDon.setForeground(Color.WHITE);
         menuSanPham.setForeground(Color.WHITE);
         menuDangXuat.setForeground(Color.WHITE);
-        menuThoat.setForeground(Color.WHITE);
         pnlHoaDon.setBackground(null);
         pnlDoiHang.setBackground(null);
         pnlKhachHang.setBackground(null);
@@ -888,7 +843,6 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         pnlNhanVien.setBackground(null);
         pnlBanHang.setBackground(null);
         pnlSanPham.setBackground(null);
-        pnlThoat.setBackground(null);
         pnlDangXuat.setBackground(null);
         if (nhanVien.getVaiTro() == 0) {
             ViewThongKe viewThongKe = new ViewThongKe();
@@ -920,7 +874,6 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         menuHoaDon.setForeground(Color.WHITE);
         menuSanPham.setForeground(Color.WHITE);
         menuDangXuat.setForeground(Color.WHITE);
-        menuThoat.setForeground(Color.WHITE);
         pnlHoaDon.setBackground(null);
         pnlDoiHang.setBackground(null);
         pnlKhachHang.setBackground(null);
@@ -928,7 +881,6 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         pnlThongKe.setBackground(null);
         pnlBanHang.setBackground(null);
         pnlSanPham.setBackground(null);
-        pnlThoat.setBackground(null);
         pnlDangXuat.setBackground(null);
         ViewNhanVien viewNhanVien = new ViewNhanVien();
         btnCardSon.removeAll();
@@ -950,14 +902,12 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         menuHoaDon.setForeground(Color.WHITE);
         menuSanPham.setForeground(Color.WHITE);
         menuDangXuat.setForeground(Color.WHITE);
-        menuThoat.setForeground(Color.WHITE);
         pnlHoaDon.setBackground(null);
         pnlDoiHang.setBackground(null);
         pnlNhanVien.setBackground(null);
         pnlKhuyenMai.setBackground(null);
         pnlThongKe.setBackground(null);
         pnlBanHang.setBackground(null);
-        pnlThoat.setBackground(null);
         pnlDangXuat.setBackground(null);
         pnlSanPham.setBackground(null);
         ViewKhachHang viewKhachHang = new ViewKhachHang();
@@ -980,12 +930,10 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         menuHoaDon.setForeground(Color.WHITE);
         menuSanPham.setForeground(Color.WHITE);
         menuDangXuat.setForeground(Color.WHITE);
-        menuThoat.setForeground(Color.WHITE);
         pnlHoaDon.setBackground(null);
         pnlDoiHang.setBackground(null);
         pnlNhanVien.setBackground(null);
         pnlKhachHang.setBackground(null);
-        pnlThoat.setBackground(null);
         pnlDangXuat.setBackground(null);
         pnlThongKe.setBackground(null);
         pnlBanHang.setBackground(null);
@@ -1020,9 +968,7 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         menuHoaDon.setForeground(Color.WHITE);
         menuSanPham.setForeground(Color.WHITE);
         menuDoiHang.setForeground(Color.WHITE);
-        menuThoat.setForeground(Color.WHITE);
         pnlHoaDon.setBackground(null);
-        pnlThoat.setBackground(null);
         pnlDoiHang.setBackground(null);
         pnlKhuyenMai.setBackground(null);
         pnlNhanVien.setBackground(null);
@@ -1039,35 +985,6 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_menuDangXuatMouseClicked
 
-    private void menuThoatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuThoatMouseClicked
-        pnlThoat.setBackground(Color.WHITE);
-        menuThoat.setForeground(new Color(153, 204, 255));
-        menuKhuyenMai.setForeground(Color.WHITE);
-        menuBanHang.setForeground(Color.WHITE);
-        menuNhanVien.setForeground(Color.WHITE);
-        menuKhachHang.setForeground(Color.WHITE);
-        menuThongKe.setForeground(Color.WHITE);
-        menuHoaDon.setForeground(Color.WHITE);
-        menuSanPham.setForeground(Color.WHITE);
-        menuDoiHang.setForeground(Color.WHITE);
-        menuDangXuat.setForeground(Color.WHITE);
-        pnlHoaDon.setBackground(null);
-        pnlDangXuat.setBackground(null);
-        pnlDoiHang.setBackground(null);
-        pnlKhuyenMai.setBackground(null);
-        pnlNhanVien.setBackground(null);
-        pnlKhachHang.setBackground(null);
-        pnlThongKe.setBackground(null);
-        pnlBanHang.setBackground(null);
-        pnlSanPham.setBackground(null);
-        int confirm = JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn thoát chương trình không?", "Xác nhận", JOptionPane.YES_NO_CANCEL_OPTION);
-        if (confirm != JOptionPane.YES_OPTION) {
-            return;
-        }
-        ViewBanHang.webcam.close();
-        System.exit(0);
-    }//GEN-LAST:event_menuThoatMouseClicked
-
     private void menuDoiHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuDoiHangMouseClicked
         pnlDoiHang.setBackground(Color.WHITE);
         menuDoiHang.setForeground(new Color(153, 204, 255));
@@ -1079,9 +996,7 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         menuHoaDon.setForeground(Color.WHITE);
         menuSanPham.setForeground(Color.WHITE);
         menuDangXuat.setForeground(Color.WHITE);
-        menuThoat.setForeground(Color.WHITE);
         pnlHoaDon.setBackground(null);
-        pnlThoat.setBackground(null);
         pnlDangXuat.setBackground(null);
         pnlKhuyenMai.setBackground(null);
         pnlNhanVien.setBackground(null);
@@ -1194,7 +1109,6 @@ public class JFrameQuanLy extends javax.swing.JFrame {
     private javax.swing.JLabel menuKhuyenMai;
     private javax.swing.JLabel menuNhanVien;
     private javax.swing.JLabel menuSanPham;
-    private javax.swing.JLabel menuThoat;
     private javax.swing.JLabel menuThongKe;
     private javax.swing.JPanel pnlBanHang;
     private javax.swing.JPanel pnlCards;
@@ -1205,7 +1119,6 @@ public class JFrameQuanLy extends javax.swing.JFrame {
     private javax.swing.JPanel pnlKhuyenMai;
     private javax.swing.JPanel pnlNhanVien;
     private javax.swing.JPanel pnlSanPham;
-    private javax.swing.JPanel pnlThoat;
     private javax.swing.JPanel pnlThongKe;
     // End of variables declaration//GEN-END:variables
 }

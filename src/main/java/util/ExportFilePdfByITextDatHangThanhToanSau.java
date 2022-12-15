@@ -29,7 +29,7 @@ import java.util.List;
  *
  * @author thangncph26123
  */
-public class ExportFilePdfByITextDatHang {
+public class ExportFilePdfByITextDatHangThanhToanSau {
 
     public static final String pathUnicode = "font\\unicode.ttf";
 
@@ -67,11 +67,11 @@ public class ExportFilePdfByITextDatHang {
             customerInforTableKH.addCell(new Cell(0, 4)
                     .add("Thông tin khách hàng đặt hàng").setBold().setBorder(Border.NO_BORDER));
 
+            customerInforTableKH.addCell(new Cell().add("Họ tên:").setBorder(Border.NO_BORDER));
+            customerInforTableKH.addCell(new Cell().add(hoaDon.getKhachHang().getHoTen()).setBorder(Border.NO_BORDER));
+            customerInforTableKH.addCell(new Cell().add("SĐT:").setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
+            customerInforTableKH.addCell(new Cell().add(hoaDon.getKhachHang().getSdt()).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
             if (!hoaDon.getKhachHang().getMa().equals("KH000")) {
-                customerInforTableKH.addCell(new Cell().add("Họ tên:").setBorder(Border.NO_BORDER));
-                customerInforTableKH.addCell(new Cell().add(hoaDon.getKhachHang().getHoTen()).setBorder(Border.NO_BORDER));
-                customerInforTableKH.addCell(new Cell().add("SĐT:").setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
-                customerInforTableKH.addCell(new Cell().add(hoaDon.getKhachHang().getSdt()).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
                 customerInforTableKH.addCell(new Cell().add("Rank:").setBorder(Border.NO_BORDER));
                 customerInforTableKH.addCell(new Cell().add(hoaDon.getKhachHang().getCapBac() == 0 ? "Đồng" : (hoaDon.getKhachHang().getCapBac() == 1 ? "Bạc" : (hoaDon.getKhachHang().getCapBac() == 2 ? "Vàng" : "Kim cương"))).setBorder(Border.NO_BORDER));
             }
@@ -86,9 +86,9 @@ public class ExportFilePdfByITextDatHang {
             customerInforTable.addCell(new Cell().add(hoaDon.getSdtNguoiNhan()).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
             customerInforTable.addCell(new Cell().add("Địa chỉ:").setBorder(Border.NO_BORDER));
             customerInforTable.addCell(new Cell().add(hoaDon.getDiaChi()).setBorder(Border.NO_BORDER));
-            customerInforTable.addCell(new Cell().add("Ngày thanh toán:").setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
+            customerInforTable.addCell(new Cell().add("Ngày đặt hàng:").setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
             SimpleDateFormat sdf = new SimpleDateFormat("hh:mm aa dd-MM-yyyy");
-            String date = sdf.format(hoaDon.getNgayThanhToan());
+            String date = sdf.format(hoaDon.getNgayTao());
             customerInforTable.addCell(new Cell().add(date).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
 
             Table personShipInforTable = new Table(colWidth);
@@ -106,7 +106,7 @@ public class ExportFilePdfByITextDatHang {
             personShipInforTable.addCell(new Cell().add("Hình thức:").setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
             personShipInforTable.addCell(new Cell().add("Giao hàng").setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
             personShipInforTable.addCell(new Cell().add("TT:").setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.LEFT));
-            personShipInforTable.addCell(new Cell().add("Thanh toán trước").setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.LEFT));
+            personShipInforTable.addCell(new Cell().add("Thanh toán khi nhận").setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.LEFT));
 
             float itemColWidth[] = {30, 110, 170, 50, 110, 110};
             Table itemTable = new Table(itemColWidth);
@@ -134,7 +134,6 @@ public class ExportFilePdfByITextDatHang {
             itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
             itemTable.addCell(new Cell().add("Phí ship").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBold().setBorder(Border.NO_BORDER).setFontColor(Color.WHITE));
             itemTable.addCell(new Cell().add(df.format(hoaDon.getTienShip()) + " Vnđ").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBold().setBorder(Border.NO_BORDER).setFontColor(Color.WHITE));
-
             if (!hoaDon.getKhachHang().getMa().equals("KH000")) {
                 itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
                 itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
@@ -154,24 +153,9 @@ public class ExportFilePdfByITextDatHang {
             itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
             itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
             itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
-            itemTable.addCell(new Cell().add("Tiền khách trả").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBold().setBorder(Border.NO_BORDER).setFontColor(Color.WHITE));
+            itemTable.addCell(new Cell().add("Tiền cần thu").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBold().setBorder(Border.NO_BORDER).setFontColor(Color.WHITE));
             BigDecimal tienKhachTra = hoaDon.getTienKhachTra() == null ? new BigDecimal(0) : hoaDon.getTienKhachTra();
-            itemTable.addCell(new Cell().add(df.format(tienKhachTra) + " Vnđ").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBold().setBorder(Border.NO_BORDER).setFontColor(Color.WHITE));
-
-            itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
-            itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
-            itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
-            itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
-            itemTable.addCell(new Cell().add("Ngân hàng").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBold().setBorder(Border.NO_BORDER).setFontColor(Color.WHITE));
-            BigDecimal tienKhachCK = hoaDon.getTienKhachChuyenKhoan() == null ? new BigDecimal(0) : hoaDon.getTienKhachChuyenKhoan();
-            itemTable.addCell(new Cell().add(df.format(tienKhachCK) + " Vnđ").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBold().setBorder(Border.NO_BORDER).setFontColor(Color.WHITE));
-
-            itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
-            itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
-            itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
-            itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
-            itemTable.addCell(new Cell().add("Tiền thừa").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBold().setBorder(Border.NO_BORDER).setFontColor(Color.WHITE));
-            itemTable.addCell(new Cell().add(df.format(hoaDon.getTienThua()) + " Vnđ").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBold().setBorder(Border.NO_BORDER).setFontColor(Color.WHITE));
+            itemTable.addCell(new Cell().add(df.format(hoaDon.getThanhTien()) + " Vnđ").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBold().setBorder(Border.NO_BORDER).setFontColor(Color.WHITE));
 
             float colWidthLoiChao12[] = {80, 220, 230, 200};
             Table customerLuuY = new Table(colWidthLoiChao12);

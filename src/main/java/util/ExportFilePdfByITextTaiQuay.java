@@ -89,6 +89,10 @@ public class ExportFilePdfByITextTaiQuay {
                 SimpleDateFormat sdf = new SimpleDateFormat("hh:mm aa dd-MM-yyyy");
                 String date = sdf.format(hoaDon.getNgayThanhToan());
                 customerInforTable.addCell(new Cell().add(date).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
+                if (!hoaDon.getKhachHang().getMa().equals("KH000")) {
+                    customerInforTable.addCell(new Cell().add("Rank:").setBorder(Border.NO_BORDER));
+                    customerInforTable.addCell(new Cell().add(hoaDon.getKhachHang().getCapBac() == 0 ? "Đồng" : (hoaDon.getKhachHang().getCapBac() == 1 ? "Bạc" : (hoaDon.getKhachHang().getCapBac() == 2 ? "Vàng" : "Kim cương"))).setBorder(Border.NO_BORDER));
+                }
             }
 
             float itemColWidth[] = {15, 110, 170, 50, 110, 110};
@@ -110,7 +114,14 @@ public class ExportFilePdfByITextTaiQuay {
                 itemTable.addCell(new Cell().add(df.format(xx.getGiaBan()) + " Vnđ" + (xx.getGiamGia().compareTo(BigDecimal.ZERO) > 0 ? " (*)" : "")).setBorder(Border.NO_BORDER));
                 itemTable.addCell(new Cell().add(df.format(new BigDecimal(xx.getSoLuong()).multiply(xx.getGiaBan())) + " Vnđ").setBorder(Border.NO_BORDER));
             }
-
+            if (!hoaDon.getKhachHang().getMa().equals("KH000")) {
+                itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
+                itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
+                itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
+                itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
+                itemTable.addCell(new Cell().add("% giảm giá").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBold().setBorder(Border.NO_BORDER).setFontColor(Color.WHITE));
+                itemTable.addCell(new Cell().add(hoaDon.getKhachHang().getCapBac() == 0 ? "0 %" : (hoaDon.getKhachHang().getCapBac() == 1 ? "3 %" : (hoaDon.getKhachHang().getCapBac() == 2 ? "5 %" : "10 %"))).setBackgroundColor(new DeviceRgb(63, 169, 219)).setBold().setBorder(Border.NO_BORDER).setFontColor(Color.WHITE));
+            }
             itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
             itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
             itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
@@ -144,7 +155,7 @@ public class ExportFilePdfByITextTaiQuay {
             Table customerLuuY = new Table(colWidthLoiChao12);
             customerLuuY.setFont(font);
             customerLuuY.addCell(new Cell(0, 4)
-                    .add("Lưu ý: Quý khách hãy giữ lại hóa đơn,\nNếu sản phẩm gặp vấn đề gì có thể trả hàng trong vòng 3 ngày,\n chỉ thực hiện trả hàng cho những sản phẩm không áp dụng khuyến mại.\nNhững sản phẩm được đánh dấu (*) là những sản phẩm đã có giảm giá khuyến mại").setItalic().setFontColor(Color.RED).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.CENTER));
+                    .add("Lưu ý: Quý khách hãy giữ lại hóa đơn,\nNếu sản phẩm gặp vấn đề gì có thể trả hàng trong vòng 3 ngày,\n chỉ thực hiện trả hàng cho những sản phẩm không áp dụng khuyến mại.\nNhững sản phẩm được đánh dấu (*) ở giá bán là những sản phẩm đã có giảm giá khuyến mại").setItalic().setFontColor(Color.RED).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.CENTER));
 
             float colWidth1[] = {80, 220, 230, 200};
             Table customer1 = new Table(colWidth1);
@@ -168,7 +179,9 @@ public class ExportFilePdfByITextTaiQuay {
             document.add(customerInforTable);
             document.add(new Paragraph("\n"));
             document.add(itemTable);
-            document.add(customerLuuY);
+            if (!hoaDon.getKhachHang().getMa().equals("KH000")) {
+                document.add(customerLuuY);
+            }
             document.add(customer1);
             document.add(customerLoiChao);
             document.add(customer3);

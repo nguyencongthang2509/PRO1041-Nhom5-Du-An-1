@@ -49,6 +49,7 @@ import javax.swing.table.DefaultTableModel;
 import lombok.Synchronized;
 import util.ConvertMoneyToString;
 import util.ExportFilePdfByITextDatHang;
+import util.ExportFilePdfByITextDatHangThanhToanSau;
 import util.ExportFilePdfByITextTaiQuay;
 
 /**
@@ -3007,8 +3008,6 @@ public class ViewBanHang extends javax.swing.JPanel {
                 hoaDon.setNhanVien(nhanVien);
                 hoaDon.setNgayShip(new Date());
                 hoaDon.setTienShip(new BigDecimal(txtTienShip.getText().trim()));
-
-                banHangService.saveOrUpdate(hoaDon);
                 int confirm1 = JOptionPane.showConfirmDialog(this, "Bạn có muốn in hóa đơn không?");
                 if (confirm1 == JOptionPane.YES_OPTION) {
                     JFileChooser avatarChooser = new JFileChooser("D:\\");
@@ -3024,8 +3023,13 @@ public class ViewBanHang extends javax.swing.JPanel {
                     //Muốn lấy đường dẫn và để vào export PDF thì 
                     String path = selectedFile.getAbsolutePath();
                     try {
-                        ExportFilePdfByITextDatHang export = new ExportFilePdfByITextDatHang();
-                        export.exportBill(hoaDon, new ArrayList<>(mapGioHang.values()), path);
+                        if (hoaDon.getTrangThaiThanhToan() == 0) {
+                            ExportFilePdfByITextDatHang export = new ExportFilePdfByITextDatHang();
+                            export.exportBill(hoaDon, new ArrayList<>(mapGioHang.values()), path);
+                        }else{
+                            ExportFilePdfByITextDatHangThanhToanSau export = new ExportFilePdfByITextDatHangThanhToanSau();
+                            export.exportBill(hoaDon, new ArrayList<>(mapGioHang.values()), path);
+                        }
                         JOptionPane.showMessageDialog(this, "In hóa đơn thành công");
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(this, "In hóa đơn thất bại");
@@ -3034,6 +3038,8 @@ public class ViewBanHang extends javax.swing.JPanel {
                 } else {
                     clearFormDatHang();
                 }
+                banHangService.saveOrUpdate(hoaDon);
+
                 if (nhanVien.getVaiTro() == 1) {
                     listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 4);
                 } else {
@@ -3173,7 +3179,7 @@ public class ViewBanHang extends javax.swing.JPanel {
             if (checkTrangThaiCTSP()) {
                 return;
             }
-            if(mapGioHang.size() == 0){
+            if (mapGioHang.size() == 0) {
                 JOptionPane.showMessageDialog(this, "Chưa có sản phẩm");
                 return;
             }
@@ -3320,7 +3326,7 @@ public class ViewBanHang extends javax.swing.JPanel {
             if (checkTrangThaiCTSP()) {
                 return;
             }
-            if(mapGioHang.size() == 0){
+            if (mapGioHang.size() == 0) {
                 JOptionPane.showMessageDialog(this, "Chưa có sản phẩm");
                 return;
             }
@@ -3433,7 +3439,7 @@ public class ViewBanHang extends javax.swing.JPanel {
             if (checkTrangThaiCTSP()) {
                 return;
             }
-            if(mapGioHang.size() == 0){
+            if (mapGioHang.size() == 0) {
                 JOptionPane.showMessageDialog(this, "Chưa có sản phẩm");
                 return;
             }

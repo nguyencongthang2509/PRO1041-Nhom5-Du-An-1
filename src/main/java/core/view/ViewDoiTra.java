@@ -245,17 +245,17 @@ public class ViewDoiTra extends javax.swing.JPanel {
             tblHDTraHang.getColumnModel().getColumn(0).setPreferredWidth(13);
         }
 
-        jLabel19.setText("Mã hóa đơn:");
         jLabel19.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
+        jLabel19.setText("Mã hóa đơn:");
 
-        jLabel21.setText("Khách hàng:");
         jLabel21.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
+        jLabel21.setText("Khách hàng:");
 
-        jLabel22.setText("SĐT khách hàng:");
         jLabel22.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
+        jLabel22.setText("SĐT khách hàng:");
 
-        jLabel23.setText("Nhân viên:");
         jLabel23.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
+        jLabel23.setText("Nhân viên:");
 
         txtMaHD.setEditable(false);
         txtMaHD.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
@@ -273,50 +273,50 @@ public class ViewDoiTra extends javax.swing.JPanel {
         txtNhanVienBan.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         txtNhanVienBan.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(153, 204, 255)));
 
-        jLabel25.setText("Lịch sử trả hàng:");
         jLabel25.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
+        jLabel25.setText("Lịch sử trả hàng:");
 
-        btnXuatHoaDonTraHang.setText("In phiếu trả hàng");
         btnXuatHoaDonTraHang.setBackground(new java.awt.Color(153, 204, 255));
+        btnXuatHoaDonTraHang.setText("In phiếu trả hàng");
 
-        jLabel24.setText("Thành tiền:");
         jLabel24.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
+        jLabel24.setText("Thành tiền:");
 
         txtThanhTien.setEditable(false);
         txtThanhTien.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         txtThanhTien.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(153, 204, 255)));
 
-        jLabel26.setText("Bằng chữ:");
         jLabel26.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
+        jLabel26.setText("Bằng chữ:");
 
-        jLabel27.setText("---");
         jLabel27.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
+        jLabel27.setText("---");
 
-        jLabel28.setText("Số lần trả hàng:");
         jLabel28.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
+        jLabel28.setText("Số lần trả hàng:");
 
-        lblSoLanTraHang.setText("---");
         lblSoLanTraHang.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
+        lblSoLanTraHang.setText("---");
 
-        jLabel20.setText("Hình thức:");
         jLabel20.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
+        jLabel20.setText("Hình thức:");
 
         txtHinhThucGH.setEditable(false);
         txtHinhThucGH.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         txtHinhThucGH.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(153, 204, 255)));
 
-        jLabel29.setText("Tên ng/nhận:");
         jLabel29.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
+        jLabel29.setText("Tên ng/nhận:");
 
         txtTenNgNhan.setEditable(false);
         txtTenNgNhan.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         txtTenNgNhan.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(153, 204, 255)));
 
-        jLabel30.setText("Địa chỉ:");
         jLabel30.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
+        jLabel30.setText("Địa chỉ:");
 
-        jLabel31.setText("Tên ng/ship:");
         jLabel31.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
+        jLabel31.setText("Tên ng/ship:");
 
         txtDiaChi.setEditable(false);
         txtDiaChi.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
@@ -326,8 +326,8 @@ public class ViewDoiTra extends javax.swing.JPanel {
         txtTenNgShip.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         txtTenNgShip.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(153, 204, 255)));
 
-        jLabel32.setText("SĐT ng/ship:");
         jLabel32.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
+        jLabel32.setText("SĐT ng/ship:");
 
         txtSDTNgShip.setEditable(false);
         txtSDTNgShip.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
@@ -338,60 +338,51 @@ public class ViewDoiTra extends javax.swing.JPanel {
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel19)
+                    .addComponent(jLabel21)
+                    .addComponent(jLabel22)
+                    .addComponent(jLabel23)
+                    .addComponent(jLabel24)
+                    .addComponent(jLabel26)
+                    .addComponent(jLabel28)
+                    .addComponent(jLabel25))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtMaHD, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txttenKH, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSDTKH, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNhanVienBan, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtThanhTien, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel9Layout.createSequentialGroup()
                                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel19)
-                                    .addComponent(jLabel21))
-                                .addGap(50, 50, 50)
-                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel9Layout.createSequentialGroup()
-                                        .addComponent(txtMaHD, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel20))
-                                    .addGroup(jPanel9Layout.createSequentialGroup()
-                                        .addComponent(txttenKH, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel29))))
-                            .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel22)
-                                    .addComponent(jLabel23)
-                                    .addComponent(jLabel28)
-                                    .addComponent(jLabel26))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel9Layout.createSequentialGroup()
-                                        .addComponent(txtSDTKH, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel30))
-                                    .addGroup(jPanel9Layout.createSequentialGroup()
-                                        .addComponent(txtThanhTien, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel32))
-                                    .addComponent(jLabel27)
-                                    .addComponent(lblSoLanTraHang)
-                                    .addGroup(jPanel9Layout.createSequentialGroup()
-                                        .addComponent(txtNhanVienBan, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel31))))
-                            .addComponent(jLabel24))
-                        .addGap(16, 16, 16)
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtHinhThucGH)
-                            .addComponent(txtTenNgNhan, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
-                            .addComponent(txtDiaChi)
-                            .addComponent(txtTenNgShip)
-                            .addComponent(txtSDTNgShip)))
+                                    .addComponent(jLabel29)
+                                    .addComponent(jLabel30))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtTenNgShip, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
+                                    .addComponent(txtDiaChi, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtTenNgNhan, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtHinhThucGH, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtSDTNgShip)))
+                            .addComponent(jLabel31)
+                            .addComponent(jLabel32)
+                            .addComponent(jLabel20)))
                     .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jLabel25)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnXuatHoaDonTraHang)))
                 .addGap(28, 28, 28))
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(136, 136, 136)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblSoLanTraHang)
+                    .addComponent(jLabel27))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel9Layout.createSequentialGroup()
                     .addContainerGap()
@@ -451,20 +442,18 @@ public class ViewDoiTra extends javax.swing.JPanel {
                                 .addComponent(txtSDTNgShip, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel27)
+                    .addComponent(jLabel26))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel28)
+                    .addComponent(lblSoLanTraHang))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel27)
-                            .addComponent(jLabel26))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel28)
-                            .addComponent(lblSoLanTraHang))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel25)
-                        .addGap(4, 4, 4))
-                    .addComponent(btnXuatHoaDonTraHang))
-                .addContainerGap(236, Short.MAX_VALUE))
+                    .addComponent(btnXuatHoaDonTraHang)
+                    .addComponent(jLabel25))
+                .addContainerGap(233, Short.MAX_VALUE))
             .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                     .addContainerGap(338, Short.MAX_VALUE)
@@ -491,20 +480,20 @@ public class ViewDoiTra extends javax.swing.JPanel {
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel11.setText("Mã hóa đơn:");
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel11.setText("Mã hóa đơn:");
 
-        jLabel12.setText("Ngày thanh toán:");
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel12.setText("Ngày thanh toán:");
 
-        jLabel13.setText("Nhân viên:");
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel13.setText("Nhân viên:");
 
-        jLabel14.setText("Khách hàng:");
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel14.setText("Khách hàng:");
 
-        jLabel15.setText("Tiền sản phẩm:");
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel15.setText("Tiền sản phẩm:");
 
         tblHoaDonChiTiet.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -551,23 +540,23 @@ public class ViewDoiTra extends javax.swing.JPanel {
         txtTienDaThanhToan.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         txtTienDaThanhToan.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(153, 204, 255)));
 
-        jButton3.setText("Trả tất cả");
         jButton3.setBackground(new java.awt.Color(153, 204, 255));
+        jButton3.setText("Trả tất cả");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
 
-        jLabel16.setText("Số phần trăm được giảm:");
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel16.setText("Số phần trăm được giảm:");
 
         txtPhanTramGiam.setEditable(false);
         txtPhanTramGiam.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         txtPhanTramGiam.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(153, 204, 255)));
 
-        jLabel17.setText("Cấp bậc KH tại thời điểm giao dịch:");
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel17.setText("Cấp bậc KH tại thời điểm giao dịch:");
 
         txtCapBac.setEditable(false);
         txtCapBac.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
@@ -668,8 +657,8 @@ public class ViewDoiTra extends javax.swing.JPanel {
 
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel18.setText("Nhân viên trả hàng:");
         jLabel18.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
+        jLabel18.setText("Nhân viên trả hàng:");
 
         tblHDTHCT.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -690,17 +679,17 @@ public class ViewDoiTra extends javax.swing.JPanel {
         tblHDTHCT.setRowHeight(25);
         jScrollPane6.setViewportView(tblHDTHCT);
 
-        jLabel33.setText("Ngày trả hàng:");
         jLabel33.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
+        jLabel33.setText("Ngày trả hàng:");
 
-        jLabel34.setText("Tổng tiền hoàn trả:");
         jLabel34.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
+        jLabel34.setText("Tổng tiền hoàn trả:");
 
-        jLabel35.setText("Ghi chú:");
         jLabel35.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
+        jLabel35.setText("Ghi chú:");
 
-        jLabel36.setText("Danh sách sản phẩm đã trả:");
         jLabel36.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
+        jLabel36.setText("Danh sách sản phẩm đã trả:");
 
         txtNVTH.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         txtNVTH.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(153, 204, 255)));
@@ -809,9 +798,9 @@ public class ViewDoiTra extends javax.swing.JPanel {
         tblSanPham.getTableHeader().setReorderingAllowed(false);
         jScrollPane3.setViewportView(tblSanPham);
 
-        btnClear.setText("Clear");
         btnClear.setBackground(new java.awt.Color(153, 204, 255));
         btnClear.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        btnClear.setText("Clear");
         btnClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnClearActionPerformed(evt);
@@ -844,17 +833,17 @@ public class ViewDoiTra extends javax.swing.JPanel {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông tin hóa đơn", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
 
-        jLabel2.setText("Mã HĐ:");
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel2.setText("Mã HĐ:");
 
-        jLabel3.setText("Tên KH:");
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel3.setText("Tên KH:");
 
-        jLabel4.setText("SĐT:");
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel4.setText("SĐT:");
 
-        jLabel5.setText("Địa chỉ:");
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel5.setText("Địa chỉ:");
 
         txtMaHDNgoai.setEditable(false);
         txtMaHDNgoai.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
@@ -891,8 +880,8 @@ public class ViewDoiTra extends javax.swing.JPanel {
         txtThanhTienNgoai.setMinimumSize(new java.awt.Dimension(7, 30));
         txtThanhTienNgoai.setPreferredSize(new java.awt.Dimension(7, 30));
 
-        jLabel6.setText("Thành tiền:");
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel6.setText("Thành tiền:");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -949,8 +938,8 @@ public class ViewDoiTra extends javax.swing.JPanel {
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông tin hóa đơn trả", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 15))); // NOI18N
 
-        jLabel8.setText("Tiền trả khách:");
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel8.setText("Tiền trả khách:");
 
         txtTienTraKhach.setEditable(false);
         txtTienTraKhach.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
@@ -959,11 +948,11 @@ public class ViewDoiTra extends javax.swing.JPanel {
         txtTienTraKhach.setMinimumSize(new java.awt.Dimension(7, 30));
         txtTienTraKhach.setPreferredSize(new java.awt.Dimension(7, 30));
 
-        jLabel9.setText("Ghi chú:");
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel9.setText("Ghi chú:");
 
-        jLabel10.setText("Tên KH:");
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel10.setText("Tên KH:");
 
         txtTenKhTra.setEditable(false);
         txtTenKhTra.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
@@ -977,9 +966,9 @@ public class ViewDoiTra extends javax.swing.JPanel {
         txtGhiChu.setRows(5);
         jScrollPane4.setViewportView(txtGhiChu);
 
-        btnTraHang.setText("Trả hàng");
         btnTraHang.setBackground(new java.awt.Color(153, 204, 255));
         btnTraHang.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        btnTraHang.setText("Trả hàng");
         btnTraHang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTraHangActionPerformed(evt);
@@ -1078,9 +1067,9 @@ public class ViewDoiTra extends javax.swing.JPanel {
 
         jLabel1.setIcon(new ImageIcon("src/main/images/search.png"));
 
-        btnXemChiTiet.setText("Xem chi tiết");
         btnXemChiTiet.setBackground(new java.awt.Color(153, 204, 255));
         btnXemChiTiet.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        btnXemChiTiet.setText("Xem chi tiết");
         btnXemChiTiet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnXemChiTietActionPerformed(evt);
@@ -1505,6 +1494,10 @@ public class ViewDoiTra extends javax.swing.JPanel {
             ThHoaDonResponse thHoaDonResponse = listHoaDon.get(rowHoaDon);
             listSanPhamTra.clear();
             for (BhHoaDonChiTietResponse xx : listHoaDonChiTiet) {
+                if (xx.getGiamGia().compareTo(BigDecimal.ZERO) > 0) {
+                    JOptionPane.showMessageDialog(this, "Trong danh sách đã có sản phẩm được giảm giá khuyến mại");
+                    return;
+                }
                 ThHoaDonChiTietResponse thdctr = new ThHoaDonChiTietResponse();
                 thdctr.setChatLieu(xx.getChatLieu());
                 thdctr.setDonGia(xx.getDonGia());
@@ -1526,6 +1519,7 @@ public class ViewDoiTra extends javax.swing.JPanel {
                 listSanPhamTra.put(thdctr.getIdChiTietSP(), thdctr);
             }
             loadTableSanPham(listSanPhamTra);
+            tinhTienTraKhach();
         } catch (Exception e) {
             e.printStackTrace();
         }

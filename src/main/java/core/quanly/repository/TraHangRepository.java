@@ -165,7 +165,7 @@ public class TraHangRepository extends CrudRepository<String, HoaDon, Object> {
         List<HoaDonTraHang> list = new ArrayList<>();
         try {
                 session = HibernateUtil.getSession();
-                String hql = "SELECT a FROM HoaDonTraHang a WHERE a.hoaDon.id = :id";
+                String hql = "SELECT a FROM HoaDonTraHang a WHERE a.hoaDon.id = :id ORder by a.createdDate desc";
                 Query query = session.createQuery(hql);
                 query.setParameter("id", id);
                 list = query.getResultList();
