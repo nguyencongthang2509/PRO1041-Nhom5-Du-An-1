@@ -1430,11 +1430,12 @@ public class ViewDoiTra extends javax.swing.JPanel {
 
     private void tblHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonMouseClicked
         try {
+            DecimalFormat df = new DecimalFormat("#,###");
             int row = tblHoaDon.getSelectedRow();
             ThHoaDonResponse thHoaDonResponse = listHoaDon.get(row);
             txtMaHDNgoai.setText(thHoaDonResponse.getMaHD());
             txtTenKHNgoai.setText(thHoaDonResponse.getTenKhachHang());
-            txtThanhTienNgoai.setText(thHoaDonResponse.getThanhTien() + "");
+            txtThanhTienNgoai.setText(df.format(thHoaDonResponse.getThanhTien()) + " Vnđ");
             txtSDTNgoai.setText(thHoaDonResponse.getSdtKhachHang());
             txtDiaChiNgoai.setText(thHoaDonResponse.getDiaChiKhachHang());
             txtTenKhTra.setText(thHoaDonResponse.getTenKhachHang());

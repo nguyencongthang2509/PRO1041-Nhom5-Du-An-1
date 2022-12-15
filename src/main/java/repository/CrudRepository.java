@@ -36,7 +36,7 @@ public abstract class CrudRepository<Key, Entity, Response> {
         List<Entity> list = new ArrayList<>();
         try {
             session = HibernateUtil.getSession();
-            String hql = "SELECT a FROM " + className + " a";
+            String hql = "SELECT a FROM " + className + " a order by a.createdDate desc";
             Query query = session.createQuery(hql);
             list = query.getResultList();
         } catch (Exception e) {

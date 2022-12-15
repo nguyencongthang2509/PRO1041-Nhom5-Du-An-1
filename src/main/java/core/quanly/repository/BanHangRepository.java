@@ -60,7 +60,7 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
         ChiTietSPKhuyenMai chiTietSPKhuyenMai = new ChiTietSPKhuyenMai();
         try {
             session = HibernateUtil.getSession();
-            String hql = "SELECT a FROM ChiTietSPKhuyenMai a WHERE a.chiTietSPId.id = :idChiTietSP AND a.trangThai = 0";
+            String hql = "SELECT a FROM ChiTietSPKhuyenMai a WHERE a.chiTietSPId.id = :idChiTietSP AND a.trangThai = 0 order by a.createdDate desc";
             Query query = session.createQuery(hql);
             query.setParameter("idChiTietSP", idChiTietSP);
             chiTietSPKhuyenMai = (ChiTietSPKhuyenMai) query.getSingleResult();
@@ -91,7 +91,7 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
                         + "a.tienShip, a.tienKhachTra, a.tienKhachChuyenKhoan, a.tienThua)"
                         + " FROM HoaDon a LEFT JOIN a.nhanVien b LEFT JOIN a.khachHang c "
                         + "WHERE a.trangThai <> 1 AND a.trangThai <> 7 AND b.id LIKE CONCAT('%', CONVERT(VARCHAR,:idNhanVien),'%') AND a.hinhThucGiaoHang LIKE CONCAT('%', CONVERT(VARCHAR, :hinhThucGiaoHang),'%') AND a.trangThai LIKE CONCAT('%',CONVERT(VARCHAR, :trangThai),'%')"
-                        + " ORDER BY a.lastModifiedDate DESC";
+                        + " ORDER BY a.createdDate DESC";
                 Query query = session.createQuery(hql);
                 query.setParameter("idNhanVien", idNhanVien);
                 query.setParameter("hinhThucGiaoHang", hinhThucGiaoHang);
@@ -106,7 +106,7 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
                         + "a.tienShip, a.tienKhachTra, a.tienKhachChuyenKhoan, a.tienThua)"
                         + " FROM HoaDon a LEFT JOIN a.nhanVien b LEFT JOIN a.khachHang c "
                         + "WHERE a.trangThai <> 1 AND a.trangThai <> 7 AND b.id LIKE CONCAT('%', CONVERT(VARCHAR,:idNhanVien),'%') AND a.hinhThucGiaoHang LIKE CONCAT('%','','%') AND a.trangThai LIKE CONCAT('%',CONVERT(VARCHAR, :trangThai),'%')"
-                        + " ORDER BY a.lastModifiedDate DESC";
+                        + " ORDER BY a.createdDate DESC";
                 Query query = session.createQuery(hql);
                 query.setParameter("idNhanVien", idNhanVien);
                 query.setParameter("trangThai", trangThai);
@@ -120,7 +120,7 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
                         + "a.tienShip, a.tienKhachTra, a.tienKhachChuyenKhoan, a.tienThua)"
                         + " FROM HoaDon a LEFT JOIN a.nhanVien b LEFT JOIN a.khachHang c "
                         + "WHERE a.trangThai <> 1 AND a.trangThai <> 7  AND b.id LIKE CONCAT('%', CONVERT(VARCHAR,:idNhanVien),'%') AND a.hinhThucGiaoHang LIKE CONCAT('%', CONVERT(VARCHAR, :hinhThucGiaoHang),'%') AND a.trangThai LIKE CONCAT('%','','%')"
-                        + " ORDER BY a.lastModifiedDate DESC";
+                        + " ORDER BY a.createdDate DESC";
                 Query query = session.createQuery(hql);
                 query.setParameter("idNhanVien", idNhanVien);
                 query.setParameter("hinhThucGiaoHang", hinhThucGiaoHang);
@@ -134,7 +134,7 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
                         + "a.tienShip, a.tienKhachTra, a.tienKhachChuyenKhoan, a.tienThua)"
                         + " FROM HoaDon a LEFT JOIN a.nhanVien b LEFT JOIN a.khachHang c "
                         + "WHERE a.trangThai <> 1 AND a.trangThai <> 7 AND b.id LIKE CONCAT('%', CONVERT(VARCHAR,:idNhanVien),'%')"
-                        + " ORDER BY a.lastModifiedDate DESC";
+                        + " ORDER BY a.createdDate DESC";
                 Query query = session.createQuery(hql);
                 query.setParameter("idNhanVien", idNhanVien);
                 list = query.getResultList();
@@ -156,7 +156,7 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
                     + "a.tienShip, a.tienKhachTra, a.tienKhachChuyenKhoan, a.tienThua)"
                     + " FROM HoaDon a LEFT JOIN a.nhanVien b LEFT JOIN a.khachHang c "
                     + "WHERE a.trangThai <> 1 AND a.trangThai <> 7 AND b.id LIKE CONCAT('%', CONVERT(VARCHAR,:idNhanVien),'%') AND a.trangThaiThanhToan LIKE CONCAT('%', CONVERT(VARCHAR, :trangThaiThanhToan),'%')"
-                    + " ORDER BY a.lastModifiedDate DESC";
+                    + " ORDER BY a.createdDate DESC";
             Query query = session.createQuery(hql);
             query.setParameter("idNhanVien", idNhanVien);
             query.setParameter("trangThaiThanhToan", trangThaiThanhToan);
@@ -180,7 +180,7 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
                          a.giamGiaKhuyenMai, a.giaBan)
                          FROM HoaDonChiTiet a LEFT JOIN a.chiTietSPId b 
                          LEFT JOIN a.hoaDonId c
-                         WHERE c.id = :idHoaDon
+                         WHERE c.id = :idHoaDon order by a.createdDate desc
                          """;
             Query query = session.createQuery(hql);
             query.setParameter("idHoaDon", idHoaDon);
@@ -376,7 +376,7 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
         KhachHang khachHang = null;
         try {
             session = HibernateUtil.getSession();
-            String hql = "SELECT a FROM KhachHang a WHERE a.id = :id";
+            String hql = "SELECT a FROM KhachHang a WHERE a.id = :id order by a.createdDate desc";
             Query query = session.createQuery(hql);
             query.setParameter("id", id);
             if (query.getSingleResult() != null) {
@@ -394,7 +394,7 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
             session = HibernateUtil.getSession();
             String hql = "SELECT " + "new core.quanly.viewmodel.BhKhachHangResponse"
                     + "(a.id, a.ma, a.hoTen, a.sdt, a.email, a.gioiTinh, a.diaChi, a.capBac)"
-                    + " FROM KhachHang a";
+                    + " FROM KhachHang a Order by a.createdDate desc";
             Query query = session.createQuery(hql);
             list = query.getResultList();
         } catch (Exception e) {

@@ -11,8 +11,14 @@ import com.google.zxing.Result;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
 import core.quanly.service.BanHangService;
+import core.quanly.service.SPHangService;
+import core.quanly.service.SPKichThuocService;
+import core.quanly.service.SPMauSacService;
 import core.quanly.service.Test;
 import core.quanly.service.impl.BanHangServiceImpl;
+import core.quanly.service.impl.SPHangServiceImpl;
+import core.quanly.service.impl.SPKichThuocServiceImpl;
+import core.quanly.service.impl.SPMauSacServiceImpl;
 import core.quanly.viewmodel.BhChiTietSPResponse;
 import core.quanly.viewmodel.BhHoaDonChiTietResponse;
 import core.quanly.viewmodel.BhHoaDonResponse;
@@ -20,9 +26,12 @@ import core.quanly.viewmodel.BhKhachHangResponse;
 import core.quanly.viewmodel.BhNhanVienResponse;
 import domainmodels.ChiTietSP;
 import domainmodels.ChiTietSPKhuyenMai;
+import domainmodels.Hang;
 import domainmodels.HoaDon;
 import domainmodels.HoaDonChiTiet;
 import domainmodels.KhachHang;
+import domainmodels.KichThuoc;
+import domainmodels.MauSac;
 import domainmodels.NhanVien;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
@@ -41,6 +50,7 @@ import java.util.Map;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -57,17 +67,26 @@ import util.ExportFilePdfByITextTaiQuay;
  * @author thangncph26123
  */
 public class ViewBanHang extends javax.swing.JPanel {
-
+    
     private final DefaultTableModel modelSanPham;
     private final DefaultTableModel modelGioHang;
     private final DefaultTableModel modelHoaDon;
     private final DefaultTableModel modelKhachHang;
     private final DefaultTableModel modelNhanVien;
+    private final DefaultComboBoxModel modelHang;
+    private final DefaultComboBoxModel modelKichThuoc;
+    private final DefaultComboBoxModel modelMauSac;
     private List<BhChiTietSPResponse> listSanPham;
     private List<BhHoaDonResponse> listHoaDon;
     private List<BhKhachHangResponse> listKhachHang;
     private List<BhNhanVienResponse> listNhanVien;
+    private List<MauSac> listMauSac;
+    private List<Hang> listHang;
+    private List<KichThuoc> listKichThuoc;
     private final BanHangService banHangService;
+    private final SPHangService sPHangService;
+    private final SPMauSacService sPMauSacService;
+    private final SPKichThuocService sPKichThuocService;
     private Map<String, BhHoaDonChiTietResponse> mapGioHang;
     private NhanVien nhanVien;
     private int soLuongCu;
@@ -78,7 +97,7 @@ public class ViewBanHang extends javax.swing.JPanel {
     public static Webcam webcam = null;
     public Thread capture;
     public Thread captureDaily;
-
+    
     private static final long serialVersionUID = 6441489157408381878L;
 //    private Executor executor = Executors.newSingleThreadExecutor(this);
 
@@ -91,8 +110,17 @@ public class ViewBanHang extends javax.swing.JPanel {
         modelHoaDon = (DefaultTableModel) tblHoaDonCho.getModel();
         modelKhachHang = (DefaultTableModel) tblKhachHangView.getModel();
         modelNhanVien = (DefaultTableModel) tblNhanVienShip.getModel();
+        modelHang = (DefaultComboBoxModel) cboHang.getModel();
+        modelKichThuoc = (DefaultComboBoxModel) cboSize.getModel();
+        modelMauSac = (DefaultComboBoxModel) cboMauSac.getModel();
         banHangService = new BanHangServiceImpl();
+        sPHangService = new SPHangServiceImpl();
+        sPMauSacService = new SPMauSacServiceImpl();
+        sPKichThuocService = new SPKichThuocServiceImpl();
         listSanPham = new ArrayList<>();
+        listMauSac = sPMauSacService.getAll();
+        listKichThuoc = sPKichThuocService.getAll();
+        listHang = sPHangService.getAll();
         listKhachHang = new ArrayList<>();
         listNhanVien = new ArrayList<>();
         listHoaDon = new ArrayList<>();
@@ -109,8 +137,24 @@ public class ViewBanHang extends javax.swing.JPanel {
         cboTTTT.setVisible(false);
         countTbpTaiQuay = 1;
         countTbpDatHang = 0;
+        loadCombo();
     }
-
+    
+    private void loadCombo(){
+        modelHang.removeAllElements();
+        modelMauSac.removeAllElements();
+        modelKichThuoc.removeAllElements();
+        for (MauSac xx : listMauSac) {
+            modelMauSac.addElement(xx.getTen());
+        }
+        for (Hang xx : listHang) {
+            modelHang.addElement(xx.getTen());
+        }
+        for (KichThuoc xx : listKichThuoc) {
+            modelKichThuoc.addElement(xx.getTen());
+        }
+    }
+    
     public void initWebcam() {
         Dimension size = WebcamResolution.QVGA.getSize();
         webcam = Webcam.getWebcams().get(0); //0 is default webcam
@@ -118,14 +162,14 @@ public class ViewBanHang extends javax.swing.JPanel {
         panel = new WebcamPanel(webcam);
         panel.setPreferredSize(size);
         panel.setFPSDisplayed(true);
-
+        
         pnlWebcam.add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 231, 173));
 
 //        executor.execute(this);
         captureThread();
         loadDaily();
     }
-
+    
     @Synchronized
     public void loadDaily() {
         captureDaily = new Thread() {
@@ -145,7 +189,7 @@ public class ViewBanHang extends javax.swing.JPanel {
         captureDaily.setDaemon(true);
         captureDaily.start();
     }
-
+    
     @Synchronized
     public void captureThread() {
         capture = new Thread() {
@@ -159,16 +203,16 @@ public class ViewBanHang extends javax.swing.JPanel {
                     }
                     Result result = null;
                     BufferedImage image = null;
-
+                    
                     if (webcam.isOpen()) {
                         if ((image = webcam.getImage()) == null) {
                             continue;
                         }
                     }
-
+                    
                     LuminanceSource source = new BufferedImageLuminanceSource(image);
                     BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
-
+                    
                     try {
                         result = new MultiFormatReader().decode(bitmap);
                     } catch (NotFoundException e) {
@@ -347,7 +391,7 @@ public class ViewBanHang extends javax.swing.JPanel {
             modelSanPham.addRow(new Object[]{xx.getMaCTSP(), xx.getTenSP(), xx.getMauSac(), xx.getSize(), xx.getHang(), xx.getSoLuongTon(), xx.getDonGia() + " Vnđ", giaBan + " Vnđ"});
         }
     }
-
+    
     private void loadDataToTableHDCT(Map<String, BhHoaDonChiTietResponse> map) {
         modelGioHang.setRowCount(0);
         for (Map.Entry<String, BhHoaDonChiTietResponse> entry : map.entrySet()) {
@@ -355,28 +399,28 @@ public class ViewBanHang extends javax.swing.JPanel {
             modelGioHang.addRow(value.toDataRow());
         }
     }
-
+    
     private void loadDataToKhachHang(List<BhKhachHangResponse> list) {
         modelKhachHang.setRowCount(0);
         for (BhKhachHangResponse xx : list) {
             modelKhachHang.addRow(xx.toDataRow());
         }
     }
-
+    
     private void loadDataToNhanVien(List<BhNhanVienResponse> list) {
         modelNhanVien.setRowCount(0);
         for (BhNhanVienResponse xx : list) {
             modelNhanVien.addRow(xx.toDataRow());
         }
     }
-
+    
     private void loadDataToHoaDon(List<BhHoaDonResponse> list) {
         modelHoaDon.setRowCount(0);
         for (BhHoaDonResponse xx : list) {
             modelHoaDon.addRow(xx.toDataRow());
         }
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -1535,11 +1579,11 @@ public class ViewBanHang extends javax.swing.JPanel {
             }
         });
 
-        lblTienChu.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
         lblTienChu.setText("----");
+        lblTienChu.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
 
-        jLabel36.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
         jLabel36.setText("Bằng chữ:");
+        jLabel36.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -2195,7 +2239,7 @@ public class ViewBanHang extends javax.swing.JPanel {
             }
             int rowSanPham = tblSanPham.getSelectedRow();
             rowHoaDon = tblHoaDonCho.getSelectedRow();
-
+            
             BhHoaDonResponse bhHoaDonResponse = listHoaDon.get(rowHoaDon);
             BhChiTietSPResponse bhChiTietSPCheck = listSanPham.get(rowSanPham);
             BhHoaDonChiTietResponse hoaDonChiTietCheck = mapGioHang.get(bhChiTietSPCheck.getId());
@@ -2502,6 +2546,7 @@ public class ViewBanHang extends javax.swing.JPanel {
                 }
             } else {
                 tbpDonHang.setSelectedIndex(1);
+                clearFormDatHang();
                 txtMaHDDatHang.setText(bhHoaDonResponse.getMaHD());
                 txtTenNVDatHang.setText(bhHoaDonResponse.getTenNhanVien());
                 if (bhHoaDonResponse.getTenNguoiNhan() != null) {
@@ -2575,6 +2620,9 @@ public class ViewBanHang extends javax.swing.JPanel {
                     Instant instantNgayMongMuon = ngayMongMuon.toInstant();
                     LocalDateTime localDateTime = LocalDateTime.ofInstant(instantNgayMongMuon, ZoneId.systemDefault());
                     txtNgayMongMuon.setDateTimePermissive(localDateTime);
+                } else {
+                    txtNgayMongMuon.datePicker.setText("");
+                    txtNgayMongMuon.timePicker.setText("");
                 }
                 if (bhHoaDonResponse.getTrangThaiThanhToan() != null) {
                     cboTrangThaiThanhToan.setSelectedIndex(bhHoaDonResponse.getTrangThaiThanhToan());
@@ -2582,7 +2630,7 @@ public class ViewBanHang extends javax.swing.JPanel {
                 if (bhHoaDonResponse.getTrangThaiThanhToan() != null) {
                     if (bhHoaDonResponse.getTrangThaiThanhToan() == 0) {
                         if (bhHoaDonResponse.getTrangThai() == 0) {
-
+                            
                         } else {
                             if (bhHoaDonResponse.getHinhThucThanhToan() == 0) {
                                 txtTienKhachDuaDatHang.setEnabled(true);
@@ -2666,6 +2714,8 @@ public class ViewBanHang extends javax.swing.JPanel {
                     btnDaGiaoDatHang.setEnabled(false);
                     btnChonKhachHangDatHang.setEnabled(true);
                     btnChonNhanVienShip.setEnabled(true);
+                    cboHTThanhToanDatHang.setEnabled(false);
+                    cboTrangThaiThanhToan.setEnabled(false);
                     btnXoa1.setEnabled(false);
                     chkTatCa.setEnabled(false);
                 }
@@ -2688,6 +2738,10 @@ public class ViewBanHang extends javax.swing.JPanel {
                     btnChonKhachHangDatHang.setEnabled(false);
                     btnChonNhanVienShip.setEnabled(false);
                     btnXoa1.setEnabled(false);
+                    if (bhHoaDonResponse.getTrangThaiThanhToan() == 1) {
+                        cboHTThanhToanDatHang.setEnabled(true);
+//                        cboTrangThaiThanhToan.setEnabled(true);
+                    }
                 }
                 if (bhHoaDonResponse.getTrangThai() == 5) {
                     btnThanhToanDatHang.setEnabled(false);
@@ -2698,6 +2752,8 @@ public class ViewBanHang extends javax.swing.JPanel {
                     btnKhachHenGiaoLai.setEnabled(false);
                     btnChonNhanVienShip.setEnabled(false);
                     btnXoa1.setEnabled(false);
+                    cboHTThanhToanDatHang.setEnabled(false);
+                    cboTrangThaiThanhToan.setEnabled(false);
                 }
                 if (bhHoaDonResponse.getTrangThai() == 6) {
                     btnThanhToanDatHang.setEnabled(false);
@@ -2708,6 +2764,8 @@ public class ViewBanHang extends javax.swing.JPanel {
                     btnChonKhachHangDatHang.setEnabled(false);
                     btnChonNhanVienShip.setEnabled(false);
                     btnXoa1.setEnabled(false);
+                    cboHTThanhToanDatHang.setEnabled(false);
+                    cboTrangThaiThanhToan.setEnabled(false);
                 }
                 if (bhHoaDonResponse.getTienShip() != null) {
                     txtTienShip.setText(bhHoaDonResponse.getTienShip() + "");
@@ -2880,7 +2938,7 @@ public class ViewBanHang extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Tiền khách đưa phải là số");
         }
     }//GEN-LAST:event_txtTienKhachDuaTaiQuayCaretUpdate
-
+    
     private void clearForm() {
         if (!listHoaDon.isEmpty()) {
             loadDataToHoaDon(listHoaDon);
@@ -2901,7 +2959,7 @@ public class ViewBanHang extends javax.swing.JPanel {
         lblCapBac.setIcon(new ImageIcon(""));
         lblTenCapBac.setText("");
     }
-
+    
     private void clearFormDatHang() {
         mapGioHang.clear();
         lblCapBacDatHang.setIcon(new ImageIcon(""));
@@ -2923,6 +2981,8 @@ public class ViewBanHang extends javax.swing.JPanel {
         txtTienKhachCKDatHang.setText("");
         txtTienKhachDuaDatHang.setText("");
         txtTienThuaDatHang.setText("");
+        cboHTThanhToanDatHang.setEnabled(true);
+        cboTrangThaiThanhToan.setEnabled(true);
     }
 
     private void cboHTThanhToanDatHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboHTThanhToanDatHangActionPerformed
@@ -3026,7 +3086,7 @@ public class ViewBanHang extends javax.swing.JPanel {
                         if (hoaDon.getTrangThaiThanhToan() == 0) {
                             ExportFilePdfByITextDatHang export = new ExportFilePdfByITextDatHang();
                             export.exportBill(hoaDon, new ArrayList<>(mapGioHang.values()), path);
-                        }else{
+                        } else {
                             ExportFilePdfByITextDatHangThanhToanSau export = new ExportFilePdfByITextDatHangThanhToanSau();
                             export.exportBill(hoaDon, new ArrayList<>(mapGioHang.values()), path);
                         }
@@ -3039,7 +3099,7 @@ public class ViewBanHang extends javax.swing.JPanel {
                     clearFormDatHang();
                 }
                 banHangService.saveOrUpdate(hoaDon);
-
+                
                 if (nhanVien.getVaiTro() == 1) {
                     listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 4);
                 } else {
@@ -3265,7 +3325,7 @@ public class ViewBanHang extends javax.swing.JPanel {
                 hoaDon.setHinhThucGiaoHang(1);
                 hoaDon.setHinhThucThanhToan(cboHTThanhToanDatHang.getSelectedIndex());
                 if (cboHTThanhToanDatHang.getSelectedIndex() == 1 || cboHTThanhToanDatHang.getSelectedIndex() == 2) {
-
+                    
                 }
                 hoaDon.setTrangThai(2);
                 hoaDon.setTenNguoiNhan(tenNguoiNhan);
@@ -3302,7 +3362,7 @@ public class ViewBanHang extends javax.swing.JPanel {
 //                loadDataToTableSP(listSanPham);
 
                 JOptionPane.showMessageDialog(this, "Thanh toán thành công");
-
+                
                 if (nhanVien.getVaiTro() == 1) {
                     listHoaDon = banHangService.getAllResponseHD(nhanVien.getId(), 1, 2);
                 } else {
@@ -3552,11 +3612,11 @@ public class ViewBanHang extends javax.swing.JPanel {
             e.printStackTrace();
         }
     }//GEN-LAST:event_btnThanhToanTaiQuayActionPerformed
-
+    
     private boolean checkTrangThaiCTSP() {
         for (Map.Entry<String, BhHoaDonChiTietResponse> entry : mapGioHang.entrySet()) {
             BhHoaDonChiTietResponse value = entry.getValue();
-
+            
             ChiTietSP chiTietSP = banHangService.findChiTietSPById(value.getIdChiTietSP());
             System.out.println(chiTietSP);
             if (chiTietSP != null) {
@@ -3568,7 +3628,7 @@ public class ViewBanHang extends javax.swing.JPanel {
         }
         return false;
     }
-
+    
     private void setSelected(Integer hinhThucGiaoHang, Integer trangThaiHoaDon) {
         cboHinhThucGiaoHang.setSelectedIndex(hinhThucGiaoHang);
         cboTrangThaiHoaDon.setSelectedIndex(trangThaiHoaDon);
@@ -3896,6 +3956,12 @@ public class ViewBanHang extends javax.swing.JPanel {
             listKhachHang = banHangService.getAllKhachHangResponse();
             loadDataToKhachHang(listKhachHang);
             JOptionPane.showMessageDialog(this, "Tạo khách hàng thành công");
+            txtTenKHAdd.setText("");
+            txtSdtAdd.setText("");
+            txtNgaySinhAdd.setText("");
+            rdoNam.setSelected(true);
+            txtDiaChi.setText("");
+            txtEmailKh.setText("");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -4292,7 +4358,7 @@ public class ViewBanHang extends javax.swing.JPanel {
             e.printStackTrace();
         }
     }
-
+    
     public void taoHoaDonDatHang() {
         try {
             clearForm();
@@ -4334,7 +4400,7 @@ public class ViewBanHang extends javax.swing.JPanel {
             e.printStackTrace();
         }
     }
-
+    
     public void taoHoaDonTaiQuay() {
         try {
             clearForm();
@@ -4374,7 +4440,7 @@ public class ViewBanHang extends javax.swing.JPanel {
             e.printStackTrace();
         }
     }
-
+    
     private Map<String, BhHoaDonChiTietResponse> getMapSelected() {
         Map<String, BhHoaDonChiTietResponse> mapSelected = new HashMap<>();
         for (int i = 0; i < mapGioHang.size(); i++) {
