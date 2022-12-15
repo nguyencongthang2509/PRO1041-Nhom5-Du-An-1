@@ -1591,6 +1591,8 @@ public class ViewSanPham extends javax.swing.JPanel {
             lstSpViewModel = sanPhamService.getAllResponse();
             LoadToTableSp(lstSpViewModel);
             JOptionPane.showMessageDialog(this, "Thêm mới sản phẩm thành công");
+            txtMaSanPham.setText("");
+            txtTenSanPham.setText("");
             loadAll();
         } catch (Exception e) {
             e.printStackTrace();
@@ -1725,7 +1727,11 @@ public class ViewSanPham extends javax.swing.JPanel {
             lstctSpViewModel = ctsanPhamService.getAllViewModel();
             loadTableChiTietSP(lstctSpViewModel);
             JOptionPane.showMessageDialog(this, messsage);
-
+            txtmaCTSP.setText("");
+            txtSoLuongTon.setText("");
+            txtGiaBan.setText("");
+            txaMoTa.setText("");
+            txtMaVach.setText("");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1814,6 +1820,8 @@ public class ViewSanPham extends javax.swing.JPanel {
                     lstHangRepon = hangService.getAllResponse();
                     LoadToTableHang();
                     JOptionPane.showMessageDialog(this, "Thêm mới hãng thành công");
+                    txtMaThuocTinh.setText("");
+                    txtTenThuocTinh.setText("");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -1848,6 +1856,8 @@ public class ViewSanPham extends javax.swing.JPanel {
                     lstKichThuocRepon = kichThuocService.getAllResponse();
                     LoadToTableKichThuoc();
                     JOptionPane.showMessageDialog(this, "Thêm mới kích thước thành công");
+                    txtMaThuocTinh.setText("");
+                    txtTenThuocTinh.setText("");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -1879,6 +1889,8 @@ public class ViewSanPham extends javax.swing.JPanel {
                     lstMauSacRespon = mauSacService.getAllResponse();
                     LoadToTableMauSac();
                     JOptionPane.showMessageDialog(this, "Thêm mới màu sắc thành công");
+                    txtMaThuocTinh.setText("");
+                    txtTenThuocTinh.setText("");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -1910,6 +1922,8 @@ public class ViewSanPham extends javax.swing.JPanel {
                     lstChatLieuRespon = chatLieuService.getAllResponse();
                     LoadToTableChatLieu();
                     JOptionPane.showMessageDialog(this, "Thêm mới chất liệu thành công");
+                    txtMaThuocTinh.setText("");
+                    txtTenThuocTinh.setText("");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -1966,7 +1980,7 @@ public class ViewSanPham extends javax.swing.JPanel {
                 try {
                     txtTenThuocTinh.getText().trim();
                 } catch (Exception e) {
-                        JOptionPane.showMessageDialog(this, "Hãng phải là chữ");
+                    JOptionPane.showMessageDialog(this, "Hãng phải là chữ");
                     return;
                 }
                 if (txtTenThuocTinh.getText().trim().length() > 50) {
@@ -1987,6 +2001,7 @@ public class ViewSanPham extends javax.swing.JPanel {
                 String messsage = hangService.update(hang);
                 lstHangRepon = hangService.getAllResponse();
                 LoadToTableHang();
+
                 JOptionPane.showMessageDialog(this, "Sửa thành công");
             } else if (radioKichThuoc.isSelected()) {
                 KichThuoc kichThuoc = getKichThuocByForm();
@@ -2041,7 +2056,7 @@ public class ViewSanPham extends javax.swing.JPanel {
                 try {
                     txtTenThuocTinh.getText().trim();
                 } catch (Exception e) {
-                        JOptionPane.showMessageDialog(this, "Màu sắc phải là chữ");
+                    JOptionPane.showMessageDialog(this, "Màu sắc phải là chữ");
                     return;
                 }
                 if (txtTenThuocTinh.getText().trim().length() > 50) {
@@ -2099,7 +2114,9 @@ public class ViewSanPham extends javax.swing.JPanel {
                 String messsage = chatLieuService.update(chatLieu);
                 lstChatLieuRespon = chatLieuService.getAllResponse();
                 LoadToTableChatLieu();
+
                 JOptionPane.showMessageDialog(this, "Sửa thành công");
+
             }
             loadAll();
         } catch (Exception e) {
