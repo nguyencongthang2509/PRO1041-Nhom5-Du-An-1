@@ -218,9 +218,9 @@ public class CTSanPhamRepository extends CrudRepository<String, ChiTietSP, CTSan
             Session session = HibernateUtil.getSession();
             String hql = "SELECT new core.quanly.viewmodel.CTSanPhamResponse(a.id, a.sanPham.ma, a.sanPham.ten,"
                     + "a.mauSac.ten, a.kichThuoc.ten, a.hang.ten, a.chatLieu.ten ,a.maChiTietSP, a.moTa, a.soLuongTon, a.giaBan, a.maVach, a.trangThaiXoa) FROM ChiTietSP a"
-                    + " WHERE (a.sanPham.ma LIKE CONCAT('%',:input,'%') OR a.maChiTietSP LIKE CONCAT('%',:input,'%')"
-                    + "OR a.mauSac.ten LIKE CONCAT('%',:input,'%') OR a.giaBan LIKE CONCAT('%',:input,'%')"
-                    + "OR a.kichThuoc.ten LIKE CONCAT('%',:input,'%') OR a.soLuongTon LIKE CONCAT('%',:input,'%')) AND a.trangThaiXoa = :TrangThai";
+                    + " WHERE (a.sanPham.ten LIKE CONCAT('%',:input,'%') OR a.maChiTietSP LIKE CONCAT('%',:input,'%')"
+                    + "OR a.mauSac.ten LIKE CONCAT('%',:input,'%') OR a.giaBan LIKE CONCAT('%',:input,'%') OR a.hang.ten LIKE CONCAT('%',:input,'%')"
+                    + "OR a.kichThuoc.ten LIKE CONCAT('%',:input,'%') OR a.chatLieu.ten LIKE CONCAT('%',:input,'%') OR a.soLuongTon LIKE CONCAT('%',:input,'%')) AND a.trangThaiXoa = :TrangThai";
             Query query = session.createQuery(hql);
             query.setParameter("input", input);
             query.setParameter("TrangThai", TrangThai);
