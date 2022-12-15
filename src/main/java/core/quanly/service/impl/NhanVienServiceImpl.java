@@ -65,10 +65,13 @@ public class NhanVienServiceImpl implements NhanVienService {
         if (nhanVien.getSdt().isEmpty()) {
             return "Số điện thoại không được để trống";
         }
+        if (nhanVien.getSdt().length() > 10) {
+            return "Số điện thoại không được quá 10 kí tự";
+        }
         if (nhanVien.getEmail().isEmpty()) {
             return "Email không được để trống";
         }
-        if (nhanVien.getEmail().length()>50) {
+        if (nhanVien.getEmail().length() > 50) {
             return "Email không được quá 50 ký tự";
         }
         if (nhanVienRepos.saveOrUpdate(nhanVien) == null) {
@@ -97,7 +100,7 @@ public class NhanVienServiceImpl implements NhanVienService {
         if (nhanVien.getTen().length() > 100) {
             return "Tên không quá 100 ký tự";
         }
-        
+
         if (nhanVien.getDiaChi().isEmpty()) {
             return "Địa chỉ không được để trống";
         }
@@ -107,13 +110,16 @@ public class NhanVienServiceImpl implements NhanVienService {
         if (nhanVien.getSdt().isEmpty()) {
             return "Số điện thoại không được để trống";
         }
+        if (nhanVien.getSdt().length() > 10) {
+            return "Số điện thoại không được quá 10 kí tự";
+        }
         if (nhanVien.getEmail().isEmpty()) {
             return "Email không được để trống";
         }
-        if (nhanVien.getEmail().length()>50) {
+        if (nhanVien.getEmail().length() > 50) {
             return "Email không được quá 50 ký tự";
         }
-        
+
         nhanVienFindById.setTen(nhanVien.getTen());
         nhanVienFindById.setGioiTinh(nhanVien.getGioiTinh());
         nhanVienFindById.setNgaySinh(nhanVien.getNgaySinh());
@@ -158,7 +164,8 @@ public class NhanVienServiceImpl implements NhanVienService {
         }
         return list;
     }
-        public static void main(String[] args) {
+
+    public static void main(String[] args) {
         List<NhanVienNghiResponse> xx = new NhanVienServiceImpl().getListbyAll("ng");
         System.out.println(xx);
     }
@@ -194,6 +201,7 @@ public class NhanVienServiceImpl implements NhanVienService {
         }
         return id;
     }
+
     public NhanVien getNhanVienByEmail2(String input) {
         NhanVien list = new NhanVien();
         try {
@@ -241,7 +249,6 @@ public class NhanVienServiceImpl implements NhanVienService {
         }
         return list;
     }
-
 
     public boolean updateTrangThai(int trangThai, String id) {
         boolean check = false;

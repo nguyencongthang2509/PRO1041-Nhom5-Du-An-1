@@ -100,7 +100,7 @@ public class ViewNhanVien extends javax.swing.JPanel {
         btnMauImport = new javax.swing.JButton();
         btnImport = new javax.swing.JButton();
         datePickerNgaysinh = new com.github.lgooddatepicker.components.DatePicker();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        tbbNhanVien = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblNhanVien = new javax.swing.JTable();
@@ -390,9 +390,9 @@ public class ViewNhanVien extends javax.swing.JPanel {
 
         jPanel16Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtDiaChiNhanVien6, txtEmail6, txtMaNhanVien6, txtSdtNhanVien6, txtTenNhanVien6});
 
-        jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+        tbbNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTabbedPane1MouseClicked(evt);
+                tbbNhanVienMouseClicked(evt);
             }
         });
 
@@ -549,7 +549,7 @@ public class ViewNhanVien extends javax.swing.JPanel {
                 .addContainerGap(407, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Đang làm", jPanel4);
+        tbbNhanVien.addTab("Đang làm", jPanel4);
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -713,7 +713,7 @@ public class ViewNhanVien extends javax.swing.JPanel {
                 .addGap(23, 23, 23))
         );
 
-        jTabbedPane1.addTab("Nghỉ việc", jPanel5);
+        tbbNhanVien.addTab("Nghỉ việc", jPanel5);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -722,7 +722,7 @@ public class ViewNhanVien extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(tbbNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jPanel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -732,7 +732,7 @@ public class ViewNhanVien extends javax.swing.JPanel {
                 .addGap(14, 14, 14)
                 .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, Short.MAX_VALUE)
+                .addComponent(tbbNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 428, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -833,7 +833,7 @@ public class ViewNhanVien extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Vui lòng không để trống ngày sinh");
                 return;
             }
-            if (txtSdtNhanVien6.getText().length()>10) {
+            if (txtSdtNhanVien6.getText().length() > 10) {
 
                 JOptionPane.showMessageDialog(this, "Số điện thoại phải gồm 10 ký tự");
                 return;
@@ -882,54 +882,35 @@ public class ViewNhanVien extends javax.swing.JPanel {
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
 
         try {
-            NhanVien nv = getformData();
-
-//            if (tblNhanVien.getSelectedRow() ==-1||tblNhanVien1.getSelectedRow()==-1) {
-//                JOptionPane.showMessageDialog(this, "Bạn chưa chọn đối tượng nào");
-//                return;
-//            } 
-            if (datePickerNgaysinh.getDate() == null) {
-                JOptionPane.showMessageDialog(this, "Vui lòng không để trống ngày sinh");
-                return;
-            }
-            if (!txtSdtNhanVien6.getText().matches("(84|0[3|5|7|8|9])+([0-9]{8})\\b")) {
-
-                JOptionPane.showMessageDialog(this, "Số điện thoại phải là số và gồm 10 ký tự");
-                return;
-            }
-            if (!txtEmail6.getText().matches("\\w+@{1}\\w+.+\\w")) {
-                JOptionPane.showMessageDialog(this, "Định dạng Email không đúng");
-                return;
-            }
-            if (!txtTenNhanVien6.getText().matches("[a-zA-Z][a-zA-Z ]*")) {
-                JOptionPane.showMessageDialog(this, "Định dạng Tên không đúng");
-                return;
-            }
-            for (NhanVienResponse xx : listNhanVien) {
-                if (txtSdtNhanVien6.getText().equalsIgnoreCase(xx.getSdt())) {
-                    JOptionPane.showMessageDialog(this, "Trùng số điện thoại");
+            if (tbbNhanVien.getSelectedIndex() == 0) {
+                if (tblNhanVien.getSelectedRow() == -1) {
+                    JOptionPane.showMessageDialog(this, "Mời chọn nhân viên");
                     return;
-                }
-                if (txtEmail6.getText().equalsIgnoreCase(xx.getEmail())) {
-                    JOptionPane.showMessageDialog(this, "Email đã tồn tại");
-                    return;
+                } else if (tblNhanVien.getSelectedRow() >= 0) {
+                    NhanVien nv = getformData();
+                    if (nv == null) {
+                        return;
+                    }
+                    nv.setId(listNhanVien.get(tblNhanVien.getSelectedRow()).getId());
+                    String message = nhanVienService.update(nv);
+                    JOptionPane.showMessageDialog(this, message);
+
                 }
             }
-            if (tblNhanVien.getSelectedRow() >= 0) {
-                nv.setId(listNhanVien.get(tblNhanVien.getSelectedRow()).getId());
-                String message = nhanVienService.update(nv);
-                JOptionPane.showMessageDialog(this, message);
 
-            } else {
-                JOptionPane.showMessageDialog(this, "Mời chọn nhân viên");
-            }
-            if (tblNhanVien1.getSelectedRow() >= 0) {
-                nv.setId(listNhanVien1.get(tblNhanVien1.getSelectedRow()).getId());
-                String message = nhanVienService.update(nv);
-                JOptionPane.showMessageDialog(this, message);
-
-            } else {
-                JOptionPane.showMessageDialog(this, "Mời chọn nhân viên");
+            if (tbbNhanVien.getSelectedIndex() == 1) {
+                if (tblNhanVien1.getSelectedRow() == -1) {
+                    JOptionPane.showMessageDialog(this, "Mời chọn nhân viên");
+                    return;
+                } else if (tblNhanVien1.getSelectedRow() >= 0) {
+                    NhanVien nv = getformData();
+                    if (nv == null) {
+                        return;
+                    }
+                    nv.setId(listNhanVien1.get(tblNhanVien1.getSelectedRow()).getId());
+                    String message = nhanVienService.update(nv);
+                    JOptionPane.showMessageDialog(this, message);
+                }
             }
             loadTable();
             loadTableDaNghi();
@@ -982,9 +963,9 @@ public class ViewNhanVien extends javax.swing.JPanel {
 
     }//GEN-LAST:event_tblNhanVien1MouseClicked
 
-    private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
+    private void tbbNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbbNhanVienMouseClicked
 
-    }//GEN-LAST:event_jTabbedPane1MouseClicked
+    }//GEN-LAST:event_tbbNhanVienMouseClicked
 
     private void jScrollPane2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane2MouseClicked
 
@@ -1164,11 +1145,11 @@ public class ViewNhanVien extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JRadioButton rdoNam6;
     private javax.swing.JRadioButton rdoNhanVien6;
     private javax.swing.JRadioButton rdoNu6;
     private javax.swing.JRadioButton rdoQuanLy6;
+    private javax.swing.JTabbedPane tbbNhanVien;
     private javax.swing.JTable tblNhanVien;
     private javax.swing.JTable tblNhanVien1;
     private javax.swing.JTextField txtDiaChiNhanVien6;
@@ -1192,6 +1173,42 @@ public class ViewNhanVien extends javax.swing.JPanel {
 
     private NhanVien getformData() {
         NhanVien nv = new NhanVien();
+        if (datePickerNgaysinh.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Vui lòng không để trống ngày sinh");
+            return null;
+        }
+        int row = this.tblNhanVien.getSelectedRow();
+        if (row == -1) {
+            return null;
+        }
+//            if (!txtSdtNhanVien6.getText().matches("(84|0[3|5|7|8|9])+([0-9]{8})\\b")) {
+//
+//                JOptionPane.showMessageDialog(this, "Số điện thoại phải là số và gồm 10 ký tự");
+//                return;
+//            }
+        if (!txtEmail6.getText().matches("\\w+@{1}\\w+.+\\w")) {
+            JOptionPane.showMessageDialog(this, "Định dạng Email không đúng");
+            return null;
+        }
+        List<NhanVienResponse> listtam = new ArrayList<>();
+        for (NhanVienResponse xx : listNhanVien) {
+            if (!xx.getSdt().equals(listNhanVien.get(row).getSdt())) {
+                listtam.add(xx);
+            }
+        }
+        for (NhanVienResponse xx : listNhanVien) {
+            for (NhanVienResponse n : listtam) {
+                if (txtSdtNhanVien6.getText().equals(n.getSdt())) {
+                    JOptionPane.showMessageDialog(this, "Số điện thoại đã tồn tại");
+                    return null;
+                }
+                if (txtEmail6.getText().equalsIgnoreCase(n.getEmail())) {
+                    JOptionPane.showMessageDialog(this, "Email đã tồn tại");
+                    return null;
+                }
+            }
+
+        }
         nv.setMa("NV00" + nvnnv.genMaNhanVien());
 
         nv.setTen(txtTenNhanVien6.getText().trim());
