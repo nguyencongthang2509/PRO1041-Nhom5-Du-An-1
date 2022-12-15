@@ -69,11 +69,13 @@ public class EmailSender extends Thread {
         EmailSender emailSender = new EmailSender();
         emailSender.start();
 //        JOptionPane.showMessageDialog(null, body);
-        
+
     }
+
     public static void main(String[] args) {
-String array[] = {"congq9834@gmail.com", "quynhncph26201@fpt.edu.vn"};
+        String array[] = {"congq9834@gmail.com", "quynhncph26201@fpt.edu.vn"};
         for (String string : array) {
             new EmailSender().emailSender(string, "tttttttttttttttttttttttt", "fffffffffffffffffffff");
-        }    }
+        }
+    }
 }

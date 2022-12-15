@@ -1202,20 +1202,20 @@ public class ViewThongKe extends javax.swing.JPanel {
                 return;
             }
 
-            if (nvImpl.getNhanVienByEmail(vv) == null) {
-                JOptionPane.showMessageDialog(this, "Không tìm thấy nhân viên này");
-                return;
-            }
-            String nv = nvImpl.getNhanVienByEmail(vv);
+//            if (nvImpl.getNhanVienByEmail(vv) == null) {
+//                JOptionPane.showMessageDialog(this, "Không tìm thấy nhân viên này");
+//                return;
+//            }
+//            String nv = nvImpl.getNhanVienByEmail(vv);
             if (dPNgay1.getDate() == null || dPNgay2.getDate() == null) {
-                if (nv == "") {
+                if (vv == "") {
                     JOptionPane.showMessageDialog(this, "Khong tim thay Email");
                 } else {
                     //Send to Email
                     if (firstSend == 0L) {
 
-                        EmailSender.emailSender(vv, "Báo Cáo Mới !!!", " Lượng Doanh Thu Hôm Nay: " + doanhthungay + " VNĐ" + "<<><>>Lượng Hoá Đơn Ngày: " + hoaDonngay
-                                + "<<><>>Lượng Hoa Đơn Huy Ngày: " + HDhuyngay + "<<><>>Lượng Khach Hang Hôm Nay: " + KHngay);
+                        EmailSender.emailSender(vv, "Báo Cáo Mới !!!", " Lượng Doanh Thu Hôm Nay: " + doanhthungay + " VNĐ" + "<<><>>Lượng Hoá Đơn Hôm Nay : " + hoaDonngay
+                                + "<<><>>Lượng Hoa Đơn Huỷ Hôm Nay: " + HDhuyngay + "<<><>>Lượng Khach Hang Hôm Nay: " + KHngay);
                         JOptionPane.showMessageDialog(this, "Báo Cáo đã được gửi đến Email");
                         System.out.println(HDhuyngay);
                         firstSend = Calendar.getInstance().getTimeInMillis();
@@ -1231,7 +1231,7 @@ public class ViewThongKe extends javax.swing.JPanel {
                         }
                     }
                 }
-            } else if (nv == "") {
+            } else if (vv == "") {
                 JOptionPane.showMessageDialog(this, "Không tim thay Email");
             } else {
                 Date time3 = java.sql.Date.valueOf(dPNgay1.getDate());

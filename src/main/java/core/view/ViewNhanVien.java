@@ -160,6 +160,7 @@ public class ViewNhanVien extends javax.swing.JPanel {
 
         txtTenNhanVien6.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
+        txtSdtNhanVien6.setText("0");
         txtSdtNhanVien6.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
         txtDiaChiNhanVien6.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
@@ -832,17 +833,13 @@ public class ViewNhanVien extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Vui lòng không để trống ngày sinh");
                 return;
             }
-            if (!txtSdtNhanVien6.getText().matches("(84|0[3|5|7|8|9])+([0-9]{8})\\b")) {
+            if (txtSdtNhanVien6.getText().length()>10) {
 
-                JOptionPane.showMessageDialog(this, "Số điện thoại phải là số và gồm 10 ký tự");
+                JOptionPane.showMessageDialog(this, "Số điện thoại phải gồm 10 ký tự");
                 return;
             }
             if (!txtEmail6.getText().matches("\\w+@{1}\\w+.+\\w")) {
                 JOptionPane.showMessageDialog(this, "Định dạng Email không đúng");
-                return;
-            }
-            if (!txtTenNhanVien6.getText().matches("[a-zA-Z][a-zA-Z ]*")) {
-                JOptionPane.showMessageDialog(this, "Định dạng Tên không đúng");
                 return;
             }
             for (NhanVienResponse xx : listNhanVien) {
@@ -1215,7 +1212,7 @@ public class ViewNhanVien extends javax.swing.JPanel {
         txtTenNhanVien6.setText("");
         txtDiaChiNhanVien6.setText("");
         txtEmail6.setText("");
-        txtSdtNhanVien6.setText("");
+        txtSdtNhanVien6.setText("0");
         datePickerNgaysinh.setText("");
         txtTimKiembyMa.setText("");
     }
