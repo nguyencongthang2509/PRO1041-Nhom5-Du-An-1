@@ -723,7 +723,7 @@ public class ViewKhachHang extends javax.swing.JPanel {
     public KhachHang getKhachHangByForm() {
         KhachHang kh = new KhachHang();
         String makh = String.valueOf(khachhang.genMaKhachHang());
-        kh.setMa("KM00"+ makh);
+        kh.setMa("KH00"+ makh);
         kh.setHoTen(txt_hoten.getText());
         int tt;
         if (rdo_nam.isSelected()) {

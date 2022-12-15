@@ -594,7 +594,8 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
         });
 
         btnhuy.setText("Hủy");
-        btnhuy.setBackground(new java.awt.Color(153, 204, 255));
+        btnhuy.setBackground(new java.awt.Color(255, 0, 0));
+        btnhuy.setForeground(new java.awt.Color(255, 255, 255));
         btnhuy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnhuyActionPerformed(evt);
