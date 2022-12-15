@@ -258,6 +258,12 @@ public class ViewSanPham extends javax.swing.JPanel {
         jPanel16.setMaximumSize(new java.awt.Dimension(402, 151));
         jPanel16.setMinimumSize(new java.awt.Dimension(402, 151));
 
+        txtAddTenMauSac.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAddTenMauSacActionPerformed(evt);
+            }
+        });
+
         jLabel19.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
         jLabel19.setText("Tên màu sắc:");
 
@@ -674,7 +680,7 @@ public class ViewSanPham extends javax.swing.JPanel {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(txtTimKiemSp, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(822, 822, 822)))
@@ -950,7 +956,7 @@ public class ViewSanPham extends javax.swing.JPanel {
                     .addComponent(jLabel5))
                 .addGap(50, 50, 50)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cbbChatLieu, 0, 246, Short.MAX_VALUE)
+                    .addComponent(cbbChatLieu, 0, 265, Short.MAX_VALUE)
                     .addComponent(cbbHangct, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cbbMauSac, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cbbKichThuocct, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1193,7 +1199,7 @@ public class ViewSanPham extends javax.swing.JPanel {
                                 .addComponent(btnSau)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnCuoi)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 533, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 552, Short.MAX_VALUE)
                                 .addComponent(btnXoa)
                                 .addGap(41, 41, 41)
                                 .addComponent(btnKhoiPhuc, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -1483,7 +1489,7 @@ public class ViewSanPham extends javax.swing.JPanel {
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1210, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1229, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
@@ -2252,6 +2258,13 @@ public class ViewSanPham extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Không được để trống tên");
                 return;
             }
+            for (ChatLieu xx : lstChatLieu) {
+                if (txtJfraTenChatLieu.getText().equals(xx.getTen())) {
+                    JOptionPane.showMessageDialog(this, "Đã có chất liệu này ");
+                    JframeChatLieu.setVisible(false);
+                    return;
+                }
+            }
             String tenChatLieu = txtJfraTenChatLieu.getText().trim();
             ChatLieu chatLieu = new ChatLieu();
             chatLieu.setMa("CL" + chatLieuService.genChatLieuTuDong());
@@ -2272,6 +2285,13 @@ public class ViewSanPham extends javax.swing.JPanel {
             if (txtJfraTenHang.getText().trim().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Không được để trống tên");
                 return;
+            }
+            for (Hang xx : lstHang) {
+                if (txtJfraTenHang.getText().equals(xx.getTen())) {
+                    JOptionPane.showMessageDialog(this, "Đã có hãng này ");
+                    JframeHang.setVisible(false);
+                    return;
+                }
             }
             String tenHang = txtJfraTenHang.getText().trim();
             Hang hang = new Hang();
@@ -2294,6 +2314,20 @@ public class ViewSanPham extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Không được để trống tên");
                 return;
             }
+            
+            for (KichThuoc xx : lstKichThuoc) {
+                if (txtJraTenKichThuoc.getText().equals(xx.getTen())) {
+                    JOptionPane.showMessageDialog(this, "Đã có kích thước này ");
+                    JframeKichThuoc.setVisible(false);
+                    return;
+                }
+            }
+            if(Double.parseDouble(txtJraTenKichThuoc.getText().trim())< 30 || 
+                            Double.parseDouble(txtJraTenKichThuoc.getText().trim())> 50){
+                        JOptionPane.showMessageDialog(this, "Kích thước phải từ 30 đến 50");
+                        JframeKichThuoc.setVisible(false);
+                        return;
+                    }
             String tenKichThuoc = txtJraTenKichThuoc.getText().trim();
             KichThuoc kichThuoc = new KichThuoc();
             kichThuoc.setMa("KT" + kichThuocService.genMaKichThuocTuDong());
@@ -2314,6 +2348,13 @@ public class ViewSanPham extends javax.swing.JPanel {
             if (txtAddTenMauSac.getText().trim().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Không được để trống tên");
                 return;
+            }
+            for (MauSac xx : lstMauSac) {
+                if (txtAddTenMauSac.getText().equals(xx.getTen())) {
+                    JOptionPane.showMessageDialog(this, "Đã có màu sắc này ");
+                    JframeKichThuoc.setVisible(false);
+                    return;
+                }
             }
             String tenMauSac = txtAddTenMauSac.getText().trim();
             MauSac mauSac = new MauSac();
@@ -2403,6 +2444,10 @@ public class ViewSanPham extends javax.swing.JPanel {
         } catch (Exception e) {
         }
     }//GEN-LAST:event_cbbTrangThaiActionPerformed
+
+    private void txtAddTenMauSacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAddTenMauSacActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAddTenMauSacActionPerformed
 
     private List<CTSanPhamResponse> GetSelected() {
         List<CTSanPhamResponse> listselected = new ArrayList<>();
