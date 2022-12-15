@@ -87,7 +87,7 @@ public class KhachHangRespository extends CrudRepository<String, KhachHang, Khac
         try {
             session = HibernateUtil.getSession();
             String hql = "SELECT new core.quanly.viewmodel.KhachHangLichSuRespone(b.id,a.ma,a.ngayThanhToan,a.thanhTien,a.trangThai,b.capBac) "
-                    + "FROM HoaDon a LEFT JOIN a.khachHang b WHERE b.ma =:id";
+                    + "FROM HoaDon a LEFT JOIN a.khachHang b WHERE b.ma =:id order by a.ngayThanhToan DESC";
             Query query = session.createQuery(hql);
             query.setParameter("id", id);
             list = query.getResultList();
