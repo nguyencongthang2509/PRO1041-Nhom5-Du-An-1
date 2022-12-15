@@ -719,6 +719,7 @@ public class ViewBanHang extends javax.swing.JPanel {
             }
         });
         tblKhachHangView.setRowHeight(25);
+        tblKhachHangView.setSelectionBackground(new java.awt.Color(86, 154, 222));
         tblKhachHangView.getTableHeader().setReorderingAllowed(false);
         jScrollPane5.setViewportView(tblKhachHangView);
         if (tblKhachHangView.getColumnModel().getColumnCount() > 0) {
@@ -975,6 +976,7 @@ public class ViewBanHang extends javax.swing.JPanel {
             }
         });
         tblNhanVienShip.setRowHeight(25);
+        tblNhanVienShip.setSelectionBackground(new java.awt.Color(86, 154, 222));
         jScrollPane7.setViewportView(tblNhanVienShip);
         if (tblNhanVienShip.getColumnModel().getColumnCount() > 0) {
             tblNhanVienShip.getColumnModel().getColumn(0).setPreferredWidth(45);
@@ -1729,7 +1731,7 @@ public class ViewBanHang extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 492, Short.MAX_VALUE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

@@ -24,6 +24,7 @@ import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import javax.xml.bind.DatatypeConverter;
@@ -134,7 +135,7 @@ public class ViewNhanVien extends javax.swing.JPanel {
         jPanel2.setPreferredSize(new java.awt.Dimension(1292, 784));
 
         jPanel16.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel16.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thiết lập  thông tin nhân viên", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 16))); // NOI18N
+        jPanel16.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thiết lập thông tin nhân viên", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 16))); // NOI18N
 
         jLabel60.setText("Mã nhân viên:");
         jLabel60.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
@@ -511,7 +512,8 @@ public class ViewNhanVien extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        btnNghi.setText("Nghỉ");
+        btnNghi.setText("Nghỉ việc");
+        btnNghi.setBackground(new java.awt.Color(153, 204, 255));
         btnNghi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNghiActionPerformed(evt);
@@ -525,15 +527,15 @@ public class ViewNhanVien extends javax.swing.JPanel {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(96, 96, 96)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 193, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 154, Short.MAX_VALUE)
                 .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(109, 109, 109))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnNghi, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1225, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(55, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1233, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -546,7 +548,7 @@ public class ViewNhanVien extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnNghi, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(407, Short.MAX_VALUE))
+                .addContainerGap(392, Short.MAX_VALUE))
         );
 
         tbbNhanVien.addTab("Đang làm", jPanel4);
@@ -671,6 +673,7 @@ public class ViewNhanVien extends javax.swing.JPanel {
         );
 
         btnKhoiPhuc2.setText("Khôi Phục ");
+        btnKhoiPhuc2.setBackground(new java.awt.Color(153, 204, 255));
         btnKhoiPhuc2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnKhoiPhuc2ActionPerformed(evt);
@@ -706,7 +709,7 @@ public class ViewNhanVien extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnKhoiPhuc2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -722,8 +725,8 @@ public class ViewNhanVien extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tbbNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tbbNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -977,14 +980,33 @@ public class ViewNhanVien extends javax.swing.JPanel {
 
     private void btnExportbtnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportbtnSuaActionPerformed
         try {
-            ExportFileExcelNhanVien export = new ExportFileExcelNhanVien();
-            listNhanVienoooo = nhanVienService.getAllResponse();
-            boolean check = export.ExportExcel(listNhanVienoooo);
+            int confirm = JOptionPane.showConfirmDialog(this, "Bạn có muốn xuất danh sách nhân viên không?");
+            if (confirm == JOptionPane.YES_OPTION) {
+                JFileChooser avatarChooser = new JFileChooser("D:\\");
+                avatarChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY); //Giới hạn chỉ chọn đc thư mục
+                FileNameExtensionFilter avatarFilter = new FileNameExtensionFilter("Exel File", "xlsx");
+                avatarChooser.setFileFilter(avatarFilter);
+                avatarChooser.setAcceptAllFileFilterUsed(false);
+                int selectFileCheck = avatarChooser.showOpenDialog(this);
+                File selectedFile = avatarChooser.getSelectedFile();
+                if (!(selectFileCheck == JFileChooser.APPROVE_OPTION)) {
+                    return;
+                }
+                //Muốn lấy đường dẫn và để vào export PDF thì 
+                String path = selectedFile.getAbsolutePath();
+                ExportFileExcelNhanVien export = new ExportFileExcelNhanVien();
+                listNhanVienoooo = nhanVienService.getAllResponse();
+                if (listNhanVienoooo.size() == 0) {
+                    JOptionPane.showMessageDialog(this, "Danh sách trống");
+                    return;
+                }
+                boolean check = export.ExportExcel(listNhanVienoooo, path);
 
-            if (check) {
-                JOptionPane.showMessageDialog(this, "Export File Excel thành công");
-            } else {
-                JOptionPane.showMessageDialog(this, "Export File Excel thất bại");
+                if (check) {
+                    JOptionPane.showMessageDialog(this, "Export File Excel thành công");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Export File Excel thất bại");
+                }
             }
         } catch (Exception e) {
         }
@@ -992,8 +1014,20 @@ public class ViewNhanVien extends javax.swing.JPanel {
 
     private void btnMauImportbtnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMauImportbtnSuaActionPerformed
         try {
+            JFileChooser avatarChooser = new JFileChooser("D:\\");
+            avatarChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY); //Giới hạn chỉ chọn đc thư mục
+            FileNameExtensionFilter avatarFilter = new FileNameExtensionFilter("Exel File", "xlsx");
+            avatarChooser.setFileFilter(avatarFilter);
+            avatarChooser.setAcceptAllFileFilterUsed(false);
+            int selectFileCheck = avatarChooser.showOpenDialog(this);
+            File selectedFile = avatarChooser.getSelectedFile();
+            if (!(selectFileCheck == JFileChooser.APPROVE_OPTION)) {
+                return;
+            }
+            //Muốn lấy đường dẫn và để vào export PDF thì 
+            String path = selectedFile.getAbsolutePath();
             MauExcelFileNhanVien importFile = new MauExcelFileNhanVien();
-            boolean check = importFile.ImportExcel();
+            boolean check = importFile.ImportExcel(path);
             if (check) {
                 JOptionPane.showMessageDialog(this, "Tải mẫu Excel thành công");
             } else {
@@ -1005,8 +1039,9 @@ public class ViewNhanVien extends javax.swing.JPanel {
 
     private void btnImportbtnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportbtnSuaActionPerformed
         try {
-
             JFileChooser fc = new JFileChooser();
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("Exel File", "xlsx");
+            fc.setFileFilter(filter);
             int check = fc.showOpenDialog(null);
             File file = null;
             if (check == JFileChooser.APPROVE_OPTION) {

@@ -4,6 +4,8 @@
  */
 package util;
 
+import java.awt.Desktop;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -18,7 +20,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  */
 public class TaiMauExcelCTSP {
 
-    public boolean ImportExcel() {
+    public boolean ImportExcel(String path) {
         boolean check = false;
         try {
             XSSFWorkbook workbook = new XSSFWorkbook();
@@ -72,9 +74,18 @@ public class TaiMauExcelCTSP {
             cell11.setCellValue("1256");
 
             try {
-                FileOutputStream outputStream = new FileOutputStream("QuanLySanPhamTemplate.xlsx");
+                String pathFile = path + "\\" + "QuanLySanPhamTemplate.xlsx";
+                File file = new File(pathFile);
+                FileOutputStream outputStream = new FileOutputStream(pathFile);
                 workbook.write(outputStream);
                 workbook.close();
+                if (!Desktop.isDesktopSupported()) {
+                    return check;
+                }
+                Desktop desktop = Desktop.getDesktop();
+                if (file.exists()) {
+                    desktop.open(file);
+                }
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {

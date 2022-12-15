@@ -24,7 +24,7 @@ public class NhanVienRepository extends CrudRepository<String, NhanVien, NhanVie
     public NhanVienRepository() {
         className = NhanVien.class.getName();
         res = "new core.quanly.viewmodel.NhanVienResponse(a.id,a.ma,a.ten,a.gioiTinh,"
-                + "a.ngaySinh,a.diaChi,a.sdt,a.email,a.vaiTro)";
+                + "a.ngaySinh,a.diaChi,a.sdt,a.email,a.vaiTro, a.trangThaiXoa)";
     }
 
     public static void main(String[] args) {

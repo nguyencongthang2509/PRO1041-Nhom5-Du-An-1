@@ -5,6 +5,8 @@
 package util;
 
 import core.quanly.viewmodel.NhanVienResponse;
+import java.awt.Desktop;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -20,7 +22,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  */
 public class MauExcelFileNhanVien {
 
-    public boolean ImportExcel() {
+    public boolean ImportExcel(String path) {
         boolean check = false;
         try {
             XSSFWorkbook workbook = new XSSFWorkbook();
@@ -66,9 +68,18 @@ public class MauExcelFileNhanVien {
             cell8.setCellValue("Nhân Viên");
 //            cell9.setCellValue("0");
             try {
-                FileOutputStream outputStream = new FileOutputStream("MauNhanVien.xlsx");
+                String pathFile = path + "\\" + "MauNhanVien.xlsx";
+                File file = new File(pathFile);
+                FileOutputStream outputStream = new FileOutputStream(pathFile);
                 workbook.write(outputStream);
                 workbook.close();
+                if (!Desktop.isDesktopSupported()) {
+                    return check;
+                }
+                Desktop desktop = Desktop.getDesktop();
+                if (file.exists()) {
+                    desktop.open(file);
+                }
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {

@@ -6,10 +6,13 @@ package util;
 
 import core.quanly.viewmodel.ThongKeTraHangResponse;
 import domainmodels.NhanVien;
+import java.awt.Desktop;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.Calendar;
 import java.util.List;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -21,12 +24,13 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * @author quynhncph26201
  */
 public class ExportNhanVienThongKeTra {
-    public boolean ExportFileExcel(List<ThongKeTraHangResponse> lst) {
+
+    public boolean ExportFileExcel(List<ThongKeTraHangResponse> lst, String path) {
         NhanVien nv = new NhanVien();
         boolean check = false;
         try {
             XSSFWorkbook workbook = new XSSFWorkbook();
-            XSSFSheet sheet = workbook.createSheet("Danh Sách Hàng Hoá Đã Trả Của Nhân Viên: "+nv.getTen());
+            XSSFSheet sheet = workbook.createSheet("Danh Sách Hàng Hoá Đã Trả Của Nhân Viên: " + nv.getTen());
             int rowNum = 0;
             Row firstRow = sheet.createRow(rowNum++);
             Cell firstCell1 = firstRow.createCell(0);
@@ -37,7 +41,7 @@ public class ExportNhanVienThongKeTra {
             Cell firstCell6 = firstRow.createCell(5);
             Cell firstCell7 = firstRow.createCell(6);
             Cell firstCell8 = firstRow.createCell(7);
-            
+
             firstCell1.setCellValue("STT");
             firstCell2.setCellValue("Mã SP");
             firstCell3.setCellValue("Tên SP");
@@ -75,13 +79,20 @@ public class ExportNhanVienThongKeTra {
                 DecimalFormat df = new DecimalFormat("#,###");
                 cell8.setCellValue(df.format(xx.getGiaBan()));
 
-                
-
             }
             try {
-                FileOutputStream outputStream = new FileOutputStream("HangHoaHoanTraCuaNhanVien.xlsx");
+                String pathFile = path + "\\" + "HangHoaHoanTraCuaNhanVien" + Calendar.getInstance().getTimeInMillis() + ".xlsx";
+                File file = new File(pathFile);
+                FileOutputStream outputStream = new FileOutputStream(pathFile);
                 workbook.write(outputStream);
                 workbook.close();
+                if (!Desktop.isDesktopSupported()) {
+                    return check;
+                }
+                Desktop desktop = Desktop.getDesktop();
+                if (file.exists()) {
+                    desktop.open(file);
+                }
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {

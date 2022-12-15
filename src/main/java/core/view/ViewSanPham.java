@@ -652,6 +652,7 @@ public class ViewSanPham extends javax.swing.JPanel {
             }
         });
         tblSanPhamm.setRowHeight(30);
+        tblSanPhamm.setSelectionBackground(new java.awt.Color(86, 154, 222));
         tblSanPhamm.getTableHeader().setReorderingAllowed(false);
         tblSanPhamm.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1094,6 +1095,7 @@ public class ViewSanPham extends javax.swing.JPanel {
             }
         });
         tblCTSanPham.setRowHeight(30);
+        tblCTSanPham.setSelectionBackground(new java.awt.Color(86, 154, 222));
         tblCTSanPham.getTableHeader().setReorderingAllowed(false);
         tblCTSanPham.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1475,6 +1477,7 @@ public class ViewSanPham extends javax.swing.JPanel {
             }
         });
         tblThuocTinhSP.setRowHeight(30);
+        tblThuocTinhSP.setSelectionBackground(new java.awt.Color(86, 154, 222));
         tblThuocTinhSP.getTableHeader().setReorderingAllowed(false);
         tblThuocTinhSP.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -2183,8 +2186,20 @@ public class ViewSanPham extends javax.swing.JPanel {
 
     private void btnTaiMauExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaiMauExcelActionPerformed
         try {
+            JFileChooser avatarChooser = new JFileChooser("D:\\");
+            avatarChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY); //Giới hạn chỉ chọn đc thư mục
+            FileNameExtensionFilter avatarFilter = new FileNameExtensionFilter("Exel File", "xlsx");
+            avatarChooser.setFileFilter(avatarFilter);
+            avatarChooser.setAcceptAllFileFilterUsed(false);
+            int selectFileCheck = avatarChooser.showOpenDialog(this);
+            File selectedFile = avatarChooser.getSelectedFile();
+            if (!(selectFileCheck == JFileChooser.APPROVE_OPTION)) {
+                return;
+            }
+            //Muốn lấy đường dẫn và để vào export PDF thì 
+            String path = selectedFile.getAbsolutePath();
             TaiMauExcelCTSP importEX = new TaiMauExcelCTSP();
-            boolean check = importEX.ImportExcel();
+            boolean check = importEX.ImportExcel(path);
             if (check) {
                 JOptionPane.showMessageDialog(this, "Tải mẫu Excel thành công");
             } else {

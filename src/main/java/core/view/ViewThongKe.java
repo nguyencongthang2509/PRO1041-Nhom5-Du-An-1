@@ -16,6 +16,7 @@ import domainmodels.HoaDonTraHangChiTiet;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Panel;
+import java.io.File;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.Date;
@@ -31,8 +32,10 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import org.jfree.chart.ChartFactory;
@@ -200,7 +203,7 @@ public class ViewThongKe extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(55, 55, 55)
                         .addComponent(lblHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
         );
@@ -241,7 +244,7 @@ public class ViewThongKe extends javax.swing.JPanel {
                         .addComponent(lblHangTra, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -317,7 +320,7 @@ public class ViewThongKe extends javax.swing.JPanel {
         );
         JPenalBieuDoLayout.setVerticalGroup(
             JPenalBieuDoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 386, Short.MAX_VALUE)
+            .addGap(0, 385, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -341,7 +344,7 @@ public class ViewThongKe extends javax.swing.JPanel {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 1251, Short.MAX_VALUE)
+                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 1245, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -452,7 +455,7 @@ public class ViewThongKe extends javax.swing.JPanel {
         tblHangHoa.setSelectionBackground(new java.awt.Color(86, 154, 222));
         jScrollPane1.setViewportView(tblHangHoa);
 
-        jButton1.setText("Export to excel");
+        jButton1.setText("Xuất file excel");
         jButton1.setBackground(new java.awt.Color(153, 204, 255));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -604,6 +607,7 @@ public class ViewThongKe extends javax.swing.JPanel {
         jScrollPane2.setViewportView(tblHangHoa1);
 
         btnExportTraHang.setText("Xuất File Excel");
+        btnExportTraHang.setBackground(new java.awt.Color(153, 204, 255));
         btnExportTraHang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExportTraHangActionPerformed(evt);
@@ -621,9 +625,9 @@ public class ViewThongKe extends javax.swing.JPanel {
                 .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43)
                 .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
-                .addComponent(btnExportTraHang, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addComponent(btnExportTraHang)
+                .addGap(23, 23, 23))
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2)
@@ -641,11 +645,12 @@ public class ViewThongKe extends javax.swing.JPanel {
                         .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel13Layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(btnExportTraHang, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                            .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnExportTraHang)
+                        .addGap(42, 42, 42)))
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
         );
@@ -1274,14 +1279,33 @@ public class ViewThongKe extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            ExportThongKeSanPhamBan export = new ExportThongKeSanPhamBan();
-            listHangHoa = hangHoaService.getAllResponse();
-            boolean check = export.ExportFileExcel(listHangHoa);
+            int confirm = JOptionPane.showConfirmDialog(this, "Bạn có muốn xuất danh hàng hóa đã bán không?");
+            if (confirm == JOptionPane.YES_OPTION) {
+                JFileChooser avatarChooser = new JFileChooser("D:\\");
+                avatarChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY); //Giới hạn chỉ chọn đc thư mục
+                FileNameExtensionFilter avatarFilter = new FileNameExtensionFilter("Exel File", "xlsx");
+                avatarChooser.setFileFilter(avatarFilter);
+                avatarChooser.setAcceptAllFileFilterUsed(false);
+                int selectFileCheck = avatarChooser.showOpenDialog(this);
+                File selectedFile = avatarChooser.getSelectedFile();
+                if (!(selectFileCheck == JFileChooser.APPROVE_OPTION)) {
+                    return;
+                }
+                //Muốn lấy đường dẫn và để vào export PDF thì 
+                String path = selectedFile.getAbsolutePath();
+                ExportThongKeSanPhamBan export = new ExportThongKeSanPhamBan();
+                listHangHoa = hangHoaService.getAllResponse();
+                if (listHangHoa.size() == 0) {
+                    JOptionPane.showMessageDialog(this, "Danh sách trống");
+                    return;
+                }
+                boolean check = export.ExportFileExcel(listHangHoa, path);
 
-            if (check) {
-                JOptionPane.showMessageDialog(this, "Export File Excel thành công");
-            } else {
-                JOptionPane.showMessageDialog(this, "Export File Excel thất bại");
+                if (check) {
+                    JOptionPane.showMessageDialog(this, "Export File Excel thành công");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Export File Excel thất bại");
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -1294,14 +1318,33 @@ public class ViewThongKe extends javax.swing.JPanel {
 
     private void btnExportTraHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportTraHangActionPerformed
         try {
-            ExportThongKeHangHoaTra export = new ExportThongKeHangHoaTra();
-            listHangHoaTra = thongKeRespo.getListTraHang();
-            boolean check = export.ExportFileExcel(listHangHoaTra);
+            int confirm = JOptionPane.showConfirmDialog(this, "Bạn có muốn xuất danh hàng hóa đã trả không?");
+            if (confirm == JOptionPane.YES_OPTION) {
+                JFileChooser avatarChooser = new JFileChooser("D:\\");
+                avatarChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY); //Giới hạn chỉ chọn đc thư mục
+                FileNameExtensionFilter avatarFilter = new FileNameExtensionFilter("Exel File", "xlsx");
+                avatarChooser.setFileFilter(avatarFilter);
+                avatarChooser.setAcceptAllFileFilterUsed(false);
+                int selectFileCheck = avatarChooser.showOpenDialog(this);
+                File selectedFile = avatarChooser.getSelectedFile();
+                if (!(selectFileCheck == JFileChooser.APPROVE_OPTION)) {
+                    return;
+                }
+                //Muốn lấy đường dẫn và để vào export PDF thì 
+                String path = selectedFile.getAbsolutePath();
+                ExportThongKeHangHoaTra export = new ExportThongKeHangHoaTra();
+                listHangHoaTra = thongKeRespo.getListTraHang();
+                if(listHangHoaTra.size() == 0){
+                    JOptionPane.showMessageDialog(this, "Danh sách trống");
+                    return;
+                }
+                boolean check = export.ExportFileExcel(listHangHoaTra, path);
 
-            if (check) {
-                JOptionPane.showMessageDialog(this, "Export File Excel thành công");
-            } else {
-                JOptionPane.showMessageDialog(this, "Export File Excel thất bại");
+                if (check) {
+                    JOptionPane.showMessageDialog(this, "Export File Excel thành công");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Export File Excel thất bại");
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

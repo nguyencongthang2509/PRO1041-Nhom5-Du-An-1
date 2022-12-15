@@ -13,6 +13,8 @@ import core.quanly.viewmodel.HdHoaDonChiTietResponse1;
 import core.quanly.viewmodel.HdHoaDonResponse1;
 import core.quanly.viewmodel.HdHoaDonResponse2;
 import domainmodels.HoaDon;
+import java.awt.Desktop;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -26,8 +28,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
@@ -36,6 +40,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import util.ExportFilePdfByITextTaiQuay;
 import util.ExportPdfHoaDon;
 import view.JFrameQuanLy;
 
@@ -1764,89 +1769,113 @@ public class ViewHoaDon extends javax.swing.JPanel {
     }//GEN-LAST:event_btnLoadByTimeActionPerformed
 
     private void btnXuatDachSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatDachSachActionPerformed
-        try {
-            if (listHoaDon == null) {
-                JOptionPane.showMessageDialog(this, "Danh sách trống");
-                return;
-            }
-            XSSFWorkbook workbook = new XSSFWorkbook();
-            XSSFSheet sheet = workbook.createSheet("Danh Sách Hóa Đơn");
-            XSSFRow row = null;
-            Cell cell = null;
-            row = sheet.createRow(1);
-            cell = row.createCell(0, CellType.STRING);
-            cell.setCellValue("STT");
-
-            cell = row.createCell(1, CellType.STRING);
-            cell.setCellValue("Mã HD");
-
-            cell = row.createCell(2, CellType.STRING);
-            cell.setCellValue("Ngày tạo");
-
-            cell = row.createCell(3, CellType.STRING);
-            cell.setCellValue("Ngày thanh toán");
-
-            cell = row.createCell(4, CellType.STRING);
-            cell.setCellValue("Tổng tiền");
-
-            cell = row.createCell(5, CellType.STRING);
-            cell.setCellValue("Mã NV");
-
-            cell = row.createCell(6, CellType.STRING);
-            cell.setCellValue("Tên KH");
-
-            cell = row.createCell(7, CellType.STRING);
-            cell.setCellValue("Lý do");
-
-            cell = row.createCell(8, CellType.STRING);
-            cell.setCellValue("Trạng thái");
-            int index = 2;
-            int x = 1;
-
-            for (HdHoaDonResponse1 h : listHoaDon) {
-                row = sheet.createRow(index);
+        if (listHoaDon.size() == 0) {
+            JOptionPane.showMessageDialog(this, "Danh sách trống");
+            return;
+        }
+        int confirm = JOptionPane.showConfirmDialog(this, "Bạn có muốn xuất danh sách hóa đơn không?");
+        if (confirm == JOptionPane.YES_OPTION) {
+            try {
+                JFileChooser avatarChooser = new JFileChooser("D:\\");
+                avatarChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY); //Giới hạn chỉ chọn đc thư mục
+                FileNameExtensionFilter avatarFilter = new FileNameExtensionFilter("Exel File", "xlsx");
+                avatarChooser.setFileFilter(avatarFilter);
+                avatarChooser.setAcceptAllFileFilterUsed(false);
+                int selectFileCheck = avatarChooser.showOpenDialog(this);
+                File selectedFile = avatarChooser.getSelectedFile();
+                if (!(selectFileCheck == JFileChooser.APPROVE_OPTION)) {
+                    return;
+                }
+                //Muốn lấy đường dẫn và để vào export PDF thì 
+                String path = selectedFile.getAbsolutePath();
+                XSSFWorkbook workbook = new XSSFWorkbook();
+                XSSFSheet sheet = workbook.createSheet("Danh Sách Hóa Đơn");
+                XSSFRow row = null;
+                Cell cell = null;
+                row = sheet.createRow(1);
                 cell = row.createCell(0, CellType.STRING);
-                cell.setCellValue(x);
+                cell.setCellValue("STT");
 
                 cell = row.createCell(1, CellType.STRING);
-                cell.setCellValue(h.getMa());
+                cell.setCellValue("Mã HD");
 
                 cell = row.createCell(2, CellType.STRING);
-                cell.setCellValue(String.valueOf(h.getNgayTao()));
+                cell.setCellValue("Ngày tạo");
 
                 cell = row.createCell(3, CellType.STRING);
-                cell.setCellValue(h.getNgayThanhToanStr());
+                cell.setCellValue("Ngày thanh toán");
 
                 cell = row.createCell(4, CellType.STRING);
-                cell.setCellValue(h.getThanhTienStr());
+                cell.setCellValue("Tổng tiền");
 
                 cell = row.createCell(5, CellType.STRING);
-                cell.setCellValue(h.getMaNV());
+                cell.setCellValue("Mã NV");
 
                 cell = row.createCell(6, CellType.STRING);
-                cell.setCellValue(h.getTenKHStr());
+                cell.setCellValue("Tên KH");
 
                 cell = row.createCell(7, CellType.STRING);
-                cell.setCellValue(h.getLyDoStr());
+                cell.setCellValue("Lý do");
 
                 cell = row.createCell(8, CellType.STRING);
-                cell.setCellValue(h.getTT());
-                x++;
-                index++;
-            }
-            try {
-                FileOutputStream outputStream = new FileOutputStream("DanhSachHoaDon" + Calendar.getInstance().getTimeInMillis() + ".xlsx");
-                workbook.write(outputStream);
-                workbook.close();
-            } catch (FileNotFoundException e) {
+                cell.setCellValue("Trạng thái");
+                int index = 2;
+                int x = 1;
+
+                for (HdHoaDonResponse1 h : listHoaDon) {
+                    row = sheet.createRow(index);
+                    cell = row.createCell(0, CellType.STRING);
+                    cell.setCellValue(x);
+
+                    cell = row.createCell(1, CellType.STRING);
+                    cell.setCellValue(h.getMa());
+
+                    cell = row.createCell(2, CellType.STRING);
+                    cell.setCellValue(String.valueOf(h.getNgayTao()));
+
+                    cell = row.createCell(3, CellType.STRING);
+                    cell.setCellValue(h.getNgayThanhToanStr());
+
+                    cell = row.createCell(4, CellType.STRING);
+                    cell.setCellValue(h.getThanhTienStr());
+
+                    cell = row.createCell(5, CellType.STRING);
+                    cell.setCellValue(h.getMaNV());
+
+                    cell = row.createCell(6, CellType.STRING);
+                    cell.setCellValue(h.getTenKHStr());
+
+                    cell = row.createCell(7, CellType.STRING);
+                    cell.setCellValue(h.getLyDoStr());
+
+                    cell = row.createCell(8, CellType.STRING);
+                    cell.setCellValue(h.getTT());
+                    x++;
+                    index++;
+                }
+                try {
+                    String pathFile = path + "\\" + "DanhSachHoaDon" + Calendar.getInstance().getTimeInMillis() + ".xlsx";
+                    File file = new File(pathFile);
+                    FileOutputStream outputStream = new FileOutputStream(pathFile);
+                    workbook.write(outputStream);
+                    workbook.close();
+                    if (!Desktop.isDesktopSupported()) {
+                        return;
+                    }
+                    Desktop desktop = Desktop.getDesktop();
+                    if (file.exists()) {
+                        desktop.open(file);
+                    }
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } catch (Exception e) {
                 e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Xuất danh sách thành công");
         }
-        JOptionPane.showMessageDialog(this, "Xuất danh sách thành công");
     }//GEN-LAST:event_btnXuatDachSachActionPerformed
 
     private void btnXemchitietActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXemchitietActionPerformed
@@ -1921,114 +1950,138 @@ public class ViewHoaDon extends javax.swing.JPanel {
     }//GEN-LAST:event_btnXemchitiet2ActionPerformed
 
     private void btnXuatDanhSach2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatDanhSach2ActionPerformed
-        try {
-            if (listHoaDon2 == null) {
-                JOptionPane.showMessageDialog(this, "Danh sách trống");
+        if (listHoaDon2.size() == 0) {
+            JOptionPane.showMessageDialog(this, "Danh sách trống");
+            return;
+        }
+        int confirm = JOptionPane.showConfirmDialog(this, "Bạn có muốn xuất danh sách hóa đơn không?");
+        if (confirm == JOptionPane.YES_OPTION) {
+            JFileChooser avatarChooser = new JFileChooser("D:\\");
+            avatarChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY); //Giới hạn chỉ chọn đc thư mục
+            FileNameExtensionFilter avatarFilter = new FileNameExtensionFilter("Exel File", "xlsx");
+            avatarChooser.setFileFilter(avatarFilter);
+            avatarChooser.setAcceptAllFileFilterUsed(false);
+            int selectFileCheck = avatarChooser.showOpenDialog(this);
+            File selectedFile = avatarChooser.getSelectedFile();
+            if (!(selectFileCheck == JFileChooser.APPROVE_OPTION)) {
                 return;
             }
-            XSSFWorkbook workbook = new XSSFWorkbook();
-            XSSFSheet sheet = workbook.createSheet("Danh Sách Hóa Đơn Đặt Hàng");
-            XSSFRow row = null;
-            Cell cell = null;
-            row = sheet.createRow(1);
+            //Muốn lấy đường dẫn và để vào export PDF thì 
+            String path = selectedFile.getAbsolutePath();
+            try {
+                XSSFWorkbook workbook = new XSSFWorkbook();
+                XSSFSheet sheet = workbook.createSheet("Danh Sách Hóa Đơn Đặt Hàng");
+                XSSFRow row = null;
+                Cell cell = null;
+                row = sheet.createRow(1);
 
-            cell = row.createCell(0, CellType.STRING);
-            cell.setCellValue("STT");
-
-            cell = row.createCell(1, CellType.STRING);
-            cell.setCellValue("Mã HD");
-
-            cell = row.createCell(2, CellType.STRING);
-            cell.setCellValue("Ngày tạo");
-
-            cell = row.createCell(3, CellType.STRING);
-            cell.setCellValue("Ngày thanh toán");
-
-            cell = row.createCell(4, CellType.STRING);
-            cell.setCellValue("Tổng tiền");
-
-            cell = row.createCell(5, CellType.STRING);
-            cell.setCellValue("Mã NV");
-
-            cell = row.createCell(6, CellType.STRING);
-            cell.setCellValue("Tên người nhận");
-
-            cell = row.createCell(7, CellType.STRING);
-            cell.setCellValue("Địa chỉ");
-
-            cell = row.createCell(8, CellType.STRING);
-            cell.setCellValue("Tên người ship");
-
-            cell = row.createCell(9, CellType.STRING);
-            cell.setCellValue("Ngày ship");
-
-            cell = row.createCell(10, CellType.STRING);
-            cell.setCellValue("Ngày nhận");
-
-            cell = row.createCell(11, CellType.STRING);
-            cell.setCellValue("Lý do");
-
-            cell = row.createCell(12, CellType.STRING);
-            cell.setCellValue("Trạng thái");
-            int index = 2;
-            int x = 1;
-
-            for (HdHoaDonResponse2 h : listHoaDon2) {
-                row = sheet.createRow(index);
                 cell = row.createCell(0, CellType.STRING);
-                cell.setCellValue(x);
+                cell.setCellValue("STT");
 
                 cell = row.createCell(1, CellType.STRING);
-                cell.setCellValue(h.getMa());
+                cell.setCellValue("Mã HD");
 
                 cell = row.createCell(2, CellType.STRING);
-                cell.setCellValue(String.valueOf(h.getNgayTao()));
+                cell.setCellValue("Ngày tạo");
 
                 cell = row.createCell(3, CellType.STRING);
-                cell.setCellValue(h.getNgayThanhToanStr());
+                cell.setCellValue("Ngày thanh toán");
 
                 cell = row.createCell(4, CellType.STRING);
-                cell.setCellValue(h.getThanhTienStr());
+                cell.setCellValue("Tổng tiền");
 
                 cell = row.createCell(5, CellType.STRING);
-                cell.setCellValue(h.getMaNV());
+                cell.setCellValue("Mã NV");
 
                 cell = row.createCell(6, CellType.STRING);
-                cell.setCellValue(h.getTenKHStr());
+                cell.setCellValue("Tên người nhận");
 
                 cell = row.createCell(7, CellType.STRING);
-                cell.setCellValue(h.getDiaChiStr());
+                cell.setCellValue("Địa chỉ");
 
                 cell = row.createCell(8, CellType.STRING);
-                cell.setCellValue(h.getTenNguoiShipStr());
+                cell.setCellValue("Tên người ship");
 
                 cell = row.createCell(9, CellType.STRING);
-                cell.setCellValue(h.getNgayShipStr());
+                cell.setCellValue("Ngày ship");
 
                 cell = row.createCell(10, CellType.STRING);
-                cell.setCellValue(h.getNgayNhanStr());
+                cell.setCellValue("Ngày nhận");
 
                 cell = row.createCell(11, CellType.STRING);
-                cell.setCellValue(h.getLyDoStr());
+                cell.setCellValue("Lý do");
 
                 cell = row.createCell(12, CellType.STRING);
-                cell.setCellValue(h.getTT());
-                x++;
-                index++;
-            }
-            try {
-                FileOutputStream outputStream = new FileOutputStream("DanhSachHoaDonDatHang" + Calendar.getInstance().getTimeInMillis() + ".xlsx");
-                workbook.write(outputStream);
-                workbook.close();
-            } catch (FileNotFoundException e) {
+                cell.setCellValue("Trạng thái");
+                int index = 2;
+                int x = 1;
+
+                for (HdHoaDonResponse2 h : listHoaDon2) {
+                    row = sheet.createRow(index);
+                    cell = row.createCell(0, CellType.STRING);
+                    cell.setCellValue(x);
+
+                    cell = row.createCell(1, CellType.STRING);
+                    cell.setCellValue(h.getMa());
+
+                    cell = row.createCell(2, CellType.STRING);
+                    cell.setCellValue(String.valueOf(h.getNgayTao()));
+
+                    cell = row.createCell(3, CellType.STRING);
+                    cell.setCellValue(h.getNgayThanhToanStr());
+
+                    cell = row.createCell(4, CellType.STRING);
+                    cell.setCellValue(h.getThanhTienStr());
+
+                    cell = row.createCell(5, CellType.STRING);
+                    cell.setCellValue(h.getMaNV());
+
+                    cell = row.createCell(6, CellType.STRING);
+                    cell.setCellValue(h.getTenKHStr());
+
+                    cell = row.createCell(7, CellType.STRING);
+                    cell.setCellValue(h.getDiaChiStr());
+
+                    cell = row.createCell(8, CellType.STRING);
+                    cell.setCellValue(h.getTenNguoiShipStr());
+
+                    cell = row.createCell(9, CellType.STRING);
+                    cell.setCellValue(h.getNgayShipStr());
+
+                    cell = row.createCell(10, CellType.STRING);
+                    cell.setCellValue(h.getNgayNhanStr());
+
+                    cell = row.createCell(11, CellType.STRING);
+                    cell.setCellValue(h.getLyDoStr());
+
+                    cell = row.createCell(12, CellType.STRING);
+                    cell.setCellValue(h.getTT());
+                    x++;
+                    index++;
+                }
+                try {
+                    String pathFile = path + "\\" + "DanhSachHoaDonDatHang" + Calendar.getInstance().getTimeInMillis() + ".xlsx";
+                    File file = new File(pathFile);
+                    FileOutputStream outputStream = new FileOutputStream(pathFile);
+                    workbook.write(outputStream);
+                    workbook.close();
+                    if (!Desktop.isDesktopSupported()) {
+                        return;
+                    }
+                    Desktop desktop = Desktop.getDesktop();
+                    if (file.exists()) {
+                        desktop.open(file);
+                    }
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } catch (Exception e) {
                 e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Xuất danh sách thành công");
         }
-        JOptionPane.showMessageDialog(this, "Xuất danh sách thành công");
     }//GEN-LAST:event_btnXuatDanhSach2ActionPerformed
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
@@ -2209,13 +2262,29 @@ public class ViewHoaDon extends javax.swing.JPanel {
             }
             String ma = this.tblHoadon.getValueAt(row, 1).toString();
             HoaDon hoaDon = hoadonservice.findHdByMa(ma);
-            if (hoaDon.getTrangThai() == 2 || hoaDon.getTrangThai() == 5) {
-                System.out.println(hoaDon.getMa());
-                ExportPdfHoaDon export = new ExportPdfHoaDon();
-                export.exportBill(hoaDon, listHDCT);
-                JOptionPane.showMessageDialog(this, "In hóa đơn thành công");
+            if (hoaDon.getTrangThai() == 2) {
+                int confirm = JOptionPane.showConfirmDialog(this, "Bạn có muốn in hóa đơn không?");
+                if (confirm == JOptionPane.YES_OPTION) {
+                    JFileChooser avatarChooser = new JFileChooser("D:\\");
+                    avatarChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY); //Giới hạn chỉ chọn đc thư mục
+                    FileNameExtensionFilter avatarFilter = new FileNameExtensionFilter("Exel File", "xlsx");
+                    avatarChooser.setFileFilter(avatarFilter);
+                    avatarChooser.setAcceptAllFileFilterUsed(false);
+                    int selectFileCheck = avatarChooser.showOpenDialog(this);
+                    File selectedFile = avatarChooser.getSelectedFile();
+                    if (!(selectFileCheck == JFileChooser.APPROVE_OPTION)) {
+                        return;
+                    }
+                    //Muốn lấy đường dẫn và để vào export PDF thì 
+                    String path = selectedFile.getAbsolutePath();
+                    if (hoaDon.getHinhThucGiaoHang() == 0) {
+                        ExportPdfHoaDon export = new ExportPdfHoaDon();
+                        export.exportBill(hoaDon, listHDCT, path);
+                    }
+                    JOptionPane.showMessageDialog(this, "In hóa đơn thành công");
+                }
             } else {
-                JOptionPane.showMessageDialog(this, "Chọn 1 hóa đơn đã thanh toán hoặc đã giao");
+                JOptionPane.showMessageDialog(this, "Hãy chọn 1 hóa đơn đã thanh toán");
                 return;
             }
         } catch (Exception e) {
@@ -2232,13 +2301,32 @@ public class ViewHoaDon extends javax.swing.JPanel {
             }
             String ma = this.tblHD2.getValueAt(row, 1).toString();
             HoaDon hoaDon = hoadonservice.findHdByMa(ma);
-            if (hoaDon.getTrangThai() == 2 || hoaDon.getTrangThai() == 5) {
-                System.out.println(hoaDon.getMa());
-                ExportPdfHoaDon export = new ExportPdfHoaDon();
-                export.exportBill2(hoaDon, listHDCT);
+            if (hoaDon.getTrangThai() != 1 && hoaDon.getTrangThai() != 0) {
+                int confirm = JOptionPane.showConfirmDialog(this, "Bạn có muốn in hóa đơn không?");
+                if (confirm == JOptionPane.YES_OPTION) {
+                    JFileChooser avatarChooser = new JFileChooser("D:\\");
+                    avatarChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY); //Giới hạn chỉ chọn đc thư mục
+                    FileNameExtensionFilter avatarFilter = new FileNameExtensionFilter("Exel File", "xlsx");
+                    avatarChooser.setFileFilter(avatarFilter);
+                    avatarChooser.setAcceptAllFileFilterUsed(false);
+                    int selectFileCheck = avatarChooser.showOpenDialog(this);
+                    File selectedFile = avatarChooser.getSelectedFile();
+                    if (!(selectFileCheck == JFileChooser.APPROVE_OPTION)) {
+                        return;
+                    }
+                    //Muốn lấy đường dẫn và để vào export PDF thì 
+                    String path = selectedFile.getAbsolutePath();
+                    if (hoaDon.getTrangThaiThanhToan() == 0) {
+                        ExportPdfHoaDon export = new ExportPdfHoaDon();
+                        export.exportBill2(hoaDon, listHDCT, path);
+                    } else {
+                        ExportPdfHoaDon export = new ExportPdfHoaDon();
+                        export.exportBill3(hoaDon, listHDCT, path);
+                    }
+                }
                 JOptionPane.showMessageDialog(this, "In hóa đơn thành công");
             } else {
-                JOptionPane.showMessageDialog(this, "Chọn 1 hóa đơn đã thanh toán hoặc đã giao");
+                JOptionPane.showMessageDialog(this, "Chọn hóa đơn khác hóa đơn chờ thanh toán");
                 return;
             }
         } catch (Exception e) {

@@ -23,7 +23,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  */
 public class ExportFileExcelNhanVien {
 
-    public boolean ExportExcel(List<NhanVienResponse> list) {
+    public boolean ExportExcel(List<NhanVienResponse> list, String path) {
         boolean check = false;
         try {
             XSSFWorkbook workbook = new XSSFWorkbook();
@@ -66,17 +66,18 @@ public class ExportFileExcelNhanVien {
                 cell1.setCellValue(String.valueOf(index++));
                 cell2.setCellValue(xx.getMa());
                 cell3.setCellValue(xx.getTen());
-                cell4.setCellValue(xx.getGioitinh().equals("Nam") ? 0 : 1);
+                cell4.setCellValue(xx.getGioitinh() == 0 ? "Nam" : "Nữ");
                 cell5.setCellValue(xx.getnngaysinh());
                 cell6.setCellValue(xx.getDiachi());
                 cell7.setCellValue(xx.getSdt());
                 cell8.setCellValue(xx.getEmail());
-                cell9.setCellValue(xx.getVaitro().equals("Quản Lý") ? 0 : 1);
-                cell10.setCellValue(xx.getTrangthaixoa().equals("Đang Làm") ? 0 : 1);
+                cell9.setCellValue(xx.getVaitro() == 0 ? "Quản lý" : "Nhân viên");
+                cell10.setCellValue(xx.getTrangthaixoa() == 0 ? "Đang làm" : "Nghỉ làm");
             }
             try {
-                File file = new File("NhanVienExcel" + Calendar.getInstance().getTimeInMillis() + ".xlsx");
-                FileOutputStream outputStream = new FileOutputStream("NhanVienExcel.xlsx");
+                String pathFile = path + "\\" + "NhanVienExcel" + Calendar.getInstance().getTimeInMillis() + ".xlsx";
+                File file = new File(pathFile);
+                FileOutputStream outputStream = new FileOutputStream(pathFile);
                 workbook.write(outputStream);
                 workbook.close();
                 if (!Desktop.isDesktopSupported()) {

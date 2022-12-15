@@ -7,6 +7,8 @@ package util;
 import core.quanly.viewmodel.CTSanPhamResponse;
 import core.quanly.viewmodel.ThongKeHangHoaResponse;
 import domainmodels.HoaDonChiTiet;
+import java.awt.Desktop;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -23,7 +25,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * @author quynhncph26201
  */
 public class ExportThongKeSanPhamBan {
-    public boolean ExportFileExcel(List<ThongKeHangHoaResponse> lst) {
+
+    public boolean ExportFileExcel(List<ThongKeHangHoaResponse> lst, String path) {
         boolean check = false;
         try {
             XSSFWorkbook workbook = new XSSFWorkbook();
@@ -38,7 +41,7 @@ public class ExportThongKeSanPhamBan {
             Cell firstCell6 = firstRow.createCell(5);
             Cell firstCell7 = firstRow.createCell(6);
             Cell firstCell8 = firstRow.createCell(7);
-            
+
             firstCell1.setCellValue("STT");
             firstCell2.setCellValue("Mã SP");
             firstCell3.setCellValue("Tên SP");
@@ -76,13 +79,20 @@ public class ExportThongKeSanPhamBan {
                 DecimalFormat df = new DecimalFormat("#,###");
                 cell8.setCellValue(df.format(xx.getDonGia()));
 
-                
-
             }
             try {
-                FileOutputStream outputStream = new FileOutputStream("HangHoaBanDuoc.xlsx");
+                String pathFile = path + "\\" + "HangHoaBanDuoc" + Calendar.getInstance().getTimeInMillis() + ".xlsx";
+                File file = new File(pathFile);
+                FileOutputStream outputStream = new FileOutputStream(pathFile);
                 workbook.write(outputStream);
                 workbook.close();
+                if (!Desktop.isDesktopSupported()) {
+                    return check;
+                }
+                Desktop desktop = Desktop.getDesktop();
+                if (file.exists()) {
+                    desktop.open(file);
+                }
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {
