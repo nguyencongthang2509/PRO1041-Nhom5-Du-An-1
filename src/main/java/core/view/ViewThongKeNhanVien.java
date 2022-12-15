@@ -1012,10 +1012,12 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
     private void LoadMaxSLtra() {
         modelHangHoa1.setRowCount(0);
         int index = 1;
-        List<HoaDonTraHangChiTiet> thongkeRespon = nvtlService.getListMaxValueTra(nv.getId());
-        for (HoaDonTraHangChiTiet xx : thongkeRespon) {
-            modelHangHoa1.addRow(new Object[]{index, xx.getMaChiTietSanPham(), xx.getTenSP(), xx.getTenHang(),
-                xx.getMauSac(), xx.getKichThuoc(), xx.getSoLuongTra(), xx.getGiaBan()});
+        List<ThongKeTraHangResponse> listsoluong = nvtlService.getSoLuongTra(nv.getId());
+        long soluong = listsoluong.get(0).getSoLuong();
+        List<ThongKeTraHangResponse> thongkeRespon = nvtlService.getListMaxValueTra(nv.getId(), soluong);
+        for (ThongKeTraHangResponse xx : thongkeRespon) {
+            modelHangHoa1.addRow(new Object[]{index, xx.getMa(), xx.getTenSP(), xx.getHang(),
+                xx.getMau(), xx.getKichThuoc(), xx.getSoLuong(), xx.getGiaBan()});
             index++;
 
         }
@@ -1037,10 +1039,12 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
     private void LoadMinDStra() {
         modelHangHoa1.setRowCount(0);
         int index = 1;
-        List<HoaDonTraHangChiTiet> thongkeRespon = nvtlService.getListMinValueTra(nv.getId());
-        for (HoaDonTraHangChiTiet xx : thongkeRespon) {
-            modelHangHoa1.addRow(new Object[]{index, xx.getMaChiTietSanPham(), xx.getTenSP(), xx.getTenHang(),
-                xx.getMauSac(), xx.getKichThuoc(), xx.getSoLuongTra(), xx.getGiaBan()});
+        List<ThongKeTraHangResponse> listsoluong = nvtlService.getSoLuongTra(nv.getId());
+        long soluong = listsoluong.get(listsoluong.size() - 1).getSoLuong();
+        List<ThongKeTraHangResponse> thongkeRespon = nvtlService.getListMinValueTra(nv.getId(), soluong);
+        for (ThongKeTraHangResponse xx : thongkeRespon) {
+            modelHangHoa1.addRow(new Object[]{index, xx.getMa(), xx.getTenSP(), xx.getHang(),
+                xx.getMau(), xx.getKichThuoc(), xx.getSoLuong(), xx.getGiaBan()});
             index++;
 
         }

@@ -128,8 +128,8 @@ public class NhanVienThongKeAllService {
         }
         return list;
     }
-    
-        public List<ThongKeHangHoaResponse> getSoLuong(String id) {
+
+    public List<ThongKeHangHoaResponse> getSoLuong(String id) {
         List<ThongKeHangHoaResponse> list = new ArrayList<>();
         try {
             Session session = HibernateUtil.getSession();
@@ -157,7 +157,7 @@ public class NhanVienThongKeAllService {
         try {
             Session session = HibernateUtil.getSession();
             String hql = "select new core.quanly.viewmodel.ThongKeTraHangResponse(a.maChiTietSanPham, a.tenSP, a.tenHang, a.mauSac, a.kichThuoc, sum(a.soLuongTra), a.giaBan) "
-                    + "from HoaDonTraHangChiTiet a inner join HoaDon b on a.hoaDonDoiTra.hoaDonMoi.nhanVien.id=b.nhanVien.id where b.nhanVien.id=:id "
+                    + "from HoaDonTraHangChiTiet a inner join HoaDon b on a.hoaDonDoiTra.nhanVien.id=b.nhanVien.id where b.nhanVien.id=:id "
                     + "group by a.maChiTietSanPham, a.tenSP, a.tenHang, a.mauSac, a.kichThuoc, a.giaBan";
             Query query = session.createQuery(hql);
             query.setParameter("id", id);
@@ -201,7 +201,7 @@ public class NhanVienThongKeAllService {
         List<HoaDonTraHangChiTiet> list = new ArrayList<>();
         try {
             Session session = HibernateUtil.getSession();
-            String hql = "select a from HoaDonTraHangChiTiet a inner join HoaDon b on a.hoaDonDoiTra.hoaDonCu.nhanVien.id=b.nhanVien.id where (b.nhanVien.id=:id) and "
+            String hql = "select a from HoaDonTraHangChiTiet a inner join HoaDon b on a.hoaDonDoiTra.nhanVien.id=b.nhanVien.id where (b.nhanVien.id=:id) and "
                     + "(a.maChiTietSanPham like CONCAT('%',:input,'%') or "
                     + "a.tenSP like CONCAT('%',:input,'%') or a.tenHang like CONCAT('%',:input,'%') or a.kichThuoc like CONCAT('%',:input,'%') or"
                     + " a.mauSac like CONCAT('%',:input,'%') or a.giaBan like CONCAT('%',:input,'%') or a.soLuongTra like CONCAT('%',:input,'%'))";
@@ -243,13 +243,13 @@ public class NhanVienThongKeAllService {
         return list;
     }
 
-    //Lọc SP trả Nhiều
-    public List<HoaDonTraHangChiTiet> getListMaxValueTra(String id) {
-        List<HoaDonTraHangChiTiet> list = new ArrayList<>();
+    public List<ThongKeTraHangResponse> getSoLuongTra(String id) {
+        List<ThongKeTraHangResponse> list = new ArrayList<>();
         try {
             Session session = HibernateUtil.getSession();
-            String hql = "select a from HoaDonTraHangChiTiet a inner join HoaDon b on a.hoaDonDoiTra.hoaDonCu.nhanVien.id=b.nhanVien.id "
-                    + "where (a.soLuongTra=(select max(soLuongTra))and(b.nhanVien.id=:id)  from HoaDonTraHangChiTiet )";
+            String hql = "select new core.quanly.viewmodel.ThongKeTraHangResponse(a.maChiTietSanPham, a.tenSP, a.tenHang, a.mauSac, a.kichThuoc, sum(a.soLuongTra), a.giaBan) "
+                    + "from HoaDonTraHangChiTiet a inner join HoaDon b on a.hoaDonDoiTra.nhanVien.id=b.nhanVien.id where b.nhanVien.id=:id "
+                    + "group by a.maChiTietSanPham, a.tenSP, a.tenHang, a.mauSac, a.kichThuoc, a.giaBan order by sum(a.soLuongTra) desc";
             Query query = session.createQuery(hql);
             query.setParameter("id", id);
             list = query.getResultList();
@@ -260,15 +260,36 @@ public class NhanVienThongKeAllService {
         return list;
     }
 
-    //Lọc SP trả Ít
-    public List<HoaDonTraHangChiTiet> getListMinValueTra(String id) {
-        List<HoaDonTraHangChiTiet> list = new ArrayList<>();
+    //Lọc SP trả Nhiều
+    public List<ThongKeTraHangResponse> getListMaxValueTra(String id, long soluong) {
+        List<ThongKeTraHangResponse> list = new ArrayList<>();
         try {
             Session session = HibernateUtil.getSession();
-            String hql = "select a from HoaDonTraHangChiTiet a inner join HoaDon b on a.hoaDonDoiTra.hoaDonCu.nhanVien.id=b.nhanVien.id "
-                    + "where (a.soLuongTra=(select min(a.soLuongTra)) and (b.nhanVien.id=:id) from HoaDonTraHangChiTiet a)";
+            String hql = "select new core.quanly.viewmodel.ThongKeTraHangResponse(a.maChiTietSanPham, a.tenSP, a.tenHang, a.mauSac, a.kichThuoc, sum(a.soLuongTra), a.giaBan) "
+                    + "from HoaDonTraHangChiTiet a inner join HoaDon b on a.hoaDonDoiTra.nhanVien.id=b.nhanVien.id where b.nhanVien.id=:id "
+                    + "group by a.maChiTietSanPham, a.tenSP, a.tenHang, a.mauSac, a.kichThuoc, a.giaBan having sum(a.soLuongTra) = :soluong";
             Query query = session.createQuery(hql);
             query.setParameter("id", id);
+            query.setParameter("soluong", soluong);
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return list;
+    }
+
+    //Lọc SP trả Ít
+    public List<ThongKeTraHangResponse> getListMinValueTra(String id, long soluong) {
+        List<ThongKeTraHangResponse> list = new ArrayList<>();
+        try {
+            Session session = HibernateUtil.getSession();
+            String hql = "select new core.quanly.viewmodel.ThongKeTraHangResponse(a.maChiTietSanPham, a.tenSP, a.tenHang, a.mauSac, a.kichThuoc, sum(a.soLuongTra), a.giaBan) "
+                    + "from HoaDonTraHangChiTiet a inner join HoaDon b on a.hoaDonDoiTra.nhanVien.id=b.nhanVien.id where b.nhanVien.id=:id "
+                    + "group by a.maChiTietSanPham, a.tenSP, a.tenHang, a.mauSac, a.kichThuoc, a.giaBan having sum(a.soLuongTra) = :soluong";
+            Query query = session.createQuery(hql);
+            query.setParameter("id", id);
+            query.setParameter("soluong", soluong);
             list = query.getResultList();
         } catch (Exception e) {
             e.printStackTrace();
@@ -335,10 +356,10 @@ public class NhanVienThongKeAllService {
 //        BigDecimal bg = new NhanVienThongKeAllService().BaoCaoDT(dd, "7bdf7e91-47ef-4b62-976a-dbc08cd64324");
         BigDecimal bc = new NhanVienThongKeAllService().getDoanhThuNgayNhanVien(vv, "7bdf7e91-47ef-4b62-976a-dbc08cd64324");
         List<ThongKeHangHoaResponse> lst = new NhanVienThongKeAllService().getListMaxValue("7bdf7e91-47ef-4b62-976a-dbc08cd64324", 5);
-         for (ThongKeHangHoaResponse xx : lst) {
-             System.out.println(lst.get(index).getSoLuong());
-             index++;
-         }
+        for (ThongKeHangHoaResponse xx : lst) {
+            System.out.println(lst.get(index).getSoLuong());
+            index++;
+        }
         System.out.println(bc);
     }
     //FreeChart:Start
