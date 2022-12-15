@@ -147,7 +147,7 @@ public class NhanVienServiceImpl implements NhanVienService {
         try {
             Session session = HibernateUtil.getSession();
             String hql = "select new core.quanly.viewmodel.NhanVienResponse(a.id,a.ma,a.ten,a.gioiTinh,"
-                    + "a.ngaySinh,a.diaChi,a.sdt,a.email,a.vaiTro) from NhanVien a where a.ten like CONCAT('%',:input,'%') or "
+                    + "a.ngaySinh,a.diaChi,a.sdt,a.email,a.vaiTro,a.trangThaiXoa) from NhanVien a where a.ten like CONCAT('%',:input,'%') or "
                     + "a.ma like CONCAT('%',:input,'%') or a.email like CONCAT('%',:input,'%') or a.diaChi like CONCAT('%',:input,'%') or"
                     + " a.sdt like CONCAT('%',:input,'%') or a.ngaySinh like CONCAT('%',:input,'%')";
             Query query = session.createQuery(hql);
@@ -158,13 +158,17 @@ public class NhanVienServiceImpl implements NhanVienService {
         }
         return list;
     }
+        public static void main(String[] args) {
+        List<NhanVienNghiResponse> xx = new NhanVienServiceImpl().getListbyAll("ng");
+        System.out.println(xx);
+    }
 
     public List<NhanVienNghiResponse> getListbyAll(String input) {
         List<NhanVienNghiResponse> list = new ArrayList<>();
         try {
             Session session = HibernateUtil.getSession();
             String hql = "select new core.quanly.viewmodel.NhanVienNghiResponse(a.id,a.ma,a.ten,a.gioiTinh,"
-                    + "a.ngaySinh,a.diaChi,a.sdt,a.email,a.vaiTro) from NhanVien a where (a.ten like CONCAT('%',:input,'%') or "
+                    + "a.ngaySinh,a.diaChi,a.sdt,a.email,a.vaiTro,a.trangThaiXoa) from NhanVien a where (a.ten like CONCAT('%',:input,'%') or "
                     + "a.ma like CONCAT('%',:input,'%') or a.email like CONCAT('%',:input,'%') or a.diaChi like CONCAT('%',:input,'%') or"
                     + " a.sdt like CONCAT('%',:input,'%') or a.ngaySinh like CONCAT('%',:input,'%')) and a.trangThaiXoa=1";
             Query query = session.createQuery(hql);
@@ -238,10 +242,7 @@ public class NhanVienServiceImpl implements NhanVienService {
         return list;
     }
 
-    public static void main(String[] args) {
-//        List<NhanVienNghiResponse> xx = new NhanVienServiceImpl().updateTrangThai(1, id);
-//        System.out.println(xx);
-    }
+
     public boolean updateTrangThai(int trangThai, String id) {
         boolean check = false;
         try {
