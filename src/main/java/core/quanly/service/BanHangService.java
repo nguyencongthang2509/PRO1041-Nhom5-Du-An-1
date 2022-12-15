@@ -39,6 +39,8 @@ public interface BanHangService {
     String saveOrUpdate(HoaDon hoaDon);
 
     KhachHang findByMaKhachHang(String ma);
+    
+    List<BhHoaDonResponse> getAllResponseHDByTrangThai(String idNhanVien, int trangThaiThanhToan);
 
     List<BhHoaDonResponse> getAllResponseHD(String idNhanVien, Integer hinhThucGiaoHang, Integer trangThai);
 

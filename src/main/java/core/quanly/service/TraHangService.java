@@ -16,6 +16,8 @@ public interface TraHangService {
     
     List<HoaDon> getAllHoaDonTraHang();
     
+    List<HoaDon> findHoaDonById(String input);
+    
     boolean updateSoLuong(String idHDCT, Integer soLuong);
     
     HoaDon getHoaDonByMa(String ma);

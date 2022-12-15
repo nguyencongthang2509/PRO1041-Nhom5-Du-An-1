@@ -55,6 +55,21 @@ public class TraHangRepository extends CrudRepository<String, HoaDon, Object> {
         return list;
     }
     
+    public List<HoaDon> findHoaDonById(String input) {
+        List<HoaDon> list = new ArrayList<>();
+        try {
+                session = HibernateUtil.getSession();
+                String hql = "SELECT a FROM HoaDon a where (select count(b.id) FROM HoaDonTraHang b where b.hoaDon.id = a.id) > 0 AND (a.ma LIKE CONCAT('%',:input,'%') OR a.khachHang.sdt LIKE CONCAT('%',:input,'%') OR a.khachHang.hoTen LIKE CONCAT('%',:input,'%')) Order by a.ngayThanhToan DESC";
+                Query query = session.createQuery(hql);
+                query.setParameter("input", input);
+                list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return list;
+    }
+    
     public HoaDon getHoaDonByMa(String ma) {
         HoaDon hoaDon = new HoaDon();
         try {

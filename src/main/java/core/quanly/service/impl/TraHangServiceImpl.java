@@ -85,4 +85,9 @@ public class TraHangServiceImpl implements TraHangService {
         return traHangRepository.getAllHoaDonTraHangByIdHoaDon(id);
     }
 
+    @Override
+    public List<HoaDon> findHoaDonById(String input) {
+        return traHangRepository.findHoaDonById(input);
+    }
+
 }

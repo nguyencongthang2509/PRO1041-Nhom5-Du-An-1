@@ -62,10 +62,20 @@ public class ExportFilePdfByITextDatHang {
                     .setMarginRight(10f));
 
             float colWidth[] = {80, 230, 200, 200};
+            Table customerInforTableKH = new Table(colWidth);
+            customerInforTableKH.setFont(font);
+            customerInforTableKH.addCell(new Cell(0, 4)
+                    .add("Thông tin khách hàng đặt hàng").setBold().setBorder(Border.NO_BORDER));
+
+            customerInforTableKH.addCell(new Cell().add("Họ tên:").setBorder(Border.NO_BORDER));
+            customerInforTableKH.addCell(new Cell().add(hoaDon.getKhachHang().getHoTen()).setBorder(Border.NO_BORDER));
+            customerInforTableKH.addCell(new Cell().add("SĐT:").setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
+            customerInforTableKH.addCell(new Cell().add(hoaDon.getKhachHang().getSdt()).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
+            
             Table customerInforTable = new Table(colWidth);
             customerInforTable.setFont(font);
             customerInforTable.addCell(new Cell(0, 4)
-                    .add("Thông tin khách hàng").setBold().setBorder(Border.NO_BORDER));
+                    .add("Thông tin người nhận").setBold().setBorder(Border.NO_BORDER));
 
             customerInforTable.addCell(new Cell().add("Họ tên:").setBorder(Border.NO_BORDER));
             customerInforTable.addCell(new Cell().add(hoaDon.getTenNguoiNhan()).setBorder(Border.NO_BORDER));
@@ -74,24 +84,26 @@ public class ExportFilePdfByITextDatHang {
             customerInforTable.addCell(new Cell().add("Địa chỉ:").setBorder(Border.NO_BORDER));
             customerInforTable.addCell(new Cell().add(hoaDon.getDiaChi()).setBorder(Border.NO_BORDER));
             customerInforTable.addCell(new Cell().add("Ngày thanh toán:").setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
-            SimpleDateFormat sdf = new SimpleDateFormat("hh:mm dd-MM-yyyy");
+            SimpleDateFormat sdf = new SimpleDateFormat("hh:mm aa dd-MM-yyyy");
             String date = sdf.format(hoaDon.getNgayThanhToan());
             customerInforTable.addCell(new Cell().add(date).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
-            
+
             Table personShipInforTable = new Table(colWidth);
             personShipInforTable.setFont(font);
             personShipInforTable.addCell(new Cell(0, 4)
                     .add("Thông tin người ship").setBold().setBorder(Border.NO_BORDER));
-            
+
             personShipInforTable.addCell(new Cell().add("Họ tên:").setBorder(Border.NO_BORDER));
             personShipInforTable.addCell(new Cell().add(hoaDon.getTenNguoiShip()).setBorder(Border.NO_BORDER));
-            personShipInforTable.addCell(new Cell().add("Ngày thanh toán:").setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
-            String dateShip = sdf.format(hoaDon.getNgayThanhToan());
+            personShipInforTable.addCell(new Cell().add("Ngày mong muốn:").setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
+            String dateShip = sdf.format(hoaDon.getNgayMongMuon());
             personShipInforTable.addCell(new Cell().add(dateShip).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
             personShipInforTable.addCell(new Cell().add("SĐT:").setBorder(Border.NO_BORDER));
             personShipInforTable.addCell(new Cell().add(hoaDon.getSdtNguoiShip()).setBorder(Border.NO_BORDER));
             personShipInforTable.addCell(new Cell().add("Hình thức:").setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
             personShipInforTable.addCell(new Cell().add("Giao hàng").setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
+            personShipInforTable.addCell(new Cell().add("TT:").setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.LEFT));
+            personShipInforTable.addCell(new Cell().add("Thanh toán trước").setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.LEFT));
 
             float itemColWidth[] = {30, 110, 170, 50, 110, 110};
             Table itemTable = new Table(itemColWidth);
@@ -109,7 +121,7 @@ public class ExportFilePdfByITextDatHang {
                 itemTable.addCell(new Cell().add(xx.getTenSP()).setBorder(Border.NO_BORDER));
                 itemTable.addCell(new Cell().add(xx.getHang() + " " + xx.getMauSac() + " " + "Size: " + xx.getSize()).setBorder(Border.NO_BORDER));
                 itemTable.addCell(new Cell().add(xx.getSoLuong() + "").setBorder(Border.NO_BORDER));
-                itemTable.addCell(new Cell().add(df.format(xx.getGiaBan()) + " Vnđ").setBorder(Border.NO_BORDER));
+                itemTable.addCell(new Cell().add(df.format(xx.getGiaBan()) + (xx.getGiamGia().compareTo(BigDecimal.ZERO) > 0 ? " (*)" : "") + " Vnđ").setBorder(Border.NO_BORDER));
                 itemTable.addCell(new Cell().add(df.format(new BigDecimal(xx.getSoLuong()).multiply(xx.getGiaBan())) + " Vnđ").setBorder(Border.NO_BORDER));
             }
 
@@ -150,6 +162,12 @@ public class ExportFilePdfByITextDatHang {
             itemTable.addCell(new Cell().add("Tiền thừa").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBold().setBorder(Border.NO_BORDER).setFontColor(Color.WHITE));
             itemTable.addCell(new Cell().add(df.format(hoaDon.getTienThua()) + " Vnđ").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBold().setBorder(Border.NO_BORDER).setFontColor(Color.WHITE));
 
+            float colWidthLoiChao12[] = {80, 220, 230, 200};
+            Table customerLuuY = new Table(colWidthLoiChao12);
+            customerLuuY.setFont(font);
+            customerLuuY.addCell(new Cell(0, 4)
+                    .add("Lưu ý: Quý khách hãy giữ lại hóa đơn,\nNếu sản phẩm gặp vấn đề gì có thể trả hàng trong vòng 3 ngày,\n chỉ thực hiện trả hàng cho những sản phẩm không áp dụng khuyến mại.\nNhững sản phẩm được đánh dấu (*) là những sản phẩm đã có giảm giá khuyến mại").setItalic().setFontColor(Color.RED).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.CENTER));
+
             float colWidth1[] = {80, 220, 230, 200};
             Table customer1 = new Table(colWidth1);
             customer1.setFont(font);
@@ -169,10 +187,12 @@ public class ExportFilePdfByITextDatHang {
 
             document.add(table);
             document.add(new Paragraph("\n"));
+            document.add(customerInforTableKH);
             document.add(customerInforTable);
             document.add(personShipInforTable);
             document.add(new Paragraph("\n"));
             document.add(itemTable);
+            document.add(customerLuuY);
             document.add(customer1);
             document.add(customerLoiChao);
             document.add(customer3);

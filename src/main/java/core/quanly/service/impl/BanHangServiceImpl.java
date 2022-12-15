@@ -235,4 +235,9 @@ public class BanHangServiceImpl implements BanHangService {
         return banHangRepository.findNhanVien(input);
     }
 
+    @Override
+    public List<BhHoaDonResponse> getAllResponseHDByTrangThai(String idNhanVien, int trangThaiThanhToan) {
+        return banHangRepository.getAllResponseHDByTrangThai(idNhanVien, trangThaiThanhToan);
+    }
+
 }

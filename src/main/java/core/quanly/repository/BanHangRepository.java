@@ -52,7 +52,6 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
 //        List<ChiTietSP> list = new BanHangRepository().getAll();
 //        System.out.println(list);
 //    }
-
 //    public static void main(String[] args) {
 //        List<BhChiTietSPResponse> list = new BanHangRepository().getAllResponseCTSP();
 //        System.out.println(list);
@@ -71,7 +70,7 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
         }
         return chiTietSPKhuyenMai;
     }
-    
+
     public static void main(String[] args) {
         ChiTietSPKhuyenMai chiTietSPKhuyenMai = new BanHangRepository().getCTSPKhuyenMai("0fd07b81-128e-4081-8b20-2f73b1c1a34e");
         System.out.println(chiTietSPKhuyenMai.getId());
@@ -140,6 +139,28 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
                 query.setParameter("idNhanVien", idNhanVien);
                 list = query.getResultList();
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return list;
+    }
+
+    public List<BhHoaDonResponse> getAllResponseHDByTrangThai(String idNhanVien, int trangThaiThanhToan) {
+        List<BhHoaDonResponse> list = new ArrayList<>();
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "SELECT " + "new core.quanly.viewmodel.BhHoaDonResponse"
+                    + "(a.id, a.ma, a.ngayTao, a.hinhThucGiaoHang, a.hinhThucThanhToan ,b.ten, c.ma, c.hoTen, c.sdt, c.diaChi ,c.capBac, a.phamTramGiamGia,a.trangThaiThanhToan, a.ngayMongMuon, a.trangThai,"
+                    + "a.tenNguoiNhan, a.sdtNguoiNhan, a.diaChi, a.tenNguoiShip, a.sdtNguoiShip,"
+                    + "a.tienShip, a.tienKhachTra, a.tienKhachChuyenKhoan, a.tienThua)"
+                    + " FROM HoaDon a LEFT JOIN a.nhanVien b LEFT JOIN a.khachHang c "
+                    + "WHERE a.trangThai <> 1 AND a.trangThai <> 7 AND b.id LIKE CONCAT('%', CONVERT(VARCHAR,:idNhanVien),'%') AND a.trangThaiThanhToan LIKE CONCAT('%', CONVERT(VARCHAR, :trangThaiThanhToan),'%')"
+                    + " ORDER BY a.lastModifiedDate DESC";
+            Query query = session.createQuery(hql);
+            query.setParameter("idNhanVien", idNhanVien);
+            query.setParameter("trangThaiThanhToan", trangThaiThanhToan);
+            list = query.getResultList();
         } catch (Exception e) {
             e.printStackTrace();
             return null;

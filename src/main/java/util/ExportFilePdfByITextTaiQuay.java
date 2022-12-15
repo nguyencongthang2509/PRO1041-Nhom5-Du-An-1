@@ -86,7 +86,7 @@ public class ExportFilePdfByITextTaiQuay {
                 customerInforTable.addCell(new Cell().add("Địa chỉ:").setBorder(Border.NO_BORDER));
                 customerInforTable.addCell(new Cell().add(hoaDon.getKhachHang().getDiaChi()).setBorder(Border.NO_BORDER));
                 customerInforTable.addCell(new Cell().add("Ngày thanh toán:").setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
-                SimpleDateFormat sdf = new SimpleDateFormat("hh:mm dd-MM-yyyy");
+                SimpleDateFormat sdf = new SimpleDateFormat("hh:mm aa dd-MM-yyyy");
                 String date = sdf.format(hoaDon.getNgayThanhToan());
                 customerInforTable.addCell(new Cell().add(date).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT));
             }
@@ -107,7 +107,7 @@ public class ExportFilePdfByITextTaiQuay {
                 itemTable.addCell(new Cell().add(xx.getTenSP()).setBorder(Border.NO_BORDER));
                 itemTable.addCell(new Cell().add(xx.getHang() + " " + xx.getMauSac() + " " + "Size: " + xx.getSize()).setBorder(Border.NO_BORDER));
                 itemTable.addCell(new Cell().add(xx.getSoLuong() + "").setBorder(Border.NO_BORDER));
-                itemTable.addCell(new Cell().add(df.format(xx.getGiaBan()) + " Vnđ").setBorder(Border.NO_BORDER));
+                itemTable.addCell(new Cell().add(df.format(xx.getGiaBan()) + " Vnđ" + (xx.getGiamGia().compareTo(BigDecimal.ZERO) > 0 ? " (*)" : "")).setBorder(Border.NO_BORDER));
                 itemTable.addCell(new Cell().add(df.format(new BigDecimal(xx.getSoLuong()).multiply(xx.getGiaBan())) + " Vnđ").setBorder(Border.NO_BORDER));
             }
 
@@ -140,6 +140,11 @@ public class ExportFilePdfByITextTaiQuay {
             itemTable.addCell(new Cell().add("").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBorder(Border.NO_BORDER));
             itemTable.addCell(new Cell().add("Tiền thừa").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBold().setBorder(Border.NO_BORDER).setFontColor(Color.WHITE));
             itemTable.addCell(new Cell().add(df.format(hoaDon.getTienThua()) + " Vnđ").setBackgroundColor(new DeviceRgb(63, 169, 219)).setBold().setBorder(Border.NO_BORDER).setFontColor(Color.WHITE));
+            float colWidthLoiChao12[] = {80, 220, 230, 200};
+            Table customerLuuY = new Table(colWidthLoiChao12);
+            customerLuuY.setFont(font);
+            customerLuuY.addCell(new Cell(0, 4)
+                    .add("Lưu ý: Quý khách hãy giữ lại hóa đơn,\nNếu sản phẩm gặp vấn đề gì có thể trả hàng trong vòng 3 ngày,\n chỉ thực hiện trả hàng cho những sản phẩm không áp dụng khuyến mại.\nNhững sản phẩm được đánh dấu (*) là những sản phẩm đã có giảm giá khuyến mại").setItalic().setFontColor(Color.RED).setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.CENTER));
 
             float colWidth1[] = {80, 220, 230, 200};
             Table customer1 = new Table(colWidth1);
@@ -163,6 +168,7 @@ public class ExportFilePdfByITextTaiQuay {
             document.add(customerInforTable);
             document.add(new Paragraph("\n"));
             document.add(itemTable);
+            document.add(customerLuuY);
             document.add(customer1);
             document.add(customerLoiChao);
             document.add(customer3);

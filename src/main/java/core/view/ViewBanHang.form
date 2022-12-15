@@ -1426,7 +1426,7 @@
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="cboHinhThucThanhToan" min="-2" pref="144" max="-2" attributes="0"/>
+                          <Component id="cboTTTT" min="-2" pref="144" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="cboTrangThaiHoaDon" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -1445,7 +1445,7 @@
               <Group type="102" alignment="1" attributes="0">
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="cboTrangThaiHoaDon" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cboHinhThucThanhToan" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cboTTTT" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="cboHinhThucGiaoHang" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -1555,7 +1555,7 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JComboBox" name="cboHinhThucThanhToan">
+        <Component class="javax.swing.JComboBox" name="cboTTTT">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="3">
@@ -1569,7 +1569,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cboHinhThucThanhToanActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cboTTTTActionPerformed"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -2223,18 +2223,18 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="lblTienChu">
                       <Properties>
+                        <Property name="text" type="java.lang.String" value="----"/>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Times New Roman" size="15" style="1"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="----"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel36">
                       <Properties>
+                        <Property name="text" type="java.lang.String" value="B&#x1eb1;ng ch&#x1eef;:"/>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Times New Roman" size="15" style="1"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="B&#x1eb1;ng ch&#x1eef;:"/>
                       </Properties>
                     </Component>
                   </SubComponents>
