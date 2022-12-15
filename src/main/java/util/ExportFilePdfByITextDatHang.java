@@ -16,6 +16,8 @@ import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.VerticalAlignment;
 import core.quanly.viewmodel.BhHoaDonChiTietResponse;
 import domainmodels.HoaDon;
+import java.awt.Desktop;
+import java.io.File;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -31,9 +33,10 @@ public class ExportFilePdfByITextDatHang {
 
     public static final String pathUnicode = "font\\unicode.ttf";
 
-    public void exportBill(HoaDon hoaDon, List<BhHoaDonChiTietResponse> listHoaDonChiTiet) {
+    public void exportBill(HoaDon hoaDon, List<BhHoaDonChiTietResponse> listHoaDonChiTiet, String pathFile) {
         try {
-            String path = "hoa_don" + Calendar.getInstance().getTimeInMillis() + ".pdf";
+            String path = pathFile + "\\" + "hoa_don" + Calendar.getInstance().getTimeInMillis() + ".pdf";
+            File file = new File(path);
             PdfWriter pdfWriter = new PdfWriter(path);
             PdfDocument pdfDocument = new PdfDocument(pdfWriter);
             Document document = new Document(pdfDocument);
@@ -174,6 +177,13 @@ public class ExportFilePdfByITextDatHang {
             document.add(customerLoiChao);
             document.add(customer3);
 
+            if (!Desktop.isDesktopSupported()) {
+                return;
+            }
+            Desktop desktop = Desktop.getDesktop();
+            if (file.exists()) {
+                desktop.open(file);
+            }
             document.close();
         } catch (Exception e) {
             e.printStackTrace();

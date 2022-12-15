@@ -208,9 +208,7 @@ public class ViewDoiTra extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
 
         DiaLogHoaDonTraHangChiTiet.setTitle("Hóa đơn trả hàng");
-        DiaLogHoaDonTraHangChiTiet.setMaximumSize(new java.awt.Dimension(717, 567));
         DiaLogHoaDonTraHangChiTiet.setMinimumSize(new java.awt.Dimension(717, 567));
-        DiaLogHoaDonTraHangChiTiet.setPreferredSize(new java.awt.Dimension(717, 567));
         DiaLogHoaDonTraHangChiTiet.setSize(new java.awt.Dimension(717, 567));
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
@@ -666,7 +664,6 @@ public class ViewDoiTra extends javax.swing.JPanel {
         );
 
         DiaLogHdTraHangChiTiet.setTitle("Hóa đơn trả hàng chi tiết");
-        DiaLogHdTraHangChiTiet.setMaximumSize(new java.awt.Dimension(736, 467));
         DiaLogHdTraHangChiTiet.setMinimumSize(new java.awt.Dimension(736, 467));
         DiaLogHdTraHangChiTiet.setSize(new java.awt.Dimension(736, 467));
 
@@ -1406,7 +1403,7 @@ public class ViewDoiTra extends javax.swing.JPanel {
                     banHangService.deleteHDCT(hoaDonChiTiet);
                 }
             }
-            
+
             listHoaDon = traHangService.getAllResponseHD();
             loadTableHoaDon(listHoaDon);
             listHoaDonTraHang = traHangService.getAllHoaDonTraHang();
@@ -1491,17 +1488,36 @@ public class ViewDoiTra extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_tblHoaDonTraHangMouseClicked
 
-//    private void loadHoaDonTraHang(List<HoaDonTraHang> list) {
-//        modelHoaDonTraHang.setRowCount(0);
-//        int i = 1;
-//        for (HoaDonTraHang xx : list) {
-//            modelHoaDonTraHang.addRow(new Object[]{i, xx.getNhanVien().getTen(), xx.getNgayDoiTra(), xx.getHoaDonCu().getKhachHang().getHoTen(), xx.getTienHoanTraKhach(), xx.getGhiChu()});
-//            i++;
-//        }
-//    }
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-
+        try {
+            int rowHoaDon = tblHoaDon.getSelectedRow();
+            ThHoaDonResponse thHoaDonResponse = listHoaDon.get(rowHoaDon);
+            listSanPhamTra.clear();
+            for (BhHoaDonChiTietResponse xx : listHoaDonChiTiet) {
+                ThHoaDonChiTietResponse thdctr = new ThHoaDonChiTietResponse();
+                thdctr.setChatLieu(xx.getChatLieu());
+                thdctr.setDonGia(xx.getDonGia());
+                BigDecimal giaBan = xx.getGiaBan().subtract(xx.getGiaBan().multiply(new BigDecimal(thHoaDonResponse.getPhanTramGiamGia()).divide(new BigDecimal(100))));
+                thdctr.setGiaBan(giaBan);
+                thdctr.setGiamGia(xx.getGiamGia());
+                thdctr.setHang(xx.getHang());
+                thdctr.setIdChiTietSP(xx.getIdChiTietSP());
+                thdctr.setIdHDCT(xx.getIdHDCT());
+                thdctr.setIdHoaDon(xx.getIdHoaDon());
+                thdctr.setMaCTSP(xx.getMaCTSP());
+                thdctr.setMaSP(xx.getMaSP());
+                thdctr.setMauSac(xx.getMauSac());
+                thdctr.setSize(xx.getSize());
+                thdctr.setSoLuong(xx.getSoLuong());
+                thdctr.setSoLuongTon(xx.getSoLuongTon());
+                thdctr.setSoLuongTruocKhiTra(xx.getSoLuong());
+                thdctr.setTenSP(xx.getTenSP());
+                listSanPhamTra.put(thdctr.getIdChiTietSP(), thdctr);
+            }
+            loadTableSanPham(listSanPhamTra);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void tblHDTraHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHDTraHangMouseClicked
@@ -1529,11 +1545,11 @@ public class ViewDoiTra extends javax.swing.JPanel {
             modelHoaDonChiTiet.addRow(new Object[]{xx.getMaCTSP(), xx.getTenSP(), xx.getHang(), xx.getMauSac(), xx.getSize(), xx.getChatLieu(), xx.getSoLuong(), xx.getGiamGia(), xx.getGiaBan()});
         }
     }
-    
+
     private void loadTableHoaDonTHCT(List<HoaDonTraHangChiTiet> list) {
         modelHDTraHangCT.setRowCount(0);
         for (HoaDonTraHangChiTiet xx : list) {
-            modelHDTraHangCT.addRow(new Object[]{xx.getMaChiTietSanPham(), xx.getTenSP(), xx.getTenHang(),  xx.getKichThuoc(),xx.getMauSac(), xx.getSoLuongTra(), xx.getGiaBan()});
+            modelHDTraHangCT.addRow(new Object[]{xx.getMaChiTietSanPham(), xx.getTenSP(), xx.getTenHang(), xx.getKichThuoc(), xx.getMauSac(), xx.getSoLuongTra(), xx.getGiaBan()});
         }
     }
 

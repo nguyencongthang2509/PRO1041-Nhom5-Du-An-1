@@ -3283,9 +3283,21 @@ public class ViewBanHang extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Thanh toán thành công");
                 int confirm = JOptionPane.showConfirmDialog(this, "Bạn có muốn in hóa đơn không?");
                 if (confirm == JOptionPane.YES_OPTION) {
+                    JFileChooser avatarChooser = new JFileChooser("D:\\");
+                    avatarChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY); //Giới hạn chỉ chọn đc thư mục
+                    FileNameExtensionFilter avatarFilter = new FileNameExtensionFilter("Exel File", "xlsx");
+                    avatarChooser.setFileFilter(avatarFilter);
+                    avatarChooser.setAcceptAllFileFilterUsed(false);
+                    int selectFileCheck = avatarChooser.showOpenDialog(this);
+                    File selectedFile = avatarChooser.getSelectedFile();
+                    if (!(selectFileCheck == JFileChooser.APPROVE_OPTION)) {
+                        return;
+                    }
+                    //Muốn lấy đường dẫn và để vào export PDF thì 
+                    String path = selectedFile.getAbsolutePath();
                     try {
                         ExportFilePdfByITextDatHang export = new ExportFilePdfByITextDatHang();
-                        export.exportBill(hoaDon, new ArrayList<>(mapGioHang.values()));
+                        export.exportBill(hoaDon, new ArrayList<>(mapGioHang.values()), path);
                         JOptionPane.showMessageDialog(this, "In hóa đơn thành công");
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(this, "In hóa đơn thất bại");
