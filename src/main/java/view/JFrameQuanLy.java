@@ -46,7 +46,7 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         this.pack();
         btnCardSon.setVisible(true);
         lblTenNhanVien.setText(nhanVien.getTen());
-        ImageIcon img = new ImageIcon("src/main/images/sneaker.jpg");
+        ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/images/sneaker.jpg"));
 
         lblAvartar.setIcon(img);
 
@@ -189,7 +189,7 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         });
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new ImageIcon("src/main/images/close.png"));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close.png"))); // NOI18N
         jButton1.setText("Đóng");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -325,17 +325,17 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         pnlBanHang.setBackground(new java.awt.Color(153, 204, 255));
         pnlBanHang.setPreferredSize(new java.awt.Dimension(84, 50));
 
-        menuBanHang.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        menuBanHang.setIcon(new ImageIcon("src/main/images/cart.png"));
-        menuBanHang.setText("Bán hàng");
         menuBanHang.setBackground(new java.awt.Color(51, 255, 51));
         menuBanHang.setFont(new java.awt.Font("Source Sans Pro Black", 0, 20)); // NOI18N
         menuBanHang.setForeground(new java.awt.Color(255, 255, 255));
+        menuBanHang.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        menuBanHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cart.png"))); // NOI18N
+        menuBanHang.setText("Bán hàng");
+        menuBanHang.setToolTipText("");
         menuBanHang.setInheritsPopupMenu(false);
         menuBanHang.setMaximumSize(new java.awt.Dimension(84, 20));
         menuBanHang.setMinimumSize(new java.awt.Dimension(84, 20));
         menuBanHang.setPreferredSize(new java.awt.Dimension(84, 20));
-        menuBanHang.setToolTipText("");
         menuBanHang.setVerifyInputWhenFocusTarget(false);
         menuBanHang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -359,14 +359,14 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         pnlHoaDon.setBackground(new java.awt.Color(153, 204, 255));
         pnlHoaDon.setPreferredSize(new java.awt.Dimension(74, 50));
 
-        menuHoaDon.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        menuHoaDon.setIcon(new ImageIcon("src/main/images/invoice.png"));
-        menuHoaDon.setText("Hóa đơn");
         menuHoaDon.setBackground(new java.awt.Color(51, 255, 51));
         menuHoaDon.setFont(new java.awt.Font("Source Sans Pro Black", 0, 20)); // NOI18N
         menuHoaDon.setForeground(new java.awt.Color(255, 255, 255));
-        menuHoaDon.setInheritsPopupMenu(false);
+        menuHoaDon.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        menuHoaDon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/invoice.png"))); // NOI18N
+        menuHoaDon.setText("Hóa đơn");
         menuHoaDon.setToolTipText("");
+        menuHoaDon.setInheritsPopupMenu(false);
         menuHoaDon.setVerifyInputWhenFocusTarget(false);
         menuHoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -394,7 +394,7 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         menuSanPham.setFont(new java.awt.Font("Source Sans Pro Black", 0, 20)); // NOI18N
         menuSanPham.setForeground(new java.awt.Color(255, 255, 255));
         menuSanPham.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        menuSanPham.setIcon(new ImageIcon("src/main/images/cubes.png"));
+        menuSanPham.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cubes.png"))); // NOI18N
         menuSanPham.setText("Sản phẩm");
         menuSanPham.setToolTipText("");
         menuSanPham.setInheritsPopupMenu(false);
@@ -425,7 +425,7 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         menuKhuyenMai.setFont(new java.awt.Font("Source Sans Pro Black", 0, 20)); // NOI18N
         menuKhuyenMai.setForeground(new java.awt.Color(255, 255, 255));
         menuKhuyenMai.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        menuKhuyenMai.setIcon(new ImageIcon("src/main/images/coupon.png"));
+        menuKhuyenMai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/coupon.png"))); // NOI18N
         menuKhuyenMai.setText("Khuyến mại");
         menuKhuyenMai.setToolTipText("");
         menuKhuyenMai.setInheritsPopupMenu(false);
@@ -453,14 +453,14 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         pnlThongKe.setBackground(new java.awt.Color(153, 204, 255));
         pnlThongKe.setPreferredSize(new java.awt.Dimension(83, 50));
 
-        menuThongKe.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        menuThongKe.setIcon(new ImageIcon("src/main/images/trend.png"));
-        menuThongKe.setText("Thống kê");
         menuThongKe.setBackground(new java.awt.Color(51, 255, 51));
         menuThongKe.setFont(new java.awt.Font("Source Sans Pro Black", 0, 20)); // NOI18N
         menuThongKe.setForeground(new java.awt.Color(255, 255, 255));
-        menuThongKe.setInheritsPopupMenu(false);
+        menuThongKe.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        menuThongKe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/trend.png"))); // NOI18N
+        menuThongKe.setText("Thống kê");
         menuThongKe.setToolTipText("");
+        menuThongKe.setInheritsPopupMenu(false);
         menuThongKe.setVerifyInputWhenFocusTarget(false);
         menuThongKe.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -488,7 +488,7 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         menuNhanVien.setFont(new java.awt.Font("Source Sans Pro Black", 0, 20)); // NOI18N
         menuNhanVien.setForeground(new java.awt.Color(255, 255, 255));
         menuNhanVien.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        menuNhanVien.setIcon(new ImageIcon("src/main/images/nhanvien.png"));
+        menuNhanVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/nhanvien.png"))); // NOI18N
         menuNhanVien.setText("Nhân viên");
         menuNhanVien.setToolTipText("");
         menuNhanVien.setInheritsPopupMenu(false);
@@ -519,7 +519,7 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         menuKhachHang.setFont(new java.awt.Font("Source Sans Pro Black", 0, 20)); // NOI18N
         menuKhachHang.setForeground(new java.awt.Color(255, 255, 255));
         menuKhachHang.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        menuKhachHang.setIcon(new ImageIcon("src/main/images/rating.png"));
+        menuKhachHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/rating.png"))); // NOI18N
         menuKhachHang.setText("Khách hàng");
         menuKhachHang.setToolTipText("");
         menuKhachHang.setInheritsPopupMenu(false);
@@ -550,7 +550,7 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         menuDangXuat.setFont(new java.awt.Font("Source Sans Pro Black", 0, 20)); // NOI18N
         menuDangXuat.setForeground(new java.awt.Color(255, 255, 255));
         menuDangXuat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        menuDangXuat.setIcon(new ImageIcon("src/main/images/logout.png"));
+        menuDangXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logout.png"))); // NOI18N
         menuDangXuat.setText("Đăng xuất");
         menuDangXuat.setToolTipText("");
         menuDangXuat.setInheritsPopupMenu(false);
@@ -581,7 +581,7 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         menuDoiHang.setFont(new java.awt.Font("Source Sans Pro Black", 0, 20)); // NOI18N
         menuDoiHang.setForeground(new java.awt.Color(255, 255, 255));
         menuDoiHang.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        menuDoiHang.setIcon(new ImageIcon("src/main/images/cart.png"));
+        menuDoiHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/trahang.png"))); // NOI18N
         menuDoiHang.setText("Trả hàng");
         menuDoiHang.setToolTipText("");
         menuDoiHang.setInheritsPopupMenu(false);
@@ -1017,7 +1017,7 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         ThongTinCaNhan.setVisible(true);
 //        ViewBanHang.webcam.close();
         ThongTinCaNhan.setLocationRelativeTo(null);
-        lblAvartarCaNhan.setIcon(new ImageIcon("src/main/images/sneaker.jpg"));
+        lblAvartarCaNhan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sneaker.jpg")));
         HoVaTen.setText(nhanVien.getTen());
         MaNhanVien.setText(nhanVien.getMa());
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");

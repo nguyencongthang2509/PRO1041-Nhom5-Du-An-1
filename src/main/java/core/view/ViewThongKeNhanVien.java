@@ -142,13 +142,13 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(153, 204, 255));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel1.setIcon(new ImageIcon("src/main/images/shopping-cart.png"));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/shopping-cart.png"))); // NOI18N
 
-        lblDoanhThu.setText("0");
         lblDoanhThu.setFont(new java.awt.Font("Dialog", 1, 21)); // NOI18N
+        lblDoanhThu.setText("0");
 
-        jLabel7.setText("Doanh Thu");
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 21)); // NOI18N
+        jLabel7.setText("Doanh Thu");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -178,13 +178,13 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
         jPanel2.setPreferredSize(new java.awt.Dimension(297, 200));
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setIcon(new ImageIcon("src/main/images/1ngay.png"));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/1ngay.png"))); // NOI18N
 
-        jLabel5.setText("Số Hóa Đơn");
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 21)); // NOI18N
+        jLabel5.setText("Số Hóa Đơn");
 
-        lblHoaDon.setText("0");
         lblHoaDon.setFont(new java.awt.Font("Dialog", 1, 21)); // NOI18N
+        lblHoaDon.setText("0");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -217,13 +217,13 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
         jPanel3.setPreferredSize(new java.awt.Dimension(297, 200));
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel3.setIcon(new ImageIcon("src/main/images/1thang.png"));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/1thang.png"))); // NOI18N
 
-        lblHangTra.setText("0");
         lblHangTra.setFont(new java.awt.Font("Dialog", 1, 21)); // NOI18N
+        lblHangTra.setText("0");
 
-        jLabel12.setText("Số Hóa Đơn Hủy");
         jLabel12.setFont(new java.awt.Font("Dialog", 1, 21)); // NOI18N
+        jLabel12.setText("Số Hóa Đơn Hủy");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -256,13 +256,13 @@ public class ViewThongKeNhanVien extends javax.swing.JPanel {
         jPanel4.setPreferredSize(new java.awt.Dimension(297, 200));
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel4.setIcon(new ImageIcon("src/main/images/years.png"));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/years.png"))); // NOI18N
 
-        lblKhachHang.setText("0");
         lblKhachHang.setFont(new java.awt.Font("Dialog", 1, 21)); // NOI18N
+        lblKhachHang.setText("0");
 
-        jLabel10.setText("Số Khách Hàng");
         jLabel10.setFont(new java.awt.Font("Dialog", 1, 21)); // NOI18N
+        jLabel10.setText("Số Khách Hàng");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);

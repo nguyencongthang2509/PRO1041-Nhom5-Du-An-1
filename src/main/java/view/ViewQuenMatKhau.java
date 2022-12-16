@@ -29,10 +29,10 @@ public class ViewQuenMatKhau extends javax.swing.JFrame {
     public ViewQuenMatKhau() {
         initComponents();
         setLocationRelativeTo(null);
-        ImageIcon img = new ImageIcon("src/main/images/sneaker.jpg");
-        lblLogo.setIcon(new ImageIcon("src/main/images/vans_old_school.jpg"));
+        ImageIcon img = new ImageIcon(getClass().getResource("/images/sneaker.jpg"));
+        lblLogo.setIcon(new ImageIcon(getClass().getResource("/images/vans_old_school.jpg")));
 
-        ImageIcon originalIcon = new ImageIcon("src/main/images/vans_old_school.jpg");
+        ImageIcon originalIcon = new ImageIcon(getClass().getResource("/images/vans_old_school.jpg"));
 
         int width = 289;
         int height = 472;
@@ -95,7 +95,7 @@ public class ViewQuenMatKhau extends javax.swing.JFrame {
         txtEmailForword.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         txtEmailForword.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
-        jLabel3.setIcon(new ImageIcon("src/main/images/message.png"));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/message.png"))); // NOI18N
 
         jPanel2.setBackground(new java.awt.Color(153, 204, 255));
 
@@ -160,7 +160,7 @@ public class ViewQuenMatKhau extends javax.swing.JFrame {
             .addGap(0, 37, Short.MAX_VALUE)
         );
 
-        jLabel8.setIcon(new ImageIcon("src/main/images/maxacminh.png"));
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/maxacminh.png"))); // NOI18N
 
         jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         jLabel9.setText("Mật khẩu mới:");
@@ -168,7 +168,7 @@ public class ViewQuenMatKhau extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         jLabel10.setText("Nhập lại mật khẩu mới:");
 
-        jLabel4.setIcon(new ImageIcon("src/main/images/paper-plane.png"));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/paper-plane.png"))); // NOI18N
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel4MouseClicked(evt);
@@ -188,7 +188,7 @@ public class ViewQuenMatKhau extends javax.swing.JFrame {
         txtMatKhauMoi.setText("Nhập mật khẩu mới");
         txtMatKhauMoi.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
-        jLabel11.setIcon(new ImageIcon("src/main/images/hidden.png"));
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/hidden.png"))); // NOI18N
         jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel11MouseClicked(evt);
@@ -199,7 +199,7 @@ public class ViewQuenMatKhau extends javax.swing.JFrame {
         txtMatKhauMoiP2.setText("Nhập lại mật khẩu mới");
         txtMatKhauMoiP2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
-        jLabel12.setIcon(new ImageIcon("src/main/images/hidden.png"));
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/hidden.png"))); // NOI18N
         jLabel12.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel12MouseClicked(evt);
@@ -330,11 +330,11 @@ public class ViewQuenMatKhau extends javax.swing.JFrame {
         if (showMatKhauMoi == false) {
             txtMatKhauMoi.setEchoChar((char) 0);
             showMatKhauMoi = true;
-            jLabel11.setIcon(new ImageIcon("src/main/images/view.png"));
+            jLabel11.setIcon(new ImageIcon(getClass().getResource("/images/view.png")));
         } else {
             txtMatKhauMoi.setEchoChar('*');
             showMatKhauMoi = false;
-            jLabel11.setIcon(new ImageIcon("src/main/images/hidden.png"));
+            jLabel11.setIcon(new ImageIcon(getClass().getResource("/images/hidden.png")));
         }
     }//GEN-LAST:event_jLabel11MouseClicked
 
@@ -342,11 +342,11 @@ public class ViewQuenMatKhau extends javax.swing.JFrame {
         if (showMatKhauMoiP2 == false) {
             txtMatKhauMoiP2.setEchoChar((char) 0);
             showMatKhauMoiP2 = true;
-            jLabel12.setIcon(new ImageIcon("src/main/images/view.png"));
+            jLabel12.setIcon(new ImageIcon(getClass().getResource("/images/view.png")));
         } else {
             txtMatKhauMoiP2.setEchoChar('*');
             showMatKhauMoiP2 = false;
-            jLabel12.setIcon(new ImageIcon("src/main/images/hidden.png"));
+            jLabel12.setIcon(new ImageIcon(getClass().getResource("/images/hidden.png")));
         }
     }//GEN-LAST:event_jLabel12MouseClicked
 

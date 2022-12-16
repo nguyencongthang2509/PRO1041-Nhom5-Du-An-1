@@ -1126,7 +1126,7 @@ public class ViewBanHang extends javax.swing.JPanel {
             }
         });
 
-        jLabel14.setIcon(new ImageIcon("src/main/images/search.png"));
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search.png"))); // NOI18N
 
         cboMauSac.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả" }));
         cboMauSac.setBackground(new java.awt.Color(153, 204, 255));
@@ -1272,7 +1272,7 @@ public class ViewBanHang extends javax.swing.JPanel {
             tblGioHang.getColumnModel().getColumn(7).setPreferredWidth(25);
         }
 
-        btnXoa1.setIcon(new ImageIcon("src/main/images/trash.png"));
+        btnXoa1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/trash.png"))); // NOI18N
         btnXoa1.setBackground(new java.awt.Color(153, 204, 255));
         btnXoa1.setToolTipText("Xóa sản phẩm");
         btnXoa1.addActionListener(new java.awt.event.ActionListener() {
@@ -1370,7 +1370,7 @@ public class ViewBanHang extends javax.swing.JPanel {
             }
         });
 
-        btnClear.setIcon(new ImageIcon("src/main/images/clear.png"));
+        btnClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clear.png"))); // NOI18N
         btnClear.setBackground(new java.awt.Color(153, 204, 255));
         btnClear.setToolTipText("Làm mới");
         btnClear.setVerifyInputWhenFocusTarget(false);
@@ -1462,7 +1462,7 @@ public class ViewBanHang extends javax.swing.JPanel {
         txtTenKHTaiQuay.setText("Khách bán lẻ");
         txtTenKHTaiQuay.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(153, 204, 255)));
 
-        btnChonTaiQuay.setIcon(new ImageIcon("src/main/images/choice.png"));
+        btnChonTaiQuay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/choice.png"))); // NOI18N
         btnChonTaiQuay.setBackground(new java.awt.Color(153, 204, 255));
         btnChonTaiQuay.setToolTipText("Chọn khách hàng");
         btnChonTaiQuay.addActionListener(new java.awt.event.ActionListener() {
@@ -1613,7 +1613,7 @@ public class ViewBanHang extends javax.swing.JPanel {
         jLabel36.setText("Bằng chữ:");
         jLabel36.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
 
-        btnThanhToanTaiQuay.setIcon(new ImageIcon("src/main/images/credit-card.png"));
+        btnThanhToanTaiQuay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/credit-card.png"))); // NOI18N
         btnThanhToanTaiQuay.setBackground(new java.awt.Color(153, 204, 255));
         btnThanhToanTaiQuay.setToolTipText("Thanh toán");
         btnThanhToanTaiQuay.addActionListener(new java.awt.event.ActionListener() {
@@ -1731,7 +1731,7 @@ public class ViewBanHang extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 492, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1762,7 +1762,7 @@ public class ViewBanHang extends javax.swing.JPanel {
         txtDiaChiDatHang.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         txtDiaChiDatHang.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(153, 204, 255)));
 
-        btnChonKhachHangDatHang.setIcon(new ImageIcon("src/main/images/choice.png"));
+        btnChonKhachHangDatHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/choice.png"))); // NOI18N
         btnChonKhachHangDatHang.setBackground(new java.awt.Color(153, 204, 255));
         btnChonKhachHangDatHang.setToolTipText("Chọn khách hàng");
         btnChonKhachHangDatHang.addActionListener(new java.awt.event.ActionListener() {
@@ -1777,7 +1777,7 @@ public class ViewBanHang extends javax.swing.JPanel {
         txtSDTNguoiShipDatHang.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         txtSDTNguoiShipDatHang.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(153, 204, 255)));
 
-        btnChonNhanVienShip.setIcon(new ImageIcon("src/main/images/choice.png"));
+        btnChonNhanVienShip.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/choice.png"))); // NOI18N
         btnChonNhanVienShip.setBackground(new java.awt.Color(153, 204, 255));
         btnChonNhanVienShip.setMargin(new java.awt.Insets(2, 7, 2, 7));
         btnChonNhanVienShip.setMaximumSize(new java.awt.Dimension(44, 42));
@@ -1969,7 +1969,7 @@ public class ViewBanHang extends javax.swing.JPanel {
         txtTienThuaDatHang.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         txtTienThuaDatHang.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(153, 204, 255)));
 
-        btnDangGiaoDatHang.setIcon(new ImageIcon("src/main/images/danggiao.png"));
+        btnDangGiaoDatHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/danggiao.png"))); // NOI18N
         btnDangGiaoDatHang.setBackground(new java.awt.Color(153, 204, 255));
         btnDangGiaoDatHang.setToolTipText("Đang giao");
         btnDangGiaoDatHang.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1983,7 +1983,7 @@ public class ViewBanHang extends javax.swing.JPanel {
             }
         });
 
-        btnDaGiaoDatHang.setIcon(new ImageIcon("src/main/images/dagiao.png"));
+        btnDaGiaoDatHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/dagiao.png"))); // NOI18N
         btnDaGiaoDatHang.setBackground(new java.awt.Color(153, 204, 255));
         btnDaGiaoDatHang.setToolTipText("Đã giao");
         btnDaGiaoDatHang.addActionListener(new java.awt.event.ActionListener() {
@@ -2003,7 +2003,7 @@ public class ViewBanHang extends javax.swing.JPanel {
         jLabel29.setText("Tiền ship:");
         jLabel29.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
 
-        btnThanhToanDatHang.setIcon(new ImageIcon("src/main/images/credit-card.png"));
+        btnThanhToanDatHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/credit-card.png"))); // NOI18N
         btnThanhToanDatHang.setBackground(new java.awt.Color(153, 204, 255));
         btnThanhToanDatHang.setToolTipText("Thanh toán");
         btnThanhToanDatHang.addActionListener(new java.awt.event.ActionListener() {
@@ -2012,7 +2012,7 @@ public class ViewBanHang extends javax.swing.JPanel {
             }
         });
 
-        btnChoGiaoHang.setIcon(new ImageIcon("src/main/images/wait.png"));
+        btnChoGiaoHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/wait.png"))); // NOI18N
         btnChoGiaoHang.setBackground(new java.awt.Color(153, 204, 255));
         btnChoGiaoHang.setToolTipText("Chờ giao hàng");
         btnChoGiaoHang.addActionListener(new java.awt.event.ActionListener() {
@@ -2038,7 +2038,7 @@ public class ViewBanHang extends javax.swing.JPanel {
         jLabel17.setText("Mong muốn:");
         jLabel17.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
 
-        btnKhachHenGiaoLai.setIcon(new ImageIcon("src/main/images/khachhenlai.png"));
+        btnKhachHenGiaoLai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/khachhenlai.png"))); // NOI18N
         btnKhachHenGiaoLai.setBackground(new java.awt.Color(153, 204, 255));
         btnKhachHenGiaoLai.setToolTipText("Khách hẹn giao lại");
         btnKhachHenGiaoLai.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -2412,7 +2412,7 @@ public class ViewBanHang extends javax.swing.JPanel {
                 lblTenCapBac.setText("");
             } else {
                 if (bhKhachHangResponse.getCapBac() == 0) {
-                    lblCapBac.setIcon(new ImageIcon("src/main/images/dong.png"));
+                    lblCapBac.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/dong.png")));
                     lblCapBac.setText("");
                     lblTenCapBac.setText("Đồng");
                 }
@@ -2421,17 +2421,17 @@ public class ViewBanHang extends javax.swing.JPanel {
                     lblTenCapBac.setText("");
                 }
                 if (bhKhachHangResponse.getCapBac() == 1) {
-                    lblCapBac.setIcon(new ImageIcon("src/main/images/bac.png"));
+                    lblCapBac.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bac.png")));
                     lblCapBac.setText("");
                     lblTenCapBac.setText("Bạc");
                 }
                 if (bhKhachHangResponse.getCapBac() == 2) {
-                    lblCapBac.setIcon(new ImageIcon("src/main/images/vang.png"));
+                    lblCapBac.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/vang.png")));
                     lblCapBac.setText("");
                     lblTenCapBac.setText("Vàng");
                 }
                 if (bhKhachHangResponse.getCapBac() == 3) {
-                    lblCapBac.setIcon(new ImageIcon("src/main/images/kimcuong.png"));
+                    lblCapBac.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/kimcuong.png")));
                     lblCapBac.setText("");
                     lblTenCapBac.setText("Kim cương");
                 }
@@ -2446,7 +2446,7 @@ public class ViewBanHang extends javax.swing.JPanel {
                 lblTenCapBacDatHang.setText("");
             } else {
                 if (bhKhachHangResponse.getCapBac() == 0) {
-                    lblCapBacDatHang.setIcon(new ImageIcon("src/main/images/dong.png"));
+                    lblCapBacDatHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/dong.png")));
                     lblTenCapBacDatHang.setText("Đồng");
                 }
                 if (bhKhachHangResponse.getMa().equals("KH000")) {
@@ -2454,15 +2454,15 @@ public class ViewBanHang extends javax.swing.JPanel {
                     lblTenCapBacDatHang.setText("");
                 }
                 if (bhKhachHangResponse.getCapBac() == 1) {
-                    lblCapBacDatHang.setIcon(new ImageIcon("src/main/images/bac.png"));
+                    lblCapBacDatHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bac.png")));
                     lblTenCapBacDatHang.setText("Bạc");
                 }
                 if (bhKhachHangResponse.getCapBac() == 2) {
-                    lblCapBacDatHang.setIcon(new ImageIcon("src/main/images/vang.png"));
+                    lblCapBacDatHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/vang.png")));
                     lblTenCapBacDatHang.setText("Vàng");
                 }
                 if (bhKhachHangResponse.getCapBac() == 3) {
-                    lblCapBacDatHang.setIcon(new ImageIcon("src/main/images/kimcuong.png"));
+                    lblCapBacDatHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/kimcuong.png")));
                     lblTenCapBacDatHang.setText("Kim cương");
                 }
             }
@@ -2543,44 +2543,44 @@ public class ViewBanHang extends javax.swing.JPanel {
                         lblTenCapBac.setText("");
                     } else {
                         if (bhHoaDonResponse.getCapBac() == 0) {
-                            lblCapBac.setIcon(new ImageIcon("src/main/images/dong.png"));
+                            lblCapBac.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/dong.png")));
                             lblCapBac.setText("");
                             lblTenCapBac.setText("Đồng");
                         }
                         if (bhHoaDonResponse.getCapBac() == 1) {
-                            lblCapBac.setIcon(new ImageIcon("src/main/images/bac.png"));
+                            lblCapBac.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bac.png")));
                             lblCapBac.setText("");
                             lblTenCapBac.setText("Bạc");
                         }
                         if (bhHoaDonResponse.getCapBac() == 2) {
-                            lblCapBac.setIcon(new ImageIcon("src/main/images/vang.png"));
+                            lblCapBac.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/vang.png")));
                             lblCapBac.setText("");
                             lblTenCapBac.setText("Vàng");
                         }
                         if (bhHoaDonResponse.getCapBac() == 3) {
-                            lblCapBac.setIcon(new ImageIcon("src/main/images/kimcuong.png"));
+                            lblCapBac.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/kimcuong.png")));
                             lblCapBac.setText("");
                             lblTenCapBac.setText("Kim cương");
                         }
                     }
                 } else {
                     if (bhHoaDonResponse.getPhanTramGiamGia() == 0) {
-                        lblCapBac.setIcon(new ImageIcon("src/main/images/dong.png"));
+                        lblCapBac.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/dong.png")));
                         lblCapBac.setText("");
                         lblTenCapBac.setText("Đồng");
                     }
                     if (bhHoaDonResponse.getPhanTramGiamGia() == 3) {
-                        lblCapBac.setIcon(new ImageIcon("src/main/images/bac.png"));
+                        lblCapBac.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bac.png")));
                         lblCapBac.setText("");
                         lblTenCapBac.setText("Bạc");
                     }
                     if (bhHoaDonResponse.getPhanTramGiamGia() == 5) {
-                        lblCapBac.setIcon(new ImageIcon("src/main/images/vang.png"));
+                        lblCapBac.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/vang.png")));
                         lblCapBac.setText("");
                         lblTenCapBac.setText("Vàng");
                     }
                     if (bhHoaDonResponse.getPhanTramGiamGia() == 10) {
-                        lblCapBac.setIcon(new ImageIcon("src/main/images/kimcuong.png"));
+                        lblCapBac.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/kimcuong.png")));
                         lblCapBac.setText("");
                         lblTenCapBac.setText("Kim cương");
                     }
@@ -2614,44 +2614,44 @@ public class ViewBanHang extends javax.swing.JPanel {
                         lblTenCapBacDatHang.setText("");
                     } else {
                         if (bhHoaDonResponse.getCapBac() == 0) {
-                            lblCapBacDatHang.setIcon(new ImageIcon("src/main/images/dong.png"));
+                            lblCapBacDatHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/dong.png")));
                             lblCapBacDatHang.setText("");
                             lblTenCapBacDatHang.setText("Đồng");
                         }
                         if (bhHoaDonResponse.getCapBac() == 1) {
-                            lblCapBacDatHang.setIcon(new ImageIcon("src/main/images/bac.png"));
+                            lblCapBacDatHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bac.png")));
                             lblCapBacDatHang.setText("");
                             lblTenCapBacDatHang.setText("Bạc");
                         }
                         if (bhHoaDonResponse.getCapBac() == 2) {
-                            lblCapBacDatHang.setIcon(new ImageIcon("src/main/images/vang.png"));
+                            lblCapBacDatHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/vang.png")));
                             lblCapBacDatHang.setText("");
                             lblTenCapBacDatHang.setText("Vàng");
                         }
                         if (bhHoaDonResponse.getCapBac() == 3) {
-                            lblCapBacDatHang.setIcon(new ImageIcon("src/main/images/kimcuong.png"));
+                            lblCapBacDatHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/kimcuong.png")));
                             lblCapBacDatHang.setText("");
                             lblTenCapBacDatHang.setText("Kim cương");
                         }
                     }
                 } else {
                     if (bhHoaDonResponse.getPhanTramGiamGia() == 0) {
-                        lblCapBacDatHang.setIcon(new ImageIcon("src/main/images/dong.png"));
+                        lblCapBacDatHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/dong.png")));
                         lblCapBacDatHang.setText("");
                         lblTenCapBacDatHang.setText("Đồng");
                     }
                     if (bhHoaDonResponse.getPhanTramGiamGia() == 3) {
-                        lblCapBacDatHang.setIcon(new ImageIcon("src/main/images/bac.png"));
+                        lblCapBacDatHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bac.png")));
                         lblCapBacDatHang.setText("");
                         lblTenCapBacDatHang.setText("Bạc");
                     }
                     if (bhHoaDonResponse.getPhanTramGiamGia() == 5) {
-                        lblCapBacDatHang.setIcon(new ImageIcon("src/main/images/vang.png"));
+                        lblCapBacDatHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/vang.png")));
                         lblCapBacDatHang.setText("");
                         lblTenCapBacDatHang.setText("Vàng");
                     }
                     if (bhHoaDonResponse.getPhanTramGiamGia() == 10) {
-                        lblCapBacDatHang.setIcon(new ImageIcon("src/main/images/kimcuong.png"));
+                        lblCapBacDatHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/kimcuong.png")));
                         lblCapBacDatHang.setText("");
                         lblTenCapBacDatHang.setText("Kim cương");
                     }
