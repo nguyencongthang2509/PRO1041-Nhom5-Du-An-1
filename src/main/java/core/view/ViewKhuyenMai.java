@@ -982,6 +982,7 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
             }
             listsanpham.clear();
             FillToKhuyenMai(listkhuyenmai);
+            Clear();
             JOptionPane.showMessageDialog(this, "Tạo chương trình khuyến mại thành công");
         } catch (Exception e) {
             e.printStackTrace();
@@ -1121,6 +1122,7 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
 //            KhuyenMaiResponse khuyenMaiResponse = listkhuyenmai.get(index);
 //            listsanpham2 = khuyenMaiService.GetAllSanPhamDangApDung(khuyenMaiResponse.getIdkm());
             FillToSanPhamDangKM(listsanpham2);
+            Clear();
             JOptionPane.showMessageDialog(this, "Sửa chương trình khuyến mại thành công");
 
         } catch (Exception e) {

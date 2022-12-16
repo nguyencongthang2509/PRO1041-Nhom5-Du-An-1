@@ -831,7 +831,7 @@ public class ViewNhanVien extends javax.swing.JPanel {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         try {
-            NhanVien nv = new NhanVien();
+
             if (datePickerNgaysinh.getDate() == null) {
                 JOptionPane.showMessageDialog(this, "Vui lòng không để trống ngày sinh");
                 return;
@@ -855,11 +855,11 @@ public class ViewNhanVien extends javax.swing.JPanel {
                     return;
                 }
             }
+            NhanVien nv = getformData();
 
-            nv = getformData();
             String password = String.valueOf((int) (Math.random() * 100000000));
             //Send to Email
-            EmailSender.emailSender(nv.getEmail(), "Thông Báo Mật Khẩu Nhân Viên Mới", "Password: " + password);
+            EmailSender.emailSender(txtEmail6.getText().trim(), "Thông Báo Mật Khẩu Nhân Viên Mới", "Password: " + password);
 
             //Mã Hóa Mật Khẩu
             MessageDigest md = MessageDigest.getInstance("MD5");
