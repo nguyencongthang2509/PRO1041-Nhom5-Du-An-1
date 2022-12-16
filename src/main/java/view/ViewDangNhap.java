@@ -232,11 +232,11 @@ public class ViewDangNhap extends javax.swing.JFrame {
         if (showPassword == false) {
             txtPassword.setEchoChar((char) 0);
             showPassword = true;
-            lblEye.setIcon(new ImageIcon("src/main/images/view.png"));
+            lblEye.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/view.png")));
         } else {
             txtPassword.setEchoChar('*');
             showPassword = false;
-            lblEye.setIcon(new ImageIcon("src/main/images/hidden.png"));
+            lblEye.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/hidden.png")));
         }
     }//GEN-LAST:event_lblEyeMouseClicked
 

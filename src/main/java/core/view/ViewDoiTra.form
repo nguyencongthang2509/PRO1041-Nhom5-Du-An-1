@@ -5,9 +5,6 @@
     <Container class="javax.swing.JDialog" name="DiaLogHoaDonTraHangChiTiet">
       <Properties>
         <Property name="title" type="java.lang.String" value="H&#xf3;a &#x111;&#x1a1;n tr&#x1ea3; h&#xe0;ng"/>
-        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[717, 743]"/>
-        </Property>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[717, 743]"/>
         </Property>
@@ -2055,8 +2052,8 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel1">
                   <Properties>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="new ImageIcon(&quot;src/main/images/search.png&quot;)" type="code"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/images/search.png"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -2239,8 +2236,8 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel7">
                   <Properties>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="new ImageIcon(&quot;src/main/images/search.png&quot;)" type="code"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/images/search.png"/>
                     </Property>
                   </Properties>
                 </Component>

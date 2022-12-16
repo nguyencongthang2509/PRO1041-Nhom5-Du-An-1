@@ -218,7 +218,6 @@ public class ViewDoiTra extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
 
         DiaLogHoaDonTraHangChiTiet.setTitle("Hóa đơn trả hàng");
-        DiaLogHoaDonTraHangChiTiet.setMaximumSize(new java.awt.Dimension(717, 743));
         DiaLogHoaDonTraHangChiTiet.setMinimumSize(new java.awt.Dimension(717, 743));
         DiaLogHoaDonTraHangChiTiet.setSize(new java.awt.Dimension(717, 743));
 
@@ -1140,7 +1139,7 @@ public class ViewDoiTra extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setIcon(new ImageIcon("src/main/images/search.png"));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search.png"))); // NOI18N
 
         btnXemChiTiet.setBackground(new java.awt.Color(153, 204, 255));
         btnXemChiTiet.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
@@ -1241,7 +1240,7 @@ public class ViewDoiTra extends javax.swing.JPanel {
             }
         });
 
-        jLabel7.setIcon(new ImageIcon("src/main/images/search.png"));
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
