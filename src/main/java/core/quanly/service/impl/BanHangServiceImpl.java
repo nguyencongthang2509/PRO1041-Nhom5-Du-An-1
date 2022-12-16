@@ -6,6 +6,7 @@ import core.quanly.viewmodel.BhChiTietSPResponse;
 import core.quanly.viewmodel.BhHoaDonChiTietResponse;
 import core.quanly.viewmodel.BhHoaDonResponse;
 import core.quanly.viewmodel.BhKhachHangResponse;
+import core.quanly.viewmodel.BhNhanVienResponse;
 import domainmodels.ChiTietSP;
 import domainmodels.ChiTietSPKhuyenMai;
 import domainmodels.HoaDon;
@@ -59,8 +60,8 @@ public class BanHangServiceImpl implements BanHangService {
     }
 
     @Override
-    public List<BhHoaDonResponse> getAllResponseHD(String idNhanVien) {
-        return banHangRepository.getAllResponseHD(idNhanVien);
+    public List<BhHoaDonResponse> getAllResponseHD(String idNhanVien, Integer hinhThucGiaoHang, Integer trangThai) {
+        return banHangRepository.getAllResponseHD(idNhanVien, hinhThucGiaoHang, trangThai);
     }
 
     @Override
@@ -70,8 +71,8 @@ public class BanHangServiceImpl implements BanHangService {
     }
 
     @Override
-    public boolean updateSoLuong(Map<String, BhHoaDonChiTietResponse> list) {
-        boolean check = banHangRepository.updateSoLuong(list);
+    public boolean updateSoLuong(String id, Integer soLuong) {
+        boolean check = banHangRepository.updateSoLuong(id, soLuong);
         return check;
     }
 
@@ -108,7 +109,6 @@ public class BanHangServiceImpl implements BanHangService {
         hoaDonChiTiet.setChiTietSPId(chiTietSP);
         hoaDonChiTiet.setHoaDonId(hoaDon);
         hoaDonChiTiet.setSoLuong(bhHoaDonChiTietResponse.getSoLuong());
-        hoaDonChiTiet.setTrangThai(0);
         hoaDonChiTiet.setGiamGiaKhuyenMai(bhHoaDonChiTietResponse.getGiamGia());
         hoaDonChiTiet.setDonGia(bhHoaDonChiTietResponse.getDonGia());
         hoaDonChiTiet.setGiaBan(bhHoaDonChiTietResponse.getGiaBan());
@@ -139,7 +139,6 @@ public class BanHangServiceImpl implements BanHangService {
             bhHoaDonChiTietResponse.setSoLuong(xx.getSoLuong());
             bhHoaDonChiTietResponse.setSoLuongTon(xx.getSoLuongTon());
             bhHoaDonChiTietResponse.setTenSP(xx.getTenSP());
-            bhHoaDonChiTietResponse.setTrangThai(xx.getTrangThai());
             mapHoaDonChiTietResponse.put(bhHoaDonChiTietResponse.getIdChiTietSP(), bhHoaDonChiTietResponse);
         }
         return mapHoaDonChiTietResponse;
@@ -148,9 +147,21 @@ public class BanHangServiceImpl implements BanHangService {
     @Override
     public boolean updateKhachHangInHoaDon(String idHoaDon, String idKhachHang) {
         HoaDon hoaDon = banHangRepository.findByIdHoaDon(idHoaDon);
-        KhachHang khachHang = new KhachHang();
-        khachHang.setId(idKhachHang);
+        KhachHang khachHang = banHangRepository.findByIdKhachHang(idKhachHang);
         hoaDon.setKhachHang(khachHang);
+        if (khachHang.getCapBac() != null) {
+            if (khachHang.getCapBac() == 0) {
+                hoaDon.setPhamTramGiamGia(0.0);
+            } else if (khachHang.getCapBac() == 1) {
+                hoaDon.setPhamTramGiamGia(3.0);
+            } else if (khachHang.getCapBac() == 2) {
+                hoaDon.setPhamTramGiamGia(5.0);
+            } else if (khachHang.getCapBac() == 3) {
+                hoaDon.setPhamTramGiamGia(10.0);
+            }
+        } else {
+            hoaDon.setPhamTramGiamGia(0.0);
+        }
         banHangRepository.saveOrUpdateHD(hoaDon);
         return true;
     }
@@ -163,7 +174,7 @@ public class BanHangServiceImpl implements BanHangService {
     @Override
     public BhChiTietSPResponse findCTSPByMaVach(List<BhChiTietSPResponse> list, String maVach) {
         for (BhChiTietSPResponse xx : list) {
-            if(maVach.equals(xx.getMaVach())){
+            if (maVach.equals(xx.getMaVach())) {
                 return xx;
             }
         }
@@ -188,6 +199,55 @@ public class BanHangServiceImpl implements BanHangService {
     @Override
     public HoaDonChiTiet findByIdHoaDonChiTiet(String id) {
         return banHangRepository.findByIdHoaDonChiTiet(id);
+    }
+
+    @Override
+    public List<BhNhanVienResponse> getAllNhanVienResponse() {
+        return banHangRepository.getAllNhanVienResponse();
+    }
+
+    @Override
+    public int genMaKH() {
+        return banHangRepository.genMaKH();
+    }
+
+    @Override
+    public boolean saveOrUpdateKH(KhachHang entity) {
+        KhachHang khachHang = banHangRepository.saveOrUpdateKH(entity);
+        if (khachHang != null) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public ChiTietSP findChiTietSPById(String id) {
+        return banHangRepository.findChiTietSPById(id);
+    }
+
+    @Override
+    public List<BhKhachHangResponse> findKhachHang(String input) {
+        return banHangRepository.findKhachHang(input);
+    }
+
+    @Override
+    public List<BhNhanVienResponse> findNhanVien(String input) {
+        return banHangRepository.findNhanVien(input);
+    }
+
+    @Override
+    public List<BhHoaDonResponse> getAllResponseHDByTrangThai(String idNhanVien, int trangThaiThanhToan) {
+        return banHangRepository.getAllResponseHDByTrangThai(idNhanVien, trangThaiThanhToan);
+    }
+
+    @Override
+    public List<BhChiTietSPResponse> findCTSP(String hang, String mauSac, String kichThuoc) {
+        return banHangRepository.findCTSP(hang, mauSac, kichThuoc);
+    }
+
+    @Override
+    public List<BhChiTietSPResponse> findCTSPByMa(String input) {
+        return banHangRepository.findCTSPByMa(input);
     }
 
 }

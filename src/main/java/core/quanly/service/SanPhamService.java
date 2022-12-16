@@ -16,6 +16,8 @@ import javax.print.DocFlavor;
 public interface SanPhamService {
 
     List<SanPhamResponse> getAllViewModel();
+    
+    List<SanPhamResponse> getAllResponse();
 
     SanPham getOne(String ma);
 
@@ -26,4 +28,6 @@ public interface SanPhamService {
     List<SanPham> getAll();
 
     List<SanPhamResponse> findMaOrTen(String input);
+    
+    int genMaSanPhamTuDong();
 }

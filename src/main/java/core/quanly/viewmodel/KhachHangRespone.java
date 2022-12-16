@@ -27,9 +27,13 @@ public class KhachHangRespone {
     private String diaChi;
     private String email;
     private Date ngaySinh;
+    private Integer capBac;
     
-    public Object[] toDataRow(){      
-        return new  Object[]{ma,hoTen,gioiTinh,sdt,diaChi,email,ngaySinh};         
+
+    public Object[] toDataRow() {
+
+        return new Object[]{ ma, hoTen, gioiTinh == 0 ? "Nam" : "Nữ", sdt, diaChi, email, ngaySinh, 
+            capBac == 0 ? "Đồng" : (capBac == 1 ? "Bạc" : (capBac == 2 ? "Vàng" : "Kim cương"))};
     }
 
 }

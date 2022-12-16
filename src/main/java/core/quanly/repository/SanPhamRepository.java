@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.UUID;
 import javax.transaction.Transaction;
 import org.hibernate.Session;
+import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 import repository.CrudRepository;
 
@@ -24,6 +25,20 @@ public class SanPhamRepository extends CrudRepository<String, SanPham, SanPhamRe
     public SanPhamRepository(){
         className = SanPham.class.getName();
         res = "new core.quanly.viewmodel.SanPhamResponse(a.id, a.ma, a.ten)";
+    }
+    
+    public List<SanPhamResponse> getAllResponseSP() {
+        List<SanPhamResponse> list = new ArrayList<>();
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "SELECT new core.quanly.viewmodel.SanPhamResponse(a.id, a.ma, a.ten) FROM SanPham a Where a.trangThaiXoa = 0 order by a.createdDate desc";
+            org.hibernate.query.Query query = session.createQuery(hql);
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return list;
     }
     
     public List<SanPhamResponse> findByMaOrTen(String input) {
@@ -40,6 +55,29 @@ public class SanPhamRepository extends CrudRepository<String, SanPham, SanPhamRe
             e.printStackTrace();
         }
         return lst;
+    }
+    
+    public int genMaSanPham() {
+        String maStr = "";
+        session = HibernateUtil.getSession();
+        try {
+            String nativeQuery = "SELECT MAX(CONVERT(INT, SUBSTRING(ma,3,10))) from san_pham";
+            NativeQuery query = session.createNativeQuery(nativeQuery);
+            if (query.getSingleResult() != null) {
+                maStr = query.getSingleResult().toString();
+            } else {
+                maStr = null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (maStr == null) {
+            maStr = "0";
+            int ma = Integer.parseInt(maStr);
+            return ++ma;
+        }
+        int ma = Integer.parseInt(maStr);
+        return ++ma;
     }
     
     public static void main(String[] args) {

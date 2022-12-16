@@ -1,17 +1,22 @@
 package config;
 
+import core.quanly.repository.KhuyenMaiRepository;
+import core.quanly.viewmodel.KMSanphamDangKmReponse;
 import domainmodels.ChatLieu;
 import domainmodels.ChiTietSP;
 import domainmodels.ChiTietSPKhuyenMai;
 import domainmodels.Hang;
 import domainmodels.HoaDon;
 import domainmodels.HoaDonChiTiet;
+import domainmodels.HoaDonTraHang;
+import domainmodels.HoaDonTraHangChiTiet;
 import domainmodels.KhachHang;
 import domainmodels.KhuyenMai;
 import domainmodels.KichThuoc;
 import domainmodels.MauSac;
 import domainmodels.NhanVien;
 import domainmodels.SanPham;
+import java.util.List;
 import java.util.Properties;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -49,7 +54,9 @@ public class HibernateUtil {
         conf.addAnnotatedClass(ChiTietSP.class);
         conf.addAnnotatedClass(ChiTietSPKhuyenMai.class);
         conf.addAnnotatedClass(HoaDonChiTiet.class);
-
+        conf.addAnnotatedClass(HoaDonTraHang.class);
+        conf.addAnnotatedClass(HoaDonTraHangChiTiet.class);
+        
         conf.setProperties(properties);
 
         ServiceRegistry registry = new StandardServiceRegistryBuilder()
@@ -66,7 +73,7 @@ public class HibernateUtil {
     }
 
     public static void main(String[] args) {
-        if (SESSION != null) {
+        if (getSession() != null) {
             System.out.println("Thành công");
         }
     }

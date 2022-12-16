@@ -81,5 +81,15 @@ public class SPChatLieuServiceImpl implements SPChatLieuService{
     public List<ChatLieu> getAll() {
         return chatLieuRepository.getAll();
     }
+
+    @Override
+    public int genChatLieuTuDong() {
+        return chatLieuRepository.genMaChatLieu();
+    }
+
+    @Override
+    public List<SPChatLieuResponse> getAllResponse() {
+        return chatLieuRepository.getAllResponseChatLieu();
+    }
     
 }

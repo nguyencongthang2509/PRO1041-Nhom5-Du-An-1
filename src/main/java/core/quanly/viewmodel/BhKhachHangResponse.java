@@ -27,6 +27,8 @@ public class BhKhachHangResponse {
     private int gioiTinh;
 
     private String diaChi;
+    
+    private Integer capBac;
 
     public Object[] toDataRow() {
         return new Object[]{ma, hoTen, sdt, email, gioiTinh == 0 ? "Nam" : "Nữ", diaChi};

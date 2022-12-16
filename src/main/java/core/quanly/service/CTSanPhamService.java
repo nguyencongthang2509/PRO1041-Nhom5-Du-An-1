@@ -24,7 +24,7 @@ public interface CTSanPhamService {
 
     List<ChiTietSP> getAll();
     
-    List<CTSanPhamResponse> findByMaOrTen(String input);
+    List<CTSanPhamResponse> findByMaOrTen(String input, int TrangThai);
     
     List<CTSanPhamResponse> getCbbListHang(String hang);
     
@@ -32,4 +32,7 @@ public interface CTSanPhamService {
     
     List<CTSanPhamResponse> findTrangThai(Integer ma);
     
+    int genMaCTSPTuDong();
+    
+    boolean updateTrangThai(int trangThai, String id);
 }

@@ -21,9 +21,9 @@ public class ViewDangNhap extends javax.swing.JFrame {
         initComponents();
         dangNhapService = new DangNhapServiceImpl();
         setLocationRelativeTo(null);
-        lblLogo.setIcon(new ImageIcon("src/main/images/sneaker.jpg"));
+        lblLogo.setIcon(new ImageIcon(getClass().getResource("/images/sneaker.jpg")));
 
-        ImageIcon originalIcon = new ImageIcon("src/main/images/sneaker.jpg");
+        ImageIcon originalIcon = new ImageIcon(getClass().getResource("/images/sneaker.jpg"));
 
         int width = 340;
         int height = 380;
@@ -34,7 +34,7 @@ public class ViewDangNhap extends javax.swing.JFrame {
 
         lblLogo.setIcon(scaledIcon);
 
-        ImageIcon img = new ImageIcon("src/main/images/sneaker.jpg");
+        ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/images/sneaker.jpg"));
 
         this.setIconImage(img.getImage());
 
@@ -65,7 +65,7 @@ public class ViewDangNhap extends javax.swing.JFrame {
         lblEye = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Phần mềm quản lý bán giày thời trang Sneaker Store");
+        setTitle("Phần mềm bán giày thời trang Sneaker");
         setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
 
@@ -97,7 +97,7 @@ public class ViewDangNhap extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         jLabel3.setText("Email:");
 
-        lblLogo.setIcon(new ImageIcon("src/main/images/sneaker.jpg"));
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sneaker.jpg"))); // NOI18N
 
         jPanel2.setBackground(new java.awt.Color(153, 204, 255));
 
@@ -127,12 +127,12 @@ public class ViewDangNhap extends javax.swing.JFrame {
         txtPassword.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
-        jLabel6.setIcon(new ImageIcon("src/main/images/email.png"));
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/email.png"))); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
-        jLabel7.setIcon(new ImageIcon("src/main/images/security.png"));
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/security.png"))); // NOI18N
 
-        lblEye.setIcon(new ImageIcon("src/main/images/hidden.png"));
+        lblEye.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/hidden.png"))); // NOI18N
         lblEye.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblEyeMouseClicked(evt);
@@ -232,11 +232,11 @@ public class ViewDangNhap extends javax.swing.JFrame {
         if (showPassword == false) {
             txtPassword.setEchoChar((char) 0);
             showPassword = true;
-            lblEye.setIcon(new ImageIcon("src/main/images/view.png"));
+            lblEye.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/view.png")));
         } else {
             txtPassword.setEchoChar('*');
             showPassword = false;
-            lblEye.setIcon(new ImageIcon("src/main/images/hidden.png"));
+            lblEye.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/hidden.png")));
         }
     }//GEN-LAST:event_lblEyeMouseClicked
 

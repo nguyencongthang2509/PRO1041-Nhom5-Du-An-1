@@ -5,6 +5,7 @@
 package core.quanly.viewmodel;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,28 +32,118 @@ public class HdHoaDonResponse1 {
     private String maNV;
     private String tenNV;
     private String tenKH;
-    private String diaChi;
     private String sdt;
+    private String diaChi;
+    private String lydo;
     private Integer trangThai;
+    private Double phanTramGiamGia;
+    private String maGiaoDich;
+
+    public String getNgayThanhToanStr() {
+        if (ngayThanhToan == null) {
+            return "..........";
+        }
+        return String.valueOf(ngayThanhToan);
+    }
+
+    public String getGiamGiaStr() {
+        if (phanTramGiamGia == null) {
+            return "0%";
+        }
+        return String.valueOf(phanTramGiamGia) + "%";
+    }
+
+    public String getThanhTienStr() {
+        DecimalFormat df = new DecimalFormat("#,###");
+        if (thanhTien == null) {
+            return "0VNĐ";
+        }
+        return String.valueOf(df.format(thanhTien)) + "VNĐ";
+    }
+
+    public String getTienKhachCKStr() {
+        DecimalFormat df = new DecimalFormat("#,###");
+        if (tienKhachCK == null) {
+            return "0VNĐ";
+        }
+        return String.valueOf(df.format(tienKhachCK)) + "VNĐ";
+    }
+
+    public String getTienKhachTraStr() {
+        DecimalFormat df = new DecimalFormat("#,###");
+        if (tienKhachTra == null) {
+            return "0VNĐ";
+        }
+        return String.valueOf(df.format(tienKhachTra)) + "VNĐ";
+    }
+
+    public String getTienThuaStr() {
+        DecimalFormat df = new DecimalFormat("#,###");
+        if (tienThua == null) {
+            return "0VNĐ";
+        }
+        return String.valueOf(df.format(tienThua)) + "VNĐ";
+    }
+
+    public String getTenKHStr() {
+        if (tenKH == null) {
+            return "Khách bán lẻ";
+        }
+        return String.valueOf(tenKH);
+    }
+
+    public String getSDTStr() {
+        if (sdt == null) {
+            return "..........";
+        }
+        return String.valueOf(sdt);
+    }
+
+    public String getDiaChiStr() {
+        if (diaChi == null) {
+            return "..........";
+        }
+        return String.valueOf(diaChi);
+    }
 
     public String getTT() {
-        if(trangThai == 0){
+        if (trangThai == 0) {
             return "Chờ thanh toán";
-        }else if(trangThai == 1){
+        } else if (trangThai == 1) {
             return "Đã hủy";
-        }else if(trangThai == 2){
+        } else if (trangThai == 2) {
             return "Đã thanh toán";
-        }else if(trangThai == 3){
+        } else if (trangThai == 3) {
+            return "Chờ giao hàng";
+        } else if (trangThai == 4) {
             return "Đang giao";
+        } else if (trangThai == 5) {
+            return "Đã giao";
+        } else if (trangThai == 6) {
+            return "Khách hẹn lại";
         }
-        return "Đã giao";
+        return "Đã trả hàng";
+    }
+
+    public String getLyDoStr() {
+        if (lydo == null) {
+            return "..........";
+        }
+        return lydo;
+    }
+
+    public String getMaGDStr() {
+        if (maGiaoDich == null) {
+            return "..........";
+        }
+        return maGiaoDich;
     }
 
     public String getHinhThucTT() {
-        return hinhThucThanhToan == 0 ? "Tiền mặt" : (hinhThucThanhToan == 1 ? "Chuyển khoản" : "Kết hợp");
+        return hinhThucThanhToan == null ? "Chưa chọn" : (hinhThucThanhToan == 0 ? "Tiền mặt" : hinhThucThanhToan == 1 ? "Chuyển khoản" : "Kết hợp");
     }
 
     public Object[] toDaTaRow() {
-        return new Object[]{ma, ngayTao, ngayThanhToan == null ? "No" : ngayThanhToan, getHinhThucTT(), thanhTien == null ? "No" : thanhTien, tienKhachCK == null ? "0" : tienKhachCK, tienKhachTra == null ? "0" : tienKhachTra, tienThua == null ? "0" : tienThua, maNV, tenNV, tenKH == null ? "Khách bán lẻ" : tenKH, diaChi == null ? "No" : diaChi, sdt == null ? "No" : sdt, getTT()};
+        return new Object[]{ma, ngayTao, ngayThanhToan == null ? "No" : ngayThanhToan, getThanhTienStr(), maNV, tenKH == null ? "Khách bán lẻ" : tenKH, getLyDoStr(), getTT()};
     }
 }

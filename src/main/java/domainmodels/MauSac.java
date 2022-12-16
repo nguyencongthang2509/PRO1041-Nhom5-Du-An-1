@@ -31,4 +31,6 @@ public class MauSac extends PrimaryEntity implements Serializable {
     @Nationalized
     private String ten;
 
+    @Column(name = "status_deleted", columnDefinition = "int default 0")
+    private Integer trangThaiXoa = 0;
 }

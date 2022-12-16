@@ -14,6 +14,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.Nationalized;
 
 /**
@@ -25,6 +26,7 @@ import org.hibernate.annotations.Nationalized;
 @NoArgsConstructor
 @Getter
 @Setter
+@ToString
 @Table(name = "chi_tiet_san_pham")
 public class ChiTietSP extends PrimaryEntity implements Serializable {
 
@@ -48,7 +50,7 @@ public class ChiTietSP extends PrimaryEntity implements Serializable {
     @JoinColumn(name = "id_chat_lieu")
     private ChatLieu chatLieu;
     
-    @Column(name = "ma_ctsp", length = EntityProperties.LENGTH_CODE, nullable = false)
+    @Column(name = "ma_ctsp", length = EntityProperties.LENGTH_CODE)
     private String maChiTietSP;
 
     @Column(name = "mo_ta", length = EntityProperties.LENGTH_DESCRIPTION)
@@ -63,5 +65,8 @@ public class ChiTietSP extends PrimaryEntity implements Serializable {
 
     @Column(name = "ma_vach", length = EntityProperties.LENGTH_CODE)
     private String maVach;
+    
+    @Column(name = "status_deleted", columnDefinition = "int default 0")
+    private Integer trangThaiXoa = 0;
 
 }

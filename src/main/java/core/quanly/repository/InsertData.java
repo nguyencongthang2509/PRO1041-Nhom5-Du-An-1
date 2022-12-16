@@ -66,6 +66,11 @@ public class InsertData {
             hang1.setMa("H0002");
             hang1.setTen("Adidas");
             session.saveOrUpdate(hang1);
+            
+            Hang hang3 = new Hang();
+            hang3.setMa("H0003");
+            hang3.setTen("Vans");
+            session.saveOrUpdate(hang3);
 
             Hang hang2 = new Hang();
             hang2.setMa("H0003");
@@ -81,6 +86,11 @@ public class InsertData {
             chatLieu.setMa("CL001");
             chatLieu.setTen("Da PU");
             session.saveOrUpdate(chatLieu);
+            
+            ChatLieu chatLieu1 = new ChatLieu();
+            chatLieu1.setMa("CL002");
+            chatLieu1.setTen("Vải canvas");
+            session.saveOrUpdate(chatLieu1);
 
             KichThuoc kichThuoc1 = new KichThuoc();
             kichThuoc1.setMa("KT002");
@@ -126,6 +136,11 @@ public class InsertData {
             sanPham3.setMa("Sp004");
             sanPham3.setTen("Jordan one low");
             session.saveOrUpdate(sanPham3);
+            
+            SanPham sanPham4 = new SanPham();
+            sanPham4.setMa("Sp005");
+            sanPham4.setTen("Vans classic");
+            session.saveOrUpdate(sanPham4);
 
             NhanVien nhanVien = new NhanVien();
             nhanVien.setMa("NV001");
@@ -141,6 +156,35 @@ public class InsertData {
             }
             nhanVien.setGioiTinh(0);
             session.saveOrUpdate(nhanVien);
+            
+            NhanVien nhanVien1 = new NhanVien();
+            nhanVien1.setMa("NV002");
+            nhanVien1.setTen("Nguyễn Văn An");
+            nhanVien1.setVaiTro(1);
+            nhanVien1.setDiaChi("Thái Bình");
+            nhanVien1.setEmail("annv@gmail.com");
+            nhanVien1.setSdt("0234354566");
+            nhanVien1.setMatKhau("E10ADC3949BA59ABBE56E057F20F883E");
+            try {
+                nhanVien1.setNgaySinh(new SimpleDateFormat("dd-MM-yyyy").parse("25-09-2000"));
+            } catch (Exception e) {
+            }
+            nhanVien1.setGioiTinh(0);
+            session.saveOrUpdate(nhanVien1);
+            
+            KhachHang khachHangBanLe = new KhachHang();
+            khachHangBanLe.setMa("KH000");
+            khachHangBanLe.setHoTen("Khách bán lẻ");
+            khachHangBanLe.setEmail("khachbanle");
+            khachHangBanLe.setGioiTinh(0);
+            try {
+                khachHangBanLe.setNgaySinh(new SimpleDateFormat("dd-MM-yyyy").parse("1-1-2000"));
+            } catch (Exception e) {
+            }
+            khachHangBanLe.setSdt("Không có");
+            khachHangBanLe.setDiaChi("Không có");
+            khachHangBanLe.setCapBac(null);
+            session.saveOrUpdate(khachHangBanLe);
 
             KhachHang khachHang = new KhachHang();
             khachHang.setMa("KH001");
@@ -196,89 +240,89 @@ public class InsertData {
             chiTietSP.setChatLieu(chatLieu);
             session.saveOrUpdate(chiTietSP);
 
-            ChiTietSP chiTietSP1 = new ChiTietSP();
-            chiTietSP1.setMaChiTietSP("CTSP02");
-            chiTietSP1.setHang(hang);
-            chiTietSP1.setGiaBan(new BigDecimal("250000"));
-            chiTietSP1.setKichThuoc(kichThuoc1);
-            chiTietSP1.setMauSac(mauSac);
-            chiTietSP1.setSoLuongTon(1000);
-            chiTietSP1.setSanPham(sanPham);
-            chiTietSP1.setChatLieu(chatLieu);
-            chiTietSP1.setMaVach("02354356546");
-            session.saveOrUpdate(chiTietSP1);
-
-            ChiTietSP chiTietSP2 = new ChiTietSP();
-            chiTietSP2.setMaChiTietSP("CTSP03");
-            chiTietSP2.setHang(hang);
-            chiTietSP2.setGiaBan(new BigDecimal("250000"));
-            chiTietSP2.setKichThuoc(kichThuoc2);
-            chiTietSP2.setMauSac(mauSac2);
-            chiTietSP2.setSoLuongTon(1000);
-            chiTietSP2.setSanPham(sanPham);
-            chiTietSP2.setChatLieu(chatLieu);
-            chiTietSP2.setMaVach("123456");
-            session.saveOrUpdate(chiTietSP2);
-
-            ChiTietSP chiTietSP3 = new ChiTietSP();
-            chiTietSP3.setMaChiTietSP("CTSP04");
-            chiTietSP3.setHang(hang);
-            chiTietSP3.setGiaBan(new BigDecimal("250000"));
-            chiTietSP3.setKichThuoc(kichThuoc3);
-            chiTietSP3.setMauSac(mauSac);
-            chiTietSP3.setSoLuongTon(1000);
-            chiTietSP3.setSanPham(sanPham);
-            chiTietSP3.setMaVach("0123456789");
-            chiTietSP3.setChatLieu(chatLieu);
-            session.saveOrUpdate(chiTietSP3);
-
-            ChiTietSP chiTietSP4 = new ChiTietSP();
-            chiTietSP4.setMaChiTietSP("CTSP05");
-            chiTietSP4.setHang(hang);
-            chiTietSP4.setGiaBan(new BigDecimal("250000"));
-            chiTietSP4.setKichThuoc(kichThuoc4);
-            chiTietSP4.setMauSac(mauSac1);
-            chiTietSP4.setSoLuongTon(1000);
-            chiTietSP4.setSanPham(sanPham);
-            chiTietSP4.setMaVach("123456789");
-            chiTietSP4.setChatLieu(chatLieu);
-            session.saveOrUpdate(chiTietSP4);
-
-            ChiTietSP chiTietSP5 = new ChiTietSP();
-            chiTietSP5.setMaChiTietSP("CTSP06");
-            chiTietSP5.setHang(hang1);
-            chiTietSP5.setGiaBan(new BigDecimal("200000"));
-            chiTietSP5.setKichThuoc(kichThuoc4);
-            chiTietSP5.setMauSac(mauSac2);
-            chiTietSP5.setSoLuongTon(1000);
-            chiTietSP5.setSanPham(sanPham2);
-            chiTietSP5.setMaVach("234");
-            chiTietSP5.setChatLieu(chatLieu);
-            session.saveOrUpdate(chiTietSP5);
-
-            ChiTietSP chiTietSP6 = new ChiTietSP();
-            chiTietSP6.setMaChiTietSP("CTSP07");
-            chiTietSP6.setHang(hang2);
-            chiTietSP6.setGiaBan(new BigDecimal("230000"));
-            chiTietSP6.setKichThuoc(kichThuoc2);
-            chiTietSP6.setMauSac(mauSac4);
-            chiTietSP6.setSoLuongTon(1000);
-            chiTietSP6.setSanPham(sanPham2);
-            chiTietSP6.setMaVach("567");
-            chiTietSP6.setChatLieu(chatLieu);
-            session.saveOrUpdate(chiTietSP6);
-
-            ChiTietSP chiTietSP7 = new ChiTietSP();
-            chiTietSP7.setMaChiTietSP("CTSP08");
-            chiTietSP7.setHang(hang1);
-            chiTietSP7.setGiaBan(new BigDecimal("300000"));
-            chiTietSP7.setKichThuoc(kichThuoc3);
-            chiTietSP7.setMauSac(mauSac2);
-            chiTietSP7.setSoLuongTon(1000);
-            chiTietSP7.setSanPham(sanPham1);
-            chiTietSP7.setMaVach("678");
-            chiTietSP7.setChatLieu(chatLieu);
-            session.saveOrUpdate(chiTietSP7);
+//            ChiTietSP chiTietSP1 = new ChiTietSP();
+//            chiTietSP1.setMaChiTietSP("CTSP02");
+//            chiTietSP1.setHang(hang);
+//            chiTietSP1.setGiaBan(new BigDecimal("250000"));
+//            chiTietSP1.setKichThuoc(kichThuoc1);
+//            chiTietSP1.setMauSac(mauSac);
+//            chiTietSP1.setSoLuongTon(1000);
+//            chiTietSP1.setSanPham(sanPham);
+//            chiTietSP1.setChatLieu(chatLieu);
+//            chiTietSP1.setMaVach("02354356546");
+//            session.saveOrUpdate(chiTietSP1);
+//
+//            ChiTietSP chiTietSP2 = new ChiTietSP();
+//            chiTietSP2.setMaChiTietSP("CTSP03");
+//            chiTietSP2.setHang(hang);
+//            chiTietSP2.setGiaBan(new BigDecimal("250000"));
+//            chiTietSP2.setKichThuoc(kichThuoc2);
+//            chiTietSP2.setMauSac(mauSac2);
+//            chiTietSP2.setSoLuongTon(1000);
+//            chiTietSP2.setSanPham(sanPham);
+//            chiTietSP2.setChatLieu(chatLieu);
+//            chiTietSP2.setMaVach("123456");
+//            session.saveOrUpdate(chiTietSP2);
+//
+//            ChiTietSP chiTietSP3 = new ChiTietSP();
+//            chiTietSP3.setMaChiTietSP("CTSP04");
+//            chiTietSP3.setHang(hang);
+//            chiTietSP3.setGiaBan(new BigDecimal("250000"));
+//            chiTietSP3.setKichThuoc(kichThuoc3);
+//            chiTietSP3.setMauSac(mauSac);
+//            chiTietSP3.setSoLuongTon(1000);
+//            chiTietSP3.setSanPham(sanPham);
+//            chiTietSP3.setMaVach("0123456789");
+//            chiTietSP3.setChatLieu(chatLieu);
+//            session.saveOrUpdate(chiTietSP3);
+//
+//            ChiTietSP chiTietSP4 = new ChiTietSP();
+//            chiTietSP4.setMaChiTietSP("CTSP05");
+//            chiTietSP4.setHang(hang);
+//            chiTietSP4.setGiaBan(new BigDecimal("250000"));
+//            chiTietSP4.setKichThuoc(kichThuoc4);
+//            chiTietSP4.setMauSac(mauSac1);
+//            chiTietSP4.setSoLuongTon(1000);
+//            chiTietSP4.setSanPham(sanPham);
+//            chiTietSP4.setMaVach("123456789");
+//            chiTietSP4.setChatLieu(chatLieu);
+//            session.saveOrUpdate(chiTietSP4);
+//
+//            ChiTietSP chiTietSP5 = new ChiTietSP();
+//            chiTietSP5.setMaChiTietSP("CTSP06");
+//            chiTietSP5.setHang(hang1);
+//            chiTietSP5.setGiaBan(new BigDecimal("200000"));
+//            chiTietSP5.setKichThuoc(kichThuoc4);
+//            chiTietSP5.setMauSac(mauSac2);
+//            chiTietSP5.setSoLuongTon(1000);
+//            chiTietSP5.setSanPham(sanPham2);
+//            chiTietSP5.setMaVach("234");
+//            chiTietSP5.setChatLieu(chatLieu);
+//            session.saveOrUpdate(chiTietSP5);
+//
+//            ChiTietSP chiTietSP6 = new ChiTietSP();
+//            chiTietSP6.setMaChiTietSP("CTSP07");
+//            chiTietSP6.setHang(hang2);
+//            chiTietSP6.setGiaBan(new BigDecimal("230000"));
+//            chiTietSP6.setKichThuoc(kichThuoc2);
+//            chiTietSP6.setMauSac(mauSac4);
+//            chiTietSP6.setSoLuongTon(1000);
+//            chiTietSP6.setSanPham(sanPham2);
+//            chiTietSP6.setMaVach("567");
+//            chiTietSP6.setChatLieu(chatLieu);
+//            session.saveOrUpdate(chiTietSP6);
+//
+//            ChiTietSP chiTietSP7 = new ChiTietSP();
+//            chiTietSP7.setMaChiTietSP("CTSP08");
+//            chiTietSP7.setHang(hang1);
+//            chiTietSP7.setGiaBan(new BigDecimal("300000"));
+//            chiTietSP7.setKichThuoc(kichThuoc3);
+//            chiTietSP7.setMauSac(mauSac2);
+//            chiTietSP7.setSoLuongTon(1000);
+//            chiTietSP7.setSanPham(sanPham1);
+//            chiTietSP7.setMaVach("678");
+//            chiTietSP7.setChatLieu(chatLieu);
+//            session.saveOrUpdate(chiTietSP7);
 
             ChiTietSPKhuyenMai chiTietSPKhuyenMai = new ChiTietSPKhuyenMai();
             chiTietSPKhuyenMai.setChiTietSPId(chiTietSP);
@@ -288,13 +332,14 @@ public class InsertData {
             chiTietSPKhuyenMai.setDonGiaConLai(chiTietSP.getGiaBan().subtract(chiTietSP.getGiaBan().multiply(new BigDecimal(khuyenMai.getGiaTri()).divide(new BigDecimal(100)))));
             session.saveOrUpdate(chiTietSPKhuyenMai);
 
-            ChiTietSPKhuyenMai chiTietSPKhuyenMai2 = new ChiTietSPKhuyenMai();
-            chiTietSPKhuyenMai2.setChiTietSPId(chiTietSP1);
-            chiTietSPKhuyenMai2.setKhuyenMaiId(khuyenMai);
-            chiTietSPKhuyenMai2.setDonGia(chiTietSP1.getGiaBan());
-            chiTietSPKhuyenMai2.setTrangThai(1);
-            chiTietSPKhuyenMai2.setDonGiaConLai(chiTietSP1.getGiaBan().subtract(chiTietSP1.getGiaBan().multiply(new BigDecimal(khuyenMai.getGiaTri()).divide(new BigDecimal(100)))));
-            session.saveOrUpdate(chiTietSPKhuyenMai2);
+//            ChiTietSPKhuyenMai chiTietSPKhuyenMai2 = new ChiTietSPKhuyenMai();
+//            chiTietSPKhuyenMai2.setChiTietSPId(chiTietSP1);
+//            chiTietSPKhuyenMai2.setKhuyenMaiId(khuyenMai);
+//            chiTietSPKhuyenMai2.setDonGia(chiTietSP1.getGiaBan());
+//            chiTietSPKhuyenMai2.setTrangThai(1);
+//            chiTietSPKhuyenMai2.setDonGiaConLai(chiTietSP1.getGiaBan().subtract(chiTietSP1.getGiaBan().multiply(new BigDecimal(khuyenMai.getGiaTri()).divide(new BigDecimal(100)))));
+//            session.saveOrUpdate(chiTietSPKhuyenMai2);
+
 
             transaction.commit();
         } catch (Exception e) {

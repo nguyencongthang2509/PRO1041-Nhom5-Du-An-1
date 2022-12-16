@@ -27,7 +27,7 @@ import lombok.Setter;
 public class HoaDonChiTiet extends PrimaryEntity implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_hoa_hon", nullable = false)
+    @JoinColumn(name = "id_hoa_don", nullable = false)
     private HoaDon hoaDonId;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -39,13 +39,11 @@ public class HoaDonChiTiet extends PrimaryEntity implements Serializable {
 
     @Column(name = "so_luong")
     private Integer soLuong;
-
+    
     @Column(name = "don_gia", columnDefinition = "decimal(20,0)")
     private BigDecimal donGia;
 
     @Column(name = "gia_ban", columnDefinition = "decimal(20,0)")
     private BigDecimal giaBan;
-
-    @Column(name = "trang_thai")
-    private Integer trangThai; // 0 : Chờ thanh toán, 1: Đã hủy, 2: Đã thanh toán, 3: Đang giao, 4: Đã giao
+    
 }

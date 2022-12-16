@@ -2,6 +2,7 @@ package view;
 
 import core.quanly.service.DoiMatKhauService;
 import core.quanly.service.impl.DoiMatKhauServiceImpl;
+import core.view.ViewBanHang;
 import domainmodels.NhanVien;
 import java.util.UUID;
 import javax.swing.ImageIcon;
@@ -22,7 +23,7 @@ public class ViewDoiMatKhau extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         nhanVien = nv;
         jFrameQuanLy = jFrame;
-        ImageIcon img = new ImageIcon("src/main/images/sneaker.jpg");
+        ImageIcon img = new javax.swing.ImageIcon(getClass().getResource("/images/sneaker.jpg"));
         this.setIconImage(img.getImage());
         String text = UUID.randomUUID().toString().toUpperCase();
         text = text.substring(0, 6);
@@ -66,9 +67,11 @@ public class ViewDoiMatKhau extends javax.swing.JFrame {
         jLabel2.setText("jLabel2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Đổi mật khẩu");
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setToolTipText("Đổi mật khẩu");
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 204, 255));
@@ -137,7 +140,7 @@ public class ViewDoiMatKhau extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel9.setIcon(new ImageIcon("src/main/images/exchange.png"));
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/exchange.png"))); // NOI18N
         jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel9MouseClicked(evt);
@@ -157,21 +160,21 @@ public class ViewDoiMatKhau extends javax.swing.JFrame {
             .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jLabel10.setIcon(new ImageIcon("src/main/images/hidden.png"));
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/hidden.png"))); // NOI18N
         jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel10MouseClicked(evt);
             }
         });
 
-        jLabel11.setIcon(new ImageIcon("src/main/images/hidden.png"));
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/hidden.png"))); // NOI18N
         jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel11MouseClicked(evt);
             }
         });
 
-        jLabel12.setIcon(new ImageIcon("src/main/images/hidden.png"));
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/hidden.png"))); // NOI18N
         jLabel12.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel12MouseClicked(evt);
@@ -191,7 +194,7 @@ public class ViewDoiMatKhau extends javax.swing.JFrame {
         txtMatKhauMoiP2.setToolTipText("");
         txtMatKhauMoiP2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
-        jLabel13.setIcon(new ImageIcon("src/main/images/message.png"));
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/message.png"))); // NOI18N
         jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel13MouseClicked(evt);
@@ -316,11 +319,11 @@ public class ViewDoiMatKhau extends javax.swing.JFrame {
         if (showMKCu == false) {
             txtMatKhauCu.setEchoChar((char) 0);
             showMKCu = true;
-            jLabel10.setIcon(new ImageIcon("src/main/images/view.png"));
+            jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/view.png")));
         } else {
             txtMatKhauCu.setEchoChar('*');
             showMKCu = false;
-            jLabel10.setIcon(new ImageIcon("src/main/images/hidden.png"));
+            jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/hidden.png")));
         }
     }//GEN-LAST:event_jLabel10MouseClicked
 
@@ -328,11 +331,11 @@ public class ViewDoiMatKhau extends javax.swing.JFrame {
         if (showMkMoi == false) {
             txtMatKhauMoi.setEchoChar((char) 0);
             showMkMoi = true;
-            jLabel11.setIcon(new ImageIcon("src/main/images/view.png"));
+            jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/view.png")));
         } else {
             txtMatKhauMoi.setEchoChar('*');
             showMkMoi = false;
-            jLabel11.setIcon(new ImageIcon("src/main/images/hidden.png"));
+            jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/hidden.png")));
         }
     }//GEN-LAST:event_jLabel11MouseClicked
 
@@ -340,11 +343,11 @@ public class ViewDoiMatKhau extends javax.swing.JFrame {
         if (showMkMoiP2 == false) {
             txtMatKhauMoiP2.setEchoChar((char) 0);
             showMkMoiP2 = true;
-            jLabel12.setIcon(new ImageIcon("src/main/images/view.png"));
+            jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/view.png")));
         } else {
             txtMatKhauMoiP2.setEchoChar('*');
             showMkMoiP2 = false;
-            jLabel12.setIcon(new ImageIcon("src/main/images/hidden.png"));
+            jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/hidden.png")));
         }
     }//GEN-LAST:event_jLabel12MouseClicked
 
@@ -398,6 +401,7 @@ public class ViewDoiMatKhau extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, mess);
         jFrameQuanLy.dispose();
         this.dispose();
+        ViewBanHang.webcam.close();
         new ViewDangNhap().setVisible(true);
     }//GEN-LAST:event_lblDoiMatKhauMouseClicked
 

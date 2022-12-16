@@ -22,7 +22,7 @@ public class BhHoaDonResponse {
     private Date ngayTao;
 
     private Integer hinhThucGiaoHang;
-    
+
     private Integer hinhThucThanhToan;
 
     private String tenNhanVien;
@@ -30,6 +30,18 @@ public class BhHoaDonResponse {
     private String maKhachHang;
 
     private String tenKhachHang;
+    
+    private String sdtKhachHang;
+    
+    private String diaChiKhachHang;
+    
+    private Integer capBac;
+    
+    private Double phanTramGiamGia;
+    
+    private Integer trangThaiThanhToan;
+    
+    private Date ngayMongMuon;
 
     private Integer trangThai;
 
@@ -44,14 +56,18 @@ public class BhHoaDonResponse {
     private String sdtNguoiShip;
 
     private BigDecimal tienShip;
-    
+
     private BigDecimal tienKhachDua;
-    
+
     private BigDecimal tienKhachCk;
-    
+
     private BigDecimal tienThua;
 
+    private String getTrangThaiHoaDon() {
+        return trangThai == 0 ? "Chờ thanh toán" : (trangThai == 1 ? "Đã hủy" : (trangThai == 2 ? "Đã thanh toán" : (trangThai == 3 ? "Chờ giao hàng" : (trangThai == 4 ? "Đang giao" : (trangThai == 5 ? "Đã giao" : (trangThai == 6 ? "Khách hẹn lại" : "Đã trả hàng"))))));
+    }
+
     public Object[] toDataRow() {
-        return new Object[]{maHD, ngayTao, tenNhanVien, tenKhachHang, hinhThucGiaoHang == 0 ? "Tại quầy" : "Đặt hàng", trangThai == 0 ? "Chờ thanh toán" : (trangThai == 1 ? "Đã hủy" : (trangThai == 2 ? "Đã thanh toán" : (trangThai == 3 ? "Đang giao" : "Đã giao")))};
+        return new Object[]{maHD, ngayTao, tenNhanVien, tenKhachHang, hinhThucGiaoHang == 0 ? "Tại quầy" : "Đặt hàng", getTrangThaiHoaDon()};
     }
 }

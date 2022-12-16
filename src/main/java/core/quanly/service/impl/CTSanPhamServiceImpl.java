@@ -31,16 +31,8 @@ public class CTSanPhamServiceImpl implements CTSanPhamService {
 
     @Override
     public String add(ChiTietSP ctsanPham) {
-        if (ctsanPham.getMaChiTietSP().trim().isEmpty()) {
-            return "Mã không được trống";
-        }
-        if (ctsanPham.getMaVach().trim().isEmpty()) {
-            return "Mã vạch không được trống";
-        }
-        if (ctsanPham.getMoTa().trim().isEmpty()) {
-            return "Mô tả không được trống";
-        }
-
+     
+        
         ChiTietSP sanPhamFind = CTSanPhamRepository.findByMa(ctsanPham.getMaChiTietSP());
         if (sanPhamFind != null) {
             return "Mã không được trùng";
@@ -59,9 +51,7 @@ public class CTSanPhamServiceImpl implements CTSanPhamService {
         if (sanPhamFindById == null) {
             return "Không tìm thấy sản phẩm";
         }
-        if (ctsanPham.getMaChiTietSP().isEmpty()) {
-            return "Mã không được để trống";
-        }
+      
         if (!ctsanPham.getMaChiTietSP().equals(sanPhamFindById.getMaChiTietSP())) {
             ChiTietSP sanPhamFindByMa = CTSanPhamRepository.findByMa(ctsanPham.getMaChiTietSP());
             if (sanPhamFindByMa != null) {
@@ -95,8 +85,8 @@ public class CTSanPhamServiceImpl implements CTSanPhamService {
     }
 
     @Override
-    public List<CTSanPhamResponse> findByMaOrTen(String input) {
-        return CTSanPhamRepository.findByMaOrTen(input);
+    public List<CTSanPhamResponse> findByMaOrTen(String input, int TrangThai) {
+        return CTSanPhamRepository.findByMaOrTen(input, TrangThai);
     }
 
     @Override
@@ -112,6 +102,16 @@ public class CTSanPhamServiceImpl implements CTSanPhamService {
     @Override
     public List<CTSanPhamResponse> findTrangThai(Integer ma) {
         return CTSanPhamRepository.findTrangThai(ma);
+    }
+
+    @Override
+    public int genMaCTSPTuDong() {
+        return CTSanPhamRepository.genMaCTSP();
+    }
+
+    @Override
+    public boolean updateTrangThai(int trangThai, String id) {
+        return CTSanPhamRepository.updateTrangThai(trangThai, id);
     }
 
 }

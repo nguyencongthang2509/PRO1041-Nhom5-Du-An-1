@@ -10,6 +10,7 @@ import core.quanly.viewmodel.KhuyenMaiResponse;
 import domainmodels.ChiTietSP;
 import domainmodels.ChiTietSPKhuyenMai;
 import domainmodels.KhuyenMai;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -34,7 +35,7 @@ public interface KhuyenMaiService {
     
     List<KhuyenMaiResponse> FindMaOrTenByInputDaDienRa(String input);
 
-    boolean saveOrUpdateKM(KhuyenMai khuyenMai);
+    String saveOrUpdateKM(KhuyenMai khuyenMai);
 
     boolean updateKhuyenMaiChoSP(String idKhuyenMai, String idChiTietSP);
 
@@ -44,7 +45,29 @@ public interface KhuyenMaiService {
     
     List<KhuyenMaiResponse> GetKhuyenMaiDangDienRa(); 
     
+    List<KhuyenMai> GetAllKhuyenMaiDangDienRa(); 
+    
     List<KhuyenMaiResponse> GetKhuyenMaiSapDienRa(); 
     
     List<KhuyenMaiResponse> GetKhuyenMaiDaDienRa(); 
+    
+    int GenMaKhuyenMai();
+    
+    List<KMChiTietSPResponse> FindSanPhamByTen(Object input);
+    
+    List<String> SelectTenSanPham();
+    
+    boolean updateKhuyenMaiDangDienRa(String idKhuyenMai);
+    
+    List<KhuyenMaiResponse> GetKhuyenMaiKhongDienRa();
+    
+    List<KhuyenMai> GetAllKhuyenMaiKhongDienRa();
+    
+    boolean updateKhuyenMaiKhongDienRa(String idKhuyenMai);
+    
+    boolean HuyKhuyenMai(String idctspkm);
+    
+    List<KMChiTietSPResponse> getAllChiTietSPCoTheApDung(Date ngayBatDau, Date ngayKetThuc, int loaikhuyenmai, Double giatri);
+    
+    ChiTietSPKhuyenMai getChiTietSPKM2(String idkhuyenmai);
 }

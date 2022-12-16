@@ -10,6 +10,7 @@ import core.quanly.service.KhachHangService;
 import core.quanly.viewmodel.KhachHangLichSuRespone;
 import core.quanly.viewmodel.KhachHangRespone;
 import domainmodels.KhachHang;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -34,9 +35,7 @@ public class KhachHangServiceImpl implements KhachHangService {
         if (khachHangFind != null) {
             return "Mã không được trùng";
         }
-        if (khachHang.getMa().trim().isEmpty()) {
-            return "Mã không được trống";
-        }
+        
         if (khachHang.getHoTen().trim().isEmpty()) {
             return "Tên không được trống";
         }
@@ -54,7 +53,7 @@ public class KhachHangServiceImpl implements KhachHangService {
         }
         if (khachHang.getNgaySinh().compareTo(new Date()) > 0) {
             return "Ngày sinh không hợp lệ";
-        }       
+        }
         if (khachHang.getSdt().trim().isEmpty()) {
             return "Số điện thoại không được trống";
         }
@@ -76,9 +75,7 @@ public class KhachHangServiceImpl implements KhachHangService {
         if (khachHangFindById == null) {
             return "Không tìm thấy";
         }
-        if (khachHang.getMa().isEmpty()) {
-            return "Mã trống";
-        }
+       
         if (khachHang.getHoTen().isEmpty()) {
             return "Tên trống";
         }
@@ -135,8 +132,6 @@ public class KhachHangServiceImpl implements KhachHangService {
         return khachHangRe.findKhachHangByMaOrTen(input);
     }
 
-   
-
     @Override
     public List<KhachHangLichSuRespone> getKhachHangByLichSu(String id) {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -146,7 +141,37 @@ public class KhachHangServiceImpl implements KhachHangService {
     @Override
     public List<KhachHangRespone> getLoadCbbGioiTinh(int gioiTinh) {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-     return khachHangRe.getLoadCbbGioiTinh(gioiTinh);
+        return khachHangRe.getLoadCbbGioiTinh(gioiTinh);
+    }
+
+    @Override
+    public List<KhachHangLichSuRespone> getKhachHangByCapBac(String id) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return khachHangRe.getKhachHangByCapBac(id);
+    }
+
+    @Override
+    public BigDecimal getTongTienByIdKhachHang(String id) {
+        return khachHangRe.getTongTienByIdKhachHang(id);
+    }
+
+    @Override
+    public boolean saveOrUpdateKH(KhachHang entity) {
+        KhachHang kh = khachHangRe.saveOrUpdateKH(entity);
+        if(kh != null){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public int genMaKhachHang() {
+        return khachHangRe.genMaKhachHang();
+    }
+
+    @Override
+    public String getCapBacTheoNgayThanhToan(String mahd) {
+    return khachHangRe.getCapBacTheoNgayThanhToan(mahd);
     }
 
 }

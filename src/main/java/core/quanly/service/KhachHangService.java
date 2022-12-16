@@ -8,6 +8,7 @@ package core.quanly.service;
 import core.quanly.viewmodel.KhachHangLichSuRespone;
 import core.quanly.viewmodel.KhachHangRespone;
 import domainmodels.KhachHang;
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -17,10 +18,14 @@ import java.util.List;
 public interface KhachHangService {
 
     List<KhachHangRespone> getAllResponse();
+    
+    int genMaKhachHang();
 
     String insert(KhachHang khachHang);
 
     String update(KhachHang khachHang);
+    
+    boolean saveOrUpdateKH(KhachHang entity);
 
 //    List<KhachHang> getAll();
     List<KhachHangRespone> findKhachHangByMaOrTen(String input);
@@ -28,4 +33,10 @@ public interface KhachHangService {
     List<KhachHangRespone> getLoadCbbGioiTinh(int gioiTinh);
 
     List<KhachHangLichSuRespone> getKhachHangByLichSu(String id);
+    
+     List<KhachHangLichSuRespone> getKhachHangByCapBac(String id);
+     
+     BigDecimal getTongTienByIdKhachHang(String id);
+     
+     public String getCapBacTheoNgayThanhToan(String mahd);
 }

@@ -4,6 +4,7 @@ import config.HibernateUtil;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Data;
+import lombok.Synchronized;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -11,6 +12,8 @@ import org.hibernate.query.Query;
 public abstract class CrudRepository<Key, Entity, Response> {
 
     protected Session session;
+    protected Session sessionDaily;
+    protected Transaction transDaily;
     protected Transaction trans;
     protected String className;
     protected String res;
@@ -33,7 +36,7 @@ public abstract class CrudRepository<Key, Entity, Response> {
         List<Entity> list = new ArrayList<>();
         try {
             session = HibernateUtil.getSession();
-            String hql = "SELECT a FROM " + className + " a";
+            String hql = "SELECT a FROM " + className + " a order by a.createdDate desc";
             Query query = session.createQuery(hql);
             list = query.getResultList();
         } catch (Exception e) {
@@ -57,6 +60,7 @@ public abstract class CrudRepository<Key, Entity, Response> {
         return entity;
     }
     
+    @Synchronized
     public boolean saveAll(List<Entity> list) {
         try {
             session = HibernateUtil.getSession();

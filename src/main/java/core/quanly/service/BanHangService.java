@@ -4,6 +4,8 @@ import core.quanly.viewmodel.BhChiTietSPResponse;
 import core.quanly.viewmodel.BhHoaDonChiTietResponse;
 import core.quanly.viewmodel.BhHoaDonResponse;
 import core.quanly.viewmodel.BhKhachHangResponse;
+import core.quanly.viewmodel.BhNhanVienResponse;
+import domainmodels.ChiTietSP;
 import domainmodels.ChiTietSPKhuyenMai;
 import domainmodels.HoaDon;
 import domainmodels.HoaDonChiTiet;
@@ -21,20 +23,34 @@ public interface BanHangService {
     ChiTietSPKhuyenMai getCTSPKhuyenMai(String idChiTietSP);
 
     List<BhChiTietSPResponse> getAllChiTietSP();
+    
+    List<BhChiTietSPResponse> findCTSPByMa(String input);
+    
+    List<BhChiTietSPResponse> findCTSP(String hang, String mauSac, String kichThuoc);
 
     List<BhKhachHangResponse> getAllKhachHangResponse();
+    
+    List<BhKhachHangResponse> findKhachHang(String input);
+    
+    List<BhNhanVienResponse> getAllNhanVienResponse();
 
     int genMaHoaDonTuDong();
+    
+    int genMaKH();
 
+    boolean saveOrUpdateKH(KhachHang entity);
+    
     String saveOrUpdate(HoaDon hoaDon);
 
     KhachHang findByMaKhachHang(String ma);
+    
+    List<BhHoaDonResponse> getAllResponseHDByTrangThai(String idNhanVien, int trangThaiThanhToan);
 
-    List<BhHoaDonResponse> getAllResponseHD(String idNhanVien);
+    List<BhHoaDonResponse> getAllResponseHD(String idNhanVien, Integer hinhThucGiaoHang, Integer trangThai);
 
     boolean insertHDCT(String idHoaDon, Map<String, BhHoaDonChiTietResponse> list);
 
-    public boolean updateSoLuong(Map<String, BhHoaDonChiTietResponse> list);
+    public boolean updateSoLuong(String id, Integer soLuong);
 
     public boolean updateTrangThaiHoaDon(String id);
 
@@ -59,5 +75,9 @@ public interface BanHangService {
     BhChiTietSPResponse findCTSPByMaVach(List<BhChiTietSPResponse> list, String maVach);
     
     HoaDon findByIdHoaDon(String id);
+    
+    ChiTietSP findChiTietSPById(String id);
+    
+    List<BhNhanVienResponse> findNhanVien(String input);
        
 }

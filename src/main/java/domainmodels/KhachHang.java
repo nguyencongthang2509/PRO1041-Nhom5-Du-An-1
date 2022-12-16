@@ -49,5 +49,11 @@ public class KhachHang extends PrimaryEntity implements Serializable {
     @Column(name = "dia_chi", length = EntityProperties.LENGTH_ADDRESS)
     @Nationalized
     private String diaChi;
+    
+    @Column(name = "cap_bac")
+    private Integer capBac = 0;// 0: đồng 0%, 1: bạc 3-5tr : 3%, 2: Vàng: 5tr - 10tr : 5%, Kim cương: > 10tr : 10%
+    
+    @Column(name = "status_deleted", columnDefinition = "int default 0")
+    private Integer trangThaiXoa = 0;
 
 }
