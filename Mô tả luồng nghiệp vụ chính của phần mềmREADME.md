@@ -1,7 +1,7 @@
 # PRO1041-Nhom5-Du-An-1
 Bài bảo vệ cuối môn dự án 1 - PRO1041
 Đề tài: Phần mềm bán giày Sneaker
-Luồng nghiệp vụ chính: Bán hàng - Trả hàng
+- Luồng nghiệp vụ chính của phần mềm: Bán hàng - Trả hàng
 (*) Luồng bán hàng:
 - Bán hàng theo hình thức tại quầy:
 1. Khi nhân viên tạo một hóa đơn mới, mặc định trạng thái của hóa đơn sẽ là chờ thanh toán, sau đó nhân viên sẽ thêm những sản phẩm mà khách hàng 
