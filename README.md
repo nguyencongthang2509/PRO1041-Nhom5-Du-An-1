@@ -48,7 +48,7 @@ cập nhật trạng thái của hóa đơn thành khách hẹn lại, và đế
 đang giao đã thanh toán hay chưa, nếu khách chưa thanh toán sẽ thực hiện giao dịch với khách, và sau đó
 báo lại cho nhân viên bán hàng, trạng thái của hóa đơn sau đó sẽ chuyển thành đã giao.
 
- (*) Luồng trả hàng:
+(*) Luồng trả hàng:
 1. Khi khách có yêu cầu trả hàng, nhân viên kiểm tra hóa đơn mà khách hàng mang đến xem thời gian thực hiện giao dịch của hóa đơn đã quá 3 ngày hay không?
 2. Nếu còn hạn nhân viên ghi lại lý do khách tại sao muốn trả hàng.
 3. Khi trả thì tiến hành kiểm tra chất lượng của giày xem còn đủ tiêu chuẩn để trả hay không, không áp dụng trả hàng
