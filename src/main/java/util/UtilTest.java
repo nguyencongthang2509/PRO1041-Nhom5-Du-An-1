@@ -1,3 +1,4 @@
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -67,7 +68,7 @@ public class UtilTest {
         System.out.println(format);
         int nam = Integer.parseInt(format);
         JFreeChart barChart = ChartFactory.createBarChart(
-                "BIỂU ĐỒ DOANH THU CỦA CỬA HÀNG TỪ NĂM " + (nam - 4) + "-HIỆN TẠI",
+                "Biểu đồ doanh thu của cửa hàng từ năm " + (nam - 4) + "-HIỆN TẠI",
                 "Năm", "Doanh số",
                 createDatasetTheoNam(), PlotOrientation.VERTICAL, true, true, true);
         return barChart;
@@ -75,7 +76,7 @@ public class UtilTest {
 
     public JFreeChart createChartTheoThang(int nam) throws Exception {
         JFreeChart barChart = ChartFactory.createBarChart(
-                "BIỂU ĐỒ DOANH THU CỦA CỬA HÀNG NĂM " + nam,
+                "Biểu đồ doanh thu của cửa hàng năm " + nam,
                 "Tháng", "Doanh số",
                 createDatasetTheoThangCuaNam(nam), PlotOrientation.VERTICAL, true, true, true);
         return barChart;
@@ -83,14 +84,14 @@ public class UtilTest {
 
     public JFreeChart createChartTheoThang(int thang, int nam) throws Exception {
         JFreeChart barChart = ChartFactory.createBarChart(
-                "BIỂU ĐỒ DOANH THU CỦA CỬA HÀNG THÁNG " + thang + "-" + nam,
+                "Biểu đồ doanh thu của cửa hàng tháng " + thang + "-" + nam,
                 "Ngày", "Doanh số",
                 createDatasetTheoThang(thang, nam), PlotOrientation.VERTICAL, true, true, true);
         return barChart;
     }
 
     public JFreeChart createChartTheoKhoangThoiGian(List<ThongKeTheoKhoangResponse> list) throws Exception {
-        JFreeChart barChart = ChartFactory.createBarChart("BIỂU ĐỒ DOANH THU CỦA CỬA HÀNG TỪ " + list.get(0).getNgay() + "/" + list.get(0).getThang() + "/" + list.get(0).getNam() + " ĐẾN " + +list.get(list.size() - 1).getNgay() + "/" + list.get(list.size() - 1).getThang() + "/" + list.get(list.size() - 1).getNam(), "NGÀY", "Doanh số", createDatasetTheoKhoangThoiGian(list), PlotOrientation.VERTICAL, true, true, true);
+        JFreeChart barChart = ChartFactory.createBarChart("Biểu đồ doanh thu của cửa hàng từ " + list.get(0).getNgay() + "/" + list.get(0).getThang() + "/" + list.get(0).getNam() + " đến " + +list.get(list.size() - 1).getNgay() + "/" + list.get(list.size() - 1).getThang() + "/" + list.get(list.size() - 1).getNam(), "NGÀY", "Doanh số", createDatasetTheoKhoangThoiGian(list), PlotOrientation.VERTICAL, true, true, true);
         return barChart;
     }
 

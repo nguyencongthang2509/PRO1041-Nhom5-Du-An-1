@@ -1,5 +1,6 @@
 package domainmodels.base;
 
+
 import infrastructure.constant.EntityProperties;
 import infrastructure.listener.CreatePrimaryEntityListener;
 import javax.persistence.Column;

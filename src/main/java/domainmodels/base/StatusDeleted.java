@@ -1,5 +1,6 @@
 package domainmodels.base;
 
+
 import infrastructure.listener.CreateStatusDeletedListener;
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;

@@ -9,6 +9,7 @@ import core.quanly.viewmodel.CTSanPhamResponse;
 import domainmodels.ChiTietSP;
 import java.util.List;
 
+
 /**
  *
  * @author HP
@@ -24,13 +25,13 @@ public interface CTSanPhamService {
 
     List<ChiTietSP> getAll();
     
-    List<CTSanPhamResponse> findByMaOrTen(String input, int TrangThai);
+    List<CTSanPhamResponse> findByMaOrTen(String input, String sanPham, int TrangThai);
     
     List<CTSanPhamResponse> getCbbListHang(String hang);
     
     List<CTSanPhamResponse> getFormCTSP(String ma);
     
-    List<CTSanPhamResponse> findTrangThai(Integer ma);
+    List<CTSanPhamResponse> findTrangThai(String id, Integer ma);
     
     int genMaCTSPTuDong();
     

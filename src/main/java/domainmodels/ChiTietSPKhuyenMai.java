@@ -1,5 +1,6 @@
 package domainmodels;
 
+
 import domainmodels.base.PrimaryEntity;
 import java.io.Serializable;
 import java.math.BigDecimal;

@@ -6,6 +6,7 @@ import core.quanly.viewmodel.BhHoaDonChiTietResponse;
 import core.quanly.viewmodel.BhHoaDonResponse;
 import core.quanly.viewmodel.BhKhachHangResponse;
 import core.quanly.viewmodel.BhNhanVienResponse;
+import core.quanly.viewmodel.CTSanPhamResponse;
 import domainmodels.ChiTietSP;
 import domainmodels.ChiTietSPKhuyenMai;
 import domainmodels.HoaDon;
@@ -68,6 +69,34 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
         return list;
     }
     
+    public List<CTSanPhamResponse> findCTSPCTSP(String sanPham, String hang, String mauSac, String kichThuoc, String chatLieu, Integer trangThai) {
+        List<CTSanPhamResponse> list = new ArrayList<>();
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "SELECT " + "new core.quanly.viewmodel.CTSanPhamResponse"
+                    + "(a.id, a.sanPham.ma, a.sanPham.ten,"
+                    + "a.mauSac.ten, a.kichThuoc.ten, a.hang.ten, a.chatLieu.ten ,a.maChiTietSP, a.moTa, a.soLuongTon, a.giaBan, a.maVach, a.trangThaiXoa)"
+                    + " FROM ChiTietSP a WHERE a.trangThaiXoa = :trangThai AND a.hang.ten LIKE CONCAT('%', CONVERT(VARCHAR,:hang),'%') AND a.mauSac.ten LIKE CONCAT('%', CONVERT(VARCHAR,:mauSac),'%') AND a.kichThuoc.ten LIKE CONCAT('%', CONVERT(VARCHAR,:kichThuoc),'%') AND a.chatLieu.ten LIKE CONCAT('%', CONVERT(VARCHAR,:chatLieu),'%') AND a.sanPham.ten LIKE CONCAT('%', CONVERT(VARCHAR,:sanPham),'%') order by a.createdDate DESC";
+            Query query = session.createQuery(hql);
+            query.setParameter("hang", hang);
+            query.setParameter("mauSac", mauSac);
+            query.setParameter("kichThuoc", kichThuoc);
+            query.setParameter("chatLieu", chatLieu);
+            query.setParameter("sanPham", sanPham);
+            query.setParameter("trangThai", trangThai);
+            list = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return list;
+    }
+    
+    public static void main(String[] args) {
+        List<CTSanPhamResponse> list = new BanHangRepository().findCTSPCTSP("", "", "", "", "Canvas", 0);
+        System.out.println(list);
+    }
+    
     public List<BhChiTietSPResponse> findCTSPByMa(String input) {
         List<BhChiTietSPResponse> list = new ArrayList<>();
         try {
@@ -109,10 +138,6 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
         return chiTietSPKhuyenMai;
     }
 
-    public static void main(String[] args) {
-        ChiTietSPKhuyenMai chiTietSPKhuyenMai = new BanHangRepository().getCTSPKhuyenMai("0fd07b81-128e-4081-8b20-2f73b1c1a34e");
-        System.out.println(chiTietSPKhuyenMai.getId());
-    }
 
 //    public static void main(String[] args) {
 //        List<BhHoaDonChiTietResponse> list = new BanHangRepository().getAllHDCTByIdHoaDon("7b207910-96b6-4859-ba86-00b01a6f0f37");

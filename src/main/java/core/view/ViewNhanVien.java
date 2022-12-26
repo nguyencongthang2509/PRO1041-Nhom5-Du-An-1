@@ -1,6 +1,4 @@
 package core.view;
-
-//import core.quanly.repository.NhanVienRepository;
 import com.github.lgooddatepicker.components.DatePicker;
 import core.quanly.repository.NhanVienRepository;
 import core.quanly.service.NhanVienService;

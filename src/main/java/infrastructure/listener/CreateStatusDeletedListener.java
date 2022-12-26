@@ -1,5 +1,6 @@
 package infrastructure.listener;
 
+
 import domainmodels.base.StatusDeleted;
 import javax.persistence.PrePersist;
 

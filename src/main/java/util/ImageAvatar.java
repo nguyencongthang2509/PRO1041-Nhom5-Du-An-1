@@ -14,12 +14,6 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 
-
-
-
-
-
-
 public class ImageAvatar extends JComponent {
 
     public Icon getIcon() {
@@ -96,7 +90,7 @@ public class ImageAvatar extends JComponent {
             height = 1;
         }
         int cw = size;
-        int ch =size;
+        int ch = size;
         int x = (cw - width) / 2;
         int y = (ch - height) / 2;
         return new Rectangle(new Point(x, y), new Dimension(width, height));

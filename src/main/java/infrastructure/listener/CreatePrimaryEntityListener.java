@@ -1,5 +1,6 @@
 package infrastructure.listener;
 
+
 import domainmodels.base.PrimaryEntity;
 import java.util.UUID;
 import javax.persistence.PrePersist;

@@ -4,6 +4,7 @@
  */
 package core.quanly.service.impl;
 
+
 import core.quanly.repository.CTSanPhamRepository;
 import core.quanly.service.CTSanPhamService;
 import core.quanly.viewmodel.CTSanPhamResponse;
@@ -31,8 +32,7 @@ public class CTSanPhamServiceImpl implements CTSanPhamService {
 
     @Override
     public String add(ChiTietSP ctsanPham) {
-     
-        
+
         ChiTietSP sanPhamFind = CTSanPhamRepository.findByMa(ctsanPham.getMaChiTietSP());
         if (sanPhamFind != null) {
             return "Mã không được trùng";
@@ -51,7 +51,7 @@ public class CTSanPhamServiceImpl implements CTSanPhamService {
         if (sanPhamFindById == null) {
             return "Không tìm thấy sản phẩm";
         }
-      
+
         if (!ctsanPham.getMaChiTietSP().equals(sanPhamFindById.getMaChiTietSP())) {
             ChiTietSP sanPhamFindByMa = CTSanPhamRepository.findByMa(ctsanPham.getMaChiTietSP());
             if (sanPhamFindByMa != null) {
@@ -85,10 +85,11 @@ public class CTSanPhamServiceImpl implements CTSanPhamService {
     }
 
     @Override
-    public List<CTSanPhamResponse> findByMaOrTen(String input, int TrangThai) {
-        return CTSanPhamRepository.findByMaOrTen(input, TrangThai);
+    public List<CTSanPhamResponse> findByMaOrTen(String input, String sanPham, int TrangThai) {
+        return CTSanPhamRepository.findByMaOrTen(input, sanPham, TrangThai);
     }
 
+    
     @Override
     public List<CTSanPhamResponse> getFormCTSP(String ma) {
         return CTSanPhamRepository.getFormCTSP(ma);
@@ -100,8 +101,8 @@ public class CTSanPhamServiceImpl implements CTSanPhamService {
     }
 
     @Override
-    public List<CTSanPhamResponse> findTrangThai(Integer ma) {
-        return CTSanPhamRepository.findTrangThai(ma);
+    public List<CTSanPhamResponse> findTrangThai(String id, Integer ma) {
+        return CTSanPhamRepository.findTrangThai(id, ma);
     }
 
     @Override

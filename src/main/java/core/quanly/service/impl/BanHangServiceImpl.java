@@ -1,5 +1,6 @@
 package core.quanly.service.impl;
 
+
 import core.quanly.repository.BanHangRepository;
 import core.quanly.service.BanHangService;
 import core.quanly.viewmodel.BhChiTietSPResponse;
@@ -7,6 +8,7 @@ import core.quanly.viewmodel.BhHoaDonChiTietResponse;
 import core.quanly.viewmodel.BhHoaDonResponse;
 import core.quanly.viewmodel.BhKhachHangResponse;
 import core.quanly.viewmodel.BhNhanVienResponse;
+import core.quanly.viewmodel.CTSanPhamResponse;
 import domainmodels.ChiTietSP;
 import domainmodels.ChiTietSPKhuyenMai;
 import domainmodels.HoaDon;
@@ -248,6 +250,11 @@ public class BanHangServiceImpl implements BanHangService {
     @Override
     public List<BhChiTietSPResponse> findCTSPByMa(String input) {
         return banHangRepository.findCTSPByMa(input);
+    }
+
+    @Override
+    public List<CTSanPhamResponse> findCTSPCTSP(String sanPham, String hang, String mauSac, String kichThuoc, String chatLieu, Integer trangThai) {
+        return banHangRepository.findCTSPCTSP(sanPham, hang, mauSac, kichThuoc, chatLieu, trangThai);
     }
 
 }

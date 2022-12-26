@@ -360,7 +360,7 @@
                                   <Component id="btnhuy" min="-2" pref="149" max="-2" attributes="0"/>
                                   <Component id="btnsua" min="-2" pref="149" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="171" max="32767" attributes="0"/>
+                              <EmptySpace pref="181" max="32767" attributes="0"/>
                           </Group>
                           <Component id="jPanel5" max="32767" attributes="0"/>
                       </Group>

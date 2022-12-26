@@ -1,5 +1,6 @@
 package infrastructure.listener;
 
+
 import domainmodels.base.AuditEntity;
 import java.util.Calendar;
 import javax.persistence.PrePersist;

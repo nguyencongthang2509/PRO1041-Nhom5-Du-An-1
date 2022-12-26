@@ -90,10 +90,12 @@ public class ViewBanHang extends javax.swing.JPanel {
     private boolean selected;
     private int countTbpTaiQuay = 0;
     private int countTbpDatHang;
+    private int bellCheck = 0;
     public static WebcamPanel panel = null;
     public static Webcam webcam = null;
     public Thread capture;
     public Thread captureDaily;
+    public Thread captureBell;
 
     private static final long serialVersionUID = 6441489157408381878L;
 //    private Executor executor = Executors.newSingleThreadExecutor(this);
@@ -167,6 +169,7 @@ public class ViewBanHang extends javax.swing.JPanel {
 
 //        executor.execute(this);
         captureThread();
+        loadBell();
         loadDaily();
     }
 
@@ -188,6 +191,30 @@ public class ViewBanHang extends javax.swing.JPanel {
         };
         captureDaily.setDaemon(true);
         captureDaily.start();
+    }
+
+    @Synchronized
+    public void loadBell() {
+        captureBell = new Thread() {
+            @Override
+            public synchronized void run() {
+                do {
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    if (bellCheck % 2 == 0) {
+                        lblBell.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bell.png")));
+                    } else {
+                        lblBell.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/canhbao.png")));
+                    }
+                    bellCheck++;
+                } while (true);
+            }
+        };
+        captureBell.setDaemon(true);
+        captureBell.start();
     }
 
     @Synchronized
@@ -495,6 +522,8 @@ public class ViewBanHang extends javax.swing.JPanel {
         cboTTTT = new javax.swing.JComboBox<>();
         btnClear = new javax.swing.JButton();
         cboHinhThucGiaoHang = new javax.swing.JComboBox<>();
+        lblBell = new javax.swing.JLabel();
+        lblSoHoaDonCho = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         tbpDonHang = new javax.swing.JTabbedPane();
         jPanel17 = new javax.swing.JPanel();
@@ -1388,31 +1417,45 @@ public class ViewBanHang extends javax.swing.JPanel {
             }
         });
 
+        lblBell.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bell.png"))); // NOI18N
+
+        lblSoHoaDonCho.setText("1");
+        lblSoHoaDonCho.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        lblSoHoaDonCho.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
+        lblSoHoaDonCho.setForeground(new java.awt.Color(255, 0, 0));
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(lblBell)
+                        .addGap(0, 0, 0)
+                        .addComponent(lblSoHoaDonCho)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(cboTTTT, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cboTrangThaiHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cboHinhThucGiaoHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 3, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cboTrangThaiHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboTTTT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboHinhThucGiaoHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cboTrangThaiHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cboTTTT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cboHinhThucGiaoHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblSoHoaDonCho))
+                    .addComponent(lblBell, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(44, 44, 44)
@@ -1731,7 +1774,7 @@ public class ViewBanHang extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 492, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -2219,7 +2262,7 @@ public class ViewBanHang extends javax.swing.JPanel {
         jPanel14.setLayout(jPanel14Layout);
         jPanel14Layout.setHorizontalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlWebcam, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
+            .addComponent(pnlWebcam, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4222,6 +4265,7 @@ public class ViewBanHang extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_cboMauSacItemStateChanged
 
+
     private void cboSizeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboSizeItemStateChanged
         String hang = "";
         String mauSac = "";
@@ -4396,8 +4440,10 @@ public class ViewBanHang extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JLabel lblBell;
     private javax.swing.JLabel lblCapBac;
     private javax.swing.JLabel lblCapBacDatHang;
+    private javax.swing.JLabel lblSoHoaDonCho;
     private javax.swing.JLabel lblTenCapBac;
     private javax.swing.JLabel lblTenCapBacDatHang;
     private javax.swing.JLabel lblTienChu;

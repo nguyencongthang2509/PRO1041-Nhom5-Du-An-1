@@ -1,5 +1,6 @@
 package domainmodels.base;
 
+
 /**
  *
  * @author thangncph26123

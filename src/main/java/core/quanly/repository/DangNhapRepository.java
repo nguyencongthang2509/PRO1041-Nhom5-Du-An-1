@@ -1,9 +1,11 @@
+
 package core.quanly.repository;
 
 import config.HibernateUtil;
 import domainmodels.NhanVien;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
+
 
 /**
  *

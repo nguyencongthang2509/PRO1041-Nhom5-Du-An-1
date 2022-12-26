@@ -1,3 +1,4 @@
+
 package core.quanly.viewmodel;
 
 import java.math.BigDecimal;

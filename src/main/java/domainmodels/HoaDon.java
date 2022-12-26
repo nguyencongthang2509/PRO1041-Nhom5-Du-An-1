@@ -1,5 +1,6 @@
 package domainmodels;
 
+
 import domainmodels.base.PrimaryEntity;
 import infrastructure.constant.EntityProperties;
 import java.io.Serializable;

@@ -5,6 +5,7 @@ import core.quanly.viewmodel.BhHoaDonChiTietResponse;
 import core.quanly.viewmodel.BhHoaDonResponse;
 import core.quanly.viewmodel.BhKhachHangResponse;
 import core.quanly.viewmodel.BhNhanVienResponse;
+import core.quanly.viewmodel.CTSanPhamResponse;
 import domainmodels.ChiTietSP;
 import domainmodels.ChiTietSPKhuyenMai;
 import domainmodels.HoaDon;
@@ -27,7 +28,10 @@ public interface BanHangService {
     List<BhChiTietSPResponse> findCTSPByMa(String input);
     
     List<BhChiTietSPResponse> findCTSP(String hang, String mauSac, String kichThuoc);
+    
+    List<CTSanPhamResponse> findCTSPCTSP(String sanPham, String hang, String mauSac, String kichThuoc, String chatLieu, Integer trangThai);
 
+    
     List<BhKhachHangResponse> getAllKhachHangResponse();
     
     List<BhKhachHangResponse> findKhachHang(String input);
