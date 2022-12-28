@@ -63,7 +63,7 @@ import util.TaiMauExcelCTSP;
  *
  * @author thangncph26123
  */
-public class ViewSanPhamNhanVien extends javax.swing.JPanel {
+public class ViewSanPham extends javax.swing.JPanel {
 
     private final SanPhamService sanPhamService;
     private final CTSanPhamService ctsanPhamService;
@@ -104,7 +104,7 @@ public class ViewSanPhamNhanVien extends javax.swing.JPanel {
     private int tongsoTrang = 1;
     private int count = 1;
 
-    public ViewSanPhamNhanVien() {
+    public ViewSanPham() {
         initComponents();
         sanPhamService = new SanPhamserviceImpl();
         banHangService = new BanHangServiceImpl();
@@ -510,7 +510,9 @@ public class ViewSanPhamNhanVien extends javax.swing.JPanel {
             .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
+        DiaLogChiTietSP.setMaximumSize(new java.awt.Dimension(1043, 436));
         DiaLogChiTietSP.setMinimumSize(new java.awt.Dimension(1043, 436));
+        DiaLogChiTietSP.setPreferredSize(new java.awt.Dimension(1043, 436));
         DiaLogChiTietSP.setSize(new java.awt.Dimension(1043, 436));
 
         jPanel20.setBackground(new java.awt.Color(255, 255, 255));
