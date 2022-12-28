@@ -197,7 +197,7 @@ public class DailyCheckingKhuyenMai extends Thread {
                 }
             }
             try {
-                Thread.sleep(60000);
+                Thread.sleep(10000);
             } catch (Exception e) {
                 e.printStackTrace();
             }

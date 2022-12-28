@@ -1612,14 +1612,14 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
     public void FillToLocsanpham(List<KMChiTietSPResponse> listsanphamcotheapdung) {
         modellocsanpham.setRowCount(0);
         count1 = listsanphamcotheapdung.size();
-        if (count1 % 20 == 0) {
-            tongsoTrang = count1 / 20;
+        if (count1 % 30 == 0) {
+            tongsoTrang = count1 / 30;
         } else {
-            tongsoTrang = count1 / 20 + 1;
+            tongsoTrang = count1 / 30 + 1;
         }
-        int n = 20 * (tranghientai);
-        int m = n + 20;
-        if (count1 % 20 == 0) {
+        int n = 30 * (tranghientai);
+        int m = n + 30;
+        if (count1 % 30 == 0) {
             modellocsanpham.setRowCount(0);
             for (int i = n; i < m; i++) {
                 modellocsanpham.addRow(new Object[]{false, i + 1,
@@ -1633,7 +1633,7 @@ public class ViewKhuyenMai extends javax.swing.JPanel {
             }
         } else {
             if (tranghientai == tongsoTrang - 1) {
-                int k = n + count1 % 20;
+                int k = n + count1 % 30;
                 modellocsanpham.setRowCount(0);
                 for (int i = n; i < k; i++) {
                     modellocsanpham.addRow(new Object[]{false, i + 1,

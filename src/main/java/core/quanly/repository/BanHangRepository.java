@@ -49,6 +49,24 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
         return list;
     }
 
+    public Long countHoaDonChoGiaoHang() {
+        Long count = 0L;
+        try {
+            session = HibernateUtil.getSession();
+            String hql = "SELECT COUNT(1) FROM HoaDon WHERE trangThai = 3";
+            Query query = session.createQuery(hql);
+            if (query.getSingleResult() == null) {
+                count = 0L;
+            } else {
+                count = (Long) query.getSingleResult();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return count;
+    }
+
     public List<BhChiTietSPResponse> findCTSP(String hang, String mauSac, String kichThuoc) {
         List<BhChiTietSPResponse> list = new ArrayList<>();
         try {
@@ -68,7 +86,7 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
         }
         return list;
     }
-    
+
     public List<CTSanPhamResponse> findCTSPCTSP(String sanPham, String hang, String mauSac, String kichThuoc, String chatLieu, Integer trangThai) {
         List<CTSanPhamResponse> list = new ArrayList<>();
         try {
@@ -91,12 +109,12 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
         }
         return list;
     }
-    
+
     public static void main(String[] args) {
         List<CTSanPhamResponse> list = new BanHangRepository().findCTSPCTSP("", "", "", "", "Canvas", 0);
         System.out.println(list);
     }
-    
+
     public List<BhChiTietSPResponse> findCTSPByMa(String input) {
         List<BhChiTietSPResponse> list = new ArrayList<>();
         try {
@@ -137,7 +155,6 @@ public class BanHangRepository extends CrudRepository<String, ChiTietSP, BhChiTi
         }
         return chiTietSPKhuyenMai;
     }
-
 
 //    public static void main(String[] args) {
 //        List<BhHoaDonChiTietResponse> list = new BanHangRepository().getAllHDCTByIdHoaDon("7b207910-96b6-4859-ba86-00b01a6f0f37");

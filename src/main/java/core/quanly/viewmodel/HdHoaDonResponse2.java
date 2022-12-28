@@ -70,33 +70,33 @@ public class HdHoaDonResponse2 {
     public String getThanhTienStr() {
         DecimalFormat df = new DecimalFormat("#,###");
         if (thanhTien == null) {
-            return "0VNĐ";
+            return "0 Vnđ";
         }
-        return String.valueOf(df.format(thanhTien)) + "VNĐ";
+        return String.valueOf(df.format(thanhTien)) + " Vnđ";
     }
 
     public String getTienKhachCKStr() {
         DecimalFormat df = new DecimalFormat("#,###");
         if (tienKhachCK == null) {
-            return "0VNĐ";
+            return "0 Vnđ";
         }
-        return String.valueOf(df.format(tienKhachCK)) + "VNĐ";
+        return String.valueOf(df.format(tienKhachCK)) + " Vnđ";
     }
 
     public String getTienKhachTraStr() {
         DecimalFormat df = new DecimalFormat("#,###");
         if (tienKhachTra == null) {
-            return "0VNĐ";
+            return "0 Vnđ";
         }
-        return String.valueOf(df.format(tienKhachTra)) + "VNĐ";
+        return String.valueOf(df.format(tienKhachTra)) + " Vnđ";
     }
 
     public String getTienThuaStr() {
         DecimalFormat df = new DecimalFormat("#,###");
         if (tienThua == null) {
-            return "0VNĐ";
+            return "0 Vnđ";
         }
-        return String.valueOf(df.format(tienThua)) + "VNĐ";
+        return String.valueOf(df.format(tienThua)) + " Vnđ";
     }
 
     public String getTenKHStr() {
@@ -151,9 +151,9 @@ public class HdHoaDonResponse2 {
     public String getTienshipStr() {
         DecimalFormat df = new DecimalFormat("#,###");
         if (tienship == null) {
-            return "0VNĐ";
+            return "0 Vnđ";
         }
-        return String.valueOf(df.format(tienship)) + "VNĐ";
+        return String.valueOf(df.format(tienship)) + " Vnđ";
     }
 
     public String getTT() {

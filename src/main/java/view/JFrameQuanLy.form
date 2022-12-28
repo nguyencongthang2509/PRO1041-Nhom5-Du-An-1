@@ -621,7 +621,7 @@
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="2"/>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/invoice.png"/>
+                      <Image iconType="3" name="/images/bill.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="H&#xf3;a &#x111;&#x1a1;n"/>
                     <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -673,7 +673,7 @@
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="2"/>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/cubes.png"/>
+                      <Image iconType="3" name="/images/product.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="S&#x1ea3;n ph&#x1ea9;m"/>
                     <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -780,7 +780,7 @@
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="2"/>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/trend.png"/>
+                      <Image iconType="3" name="/images/growth-graph.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Th&#x1ed1;ng k&#xea;"/>
                     <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -832,7 +832,7 @@
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="2"/>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/nhanvien.png"/>
+                      <Image iconType="3" name="/images/teamwork.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Nh&#xe2;n vi&#xea;n"/>
                     <Property name="toolTipText" type="java.lang.String" value=""/>

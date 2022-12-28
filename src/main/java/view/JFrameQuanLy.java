@@ -364,7 +364,7 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         menuHoaDon.setFont(new java.awt.Font("Source Sans Pro Black", 0, 20)); // NOI18N
         menuHoaDon.setForeground(new java.awt.Color(255, 255, 255));
         menuHoaDon.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        menuHoaDon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/invoice.png"))); // NOI18N
+        menuHoaDon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bill.png"))); // NOI18N
         menuHoaDon.setText("Hóa đơn");
         menuHoaDon.setToolTipText("");
         menuHoaDon.setInheritsPopupMenu(false);
@@ -395,7 +395,7 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         menuSanPham.setFont(new java.awt.Font("Source Sans Pro Black", 0, 20)); // NOI18N
         menuSanPham.setForeground(new java.awt.Color(255, 255, 255));
         menuSanPham.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        menuSanPham.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cubes.png"))); // NOI18N
+        menuSanPham.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/product.png"))); // NOI18N
         menuSanPham.setText("Sản phẩm");
         menuSanPham.setToolTipText("");
         menuSanPham.setInheritsPopupMenu(false);
@@ -458,7 +458,7 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         menuThongKe.setFont(new java.awt.Font("Source Sans Pro Black", 0, 20)); // NOI18N
         menuThongKe.setForeground(new java.awt.Color(255, 255, 255));
         menuThongKe.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        menuThongKe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/trend.png"))); // NOI18N
+        menuThongKe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/growth-graph.png"))); // NOI18N
         menuThongKe.setText("Thống kê");
         menuThongKe.setToolTipText("");
         menuThongKe.setInheritsPopupMenu(false);
@@ -489,7 +489,7 @@ public class JFrameQuanLy extends javax.swing.JFrame {
         menuNhanVien.setFont(new java.awt.Font("Source Sans Pro Black", 0, 20)); // NOI18N
         menuNhanVien.setForeground(new java.awt.Color(255, 255, 255));
         menuNhanVien.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        menuNhanVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/nhanvien.png"))); // NOI18N
+        menuNhanVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/teamwork.png"))); // NOI18N
         menuNhanVien.setText("Nhân viên");
         menuNhanVien.setToolTipText("");
         menuNhanVien.setInheritsPopupMenu(false);

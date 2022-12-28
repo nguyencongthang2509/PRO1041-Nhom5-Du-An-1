@@ -2022,7 +2022,7 @@ public class ViewSanPham extends javax.swing.JPanel {
                         JOptionPane.showMessageDialog(this, "Hãng phải là chữ");
                         return;
                     }
-                    if (txtTenThuocTinh.getText().trim().length() < 50) {
+                    if (txtTenThuocTinh.getText().trim().length() > 50) {
                         JOptionPane.showMessageDialog(this, "không thể vượt quá 50 kí tự");
                         return;
                     }
@@ -2091,7 +2091,7 @@ public class ViewSanPham extends javax.swing.JPanel {
                         JOptionPane.showMessageDialog(this, "Màu sắc phải là chữ");
                         return;
                     }
-                    if (txtTenThuocTinh.getText().trim().length() < 50) {
+                    if (txtTenThuocTinh.getText().trim().length() > 50) {
                         JOptionPane.showMessageDialog(this, "không thể vượt quá 50 kí tự");
                         return;
                     }
@@ -2124,7 +2124,7 @@ public class ViewSanPham extends javax.swing.JPanel {
                         JOptionPane.showMessageDialog(this, "Chất liệu phải là chữ");
                         return;
                     }
-                    if (txtTenThuocTinh.getText().trim().length() < 50) {
+                    if (txtTenThuocTinh.getText().trim().length() > 50) {
                         JOptionPane.showMessageDialog(this, "không thể vượt quá 50 kí tự");
                         return;
                     }

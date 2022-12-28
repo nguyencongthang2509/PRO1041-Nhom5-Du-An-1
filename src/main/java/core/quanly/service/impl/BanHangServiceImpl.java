@@ -257,4 +257,9 @@ public class BanHangServiceImpl implements BanHangService {
         return banHangRepository.findCTSPCTSP(sanPham, hang, mauSac, kichThuoc, chatLieu, trangThai);
     }
 
+    @Override
+    public Long countHoaDonChoGiaoHang() {
+        return banHangRepository.countHoaDonChoGiaoHang();
+    }
+
 }

@@ -22,6 +22,8 @@ import java.util.UUID;
 public interface BanHangService {
     
     ChiTietSPKhuyenMai getCTSPKhuyenMai(String idChiTietSP);
+    
+    Long countHoaDonChoGiaoHang();
 
     List<BhChiTietSPResponse> getAllChiTietSP();
     
