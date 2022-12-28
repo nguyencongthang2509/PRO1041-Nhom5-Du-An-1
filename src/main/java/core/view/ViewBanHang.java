@@ -366,7 +366,7 @@ public class ViewBanHang extends javax.swing.JPanel {
                                 bhHoaDonChiTietResponse.setHang(bhChiTietSPCheck.getHang());
                                 bhHoaDonChiTietResponse.setMauSac(bhChiTietSPCheck.getMauSac());
                                 bhHoaDonChiTietResponse.setSize(bhChiTietSPCheck.getSize());
-                                bhHoaDonChiTietResponse.setSoLuongTon(bhChiTietSPCheck.getSoLuongTon());
+                                bhHoaDonChiTietResponse.setSoLuongTon(bhChiTietSPCheck.getSoLuongTon() - soLuong);
                                 bhHoaDonChiTietResponse.setDonGia(bhChiTietSPCheck.getDonGia());
                                 ChiTietSPKhuyenMai chiTietSPKhuyenMai = banHangService.getCTSPKhuyenMai(bhChiTietSPCheck.getId());
                                 if (chiTietSPKhuyenMai != null) {
@@ -2435,7 +2435,7 @@ public class ViewBanHang extends javax.swing.JPanel {
                 bhHoaDonChiTietResponse.setHang(bhChiTietSPCheck.getHang());
                 bhHoaDonChiTietResponse.setMauSac(bhChiTietSPCheck.getMauSac());
                 bhHoaDonChiTietResponse.setSize(bhChiTietSPCheck.getSize());
-                bhHoaDonChiTietResponse.setSoLuongTon(bhChiTietSPCheck.getSoLuongTon());
+                bhHoaDonChiTietResponse.setSoLuongTon(bhChiTietSPCheck.getSoLuongTon() - soLuong);
                 bhHoaDonChiTietResponse.setDonGia(bhChiTietSPCheck.getDonGia());
                 ChiTietSPKhuyenMai chiTietSPKhuyenMai = banHangService.getCTSPKhuyenMai(bhChiTietSPCheck.getId());
                 if (chiTietSPKhuyenMai != null) {
@@ -2966,7 +2966,7 @@ public class ViewBanHang extends javax.swing.JPanel {
                 return;
             }
             bhHoaDonChiTietResponse.setSoLuong(soLuongCurrent);
-            bhHoaDonChiTietResponse.setSoLuongTon(bhHoaDonChiTietResponse.getSoLuongTon() + (soLuongCurrent - soLuongCu));
+            bhHoaDonChiTietResponse.setSoLuongTon(bhHoaDonChiTietResponse.getSoLuongTon() + (soLuongCu - soLuongCurrent));
             HoaDonChiTiet hoaDonChiTiet = banHangService.convertHoaDonChiTiet(bhHoaDonChiTietResponse);
             hoaDonChiTiet.setId(bhHoaDonChiTietResponse.getIdHDCT());
             banHangService.saveOrUpdateHDCT(hoaDonChiTiet);
