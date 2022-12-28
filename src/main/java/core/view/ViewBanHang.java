@@ -320,6 +320,7 @@ public class ViewBanHang extends javax.swing.JPanel {
                                             continue;
                                         }
                                         soLuongThayDoi = soLuongThayDoi;
+                                        banHangService.updateSoLuong(hoaDonChiTietCheck.getIdChiTietSP(), soLuongThayDoi);
                                     } else {
                                         if (soLuongThayDoi > hoaDonChiTietCheck.getSoLuong()) {
                                             JOptionPane.showMessageDialog(null, "Số lượng sau khi giảm không được âm");
@@ -383,13 +384,14 @@ public class ViewBanHang extends javax.swing.JPanel {
                                 banHangService.updateSoLuong(bhHoaDonChiTietResponse.getIdChiTietSP(), soLuong);
                             } else {
                                 hoaDonChiTietCheck.setSoLuong(hoaDonChiTietCheck.getSoLuong() + soLuongThayDoi);
+                                hoaDonChiTietCheck.setSoLuongTon(bhChiTietSPCheck.getSoLuongTon());
                                 if (hoaDonChiTietCheck.getSoLuong() != 0) {
                                     mapGioHang.replace(hoaDonChiTietCheck.getIdChiTietSP(), hoaDonChiTietCheck);
                                     loadDataToTableHDCT(mapGioHang);
                                     HoaDonChiTiet hoaDonChiTiet = banHangService.convertHoaDonChiTiet(hoaDonChiTietCheck);
                                     hoaDonChiTiet.setId(hoaDonChiTietCheck.getIdHDCT());
                                     banHangService.saveOrUpdateHDCT(hoaDonChiTiet);
-                                    banHangService.updateSoLuong(hoaDonChiTietCheck.getIdChiTietSP(), soLuongThayDoi);
+//                                    banHangService.updateSoLuong(hoaDonChiTietCheck.getIdChiTietSP(), soLuongThayDoi);
                                 }
                             }
                             listSanPham = banHangService.getAllChiTietSP();
@@ -2387,6 +2389,7 @@ public class ViewBanHang extends javax.swing.JPanel {
                             return;
                         }
                         soLuongThayDoi = soLuongThayDoi;
+                        banHangService.updateSoLuong(hoaDonChiTietCheck.getIdChiTietSP(), soLuongThayDoi);
                     } else {
                         if (soLuongThayDoi > hoaDonChiTietCheck.getSoLuong()) {
                             JOptionPane.showMessageDialog(this, "Số lượng sau khi giảm không được âm");
@@ -2450,13 +2453,14 @@ public class ViewBanHang extends javax.swing.JPanel {
                 loadDataToTableHDCT(mapGioHang);
             } else {
                 hoaDonChiTietCheck.setSoLuong(hoaDonChiTietCheck.getSoLuong() + soLuongThayDoi);
+                hoaDonChiTietCheck.setSoLuongTon(bhChiTietSPCheck.getSoLuongTon());
                 if (hoaDonChiTietCheck.getSoLuong() != 0) {
                     mapGioHang.replace(hoaDonChiTietCheck.getIdChiTietSP(), hoaDonChiTietCheck);
                     loadDataToTableHDCT(mapGioHang);
                     HoaDonChiTiet hoaDonChiTiet = banHangService.convertHoaDonChiTiet(hoaDonChiTietCheck);
                     hoaDonChiTiet.setId(hoaDonChiTietCheck.getIdHDCT());
                     banHangService.saveOrUpdateHDCT(hoaDonChiTiet);
-                    banHangService.updateSoLuong(hoaDonChiTietCheck.getIdChiTietSP(), soLuongThayDoi);
+//                    banHangService.updateSoLuong(hoaDonChiTietCheck.getIdChiTietSP(), soLuongThayDoi);
                 }
             }
             listSanPham = banHangService.getAllChiTietSP();
@@ -2941,7 +2945,7 @@ public class ViewBanHang extends javax.swing.JPanel {
             if (row >= 0) {
                 bhHoaDonChiTietResponse = new ArrayList<>(mapGioHang.values()).get(row);
             }
-            if (soLuongCurrent > bhHoaDonChiTietResponse.getSoLuongTon()) {
+            if (soLuongCurrent > (soLuongCu + bhHoaDonChiTietResponse.getSoLuongTon())) {
                 tblGioHang.setValueAt(soLuongCu, row, 3);
                 JOptionPane.showMessageDialog(this, "Số lượng tồn không đủ");
                 return;
@@ -2962,6 +2966,7 @@ public class ViewBanHang extends javax.swing.JPanel {
                 return;
             }
             bhHoaDonChiTietResponse.setSoLuong(soLuongCurrent);
+            bhHoaDonChiTietResponse.setSoLuongTon(bhHoaDonChiTietResponse.getSoLuongTon() + (soLuongCurrent - soLuongCu));
             HoaDonChiTiet hoaDonChiTiet = banHangService.convertHoaDonChiTiet(bhHoaDonChiTietResponse);
             hoaDonChiTiet.setId(bhHoaDonChiTietResponse.getIdHDCT());
             banHangService.saveOrUpdateHDCT(hoaDonChiTiet);
