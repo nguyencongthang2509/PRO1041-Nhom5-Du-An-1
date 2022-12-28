@@ -315,7 +315,7 @@ public class ViewBanHang extends javax.swing.JPanel {
                                         continue;
                                     }
                                     if (resultOption == 0) {
-                                        if (soLuongThayDoi > bhChiTietSPCheck.getSoLuongTon() - hoaDonChiTietCheck.getSoLuong()) {
+                                        if (soLuongThayDoi > bhChiTietSPCheck.getSoLuongTon()) {
                                             JOptionPane.showMessageDialog(null, "Không được vượt số lượng tồn");
                                             continue;
                                         }
@@ -2382,7 +2382,7 @@ public class ViewBanHang extends javax.swing.JPanel {
                         return;
                     }
                     if (result == 0) {
-                        if (soLuongThayDoi > bhChiTietSPCheck.getSoLuongTon() - hoaDonChiTietCheck.getSoLuong()) {
+                        if (soLuongThayDoi > bhChiTietSPCheck.getSoLuongTon()) {
                             JOptionPane.showMessageDialog(this, "Không được vượt số lượng tồn");
                             return;
                         }
@@ -2481,6 +2481,7 @@ public class ViewBanHang extends javax.swing.JPanel {
                 lblCapBac.setIcon(new ImageIcon(""));
                 lblCapBac.setText("");
                 lblTenCapBac.setText("");
+                txtPhanTramGiamHoaDon.setText("0 %");
             } else {
                 if (bhKhachHangResponse.getCapBac() == 0) {
                     lblCapBac.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/dong.png")));
@@ -2617,6 +2618,7 @@ public class ViewBanHang extends javax.swing.JPanel {
                         lblCapBac.setIcon(new ImageIcon(""));
                         lblCapBac.setText("");
                         lblTenCapBac.setText("");
+                        txtPhanTramGiamHoaDon.setText("0 %");
                     } else {
                         if (bhHoaDonResponse.getCapBac() == 0) {
                             lblCapBac.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/dong.png")));
@@ -3086,6 +3088,7 @@ public class ViewBanHang extends javax.swing.JPanel {
         txtTienThuaTaiQuay.setText("");
         txtTenNVTaiQuay.setText("");
         lblTienChu.setText("-");
+        cboHTThanhToanTaiQuay.setEnabled(true);
         txtThanhToanTaiQuay.setText("");
         lblCapBac.setIcon(new ImageIcon(""));
         lblTenCapBac.setText("");
@@ -3727,7 +3730,7 @@ public class ViewBanHang extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Tiền khách chuyển khoản không được âm");
                 return;
             }
-            if (cboHTThanhToanTaiQuay.getSelectedIndex() == 2 && (new BigDecimal(txtTienKhachDuaTaiQuay.getText().trim()).compareTo(BigDecimal.ZERO) == -1 || new BigDecimal(txtTienKhachDuaDatHang.getText().trim()).compareTo(BigDecimal.ZERO) == -1)) {
+            if (cboHTThanhToanTaiQuay.getSelectedIndex() == 2 && (new BigDecimal(txtTienKhachDuaTaiQuay.getText().trim()).compareTo(BigDecimal.ZERO) == -1 || new BigDecimal(txtTienKhachCKTaiQuay.getText().trim()).compareTo(BigDecimal.ZERO) == -1)) {
                 JOptionPane.showMessageDialog(this, "Tiền khách đưa và tiền khách chuyển khoản không được âm");
                 return;
             }
@@ -4770,6 +4773,7 @@ public class ViewBanHang extends javax.swing.JPanel {
                 listHoaDon = banHangService.getAllResponseHD("", 0, 0);
             }
             setSelected(0, 0);
+            txtPhanTramGiamHoaDon.setText("0 %");
             loadDataToHoaDon(listHoaDon);
             JOptionPane.showMessageDialog(this, "Tạo hóa đơn thành công");
             tblHoaDonCho.setRowSelectionInterval(0, 0);
@@ -4777,6 +4781,7 @@ public class ViewBanHang extends javax.swing.JPanel {
             btnClear.setEnabled(true);
             btnChonTaiQuay.setEnabled(true);
             btnThanhToanTaiQuay.setEnabled(true);
+            cboHTThanhToanTaiQuay.setEnabled(true);
             chkTatCa.setEnabled(true);
             txtMaHDTaiQuay.setText(hoaDon.getMa());
             txtTenNVTaiQuay.setText(nhanVien.getTen());

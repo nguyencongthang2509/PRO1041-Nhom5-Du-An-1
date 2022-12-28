@@ -72,6 +72,22 @@ public class ThongKeHangHoaRepository {
         }
         return list;
     }
+    
+    public BigDecimal getDoanhThuNow() {
+        BigDecimal nv = null;
+        Date date = new Date();
+        try {
+            Session session = HibernateUtil.getSession();
+            String hql = "select sum(a.thanhTien) from HoaDon a where YEAR(a.ngayThanhToan) = year(:date) AND MONTH(a.ngayThanhToan) = MONTH(:date) AND DAY(a.ngayThanhToan) = DAY(:date) AND (a.trangThai = 2 OR a.trangThai = 5)";
+            Query query = session.createQuery(hql);
+            query.setParameter("date", date);
+            nv = (BigDecimal) query.getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return nv;
+    }
 
 //Lấy ra doanh thu tất cả các năm
     public BigDecimal getDoanhThu() {

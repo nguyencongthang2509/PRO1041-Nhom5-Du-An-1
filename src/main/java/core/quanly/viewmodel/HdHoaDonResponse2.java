@@ -45,6 +45,7 @@ public class HdHoaDonResponse2 {
     private Double phanTramGiamGia;
     private Date ngayMongMuon;
     private String maGiaoDich;
+    private Integer trangThaiThanhToan;
 
     public String getNgayThanhToanStr() {
         if (ngayThanhToan == null) {

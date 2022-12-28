@@ -134,6 +134,7 @@ public class ViewThongKe extends javax.swing.JPanel {
         btnTimTheoNgay = new javax.swing.JButton();
         jTextField2 = new javax.swing.JTextField();
         btnGuiBaoCao = new javax.swing.JButton();
+        btnGuiBaoCao1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1292, 784));
@@ -778,6 +779,14 @@ public class ViewThongKe extends javax.swing.JPanel {
             }
         });
 
+        btnGuiBaoCao1.setBackground(new java.awt.Color(153, 204, 255));
+        btnGuiBaoCao1.setText("DT hôm nay");
+        btnGuiBaoCao1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuiBaoCao1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -795,7 +804,9 @@ public class ViewThongKe extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnGuiBaoCao))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnGuiBaoCao)
+                                    .addComponent(btnGuiBaoCao1)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(13, 13, 13)
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -808,6 +819,9 @@ public class ViewThongKe extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnGuiBaoCao, btnGuiBaoCao1});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -825,8 +839,10 @@ public class ViewThongKe extends javax.swing.JPanel {
                             .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(btnGuiBaoCao, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(28, 28, 28)
+                        .addComponent(btnGuiBaoCao, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnGuiBaoCao1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
                 .addContainerGap())
@@ -1330,7 +1346,7 @@ public class ViewThongKe extends javax.swing.JPanel {
                 String path = selectedFile.getAbsolutePath();
                 ExportThongKeHangHoaTra export = new ExportThongKeHangHoaTra();
                 listHangHoaTra = thongKeRespo.getListTraHang();
-                if(listHangHoaTra.size() == 0){
+                if (listHangHoaTra.size() == 0) {
                     JOptionPane.showMessageDialog(this, "Danh sách trống");
                     return;
                 }
@@ -1347,11 +1363,22 @@ public class ViewThongKe extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnExportTraHangActionPerformed
 
+    private void btnGuiBaoCao1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuiBaoCao1ActionPerformed
+        DecimalFormat df = new DecimalFormat("#,###");
+        BigDecimal bigDecimal = thongKeRespo.getDoanhThuNow();
+        if (bigDecimal != null) {
+            lblDoanhThu.setText(df.format(bigDecimal) + " Vnđ");
+        } else {
+            lblDoanhThu.setText("0 Vnđ");
+        }
+    }//GEN-LAST:event_btnGuiBaoCao1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JPenalBieuDo;
     private javax.swing.JButton btnExportTraHang;
     private javax.swing.JButton btnGuiBaoCao;
+    private javax.swing.JButton btnGuiBaoCao1;
     private javax.swing.JButton btnTimTheoNgay;
     private javax.swing.JComboBox<String> cboHot;
     private javax.swing.JComboBox<String> cboMaxMin;
