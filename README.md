@@ -1,7 +1,6 @@
 # PRO1041-FALL22
 # Bài bảo vệ cuối môn dự án 1 - PRO1041
-Công nghệ sử dụng: Hibernate
-Đề tài: Phần mềm bán giày Sneaker
+Đề tài: Phần mềm bán giày Sneaker - Công nghệ sử dụng: Hibernate
 - Luồng nghiệp vụ chính của phần mềm: Bán hàng - Trả hàng 
 - Luồng bán hàng:
 - Bán hàng theo hình thức tại quầy:
